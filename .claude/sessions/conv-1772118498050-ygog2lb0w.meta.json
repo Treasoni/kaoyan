@@ -1,0 +1,20 @@
+{
+  "id": "conv-1772118498050-ygog2lb0w",
+  "title": "Update考研项目目录结构",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772118498051,
+  "updatedAt": 1772118548071,
+  "lastResponseAt": 1772118548071,
+  "sessionId": "7adce797-df1c-4e51-b615-03e671558263",
+  "sdkSessionId": "7adce797-df1c-4e51-b615-03e671558263",
+  "currentNote": "CLAUDE.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

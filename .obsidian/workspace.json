@@ -11,10 +11,14 @@
             "id": "6fd1069e12a6c6e0",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -188,8 +192,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6fd1069e12a6c6e0",
+  "active": "6317a39668190194",
   "lastOpenFiles": [
+    "考研政治",
+    "考研专业课",
     "CLAUDE.md"
   ]
 }

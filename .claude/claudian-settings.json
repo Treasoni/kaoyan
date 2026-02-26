@@ -53,7 +53,7 @@
     "~/Downloads"
   ],
   "persistentExternalContextPaths": [],
-  "environmentVariables": "ANTHROPIC_AUTH_TOKEN=\"c820db9d1a8a4dac8e921e1b3463ce2e.NcOIVrXBALz8GEvb\",\nANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\",\nAPI_TIMEOUT_MS=\"3000000\",\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1,\nANTHROPIC_DEFAULT_HAIKU_MODEL= \"glm-4.5-air\",\nANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\",\nANTHROPIC_DEFAULT_OPUS_MODEL= \"glm-5\"",
+  "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"c820db9d1a8a4dac8e921e1b3463ce2e.NcOIVrXBALz8GEvb\"\nexport ANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\"\nexport API_TIMEOUT_MS=\"3000000\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"glm-4.5-air\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
   "envSnippets": [],
   "customContextLimits": {},
   "keyboardNavigation": {
@@ -67,7 +67,7 @@
   "loadUserClaudeSettings": true,
   "lastClaudeModel": "haiku",
   "lastCustomModel": "glm-5",
-  "lastEnvHash": "ANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\",|ANTHROPIC_DEFAULT_HAIKU_MODEL=\"glm-4.5-air\",|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\",",
+  "lastEnvHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.5-air|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,

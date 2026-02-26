@@ -2,10 +2,12 @@
   "customOrder": {
     "/": {
       "children": [
+        "CLAUDE.md",
         "考研计划",
         "考研数学",
         "考研英语",
-        "复试名单（公示）.pdf"
+        "考研专业课",
+        "考研政治"
       ],
       "sortOrder": "custom"
     },
@@ -581,6 +583,14 @@
       "children": [
         "考研英语/英语考研单词.docx的替身"
       ],
+      "sortOrder": "custom"
+    },
+    "考研政治": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "考研专业课": {
+      "children": [],
       "sortOrder": "custom"
     }
   },
