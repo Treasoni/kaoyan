@@ -40,7 +40,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "custom",
+                "sortOrder": "alphabetical",
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
@@ -154,26 +154,17 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "CLAUDE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
-            }
-          },
-          {
-            "id": "e577bdf66b16328b",
-            "type": "leaf",
-            "state": {
-              "type": "claudian-view",
-              "state": {},
-              "icon": "bot",
-              "title": "Claudian"
+              "title": "CLAUDE 的大纲"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -192,10 +183,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6317a39668190194",
+  "active": "f5f6330a45d67f9a",
   "lastOpenFiles": [
-    "考研政治",
-    "考研专业课",
-    "CLAUDE.md"
+    "未命名.md",
+    "CLAUDE.md",
+    "线性资料/第零章：零基础入门线性代数/images/396033806bbcddc57ff9ecbb35b770e320a42a8b8e69590de311244389777b8f.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/fecc60c0de577b443c0b4e922aa137db72836ccdb79f484d43f68fb9a29d11e5.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/f953c1bd649100df66986f3b5384b9726b9a2f8ff2efc5177d16bf7853850691.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/f4c09e2d20549bbb46738569ccd0d0be985fa6130b6e816096307623195134b4.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/f3a55406d0234c7b5a4250c2f5bf24adeb213a2dd3172f1d349e83bbcc2e7d36.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/f36d5ba734507a96145b0d6bdc0d252effc3c5b9c8e3d6340ded1fb0c9ed65f3.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/ef0ee39ce426a3ee6495c2e0cfcc0202ceb4436920696af2bc1fa54df4cabbb0.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/e87e9dd519cd8007291815f0aae162f26fea7465695ccfaffd2e6800112151e6.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/e4023d20f847d6196e6304abd120bcf53f1c9edb8000ae73f37f6ef40b061a4b.jpg",
+    "线性资料/第零章：零基础入门线性代数/images/e34e2ea9b6d6447c14140e052a180d1ed82bd105b16ed8911d4c97398e806845.jpg",
+    "线性资料/第零章：零基础入门线性代数/layout.json",
+    "线性资料/第零章：零基础入门线性代数/images",
+    "线性资料/第零章：零基础入门线性代数/full.md",
+    "线性资料/第零章：零基础入门线性代数/content_list_v2.json",
+    "线性资料/第零章：零基础入门线性代数/4d888ad5-b515-4c59-a90e-d98aa54cb8fb_origin.pdf",
+    "线性资料/第零章：零基础入门线性代数/4d888ad5-b515-4c59-a90e-d98aa54cb8fb_model.json",
+    "线性资料/第零章：零基础入门线性代数/4d888ad5-b515-4c59-a90e-d98aa54cb8fb_content_list.json",
+    "线性资料/第零章：零基础入门线性代数/block_list.json",
+    "线性资料/第四章：线性方程组/layout.json",
+    "线性资料/第四章：线性方程组/full.md",
+    "线性资料/第四章：线性方程组/5c55cbf2-d3ae-4511-b168-95f22a9fa0b4_origin.pdf",
+    "线性资料/第四章：线性方程组/images",
+    "线性资料/第六章：二次型/full.md",
+    "线性资料/第二章：矩阵/full.md",
+    "线性资料/第五章：特征值与特征向量/full.md",
+    "线性资料/第三章：向量组/full.md",
+    "线性资料/第一章：行列式/full.md",
+    "高数资料/第三章：一元函数微分学的概念/一元函数微分学的计算.pdf-85cf8f8c-213a-407d-bd2c-4ea972bc4e17/一元函数微分学的计算.md",
+    "高数资料/第三章：一元函数微分学的概念/一元函数微分学的计算.pdf-85cf8f8c-213a-407d-bd2c-4ea972bc4e17/full.md",
+    "高数资料/第四章：一元函数微分学的计算/full.md",
+    "高数资料/附录/附录.md",
+    "高数资料/附录/full.md",
+    "高数资料/第十章：一元函数积分学应用1/一元函数积分学的应用1.md",
+    "高数资料/第十章：一元函数积分学应用1/full.md",
+    "高数资料/第十四章：⼆ 重 积 分/二重积分.md",
+    "高数资料/第十四章：⼆ 重 积 分/full.md",
+    "高数资料/第十五章：微 分 ⽅ 程/full.md",
+    "高数资料/第十二章：一元函数积分学应用3/full.md",
+    "高数资料/第十二章：一元函数积分学应用3/一元函数积分学的应用3.md",
+    "高数资料/第十三章：多 元 函 数 微 分学/多元函数微分学.md",
+    "高数资料/第十三章：多 元 函 数 微 分学/full.md",
+    "高数资料/第十一章：一元函数积分学应用2/一元函数积分学的应用2.md",
+    "高数资料/第十一章：一元函数积分学应用2/full.md",
+    "高数资料/第六章：一元函数微分的应用2/一元函数微分学的应用2.md"
   ]
 }

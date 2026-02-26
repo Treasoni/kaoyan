@@ -40,7 +40,7 @@
   },
   "permissionMode": "yolo",
   "model": "glm-5",
-  "thinkingBudget": "off",
+  "thinkingBudget": "low",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
   "show1MModel": false,

@@ -48,6 +48,8 @@ kaoyan-electronics → 电子技术基础学习
 ```
 
 > **注意**：教材存放在外部目录（高数、线性代数、概率论），通过绝对路径访问。
+> 高数：/Users/zhqznc/Documents/高数资料
+> 线性代数：/Users/zhqznc/Documents/线性代数资料
 
 ## 学习指南
 
