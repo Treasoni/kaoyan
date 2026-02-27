@@ -154,17 +154,27 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CLAUDE.md",
+                "file": "考研数学/函数/函数极限与连续.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CLAUDE 的大纲"
+              "title": "函数极限与连续 的大纲"
+            }
+          },
+          {
+            "id": "a1457f00a3986de5",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -183,10 +193,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f5f6330a45d67f9a",
+  "active": "a1457f00a3986de5",
   "lastOpenFiles": [
-    "未命名.md",
     "CLAUDE.md",
+    "未命名.md",
     "线性资料/第零章：零基础入门线性代数/images/396033806bbcddc57ff9ecbb35b770e320a42a8b8e69590de311244389777b8f.jpg",
     "线性资料/第零章：零基础入门线性代数/images/fecc60c0de577b443c0b4e922aa137db72836ccdb79f484d43f68fb9a29d11e5.jpg",
     "线性资料/第零章：零基础入门线性代数/images/f953c1bd649100df66986f3b5384b9726b9a2f8ff2efc5177d16bf7853850691.jpg",
