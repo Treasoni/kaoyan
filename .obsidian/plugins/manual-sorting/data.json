@@ -22,7 +22,10 @@
       "sortOrder": "custom"
     },
     "考研计划": {
-      "children": [],
+      "children": [
+        "考研计划/每日计划",
+        "考研计划/2026-02-28-每日计划.md"
+      ],
       "sortOrder": "custom"
     },
     "考研数学": {
@@ -136,6 +139,10 @@
       "sortOrder": "custom"
     },
     "考研专业课": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "考研计划/每日计划": {
       "children": [],
       "sortOrder": "custom"
     }
