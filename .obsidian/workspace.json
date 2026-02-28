@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "考研计划/每日计划/2026-02-28-每日计划.md",
+                "file": "CLAUDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-28-每日计划"
+              "title": "CLAUDE"
             }
           }
         ]
@@ -154,13 +154,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "考研计划/每日计划/2026-02-28-每日计划.md",
+                "file": "CLAUDE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-02-28-每日计划 的大纲"
+              "title": "CLAUDE 的大纲"
             }
           },
           {
@@ -195,10 +195,11 @@
   },
   "active": "d5cd2efd66de288b",
   "lastOpenFiles": [
-    "考研数学/高数-极限与连续/📊 学习进度.md",
-    "考研计划/每日计划/2026-02-28-每日计划.md",
-    "考研数学/高数-极限与连续/📑 索引.md",
     "考研英语/📅 复习计划.md",
+    "CLAUDE.md",
+    "考研计划/每日计划/2026-02-28-每日计划.md",
+    "考研数学/高数-极限与连续/📊 学习进度.md",
+    "考研数学/高数-极限与连续/📑 索引.md",
     "考研英语/📑 索引.md",
     "考研英语/📰 真题语境文章/Day-001-2026-02-28.md",
     "考研英语/📝 每日词汇/Day-001-2026-02-28.md",
@@ -216,7 +217,6 @@
     "考研英语/📚 重点词汇库/deal.md",
     "考研英语/📚 重点词汇库/date.md",
     "考研英语/📚 重点词汇库",
-    "CLAUDE.md",
     "考研英语/📝 每日词汇",
     "考研英语/英语单词",
     "考研数学/高数-极限与连续/0-基础知识/函数的概念与特性.md",
