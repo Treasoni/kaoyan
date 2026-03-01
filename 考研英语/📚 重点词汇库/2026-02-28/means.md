@@ -46,16 +46,16 @@ tags: ["名词", "僻义warning", "高频搭配", "语法考点"]
 
 ### 常用搭配
 
-| 搭配 | 释义 | 例句 |
-|------|------|------|
-| **by no means** | 绝不、一点也不（倒装句考点） | By no means is it true |
-| **by means of** | 通过...方式、依靠 | Success by means of hard work |
-| **a means to do sth** | 做某事的手段 | A means to achieve goals |
-| **a means of doing sth** | 做某事的方法 | A means of communication |
-| **try every means to do** | 想方设法做某事 | Try every means to help |
-| **live beyond one's means** | 入不敷出 | Living beyond one's means |
-| **live within one's means** | 量入为出 | Live within your means |
-| **the end justifies the means** | 目的证明手段正确（谚语） | - |
+| 搭配                              | 释义             | 例句                            |
+| ------------------------------- | -------------- | ----------------------------- |
+| **by no means**                 | 绝不、一点也不（倒装句考点） | By no means is it true        |
+| **by means of**                 | 通过...方式、依靠     | Success by means of hard work |
+| **a means to do sth**           | 做某事的手段         | A means to achieve goals      |
+| **a means of doing sth**        | 做某事的方法         | A means of communication      |
+| **try every means to do**       | 想方设法做某事        | Try every means to help       |
+| **live beyond one's means**     | 入不敷出           | Living beyond one's means     |
+| **live within one's means**     | 量入为出           | Live within your means        |
+| **the end justifies the means** | 目的证明手段正确（谚语）   | -                             |
 
 ### 语法考点
 ⚠️ **倒装句重点**：
