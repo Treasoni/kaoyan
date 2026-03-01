@@ -20,8 +20,33 @@
               "icon": "lucide-file",
               "title": "Day-001-2026-02-28"
             }
+          },
+          {
+            "id": "d7089f54e71bb1e8",
+            "type": "leaf",
+            "state": {
+              "type": "langr-data-panel",
+              "state": {},
+              "icon": "database",
+              "title": "单词列表"
+            }
+          },
+          {
+            "id": "2c99179c87ced0d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "考研英语/📰 真题语境文章/Day-001-2026-02-28.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Day-001-2026-02-28"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -72,6 +97,16 @@
               "state": {},
               "icon": "lucide-bookmark",
               "title": "书签"
+            }
+          },
+          {
+            "id": "8f0801c840d50070",
+            "type": "leaf",
+            "state": {
+              "type": "langr-search-panel",
+              "state": {},
+              "icon": "book",
+              "title": "查词面板"
             }
           }
         ]
@@ -181,11 +216,17 @@
       "bases:新建数据库": false,
       "claudian:Open Claudian": false,
       "obsidian-git:Open Git source control": false,
-      "obsidian42-brat:BRAT": false
+      "obsidian42-brat:BRAT": false,
+      "obsidian-language-learner:打开查词面板": false,
+      "obsidian-language-learner:打开新词面板": false,
+      "obsidian-language-learner:打开统计": false,
+      "obsidian-language-learner:单词列表": false
     }
   },
-  "active": "1b1bf7a4e105e44a",
+  "active": "f5f6330a45d67f9a",
   "lastOpenFiles": [
+    "未命名.base",
+    "考研英语/📰 真题语境文章/Day-001-2026-02-28.md",
     "考研英语/📝 每日词汇/Day-001-2026-02-28.md",
     "考研计划/每日计划/2026-03-01-每日计划.md",
     "考研英语/英语单词/2026-2-28.md",
@@ -205,7 +246,6 @@
     "零基础数学知识.md",
     "考研数学/高数-极限与连续/📑 索引.md",
     "考研英语/📑 索引.md",
-    "考研英语/📰 真题语境文章/Day-001-2026-02-28.md",
     "考研英语/📰 真题语境文章",
     "考研英语/📚 重点词汇库/2026-02-28/date.md",
     "考研英语/📚 重点词汇库/secure.md",
@@ -215,7 +255,6 @@
     "考研英语/📚 重点词汇库/2026-02-28/deal.md",
     "考研英语/📚 重点词汇库/2026-02-28",
     "考研英语/📚 重点词汇库/measure.md",
-    "考研英语/📚 重点词汇库/means.md",
     "考研英语/📚 重点词汇库",
     "考研英语/📝 每日词汇",
     "考研英语/英语单词",
@@ -228,7 +267,6 @@
     "考研数学/高数-极限与连续/0-基础知识/assets/函数的概念与特性",
     "考研数学/高数-极限与连续/0-基础知识/assets",
     "考研数学/高数-极限与连续/3-连续性理论",
-    "考研数学/高数-极限与连续/2-重要极限与技巧",
     "线性资料/第零章：零基础入门线性代数/images/396033806bbcddc57ff9ecbb35b770e320a42a8b8e69590de311244389777b8f.jpg",
     "线性资料/第零章：零基础入门线性代数/images/fecc60c0de577b443c0b4e922aa137db72836ccdb79f484d43f68fb9a29d11e5.jpg",
     "线性资料/第零章：零基础入门线性代数/images/f953c1bd649100df66986f3b5384b9726b9a2f8ff2efc5177d16bf7853850691.jpg"
