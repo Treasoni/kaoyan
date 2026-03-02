@@ -53,14 +53,14 @@ behalf, accelerate, academy, academic, incidence, incline, incidentally, inciden
 
 ### 本日单词中的僻义词
 
-| 单词 | 常见义 | **考研僻义** | 频率 |
-|------|--------|-------------|------|
-| **delicate** | 精致的 | **微妙的（a delicate balance）** | 45% |
-| **deliberate** | 从容的 | **故意的 / 慎重考虑** | 50% |
-| **defy** | 违抗 | **难以（defy description）** | 40% |
-| **benign** | 和善的 | **（肿瘤）良性的** | 35% |
-| **challenge** | 挑战 | **质疑（challenge to sth）** | 45% |
-| **incident** | 事件 | **（两国间的）冲突** | 30% |
+| 单词             | 常见义 | **考研僻义**                    | 频率  |
+| -------------- | --- | --------------------------- | --- |
+| **delicate**   | 精致的 | **微妙的（a delicate balance）** | 45% |
+| **deliberate** | 从容的 | **故意的 / 慎重考虑**              | 50% |
+| **defy**       | 违抗  | **难以（defy description）**    | 40% |
+| **benign**     | 和善的 | **（肿瘤）良性的**                 | 35% |
+| **challenge**  | 挑战  | **质疑（challenge to sth）**    | 45% |
+| **incident**   | 事件  | **（两国间的）冲突**                | 30% |
 
 > [!danger] 僻义重点
 > - **deliberate**: 在阅读中遇到时，首先判断是"故意的"还是慎重考虑"
