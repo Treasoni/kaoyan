@@ -18,7 +18,8 @@
       "mcp__time__get_current_time",
       "Bash(ls -la /Users/zhqznc/Documents/考研复习/.obsidian/workspace*.json)",
       "Bash(git rm --cached .obsidian/workspace.json)",
-      "Bash(git rm --cached .obsidian/workspace-mobile.json)"
+      "Bash(git rm --cached .obsidian/workspace-mobile.json)",
+      "Bash(curl -L -o \"/Users/zhqznc/Documents/考研复习/考研数学/高数-极限与连续/0-基础知识/assets/基本初等函数/file-20260302-幂指函数xx.png\" \"https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/7be913a7-288e-4724-a681-0d421426f73f/ea1bdb5acac869cb8925d93b65251a8674970953e8add8261a1e2dc6e65326cf.png?UCloudPublicKey=TOKEN_e15ba47a-d098-4fbd-9afc-a0dcf0e4e621&Expires=1772450931&Signature=mjsQhflu4KF2c2e38fqEmBRI16s=\")"
     ]
   }
 }
