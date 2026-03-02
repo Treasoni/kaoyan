@@ -19,7 +19,7 @@
   "syncMethod": "merge",
   "mergeStrategy": "none",
   "customMessageOnAutoBackup": false,
-  "autoBackupAfterFileChange": true,
+  "autoBackupAfterFileChange": false,
   "treeStructure": false,
   "refreshSourceControl": true,
   "basePath": "",
