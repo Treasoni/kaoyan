@@ -1,2 +1,124 @@
-.obsidian/wgrkspace.json
+# ===================================
+# 考研复习项目 - Git忽略文件配置
+# ===================================
+
+# -----------------------------------
+# 1. 系统垃圾文件 (System Files)
+# -----------------------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# -----------------------------------
+# 2. Obsidian 本地状态文件 (避免多端冲突)
+# -----------------------------------
+# 工作区状态 - 包含打开的文件、窗口位置等本地UI状态
+.obsidian/workspace.json
 .obsidian/workspace-mobile.json
+
+# 可能包含本地路径的配置
+.obsidian/app.json
+
+# -----------------------------------
+# 3. 临时文件与备份 (Temporary Files)
+# -----------------------------------
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.swp
+*.swo
+*~.nib
+*.log
+
+# -----------------------------------
+# 4. 编辑器与IDE (Editor Config)
+# -----------------------------------
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs (IntelliJ, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.vim
+.[!.]*.sw[a-z]
+*.un~
+Session.vim
+Sessionx.vim
+
+# Emacs
+*~
+\#*\#
+.\#*
+.dir-locals.el
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------------
+# 5. Claude Code 相关
+# -----------------------------------
+# 本地记忆文件（可能包含敏感或本地数据）
+.claude/projects/*/memory/
+.claude/cache/
+
+# -----------------------------------
+# 6. 其他可能产生冲突的文件
+# -----------------------------------
+# 本地环境配置
+.env.local
+.env.*.local
+
+# 同步软件产生的文件
+*.sync
+*.conflict*
+*.orig
+
+# -----------------------------------
+# 7. 说明保留的文件
+# -----------------------------------
+# 以下文件会被Git追踪（有助于多端同步）：
+# - .obsidian/appearance.json      # 主题设置
+# - .obsidian/community-plugins.json # 社区插件列表
+# - .obsidian/core-plugins.json    # 核心插件设置
+# - .obsidian/hotkeys.json         # 快捷键设置
+# - .obsidian/graph.json           # 关系图设置
+# - .obsidian/plugins/             # 插件配置（部分）
+# - CLAUDE.md                      # 项目配置
+# - .claude/skills/                # 技能定义
