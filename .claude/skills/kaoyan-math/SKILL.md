@@ -1,7 +1,7 @@
 ---
 name: kaoyan-math
 description: This skill should be used when the user asks to generate/modify study notes for 考研数学 (Chinese graduate entrance math exam), specifically when the user provides existing notes and wants to create exam-oriented learning notes, or when the user provides feedback to update existing study notes. Now integrated with MemOS for persistent mistake tracking and cross-device synchronization.
-version: 3.1.0
+version: 3.2.0
 ---
 
 # 考研数学学习笔记生成技能 (Kaoyan Mathematics Note Generation Skill)
@@ -12,6 +12,68 @@ This skill is designed for **iterative generation of exam-oriented study notes**
 - **LaTeX格式强制**: 所有数学公式必须使用LaTeX格式以确保在Obsidian中正确渲染
 - **知识点主动关联**: AI主动提示跨章节关联（如洛必达法则与变限积分求导的结合）
 - **MemOS集成**: 实现真正的"千人千面"个性化笔记，记住所有错题历史，支持跨设备同步
+
+---
+
+## 笔记生成规范 (v3.2.0新增)
+
+### 知识点结构参考
+
+生成数学笔记时，**必须优先参考以下目录结构**，确保与用户教材体系一致：
+
+#### 高数资料路径
+- **主目录**: `/Users/zhqznc/Documents/高数资料/`
+- **函数极限与连续**: `/Users/zhqznc/Documents/高数资料/函数极限与连续/函数极限与连续.md`
+
+#### 标准目录结构（函数极限与连续模块）
+
+详见下方「知识点结构模板」部分，生成笔记时应严格遵循此结构。
+
+### 已有笔记保护机制 ⚠️
+
+**强制规则**：生成笔记时，必须遵守以下保护机制：
+
+1. **检查现有文件**：生成前先检查目标路径是否已有笔记文件
+2. **禁止覆盖**：如果文件已存在且有内容，**不得覆盖或修改**
+3. **增量创建**：只为缺失的知识点创建新文件
+4. **提示用户**：发现已有笔记时，明确告知用户哪些已存在、哪些将新建
+
+```python
+def check_existing_notes(target_path, knowledge_points):
+    """检查已有笔记，返回待创建列表"""
+    existing = []
+    to_create = []
+
+    for kp in knowledge_points:
+        file_path = f"{target_path}/{kp}.md"
+        if os.path.exists(file_path) and has_content(file_path):
+            existing.append(kp)
+        else:
+            to_create.append(kp)
+
+    return {
+        "existing": existing,      # 已有笔记，不会被修改
+        "to_create": to_create     # 将新建的笔记
+    }
+```
+
+### 内容生成来源
+
+生成笔记内容时，**必须**参考以下资料：
+
+1. **高数资料目录**: `/Users/zhqznc/Documents/高数资料/`
+   - 函数极限与连续: `函数极限与连续/函数极限与连续.md`
+   - 其他章节按目录结构查找
+
+2. **生成优先级**:
+   - **首选**：用户提供的图片目录结构
+   - **次选**：高数资料中的内容
+   - **最后**：AI 通用知识补充
+
+3. **内容规范**:
+   - 定义、定理必须来自高数资料
+   - 例题优先使用高数资料中的例题
+   - 考试重点标注与高数资料一致
 
 ---
 
@@ -1603,3 +1665,95 @@ knowledge_card:
 3. 分析理解障碍类型
 4. 生成补充内容
 5. 更新文件并添加标记
+
+---
+
+## 知识点结构模板 (v3.2.0新增)
+
+### 函数极限与连续模块
+
+生成此模块笔记时，严格遵循以下目录结构：
+
+#### 1-函数的概念与特性/
+
+```
+函数的概念与特性
+├── 函数的定义.md          # y = f(x) 的定义、定义域、值域
+├── 反函数.md              # y = f⁻¹(x)，水平画线法
+├── 复合函数.md            # y = f[g(x)]，运算法则
+├── 隐函数.md              # F(x,y) = 0
+└── 四种特性/
+    ├── 有界性.md          # |f(x)| ≤ M，重要结论
+    ├── 单调性.md          # 增减性判断方法
+    ├── 奇偶性.md          # f(-x) = ±f(x)，重要结论
+    └── 周期性.md          # f(x+T) = f(x)，重要结论
+```
+
+#### 2-函数的图像/
+
+```
+函数的图像
+├── 基本初等函数.md        # 六类基本初等函数（常数、幂、指、对、三角、反三角）
+├── 初等函数.md            # 定义与性质
+└── 分段函数.md            # 绝对值、符号、取整函数
+```
+
+#### 3-函数极限的概念与性质/
+
+```
+函数极限的概念与性质
+├── 邻域.md                # δ邻域、去心邻域
+├── 极限定义.md            # ε-δ 语言
+├── 超实数.md              # 超实数在极限中的应用
+├── 极限性质.md            # 唯一性、局部有界、保号性
+├── 无穷小定义.md          # 定义与性质
+├── 无穷小比阶.md          # 比阶方法
+├── 等价无穷小.md          # ⭐ 常用等价无穷小（必记）
+└── 无穷大.md              # 定义与关系
+```
+
+#### 4-极限计算方法/（重中之重）
+
+```
+极限计算方法
+├── 四则运算.md            # 极限四则运算法则
+├── 洛必达法则.md          # ⭐⭐⭐⭐⭐ 重中之重
+├── 泰勒公式.md            # ⭐⭐⭐⭐⭐ 重中之重
+├── 泰勒展开原则.md        # 上下同阶、幂次最低
+├── 无穷小运算.md          # 代换技巧
+├── 重要极限.md            # sinx/x, (1+1/x)^x
+├── 夹逼准则.md            # 使用条件与方法
+└── 七种未定式.md          # 0/0, ∞/∞, 0·∞, ∞-∞, ∞⁰, 0⁰, 1^∞
+```
+
+#### 5-函数的连续与间断/
+
+```
+函数的连续与间断
+├── 连续性定义.md          # 左连续、右连续
+├── 间断点分类.md          # 第一类、第二类间断点
+└── 闭区间性质.md          # 有界性、最值、零点、介值定理
+```
+
+### 目录结构优先级
+
+当生成笔记时，按以下优先级确定目录结构：
+
+1. **用户提供的图片结构**（最高优先级）
+2. 本文档定义的标准结构
+3. 高数资料中的章节结构
+4. AI 推断的合理结构（最低优先级）
+
+### 笔记存储路径
+
+```
+考研数学/
+└── 高数-函数极限与连续/
+    ├── 📑 索引.md
+    ├── 📊 学习进度.md
+    ├── 1-函数的概念与特性/
+    ├── 2-函数的图像/
+    ├── 3-函数极限的概念与性质/
+    ├── 4-极限计算方法/
+    └── 5-函数的连续与间断/
+```
