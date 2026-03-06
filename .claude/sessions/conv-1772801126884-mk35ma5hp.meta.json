@@ -1,0 +1,20 @@
+{
+  "id": "conv-1772801126884-mk35ma5hp",
+  "title": "Explain limit concept of infinitesimal values",
+  "titleGenerationStatus": "success",
+  "createdAt": 1772801126890,
+  "updatedAt": 1772801357125,
+  "lastResponseAt": 1772801357124,
+  "sessionId": "43cd27ca-4b3d-4e6b-a360-cb1f717c4445",
+  "sdkSessionId": "43cd27ca-4b3d-4e6b-a360-cb1f717c4445",
+  "currentNote": "考研数学/高数-函数极限与连续/3-函数极限的概念与性质/无穷小与无穷大.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

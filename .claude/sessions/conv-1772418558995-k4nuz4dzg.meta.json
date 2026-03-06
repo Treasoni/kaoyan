@@ -3,11 +3,10 @@
   "title": "Convert function diagram to personal notes",
   "titleGenerationStatus": "success",
   "createdAt": 1772418559000,
-  "updatedAt": 1772418570526,
+  "updatedAt": 1772801107415,
   "lastResponseAt": 1772418570526,
   "sessionId": "42e1aa9b-e49e-4c81-a2ce-48854577b07f",
   "sdkSessionId": "42e1aa9b-e49e-4c81-a2ce-48854577b07f",
-  "currentNote": "考研数学/高数-极限与连续/0-基础知识/基本初等函数.md",
   "usage": {
     "model": "glm-4.7",
     "inputTokens": 0,
