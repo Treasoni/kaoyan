@@ -3,11 +3,10 @@
   "title": "洛必达法则未定式解析",
   "titleGenerationStatus": "success",
   "createdAt": 1772701114277,
-  "updatedAt": 1772701177722,
+  "updatedAt": 1772766187715,
   "lastResponseAt": 1772701177722,
   "sessionId": "d77e6b44-6d34-4dc6-84f5-747d78107919",
   "sdkSessionId": "d77e6b44-6d34-4dc6-84f5-747d78107919",
-  "currentNote": "考研数学/高数-函数极限与连续/4-极限计算方法/洛必达法则.md",
   "usage": {
     "model": "glm-4.7",
     "inputTokens": 0,
