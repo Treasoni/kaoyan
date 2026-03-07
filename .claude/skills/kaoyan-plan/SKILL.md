@@ -1,7 +1,7 @@
 ---
 name: kaoyan-plan
-description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), and plan upsert logic with tagging for version control.
-version: 3.2.0
+description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), and plan upsert logic with tagging for version control.
+version: 3.4.0
 ---
 
 # 考研规划Skill (Kaoyan Plan Generation Skill)
@@ -272,6 +272,84 @@ def suggest_fragment_subject(time_slot):
 ↓ 检测不满足最小1.5小时要求
 替换为：09:00-10:00 单词复习（可碎片化）
 ```
+
+### 功能7: 科学时间块划分（基于脑科学）⭐实战补丁
+
+**问题**: 漫长的3-4小时连续学习效率低下，容易进入"假性学习"状态
+
+**脑科学原理**:
+
+1. **注意力衰减**: 深度专注力通常只能维持45-90分钟。超过这个时间，大脑会进入"假性学习"状态——眼睛在看，笔在动，但逻辑推导已经开始掉线。
+
+2. **决策疲劳**: 复杂计算（如七种未定式转化）涉及大量的技巧选择，极其消耗血糖和意志力。一口气做完，到后期错误率会飙升。
+
+3. **离散效应（Spacing Effect）**: 适时的短休息能让大脑在后台偷偷处理刚学过的复杂公式，有助于形成长时记忆。
+
+**推荐时间块划分**:
+
+| 单次学习时长 | 适用场景 | 休息时长 | 说明 |
+|-------------|----------|----------|------|
+| 45分钟 | 高强度计算（难题、新概念） | 10-15分钟 | 专注力巅峰区间 |
+| 60分钟 | 常规学习（中等难度） | 15分钟 | 平衡效率与连贯性 |
+| 75-90分钟 | 复习巩固（已学内容） | 20分钟 | 接近专注力上限 |
+| >90分钟 | ❌ 不推荐 | - | 超过上限，效率断崖下跌 |
+
+**自动时间块切分逻辑**:
+```python
+def split_large_time_block(duration, subject):
+    """
+    将长时间块自动切分为高效的小时间块
+
+    参数:
+        duration: 原始时长（分钟）
+        subject: 科目类型
+
+    返回:
+        切分后的时间块列表
+    """
+    # 数学等高强度科目：45分钟一块
+    if subject in ["数学", "专业课"]:
+        block_duration = 45
+        break_duration = 15
+    # 英语阅读等中等强度：60分钟一块
+    elif subject in ["英语阅读"]:
+        block_duration = 60
+        break_duration = 15
+    # 单词等低强度：可直接延续
+    else:
+        return [{"type": "continuous", "duration": duration}]
+
+    blocks = []
+    remaining = duration
+
+    while remaining > 0:
+        if remaining <= block_duration:
+            blocks.append({"type": "study", "duration": remaining})
+            break
+        else:
+            blocks.append({"type": "study", "duration": block_duration})
+            blocks.append({"type": "break", "duration": break_duration})
+            remaining -= (block_duration + break_duration)
+
+    return blocks
+```
+
+**示例**:
+```
+原计划：14:00-17:00 数学（连续3小时）
+↓ 自动切分为高效时间块
+14:00-14:45 | 数学 | 第1块（45分钟）
+14:45-15:00 | ☕ 休息 | 15分钟
+15:00-15:45 | 数学 | 第2块（45分钟）
+15:00-15:20 | ☕ 休息 | 20分钟
+16:00-16:45 | 数学 | 第3块（45分钟）
+16:45-17:00 | ☕ 休息 | 15分钟
+```
+
+**休息活动建议**:
+- 10-15分钟：喝水、伸展、眺望远方
+- 20分钟：散步、听音乐、简单运动
+- 避免：刷手机、看视频（消耗注意力资源）
 
 ---
 
@@ -1598,24 +1676,25 @@ def get_slot_preferences(chronotype):
 10. ✅ 能检测任务欠账并生成补课方案（实战补丁1）
 11. ✅ 周日自动触发复盘模式（实战补丁2）
 12. ✅ 检查时段是否满足科目最小时长要求（实战补丁3）
+13. ✅ 自动切分长时间块为高效小块（基于脑科学，v3.4新增）
 
 ### MemOS集成验证 (v3.0)
-13. ✅ 能从MemOS读取用户画像和历史数据
-14. ✅ 计划生成后能保存到MemOS
-15. ✅ 任务完成情况能记录到MemOS
-16. ✅ 周日复盘能汇总本周MemOS数据
-17. ✅ MemOS不可用时能优雅降级为v2.1.0模式
-18. ✅ 多用户数据隔离正确（基于user_id）
-19. ✅ 100天历史数据下响应时间 < 5秒
+14. ✅ 能从MemOS读取用户画像和历史数据
+15. ✅ 计划生成后能保存到MemOS
+16. ✅ 任务完成情况能记录到MemOS
+17. ✅ 周日复盘能汇总本周MemOS数据
+18. ✅ MemOS不可用时能优雅降级为v2.1.0模式
+19. ✅ 多用户数据隔离正确（基于user_id）
+20. ✅ 100天历史数据下响应时间 < 5秒
 
 ### MemOS增强验证 (v3.1)
-20. ✅ 画像超过30天未更新时自动触发刷新询问
-21. ✅ 累计欠账超过10小时时触发熔断模式
-22. ✅ 同一天多次生成计划时使用upsert逻辑（旧版本归档为历史）
-23. ✅ 连续3天疲惫反馈时触发心理调节模式
-24. ✅ 生成的计划包含跨设备同步元数据
-25. ✅ 心理状态记录能正确保存到MemOS
-26. ✅ 用户画像更新后次日计划使用新配置
+21. ✅ 画像超过30天未更新时自动触发刷新询问
+22. ✅ 累计欠账超过10小时时触发熔断模式
+23. ✅ 同一天多次生成计划时使用upsert逻辑（旧版本归档为历史）
+24. ✅ 连续3天疲惫反馈时触发心理调节模式
+25. ✅ 生成的计划包含跨设备同步元数据
+26. ✅ 心理状态记录能正确保存到MemOS
+27. ✅ 用户画像更新后次日计划使用新配置
 
 ---
 
@@ -2388,6 +2467,20 @@ def save_unified_mistake(mistake_data, user_id):
 ---
 
 ## 版本历史
+
+### v3.4.0 (2026-03-07)
+**科学时间块划分**（基于脑科学）：
+- **注意力衰减机制**：深度专注力通常只能维持45-90分钟，超过则进入"假性学习"状态
+- **决策疲劳预警**：复杂计算（如七种未定式转化）消耗血糖和意志力，后期错误率飙升
+- **离散效应应用**：适时短休息让大脑后台处理复杂公式，促进长时记忆形成
+- **自动时间块切分**：将长时间块（>90分钟）自动切分为45-75分钟的高效小块
+- **推荐时间块表**：
+  - 高强度计算（难题、新概念）：45分钟 + 10-15分钟休息
+  - 常规学习（中等难度）：60分钟 + 15分钟休息
+  - 复习巩固（已学内容）：75-90分钟 + 20分钟休息
+  - ❌ 避免：连续90分钟以上（效率断崖下跌）
+
+**向后兼容**：完全保留v3.3.0所有功能，新增功能为可选增强
 
 ### v3.2.0 (2025-02-26)
 **跨技能联合架构**：
