@@ -70,10 +70,10 @@ word_count: 47
 
 ### Critical 级别（高频陷阱）
 
-| 单词 | 常见义 | 考研僻义 | 出现频率 | 真题例句 |
-|------|--------|----------|----------|----------|
-| **lead** | 领导 | **线索；铅** | 65% | The investigation found a new **lead**. |
-| **manner** | 礼貌 | **方式，方法** | 70% | in a professional **manner** |
+| 单词         | 常见义 | 考研僻义      | 出现频率 | 真题例句                                    |
+| ---------- | --- | --------- | ---- | --------------------------------------- |
+| **lead**   | 领导  | **线索；铅**  | 65%  | The investigation found a new **lead**. |
+| **manner** | 礼貌  | **方式，方法** | 70%  | in a professional **manner**            |
 
 ### Warning 级别（中等陷阱）
 
