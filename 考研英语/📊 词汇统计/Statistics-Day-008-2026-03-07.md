@@ -1,14 +1,14 @@
 ---
-tags: [词汇统计, Day007, 考研英语]
+tags: [词汇统计, Day008, 考研英语]
 type: vocabulary_statistics
 date: 2026-03-07
-day: 007
+day: 008
 word_count: 50
 polysemy_count: 1
 difficulty: 中等
 ---
 
-# 词汇统计 - Day 007
+# 词汇统计 - Day 008
 
 **日期**: 2026-03-07
 **词汇来源**: 2026-3-7.md
@@ -65,14 +65,6 @@ difficulty: 中等
 | management | n. | 管理；管理部门 | manage 的名词形式 |
 | **manager** | n. | 经理 | manage + er |
 
-### 4. -fect/-fic 词族
-| 单词 | 词性 | 释义 | 关联 |
-|------|------|------|------|
-| **affect** | v. | 影响 | af-（向）+ fect |
-| **effect** | n. | 效果；影响 | ef-（向外）+ fect |
-| **effective** | adj. | 有效的 | effect + ive |
-| **efficient** | adj. | 高效的 | ef- + fic + ient |
-
 ---
 
 ## 📖 写作词汇库
@@ -84,7 +76,6 @@ difficulty: 中等
 |------|----------|----------|------|
 | **address** | solve/deal with | 高 | The government must **address** the problem of inequality. |
 | **admit** | say/acknowledge | 中 | Critics **admit** that the policy has flaws. |
-| **illustrate** | show/explain | 高 | This case **illustrates** the importance of education. |
 
 #### 表示程度
 | 词汇 | 含义 | 替换对象 | 正式程度 |
@@ -92,12 +83,6 @@ difficulty: 中等
 | **adequate** | 足够的 | enough | 高 |
 | **immense** | 巨大的 | very big | 高 |
 | **immediate** | 立即的 | at once | 中 |
-
-#### 表示因果关系
-| 词汇 | 含义 | 例句 |
-|------|------|------|
-| **consequence** | 后果 | as a **consequence** of... |
-| **lead to** | 导致 | This discovery **led to** new treatments. |
 
 ---
 
@@ -109,7 +94,6 @@ difficulty: 中等
 | address the problem | 解决问题 | 高 |
 | address an issue | 处理议题 | 高 |
 | address concerns | 处理关切 | 高 |
-| address oneself to | 着手处理 | 高 |
 
 ### adequate 相关搭配
 | 搭配 | 含义 | 正式程度 |
@@ -117,18 +101,6 @@ difficulty: 中等
 | be adequate for | 对于...足够 | 中 |
 | be adequate to do | 能满足做...的需要 | 中 |
 | adequate time | 足够的时间 | 低 |
-
-### immune 相关搭配
-| 搭配 | 含义 | 正式程度 |
-|------|------|----------|
-| be immune to | 对...有免疫力/不受影响 | 高 |
-| immune system | 免疫系统 | 低 |
-
-### immerse 相关搭配
-| 搭配 | 含义 | 正式程度 |
-|------|------|----------|
-| immerse in | 全神贯注于；把...浸入水中 | 中 |
-| immerse oneself in | 使自己沉浸于 | 高 |
 
 ---
 
@@ -146,11 +118,7 @@ difficulty: 中等
 | **admit** | v. 承认；准许进入 | 0 | 待学习 |
 | **hesitate** | v. 犹豫 | 0 | 待学习 |
 | **grant** | vt. 授予；给予 | 0 | 待学习 |
-| **address** | vt. 解决；处理 | 0 | 待学习 |
 | **immerse** | vt. 使沉浸 | 0 | 待学习 |
-| **govern** | v. 统治 | 0 | 待学习 |
-| **heal** | v. 治愈 | 0 | 待学习 |
-| **feed** | vt. 喂养 | 0 | 待学习 |
 
 ### 第三优先级（核心形容词）
 | 单词 | 含义 | 复习次数 | 掌握程度 |
@@ -159,35 +127,7 @@ difficulty: 中等
 | **imminent** | adj. 即将发生的 | 0 | 待学习 |
 | **immune** | adj. 有免疫的 | 0 | 待学习 |
 | **fertile** | adj. 肥沃的 | 0 | 待学习 |
-| **healthy** | adj. 健康的 | 0 | 待学习 |
 | **immediate** | adj. 立即的 | 0 | 待学习 |
-| **immense** | adj. 巨大的 | 0 | 待学习 |
-| **gradual** | adj. 逐渐的 | 0 | 待学习 |
-
----
-
-## 📊 词频统计
-
-### 考研高频词（⭐⭐⭐⭐⭐）
-- **address** - 解决、处理
-- **adequate** - 足够的
-- **manage** - 管理
-- **admit** - 承认
-- **immediate** - 立即的
-- **grant** - 授予
-
-### 考研中频词（⭐⭐⭐⭐）
-- **immune** - 有免疫的
-- **immerse** - 使沉浸
-- **hesitate** - 犹豫
-- **fertile** - 肥沃的
-- **gradual** - 逐渐的
-
-### 考研低频词（⭐⭐⭐）
-- **imminent** - 即将发生的
-- **brand** - 品牌
-- **brace** - 支架
-- **heap** - 一堆
 
 ---
 
@@ -203,20 +143,6 @@ difficulty: 中等
 - **明日**：复习全部第二优先级 + 部分第三优先级
 - **3天后**：全表复习（50个词汇）
 - **一周后**：重新阅读，重点关注僻义词和写作词汇
-
----
-
-## 📌 错误记录追踪
-
-### 僻义词错误记录
-| 日期 | 单词 | 错误类型 | 正确理解 | 备注 |
-|------|------|----------|----------|------|
-| - | address | - | 解决、处理 | 待学习 |
-
-### 搭配错误记录
-| 日期 | 搭配 | 错误理解 | 正确理解 | 备注 |
-|------|------|----------|----------|------|
-| - | - | - | - | - |
 
 ---
 
