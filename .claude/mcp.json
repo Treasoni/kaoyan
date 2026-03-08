@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "zai-mcp-server": {
+      "command": "claude",
+      "args": [
+        "mcp",
+        "add",
+        "-s",
+        "user",
+        "zai-mcp-server",
+        "--env",
+        "Z_AI_API_KEY=your_api_key",
+        "--",
+        "npx",
+        "-y",
+        "@z_ai/mcp-server"
+      ],
+      "env": {
+        "Z_AI_API_KEY": "c820db9d1a8a4dac8e921e1b3463ce2e.NcOIVrXBALz8GEvb"
+      }
+    },
+    "web-search-prime": {
+      "command": "claude",
+      "args": [
+        "mcp",
+        "add",
+        "-s",
+        "user",
+        "-t",
+        "http",
+        "web-search-prime",
+        "https://open.bigmodel.cn/api/mcp/web_search_prime/mcp",
+        "--header",
+        "Authorization:",
+        "Bearer",
+        "c820db9d1a8a4dac8e921e1b3463ce2e.NcOIVrXBALz8GEvb"
+      ]
+    }
+  }
+}

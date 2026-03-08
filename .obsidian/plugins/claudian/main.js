@@ -2233,8 +2233,8 @@ var require_resolve = __commonJS({
       }
       return count;
     }
-    function getFullPath(resolver, id = "", normalize2) {
-      if (normalize2 !== false)
+    function getFullPath(resolver, id = "", normalize3) {
+      if (normalize3 !== false)
         id = normalizeId(id);
       const p2 = resolver.parse(id);
       return _getFullPath(resolver, p2);
@@ -2982,7 +2982,7 @@ var require_compile = __commonJS({
       const schOrFunc = root.refs[ref];
       if (schOrFunc)
         return schOrFunc;
-      let _sch = resolve4.call(this, root, ref);
+      let _sch = resolve5.call(this, root, ref);
       if (_sch === void 0) {
         const schema = (_a3 = root.localRefs) === null || _a3 === void 0 ? void 0 : _a3[ref];
         const { schemaId } = this.opts;
@@ -3009,7 +3009,7 @@ var require_compile = __commonJS({
     function sameSchemaEnv(s12, s2) {
       return s12.schema === s2.schema && s12.root === s2.root && s12.baseId === s2.baseId;
     }
-    function resolve4(root, ref) {
+    function resolve5(root, ref) {
       let sch;
       while (typeof (sch = this.refs[ref]) == "string")
         ref = sch;
@@ -3224,8 +3224,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path10) {
-      let input = path10;
+    function removeDotSegments(path11) {
+      let input = path11;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -3424,8 +3424,8 @@ var require_schemes = __commonJS({
         wsComponent.secure = void 0;
       }
       if (wsComponent.resourceName) {
-        const [path10, query] = wsComponent.resourceName.split("?");
-        wsComponent.path = path10 && path10 !== "/" ? path10 : void 0;
+        const [path11, query] = wsComponent.resourceName.split("?");
+        wsComponent.path = path11 && path11 !== "/" ? path11 : void 0;
         wsComponent.query = query;
         wsComponent.resourceName = void 0;
       }
@@ -3484,7 +3484,7 @@ var require_schemes = __commonJS({
       urnComponent.nss = (uuidComponent.uuid || "").toLowerCase();
       return urnComponent;
     }
-    var http = (
+    var http2 = (
       /** @type {SchemeHandler} */
       {
         scheme: "http",
@@ -3493,11 +3493,11 @@ var require_schemes = __commonJS({
         serialize: httpSerialize
       }
     );
-    var https = (
+    var https2 = (
       /** @type {SchemeHandler} */
       {
         scheme: "https",
-        domainHost: http.domainHost,
+        domainHost: http2.domainHost,
         parse: httpParse,
         serialize: httpSerialize
       }
@@ -3541,8 +3541,8 @@ var require_schemes = __commonJS({
     var SCHEMES = (
       /** @type {Record<SchemeName, SchemeHandler>} */
       {
-        http,
-        https,
+        http: http2,
+        https: https2,
         ws,
         wss,
         urn,
@@ -3574,7 +3574,7 @@ var require_fast_uri = __commonJS({
     "use strict";
     var { normalizeIPv6, removeDotSegments, recomposeAuthority, normalizeComponentEncoding, isIPv4, nonSimpleDomain } = require_utils();
     var { SCHEMES, getSchemeHandler } = require_schemes();
-    function normalize2(uri, options) {
+    function normalize3(uri, options) {
       if (typeof uri === "string") {
         uri = /** @type {T} */
         serialize(parse3(uri, options), options);
@@ -3584,7 +3584,7 @@ var require_fast_uri = __commonJS({
       }
       return uri;
     }
-    function resolve4(baseURI, relativeURI, options) {
+    function resolve5(baseURI, relativeURI, options) {
       const schemelessOptions = options ? Object.assign({ scheme: "null" }, options) : { scheme: "null" };
       const resolved = resolveComponent(parse3(baseURI, schemelessOptions), parse3(relativeURI, schemelessOptions), schemelessOptions, true);
       schemelessOptions.skipEscape = true;
@@ -3810,8 +3810,8 @@ var require_fast_uri = __commonJS({
     }
     var fastUri = {
       SCHEMES,
-      normalize: normalize2,
-      resolve: resolve4,
+      normalize: normalize3,
+      resolve: resolve5,
       resolveComponent,
       equal,
       serialize,
@@ -8844,8 +8844,8 @@ var require_resolve2 = __commonJS({
       }
       return count;
     }
-    function getFullPath(resolver, id = "", normalize2) {
-      if (normalize2 !== false)
+    function getFullPath(resolver, id = "", normalize3) {
+      if (normalize3 !== false)
         id = normalizeId(id);
       const p2 = resolver.parse(id);
       return _getFullPath(resolver, p2);
@@ -9593,7 +9593,7 @@ var require_compile2 = __commonJS({
       const schOrFunc = root.refs[ref];
       if (schOrFunc)
         return schOrFunc;
-      let _sch = resolve4.call(this, root, ref);
+      let _sch = resolve5.call(this, root, ref);
       if (_sch === void 0) {
         const schema = (_a3 = root.localRefs) === null || _a3 === void 0 ? void 0 : _a3[ref];
         const { schemaId } = this.opts;
@@ -9620,7 +9620,7 @@ var require_compile2 = __commonJS({
     function sameSchemaEnv(s12, s2) {
       return s12.schema === s2.schema && s12.root === s2.root && s12.baseId === s2.baseId;
     }
-    function resolve4(root, ref) {
+    function resolve5(root, ref) {
       let sch;
       while (typeof (sch = this.refs[ref]) == "string")
         ref = sch;
@@ -12464,12 +12464,12 @@ var require_dist = __commonJS({
         throw new Error(`Unknown format "${name}"`);
       return f3;
     };
-    function addFormats(ajv, list, fs10, exportName) {
+    function addFormats(ajv, list, fs11, exportName) {
       var _a3;
       var _b;
       (_a3 = (_b = ajv.opts.code).formats) !== null && _a3 !== void 0 ? _a3 : _b.formats = (0, codegen_1._)`require("ajv-formats/dist/formats").${exportName}`;
       for (const f3 of list)
-        ajv.addFormat(f3, fs10[f3]);
+        ajv.addFormat(f3, fs11[f3]);
     }
     module2.exports = exports = formatsPlugin;
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12482,8 +12482,8 @@ var require_windows = __commonJS({
   "node_modules/isexe/windows.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs10 = require("fs");
-    function checkPathExt(path10, options) {
+    var fs11 = require("fs");
+    function checkPathExt(path11, options) {
       var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
@@ -12494,25 +12494,25 @@ var require_windows = __commonJS({
       }
       for (var i2 = 0; i2 < pathext.length; i2++) {
         var p2 = pathext[i2].toLowerCase();
-        if (p2 && path10.substr(-p2.length).toLowerCase() === p2) {
+        if (p2 && path11.substr(-p2.length).toLowerCase() === p2) {
           return true;
         }
       }
       return false;
     }
-    function checkStat(stat, path10, options) {
+    function checkStat(stat, path11, options) {
       if (!stat.isSymbolicLink() && !stat.isFile()) {
         return false;
       }
-      return checkPathExt(path10, options);
+      return checkPathExt(path11, options);
     }
-    function isexe(path10, options, cb) {
-      fs10.stat(path10, function(er, stat) {
-        cb(er, er ? false : checkStat(stat, path10, options));
+    function isexe(path11, options, cb) {
+      fs11.stat(path11, function(er, stat) {
+        cb(er, er ? false : checkStat(stat, path11, options));
       });
     }
-    function sync(path10, options) {
-      return checkStat(fs10.statSync(path10), path10, options);
+    function sync(path11, options) {
+      return checkStat(fs11.statSync(path11), path11, options);
     }
   }
 });
@@ -12522,14 +12522,14 @@ var require_mode = __commonJS({
   "node_modules/isexe/mode.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs10 = require("fs");
-    function isexe(path10, options, cb) {
-      fs10.stat(path10, function(er, stat) {
+    var fs11 = require("fs");
+    function isexe(path11, options, cb) {
+      fs11.stat(path11, function(er, stat) {
         cb(er, er ? false : checkStat(stat, options));
       });
     }
-    function sync(path10, options) {
-      return checkStat(fs10.statSync(path10), options);
+    function sync(path11, options) {
+      return checkStat(fs11.statSync(path11), options);
     }
     function checkStat(stat, options) {
       return stat.isFile() && checkMode(stat, options);
@@ -12553,7 +12553,7 @@ var require_mode = __commonJS({
 // node_modules/isexe/index.js
 var require_isexe = __commonJS({
   "node_modules/isexe/index.js"(exports, module2) {
-    var fs10 = require("fs");
+    var fs11 = require("fs");
     var core;
     if (process.platform === "win32" || global.TESTING_WINDOWS) {
       core = require_windows();
@@ -12562,7 +12562,7 @@ var require_isexe = __commonJS({
     }
     module2.exports = isexe;
     isexe.sync = sync;
-    function isexe(path10, options, cb) {
+    function isexe(path11, options, cb) {
       if (typeof options === "function") {
         cb = options;
         options = {};
@@ -12571,17 +12571,17 @@ var require_isexe = __commonJS({
         if (typeof Promise !== "function") {
           throw new TypeError("callback not provided");
         }
-        return new Promise(function(resolve4, reject) {
-          isexe(path10, options || {}, function(er, is) {
+        return new Promise(function(resolve5, reject) {
+          isexe(path11, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
-              resolve4(is);
+              resolve5(is);
             }
           });
         });
       }
-      core(path10, options || {}, function(er, is) {
+      core(path11, options || {}, function(er, is) {
         if (er) {
           if (er.code === "EACCES" || options && options.ignoreErrors) {
             er = null;
@@ -12591,9 +12591,9 @@ var require_isexe = __commonJS({
         cb(er, is);
       });
     }
-    function sync(path10, options) {
+    function sync(path11, options) {
       try {
-        return core.sync(path10, options || {});
+        return core.sync(path11, options || {});
       } catch (er) {
         if (options && options.ignoreErrors || er.code === "EACCES") {
           return false;
@@ -12609,7 +12609,7 @@ var require_isexe = __commonJS({
 var require_which = __commonJS({
   "node_modules/which/which.js"(exports, module2) {
     var isWindows2 = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path10 = require("path");
+    var path11 = require("path");
     var COLON = isWindows2 ? ";" : ":";
     var isexe = require_isexe();
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
@@ -12642,27 +12642,27 @@ var require_which = __commonJS({
         opt = {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
-      const step = (i2) => new Promise((resolve4, reject) => {
+      const step = (i2) => new Promise((resolve5, reject) => {
         if (i2 === pathEnv.length)
-          return opt.all && found.length ? resolve4(found) : reject(getNotFoundError(cmd));
+          return opt.all && found.length ? resolve5(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i2];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path10.join(pathPart, cmd);
+        const pCmd = path11.join(pathPart, cmd);
         const p2 = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
-        resolve4(subStep(p2, i2, 0));
+        resolve5(subStep(p2, i2, 0));
       });
-      const subStep = (p2, i2, ii) => new Promise((resolve4, reject) => {
+      const subStep = (p2, i2, ii) => new Promise((resolve5, reject) => {
         if (ii === pathExt.length)
-          return resolve4(step(i2 + 1));
+          return resolve5(step(i2 + 1));
         const ext = pathExt[ii];
         isexe(p2 + ext, { pathExt: pathExtExe }, (er, is) => {
           if (!er && is) {
             if (opt.all)
               found.push(p2 + ext);
             else
-              return resolve4(p2 + ext);
+              return resolve5(p2 + ext);
           }
-          return resolve4(subStep(p2, i2, ii + 1));
+          return resolve5(subStep(p2, i2, ii + 1));
         });
       });
       return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
@@ -12674,7 +12674,7 @@ var require_which = __commonJS({
       for (let i2 = 0; i2 < pathEnv.length; i2++) {
         const ppRaw = pathEnv[i2];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path10.join(pathPart, cmd);
+        const pCmd = path11.join(pathPart, cmd);
         const p2 = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         for (let j3 = 0; j3 < pathExt.length; j3++) {
           const cur = p2 + pathExt[j3];
@@ -12722,7 +12722,7 @@ var require_path_key = __commonJS({
 var require_resolveCommand = __commonJS({
   "node_modules/cross-spawn/lib/util/resolveCommand.js"(exports, module2) {
     "use strict";
-    var path10 = require("path");
+    var path11 = require("path");
     var which = require_which();
     var getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
@@ -12740,7 +12740,7 @@ var require_resolveCommand = __commonJS({
       try {
         resolved = which.sync(parsed.command, {
           path: env[getPathKey({ env })],
-          pathExt: withoutPathExt ? path10.delimiter : void 0
+          pathExt: withoutPathExt ? path11.delimiter : void 0
         });
       } catch (e2) {
       } finally {
@@ -12749,7 +12749,7 @@ var require_resolveCommand = __commonJS({
         }
       }
       if (resolved) {
-        resolved = path10.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
+        resolved = path11.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
       }
       return resolved;
     }
@@ -12803,8 +12803,8 @@ var require_shebang_command = __commonJS({
       if (!match) {
         return null;
       }
-      const [path10, argument] = match[0].replace(/#! ?/, "").split(" ");
-      const binary = path10.split("/").pop();
+      const [path11, argument] = match[0].replace(/#! ?/, "").split(" ");
+      const binary = path11.split("/").pop();
       if (binary === "env") {
         return argument;
       }
@@ -12817,16 +12817,16 @@ var require_shebang_command = __commonJS({
 var require_readShebang = __commonJS({
   "node_modules/cross-spawn/lib/util/readShebang.js"(exports, module2) {
     "use strict";
-    var fs10 = require("fs");
+    var fs11 = require("fs");
     var shebangCommand = require_shebang_command();
     function readShebang(command) {
       const size = 150;
       const buffer = Buffer.alloc(size);
       let fd;
       try {
-        fd = fs10.openSync(command, "r");
-        fs10.readSync(fd, buffer, 0, size, 0);
-        fs10.closeSync(fd);
+        fd = fs11.openSync(command, "r");
+        fs11.readSync(fd, buffer, 0, size, 0);
+        fs11.closeSync(fd);
       } catch (e2) {
       }
       return shebangCommand(buffer.toString());
@@ -12839,7 +12839,7 @@ var require_readShebang = __commonJS({
 var require_parse = __commonJS({
   "node_modules/cross-spawn/lib/parse.js"(exports, module2) {
     "use strict";
-    var path10 = require("path");
+    var path11 = require("path");
     var resolveCommand = require_resolveCommand();
     var escape2 = require_escape();
     var readShebang = require_readShebang();
@@ -12864,7 +12864,7 @@ var require_parse = __commonJS({
       const needsShell = !isExecutableRegExp.test(commandFile);
       if (parsed.options.forceShell || needsShell) {
         const needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-        parsed.command = path10.normalize(parsed.command);
+        parsed.command = path11.normalize(parsed.command);
         parsed.command = escape2.command(parsed.command);
         parsed.args = parsed.args.map((arg) => escape2.argument(arg, needsDoubleEscapeMetaChars));
         const shellCommand = [parsed.command].concat(parsed.args).join(" ");
@@ -12980,7 +12980,7 @@ __export(main_exports, {
   default: () => ClaudianPlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian29 = require("obsidian");
+var import_obsidian39 = require("obsidian");
 
 // src/core/agents/AgentManager.ts
 var fs3 = __toESM(require("fs"));
@@ -13046,6 +13046,9 @@ function parseFrontmatter(content) {
 function extractString(fm, key) {
   const val = fm[key];
   if (typeof val === "string" && val.length > 0) return val;
+  if (Array.isArray(val) && val.length > 0 && val.every((v3) => typeof v3 === "string")) {
+    return val.map((v3) => `[${v3}]`).join(" ");
+  }
   return void 0;
 }
 function normalizeStringArray(val) {
@@ -13227,6 +13230,8 @@ var DEFAULT_SETTINGS = {
   show1MModel: false,
   // Hidden by default
   enableChrome: false,
+  // Disabled by default
+  enableBangBash: false,
   // Disabled by default
   // Content settings
   excludedTags: [],
@@ -13702,7 +13707,17 @@ function getPathAccessType(candidatePath, allowedContextPaths, allowedExportPath
   }
   const claudeDir = normalizePathForComparison(resolveRealPath(path.join(os.homedir(), ".claude")));
   if (resolvedCandidate === claudeDir || resolvedCandidate.startsWith(claudeDir + "/")) {
-    return "vault";
+    const safeSubdirs = ["sessions", "projects", "commands", "agents", "skills", "plans"];
+    const safeFiles = ["mcp.json", "settings.json", "settings.local.json", "claudian-settings.json"];
+    const relativeToClaude = resolvedCandidate.slice(claudeDir.length + 1);
+    if (!relativeToClaude) {
+      return "context";
+    }
+    const topSegment = relativeToClaude.split("/")[0];
+    if (safeSubdirs.includes(topSegment) || safeFiles.includes(topSegment)) {
+      return "vault";
+    }
+    return "context";
   }
   const roots = /* @__PURE__ */ new Map();
   const addRoot = (rawPath, kind) => {
@@ -13859,9 +13874,9 @@ function findNodeDirectory(additionalPaths) {
   for (const dir of allPaths) {
     if (!dir) continue;
     try {
-      const nodePath = path2.join(dir, NODE_EXECUTABLE);
-      if (fs2.existsSync(nodePath)) {
-        const stat = fs2.statSync(nodePath);
+      const nodePath2 = path2.join(dir, NODE_EXECUTABLE);
+      if (fs2.existsSync(nodePath2)) {
+        const stat = fs2.statSync(nodePath2);
         if (stat.isFile()) {
           return dir;
         }
@@ -13915,8 +13930,8 @@ function getMissingNodeError(cliPath, enhancedPath) {
   if (!cliPathRequiresNode(cliPath)) {
     return null;
   }
-  const nodePath = findNodeExecutable(enhancedPath);
-  if (nodePath) {
+  const nodePath2 = findNodeExecutable(enhancedPath);
+  if (nodePath2) {
     return null;
   }
   return "Claude Code CLI requires Node.js, but Node was not found on PATH. Install Node.js or use the native Claude Code binary, then restart Obsidian.";
@@ -14853,8 +14868,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path10, errorMaps, issueData } = params;
-  const fullPath = [...path10, ...issueData.path || []];
+  const { data, path: path11, errorMaps, issueData } = params;
+  const fullPath = [...path11, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -14969,11 +14984,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path10, key) {
+  constructor(parent, value, path11, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path10;
+    this._path = path11;
     this._key = key;
   }
   get path() {
@@ -18906,15 +18921,15 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path10) {
-  if (!path10)
+function getElementAtPath(obj, path11) {
+  if (!path11)
     return obj;
-  return path10.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
+  return path11.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
-  const promises = keys.map((key) => promisesObj[key]);
-  return Promise.all(promises).then((results) => {
+  const promises2 = keys.map((key) => promisesObj[key]);
+  return Promise.all(promises2).then((results) => {
     const resolvedObj = {};
     for (let i2 = 0; i2 < keys.length; i2++) {
       resolvedObj[keys[i2]] = results[i2];
@@ -19294,12 +19309,12 @@ function aborted(x3, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path10, issues) {
+function prefixIssues(path11, issues) {
   return issues.map((iss) => {
     var _a4;
     var _a3;
     (_a4 = (_a3 = iss).path) != null ? _a4 : _a3.path = [];
-    iss.path.unshift(path10);
+    iss.path.unshift(path11);
     return iss;
   });
 }
@@ -19483,7 +19498,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path10 = []) => {
+  const processError = (error49, path11 = []) => {
     var _a4, _b2, _c, _d;
     var _a3, _b;
     for (const issue2 of error49.issues) {
@@ -19494,7 +19509,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path10, ...issue2.path];
+        const fullpath = [...path11, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -19526,8 +19541,8 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path10 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path10) {
+  const path11 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path11) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -33867,7 +33882,7 @@ var Protocol = class {
           return;
         }
         const pollInterval = (_c = (_b = task2.pollInterval) != null ? _b : (_a3 = this._options) == null ? void 0 : _a3.defaultTaskPollInterval) != null ? _c : 1e3;
-        await new Promise((resolve4) => setTimeout(resolve4, pollInterval));
+        await new Promise((resolve5) => setTimeout(resolve5, pollInterval));
         (_d = options == null ? void 0 : options.signal) == null ? void 0 : _d.throwIfAborted();
       }
     } catch (error48) {
@@ -33884,7 +33899,7 @@ var Protocol = class {
    */
   request(request, resultSchema, options) {
     const { relatedRequestId, resumptionToken, onresumptiontoken, task, relatedTask } = options != null ? options : {};
-    return new Promise((resolve4, reject) => {
+    return new Promise((resolve5, reject) => {
       var _a3, _b, _c, _d, _e, _f, _g;
       const earlyReject = (error48) => {
         reject(error48);
@@ -33965,7 +33980,7 @@ var Protocol = class {
           if (!parseResult.success) {
             reject(parseResult.error);
           } else {
-            resolve4(parseResult.data);
+            resolve5(parseResult.data);
           }
         } catch (error48) {
           reject(error48);
@@ -34231,12 +34246,12 @@ var Protocol = class {
       }
     } catch (e2) {
     }
-    return new Promise((resolve4, reject) => {
+    return new Promise((resolve5, reject) => {
       if (signal.aborted) {
         reject(new McpError(ErrorCode.InvalidRequest, "Request cancelled"));
         return;
       }
-      const timeoutId = setTimeout(resolve4, interval);
+      const timeoutId = setTimeout(resolve5, interval);
       signal.addEventListener("abort", () => {
         clearTimeout(timeoutId);
         reject(new McpError(ErrorCode.InvalidRequest, "Request cancelled"));
@@ -36409,7 +36424,7 @@ var SSEClientTransport = class {
   _startOrAuth() {
     var _a3, _b, _c;
     const fetchImpl = (_c = (_b = (_a3 = this == null ? void 0 : this._eventSourceInit) == null ? void 0 : _a3.fetch) != null ? _b : this._fetch) != null ? _c : fetch;
-    return new Promise((resolve4, reject) => {
+    return new Promise((resolve5, reject) => {
       this._eventSource = new EventSource(this._url.href, {
         ...this._eventSourceInit,
         fetch: async (url2, init) => {
@@ -36431,7 +36446,7 @@ var SSEClientTransport = class {
       this._eventSource.onerror = (event) => {
         var _a4;
         if (event.code === 401 && this._authProvider) {
-          this._authThenStart().then(resolve4, reject);
+          this._authThenStart().then(resolve5, reject);
           return;
         }
         const error48 = new SseError(event.code, event.message, event);
@@ -36454,7 +36469,7 @@ var SSEClientTransport = class {
           void this.close();
           return;
         }
-        resolve4();
+        resolve5();
       });
       this._eventSource.onmessage = (event) => {
         var _a4, _b2;
@@ -36627,7 +36642,7 @@ var StdioClientTransport = class {
     if (this._process) {
       throw new Error("StdioClientTransport already started! If using Client class, note that connect() calls start() automatically.");
     }
-    return new Promise((resolve4, reject) => {
+    return new Promise((resolve5, reject) => {
       var _a3, _b, _c, _d, _e;
       this._process = (0, import_cross_spawn.default)(this._serverParams.command, (_a3 = this._serverParams.args) != null ? _a3 : [], {
         // merge default env with server env because mcp server needs some env vars
@@ -36646,7 +36661,7 @@ var StdioClientTransport = class {
         (_a4 = this.onerror) == null ? void 0 : _a4.call(this, error48);
       });
       this._process.on("spawn", () => {
-        resolve4();
+        resolve5();
       });
       this._process.on("close", (_code) => {
         var _a4;
@@ -36712,22 +36727,22 @@ var StdioClientTransport = class {
     if (this._process) {
       const processToClose = this._process;
       this._process = void 0;
-      const closePromise = new Promise((resolve4) => {
+      const closePromise = new Promise((resolve5) => {
         processToClose.once("close", () => {
-          resolve4();
+          resolve5();
         });
       });
       try {
         (_a3 = processToClose.stdin) == null ? void 0 : _a3.end();
       } catch (e2) {
       }
-      await Promise.race([closePromise, new Promise((resolve4) => setTimeout(resolve4, 2e3).unref())]);
+      await Promise.race([closePromise, new Promise((resolve5) => setTimeout(resolve5, 2e3).unref())]);
       if (processToClose.exitCode === null) {
         try {
           processToClose.kill("SIGTERM");
         } catch (e2) {
         }
-        await Promise.race([closePromise, new Promise((resolve4) => setTimeout(resolve4, 2e3).unref())]);
+        await Promise.race([closePromise, new Promise((resolve5) => setTimeout(resolve5, 2e3).unref())]);
       }
       if (processToClose.exitCode === null) {
         try {
@@ -36739,16 +36754,16 @@ var StdioClientTransport = class {
     this._readBuffer.clear();
   }
   send(message) {
-    return new Promise((resolve4) => {
+    return new Promise((resolve5) => {
       var _a3;
       if (!((_a3 = this._process) == null ? void 0 : _a3.stdin)) {
         throw new Error("Not connected");
       }
       const json2 = serializeMessage(message);
       if (this._process.stdin.write(json2)) {
-        resolve4();
+        resolve5();
       } else {
-        this._process.stdin.once("drain", resolve4);
+        this._process.stdin.once("drain", resolve5);
       }
     });
   }
@@ -37194,6 +37209,152 @@ var StreamableHTTPClientTransport = class {
 };
 
 // src/core/mcp/McpTester.ts
+var http = __toESM(require("http"));
+var https = __toESM(require("https"));
+function createNodeFetch() {
+  return async (input, init) => {
+    var _a3, _b, _c;
+    const requestUrl = getRequestUrl(input);
+    const method = (_a3 = init == null ? void 0 : init.method) != null ? _a3 : input instanceof Request ? input.method : "GET";
+    const headers = mergeHeaders(input, init);
+    const signal = (_b = init == null ? void 0 : init.signal) != null ? _b : input instanceof Request ? input.signal : void 0;
+    const body = await getRequestBody((_c = init == null ? void 0 : init.body) != null ? _c : input instanceof Request ? input.body : void 0);
+    const transport = requestUrl.protocol === "https:" ? https : http;
+    return new Promise((resolve5, reject) => {
+      let settled = false;
+      const fail = (error48) => {
+        if (settled) return;
+        settled = true;
+        signal == null ? void 0 : signal.removeEventListener("abort", onAbort);
+        reject(error48 instanceof Error ? error48 : new Error(String(error48)));
+      };
+      const onAbort = () => {
+        var _a4;
+        req.destroy(new Error("Request aborted"));
+        fail((_a4 = signal == null ? void 0 : signal.reason) != null ? _a4 : new Error("Request aborted"));
+      };
+      const req = transport.request(
+        requestUrl,
+        {
+          method,
+          headers: Object.fromEntries(headers.entries())
+        },
+        (res) => {
+          if (settled) return;
+          settled = true;
+          signal == null ? void 0 : signal.removeEventListener("abort", onAbort);
+          resolve5(createFetchResponse(res));
+        }
+      );
+      req.on("error", (error48) => fail(error48));
+      if (signal) {
+        if (signal.aborted) {
+          onAbort();
+          return;
+        }
+        signal.addEventListener("abort", onAbort, { once: true });
+      }
+      if (body) {
+        req.write(body);
+      }
+      req.end();
+    });
+  };
+}
+function createFetchResponse(res) {
+  var _a3, _b, _c, _d;
+  const responseHeaders = new Headers();
+  for (const [key, value] of Object.entries(res.headers)) {
+    if (value === void 0) continue;
+    if (Array.isArray(value)) {
+      for (const headerValue of value) {
+        responseHeaders.append(key, headerValue);
+      }
+    } else {
+      responseHeaders.append(key, value);
+    }
+  }
+  const body = new ReadableStream({
+    start(controller) {
+      res.on("data", (chunk) => {
+        const buffer = typeof chunk === "string" ? Buffer.from(chunk) : chunk;
+        controller.enqueue(new Uint8Array(buffer));
+      });
+      res.on("end", () => controller.close());
+      res.on("error", (error48) => controller.error(error48));
+    },
+    cancel(reason) {
+      res.destroy(reason instanceof Error ? reason : new Error("Response body cancelled"));
+    }
+  });
+  let bodyUsed = false;
+  const readAsText = async () => {
+    if (bodyUsed) {
+      throw new TypeError("Body has already been consumed");
+    }
+    bodyUsed = true;
+    const reader = body.getReader();
+    const chunks = [];
+    let total = 0;
+    let done = false;
+    try {
+      while (!done) {
+        const { value, done: streamDone } = await reader.read();
+        done = streamDone;
+        if (done) break;
+        if (value) {
+          chunks.push(value);
+          total += value.byteLength;
+        }
+      }
+    } finally {
+      reader.releaseLock();
+    }
+    const merged = new Uint8Array(total);
+    let offset = 0;
+    for (const chunk of chunks) {
+      merged.set(chunk, offset);
+      offset += chunk.byteLength;
+    }
+    return new TextDecoder().decode(merged);
+  };
+  return {
+    ok: ((_a3 = res.statusCode) != null ? _a3 : 500) >= 200 && ((_b = res.statusCode) != null ? _b : 500) < 300,
+    status: (_c = res.statusCode) != null ? _c : 500,
+    statusText: (_d = res.statusMessage) != null ? _d : "",
+    headers: responseHeaders,
+    body,
+    text: readAsText,
+    json: async () => JSON.parse(await readAsText())
+  };
+}
+function getRequestUrl(input) {
+  if (input instanceof URL) {
+    return input;
+  }
+  if (typeof input === "string") {
+    return new URL(input);
+  }
+  return new URL(input.url);
+}
+function mergeHeaders(input, init) {
+  const headers = new Headers(input instanceof Request ? input.headers : void 0);
+  if (init == null ? void 0 : init.headers) {
+    const initHeaders = new Headers(init.headers);
+    for (const [key, value] of initHeaders.entries()) {
+      headers.set(key, value);
+    }
+  }
+  return headers;
+}
+async function getRequestBody(body) {
+  if (body === void 0 || body === null) {
+    return void 0;
+  }
+  const serialized = await new Response(body).arrayBuffer();
+  return Buffer.from(serialized);
+}
+var nodeFetch = createNodeFetch();
 async function testMcpServer(server) {
   var _a3;
   const type = getMcpServerType(server.config);
@@ -37214,7 +37375,10 @@ async function testMcpServer(server) {
     } else {
       const config2 = server.config;
       const url2 = new URL(config2.url);
-      const options = config2.headers ? { requestInit: { headers: config2.headers } } : void 0;
+      const options = {
+        fetch: nodeFetch,
+        requestInit: config2.headers ? { headers: config2.headers } : void 0
+      };
       transport = type === "sse" ? new SSEClientTransport(url2, options) : new StreamableHTTPClientTransport(url2, options);
     }
   } catch (error48) {
@@ -37266,6 +37430,7 @@ async function testMcpServer(server) {
 
 // src/core/plugins/PluginManager.ts
 var fs4 = __toESM(require("fs"));
+var import_obsidian2 = require("obsidian");
 var os4 = __toESM(require("os"));
 var path4 = __toESM(require("path"));
 var INSTALLED_PLUGINS_PATH = path4.join(os4.homedir(), ".claude", "plugins", "installed_plugins.json");
@@ -37327,7 +37492,11 @@ var PluginManager = class {
     if (installedPlugins == null ? void 0 : installedPlugins.plugins) {
       for (const [pluginId, entries] of Object.entries(installedPlugins.plugins)) {
         if (!entries || entries.length === 0) continue;
-        const entry = selectInstalledPluginEntry(entries, normalizedVaultPath);
+        const entriesArray = Array.isArray(entries) ? entries : [entries];
+        if (!Array.isArray(entries)) {
+          new import_obsidian2.Notice(`Claudian: plugin "${pluginId}" has malformed entry in installed_plugins.json (expected array, got ${typeof entries})`);
+        }
+        const entry = selectInstalledPluginEntry(entriesArray, normalizedVaultPath);
         if (!entry) continue;
         const scope = entry.scope === "project" ? "project" : "user";
         const enabled = (_d = (_c = projectEnabled[pluginId]) != null ? _c : globalEnabled[pluginId]) != null ? _d : true;
@@ -37448,8 +37617,13 @@ function parseSlashCommandContent(content) {
     hooks: isRecord(fm.hooks) ? fm.hooks : void 0
   };
 }
+function normalizeArgumentHint(hint) {
+  if (!hint) return hint;
+  if (hint.includes("[") || hint.includes("<")) return hint;
+  return `[${hint}]`;
+}
 function yamlString(value) {
-  if (value.includes(":") || value.includes("#") || value.includes("\n") || value.startsWith(" ") || value.endsWith(" ")) {
+  if (value.includes(":") || value.includes("#") || value.includes("\n") || value.startsWith(" ") || value.endsWith(" ") || value.startsWith("[") || value.startsWith("{")) {
     return `"${value.replace(/"/g, '\\"')}"`;
   }
   return value;
@@ -37567,6 +37741,25 @@ var AgentVaultStorage = class {
     }
     return agents;
   }
+  async load(agent) {
+    const filePath = this.resolvePath(agent);
+    try {
+      const content = await this.adapter.read(filePath);
+      const parsed = parseAgentFile(content);
+      if (!parsed) return null;
+      const { frontmatter, body } = parsed;
+      return buildAgentFromFrontmatter(frontmatter, body, {
+        id: frontmatter.name,
+        source: agent.source,
+        filePath
+      });
+    } catch (error48) {
+      if (this.isFileNotFoundError(error48)) {
+        return null;
+      }
+      throw error48;
+    }
+  }
   async save(agent) {
     await this.adapter.write(this.resolvePath(agent), serializeAgent(agent));
   }
@@ -37574,8 +37767,32 @@ var AgentVaultStorage = class {
     await this.adapter.delete(this.resolvePath(agent));
   }
   resolvePath(agent) {
-    var _a3;
-    return (_a3 = agent.filePath) != null ? _a3 : `${AGENTS_PATH}/${agent.name}.md`;
+    if (!agent.filePath) {
+      return `${AGENTS_PATH}/${agent.name}.md`;
+    }
+    const normalized = agent.filePath.replace(/\\/g, "/");
+    const idx = normalized.lastIndexOf(`${AGENTS_PATH}/`);
+    if (idx !== -1) {
+      return normalized.slice(idx);
+    }
+    return `${AGENTS_PATH}/${agent.name}.md`;
+  }
+  isFileNotFoundError(error48) {
+    if (!error48) return false;
+    if (typeof error48 === "string") {
+      return /enoent|not found|no such file/i.test(error48);
+    }
+    if (typeof error48 === "object") {
+      const maybeCode = error48.code;
+      if (typeof maybeCode === "string" && /enoent|not.?found/i.test(maybeCode)) {
+        return true;
+      }
+      const maybeMessage = error48.message;
+      if (typeof maybeMessage === "string" && /enoent|not found|no such file/i.test(maybeMessage)) {
+        return true;
+      }
+    }
+    return false;
   }
 };
 
@@ -38138,6 +38355,70 @@ var McpStorage = class _McpStorage {
   }
 };
 
+// src/core/tools/toolNames.ts
+var TOOL_AGENT_OUTPUT = "TaskOutput";
+var TOOL_ASK_USER_QUESTION = "AskUserQuestion";
+var TOOL_BASH = "Bash";
+var TOOL_BASH_OUTPUT = "BashOutput";
+var TOOL_EDIT = "Edit";
+var TOOL_GLOB = "Glob";
+var TOOL_GREP = "Grep";
+var TOOL_KILL_SHELL = "KillShell";
+var TOOL_LS = "LS";
+var TOOL_LIST_MCP_RESOURCES = "ListMcpResources";
+var TOOL_MCP = "Mcp";
+var TOOL_NOTEBOOK_EDIT = "NotebookEdit";
+var TOOL_READ = "Read";
+var TOOL_READ_MCP_RESOURCE = "ReadMcpResource";
+var TOOL_SKILL = "Skill";
+var TOOL_TASK = "Task";
+var TOOL_TODO_WRITE = "TodoWrite";
+var TOOL_WEB_FETCH = "WebFetch";
+var TOOL_WEB_SEARCH = "WebSearch";
+var TOOL_WRITE = "Write";
+var TOOL_ENTER_PLAN_MODE = "EnterPlanMode";
+var TOOL_EXIT_PLAN_MODE = "ExitPlanMode";
+var TOOLS_SKIP_BLOCKED_DETECTION = [
+  TOOL_ENTER_PLAN_MODE,
+  TOOL_EXIT_PLAN_MODE,
+  TOOL_ASK_USER_QUESTION
+];
+function skipsBlockedDetection(name) {
+  return TOOLS_SKIP_BLOCKED_DETECTION.includes(name);
+}
+var EDIT_TOOLS = [TOOL_WRITE, TOOL_EDIT, TOOL_NOTEBOOK_EDIT];
+var WRITE_EDIT_TOOLS = [TOOL_WRITE, TOOL_EDIT];
+var FILE_TOOLS = [
+  TOOL_READ,
+  TOOL_WRITE,
+  TOOL_EDIT,
+  TOOL_GLOB,
+  TOOL_GREP,
+  TOOL_LS,
+  TOOL_NOTEBOOK_EDIT,
+  TOOL_BASH
+];
+var READ_ONLY_TOOLS = [
+  TOOL_READ,
+  TOOL_GREP,
+  TOOL_GLOB,
+  TOOL_LS,
+  TOOL_WEB_SEARCH,
+  TOOL_WEB_FETCH
+];
+function isEditTool(toolName) {
+  return EDIT_TOOLS.includes(toolName);
+}
+function isWriteEditTool(toolName) {
+  return WRITE_EDIT_TOOLS.includes(toolName);
+}
+function isFileTool(toolName) {
+  return FILE_TOOLS.includes(toolName);
+}
+function isReadOnlyTool(toolName) {
+  return READ_ONLY_TOOLS.includes(toolName);
+}
+
 // src/core/storage/SessionStorage.ts
 var SESSIONS_PATH = ".claude/sessions";
 var SessionStorage = class {
@@ -38418,19 +38699,24 @@ var SessionStorage = class {
       enabledMcpServers: conversation.enabledMcpServers,
       usage: conversation.usage,
       legacyCutoffAt: conversation.legacyCutoffAt,
-      subagentData: Object.keys(subagentData).length > 0 ? subagentData : void 0
+      subagentData: Object.keys(subagentData).length > 0 ? subagentData : void 0,
+      resumeSessionAt: conversation.resumeSessionAt,
+      forkSource: conversation.forkSource
     };
   }
   /**
    * Extracts subagentData from messages for persistence.
-   * Collects subagent info from all assistant messages.
+   * Collects subagent info from Task tool calls.
    */
   extractSubagentData(messages) {
     const result = {};
     for (const msg of messages) {
-      if (msg.role !== "assistant" || !msg.subagents) continue;
-      for (const subagent of msg.subagents) {
-        result[subagent.id] = subagent;
+      if (msg.role !== "assistant") continue;
+      if (msg.toolCalls) {
+        for (const toolCall of msg.toolCalls) {
+          if (toolCall.name !== TOOL_TASK || !toolCall.subagent) continue;
+          result[toolCall.subagent.id] = toolCall.subagent;
+        }
       }
     }
     return result;
@@ -38547,40 +38833,48 @@ var SlashCommandStorage = class {
   }
 };
 
+// src/core/storage/StorageService.ts
+var import_obsidian3 = require("obsidian");
+
 // src/core/storage/VaultFileAdapter.ts
 var VaultFileAdapter = class {
   constructor(app) {
     this.app = app;
+    this.writeQueue = Promise.resolve();
   }
-  async exists(path10) {
-    return this.app.vault.adapter.exists(path10);
+  async exists(path11) {
+    return this.app.vault.adapter.exists(path11);
   }
-  async read(path10) {
-    return this.app.vault.adapter.read(path10);
+  async read(path11) {
+    return this.app.vault.adapter.read(path11);
   }
-  async write(path10, content) {
-    await this.ensureParentFolder(path10);
-    await this.app.vault.adapter.write(path10, content);
+  async write(path11, content) {
+    await this.ensureParentFolder(path11);
+    await this.app.vault.adapter.write(path11, content);
   }
-  async append(path10, content) {
-    await this.ensureParentFolder(path10);
-    if (await this.exists(path10)) {
-      const existing = await this.read(path10);
-      await this.app.vault.adapter.write(path10, existing + content);
-    } else {
-      await this.app.vault.adapter.write(path10, content);
-    }
+  async append(path11, content) {
+    await this.ensureParentFolder(path11);
+    this.writeQueue = this.writeQueue.then(async () => {
+      if (await this.exists(path11)) {
+        const existing = await this.read(path11);
+        await this.app.vault.adapter.write(path11, existing + content);
+      } else {
+        await this.app.vault.adapter.write(path11, content);
+      }
+    }).catch(() => {
+    });
+    await this.writeQueue;
   }
-  async delete(path10) {
-    if (await this.exists(path10)) {
-      await this.app.vault.adapter.remove(path10);
+  async delete(path11) {
+    if (await this.exists(path11)) {
+      await this.app.vault.adapter.remove(path11);
     }
   }
   /** Fails silently if non-empty or missing. */
-  async deleteFolder(path10) {
+  async deleteFolder(path11) {
     try {
-      if (await this.exists(path10)) {
-        await this.app.vault.adapter.rmdir(path10, false);
+      if (await this.exists(path11)) {
+        await this.app.vault.adapter.rmdir(path11, false);
       }
     } catch (e2) {
     }
@@ -38621,9 +38915,9 @@ var VaultFileAdapter = class {
     }
   }
   /** Ensure a folder exists, creating it and parent folders if needed. */
-  async ensureFolder(path10) {
-    if (await this.exists(path10)) return;
-    const parts = path10.split("/").filter(Boolean);
+  async ensureFolder(path11) {
+    if (await this.exists(path11)) return;
+    const parts = path11.split("/").filter(Boolean);
     let current = "";
     for (const part of parts) {
       current = current ? `${current}/${part}` : part;
@@ -38636,9 +38930,9 @@ var VaultFileAdapter = class {
   async rename(oldPath, newPath) {
     await this.app.vault.adapter.rename(oldPath, newPath);
   }
-  async stat(path10) {
+  async stat(path11) {
     try {
-      const stat = await this.app.vault.adapter.stat(path10);
+      const stat = await this.app.vault.adapter.stat(path11);
       if (!stat) return null;
       return { mtime: stat.mtime, size: stat.size };
     } catch (e2) {
@@ -38967,12 +39261,13 @@ var StorageService = class {
       data.tabManagerState = state;
       await this.plugin.saveData(data);
     } catch (e2) {
+      new import_obsidian3.Notice("Failed to save tab layout");
     }
   }
 };
 
 // src/features/chat/ClaudianView.ts
-var import_obsidian18 = require("obsidian");
+var import_obsidian29 = require("obsidian");
 
 // src/features/chat/constants.ts
 var LOGO_SVG = {
@@ -39014,6 +39309,7 @@ var FLAVOR_TEXTS = [
   "Analyzing...",
   "Considering...",
   "Working on it...",
+  "Vibing...",
   "One moment...",
   "On it...",
   // Thoughtful
@@ -39092,6 +39388,9 @@ var FLAVOR_TEXTS = [
   "Almost there...",
   "Give me a moment..."
 ];
+
+// src/features/chat/tabs/Tab.ts
+var import_obsidian26 = require("obsidian");
 
 // node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs
 var import_path2 = require("path");
@@ -47941,10 +48240,17 @@ function u_({ prompt: X, options: Q }) {
   return z7;
 }
 
+// src/core/agent/ClaudianService.ts
+var import_crypto4 = require("crypto");
+var fs5 = __toESM(require("fs"));
+var import_obsidian5 = require("obsidian");
+var os5 = __toESM(require("os"));
+var path6 = __toESM(require("path"));
+
 // src/utils/context.ts
 var CURRENT_NOTE_PREFIX_REGEX = /^<current_note>\n[\s\S]*?<\/current_note>\n\n/;
 var CURRENT_NOTE_SUFFIX_REGEX = /\n\n<current_note>\n[\s\S]*?<\/current_note>$/;
-var XML_CONTEXT_PATTERN = /\n\n<(?:current_note|editor_selection|editor_cursor|context_files)[\s>]/;
+var XML_CONTEXT_PATTERN = /\n\n<(?:current_note|editor_selection|editor_cursor|context_files|canvas_selection)[\s>]/;
 function formatCurrentNote(notePath) {
   return `<current_note>
 ${notePath}
@@ -47980,7 +48286,7 @@ function extractUserQuery(prompt) {
   if (extracted !== void 0) {
     return extracted;
   }
-  return prompt.replace(/<current_note>[\s\S]*?<\/current_note>\s*/g, "").replace(/<editor_selection[\s\S]*?<\/editor_selection>\s*/g, "").replace(/<editor_cursor[\s\S]*?<\/editor_cursor>\s*/g, "").replace(/<context_files>[\s\S]*?<\/context_files>\s*/g, "").trim();
+  return prompt.replace(/<current_note>[\s\S]*?<\/current_note>\s*/g, "").replace(/<editor_selection[\s\S]*?<\/editor_selection>\s*/g, "").replace(/<editor_cursor[\s\S]*?<\/editor_cursor>\s*/g, "").replace(/<context_files>[\s\S]*?<\/context_files>\s*/g, "").replace(/<canvas_selection[\s\S]*?<\/canvas_selection>\s*/g, "").trim();
 }
 function formatContextFilesLine(files) {
   return `<context_files>
@@ -48149,14 +48455,14 @@ User: ${prompt}` : historyContext;
 }
 
 // src/core/hooks/SecurityHooks.ts
-var import_obsidian2 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/core/security/BashPathValidator.ts
 var path5 = __toESM(require("path"));
 function tokenizeBashCommand(command) {
   var _a3;
   const tokens = [];
-  const tokenRegex = /(['"`])(.*?)\1|[^\s]+/g;
+  const tokenRegex = /(['"])(.*?)\1|[^\s]+/g;
   let match;
   while ((match = tokenRegex.exec(command)) !== null) {
     const token = (_a3 = match[2]) != null ? _a3 : match[0];
@@ -48219,9 +48525,8 @@ function isBashOutputOptionExpectingValue(token) {
 function cleanPathToken(raw) {
   let token = raw.trim();
   if (!token) return null;
-  if (token.startsWith('"') && token.endsWith('"') || token.startsWith("'") && token.endsWith("'") || token.startsWith("`") && token.endsWith("`")) {
-    token = token.slice(1, -1).trim();
-  }
+  token = stripQuoteChars(token);
+  if (!token) return null;
   while (token.startsWith("(") || token.startsWith("[") || token.startsWith("{")) {
     token = token.slice(1).trim();
   }
@@ -48229,12 +48534,23 @@ function cleanPathToken(raw) {
     token = token.slice(0, -1).trim();
   }
   if (!token) return null;
-  if (token.startsWith('"') && token.endsWith('"') || token.startsWith("'") && token.endsWith("'") || token.startsWith("`") && token.endsWith("`")) {
-    token = token.slice(1, -1).trim();
-  }
+  token = stripQuoteChars(token);
   if (!token) return null;
   if (token === "." || token === "/" || token === "\\" || token === "--") return null;
   return token;
+}
+var QUOTE_CHARS = /* @__PURE__ */ new Set(["'", '"', "`"]);
+function stripQuoteChars(token) {
+  if (token.length >= 2 && QUOTE_CHARS.has(token[0]) && token[0] === token[token.length - 1]) {
+    return token.slice(1, -1).trim();
+  }
+  while (token.length > 0 && QUOTE_CHARS.has(token[0])) {
+    token = token.slice(1);
+  }
+  while (token.length > 0 && QUOTE_CHARS.has(token[token.length - 1])) {
+    token = token.slice(0, -1);
+  }
+  return token.trim();
 }
 function isPathLikeToken(token) {
   const cleaned = token.trim();
@@ -48350,8 +48666,41 @@ function findBashPathViolationInSegment(segment, context) {
   }
   return null;
 }
+function extractSubshellCommands(command) {
+  const results = [];
+  let i2 = 0;
+  while (i2 < command.length) {
+    if (command[i2] === "$" && command[i2 + 1] === "(") {
+      let depth = 1;
+      const start = i2 + 2;
+      let j3 = start;
+      while (j3 < command.length && depth > 0) {
+        if (command[j3] === "(") depth++;
+        else if (command[j3] === ")") depth--;
+        j3++;
+      }
+      if (depth === 0) {
+        results.push(command.slice(start, j3 - 1));
+      }
+      i2 = j3;
+    } else {
+      i2++;
+    }
+  }
+  const backtickRegex = /`([^`]+)`/g;
+  let match;
+  while ((match = backtickRegex.exec(command)) !== null) {
+    results.push(match[1]);
+  }
+  return results;
+}
 function findBashCommandPathViolation(command, context) {
   if (!command) return null;
+  const subshellCommands = extractSubshellCommands(command);
+  for (const subCmd of subshellCommands) {
+    const violation = findBashCommandPathViolation(subCmd, context);
+    if (violation) return violation;
+  }
   const tokens = tokenizeBashCommand(command);
   const segments = splitBashTokensIntoSegments(tokens);
   for (const segment of segments) {
@@ -48364,11 +48713,15 @@ function findBashCommandPathViolation(command, context) {
 }
 
 // src/core/security/BlocklistChecker.ts
+var MAX_PATTERN_LENGTH = 500;
 function isCommandBlocked(command, patterns, enableBlocklist) {
   if (!enableBlocklist) {
     return false;
   }
   return patterns.some((pattern) => {
+    if (pattern.length > MAX_PATTERN_LENGTH) {
+      return command.toLowerCase().includes(pattern.toLowerCase());
+    }
     try {
       return new RegExp(pattern, "i").test(command);
     } catch (e2) {
@@ -48377,76 +48730,56 @@ function isCommandBlocked(command, patterns, enableBlocklist) {
   });
 }
 
-// src/core/tools/toolNames.ts
-var TOOL_AGENT_OUTPUT = "TaskOutput";
-var TOOL_ASK_USER_QUESTION = "AskUserQuestion";
-var TOOL_BASH = "Bash";
-var TOOL_BASH_OUTPUT = "BashOutput";
-var TOOL_EDIT = "Edit";
-var TOOL_GLOB = "Glob";
-var TOOL_GREP = "Grep";
-var TOOL_KILL_SHELL = "KillShell";
-var TOOL_LS = "LS";
-var TOOL_LIST_MCP_RESOURCES = "ListMcpResources";
-var TOOL_MCP = "Mcp";
-var TOOL_NOTEBOOK_EDIT = "NotebookEdit";
-var TOOL_READ = "Read";
-var TOOL_READ_MCP_RESOURCE = "ReadMcpResource";
-var TOOL_SKILL = "Skill";
-var TOOL_TASK = "Task";
-var TOOL_TODO_WRITE = "TodoWrite";
-var TOOL_WEB_FETCH = "WebFetch";
-var TOOL_WEB_SEARCH = "WebSearch";
-var TOOL_WRITE = "Write";
-var TOOL_ENTER_PLAN_MODE = "EnterPlanMode";
-var TOOL_EXIT_PLAN_MODE = "ExitPlanMode";
-var TOOLS_SKIP_BLOCKED_DETECTION = [
-  TOOL_ENTER_PLAN_MODE,
-  TOOL_EXIT_PLAN_MODE,
-  TOOL_ASK_USER_QUESTION
-];
-function skipsBlockedDetection(name) {
-  return TOOLS_SKIP_BLOCKED_DETECTION.includes(name);
-}
-var EDIT_TOOLS = [TOOL_WRITE, TOOL_EDIT, TOOL_NOTEBOOK_EDIT];
-var WRITE_EDIT_TOOLS = [TOOL_WRITE, TOOL_EDIT];
-var FILE_TOOLS = [
-  TOOL_READ,
-  TOOL_WRITE,
-  TOOL_EDIT,
-  TOOL_GLOB,
-  TOOL_GREP,
-  TOOL_LS,
-  TOOL_NOTEBOOK_EDIT,
-  TOOL_BASH
-];
-var READ_ONLY_TOOLS = [
-  TOOL_READ,
-  TOOL_GREP,
-  TOOL_GLOB,
-  TOOL_LS,
-  TOOL_WEB_SEARCH,
-  TOOL_WEB_FETCH
-];
-function isEditTool(toolName) {
-  return EDIT_TOOLS.includes(toolName);
-}
-function isWriteEditTool(toolName) {
-  return WRITE_EDIT_TOOLS.includes(toolName);
-}
-function isFileTool(toolName) {
-  return FILE_TOOLS.includes(toolName);
-}
-function isReadOnlyTool(toolName) {
-  return READ_ONLY_TOOLS.includes(toolName);
-}
-
 // src/core/tools/toolInput.ts
 function extractResolvedAnswers(toolUseResult) {
   if (typeof toolUseResult !== "object" || toolUseResult === null) return void 0;
   const r2 = toolUseResult;
   if (!r2.answers || typeof r2.answers !== "object") return void 0;
   return r2.answers;
+}
+function normalizeAnswerValue(value) {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    const normalized = value.map((item) => typeof item === "string" ? item : String(item)).filter(Boolean).join(", ");
+    return normalized || void 0;
+  }
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  return void 0;
+}
+function parseAnswersFromJsonObject(resultText) {
+  const start = resultText.indexOf("{");
+  const end = resultText.lastIndexOf("}");
+  if (start < 0 || end <= start) return void 0;
+  try {
+    const parsed = JSON.parse(resultText.slice(start, end + 1));
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) return void 0;
+    const answers = {};
+    for (const [question, value] of Object.entries(parsed)) {
+      const normalized = normalizeAnswerValue(value);
+      if (normalized) answers[question] = normalized;
+    }
+    return Object.keys(answers).length > 0 ? answers : void 0;
+  } catch (e2) {
+    return void 0;
+  }
+}
+function parseAnswersFromQuotedPairs(resultText) {
+  var _a3, _b;
+  const answers = {};
+  const pattern = /"([^"]+)"="([^"]*)"/g;
+  for (const match of resultText.matchAll(pattern)) {
+    const question = (_a3 = match[1]) == null ? void 0 : _a3.trim();
+    if (!question) continue;
+    answers[question] = (_b = match[2]) != null ? _b : "";
+  }
+  return Object.keys(answers).length > 0 ? answers : void 0;
+}
+function extractResolvedAnswersFromResultText(result) {
+  var _a3;
+  if (typeof result !== "string") return void 0;
+  const trimmed = result.trim();
+  if (!trimmed) return void 0;
+  return (_a3 = parseAnswersFromJsonObject(trimmed)) != null ? _a3 : parseAnswersFromQuotedPairs(trimmed);
 }
 function getPathFromToolInput(toolName, toolInput) {
   switch (toolName) {
@@ -48478,7 +48811,7 @@ function createBlocklistHook(getContext) {
         const context = getContext();
         const bashToolCommands = getBashToolBlockedCommands(context.blockedCommands);
         if (isCommandBlocked(command, bashToolCommands, context.enableBlocklist)) {
-          new import_obsidian2.Notice("Command blocked by security policy");
+          new import_obsidian4.Notice("Command blocked by security policy");
           return {
             continue: false,
             hookSpecificOutput: {
@@ -48700,22 +49033,23 @@ function getActionPattern(toolName, input) {
     case TOOL_READ:
     case TOOL_WRITE:
     case TOOL_EDIT:
-      return typeof input.file_path === "string" && input.file_path ? input.file_path : "*";
+      return typeof input.file_path === "string" && input.file_path ? input.file_path : null;
     case TOOL_NOTEBOOK_EDIT:
       if (typeof input.notebook_path === "string" && input.notebook_path) {
         return input.notebook_path;
       }
-      return typeof input.file_path === "string" && input.file_path ? input.file_path : "*";
+      return typeof input.file_path === "string" && input.file_path ? input.file_path : null;
     case TOOL_GLOB:
-      return typeof input.pattern === "string" && input.pattern ? input.pattern : "*";
+      return typeof input.pattern === "string" && input.pattern ? input.pattern : null;
     case TOOL_GREP:
-      return typeof input.pattern === "string" && input.pattern ? input.pattern : "*";
+      return typeof input.pattern === "string" && input.pattern ? input.pattern : null;
     default:
       return JSON.stringify(input);
   }
 }
 function getActionDescription(toolName, input) {
-  const pattern = getActionPattern(toolName, input);
+  var _a3;
+  const pattern = (_a3 = getActionPattern(toolName, input)) != null ? _a3 : "(unknown)";
   switch (toolName) {
     case TOOL_BASH:
       return `Run command: ${pattern}`;
@@ -48750,7 +49084,7 @@ function buildPermissionUpdates(toolName, input, decision, suggestions) {
   if (!hasRuleUpdate) {
     const pattern = getActionPattern(toolName, input);
     const ruleValue = { toolName };
-    if (pattern && pattern !== "*" && !pattern.startsWith("{")) {
+    if (pattern && !pattern.startsWith("{")) {
       ruleValue.ruleContent = pattern;
     }
     processed.unshift({
@@ -48848,9 +49182,9 @@ var MessageChannel = class {
     if (!this.turnActive) {
       if (this.resolveNext) {
         this.turnActive = true;
-        const resolve4 = this.resolveNext;
+        const resolve5 = this.resolveNext;
         this.resolveNext = null;
-        resolve4({ value: message, done: false });
+        resolve5({ value: message, done: false });
       } else {
         if (this.queue.length >= MESSAGE_CHANNEL_CONFIG.MAX_QUEUED_MESSAGES) {
           this.onWarning(`[MessageChannel] Queue full (${MESSAGE_CHANNEL_CONFIG.MAX_QUEUED_MESSAGES}), dropping newest`);
@@ -48897,18 +49231,18 @@ var MessageChannel = class {
     if (this.queue.length > 0 && this.resolveNext) {
       const pending = this.queue.shift();
       this.turnActive = true;
-      const resolve4 = this.resolveNext;
+      const resolve5 = this.resolveNext;
       this.resolveNext = null;
-      resolve4({ value: this.pendingToMessage(pending), done: false });
+      resolve5({ value: this.pendingToMessage(pending), done: false });
     }
   }
   close() {
     this.closed = true;
     this.queue = [];
     if (this.resolveNext) {
-      const resolve4 = this.resolveNext;
+      const resolve5 = this.resolveNext;
       this.resolveNext = null;
-      resolve4({ value: void 0, done: true });
+      resolve5({ value: void 0, done: true });
     }
   }
   reset() {
@@ -48931,8 +49265,8 @@ var MessageChannel = class {
           this.turnActive = true;
           return Promise.resolve({ value: this.pendingToMessage(pending), done: false });
         }
-        return new Promise((resolve4) => {
-          this.resolveNext = resolve4;
+        return new Promise((resolve5) => {
+          this.resolveNext = resolve5;
         });
       }
     };
@@ -49385,8 +49719,15 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
     _QueryOptionsBuilder.applyPermissionMode(options, permissionMode, ctx.canUseTool);
     _QueryOptionsBuilder.applyThinkingBudget(options, ctx.settings.thinkingBudget);
     options.hooks = ctx.hooks;
-    if (ctx.resumeSessionId) {
-      options.resume = ctx.resumeSessionId;
+    options.enableFileCheckpointing = true;
+    if (ctx.resume) {
+      options.resume = ctx.resume.sessionId;
+      if (ctx.resume.sessionAt) {
+        options.resumeSessionAt = ctx.resume.sessionAt;
+      }
+      if (ctx.resume.fork) {
+        options.forkSession = true;
+      }
     }
     if (ctx.externalContextPaths && ctx.externalContextPaths.length > 0) {
       options.additionalDirectories = ctx.externalContextPaths;
@@ -49589,11 +49930,13 @@ var ClaudianService = class {
     this.queryAbortController = null;
     this.responseHandlers = [];
     this.responseConsumerRunning = false;
+    this.responseConsumerPromise = null;
     this.shuttingDown = false;
     // Tracked configuration for detecting changes that require restart
     this.currentConfig = null;
     // Current allowed tools for canUseTool enforcement (null = no restriction)
     this.currentAllowedTools = null;
+    this.pendingForkSession = false;
     // Last sent message for crash recovery (Phase 1.3)
     this.lastSentMessage = null;
     this.lastSentQueryOptions = null;
@@ -49623,6 +49966,21 @@ var ClaudianService = class {
       } catch (e2) {
       }
     }
+  }
+  setPendingResumeAt(uuid3) {
+    this.pendingResumeAt = uuid3;
+  }
+  /** One-shot: consumed on the next query, then cleared by routeMessage on session init. */
+  applyForkState(conv) {
+    var _a3, _b, _c;
+    const isPending = !conv.sessionId && !conv.sdkSessionId && !!conv.forkSource;
+    this.pendingForkSession = isPending;
+    if (isPending) {
+      this.pendingResumeAt = conv.forkSource.resumeAt;
+    } else {
+      this.pendingResumeAt = void 0;
+    }
+    return (_c = (_b = conv.sessionId) != null ? _b : (_a3 = conv.forkSource) == null ? void 0 : _a3.sessionId) != null ? _c : null;
   }
   async reloadMcpServers() {
     await this.mcpManager.loadServers();
@@ -49697,16 +50055,21 @@ var ClaudianService = class {
     this.queryAbortController = new AbortController();
     const config2 = this.buildPersistentQueryConfig(vaultPath, cliPath, externalContextPaths);
     this.currentConfig = config2;
+    const resumeSessionAt = this.pendingResumeAt;
     const options = await this.buildPersistentQueryOptions(
       vaultPath,
       cliPath,
       resumeSessionId,
+      resumeSessionAt,
       externalContextPaths
     );
     this.persistentQuery = u_({
       prompt: this.messageChannel,
       options
     });
+    if (this.pendingResumeAt === resumeSessionAt) {
+      this.pendingResumeAt = void 0;
+    }
     this.attachPersistentQueryStdinErrorHandler(this.persistentQuery);
     this.startResponseConsumer();
     this.notifyReadyStateChange();
@@ -49752,17 +50115,18 @@ var ClaudianService = class {
         handler.onDone();
       }
     }
+    this.shuttingDown = false;
+    this.notifyReadyStateChange();
     this.persistentQuery = null;
     this.messageChannel = null;
     this.queryAbortController = null;
     this.responseConsumerRunning = false;
+    this.responseConsumerPromise = null;
     this.currentConfig = null;
     if (!preserveHandlers) {
       this.responseHandlers = [];
       this.currentAllowedTools = null;
     }
-    this.shuttingDown = false;
-    this.notifyReadyStateChange();
   }
   /**
    * Checks if the persistent query needs to be restarted based on configuration changes.
@@ -49798,14 +50162,14 @@ var ClaudianService = class {
   /**
    * Builds SDK options for the persistent query.
    */
-  buildPersistentQueryOptions(vaultPath, cliPath, resumeSessionId, externalContextPaths) {
+  buildPersistentQueryOptions(vaultPath, cliPath, resumeSessionId, resumeSessionAt, externalContextPaths) {
     var _a3;
     const baseContext = this.buildQueryOptionsContext(vaultPath, cliPath);
     const hooks = this.buildHooks();
     const ctx = {
       ...baseContext,
       abortController: (_a3 = this.queryAbortController) != null ? _a3 : void 0,
-      resumeSessionId,
+      resume: resumeSessionId ? { sessionId: resumeSessionId, sessionAt: resumeSessionAt, fork: this.pendingForkSession || void 0 } : void 0,
       canUseTool: this.createApprovalCallback(),
       hooks,
       externalContextPaths
@@ -49850,7 +50214,7 @@ var ClaudianService = class {
     }
     this.responseConsumerRunning = true;
     const queryForThisConsumer = this.persistentQuery;
-    void (async () => {
+    this.responseConsumerPromise = (async () => {
       var _a3;
       if (!this.persistentQuery) return;
       try {
@@ -49930,7 +50294,12 @@ var ClaudianService = class {
     }
     for (const event of transformSDKMessage(message, this.getTransformOptions())) {
       if (isSessionInitEvent(event)) {
+        const wasFork = this.pendingForkSession;
         this.sessionManager.captureSession(event.sessionId);
+        if (wasFork) {
+          this.sessionManager.clearHistoryRebuild();
+          this.pendingForkSession = false;
+        }
         (_a3 = this.messageChannel) == null ? void 0 : _a3.setSessionId(event.sessionId);
         if (event.agents) {
           try {
@@ -49967,6 +50336,9 @@ var ClaudianService = class {
           }
         }
       }
+    }
+    if (message.type === "assistant" && message.uuid && handler) {
+      handler.onChunk({ type: "sdk_assistant_uuid", uuid: message.uuid });
     }
     if (isTurnCompleteMessage(message)) {
       (_b = this.messageChannel) == null ? void 0 : _b.onTurnComplete();
@@ -50144,6 +50516,7 @@ var ClaudianService = class {
       return;
     }
     const message = this.buildSDKUserMessage(prompt, images);
+    yield { type: "sdk_user_uuid", uuid: message.uuid };
     const state = {
       chunks: [],
       resolveChunk: null,
@@ -50192,12 +50565,13 @@ var ClaudianService = class {
         }
         throw error48;
       }
+      yield { type: "sdk_user_sent", uuid: message.uuid };
       while (!state.done) {
         if (state.chunks.length > 0) {
           yield state.chunks.shift();
         } else {
-          const chunk = await new Promise((resolve4) => {
-            state.resolveChunk = resolve4;
+          const chunk = await new Promise((resolve5) => {
+            state.resolveChunk = resolve5;
           });
           if (chunk) {
             yield chunk;
@@ -50231,7 +50605,8 @@ var ClaudianService = class {
           content: prompt
         },
         parent_tool_use_id: null,
-        session_id: sessionId
+        session_id: sessionId,
+        uuid: (0, import_crypto4.randomUUID)()
       };
     }
     const content = [];
@@ -50258,7 +50633,8 @@ var ClaudianService = class {
         content
       },
       parent_tool_use_id: null,
-      session_id: sessionId
+      session_id: sessionId,
+      uuid: (0, import_crypto4.randomUUID)()
     };
   }
   /**
@@ -50286,6 +50662,7 @@ var ClaudianService = class {
         await this.persistentQuery.setModel(resolved.model);
         this.currentConfig.model = selectedModel;
       } catch (e2) {
+        new import_obsidian5.Notice("Failed to update model");
       }
     }
     const currentThinking = (_c = (_b = this.currentConfig) == null ? void 0 : _b.thinkingTokens) != null ? _c : null;
@@ -50296,6 +50673,7 @@ var ClaudianService = class {
           this.currentConfig.thinkingTokens = thinkingTokens;
         }
       } catch (e2) {
+        new import_obsidian5.Notice("Failed to update thinking budget");
       }
     }
     if (this.currentConfig && permissionMode !== this.currentConfig.permissionMode) {
@@ -50304,6 +50682,7 @@ var ClaudianService = class {
         await this.persistentQuery.setPermissionMode(sdkMode);
         this.currentConfig.permissionMode = permissionMode;
       } catch (e2) {
+        new import_obsidian5.Notice("Failed to update permission mode");
       }
     }
     const mcpMentions = (queryOptions == null ? void 0 : queryOptions.mcpMentions) || /* @__PURE__ */ new Set();
@@ -50320,6 +50699,7 @@ var ClaudianService = class {
         await this.persistentQuery.setMcpServers(serverConfigs);
         this.currentConfig.mcpServersKey = mcpServersKey;
       } catch (e2) {
+        new import_obsidian5.Notice("Failed to update MCP servers");
       }
     }
     const newExternalContextPaths = (queryOptions == null ? void 0 : queryOptions.externalContextPaths) || [];
@@ -50545,6 +50925,144 @@ var ClaudianService = class {
     this.cancel();
     this.resetSession();
   }
+  async rewindFiles(sdkUserUuid, dryRun) {
+    if (!this.persistentQuery) throw new Error("No active query");
+    if (this.shuttingDown) throw new Error("Service is shutting down");
+    return this.persistentQuery.rewindFiles(sdkUserUuid, { dryRun });
+  }
+  resolveRewindFilePath(filePath) {
+    if (path6.isAbsolute(filePath)) {
+      return filePath;
+    }
+    if (this.vaultPath) {
+      return path6.join(this.vaultPath, filePath);
+    }
+    return filePath;
+  }
+  async createRewindBackup(filesChanged) {
+    if (!filesChanged || filesChanged.length === 0) {
+      return null;
+    }
+    const backupRoot = await fs5.promises.mkdtemp(path6.join(os5.tmpdir(), "claudian-rewind-"));
+    const entries = [];
+    const copyDir = async (from, to) => {
+      await fs5.promises.mkdir(to, { recursive: true });
+      const dirents = await fs5.promises.readdir(from, { withFileTypes: true });
+      for (const dirent of dirents) {
+        const srcPath = path6.join(from, dirent.name);
+        const destPath = path6.join(to, dirent.name);
+        if (dirent.isDirectory()) {
+          await copyDir(srcPath, destPath);
+          continue;
+        }
+        if (dirent.isSymbolicLink()) {
+          const target = await fs5.promises.readlink(srcPath);
+          await fs5.promises.symlink(target, destPath);
+          continue;
+        }
+        if (dirent.isFile()) {
+          await fs5.promises.copyFile(srcPath, destPath);
+        }
+      }
+    };
+    const backupPathForIndex = (i2) => path6.join(backupRoot, String(i2));
+    for (let i2 = 0; i2 < filesChanged.length; i2++) {
+      const originalPath = this.resolveRewindFilePath(filesChanged[i2]);
+      try {
+        const stats = await fs5.promises.lstat(originalPath);
+        if (stats.isSymbolicLink()) {
+          const target = await fs5.promises.readlink(originalPath);
+          entries.push({ originalPath, existedBefore: true, kind: "symlink", symlinkTarget: target });
+          continue;
+        }
+        const backupPath = backupPathForIndex(i2);
+        if (stats.isDirectory()) {
+          await copyDir(originalPath, backupPath);
+          entries.push({ originalPath, existedBefore: true, kind: "dir", backupPath });
+          continue;
+        }
+        if (stats.isFile()) {
+          await fs5.promises.copyFile(originalPath, backupPath);
+          entries.push({ originalPath, existedBefore: true, kind: "file", backupPath });
+          continue;
+        }
+        entries.push({ originalPath, existedBefore: false });
+      } catch (error48) {
+        const err = error48;
+        if (err && err.code === "ENOENT") {
+          entries.push({ originalPath, existedBefore: false });
+          continue;
+        }
+        await fs5.promises.rm(backupRoot, { recursive: true, force: true });
+        throw error48;
+      }
+    }
+    const restore = async () => {
+      const errors = [];
+      for (const entry of entries) {
+        try {
+          if (!entry.existedBefore) {
+            await fs5.promises.rm(entry.originalPath, { recursive: true, force: true });
+            continue;
+          }
+          await fs5.promises.rm(entry.originalPath, { recursive: true, force: true });
+          await fs5.promises.mkdir(path6.dirname(entry.originalPath), { recursive: true });
+          if (entry.kind === "symlink") {
+            await fs5.promises.symlink(entry.symlinkTarget, entry.originalPath);
+            continue;
+          }
+          if (entry.kind === "dir") {
+            await copyDir(entry.backupPath, entry.originalPath);
+            continue;
+          }
+          await fs5.promises.copyFile(entry.backupPath, entry.originalPath);
+        } catch (error48) {
+          errors.push(error48);
+        }
+      }
+      if (errors.length > 0) {
+        throw new Error(`Failed to restore ${errors.length} file(s) after rewind failure.`);
+      }
+    };
+    const cleanup = async () => {
+      await fs5.promises.rm(backupRoot, { recursive: true, force: true });
+    };
+    return { restore, cleanup };
+  }
+  async rewind(sdkUserUuid, sdkAssistantUuid) {
+    const preview = await this.rewindFiles(sdkUserUuid, true);
+    if (!preview.canRewind) return preview;
+    const backup = await this.createRewindBackup(preview.filesChanged);
+    try {
+      const result = await this.rewindFiles(sdkUserUuid);
+      if (!result.canRewind) {
+        await (backup == null ? void 0 : backup.restore());
+        this.closePersistentQuery("rewind failed");
+        return result;
+      }
+      this.pendingResumeAt = sdkAssistantUuid;
+      this.closePersistentQuery("rewind");
+      return {
+        ...result,
+        filesChanged: preview.filesChanged,
+        insertions: preview.insertions,
+        deletions: preview.deletions
+      };
+    } catch (error48) {
+      try {
+        await (backup == null ? void 0 : backup.restore());
+      } catch (rollbackError) {
+        this.closePersistentQuery("rewind failed");
+        throw new Error(
+          `Rewind failed and files could not be fully restored: ${rollbackError instanceof Error ? rollbackError.message : "Unknown error"}`
+        );
+      }
+      this.closePersistentQuery("rewind failed");
+      throw new Error(`Rewind failed but files were restored: ${error48 instanceof Error ? error48.message : "Unknown error"}`);
+    } finally {
+      await (backup == null ? void 0 : backup.cleanup());
+    }
+  }
   setApprovalCallback(callback) {
     this.approvalCallback = callback;
   }
@@ -50655,6 +51173,3084 @@ var ClaudianService = class {
   }
 };
 
+// src/i18n/locales/de.json
+var de_exports = {};
+__export(de_exports, {
+  chat: () => chat,
+  common: () => common,
+  default: () => de_default2,
+  settings: () => settings
+});
+var common = {
+  save: "Speichern",
+  cancel: "Abbrechen",
+  delete: "L\xF6schen",
+  edit: "Bearbeiten",
+  add: "Hinzuf\xFCgen",
+  remove: "Entfernen",
+  clear: "L\xF6schen",
+  clearAll: "Alle l\xF6schen",
+  loading: "L\xE4dt",
+  error: "Fehler",
+  success: "Erfolg",
+  warning: "Warnung",
+  confirm: "Best\xE4tigen",
+  settings: "Einstellungen",
+  advanced: "Erweitert",
+  enabled: "Aktiviert",
+  disabled: "Deaktiviert",
+  platform: "Plattform",
+  refresh: "Aktualisieren",
+  rewind: "Zur\xFCckspulen"
+};
+var chat = {
+  rewind: {
+    confirmMessage: "Zu diesem Punkt zur\xFCckspulen? Datei\xE4nderungen nach dieser Nachricht werden r\xFCckg\xE4ngig gemacht. Das Zur\xFCckspulen betrifft keine manuell oder \xFCber Bash bearbeiteten Dateien.",
+    confirmButton: "Zur\xFCckspulen",
+    ariaLabel: "Hierher zur\xFCckspulen",
+    notice: "Zur\xFCckgespult: {count} Datei(en) wiederhergestellt",
+    noticeSaveFailed: "Zur\xFCckgespult: {count} Datei(en) wiederhergestellt, aber Status konnte nicht gespeichert werden: {error}",
+    failed: "Zur\xFCckspulen fehlgeschlagen: {error}",
+    cannot: "Zur\xFCckspulen nicht m\xF6glich: {error}",
+    unavailableStreaming: "Zur\xFCckspulen w\xE4hrend des Streamings nicht m\xF6glich",
+    unavailableNoUuid: "Zur\xFCckspulen nicht m\xF6glich: Nachrichtenkennungen fehlen"
+  },
+  fork: {
+    ariaLabel: "Konversation verzweigen",
+    chooseTarget: "Konversation verzweigen",
+    targetNewTab: "Neuer Tab",
+    targetCurrentTab: "Aktueller Tab",
+    maxTabsReached: "Verzweigung nicht m\xF6glich: maximal {count} Tabs erreicht",
+    notice: "In neuem Tab verzweigt",
+    noticeCurrentTab: "Im aktuellen Tab verzweigt",
+    failed: "Verzweigung fehlgeschlagen: {error}",
+    unavailableStreaming: "Verzweigung w\xE4hrend des Streamings nicht m\xF6glich",
+    unavailableNoUuid: "Verzweigung nicht m\xF6glich: Nachrichtenkennungen fehlen",
+    unavailableNoResponse: "Verzweigung nicht m\xF6glich: keine Antwort zum Verzweigen vorhanden",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "Verzweigung nicht m\xF6glich: keine Nachrichten in der Konversation",
+    commandNoAssistantUuid: "Verzweigung nicht m\xF6glich: keine Assistentenantwort mit Kennungen"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings = {
+  title: "Claudian Einstellungen",
+  customization: "Anpassung",
+  userName: {
+    name: "Wie soll Claudian dich nennen?",
+    desc: "Dein Name f\xFCr personalisierte Begr\xFC\xDFungen (leer lassen f\xFCr allgemeine Begr\xFC\xDFungen)"
+  },
+  excludedTags: {
+    name: "Ausgeschlossene Tags",
+    desc: "Notizen mit diesen Tags werden nicht automatisch als Kontext geladen (einer pro Zeile, ohne #)"
+  },
+  mediaFolder: {
+    name: "Medienordner",
+    desc: "Ordner mit Anh\xE4ngen/Bildern. Wenn Notizen ![[image.jpg]] verwenden, sucht Claude hier. Leer lassen f\xFCr Vault-Stammverzeichnis."
+  },
+  systemPrompt: {
+    name: "Benutzerdefinierter System-Prompt",
+    desc: "Zus\xE4tzliche Anweisungen, die an den Standard-System-Prompt angeh\xE4ngt werden"
+  },
+  autoTitle: {
+    name: "Konversationstitel automatisch generieren",
+    desc: "Generiert automatisch Konversationstitel nach der ersten Nutzernachricht."
+  },
+  titleModel: {
+    name: "Titel-Generierungsmodell",
+    desc: "Modell zur automatischen Generierung von Konversationstiteln.",
+    auto: "Automatisch (Haiku)"
+  },
+  navMappings: {
+    name: "Vim-Style Navigationszuordnungen",
+    desc: 'Eine Zuordnung pro Zeile. Format: "map <Taste> <Aktion>" (Aktionen: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "Tastenk\xFCrzel",
+  inlineEditHotkey: {
+    name: "Inline-Bearbeitung",
+    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
+    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
+    btnChange: "\xC4ndern",
+    btnSet: "Festlegen"
+  },
+  openChatHotkey: {
+    name: "Chat \xF6ffnen",
+    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
+    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
+    btnChange: "\xC4ndern",
+    btnSet: "Festlegen"
+  },
+  newSessionHotkey: {
+    name: "Neue Sitzung",
+    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
+    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
+    btnChange: "\xC4ndern",
+    btnSet: "Festlegen"
+  },
+  newTabHotkey: {
+    name: "Neuer Tab",
+    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
+    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
+    btnChange: "\xC4ndern",
+    btnSet: "Festlegen"
+  },
+  closeTabHotkey: {
+    name: "Tab schlie\xDFen",
+    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
+    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
+    btnChange: "\xC4ndern",
+    btnSet: "Festlegen"
+  },
+  slashCommands: {
+    name: "Befehle und F\xE4higkeiten",
+    desc: "Definiere benutzerdefinierte Befehle und F\xE4higkeiten, die durch /Name ausgel\xF6st werden."
+  },
+  hiddenSlashCommands: {
+    name: "Ausgeblendete Befehle",
+    desc: "Bestimmte Schr\xE4gstrich-Befehle aus dem Dropdown ausblenden. N\xFCtzlich, um Claude Code-Befehle auszublenden, die f\xFCr Claudian nicht relevant sind. Gib Befehlsnamen ohne f\xFChrenden Schr\xE4gstrich ein, einen pro Zeile.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP-Server",
+    desc: "Konfiguriere Model Context Protocol Server, um Claude mit externen Tools und Datenquellen zu erweitern. Server mit Kontext-Speichermodus ben\xF6tigen @mention zur Aktivierung."
+  },
+  plugins: {
+    name: "Claude Code Plugins",
+    desc: "Aktiviere oder deaktiviere Claude Code Plugins aus ~/.claude/plugins. Aktivierte Plugins werden pro Vault gespeichert."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "Subagents konnten nicht aktualisiert werden: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "Sicherheit",
+  loadUserSettings: {
+    name: "Benutzer-Claude-Einstellungen laden",
+    desc: "L\xE4dt ~/.claude/settings.json. Wenn aktiviert, k\xF6nnen Benutzer-Claude-Code-Berechtigungsregeln den Sicherheitsmodus umgehen."
+  },
+  enableBlocklist: {
+    name: "Befehlsblockliste aktivieren",
+    desc: "Blockiert potenziell gef\xE4hrliche Bash-Befehle"
+  },
+  blockedCommands: {
+    name: "Blockierte Befehle ({platform})",
+    desc: "Muster zum Blockieren auf {platform} (einer pro Zeile). Unterst\xFCtzt Regex.",
+    unixName: "Blockierte Befehle (Unix/Git Bash)",
+    unixDesc: "Unix-Muster werden auch auf Windows blockiert, da Git Bash sie aufrufen kann."
+  },
+  exportPaths: {
+    name: "Zugelassene Exportpfade",
+    desc: "Pfade au\xDFerhalb des Vaults, in die Dateien exportiert werden k\xF6nnen (einer pro Zeile). Unterst\xFCtzt ~ f\xFCr Home-Verzeichnis."
+  },
+  environment: "Umgebung",
+  customVariables: {
+    name: "Benutzerdefinierte Variablen",
+    desc: "Umgebungsvariablen f\xFCr Claude SDK (KEY=VALUE-Format, eine pro Zeile). Export-Pr\xE4fix unterst\xFCtzt."
+  },
+  envSnippets: {
+    name: "Snippets",
+    addBtn: "Snippet hinzuf\xFCgen",
+    noSnippets: "Keine gespeicherten Umgebungsvariablen-Snippets. Klicken Sie auf +, um Ihre aktuelle Konfiguration zu speichern.",
+    nameRequired: "Bitte geben Sie einen Namen f\xFCr das Snippet ein",
+    modal: {
+      titleEdit: "Snippet bearbeiten",
+      titleSave: "Snippet speichern",
+      name: "Name",
+      namePlaceholder: "Ein beschreibender Name f\xFCr diese Umgebungskonfiguration",
+      description: "Beschreibung",
+      descPlaceholder: "Optionale Beschreibung",
+      envVars: "Umgebungsvariablen",
+      envVarsPlaceholder: "KEY=VALUE-Format, eine pro Zeile (export-Pr\xE4fix unterst\xFCtzt)",
+      save: "Speichern",
+      update: "Aktualisieren",
+      cancel: "Abbrechen"
+    }
+  },
+  customContextLimits: {
+    name: "Benutzerdefinierte Kontextlimits",
+    desc: "Legen Sie die Kontextfenstergr\xF6\xDFen f\xFCr Ihre benutzerdefinierten Modelle fest. Leer lassen f\xFCr den Standardwert (200k Token).",
+    invalid: "Ung\xFCltiges Format. Verwenden Sie: 256k, 1m oder exakte Anzahl (1000-10000000)."
+  },
+  advanced: "Erweitert",
+  show1MModel: {
+    name: "Sonnet mit 1M-Kontextfenster aktivieren",
+    desc: "Standard-Sonnet durch Sonnet (1M) in der Modellauswahl ersetzen. Gleiche Preise unter 200k Token. Erfordert Max-Abonnement."
+  },
+  enableChrome: {
+    name: "Chrome-Erweiterung aktivieren",
+    desc: "Erlaubt Claude die Interaktion mit Chrome \xFCber die claude-in-chrome-Erweiterung. Die Erweiterung muss installiert sein. Erfordert Neustart der Sitzung."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "Maximale Chat-Tabs",
+    desc: "Maximale Anzahl gleichzeitiger Chat-Tabs (3-10). Jeder Tab verwendet eine separate Claude-Sitzung.",
+    warning: "Mehr als 5 Tabs k\xF6nnen Leistung und Speichernutzung beeintr\xE4chtigen."
+  },
+  tabBarPosition: {
+    name: "Tab-Leiste Position",
+    desc: "W\xE4hlen Sie, wo Tab-Badges und Aktionsschaltfl\xE4chen angezeigt werden",
+    input: "\xDCber Eingabefeld (Standard)",
+    header: "In Kopfzeile"
+  },
+  enableAutoScroll: {
+    name: "Automatisches Scrollen w\xE4hrend Streaming",
+    desc: "Automatisch nach unten scrollen, w\xE4hrend Claude Antworten streamt. Deaktivieren, um oben zu bleiben und von Anfang an zu lesen."
+  },
+  openInMainTab: {
+    name: "Im Haupteditorbereich \xF6ffnen",
+    desc: "Chat-Panel als Haupttab im zentralen Editorbereich statt in der rechten Seitenleiste \xF6ffnen"
+  },
+  cliPath: {
+    name: "Claude CLI-Pfad",
+    desc: "Benutzerdefinierter Pfad zum Claude Code CLI. Leer lassen f\xFCr automatische Erkennung.",
+    descWindows: "F\xFCr den nativen Installer verwenden Sie claude.exe. F\xFCr npm/pnpm/yarn oder andere Paketmanager-Installationen verwenden Sie den cli.js-Pfad (nicht claude.cmd).",
+    descUnix: 'F\xFCgen Sie die Ausgabe von "which claude" ein \u2014 funktioniert sowohl f\xFCr native als auch npm/pnpm/yarn-Installationen.',
+    validation: {
+      notExist: "Pfad existiert nicht",
+      isDirectory: "Pfad ist ein Verzeichnis, keine Datei"
+    }
+  },
+  language: {
+    name: "Sprache",
+    desc: "Anzeigesprache der Plugin-Oberfl\xE4che \xE4ndern"
+  }
+};
+var de_default2 = {
+  common,
+  chat,
+  settings
+};
+
+// src/i18n/locales/en.json
+var en_exports = {};
+__export(en_exports, {
+  chat: () => chat2,
+  common: () => common2,
+  default: () => en_default3,
+  settings: () => settings2
+});
+var common2 = {
+  save: "Save",
+  cancel: "Cancel",
+  delete: "Delete",
+  edit: "Edit",
+  add: "Add",
+  remove: "Remove",
+  clear: "Clear",
+  clearAll: "Clear all",
+  loading: "Loading",
+  error: "Error",
+  success: "Success",
+  warning: "Warning",
+  confirm: "Confirm",
+  settings: "Settings",
+  advanced: "Advanced",
+  enabled: "Enabled",
+  disabled: "Disabled",
+  platform: "Platform",
+  refresh: "Refresh",
+  rewind: "Rewind"
+};
+var chat2 = {
+  rewind: {
+    confirmMessage: "Rewind to this point? File changes after this message will be reverted. Rewinding does not affect files edited manually or via bash.",
+    confirmButton: "Rewind",
+    ariaLabel: "Rewind to here",
+    notice: "Rewound: {count} file(s) reverted",
+    noticeSaveFailed: "Rewound: {count} file(s) reverted, but failed to save state: {error}",
+    failed: "Rewind failed: {error}",
+    cannot: "Cannot rewind: {error}",
+    unavailableStreaming: "Cannot rewind while streaming",
+    unavailableNoUuid: "Cannot rewind: missing message identifiers"
+  },
+  fork: {
+    ariaLabel: "Fork conversation",
+    chooseTarget: "Fork conversation",
+    targetNewTab: "New tab",
+    targetCurrentTab: "Current tab",
+    maxTabsReached: "Cannot fork: maximum {count} tabs reached",
+    notice: "Forked to new tab",
+    noticeCurrentTab: "Forked in current tab",
+    failed: "Fork failed: {error}",
+    unavailableStreaming: "Cannot fork while streaming",
+    unavailableNoUuid: "Cannot fork: missing message identifiers",
+    unavailableNoResponse: "Cannot fork: no response to fork from",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "Cannot fork: no messages in conversation",
+    commandNoAssistantUuid: "Cannot fork: no assistant response with identifiers"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings2 = {
+  title: "Claudian Settings",
+  customization: "Customization",
+  userName: {
+    name: "What should Claudian call you?",
+    desc: "Your name for personalized greetings (leave empty for generic greetings)"
+  },
+  excludedTags: {
+    name: "Excluded tags",
+    desc: "Notes with these tags will not auto-load as context (one per line, without #)"
+  },
+  mediaFolder: {
+    name: "Media folder",
+    desc: "Folder containing attachments/images. When notes use ![[image.jpg]], Claude will look here. Leave empty for vault root."
+  },
+  systemPrompt: {
+    name: "Custom system prompt",
+    desc: "Additional instructions appended to the default system prompt"
+  },
+  autoTitle: {
+    name: "Auto-generate conversation titles",
+    desc: "Automatically generate conversation titles after the first user message is sent."
+  },
+  titleModel: {
+    name: "Title generation model",
+    desc: "Model used for auto-generating conversation titles.",
+    auto: "Auto (Haiku)"
+  },
+  navMappings: {
+    name: "Vim-style navigation mappings",
+    desc: 'One mapping per line. Format: "map <key> <action>" (actions: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "Hotkeys",
+  inlineEditHotkey: {
+    name: "Inline Edit",
+    descWithKey: "Current hotkey: {hotkey}",
+    descNoKey: "No hotkey set",
+    btnChange: "Change",
+    btnSet: "Set hotkey"
+  },
+  openChatHotkey: {
+    name: "Open Chat",
+    descWithKey: "Current hotkey: {hotkey}",
+    descNoKey: "No hotkey set",
+    btnChange: "Change",
+    btnSet: "Set hotkey"
+  },
+  newSessionHotkey: {
+    name: "New Session",
+    descWithKey: "Current hotkey: {hotkey}",
+    descNoKey: "No hotkey set",
+    btnChange: "Change",
+    btnSet: "Set hotkey"
+  },
+  newTabHotkey: {
+    name: "New Tab",
+    descWithKey: "Current hotkey: {hotkey}",
+    descNoKey: "No hotkey set",
+    btnChange: "Change",
+    btnSet: "Set hotkey"
+  },
+  closeTabHotkey: {
+    name: "Close Tab",
+    descWithKey: "Current hotkey: {hotkey}",
+    descNoKey: "No hotkey set",
+    btnChange: "Change",
+    btnSet: "Set hotkey"
+  },
+  slashCommands: {
+    name: "Commands and Skills",
+    desc: "Define custom commands and skills triggered by /name."
+  },
+  hiddenSlashCommands: {
+    name: "Hidden Commands",
+    desc: "Hide specific slash commands from the dropdown. Useful for hiding Claude Code commands that are not relevant to Claudian. Enter command names without the leading slash, one per line.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP Servers",
+    desc: "Configure Model Context Protocol servers to extend Claude's capabilities with external tools and data sources. Servers with context-saving mode require @mention to activate."
+  },
+  plugins: {
+    name: "Claude Code Plugins",
+    desc: "Enable or disable Claude Code plugins discovered from ~/.claude/plugins. Enabled plugins are stored per vault."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "Failed to refresh subagents: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "Safety",
+  loadUserSettings: {
+    name: "Load user Claude settings",
+    desc: "Load ~/.claude/settings.json. When enabled, user's Claude Code permission rules may bypass Safe mode."
+  },
+  enableBlocklist: {
+    name: "Enable command blocklist",
+    desc: "Block potentially dangerous bash commands"
+  },
+  blockedCommands: {
+    name: "Blocked commands ({platform})",
+    desc: "Patterns to block on {platform} (one per line). Supports regex.",
+    unixName: "Blocked commands (Unix/Git Bash)",
+    unixDesc: "Unix patterns also blocked on Windows because Git Bash can invoke them."
+  },
+  exportPaths: {
+    name: "Allowed export paths",
+    desc: "Paths outside the vault where files can be exported (one per line). Supports ~ for home directory."
+  },
+  environment: "Environment",
+  customVariables: {
+    name: "Custom variables",
+    desc: "Environment variables for Claude SDK (KEY=VALUE format, one per line). Shell export prefix supported."
+  },
+  envSnippets: {
+    name: "Snippets",
+    addBtn: "Add snippet",
+    noSnippets: "No saved environment snippets yet. Click + to save your current environment configuration.",
+    nameRequired: "Please enter a name for the snippet",
+    modal: {
+      titleEdit: "Edit snippet",
+      titleSave: "Save snippet",
+      name: "Name",
+      namePlaceholder: "A descriptive name for this environment configuration",
+      description: "Description",
+      descPlaceholder: "Optional description",
+      envVars: "Environment variables",
+      envVarsPlaceholder: "KEY=VALUE format, one per line (export prefix supported)",
+      save: "Save",
+      update: "Update",
+      cancel: "Cancel"
+    }
+  },
+  customContextLimits: {
+    name: "Custom Context Limits",
+    desc: "Set context window sizes for your custom models. Leave empty to use the default (200k tokens).",
+    invalid: "Invalid format. Use: 256k, 1m, or exact count (1000-10000000)."
+  },
+  advanced: "Advanced",
+  show1MModel: {
+    name: "Enable Sonnet with 1M context window",
+    desc: "Replace standard Sonnet with Sonnet (1M) in the model selector. Same pricing under 200k tokens. Requires Max subscription."
+  },
+  enableChrome: {
+    name: "Enable Chrome extension",
+    desc: "Allow Claude to interact with Chrome via the claude-in-chrome extension. Requires the extension to be installed. Requires session restart."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process. Requires view reopen.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "Maximum chat tabs",
+    desc: "Maximum number of concurrent chat tabs (3-10). Each tab uses a separate Claude session.",
+    warning: "More than 5 tabs may impact performance and memory usage."
+  },
+  tabBarPosition: {
+    name: "Tab bar position",
+    desc: "Choose where to display tab badges and action buttons",
+    input: "Above input (default)",
+    header: "In header"
+  },
+  enableAutoScroll: {
+    name: "Auto-scroll during streaming",
+    desc: "Automatically scroll to the bottom as Claude streams responses. Disable to stay at the top and read from the beginning."
+  },
+  openInMainTab: {
+    name: "Open in main editor area",
+    desc: "Open chat panel as a main tab in the center editor area instead of the right sidebar"
+  },
+  cliPath: {
+    name: "Claude CLI path",
+    desc: "Custom path to Claude Code CLI. Leave empty for auto-detection.",
+    descWindows: "For the native installer, use claude.exe. For npm/pnpm/yarn or other package manager installs, use the cli.js path (not claude.cmd).",
+    descUnix: 'Paste the output of "which claude" \u2014 works for both native and npm/pnpm/yarn installs.',
+    validation: {
+      notExist: "Path does not exist",
+      isDirectory: "Path is a directory, not a file"
+    }
+  },
+  language: {
+    name: "Language",
+    desc: "Change the display language of the plugin interface"
+  }
+};
+var en_default3 = {
+  common: common2,
+  chat: chat2,
+  settings: settings2
+};
+
+// src/i18n/locales/es.json
+var es_exports = {};
+__export(es_exports, {
+  chat: () => chat3,
+  common: () => common3,
+  default: () => es_default2,
+  settings: () => settings3
+});
+var common3 = {
+  save: "Guardar",
+  cancel: "Cancelar",
+  delete: "Eliminar",
+  edit: "Editar",
+  add: "Agregar",
+  remove: "Eliminar",
+  clear: "Limpiar",
+  clearAll: "Limpiar todo",
+  loading: "Cargando",
+  error: "Error",
+  success: "\xC9xito",
+  warning: "Advertencia",
+  confirm: "Confirmar",
+  settings: "Configuraci\xF3n",
+  advanced: "Avanzado",
+  enabled: "Habilitado",
+  disabled: "Deshabilitado",
+  platform: "Plataforma",
+  refresh: "Actualizar",
+  rewind: "Rebobinar"
+};
+var chat3 = {
+  rewind: {
+    confirmMessage: "\xBFRebobinar a este punto? Los cambios de archivos despu\xE9s de este mensaje ser\xE1n revertidos. El rebobinado no afecta archivos editados manualmente o mediante bash.",
+    confirmButton: "Rebobinar",
+    ariaLabel: "Rebobinar hasta aqu\xED",
+    notice: "Rebobinado: {count} archivo(s) revertido(s)",
+    noticeSaveFailed: "Rebobinado: {count} archivo(s) revertido(s), pero no se pudo guardar el estado: {error}",
+    failed: "Error al rebobinar: {error}",
+    cannot: "No se puede rebobinar: {error}",
+    unavailableStreaming: "No se puede rebobinar durante la transmisi\xF3n",
+    unavailableNoUuid: "No se puede rebobinar: faltan identificadores de mensaje"
+  },
+  fork: {
+    ariaLabel: "Bifurcar conversaci\xF3n",
+    chooseTarget: "Bifurcar conversaci\xF3n",
+    targetNewTab: "Nueva pesta\xF1a",
+    targetCurrentTab: "Pesta\xF1a actual",
+    maxTabsReached: "No se puede bifurcar: m\xE1ximo de {count} pesta\xF1as alcanzado",
+    notice: "Bifurcado a nueva pesta\xF1a",
+    noticeCurrentTab: "Bifurcado en pesta\xF1a actual",
+    failed: "Error al bifurcar: {error}",
+    unavailableStreaming: "No se puede bifurcar durante la transmisi\xF3n",
+    unavailableNoUuid: "No se puede bifurcar: faltan identificadores de mensaje",
+    unavailableNoResponse: "No se puede bifurcar: no hay respuesta para bifurcar",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "No se puede bifurcar: no hay mensajes en la conversaci\xF3n",
+    commandNoAssistantUuid: "No se puede bifurcar: no hay respuesta del asistente con identificadores"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings3 = {
+  title: "Configuraci\xF3n de Claudian",
+  customization: "Personalizaci\xF3n",
+  userName: {
+    name: "\xBFC\xF3mo deber\xEDa Claudian llamarte?",
+    desc: "Tu nombre para saludos personalizados (dejar vac\xEDo para saludos gen\xE9ricos)"
+  },
+  excludedTags: {
+    name: "Etiquetas excluidas",
+    desc: "Las notas con estas etiquetas no se cargar\xE1n autom\xE1ticamente como contexto (una por l\xEDnea, sin #)"
+  },
+  mediaFolder: {
+    name: "Carpeta de medios",
+    desc: "Carpeta que contiene archivos adjuntos/imagenes. Cuando las notas usan ![[image.jpg]], Claude buscar\xE1 aqu\xED. Dejar vac\xEDo para la ra\xEDz del dep\xF3sito."
+  },
+  systemPrompt: {
+    name: "Prompt de sistema personalizado",
+    desc: "Instrucciones adicionales a\xF1adidas al prompt de sistema por defecto"
+  },
+  autoTitle: {
+    name: "Generar autom\xE1ticamente t\xEDtulos de conversaci\xF3n",
+    desc: "Genera autom\xE1ticamente t\xEDtulos de conversaci\xF3n despu\xE9s del primer mensaje del usuario."
+  },
+  titleModel: {
+    name: "Modelo de generaci\xF3n de t\xEDtulos",
+    desc: "Modelo utilizado para generar autom\xE1ticamente t\xEDtulos de conversaci\xF3n.",
+    auto: "Auto (Haiku)"
+  },
+  navMappings: {
+    name: "Mapeos de navegaci\xF3n estilo Vim",
+    desc: 'Un mapeo por l\xEDnea. Formato: "map <tecla> <acci\xF3n>" (acciones: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "Atajos de teclado",
+  inlineEditHotkey: {
+    name: "Edici\xF3n en l\xEDnea",
+    descWithKey: "Atajo actual: {hotkey}",
+    descNoKey: "Sin atajo configurado",
+    btnChange: "Cambiar",
+    btnSet: "Configurar"
+  },
+  openChatHotkey: {
+    name: "Abrir chat",
+    descWithKey: "Atajo actual: {hotkey}",
+    descNoKey: "Sin atajo configurado",
+    btnChange: "Cambiar",
+    btnSet: "Configurar"
+  },
+  newSessionHotkey: {
+    name: "Nueva sesi\xF3n",
+    descWithKey: "Atajo actual: {hotkey}",
+    descNoKey: "Sin atajo configurado",
+    btnChange: "Cambiar",
+    btnSet: "Configurar"
+  },
+  newTabHotkey: {
+    name: "Nueva pesta\xF1a",
+    descWithKey: "Atajo actual: {hotkey}",
+    descNoKey: "Sin atajo configurado",
+    btnChange: "Cambiar",
+    btnSet: "Configurar"
+  },
+  closeTabHotkey: {
+    name: "Cerrar pesta\xF1a",
+    descWithKey: "Atajo actual: {hotkey}",
+    descNoKey: "Sin atajo configurado",
+    btnChange: "Cambiar",
+    btnSet: "Configurar"
+  },
+  slashCommands: {
+    name: "Comandos y habilidades",
+    desc: "Define comandos y habilidades personalizados activados por /nombre."
+  },
+  hiddenSlashCommands: {
+    name: "Comandos ocultos",
+    desc: "Oculta comandos slash espec\xEDficos del men\xFA desplegable. \xDAtil para ocultar comandos de Claude Code que no son relevantes para Claudian. Ingresa nombres de comandos sin la barra inicial, uno por l\xEDnea.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "Servidores MCP",
+    desc: "Configura servidores Model Context Protocol para extender las capacidades de Claude con herramientas y fuentes de datos externas. Los servidores con modo de guardado de contexto requieren @mention para activarse."
+  },
+  plugins: {
+    name: "Plugins de Claude Code",
+    desc: "Habilita o deshabilita plugins de Claude Code descubiertos desde ~/.claude/plugins. Los plugins habilitados se almacenan por b\xF3veda."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "No se pudieron actualizar los subagentes: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "Seguridad",
+  loadUserSettings: {
+    name: "Cargar configuraci\xF3n de usuario Claude",
+    desc: "Carga ~/.claude/settings.json. Cuando est\xE1 habilitado, las reglas de permisos del usuario pueden eludir el modo seguro."
+  },
+  enableBlocklist: {
+    name: "Habilitar lista negra de comandos",
+    desc: "Bloquea comandos bash potencialmente peligrosos"
+  },
+  blockedCommands: {
+    name: "Comandos bloqueados ({platform})",
+    desc: "Patrones a bloquear en {platform} (uno por l\xEDnea). Soporta expresiones regulares.",
+    unixName: "Comandos bloqueados (Unix/Git Bash)",
+    unixDesc: "Los patrones Unix tambi\xE9n se bloquean en Windows porque Git Bash puede invocarlos."
+  },
+  exportPaths: {
+    name: "Rutas de exportaci\xF3n permitidas",
+    desc: "Rutas fuera del dep\xF3sito donde se pueden exportar archivos (una por l\xEDnea). Soporta ~ para el directorio home."
+  },
+  environment: "Entorno",
+  customVariables: {
+    name: "Variables personalizadas",
+    desc: "Variables de entorno para Claude SDK (formato KEY=VALUE, una por l\xEDnea). Prefijo export soportado."
+  },
+  envSnippets: {
+    name: "Snippets",
+    addBtn: "A\xF1adir fragmento",
+    noSnippets: "No hay fragmentos de entorno guardados. Haga clic en + para guardar su configuraci\xF3n actual.",
+    nameRequired: "Por favor ingrese un nombre para el fragmento",
+    modal: {
+      titleEdit: "Editar fragmento",
+      titleSave: "Guardar fragmento",
+      name: "Nombre",
+      namePlaceholder: "Un nombre descriptivo para esta configuraci\xF3n",
+      description: "Descripci\xF3n",
+      descPlaceholder: "Descripci\xF3n opcional",
+      envVars: "Variables de entorno",
+      envVarsPlaceholder: "Formato KEY=VALUE, una por l\xEDnea (prefijo export soportado)",
+      save: "Guardar",
+      update: "Actualizar",
+      cancel: "Cancelar"
+    }
+  },
+  customContextLimits: {
+    name: "L\xEDmites de contexto personalizados",
+    desc: "Establezca tama\xF1os de ventana de contexto para sus modelos personalizados. Deje vac\xEDo para usar el valor predeterminado (200k tokens).",
+    invalid: "Formato inv\xE1lido. Use: 256k, 1m o n\xFAmero exacto (1000-10000000)."
+  },
+  advanced: "Avanzado",
+  show1MModel: {
+    name: "Habilitar Sonnet con ventana de contexto de 1M",
+    desc: "Reemplazar Sonnet est\xE1ndar con Sonnet (1M) en el selector de modelos. Mismo precio bajo 200k tokens. Requiere suscripci\xF3n Max."
+  },
+  enableChrome: {
+    name: "Habilitar extensi\xF3n de Chrome",
+    desc: "Permitir que Claude interact\xFAe con Chrome a trav\xE9s de la extensi\xF3n claude-in-chrome. Requiere que la extensi\xF3n est\xE9 instalada. Requiere reinicio de sesi\xF3n."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "M\xE1ximo de pesta\xF1as de chat",
+    desc: "N\xFAmero m\xE1ximo de pesta\xF1as de chat simult\xE1neas (3-10). Cada pesta\xF1a usa una sesi\xF3n de Claude separada.",
+    warning: "M\xE1s de 5 pesta\xF1as puede afectar el rendimiento y el uso de memoria."
+  },
+  tabBarPosition: {
+    name: "Posici\xF3n de la barra de pesta\xF1as",
+    desc: "Elige d\xF3nde mostrar las insignias de pesta\xF1as y los botones de acci\xF3n",
+    input: "Sobre el \xE1rea de entrada (predeterminado)",
+    header: "En el encabezado"
+  },
+  enableAutoScroll: {
+    name: "Desplazamiento autom\xE1tico durante streaming",
+    desc: "Desplazarse autom\xE1ticamente hacia abajo mientras Claude transmite respuestas. Desactivar para quedarse arriba y leer desde el principio."
+  },
+  openInMainTab: {
+    name: "Abrir en \xE1rea de editor principal",
+    desc: "Abrir el panel de chat como una pesta\xF1a principal en el \xE1rea de editor central en lugar de la barra lateral derecha"
+  },
+  cliPath: {
+    name: "Ruta CLI Claude",
+    desc: "Ruta personalizada a Claude Code CLI. Dejar vac\xEDo para detecci\xF3n autom\xE1tica.",
+    descWindows: "Para el instalador nativo, use claude.exe. Para instalaciones con npm/pnpm/yarn u otros gestores de paquetes, use la ruta cli.js (no claude.cmd).",
+    descUnix: 'Pegue la salida de "which claude" \u2014 funciona tanto para instalaciones nativas como npm/pnpm/yarn.',
+    validation: {
+      notExist: "La ruta no existe",
+      isDirectory: "La ruta es un directorio, no un archivo"
+    }
+  },
+  language: {
+    name: "Idioma",
+    desc: "Cambiar el idioma de visualizaci\xF3n de la interfaz del plugin"
+  }
+};
+var es_default2 = {
+  common: common3,
+  chat: chat3,
+  settings: settings3
+};
+
+// src/i18n/locales/fr.json
+var fr_exports = {};
+__export(fr_exports, {
+  chat: () => chat4,
+  common: () => common4,
+  default: () => fr_default2,
+  settings: () => settings4
+});
+var common4 = {
+  save: "Enregistrer",
+  cancel: "Annuler",
+  delete: "Supprimer",
+  edit: "Modifier",
+  add: "Ajouter",
+  remove: "Supprimer",
+  clear: "Effacer",
+  clearAll: "Tout effacer",
+  loading: "Chargement",
+  error: "Erreur",
+  success: "Succ\xE8s",
+  warning: "Avertissement",
+  confirm: "Confirmer",
+  settings: "Param\xE8tres",
+  advanced: "Avanc\xE9",
+  enabled: "Activ\xE9",
+  disabled: "D\xE9sactiv\xE9",
+  platform: "Plateforme",
+  refresh: "Actualiser",
+  rewind: "Rembobiner"
+};
+var chat4 = {
+  rewind: {
+    confirmMessage: "Rembobiner jusqu'\xE0 ce point ? Les modifications de fichiers apr\xE8s ce message seront annul\xE9es. Le rembobinage n'affecte pas les fichiers modifi\xE9s manuellement ou via bash.",
+    confirmButton: "Rembobiner",
+    ariaLabel: "Rembobiner jusqu'ici",
+    notice: "Rembobin\xE9 : {count} fichier(s) restaur\xE9(s)",
+    noticeSaveFailed: "Rembobin\xE9 : {count} fichier(s) restaur\xE9(s), mais impossible d'enregistrer l'\xE9tat : {error}",
+    failed: "\xC9chec du rembobinage : {error}",
+    cannot: "Impossible de rembobiner : {error}",
+    unavailableStreaming: "Impossible de rembobiner pendant le streaming",
+    unavailableNoUuid: "Impossible de rembobiner : identifiants de message manquants"
+  },
+  fork: {
+    ariaLabel: "Bifurquer la conversation",
+    chooseTarget: "Bifurquer la conversation",
+    targetNewTab: "Nouvel onglet",
+    targetCurrentTab: "Onglet actuel",
+    maxTabsReached: "Impossible de bifurquer : maximum de {count} onglets atteint",
+    notice: "Bifurqu\xE9 dans un nouvel onglet",
+    noticeCurrentTab: "Bifurqu\xE9 dans l'onglet actuel",
+    failed: "\xC9chec de la bifurcation : {error}",
+    unavailableStreaming: "Impossible de bifurquer pendant le streaming",
+    unavailableNoUuid: "Impossible de bifurquer : identifiants de message manquants",
+    unavailableNoResponse: "Impossible de bifurquer : aucune r\xE9ponse pour bifurquer",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "Impossible de bifurquer : aucun message dans la conversation",
+    commandNoAssistantUuid: "Impossible de bifurquer : aucune r\xE9ponse de l\u2019assistant avec des identifiants"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings4 = {
+  title: "Param\xE8tres Claudian",
+  customization: "Personnalisation",
+  userName: {
+    name: "Comment Claudian doit-il vous appeler ?",
+    desc: "Votre nom pour les salutations personnalis\xE9es (laisser vide pour les salutations g\xE9n\xE9riques)"
+  },
+  excludedTags: {
+    name: "Tags exclus",
+    desc: "Les notes avec ces tags ne seront pas charg\xE9es automatiquement comme contexte (un par ligne, sans #)"
+  },
+  mediaFolder: {
+    name: "Dossier des m\xE9dias",
+    desc: "Dossier contenant les pi\xE8ces jointes/images. Lorsque les notes utilisent ![[image.jpg]], Claude cherchera ici. Laisser vide pour la racine du coffre."
+  },
+  systemPrompt: {
+    name: "Prompt syst\xE8me personnalis\xE9",
+    desc: "Instructions suppl\xE9mentaires ajout\xE9es au prompt syst\xE8me par d\xE9faut"
+  },
+  autoTitle: {
+    name: "G\xE9n\xE9rer automatiquement les titres de conversation",
+    desc: "G\xE9n\xE8re automatiquement les titres de conversation apr\xE8s le premier message de l'utilisateur."
+  },
+  titleModel: {
+    name: "Mod\xE8le de g\xE9n\xE9ration de titre",
+    desc: "Mod\xE8le utilis\xE9 pour g\xE9n\xE9rer automatiquement les titres de conversation.",
+    auto: "Auto (Haiku)"
+  },
+  navMappings: {
+    name: "Mappages de navigation style Vim",
+    desc: 'Un mappage par ligne. Format : "map <touche> <action>" (actions : scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "Raccourcis clavier",
+  inlineEditHotkey: {
+    name: "\xC9dition en ligne",
+    descWithKey: "Raccourci actuel : {hotkey}",
+    descNoKey: "Aucun raccourci d\xE9fini",
+    btnChange: "Modifier",
+    btnSet: "D\xE9finir"
+  },
+  openChatHotkey: {
+    name: "Ouvrir le chat",
+    descWithKey: "Raccourci actuel : {hotkey}",
+    descNoKey: "Aucun raccourci d\xE9fini",
+    btnChange: "Modifier",
+    btnSet: "D\xE9finir"
+  },
+  newSessionHotkey: {
+    name: "Nouvelle session",
+    descWithKey: "Raccourci actuel : {hotkey}",
+    descNoKey: "Aucun raccourci d\xE9fini",
+    btnChange: "Modifier",
+    btnSet: "D\xE9finir"
+  },
+  newTabHotkey: {
+    name: "Nouvel onglet",
+    descWithKey: "Raccourci actuel : {hotkey}",
+    descNoKey: "Aucun raccourci d\xE9fini",
+    btnChange: "Modifier",
+    btnSet: "D\xE9finir"
+  },
+  closeTabHotkey: {
+    name: "Fermer l'onglet",
+    descWithKey: "Raccourci actuel : {hotkey}",
+    descNoKey: "Aucun raccourci d\xE9fini",
+    btnChange: "Modifier",
+    btnSet: "D\xE9finir"
+  },
+  slashCommands: {
+    name: "Commandes et comp\xE9tences",
+    desc: "D\xE9finissez des commandes et comp\xE9tences personnalis\xE9es d\xE9clench\xE9es par /nom."
+  },
+  hiddenSlashCommands: {
+    name: "Commandes masqu\xE9es",
+    desc: "Masquer des commandes slash sp\xE9cifiques du menu d\xE9roulant. Utile pour masquer les commandes Claude Code qui ne sont pas pertinentes pour Claudian. Entrez les noms de commandes sans le slash initial, un par ligne.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "Serveurs MCP",
+    desc: "Configurez les serveurs Model Context Protocol pour \xE9tendre les capacit\xE9s de Claude avec des outils et sources de donn\xE9es externes. Les serveurs avec mode de sauvegarde de contexte n\xE9cessitent une @mention pour s'activer."
+  },
+  plugins: {
+    name: "Plugins Claude Code",
+    desc: "Activez ou d\xE9sactivez les plugins Claude Code d\xE9couverts dans ~/.claude/plugins. Les plugins activ\xE9s sont stock\xE9s par coffre."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\xC9chec de l\u2019actualisation des subagents : {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "S\xE9curit\xE9",
+  loadUserSettings: {
+    name: "Charger les param\xE8tres utilisateur Claude",
+    desc: "Charge ~/.claude/settings.json. Lorsqu'activ\xE9, les r\xE8gles de permission de l'utilisateur peuvent contourner le mode s\xE9curis\xE9."
+  },
+  enableBlocklist: {
+    name: "Activer la liste noire de commandes",
+    desc: "Bloque les commandes bash potentiellement dangereuses"
+  },
+  blockedCommands: {
+    name: "Commandes bloqu\xE9es ({platform})",
+    desc: "Mod\xE8les \xE0 bloquer sur {platform} (un par ligne). Supporte les expressions r\xE9guli\xE8res.",
+    unixName: "Commandes bloqu\xE9es (Unix/Git Bash)",
+    unixDesc: "Les mod\xE8les Unix sont \xE9galement bloqu\xE9s sur Windows car Git Bash peut les appeler."
+  },
+  exportPaths: {
+    name: "Chemins d'exportation autoris\xE9s",
+    desc: "Chemins en dehors du coffre o\xF9 les fichiers peuvent \xEAtre export\xE9s (un par ligne). Supporte ~ pour le r\xE9pertoire home."
+  },
+  environment: "Environnement",
+  customVariables: {
+    name: "Variables personnalis\xE9es",
+    desc: "Variables d'environnement pour Claude SDK (format KEY=VALUE, une par ligne). Pr\xE9fixe export support\xE9."
+  },
+  envSnippets: {
+    name: "Snippets",
+    addBtn: "Ajouter un extrait",
+    noSnippets: "Aucun extrait d'environnement enregistr\xE9. Cliquez sur + pour sauvegarder votre configuration actuelle.",
+    nameRequired: "Veuillez entrer un nom pour l'extrait",
+    modal: {
+      titleEdit: "Modifier l'extrait",
+      titleSave: "Sauvegarder l'extrait",
+      name: "Nom",
+      namePlaceholder: "Un nom descriptif pour cette configuration",
+      description: "Description",
+      descPlaceholder: "Description optionnelle",
+      envVars: "Variables d'environnement",
+      envVarsPlaceholder: "Format KEY=VALUE, une par ligne (pr\xE9fixe export support\xE9)",
+      save: "Enregistrer",
+      update: "Mettre \xE0 jour",
+      cancel: "Annuler"
+    }
+  },
+  customContextLimits: {
+    name: "Limites de contexte personnalis\xE9es",
+    desc: "D\xE9finissez les tailles de fen\xEAtre de contexte pour vos mod\xE8les personnalis\xE9s. Laissez vide pour utiliser la valeur par d\xE9faut (200k tokens).",
+    invalid: "Format invalide. Utilisez : 256k, 1m ou nombre exact (1000-10000000)."
+  },
+  advanced: "Avanc\xE9",
+  show1MModel: {
+    name: "Activer Sonnet avec fen\xEAtre de contexte de 1M",
+    desc: "Remplacer Sonnet standard par Sonnet (1M) dans le s\xE9lecteur de mod\xE8les. M\xEAme tarif sous 200k tokens. N\xE9cessite un abonnement Max."
+  },
+  enableChrome: {
+    name: "Activer l'extension Chrome",
+    desc: "Permettre \xE0 Claude d'interagir avec Chrome via l'extension claude-in-chrome. L'extension doit \xEAtre install\xE9e. N\xE9cessite un red\xE9marrage de session."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "Maximum d'onglets de chat",
+    desc: "Nombre maximum d'onglets de chat simultan\xE9s (3-10). Chaque onglet utilise une session Claude s\xE9par\xE9e.",
+    warning: "Plus de 5 onglets peut affecter les performances et l'utilisation de la m\xE9moire."
+  },
+  tabBarPosition: {
+    name: "Position de la barre d'onglets",
+    desc: "Choisissez o\xF9 afficher les badges d'onglets et les boutons d'action",
+    input: "Au-dessus de la saisie (par d\xE9faut)",
+    header: "Dans l'en-t\xEAte"
+  },
+  enableAutoScroll: {
+    name: "D\xE9filement automatique pendant le streaming",
+    desc: "D\xE9filer automatiquement vers le bas pendant que Claude diffuse les r\xE9ponses. D\xE9sactiver pour rester en haut et lire depuis le d\xE9but."
+  },
+  openInMainTab: {
+    name: "Ouvrir dans la zone d'\xE9diteur principale",
+    desc: "Ouvrir le panneau de chat comme un onglet principal dans la zone d'\xE9diteur centrale au lieu de la barre lat\xE9rale droite"
+  },
+  cliPath: {
+    name: "Chemin CLI Claude",
+    desc: "Chemin personnalis\xE9 vers Claude Code CLI. Laisser vide pour la d\xE9tection automatique.",
+    descWindows: "Pour l'installateur natif, utilisez claude.exe. Pour les installations npm/pnpm/yarn ou autres gestionnaires de paquets, utilisez le chemin cli.js (pas claude.cmd).",
+    descUnix: 'Collez la sortie de "which claude" \u2014 fonctionne pour les installations natives et npm/pnpm/yarn.',
+    validation: {
+      notExist: "Le chemin n'existe pas",
+      isDirectory: "Le chemin est un r\xE9pertoire, pas un fichier"
+    }
+  },
+  language: {
+    name: "Langue",
+    desc: "Changer la langue d'affichage de l'interface du plugin"
+  }
+};
+var fr_default2 = {
+  common: common4,
+  chat: chat4,
+  settings: settings4
+};
+
+// src/i18n/locales/ja.json
+var ja_exports = {};
+__export(ja_exports, {
+  chat: () => chat5,
+  common: () => common5,
+  default: () => ja_default2,
+  settings: () => settings5
+});
+var common5 = {
+  save: "\u4FDD\u5B58",
+  cancel: "\u30AD\u30E3\u30F3\u30BB\u30EB",
+  delete: "\u524A\u9664",
+  edit: "\u7DE8\u96C6",
+  add: "\u8FFD\u52A0",
+  remove: "\u524A\u9664",
+  clear: "\u30AF\u30EA\u30A2",
+  clearAll: "\u3059\u3079\u3066\u30AF\u30EA\u30A2",
+  loading: "\u8AAD\u307F\u8FBC\u307F\u4E2D",
+  error: "\u30A8\u30E9\u30FC",
+  success: "\u6210\u529F",
+  warning: "\u8B66\u544A",
+  confirm: "\u78BA\u8A8D",
+  settings: "\u8A2D\u5B9A",
+  advanced: "\u8A73\u7D30",
+  enabled: "\u6709\u52B9",
+  disabled: "\u7121\u52B9",
+  platform: "\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0",
+  refresh: "\u66F4\u65B0",
+  rewind: "\u5DFB\u304D\u623B\u3057"
+};
+var chat5 = {
+  rewind: {
+    confirmMessage: "\u3053\u306E\u6642\u70B9\u306B\u5DFB\u304D\u623B\u3057\u307E\u3059\u304B\uFF1F\u3053\u306E\u30E1\u30C3\u30BB\u30FC\u30B8\u4EE5\u964D\u306E\u30D5\u30A1\u30A4\u30EB\u5909\u66F4\u304C\u5143\u306B\u623B\u3055\u308C\u307E\u3059\u3002\u624B\u52D5\u307E\u305F\u306Fbash\u3067\u7DE8\u96C6\u3055\u308C\u305F\u30D5\u30A1\u30A4\u30EB\u306B\u306F\u5F71\u97FF\u3057\u307E\u305B\u3093\u3002",
+    confirmButton: "\u5DFB\u304D\u623B\u3059",
+    ariaLabel: "\u3053\u3053\u306B\u5DFB\u304D\u623B\u3059",
+    notice: "\u5DFB\u304D\u623B\u3057\u5B8C\u4E86\uFF1A{count} \u500B\u306E\u30D5\u30A1\u30A4\u30EB\u3092\u5FA9\u5143",
+    noticeSaveFailed: "\u5DFB\u304D\u623B\u3057\u5B8C\u4E86\uFF1A{count} \u500B\u306E\u30D5\u30A1\u30A4\u30EB\u3092\u5FA9\u5143\u3057\u307E\u3057\u305F\u304C\u3001\u72B6\u614B\u3092\u4FDD\u5B58\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\uFF1A{error}",
+    failed: "\u5DFB\u304D\u623B\u3057\u306B\u5931\u6557\uFF1A{error}",
+    cannot: "\u5DFB\u304D\u623B\u3057\u3067\u304D\u307E\u305B\u3093\uFF1A{error}",
+    unavailableStreaming: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306F\u5DFB\u304D\u623B\u3057\u3067\u304D\u307E\u305B\u3093",
+    unavailableNoUuid: "\u5DFB\u304D\u623B\u3057\u3067\u304D\u307E\u305B\u3093\uFF1A\u30E1\u30C3\u30BB\u30FC\u30B8\u8B58\u5225\u5B50\u304C\u3042\u308A\u307E\u305B\u3093"
+  },
+  fork: {
+    ariaLabel: "\u4F1A\u8A71\u3092\u5206\u5C90",
+    chooseTarget: "\u4F1A\u8A71\u3092\u5206\u5C90",
+    targetNewTab: "\u65B0\u3057\u3044\u30BF\u30D6",
+    targetCurrentTab: "\u73FE\u5728\u306E\u30BF\u30D6",
+    maxTabsReached: "\u5206\u5C90\u3067\u304D\u307E\u305B\u3093\uFF1A\u6700\u5927 {count} \u30BF\u30D6\u306B\u9054\u3057\u307E\u3057\u305F",
+    notice: "\u65B0\u3057\u3044\u30BF\u30D6\u306B\u5206\u5C90\u3057\u307E\u3057\u305F",
+    noticeCurrentTab: "\u73FE\u5728\u306E\u30BF\u30D6\u3067\u5206\u5C90\u3057\u307E\u3057\u305F",
+    failed: "\u5206\u5C90\u306B\u5931\u6557\uFF1A{error}",
+    unavailableStreaming: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306F\u5206\u5C90\u3067\u304D\u307E\u305B\u3093",
+    unavailableNoUuid: "\u5206\u5C90\u3067\u304D\u307E\u305B\u3093\uFF1A\u30E1\u30C3\u30BB\u30FC\u30B8\u8B58\u5225\u5B50\u304C\u3042\u308A\u307E\u305B\u3093",
+    unavailableNoResponse: "\u5206\u5C90\u3067\u304D\u307E\u305B\u3093\uFF1A\u5206\u5C90\u5143\u306E\u5FDC\u7B54\u304C\u3042\u308A\u307E\u305B\u3093",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "\u30D5\u30A9\u30FC\u30AF\u3067\u304D\u307E\u305B\u3093: \u4F1A\u8A71\u306B\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u3042\u308A\u307E\u305B\u3093",
+    commandNoAssistantUuid: "\u30D5\u30A9\u30FC\u30AF\u3067\u304D\u307E\u305B\u3093: \u8B58\u5225\u5B50\u4ED8\u304D\u306E\u30A2\u30B7\u30B9\u30BF\u30F3\u30C8\u5FDC\u7B54\u304C\u3042\u308A\u307E\u305B\u3093"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings5 = {
+  title: "Claudian \u8A2D\u5B9A",
+  customization: "\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA",
+  userName: {
+    name: "Claudian \u306F\u3069\u306E\u3088\u3046\u306B\u547C\u3073\u307E\u3059\u304B\uFF1F",
+    desc: "\u30D1\u30FC\u30BD\u30CA\u30E9\u30A4\u30BA\u3055\u308C\u305F\u6328\u62F6\u306B\u4F7F\u7528\u3059\u308B\u540D\u524D\uFF08\u7A7A\u6B04\u3067\u4E00\u822C\u306E\u6328\u62F6\uFF09"
+  },
+  excludedTags: {
+    name: "\u9664\u5916\u30BF\u30B0",
+    desc: "\u3053\u308C\u3089\u306E\u30BF\u30B0\u3092\u542B\u3080\u30CE\u30FC\u30C8\u306F\u81EA\u52D5\u7684\u306B\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u3068\u3057\u3066\u8AAD\u307F\u8FBC\u307E\u308C\u307E\u305B\u3093\uFF081\u884C\u306B1\u3064\u3001#\u306A\u3057\uFF09"
+  },
+  mediaFolder: {
+    name: "\u30E1\u30C7\u30A3\u30A2\u30D5\u30A9\u30EB\u30C0",
+    desc: "\u6DFB\u4ED8\u30D5\u30A1\u30A4\u30EB/\u753B\u50CF\u3092\u683C\u7D0D\u3059\u308B\u30D5\u30A9\u30EB\u30C0\u3002\u30CE\u30FC\u30C8\u304C ![[image.jpg]] \u3092\u4F7F\u7528\u3059\u308B\u5834\u5408\u3001Claude \u306F\u3053\u3053\u3067\u63A2\u3057\u307E\u3059\u3002\u7A7A\u6B04\u3067\u30EA\u30DD\u30B8\u30C8\u30EA\u306E\u30EB\u30FC\u30C8\u3092\u4F7F\u7528\u3002"
+  },
+  systemPrompt: {
+    name: "\u30AB\u30B9\u30BF\u30E0\u30B7\u30B9\u30C6\u30E0\u30D7\u30ED\u30F3\u30D7\u30C8",
+    desc: "\u30C7\u30D5\u30A9\u30EB\u30C8\u306E\u30B7\u30B9\u30C6\u30E0\u30D7\u30ED\u30F3\u30D7\u30C8\u306B\u8FFD\u52A0\u3055\u308C\u308B\u8FFD\u52A0\u6307\u793A"
+  },
+  autoTitle: {
+    name: "\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u751F\u6210",
+    desc: "\u6700\u521D\u306E\u30E6\u30FC\u30B6\u30FC\u30E1\u30C3\u30BB\u30FC\u30B8\u9001\u4FE1\u5F8C\u306B\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u7684\u306B\u751F\u6210\u3057\u307E\u3059\u3002"
+  },
+  titleModel: {
+    name: "\u30BF\u30A4\u30C8\u30EB\u751F\u6210\u30E2\u30C7\u30EB",
+    desc: "\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u751F\u6210\u3059\u308B\u305F\u3081\u306B\u4F7F\u7528\u3055\u308C\u308B\u30E2\u30C7\u30EB\u3002",
+    auto: "\u81EA\u52D5 (Haiku)"
+  },
+  navMappings: {
+    name: "Vim\u30B9\u30BF\u30A4\u30EB\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3\u30DE\u30C3\u30D4\u30F3\u30B0",
+    desc: '1\u884C\u306B1\u3064\u306E\u30DE\u30C3\u30D4\u30F3\u30B0\u3002\u5F62\u5F0F\uFF1A"map <\u30AD\u30FC> <\u30A2\u30AF\u30B7\u30E7\u30F3>"\uFF08\u30A2\u30AF\u30B7\u30E7\u30F3\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
+  },
+  hotkeys: "\u30DB\u30C3\u30C8\u30AD\u30FC",
+  inlineEditHotkey: {
+    name: "\u30A4\u30F3\u30E9\u30A4\u30F3\u7DE8\u96C6",
+    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
+    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
+    btnChange: "\u5909\u66F4",
+    btnSet: "\u8A2D\u5B9A"
+  },
+  openChatHotkey: {
+    name: "\u30C1\u30E3\u30C3\u30C8\u3092\u958B\u304F",
+    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
+    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
+    btnChange: "\u5909\u66F4",
+    btnSet: "\u8A2D\u5B9A"
+  },
+  newSessionHotkey: {
+    name: "\u65B0\u898F\u30BB\u30C3\u30B7\u30E7\u30F3",
+    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
+    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
+    btnChange: "\u5909\u66F4",
+    btnSet: "\u8A2D\u5B9A"
+  },
+  newTabHotkey: {
+    name: "\u65B0\u898F\u30BF\u30D6",
+    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
+    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
+    btnChange: "\u5909\u66F4",
+    btnSet: "\u8A2D\u5B9A"
+  },
+  closeTabHotkey: {
+    name: "\u30BF\u30D6\u3092\u9589\u3058\u308B",
+    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
+    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
+    btnChange: "\u5909\u66F4",
+    btnSet: "\u8A2D\u5B9A"
+  },
+  slashCommands: {
+    name: "\u30B3\u30DE\u30F3\u30C9\u3068\u30B9\u30AD\u30EB",
+    desc: "/\u540D\u524D \u3067\u30C8\u30EA\u30AC\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u30B3\u30DE\u30F3\u30C9\u3068\u30B9\u30AD\u30EB\u3092\u5B9A\u7FA9\u3057\u307E\u3059\u3002"
+  },
+  hiddenSlashCommands: {
+    name: "\u975E\u8868\u793A\u30B3\u30DE\u30F3\u30C9",
+    desc: "\u30C9\u30ED\u30C3\u30D7\u30C0\u30A6\u30F3\u304B\u3089\u7279\u5B9A\u306E\u30B9\u30E9\u30C3\u30B7\u30E5\u30B3\u30DE\u30F3\u30C9\u3092\u975E\u8868\u793A\u306B\u3057\u307E\u3059\u3002Claudian \u306B\u95A2\u4FC2\u306E\u306A\u3044 Claude Code \u30B3\u30DE\u30F3\u30C9\u3092\u975E\u8868\u793A\u306B\u3059\u308B\u306E\u306B\u4FBF\u5229\u3067\u3059\u3002\u5148\u982D\u306E\u30B9\u30E9\u30C3\u30B7\u30E5\u306A\u3057\u3067\u30B3\u30DE\u30F3\u30C9\u540D\u30921\u884C\u306B1\u3064\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP \u30B5\u30FC\u30D0\u30FC",
+    desc: "\u30E2\u30C7\u30EB\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30D7\u30ED\u30C8\u30B3\u30EB\u30B5\u30FC\u30D0\u30FC\u3092\u8A2D\u5B9A\u3057\u3001\u5916\u90E8\u30C4\u30FC\u30EB\u3084\u30C7\u30FC\u30BF\u30BD\u30FC\u30B9\u3067 Claude \u306E\u6A5F\u80FD\u3092\u62E1\u5F35\u3057\u307E\u3059\u3002\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u4FDD\u5B58\u30E2\u30FC\u30C9\u306E\u30B5\u30FC\u30D0\u30FC\u306F @mention \u3067\u30A2\u30AF\u30C6\u30A3\u30D6\u306B\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002"
+  },
+  plugins: {
+    name: "Claude Code \u30D7\u30E9\u30B0\u30A4\u30F3",
+    desc: "~/.claude/plugins \u304B\u3089\u691C\u51FA\u3055\u308C\u305F Claude Code \u30D7\u30E9\u30B0\u30A4\u30F3\u3092\u6709\u52B9\u5316\u307E\u305F\u306F\u7121\u52B9\u5316\u3057\u307E\u3059\u3002\u6709\u52B9\u5316\u3055\u308C\u305F\u30D7\u30E9\u30B0\u30A4\u30F3\u306F\u4FDD\u7BA1\u5EAB\u3054\u3068\u306B\u4FDD\u5B58\u3055\u308C\u307E\u3059\u3002"
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u3092\u66F4\u65B0\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3",
+  loadUserSettings: {
+    name: "\u30E6\u30FC\u30B6\u30FCClaude\u8A2D\u5B9A\u3092\u8AAD\u307F\u8FBC\u3080",
+    desc: "~/.claude/settings.json \u3092\u8AAD\u307F\u8FBC\u307F\u307E\u3059\u3002\u6709\u52B9\u306B\u3059\u308B\u3068\u3001\u30E6\u30FC\u30B6\u30FC\u306E Claude Code \u8A31\u53EF\u30EB\u30FC\u30EB\u304C\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u30E2\u30FC\u30C9\u3092\u30D0\u30A4\u30D1\u30B9\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002"
+  },
+  enableBlocklist: {
+    name: "\u30B3\u30DE\u30F3\u30C9\u30D6\u30E9\u30C3\u30AF\u30EA\u30B9\u30C8\u3092\u6709\u52B9\u5316",
+    desc: "\u6F5C\u5728\u7684\u306B\u5371\u967A\u306Abash\u30B3\u30DE\u30F3\u30C9\u3092\u30D6\u30ED\u30C3\u30AF"
+  },
+  blockedCommands: {
+    name: "\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u305F\u30B3\u30DE\u30F3\u30C9 ({platform})",
+    desc: "{platform} \u3067\u30D6\u30ED\u30C3\u30AF\u3059\u308B\u30D1\u30BF\u30FC\u30F3\uFF081\u884C\u306B1\u3064\uFF09\u3002\u6B63\u898F\u8868\u73FE\u3092\u30B5\u30DD\u30FC\u30C8\u3002",
+    unixName: "\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u305F\u30B3\u30DE\u30F3\u30C9 (Unix/Git Bash)",
+    unixDesc: "Git Bash\u304C\u547C\u3073\u51FA\u305B\u308B\u305F\u3081\u3001Unix\u30D1\u30BF\u30FC\u30F3\u3082Windows\u4E0A\u3067\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u307E\u3059\u3002"
+  },
+  exportPaths: {
+    name: "\u8A31\u53EF\u3055\u308C\u305F\u30A8\u30AF\u30B9\u30DD\u30FC\u30C8\u30D1\u30B9",
+    desc: "\u30D5\u30A1\u30A4\u30EB\u3092\u30A8\u30AF\u30B9\u30DD\u30FC\u30C8\u3067\u304D\u308B\u30EA\u30DD\u30B8\u30C8\u30EA\u5916\u306E\u30D1\u30B9\uFF081\u884C\u306B1\u3064\uFF09\u3002~ \u3067\u30DB\u30FC\u30E0\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u3092\u30B5\u30DD\u30FC\u30C8\u3002"
+  },
+  environment: "\u74B0\u5883",
+  customVariables: {
+    name: "\u30AB\u30B9\u30BF\u30E0\u5909\u6570",
+    desc: "Claude SDK\u306E\u74B0\u5883\u5909\u6570\uFF08KEY=VALUE\u5F62\u5F0F\u30011\u884C\u306B1\u3064\uFF09\u3002export\u30D7\u30EC\u30D5\u30A3\u30C3\u30AF\u30B9\u5BFE\u5FDC\u3002"
+  },
+  envSnippets: {
+    name: "\u30B9\u30CB\u30DA\u30C3\u30C8",
+    addBtn: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u8FFD\u52A0",
+    noSnippets: "\u4FDD\u5B58\u3055\u308C\u305F\u74B0\u5883\u5909\u6570\u30B9\u30CB\u30DA\u30C3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002+\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u73FE\u5728\u306E\u8A2D\u5B9A\u3092\u4FDD\u5B58\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+    nameRequired: "\u30B9\u30CB\u30DA\u30C3\u30C8\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
+    modal: {
+      titleEdit: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u7DE8\u96C6",
+      titleSave: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u4FDD\u5B58",
+      name: "\u540D\u524D",
+      namePlaceholder: "\u3053\u306E\u8A2D\u5B9A\u306E\u308F\u304B\u308A\u3084\u3059\u3044\u540D\u524D",
+      description: "\u8AAC\u660E",
+      descPlaceholder: "\u4EFB\u610F\u306E\u8AAC\u660E",
+      envVars: "\u74B0\u5883\u5909\u6570",
+      envVarsPlaceholder: "KEY=VALUE\u5F62\u5F0F\u30011\u884C\u306B1\u3064\uFF08export\u30D7\u30EC\u30D5\u30A3\u30C3\u30AF\u30B9\u5BFE\u5FDC\uFF09",
+      save: "\u4FDD\u5B58",
+      update: "\u66F4\u65B0",
+      cancel: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+    }
+  },
+  customContextLimits: {
+    name: "\u30AB\u30B9\u30BF\u30E0\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u5236\u9650",
+    desc: "\u30AB\u30B9\u30BF\u30E0\u30E2\u30C7\u30EB\u306E\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6\u30B5\u30A4\u30BA\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002\u30C7\u30D5\u30A9\u30EB\u30C8\uFF08200k\u30C8\u30FC\u30AF\u30F3\uFF09\u3092\u4F7F\u7528\u3059\u308B\u5834\u5408\u306F\u7A7A\u6B04\u306E\u307E\u307E\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+    invalid: "\u7121\u52B9\u306A\u5F62\u5F0F\u3067\u3059\u3002\u4F7F\u7528\uFF1A256k\u30011m\u3001\u307E\u305F\u306F\u6B63\u78BA\u306A\u6570\u5024\uFF081000-10000000\uFF09\u3002"
+  },
+  advanced: "\u8A73\u7D30\u8A2D\u5B9A",
+  show1MModel: {
+    name: "1M\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6\u3092\u6301\u3064Sonnet\u3092\u6709\u52B9\u5316",
+    desc: "\u30E2\u30C7\u30EB\u30BB\u30EC\u30AF\u30BF\u30FC\u3067\u6A19\u6E96Sonnet\u3092 Sonnet (1M) \u306B\u7F6E\u304D\u63DB\u3048\u307E\u3059\u3002200k\u30C8\u30FC\u30AF\u30F3\u672A\u6E80\u3067\u306F\u540C\u3058\u4FA1\u683C\u3002Max\u30B5\u30D6\u30B9\u30AF\u30EA\u30D7\u30B7\u30E7\u30F3\u304C\u5FC5\u8981\u3067\u3059\u3002"
+  },
+  enableChrome: {
+    name: "Chrome\u62E1\u5F35\u6A5F\u80FD\u3092\u6709\u52B9\u5316",
+    desc: "claude-in-chrome\u62E1\u5F35\u6A5F\u80FD\u3092\u901A\u3058\u3066Claude\u304CChrome\u3068\u9023\u643A\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u307E\u3059\u3002\u62E1\u5F35\u6A5F\u80FD\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u304C\u5FC5\u8981\u3067\u3059\u3002\u30BB\u30C3\u30B7\u30E7\u30F3\u306E\u518D\u8D77\u52D5\u304C\u5FC5\u8981\u3067\u3059\u3002"
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "\u6700\u5927\u30C1\u30E3\u30C3\u30C8\u30BF\u30D6\u6570",
+    desc: "\u540C\u6642\u306B\u958B\u3051\u308B\u6700\u5927\u30C1\u30E3\u30C3\u30C8\u30BF\u30D6\u6570\uFF083-10\uFF09\u3002\u5404\u30BF\u30D6\u306F\u500B\u5225\u306E Claude \u30BB\u30C3\u30B7\u30E7\u30F3\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002",
+    warning: "5 \u30BF\u30D6\u3092\u8D85\u3048\u308B\u3068\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u3084\u30E1\u30E2\u30EA\u4F7F\u7528\u91CF\u306B\u5F71\u97FF\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002"
+  },
+  tabBarPosition: {
+    name: "\u30BF\u30D6\u30D0\u30FC\u306E\u4F4D\u7F6E",
+    desc: "\u30BF\u30D6\u30D0\u30C3\u30B8\u3068\u30A2\u30AF\u30B7\u30E7\u30F3\u30DC\u30BF\u30F3\u306E\u8868\u793A\u4F4D\u7F6E\u3092\u9078\u629E",
+    input: "\u5165\u529B\u6B04\u306E\u4E0A\uFF08\u30C7\u30D5\u30A9\u30EB\u30C8\uFF09",
+    header: "\u30D8\u30C3\u30C0\u30FC\u5185"
+  },
+  enableAutoScroll: {
+    name: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306E\u81EA\u52D5\u30B9\u30AF\u30ED\u30FC\u30EB",
+    desc: "Claude\u304C\u5FDC\u7B54\u3092\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u3057\u3066\u3044\u308B\u9593\u3001\u81EA\u52D5\u7684\u306B\u4E0B\u306B\u30B9\u30AF\u30ED\u30FC\u30EB\u3057\u307E\u3059\u3002\u7121\u52B9\u306B\u3059\u308B\u3068\u4E0A\u90E8\u306B\u7559\u307E\u308A\u3001\u6700\u521D\u304B\u3089\u8AAD\u3080\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002"
+  },
+  openInMainTab: {
+    name: "\u30E1\u30A4\u30F3\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u3067\u958B\u304F",
+    desc: "\u30C1\u30E3\u30C3\u30C8\u30D1\u30CD\u30EB\u3092\u53F3\u30B5\u30A4\u30C9\u30D0\u30FC\u3067\u306F\u306A\u304F\u3001\u4E2D\u592E\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u306E\u30E1\u30A4\u30F3\u30BF\u30D6\u3068\u3057\u3066\u958B\u304D\u307E\u3059"
+  },
+  cliPath: {
+    name: "Claude CLI \u30D1\u30B9",
+    desc: "Claude Code CLI \u306E\u30AB\u30B9\u30BF\u30E0\u30D1\u30B9\u3002\u7A7A\u6B04\u3067\u81EA\u52D5\u691C\u51FA\u3092\u4F7F\u7528\u3002",
+    descWindows: "\u30CD\u30A4\u30C6\u30A3\u30D6\u30A4\u30F3\u30B9\u30C8\u30FC\u30E9\u30FC\u306E\u5834\u5408\u306F claude.exe \u3092\u4F7F\u7528\u3002npm/pnpm/yarn \u3084\u305D\u306E\u4ED6\u306E\u30D1\u30C3\u30B1\u30FC\u30B8\u30DE\u30CD\u30FC\u30B8\u30E3\u30FC\u3067\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u5834\u5408\u306F cli.js \u30D1\u30B9\u3092\u4F7F\u7528\uFF08claude.cmd \u3067\u306F\u306A\u3044\uFF09\u3002",
+    descUnix: '"which claude" \u306E\u51FA\u529B\u3092\u8CBC\u308A\u4ED8\u3051\u3066\u304F\u3060\u3055\u3044 - \u30CD\u30A4\u30C6\u30A3\u30D6\u3068 npm/pnpm/yarn \u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u4E21\u65B9\u3067\u52D5\u4F5C\u3057\u307E\u3059\u3002',
+    validation: {
+      notExist: "\u30D1\u30B9\u304C\u5B58\u5728\u3057\u307E\u305B\u3093",
+      isDirectory: "\u30D1\u30B9\u306F\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u3067\u30D5\u30A1\u30A4\u30EB\u3067\u306F\u3042\u308A\u307E\u305B\u3093"
+    }
+  },
+  language: {
+    name: "\u8A00\u8A9E",
+    desc: "\u30D7\u30E9\u30B0\u30A4\u30F3\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u306E\u8868\u793A\u8A00\u8A9E\u3092\u5909\u66F4"
+  }
+};
+var ja_default2 = {
+  common: common5,
+  chat: chat5,
+  settings: settings5
+};
+
+// src/i18n/locales/ko.json
+var ko_exports = {};
+__export(ko_exports, {
+  chat: () => chat6,
+  common: () => common6,
+  default: () => ko_default2,
+  settings: () => settings6
+});
+var common6 = {
+  save: "\uC800\uC7A5",
+  cancel: "\uCDE8\uC18C",
+  delete: "\uC0AD\uC81C",
+  edit: "\uD3B8\uC9D1",
+  add: "\uCD94\uAC00",
+  remove: "\uC81C\uAC70",
+  clear: "\uC9C0\uC6B0\uAE30",
+  clearAll: "\uBAA8\uB450 \uC9C0\uC6B0\uAE30",
+  loading: "\uB85C\uB529 \uC911",
+  error: "\uC624\uB958",
+  success: "\uC131\uACF5",
+  warning: "\uACBD\uACE0",
+  confirm: "\uD655\uC778",
+  settings: "\uC124\uC815",
+  advanced: "\uACE0\uAE09",
+  enabled: "\uD65C\uC131\uD654",
+  disabled: "\uBE44\uD65C\uC131\uD654",
+  platform: "\uD50C\uB7AB\uD3FC",
+  refresh: "\uC0C8\uB85C\uACE0\uCE68",
+  rewind: "\uB418\uAC10\uAE30"
+};
+var chat6 = {
+  rewind: {
+    confirmMessage: "\uC774 \uC2DC\uC810\uC73C\uB85C \uB418\uAC10\uC73C\uC2DC\uACA0\uC2B5\uB2C8\uAE4C? \uC774 \uBA54\uC2DC\uC9C0 \uC774\uD6C4\uC758 \uD30C\uC77C \uBCC0\uACBD \uC0AC\uD56D\uC774 \uB418\uB3CC\uB824\uC9D1\uB2C8\uB2E4. \uC218\uB3D9\uC73C\uB85C \uB610\uB294 bash\uB97C \uD1B5\uD574 \uD3B8\uC9D1\uB41C \uD30C\uC77C\uC5D0\uB294 \uC601\uD5A5\uC744 \uBBF8\uCE58\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.",
+    confirmButton: "\uB418\uAC10\uAE30",
+    ariaLabel: "\uC5EC\uAE30\uB85C \uB418\uAC10\uAE30",
+    notice: "\uB418\uAC10\uAE30 \uC644\uB8CC: {count}\uAC1C \uD30C\uC77C \uBCF5\uC6D0\uB428",
+    noticeSaveFailed: "\uB418\uAC10\uAE30 \uC644\uB8CC: {count}\uAC1C \uD30C\uC77C \uBCF5\uC6D0\uB428, \uD558\uC9C0\uB9CC \uC0C1\uD0DC\uB97C \uC800\uC7A5\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4: {error}",
+    failed: "\uB418\uAC10\uAE30 \uC2E4\uD328: {error}",
+    cannot: "\uB418\uAC10\uAE30 \uBD88\uAC00: {error}",
+    unavailableStreaming: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911\uC5D0\uB294 \uB418\uAC10\uAE30\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4",
+    unavailableNoUuid: "\uB418\uAC10\uAE30 \uBD88\uAC00: \uBA54\uC2DC\uC9C0 \uC2DD\uBCC4\uC790 \uB204\uB77D"
+  },
+  fork: {
+    ariaLabel: "\uB300\uD654 \uBD84\uAE30",
+    chooseTarget: "\uB300\uD654 \uBD84\uAE30",
+    targetNewTab: "\uC0C8 \uD0ED",
+    targetCurrentTab: "\uD604\uC7AC \uD0ED",
+    maxTabsReached: "\uBD84\uAE30 \uBD88\uAC00: \uCD5C\uB300 {count}\uAC1C \uD0ED\uC5D0 \uB3C4\uB2EC\uD588\uC2B5\uB2C8\uB2E4",
+    notice: "\uC0C8 \uD0ED\uC73C\uB85C \uBD84\uAE30\uB428",
+    noticeCurrentTab: "\uD604\uC7AC \uD0ED\uC5D0\uC11C \uBD84\uAE30\uB428",
+    failed: "\uBD84\uAE30 \uC2E4\uD328: {error}",
+    unavailableStreaming: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911\uC5D0\uB294 \uBD84\uAE30\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4",
+    unavailableNoUuid: "\uBD84\uAE30 \uBD88\uAC00: \uBA54\uC2DC\uC9C0 \uC2DD\uBCC4\uC790 \uB204\uB77D",
+    unavailableNoResponse: "\uBD84\uAE30 \uBD88\uAC00: \uBD84\uAE30\uD560 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "\uD3EC\uD06C\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4: \uB300\uD654\uC5D0 \uBA54\uC2DC\uC9C0\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4",
+    commandNoAssistantUuid: "\uD3EC\uD06C\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4: \uC2DD\uBCC4\uC790\uAC00 \uC788\uB294 \uC5B4\uC2DC\uC2A4\uD134\uD2B8 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings6 = {
+  title: "Claudian \uC124\uC815",
+  customization: "\uC0AC\uC6A9\uC790 \uC815\uC758",
+  userName: {
+    name: "Claudian\uC774 \uB2F9\uC2E0\uC744 \uC5B4\uB5BB\uAC8C \uBD88\uB7EC\uC57C \uD569\uB2C8\uAE4C?",
+    desc: "\uAC1C\uC778\uD654\uB41C \uC778\uC0AC\uC5D0 \uC0AC\uC6A9\uD560 \uC774\uB984 (\uBE44\uC6CC\uB450\uBA74 \uC77C\uBC18 \uC778\uC0AC)"
+  },
+  excludedTags: {
+    name: "\uC81C\uC678 \uD0DC\uADF8",
+    desc: "\uC774 \uD0DC\uADF8\uAC00 \uD3EC\uD568\uB41C \uB178\uD2B8\uB294 \uC790\uB3D9\uC73C\uB85C \uCEE8\uD14D\uC2A4\uD2B8\uB85C \uB85C\uB4DC\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4 (\uD55C \uC904\uC5D0 \uD558\uB098, # \uC81C\uC678)"
+  },
+  mediaFolder: {
+    name: "\uBBF8\uB514\uC5B4 \uD3F4\uB354",
+    desc: "\uCCA8\uBD80 \uD30C\uC77C/\uC774\uBBF8\uC9C0\uB97C \uC800\uC7A5\uD560 \uD3F4\uB354. \uB178\uD2B8\uAC00 ![[image.jpg]]\uB97C \uC0AC\uC6A9\uD560 \uB54C Claude\uAC00 \uC5EC\uAE30\uC11C \uCC3E\uC2B5\uB2C8\uB2E4. \uBE44\uC6CC\uB450\uBA74 \uC800\uC7A5\uC18C \uB8E8\uD2B8 \uC0AC\uC6A9."
+  },
+  systemPrompt: {
+    name: "\uCEE4\uC2A4\uD140 \uC2DC\uC2A4\uD15C \uD504\uB86C\uD504\uD2B8",
+    desc: "\uAE30\uBCF8 \uC2DC\uC2A4\uD15C \uD504\uB86C\uD504\uD2B8\uC5D0 \uCD94\uAC00\uB418\uB294 \uCD94\uAC00 \uC9C0\uCE68"
+  },
+  autoTitle: {
+    name: "\uB300\uD654 \uC81C\uBAA9 \uC790\uB3D9 \uC0DD\uC131",
+    desc: "\uCCAB \uBC88\uC9F8 \uC0AC\uC6A9\uC790 \uBA54\uC2DC\uC9C0 \uC804\uC1A1 \uD6C4 \uC790\uB3D9\uC73C\uB85C \uB300\uD654 \uC81C\uBAA9\uC744 \uC0DD\uC131\uD569\uB2C8\uB2E4."
+  },
+  titleModel: {
+    name: "\uC81C\uBAA9 \uC0DD\uC131 \uBAA8\uB378",
+    desc: "\uB300\uD654 \uC81C\uBAA9\uC744 \uC790\uB3D9 \uC0DD\uC131\uD558\uB294 \uB370 \uC0AC\uC6A9\uB418\uB294 \uBAA8\uB378.",
+    auto: "\uC790\uB3D9 (Haiku)"
+  },
+  navMappings: {
+    name: "Vim \uC2A4\uD0C0\uC77C \uB124\uBE44\uAC8C\uC774\uC158 \uB9E4\uD551",
+    desc: '\uD55C \uC904\uC5D0 \uD558\uB098\uC758 \uB9E4\uD551. \uD615\uC2DD: "map <\uD0A4> <\uB3D9\uC791>" (\uB3D9\uC791: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "\uB2E8\uCD95\uD0A4",
+  inlineEditHotkey: {
+    name: "\uC778\uB77C\uC778 \uD3B8\uC9D1",
+    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
+    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
+    btnChange: "\uBCC0\uACBD",
+    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
+  },
+  openChatHotkey: {
+    name: "\uCC44\uD305 \uC5F4\uAE30",
+    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
+    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
+    btnChange: "\uBCC0\uACBD",
+    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
+  },
+  newSessionHotkey: {
+    name: "\uC0C8 \uC138\uC158",
+    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
+    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
+    btnChange: "\uBCC0\uACBD",
+    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
+  },
+  newTabHotkey: {
+    name: "\uC0C8 \uD0ED",
+    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
+    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
+    btnChange: "\uBCC0\uACBD",
+    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
+  },
+  closeTabHotkey: {
+    name: "\uD0ED \uB2EB\uAE30",
+    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
+    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
+    btnChange: "\uBCC0\uACBD",
+    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
+  },
+  slashCommands: {
+    name: "\uBA85\uB839\uC5B4\uC640 \uC2A4\uD0AC",
+    desc: "/\uC774\uB984\uC73C\uB85C \uD2B8\uB9AC\uAC70\uB418\uB294 \uCEE4\uC2A4\uD140 \uBA85\uB839\uC5B4\uC640 \uC2A4\uD0AC\uC744 \uC815\uC758\uD569\uB2C8\uB2E4."
+  },
+  hiddenSlashCommands: {
+    name: "\uC228\uACA8\uC9C4 \uBA85\uB839\uC5B4",
+    desc: "\uB4DC\uB86D\uB2E4\uC6B4\uC5D0\uC11C \uD2B9\uC815 \uC2AC\uB798\uC2DC \uBA85\uB839\uC5B4\uB97C \uC228\uAE41\uB2C8\uB2E4. Claudian\uACFC \uAD00\uB828 \uC5C6\uB294 Claude Code \uBA85\uB839\uC5B4\uB97C \uC228\uAE30\uB294 \uB370 \uC720\uC6A9\uD569\uB2C8\uB2E4. \uC55E\uC758 \uC2AC\uB798\uC2DC \uC5C6\uC774 \uD55C \uC904\uC5D0 \uD558\uB098\uC529 \uBA85\uB839\uC5B4 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP \uC11C\uBC84",
+    desc: "\uBAA8\uB378 \uCEE8\uD14D\uC2A4\uD2B8 \uD504\uB85C\uD1A0\uCF5C \uC11C\uBC84\uB97C \uC124\uC815\uD558\uC5EC \uC678\uBD80 \uB3C4\uAD6C\uC640 \uB370\uC774\uD130 \uC18C\uC2A4\uB85C Claude\uC758 \uAE30\uB2A5\uC744 \uD655\uC7A5\uD569\uB2C8\uB2E4. \uCEE8\uD14D\uC2A4\uD2B8 \uC800\uC7A5 \uBAA8\uB4DC \uC11C\uBC84\uB294 @mention\uC73C\uB85C \uD65C\uC131\uD654\uD574\uC57C \uD569\uB2C8\uB2E4."
+  },
+  plugins: {
+    name: "Claude Code \uD50C\uB7EC\uADF8\uC778",
+    desc: "~/.claude/plugins\uC5D0\uC11C \uBC1C\uACAC\uB41C Claude Code \uD50C\uB7EC\uADF8\uC778\uC744 \uD65C\uC131\uD654 \uB610\uB294 \uBE44\uD65C\uC131\uD654\uD569\uB2C8\uB2E4. \uD65C\uC131\uD654\uB41C \uD50C\uB7EC\uADF8\uC778\uC740 \uBCFC\uD2B8\uBCC4\uB85C \uC800\uC7A5\uB429\uB2C8\uB2E4."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\uC11C\uBE0C\uC5D0\uC774\uC804\uD2B8\uB97C \uC0C8\uB85C\uACE0\uCE68\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "\uBCF4\uC548",
+  loadUserSettings: {
+    name: "\uC0AC\uC6A9\uC790 Claude \uC124\uC815 \uB85C\uB4DC",
+    desc: "~/.claude/settings.json\uC744 \uB85C\uB4DC\uD569\uB2C8\uB2E4. \uD65C\uC131\uD654\uD558\uBA74 \uC0AC\uC6A9\uC790\uC758 Claude Code \uD5C8\uC6A9 \uADDC\uCE59\uC774 \uBCF4\uC548 \uBAA8\uB4DC\uB97C \uC6B0\uD68C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  },
+  enableBlocklist: {
+    name: "\uBA85\uB839\uC5B4 \uBE14\uB799\uB9AC\uC2A4\uD2B8 \uD65C\uC131\uD654",
+    desc: "\uC7A0\uC7AC\uC801\uC73C\uB85C \uC704\uD5D8\uD55C bash \uBA85\uB839\uC5B4 \uCC28\uB2E8"
+  },
+  blockedCommands: {
+    name: "\uCC28\uB2E8\uB41C \uBA85\uB839\uC5B4 ({platform})",
+    desc: "{platform}\uC5D0\uC11C \uCC28\uB2E8\uD560 \uD328\uD134 (\uD55C \uC904\uC5D0 \uD558\uB098). \uC815\uADDC\uC2DD \uC9C0\uC6D0.",
+    unixName: "\uCC28\uB2E8\uB41C \uBA85\uB839\uC5B4 (Unix/Git Bash)",
+    unixDesc: "Git Bash\uAC00 \uD638\uCD9C\uD560 \uC218 \uC788\uC73C\uBBC0\uB85C Unix \uD328\uD134\uB3C4 Windows\uC5D0\uC11C \uCC28\uB2E8\uB429\uB2C8\uB2E4."
+  },
+  exportPaths: {
+    name: "\uD5C8\uC6A9\uB41C \uB0B4\uBCF4\uB0B4\uAE30 \uACBD\uB85C",
+    desc: "\uD30C\uC77C\uC744 \uB0B4\uBCF4\uB0BC \uC218 \uC788\uB294 \uC800\uC7A5\uC18C \uC678\uBD80 \uACBD\uB85C (\uD55C \uC904\uC5D0 \uD558\uB098). ~\uB85C \uD648 \uB514\uB809\uD1A0\uB9AC \uC9C0\uC6D0."
+  },
+  environment: "\uD658\uACBD",
+  customVariables: {
+    name: "\uCEE4\uC2A4\uD140 \uBCC0\uC218",
+    desc: "Claude SDK \uD658\uACBD \uBCC0\uC218 (KEY=VALUE \uD615\uC2DD, \uD55C \uC904\uC5D0 \uD558\uB098). export \uC811\uB450\uC0AC \uC9C0\uC6D0."
+  },
+  envSnippets: {
+    name: "\uC2A4\uB2C8\uD3AB",
+    addBtn: "\uC2A4\uB2C8\uD3AB \uCD94\uAC00",
+    noSnippets: "\uC800\uC7A5\uB41C \uD658\uACBD \uBCC0\uC218 \uC2A4\uB2C8\uD3AB\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. +\uB97C \uD074\uB9AD\uD558\uC5EC \uD604\uC7AC \uAD6C\uC131\uC744 \uC800\uC7A5\uD558\uC138\uC694.",
+    nameRequired: "\uC2A4\uB2C8\uD3AB \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694",
+    modal: {
+      titleEdit: "\uC2A4\uB2C8\uD3AB \uD3B8\uC9D1",
+      titleSave: "\uC2A4\uB2C8\uD3AB \uC800\uC7A5",
+      name: "\uC774\uB984",
+      namePlaceholder: "\uC774 \uAD6C\uC131\uC5D0 \uB300\uD55C \uC124\uBA85\uC801\uC778 \uC774\uB984",
+      description: "\uC124\uBA85",
+      descPlaceholder: "\uC120\uD0DD\uC801 \uC124\uBA85",
+      envVars: "\uD658\uACBD \uBCC0\uC218",
+      envVarsPlaceholder: "KEY=VALUE \uD615\uC2DD, \uD55C \uC904\uC5D0 \uD558\uB098 (export \uC811\uB450\uC0AC \uC9C0\uC6D0)",
+      save: "\uC800\uC7A5",
+      update: "\uC5C5\uB370\uC774\uD2B8",
+      cancel: "\uCDE8\uC18C"
+    }
+  },
+  customContextLimits: {
+    name: "\uC0AC\uC6A9\uC790 \uC815\uC758 \uCEE8\uD14D\uC2A4\uD2B8 \uC81C\uD55C",
+    desc: "\uC0AC\uC6A9\uC790 \uC815\uC758 \uBAA8\uB378\uC758 \uCEE8\uD14D\uC2A4\uD2B8 \uCC3D \uD06C\uAE30\uB97C \uC124\uC815\uD569\uB2C8\uB2E4. \uAE30\uBCF8\uAC12(200k \uD1A0\uD070)\uC744 \uC0AC\uC6A9\uD558\uB824\uBA74 \uBE44\uC6CC\uB450\uC138\uC694.",
+    invalid: "\uC798\uBABB\uB41C \uD615\uC2DD\uC785\uB2C8\uB2E4. \uC0AC\uC6A9: 256k, 1m \uB610\uB294 \uC815\uD655\uD55C \uC22B\uC790(1000-10000000)."
+  },
+  advanced: "\uACE0\uAE09",
+  show1MModel: {
+    name: "1M \uCEE8\uD14D\uC2A4\uD2B8 \uCC3D\uC744 \uAC00\uC9C4 Sonnet \uD65C\uC131\uD654",
+    desc: "\uBAA8\uB378 \uC120\uD0DD\uAE30\uC5D0\uC11C \uD45C\uC900 Sonnet\uC744 Sonnet (1M)\uC73C\uB85C \uAD50\uCCB4\uD569\uB2C8\uB2E4. 200k \uD1A0\uD070 \uBBF8\uB9CC\uC5D0\uC11C\uB294 \uB3D9\uC77C\uD55C \uAC00\uACA9. Max \uAD6C\uB3C5\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
+  },
+  enableChrome: {
+    name: "Chrome \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8 \uD65C\uC131\uD654",
+    desc: "claude-in-chrome \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8\uC744 \uD1B5\uD574 Claude\uAC00 Chrome\uACFC \uC0C1\uD638\uC791\uC6A9\uD560 \uC218 \uC788\uB3C4\uB85D \uD569\uB2C8\uB2E4. \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8\uC774 \uC124\uCE58\uB418\uC5B4 \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4. \uC138\uC158 \uC7AC\uC2DC\uC791\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "\uCD5C\uB300 \uCC44\uD305 \uD0ED \uC218",
+    desc: "\uB3D9\uC2DC\uC5D0 \uC5F4 \uC218 \uC788\uB294 \uCD5C\uB300 \uCC44\uD305 \uD0ED \uC218(3-10). \uAC01 \uD0ED\uC740 \uBCC4\uB3C4\uC758 Claude \uC138\uC158\uC744 \uC0AC\uC6A9\uD569\uB2C8\uB2E4.",
+    warning: "5\uAC1C \uD0ED\uC744 \uCD08\uACFC\uD558\uBA74 \uC131\uB2A5 \uBC0F \uBA54\uBAA8\uB9AC \uC0AC\uC6A9\uB7C9\uC5D0 \uC601\uD5A5\uC744 \uC904 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  },
+  tabBarPosition: {
+    name: "\uD0ED \uBC14 \uC704\uCE58",
+    desc: "\uD0ED \uBC30\uC9C0\uC640 \uC791\uC5C5 \uBC84\uD2BC\uC758 \uD45C\uC2DC \uC704\uCE58 \uC120\uD0DD",
+    input: "\uC785\uB825\uCC3D \uC704(\uAE30\uBCF8\uAC12)",
+    header: "\uD5E4\uB354\uC5D0"
+  },
+  enableAutoScroll: {
+    name: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911 \uC790\uB3D9 \uC2A4\uD06C\uB864",
+    desc: "Claude\uAC00 \uC751\uB2F5\uC744 \uC2A4\uD2B8\uB9AC\uBC0D\uD558\uB294 \uB3D9\uC548 \uC790\uB3D9\uC73C\uB85C \uC544\uB798\uB85C \uC2A4\uD06C\uB864\uD569\uB2C8\uB2E4. \uBE44\uD65C\uC131\uD654\uD558\uBA74 \uC0C1\uB2E8\uC5D0 \uBA38\uBB3C\uB7EC \uCC98\uC74C\uBD80\uD130 \uC77D\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  },
+  openInMainTab: {
+    name: "\uBA54\uC778 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC5D0\uC11C \uC5F4\uAE30",
+    desc: "\uCC44\uD305 \uD328\uB110\uC744 \uC624\uB978\uCABD \uC0AC\uC774\uB4DC\uBC14\uAC00 \uC544\uB2CC \uC911\uC559 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC758 \uBA54\uC778 \uD0ED\uC73C\uB85C \uC5FD\uB2C8\uB2E4"
+  },
+  cliPath: {
+    name: "Claude CLI \uACBD\uB85C",
+    desc: "Claude Code CLI\uC758 \uC0AC\uC6A9\uC790 \uC815\uC758 \uACBD\uB85C. \uBE44\uC6CC\uB450\uBA74 \uC790\uB3D9 \uAC10\uC9C0 \uC0AC\uC6A9.",
+    descWindows: "\uB124\uC774\uD2F0\uBE0C \uC124\uCE58 \uD504\uB85C\uADF8\uB7A8\uC758 \uACBD\uC6B0 claude.exe\uB97C \uC0AC\uC6A9\uD558\uC138\uC694. npm/pnpm/yarn \uB610\uB294 \uAE30\uD0C0 \uD328\uD0A4\uC9C0 \uAD00\uB9AC\uC790 \uC124\uCE58\uC758 \uACBD\uC6B0 cli.js \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uC138\uC694 (claude.cmd\uAC00 \uC544\uB2D8).",
+    descUnix: '"which claude"\uC758 \uCD9C\uB825\uC744 \uBD99\uC5EC\uB123\uC73C\uC138\uC694 - \uB124\uC774\uD2F0\uBE0C \uBC0F npm/pnpm/yarn \uC124\uCE58 \uBAA8\uB450\uC5D0\uC11C \uC791\uB3D9\uD569\uB2C8\uB2E4.',
+    validation: {
+      notExist: "\uACBD\uB85C\uAC00 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4",
+      isDirectory: "\uACBD\uB85C\uAC00 \uB514\uB809\uD1A0\uB9AC\uC785\uB2C8\uB2E4 \uD30C\uC77C\uC774 \uC544\uB2D9\uB2C8\uB2E4"
+    }
+  },
+  language: {
+    name: "\uC5B8\uC5B4",
+    desc: "\uD50C\uB7EC\uADF8\uC778 \uC778\uD130\uD398\uC774\uC2A4\uC758 \uD45C\uC2DC \uC5B8\uC5B4 \uBCC0\uACBD"
+  }
+};
+var ko_default2 = {
+  common: common6,
+  chat: chat6,
+  settings: settings6
+};
+
+// src/i18n/locales/pt.json
+var pt_exports = {};
+__export(pt_exports, {
+  chat: () => chat7,
+  common: () => common7,
+  default: () => pt_default2,
+  settings: () => settings7
+});
+var common7 = {
+  save: "Salvar",
+  cancel: "Cancelar",
+  delete: "Excluir",
+  edit: "Editar",
+  add: "Adicionar",
+  remove: "Remover",
+  clear: "Limpar",
+  clearAll: "Limpar tudo",
+  loading: "Carregando",
+  error: "Erro",
+  success: "Sucesso",
+  warning: "Aviso",
+  confirm: "Confirmar",
+  settings: "Configura\xE7\xF5es",
+  advanced: "Avan\xE7ado",
+  enabled: "Ativado",
+  disabled: "Desativado",
+  platform: "Plataforma",
+  refresh: "Atualizar",
+  rewind: "Retroceder"
+};
+var chat7 = {
+  rewind: {
+    confirmMessage: "Retroceder at\xE9 este ponto? As altera\xE7\xF5es de arquivos ap\xF3s esta mensagem ser\xE3o revertidas. O retrocesso n\xE3o afeta arquivos editados manualmente ou via bash.",
+    confirmButton: "Retroceder",
+    ariaLabel: "Retroceder at\xE9 aqui",
+    notice: "Retrocedido: {count} arquivo(s) revertido(s)",
+    noticeSaveFailed: "Retrocedido: {count} arquivo(s) revertido(s), mas n\xE3o foi poss\xEDvel salvar o estado: {error}",
+    failed: "Falha ao retroceder: {error}",
+    cannot: "N\xE3o \xE9 poss\xEDvel retroceder: {error}",
+    unavailableStreaming: "N\xE3o \xE9 poss\xEDvel retroceder durante a transmiss\xE3o",
+    unavailableNoUuid: "N\xE3o \xE9 poss\xEDvel retroceder: identificadores de mensagem ausentes"
+  },
+  fork: {
+    ariaLabel: "Bifurcar conversa",
+    chooseTarget: "Bifurcar conversa",
+    targetNewTab: "Nova aba",
+    targetCurrentTab: "Aba atual",
+    maxTabsReached: "N\xE3o \xE9 poss\xEDvel bifurcar: m\xE1ximo de {count} abas atingido",
+    notice: "Bifurcado para nova aba",
+    noticeCurrentTab: "Bifurcado na aba atual",
+    failed: "Falha ao bifurcar: {error}",
+    unavailableStreaming: "N\xE3o \xE9 poss\xEDvel bifurcar durante a transmiss\xE3o",
+    unavailableNoUuid: "N\xE3o \xE9 poss\xEDvel bifurcar: identificadores de mensagem ausentes",
+    unavailableNoResponse: "N\xE3o \xE9 poss\xEDvel bifurcar: nenhuma resposta para bifurcar",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "N\xE3o \xE9 poss\xEDvel bifurcar: n\xE3o h\xE1 mensagens na conversa",
+    commandNoAssistantUuid: "N\xE3o \xE9 poss\xEDvel bifurcar: n\xE3o h\xE1 resposta do assistente com identificadores"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings7 = {
+  title: "Configura\xE7\xF5es do Claudian",
+  customization: "Personaliza\xE7\xE3o",
+  userName: {
+    name: "Como o Claudian deve cham\xE1-lo?",
+    desc: "Seu nome para sauda\xE7\xF5es personalizadas (deixe vazio para sauda\xE7\xF5es gen\xE9ricas)"
+  },
+  excludedTags: {
+    name: "Tags exclu\xEDdas",
+    desc: "Notas com estas tags n\xE3o ser\xE3o carregadas automaticamente como contexto (uma por linha, sem #)"
+  },
+  mediaFolder: {
+    name: "Pasta de m\xEDdia",
+    desc: "Pasta contendo anexos/imagens. Quando notas usam ![[image.jpg]], Claude procurar\xE1 aqui. Deixe vazio para a raiz do reposit\xF3rio."
+  },
+  systemPrompt: {
+    name: "Prompt de sistema personalizado",
+    desc: "Instru\xE7\xF5es adicionais anexadas ao prompt de sistema padr\xE3o"
+  },
+  autoTitle: {
+    name: "Gerar automaticamente t\xEDtulos de conversa",
+    desc: "Gera automaticamente t\xEDtulos de conversa ap\xF3s a primeira mensagem do usu\xE1rio."
+  },
+  titleModel: {
+    name: "Modelo de gera\xE7\xE3o de t\xEDtulo",
+    desc: "Modelo usado para gerar automaticamente t\xEDtulos de conversa.",
+    auto: "Auto (Haiku)"
+  },
+  navMappings: {
+    name: "Mapeamentos de navega\xE7\xE3o estilo Vim",
+    desc: 'Um mapeamento por linha. Formato: "map <tecla> <a\xE7\xE3o>" (a\xE7\xF5es: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "Atalhos",
+  inlineEditHotkey: {
+    name: "Edi\xE7\xE3o em linha",
+    descWithKey: "Atalho atual: {hotkey}",
+    descNoKey: "Nenhum atalho definido",
+    btnChange: "Alterar",
+    btnSet: "Definir"
+  },
+  openChatHotkey: {
+    name: "Abrir chat",
+    descWithKey: "Atalho atual: {hotkey}",
+    descNoKey: "Nenhum atalho definido",
+    btnChange: "Alterar",
+    btnSet: "Definir"
+  },
+  newSessionHotkey: {
+    name: "Nova sess\xE3o",
+    descWithKey: "Atalho atual: {hotkey}",
+    descNoKey: "Nenhum atalho definido",
+    btnChange: "Alterar",
+    btnSet: "Definir"
+  },
+  newTabHotkey: {
+    name: "Nova aba",
+    descWithKey: "Atalho atual: {hotkey}",
+    descNoKey: "Nenhum atalho definido",
+    btnChange: "Alterar",
+    btnSet: "Definir"
+  },
+  closeTabHotkey: {
+    name: "Fechar aba",
+    descWithKey: "Atalho atual: {hotkey}",
+    descNoKey: "Nenhum atalho definido",
+    btnChange: "Alterar",
+    btnSet: "Definir"
+  },
+  slashCommands: {
+    name: "Comandos e habilidades",
+    desc: "Defina comandos e habilidades personalizados acionados por /nome."
+  },
+  hiddenSlashCommands: {
+    name: "Comandos ocultos",
+    desc: "Ocultar comandos slash espec\xEDficos do menu suspenso. \xDAtil para ocultar comandos do Claude Code que n\xE3o s\xE3o relevantes para o Claudian. Digite os nomes dos comandos sem a barra inicial, um por linha.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "Servidores MCP",
+    desc: "Configure servidores Model Context Protocol para estender as capacidades do Claude com ferramentas e fontes de dados externas. Servidores com modo de salvamento de contexto exigem @mention para ativar."
+  },
+  plugins: {
+    name: "Plugins do Claude Code",
+    desc: "Ative ou desative plugins do Claude Code descobertos em ~/.claude/plugins. Plugins ativados s\xE3o armazenados por cofre."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "Falha ao atualizar subagentes: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "Seguran\xE7a",
+  loadUserSettings: {
+    name: "Carregar configura\xE7\xF5es do usu\xE1rio Claude",
+    desc: "Carrega ~/.claude/settings.json. Quando habilitado, as regras de permiss\xE3o do usu\xE1rio podem ignorar o modo seguro."
+  },
+  enableBlocklist: {
+    name: "Habilitar lista negra de comandos",
+    desc: "Bloqueia comandos bash potencialmente perigosos"
+  },
+  blockedCommands: {
+    name: "Comandos bloqueados ({platform})",
+    desc: "Padr\xF5es para bloquear em {platform} (um por linha). Suporta express\xF5es regulares.",
+    unixName: "Comandos bloqueados (Unix/Git Bash)",
+    unixDesc: "Padr\xF5es Unix tamb\xE9m bloqueados no Windows porque Git Bash pode invoc\xE1-los."
+  },
+  exportPaths: {
+    name: "Caminhos de exporta\xE7\xE3o permitidos",
+    desc: "Caminhos fora do reposit\xF3rio onde arquivos podem ser exportados (um por linha). Suporta ~ para diret\xF3rio home."
+  },
+  environment: "Ambiente",
+  customVariables: {
+    name: "Vari\xE1veis personalizadas",
+    desc: "Vari\xE1veis de ambiente para Claude SDK (formato KEY=VALUE, uma por linha). Prefixo export suportado."
+  },
+  envSnippets: {
+    name: "Snippets",
+    addBtn: "Adicionar snippet",
+    noSnippets: "Nenhum snippet de ambiente salvo. Clique em + para salvar sua configura\xE7\xE3o atual.",
+    nameRequired: "Por favor, insira um nome para o snippet",
+    modal: {
+      titleEdit: "Editar snippet",
+      titleSave: "Salvar snippet",
+      name: "Nome",
+      namePlaceholder: "Um nome descritivo para esta configura\xE7\xE3o",
+      description: "Descri\xE7\xE3o",
+      descPlaceholder: "Descri\xE7\xE3o opcional",
+      envVars: "Vari\xE1veis de ambiente",
+      envVarsPlaceholder: "Formato KEY=VALUE, uma por linha (prefixo export suportado)",
+      save: "Salvar",
+      update: "Atualizar",
+      cancel: "Cancelar"
+    }
+  },
+  customContextLimits: {
+    name: "Limites de contexto personalizados",
+    desc: "Defina tamanhos de janela de contexto para seus modelos personalizados. Deixe vazio para usar o padr\xE3o (200k tokens).",
+    invalid: "Formato inv\xE1lido. Use: 256k, 1m ou n\xFAmero exato (1000-10000000)."
+  },
+  advanced: "Avan\xE7ado",
+  show1MModel: {
+    name: "Habilitar Sonnet com janela de contexto de 1M",
+    desc: "Substituir Sonnet padr\xE3o por Sonnet (1M) no seletor de modelos. Mesmo pre\xE7o abaixo de 200k tokens. Requer assinatura Max."
+  },
+  enableChrome: {
+    name: "Habilitar extens\xE3o do Chrome",
+    desc: "Permitir que o Claude interaja com o Chrome atrav\xE9s da extens\xE3o claude-in-chrome. Requer que a extens\xE3o esteja instalada. Requer rein\xEDcio de sess\xE3o."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "M\xE1ximo de abas de chat",
+    desc: "N\xFAmero m\xE1ximo de abas de chat simult\xE2neas (3-10). Cada aba usa uma sess\xE3o Claude separada.",
+    warning: "Mais de 5 abas pode afetar o desempenho e o uso de mem\xF3ria."
+  },
+  tabBarPosition: {
+    name: "Posi\xE7\xE3o da barra de abas",
+    desc: "Escolha onde exibir os emblemas de abas e bot\xF5es de a\xE7\xE3o",
+    input: "Acima da entrada (padr\xE3o)",
+    header: "No cabe\xE7alho"
+  },
+  enableAutoScroll: {
+    name: "Rolagem autom\xE1tica durante streaming",
+    desc: "Rolar automaticamente para baixo enquanto o Claude transmite respostas. Desativar para ficar no topo e ler desde o in\xEDcio."
+  },
+  openInMainTab: {
+    name: "Abrir na \xE1rea do editor principal",
+    desc: "Abrir o painel de chat como uma aba principal na \xE1rea do editor central em vez da barra lateral direita"
+  },
+  cliPath: {
+    name: "Caminho CLI Claude",
+    desc: "Caminho personalizado para Claude Code CLI. Deixe vazio para detec\xE7\xE3o autom\xE1tica.",
+    descWindows: "Para o instalador nativo, use claude.exe. Para instala\xE7\xF5es com npm/pnpm/yarn ou outros gerenciadores de pacotes, use o caminho cli.js (n\xE3o claude.cmd).",
+    descUnix: 'Cole a sa\xEDda de "which claude" \u2014 funciona tanto para instala\xE7\xF5es nativas quanto npm/pnpm/yarn.',
+    validation: {
+      notExist: "Caminho n\xE3o existe",
+      isDirectory: "Caminho \xE9 um diret\xF3rio, n\xE3o um arquivo"
+    }
+  },
+  language: {
+    name: "Idioma",
+    desc: "Alterar o idioma de exibi\xE7\xE3o da interface do plugin"
+  }
+};
+var pt_default2 = {
+  common: common7,
+  chat: chat7,
+  settings: settings7
+};
+
+// src/i18n/locales/ru.json
+var ru_exports = {};
+__export(ru_exports, {
+  chat: () => chat8,
+  common: () => common8,
+  default: () => ru_default2,
+  settings: () => settings8
+});
+var common8 = {
+  save: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
+  cancel: "\u041E\u0442\u043C\u0435\u043D\u0430",
+  delete: "\u0423\u0434\u0430\u043B\u0438\u0442\u044C",
+  edit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C",
+  add: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C",
+  remove: "\u0423\u0434\u0430\u043B\u0438\u0442\u044C",
+  clear: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C",
+  clearAll: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0432\u0441\u0451",
+  loading: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430",
+  error: "\u041E\u0448\u0438\u0431\u043A\u0430",
+  success: "\u0423\u0441\u043F\u0435\u0445",
+  warning: "\u041F\u0440\u0435\u0434\u0443\u043F\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u0435",
+  confirm: "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C",
+  settings: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438",
+  advanced: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E",
+  enabled: "\u0412\u043A\u043B\u044E\u0447\u0435\u043D\u043E",
+  disabled: "\u041E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u043E",
+  platform: "\u041F\u043B\u0430\u0442\u0444\u043E\u0440\u043C\u0430",
+  refresh: "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C",
+  rewind: "\u041E\u0442\u043A\u0430\u0442\u0438\u0442\u044C"
+};
+var chat8 = {
+  rewind: {
+    confirmMessage: "\u041E\u0442\u043A\u0430\u0442\u0438\u0442\u044C \u0434\u043E \u044D\u0442\u043E\u0439 \u0442\u043E\u0447\u043A\u0438? \u0418\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u0444\u0430\u0439\u043B\u043E\u0432 \u043F\u043E\u0441\u043B\u0435 \u044D\u0442\u043E\u0433\u043E \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u0431\u0443\u0434\u0443\u0442 \u043E\u0442\u043C\u0435\u043D\u0435\u043D\u044B. \u041E\u0442\u043A\u0430\u0442 \u043D\u0435 \u0437\u0430\u0442\u0440\u0430\u0433\u0438\u0432\u0430\u0435\u0442 \u0444\u0430\u0439\u043B\u044B, \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u0432\u0440\u0443\u0447\u043D\u0443\u044E \u0438\u043B\u0438 \u0447\u0435\u0440\u0435\u0437 bash.",
+    confirmButton: "\u041E\u0442\u043A\u0430\u0442\u0438\u0442\u044C",
+    ariaLabel: "\u041E\u0442\u043A\u0430\u0442\u0438\u0442\u044C \u0441\u044E\u0434\u0430",
+    notice: "\u041E\u0442\u043A\u0430\u0447\u0435\u043D\u043E: \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432 \u2014 {count}",
+    noticeSaveFailed: "\u041E\u0442\u043A\u0430\u0442 \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D: \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432 \u2014 {count}, \u043D\u043E \u043D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0435: {error}",
+    failed: "\u041E\u0448\u0438\u0431\u043A\u0430 \u043E\u0442\u043A\u0430\u0442\u0430: {error}",
+    cannot: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u043A\u0430\u0442\u0438\u0442\u044C: {error}",
+    unavailableStreaming: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u043A\u0430\u0442\u0438\u0442\u044C \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438",
+    unavailableNoUuid: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u043A\u0430\u0442\u0438\u0442\u044C: \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u044E\u0442 \u0438\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440\u044B \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439"
+  },
+  fork: {
+    ariaLabel: "\u041E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C \u0440\u0430\u0437\u0433\u043E\u0432\u043E\u0440",
+    chooseTarget: "\u041E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C \u0440\u0430\u0437\u0433\u043E\u0432\u043E\u0440",
+    targetNewTab: "\u041D\u043E\u0432\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430",
+    targetCurrentTab: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430",
+    maxTabsReached: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C: \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442 \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C {count} \u0432\u043A\u043B\u0430\u0434\u043E\u043A",
+    notice: "\u041E\u0442\u0432\u0435\u0442\u0432\u043B\u0435\u043D\u043E \u0432 \u043D\u043E\u0432\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443",
+    noticeCurrentTab: "\u041E\u0442\u0432\u0435\u0442\u0432\u043B\u0435\u043D\u043E \u0432 \u0442\u0435\u043A\u0443\u0449\u0435\u0439 \u0432\u043A\u043B\u0430\u0434\u043A\u0435",
+    failed: "\u041E\u0448\u0438\u0431\u043A\u0430 \u043E\u0442\u0432\u0435\u0442\u0432\u043B\u0435\u043D\u0438\u044F: {error}",
+    unavailableStreaming: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438",
+    unavailableNoUuid: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C: \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u044E\u0442 \u0438\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440\u044B \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439",
+    unavailableNoResponse: "\u041D\u0435\u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E \u043E\u0442\u0432\u0435\u0442\u0432\u0438\u0442\u044C: \u043D\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u0430 \u0434\u043B\u044F \u043E\u0442\u0432\u0435\u0442\u0432\u043B\u0435\u043D\u0438\u044F",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "\u041D\u0435\u043B\u044C\u0437\u044F \u0444\u043E\u0440\u043A\u043D\u0443\u0442\u044C: \u0432 \u0434\u0438\u0430\u043B\u043E\u0433\u0435 \u043D\u0435\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439",
+    commandNoAssistantUuid: "\u041D\u0435\u043B\u044C\u0437\u044F \u0444\u043E\u0440\u043A\u043D\u0443\u0442\u044C: \u043D\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u0430 \u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043D\u0442\u0430 \u0441 \u0438\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440\u0430\u043C\u0438"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings8 = {
+  title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 Claudian",
+  customization: "\u041F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F",
+  userName: {
+    name: "\u041A\u0430\u043A Claudian \u0434\u043E\u043B\u0436\u0435\u043D \u043E\u0431\u0440\u0430\u0449\u0430\u0442\u044C\u0441\u044F \u043A \u0432\u0430\u043C?",
+    desc: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \u0434\u043B\u044F \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0439 (\u043E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043E\u0431\u0449\u0438\u0445 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0439)"
+  },
+  excludedTags: {
+    name: "\u0418\u0441\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0435 \u0442\u0435\u0433\u0438",
+    desc: "\u0417\u0430\u043C\u0435\u0442\u043A\u0438 \u0441 \u044D\u0442\u0438\u043C\u0438 \u0442\u0435\u0433\u0430\u043C\u0438 \u043D\u0435 \u0431\u0443\u0434\u0443\u0442 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0437\u0430\u0433\u0440\u0443\u0436\u0430\u0442\u044C\u0441\u044F \u043A\u0430\u043A \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442 (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435, \u0431\u0435\u0437 #)"
+  },
+  mediaFolder: {
+    name: "\u041F\u0430\u043F\u043A\u0430 \u043C\u0435\u0434\u0438\u0430\u0444\u0430\u0439\u043B\u043E\u0432",
+    desc: "\u041F\u0430\u043F\u043A\u0430 \u0441 \u0432\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u043C\u0438/\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\u043C\u0438. \u041A\u043E\u0433\u0434\u0430 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044E\u0442 ![[image.jpg]], Claude \u0431\u0443\u0434\u0435\u0442 \u0438\u0441\u043A\u0430\u0442\u044C \u0437\u0434\u0435\u0441\u044C. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043A\u043E\u0440\u043D\u044F \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430."
+  },
+  systemPrompt: {
+    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u043C\u043F\u0442",
+    desc: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438, \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u043C\u044B\u0435 \u043A \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u043E\u043C\u0443 \u043F\u0440\u043E\u043C\u043F\u0442\u0443 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E"
+  },
+  autoTitle: {
+    name: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0433\u0435\u043D\u0435\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0438 \u0431\u0435\u0441\u0435\u0434",
+    desc: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0433\u0435\u043D\u0435\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0438 \u0431\u0435\u0441\u0435\u0434 \u043F\u043E\u0441\u043B\u0435 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F."
+  },
+  titleModel: {
+    name: "\u041C\u043E\u0434\u0435\u043B\u044C \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u0438 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u0432",
+    desc: "\u041C\u043E\u0434\u0435\u043B\u044C, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u0430\u044F \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u0438 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u0432 \u0431\u0435\u0441\u0435\u0434.",
+    auto: "\u0410\u0432\u0442\u043E (Haiku)"
+  },
+  navMappings: {
+    name: "\u0421\u043E\u043F\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u043D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u0438 \u0432 \u0441\u0442\u0438\u043B\u0435 Vim",
+    desc: '\u041F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0441\u043E\u043F\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0438\u044E \u0432 \u0441\u0442\u0440\u043E\u043A\u0435. \u0424\u043E\u0440\u043C\u0430\u0442: "map <\u043A\u043B\u044E\u0447> <\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435>" (\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F: scrollUp, scrollDown, focusInput).'
+  },
+  hotkeys: "\u0413\u043E\u0440\u044F\u0447\u0438\u0435 \u043A\u043B\u0430\u0432\u0438\u0448\u0438",
+  inlineEditHotkey: {
+    name: "\u0418\u043D\u043B\u0430\u0439\u043D-\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435",
+    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
+    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
+    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
+    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
+  },
+  openChatHotkey: {
+    name: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0447\u0430\u0442",
+    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
+    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
+    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
+    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
+  },
+  newSessionHotkey: {
+    name: "\u041D\u043E\u0432\u0430\u044F \u0441\u0435\u0441\u0441\u0438\u044F",
+    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
+    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
+    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
+    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
+  },
+  newTabHotkey: {
+    name: "\u041D\u043E\u0432\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430",
+    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
+    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
+    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
+    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
+  },
+  closeTabHotkey: {
+    name: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u0432\u043A\u043B\u0430\u0434\u043A\u0443",
+    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
+    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
+    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
+    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
+  },
+  slashCommands: {
+    name: "\u041A\u043E\u043C\u0430\u043D\u0434\u044B \u0438 \u043D\u0430\u0432\u044B\u043A\u0438",
+    desc: "\u041E\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u0438 \u043D\u0430\u0432\u044B\u043A\u0438, \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u0435\u043C\u044B\u0435 \u0447\u0435\u0440\u0435\u0437 /\u0438\u043C\u044F."
+  },
+  hiddenSlashCommands: {
+    name: "\u0421\u043A\u0440\u044B\u0442\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B",
+    desc: "\u0421\u043A\u0440\u044B\u0442\u044C \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0451\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u0441\u043E \u0441\u043B\u044D\u0448\u0435\u043C \u0438\u0437 \u0432\u044B\u043F\u0430\u0434\u0430\u044E\u0449\u0435\u0433\u043E \u0441\u043F\u0438\u0441\u043A\u0430. \u041F\u043E\u043B\u0435\u0437\u043D\u043E \u0434\u043B\u044F \u0441\u043A\u0440\u044B\u0442\u0438\u044F \u043A\u043E\u043C\u0430\u043D\u0434 Claude Code, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043D\u0435 \u0430\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B \u0434\u043B\u044F Claudian. \u0412\u0432\u043E\u0434\u0438\u0442\u0435 \u0438\u043C\u0435\u043D\u0430 \u043A\u043E\u043C\u0430\u043D\u0434 \u0431\u0435\u0437 \u043D\u0430\u0447\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u0441\u043B\u044D\u0448\u0430, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443.",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP \u0441\u0435\u0440\u0432\u0435\u0440\u044B",
+    desc: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u0435\u0440\u0432\u0435\u0440\u044B Model Context Protocol \u0434\u043B\u044F \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u044F \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0435\u0439 Claude \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0432\u043D\u0435\u0448\u043D\u0438\u0445 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u043E\u0432 \u0438 \u0438\u0441\u0442\u043E\u0447\u043D\u0438\u043A\u043E\u0432 \u0434\u0430\u043D\u043D\u044B\u0445. \u0421\u0435\u0440\u0432\u0435\u0440\u044B \u0441 \u0440\u0435\u0436\u0438\u043C\u043E\u043C \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 \u0442\u0440\u0435\u0431\u0443\u044E\u0442 @mention \u0434\u043B\u044F \u0430\u043A\u0442\u0438\u0432\u0430\u0446\u0438\u0438."
+  },
+  plugins: {
+    name: "\u041F\u043B\u0430\u0433\u0438\u043D\u044B Claude Code",
+    desc: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u0438\u043B\u0438 \u043E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u043F\u043B\u0430\u0433\u0438\u043D\u044B Claude Code \u0438\u0437 ~/.claude/plugins. \u0412\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0435 \u043F\u043B\u0430\u0433\u0438\u043D\u044B \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u044E\u0442\u0441\u044F \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430."
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0431\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u043E\u0432: {message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C",
+  loadUserSettings: {
+    name: "\u0417\u0430\u0433\u0440\u0443\u0436\u0430\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 Claude",
+    desc: "\u0417\u0430\u0433\u0440\u0443\u0436\u0430\u0435\u0442 ~/.claude/settings.json. \u041F\u0440\u0438 \u0432\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0438 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0439 Claude Code \u043C\u043E\u0433\u0443\u0442 \u043E\u0431\u0445\u043E\u0434\u0438\u0442\u044C \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u044B\u0439 \u0440\u0435\u0436\u0438\u043C."
+  },
+  enableBlocklist: {
+    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0447\u0435\u0440\u043D\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A \u043A\u043E\u043C\u0430\u043D\u0434",
+    desc: "\u0411\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043F\u043E\u0442\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u043E \u043E\u043F\u0430\u0441\u043D\u044B\u0435 bash \u043A\u043E\u043C\u0430\u043D\u0434\u044B"
+  },
+  blockedCommands: {
+    name: "\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B ({platform})",
+    desc: "\u0428\u0430\u0431\u043B\u043E\u043D\u044B \u0434\u043B\u044F \u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u043A\u0438 \u043D\u0430 {platform} (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u044E\u0442\u0441\u044F \u0440\u0435\u0433\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u0432\u044B\u0440\u0430\u0436\u0435\u043D\u0438\u044F.",
+    unixName: "\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B (Unix/Git Bash)",
+    unixDesc: "Unix \u0448\u0430\u0431\u043B\u043E\u043D\u044B \u0442\u0430\u043A\u0436\u0435 \u0431\u043B\u043E\u043A\u0438\u0440\u0443\u044E\u0442\u0441\u044F \u043D\u0430 Windows, \u0442\u0430\u043A \u043A\u0430\u043A Git Bash \u043C\u043E\u0436\u0435\u0442 \u0438\u0445 \u0432\u044B\u0437\u044B\u0432\u0430\u0442\u044C."
+  },
+  exportPaths: {
+    name: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u0435 \u043F\u0443\u0442\u0438 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\u0430",
+    desc: "\u041F\u0443\u0442\u0438 \u0432\u043D\u0435 \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430, \u043A\u0443\u0434\u0430 \u043C\u043E\u0436\u043D\u043E \u044D\u043A\u0441\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0444\u0430\u0439\u043B\u044B (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442 ~ \u0434\u043B\u044F \u0434\u043E\u043C\u0430\u0448\u043D\u0435\u0433\u043E \u043A\u0430\u0442\u0430\u043B\u043E\u0433\u0430."
+  },
+  environment: "\u041E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u0435",
+  customVariables: {
+    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435",
+    desc: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F \u0434\u043B\u044F Claude SDK (\u0444\u043E\u0440\u043C\u0430\u0442 KEY=VALUE, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u0440\u0435\u0444\u0438\u043A\u0441 export \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F."
+  },
+  envSnippets: {
+    name: "\u0421\u043D\u0438\u043F\u043F\u0435\u0442\u044B",
+    addBtn: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
+    noSnippets: "\u041D\u0435\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043D\u044B\u0445 \u0441\u043D\u0438\u043F\u043F\u0435\u0442\u043E\u0432 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F. \u041D\u0430\u0436\u043C\u0438\u0442\u0435 +, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044E.",
+    nameRequired: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u043D\u0438\u043F\u043F\u0435\u0442\u0430",
+    modal: {
+      titleEdit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
+      titleSave: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
+      name: "\u0418\u043C\u044F",
+      namePlaceholder: "\u041E\u043F\u0438\u0441\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0434\u043B\u044F \u044D\u0442\u043E\u0439 \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438",
+      description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+      descPlaceholder: "\u041E\u043F\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+      envVars: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F",
+      envVarsPlaceholder: "\u0424\u043E\u0440\u043C\u0430\u0442 KEY=VALUE, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435 (\u043F\u0440\u0435\u0444\u0438\u043A\u0441 export \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F)",
+      save: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
+      update: "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C",
+      cancel: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    }
+  },
+  customContextLimits: {
+    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043B\u0438\u043C\u0438\u0442\u044B \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430",
+    desc: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0440\u0430\u0437\u043C\u0435\u0440\u044B \u043E\u043A\u043D\u0430 \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 \u0434\u043B\u044F \u0432\u0430\u0448\u0438\u0445 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0445 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (200k \u0442\u043E\u043A\u0435\u043D\u043E\u0432).",
+    invalid: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435: 256k, 1m \u0438\u043B\u0438 \u0442\u043E\u0447\u043D\u043E\u0435 \u0447\u0438\u0441\u043B\u043E (1000-10000000)."
+  },
+  advanced: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E",
+  show1MModel: {
+    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C Sonnet \u0441 \u043E\u043A\u043D\u043E\u043C \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 1M",
+    desc: "\u0417\u0430\u043C\u0435\u043D\u0438\u0442\u044C \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u043D\u044B\u0439 Sonnet \u043D\u0430 Sonnet (1M) \u0432 \u0432\u044B\u0431\u043E\u0440\u0435 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u0422\u0430 \u0436\u0435 \u0446\u0435\u043D\u0430 \u0434\u043E 200k \u0442\u043E\u043A\u0435\u043D\u043E\u0432. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0430 Max."
+  },
+  enableChrome: {
+    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435 Chrome",
+    desc: "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u044C Claude \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0441 Chrome \u0447\u0435\u0440\u0435\u0437 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435 claude-in-chrome. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u044F. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A \u0441\u0435\u0441\u0441\u0438\u0438."
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0447\u0430\u0442\u0430",
+    desc: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043E\u0434\u043D\u043E\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0445 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0447\u0430\u0442\u0430 (3-10). \u041A\u0430\u0436\u0434\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u0443\u044E \u0441\u0435\u0441\u0441\u0438\u044E Claude.",
+    warning: "\u0411\u043E\u043B\u0435\u0435 5 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u0432\u043B\u0438\u044F\u0442\u044C \u043D\u0430 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u043F\u0430\u043C\u044F\u0442\u0438."
+  },
+  tabBarPosition: {
+    name: "\u041F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043F\u0430\u043D\u0435\u043B\u0438 \u0432\u043A\u043B\u0430\u0434\u043E\u043A",
+    desc: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435, \u0433\u0434\u0435 \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0442\u044C \u0437\u043D\u0430\u0447\u043A\u0438 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0438 \u043A\u043D\u043E\u043F\u043A\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439",
+    input: "\u041D\u0430\u0434 \u043F\u043E\u043B\u0435\u043C \u0432\u0432\u043E\u0434\u0430 (\u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E)",
+    header: "\u0412 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0435"
+  },
+  enableAutoScroll: {
+    name: "\u0410\u0432\u0442\u043E\u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0430 \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438",
+    desc: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043F\u0440\u043E\u043A\u0440\u0443\u0447\u0438\u0432\u0430\u0442\u044C \u0432\u043D\u0438\u0437, \u043F\u043E\u043A\u0430 Claude \u043F\u0435\u0440\u0435\u0434\u0430\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u044B. \u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u0435, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0430\u0442\u044C\u0441\u044F \u043D\u0430\u0432\u0435\u0440\u0445\u0443 \u0438 \u0447\u0438\u0442\u0430\u0442\u044C \u0441 \u043D\u0430\u0447\u0430\u043B\u0430."
+  },
+  openInMainTab: {
+    name: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0432 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430",
+    desc: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u0447\u0430\u0442\u0430 \u0432 \u0432\u0438\u0434\u0435 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0432\u043A\u043B\u0430\u0434\u043A\u0438 \u0432 \u0446\u0435\u043D\u0442\u0440\u0430\u043B\u044C\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430 \u0432\u043C\u0435\u0441\u0442\u043E \u043F\u0440\u0430\u0432\u043E\u0439 \u0431\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0430\u043D\u0435\u043B\u0438"
+  },
+  cliPath: {
+    name: "\u041F\u0443\u0442\u044C \u043A CLI Claude",
+    desc: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u043F\u0443\u0442\u044C \u043A Claude Code CLI. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F.",
+    descWindows: "\u0414\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0449\u0438\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 claude.exe. \u0414\u043B\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A \u0447\u0435\u0440\u0435\u0437 npm/pnpm/yarn \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u044B \u043F\u0430\u043A\u0435\u0442\u043E\u0432 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u0443\u0442\u044C \u043A cli.js (\u043D\u0435 claude.cmd).",
+    descUnix: '\u0412\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u0432\u044B\u0432\u043E\u0434 \u043A\u043E\u043C\u0430\u043D\u0434\u044B "which claude" \u2014 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u043A\u0430\u043A \u0434\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u044B\u0445 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A, \u0442\u0430\u043A \u0438 \u0434\u043B\u044F npm/pnpm/yarn.',
+    validation: {
+      notExist: "\u041F\u0443\u0442\u044C \u043D\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442",
+      isDirectory: "\u041F\u0443\u0442\u044C \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0434\u0438\u0440\u0435\u043A\u0442\u043E\u0440\u0438\u0435\u0439, \u0430 \u043D\u0435 \u0444\u0430\u0439\u043B\u043E\u043C"
+    }
+  },
+  language: {
+    name: "\u042F\u0437\u044B\u043A",
+    desc: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u044F\u0437\u044B\u043A \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430 \u043F\u043B\u0430\u0433\u0438\u043D\u0430"
+  }
+};
+var ru_default2 = {
+  common: common8,
+  chat: chat8,
+  settings: settings8
+};
+
+// src/i18n/locales/zh-CN.json
+var zh_CN_exports = {};
+__export(zh_CN_exports, {
+  chat: () => chat9,
+  common: () => common9,
+  default: () => zh_CN_default2,
+  settings: () => settings9
+});
+var common9 = {
+  save: "\u4FDD\u5B58",
+  cancel: "\u53D6\u6D88",
+  delete: "\u5220\u9664",
+  edit: "\u7F16\u8F91",
+  add: "\u6DFB\u52A0",
+  remove: "\u79FB\u9664",
+  clear: "\u6E05\u9664",
+  clearAll: "\u6E05\u9664\u5168\u90E8",
+  loading: "\u52A0\u8F7D\u4E2D",
+  error: "\u9519\u8BEF",
+  success: "\u6210\u529F",
+  warning: "\u8B66\u544A",
+  confirm: "\u786E\u8BA4",
+  settings: "\u8BBE\u7F6E",
+  advanced: "\u9AD8\u7EA7",
+  enabled: "\u5DF2\u542F\u7528",
+  disabled: "\u5DF2\u7981\u7528",
+  platform: "\u5E73\u53F0",
+  refresh: "\u5237\u65B0",
+  rewind: "\u56DE\u9000"
+};
+var chat9 = {
+  rewind: {
+    confirmMessage: "\u56DE\u9000\u5230\u6B64\u5904\uFF1F\u6B64\u6D88\u606F\u4E4B\u540E\u7684\u6587\u4EF6\u66F4\u6539\u5C06\u88AB\u8FD8\u539F\u3002\u56DE\u9000\u4E0D\u4F1A\u5F71\u54CD\u624B\u52A8\u6216\u901A\u8FC7 bash \u7F16\u8F91\u7684\u6587\u4EF6\u3002",
+    confirmButton: "\u56DE\u9000",
+    ariaLabel: "\u56DE\u9000\u5230\u6B64\u5904",
+    notice: "\u5DF2\u56DE\u9000\uFF1A\u8FD8\u539F\u4E86 {count} \u4E2A\u6587\u4EF6",
+    noticeSaveFailed: "\u5DF2\u56DE\u9000\uFF1A\u8FD8\u539F\u4E86 {count} \u4E2A\u6587\u4EF6\uFF0C\u4F46\u65E0\u6CD5\u4FDD\u5B58\u72B6\u6001\uFF1A{error}",
+    failed: "\u56DE\u9000\u5931\u8D25\uFF1A{error}",
+    cannot: "\u65E0\u6CD5\u56DE\u9000\uFF1A{error}",
+    unavailableStreaming: "\u6D41\u5F0F\u54CD\u5E94\u4E2D\u65E0\u6CD5\u56DE\u9000",
+    unavailableNoUuid: "\u65E0\u6CD5\u56DE\u9000\uFF1A\u7F3A\u5C11\u6D88\u606F\u6807\u8BC6\u7B26"
+  },
+  fork: {
+    ariaLabel: "\u5206\u53C9\u5BF9\u8BDD",
+    chooseTarget: "\u5206\u53C9\u5BF9\u8BDD",
+    targetNewTab: "\u65B0\u6807\u7B7E\u9875",
+    targetCurrentTab: "\u5F53\u524D\u6807\u7B7E\u9875",
+    maxTabsReached: "\u65E0\u6CD5\u5206\u53C9\uFF1A\u5DF2\u8FBE\u5230\u6700\u5927 {count} \u4E2A\u6807\u7B7E\u9875",
+    notice: "\u5DF2\u5206\u53C9\u5230\u65B0\u6807\u7B7E\u9875",
+    noticeCurrentTab: "\u5DF2\u5728\u5F53\u524D\u6807\u7B7E\u9875\u5206\u53C9",
+    failed: "\u5206\u53C9\u5931\u8D25\uFF1A{error}",
+    unavailableStreaming: "\u6D41\u5F0F\u54CD\u5E94\u4E2D\u65E0\u6CD5\u5206\u53C9",
+    unavailableNoUuid: "\u65E0\u6CD5\u5206\u53C9\uFF1A\u7F3A\u5C11\u6D88\u606F\u6807\u8BC6\u7B26",
+    unavailableNoResponse: "\u65E0\u6CD5\u5206\u53C9\uFF1A\u6CA1\u6709\u53EF\u5206\u53C9\u7684\u54CD\u5E94",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "\u65E0\u6CD5\u5206\u53C9\uFF1A\u5BF9\u8BDD\u4E2D\u6CA1\u6709\u6D88\u606F",
+    commandNoAssistantUuid: "\u65E0\u6CD5\u5206\u53C9\uFF1A\u6CA1\u6709\u5E26\u6807\u8BC6\u7B26\u7684\u52A9\u624B\u56DE\u590D"
+  },
+  bangBash: {
+    placeholder: "> \u8FD0\u884C\u547D\u4EE4...",
+    commandPanel: "\u547D\u4EE4\u9762\u677F",
+    copyAriaLabel: "\u590D\u5236\u6700\u65B0\u547D\u4EE4\u8F93\u51FA",
+    clearAriaLabel: "\u6E05\u9664\u547D\u4EE4\u8F93\u51FA",
+    commandLabel: "{command}",
+    statusLabel: "\u72B6\u6001: {status}",
+    collapseOutput: "\u6298\u53E0\u547D\u4EE4\u8F93\u51FA",
+    expandOutput: "\u5C55\u5F00\u547D\u4EE4\u8F93\u51FA",
+    running: "\u8FD0\u884C\u4E2D...",
+    copyFailed: "\u590D\u5236\u5230\u526A\u8D34\u677F\u5931\u8D25"
+  }
+};
+var settings9 = {
+  title: "Claudian \u8BBE\u7F6E",
+  customization: "\u4E2A\u6027\u5316\u8BBE\u7F6E",
+  userName: {
+    name: "Claudian \u5E94\u8BE5\u5982\u4F55\u79F0\u547C\u4F60\uFF1F",
+    desc: "\u7528\u4E8E\u4E2A\u6027\u5316\u95EE\u5019\u7684\u7528\u6237\u540D\uFF08\u7559\u7A7A\u4F7F\u7528\u901A\u7528\u95EE\u5019\uFF09"
+  },
+  excludedTags: {
+    name: "\u6392\u9664\u7684\u6807\u7B7E",
+    desc: "\u5305\u542B\u8FD9\u4E9B\u6807\u7B7E\u7684\u7B14\u8BB0\u4E0D\u4F1A\u81EA\u52A8\u52A0\u8F7D\u4E3A\u4E0A\u4E0B\u6587\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF0C\u4E0D\u5E26 #\uFF09"
+  },
+  mediaFolder: {
+    name: "\u5A92\u4F53\u6587\u4EF6\u5939",
+    desc: "\u5B58\u653E\u9644\u4EF6/\u56FE\u7247\u7684\u6587\u4EF6\u5939\u3002\u5F53\u7B14\u8BB0\u4F7F\u7528 ![[image.jpg]] \u65F6\uFF0CClaude \u4F1A\u5728\u6B64\u67E5\u627E\u3002\u7559\u7A7A\u4F7F\u7528\u4ED3\u5E93\u6839\u76EE\u5F55\u3002"
+  },
+  systemPrompt: {
+    name: "\u81EA\u5B9A\u4E49\u7CFB\u7EDF\u63D0\u793A\u8BCD",
+    desc: "\u9644\u52A0\u5230\u9ED8\u8BA4\u7CFB\u7EDF\u63D0\u793A\u8BCD\u7684\u989D\u5916\u6307\u4EE4"
+  },
+  autoTitle: {
+    name: "\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898",
+    desc: "\u5728\u7528\u6237\u53D1\u9001\u9996\u6761\u6D88\u606F\u540E\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898\u3002"
+  },
+  titleModel: {
+    name: "\u6807\u9898\u751F\u6210\u6A21\u578B",
+    desc: "\u7528\u4E8E\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898\u7684\u6A21\u578B\u3002",
+    auto: "\u81EA\u52A8 (Haiku)"
+  },
+  navMappings: {
+    name: "Vim \u98CE\u683C\u5BFC\u822A\u6620\u5C04",
+    desc: '\u6BCF\u884C\u4E00\u4E2A\u6620\u5C04\u3002\u683C\u5F0F\uFF1A"map <\u952E> <\u52A8\u4F5C>"\uFF08\u52A8\u4F5C\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
+  },
+  hotkeys: "\u5FEB\u6377\u952E",
+  inlineEditHotkey: {
+    name: "\u5185\u8054\u7F16\u8F91",
+    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
+    btnChange: "\u66F4\u6539",
+    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
+  },
+  openChatHotkey: {
+    name: "\u6253\u5F00\u804A\u5929",
+    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
+    btnChange: "\u66F4\u6539",
+    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
+  },
+  newSessionHotkey: {
+    name: "\u65B0\u4F1A\u8BDD",
+    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
+    btnChange: "\u66F4\u6539",
+    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
+  },
+  newTabHotkey: {
+    name: "\u65B0\u6807\u7B7E\u9875",
+    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
+    btnChange: "\u66F4\u6539",
+    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
+  },
+  closeTabHotkey: {
+    name: "\u5173\u95ED\u6807\u7B7E\u9875",
+    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
+    btnChange: "\u66F4\u6539",
+    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
+  },
+  slashCommands: {
+    name: "\u547D\u4EE4\u4E0E\u6280\u80FD",
+    desc: "\u5B9A\u4E49\u7531 /\u540D\u79F0 \u89E6\u53D1\u7684\u81EA\u5B9A\u4E49\u547D\u4EE4\u4E0E\u6280\u80FD\u3002"
+  },
+  hiddenSlashCommands: {
+    name: "\u9690\u85CF\u547D\u4EE4",
+    desc: "\u4ECE\u4E0B\u62C9\u83DC\u5355\u4E2D\u9690\u85CF\u7279\u5B9A\u7684\u659C\u6760\u547D\u4EE4\u3002\u9002\u7528\u4E8E\u9690\u85CF\u4E0E Claudian \u65E0\u5173\u7684 Claude Code \u547D\u4EE4\u3002\u6BCF\u884C\u8F93\u5165\u4E00\u4E2A\u547D\u4EE4\u540D\u79F0\uFF0C\u65E0\u9700\u524D\u5BFC\u659C\u6760\u3002",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP \u670D\u52A1\u5668",
+    desc: "\u914D\u7F6E\u6A21\u578B\u4E0A\u4E0B\u6587\u534F\u8BAE\u670D\u52A1\u5668\uFF0C\u901A\u8FC7\u5916\u90E8\u5DE5\u5177\u548C\u6570\u636E\u6E90\u6269\u5C55 Claude \u7684\u80FD\u529B\u3002\u542F\u7528\u4E0A\u4E0B\u6587\u4FDD\u5B58\u6A21\u5F0F\u7684\u670D\u52A1\u5668\u9700\u8981 @ \u63D0\u53CA\u624D\u80FD\u6FC0\u6D3B\u3002"
+  },
+  plugins: {
+    name: "Claude Code \u63D2\u4EF6",
+    desc: "\u542F\u7528\u6216\u7981\u7528\u4ECE ~/.claude/plugins \u53D1\u73B0\u7684 Claude Code \u63D2\u4EF6\u3002\u542F\u7528\u7684\u63D2\u4EF6\u6309 Vault \u5B58\u50A8\u3002"
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\u5237\u65B0\u5B50\u4EE3\u7406\u5931\u8D25\uFF1A{message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "\u5B89\u5168",
+  loadUserSettings: {
+    name: "\u52A0\u8F7D\u7528\u6237 Claude \u8BBE\u7F6E",
+    desc: "\u52A0\u8F7D ~/.claude/settings.json\u3002\u542F\u7528\u540E\uFF0C\u7528\u6237\u7684 Claude Code \u6743\u9650\u89C4\u5219\u53EF\u80FD\u7ED5\u8FC7\u5B89\u5168\u6A21\u5F0F\u3002"
+  },
+  enableBlocklist: {
+    name: "\u542F\u7528\u547D\u4EE4\u9ED1\u540D\u5355",
+    desc: "\u963B\u6B62\u6F5C\u5728\u5371\u9669\u7684 bash \u547D\u4EE4"
+  },
+  blockedCommands: {
+    name: "\u963B\u6B62\u7684\u547D\u4EE4 ({platform})",
+    desc: "\u5728 {platform} \u4E0A\u963B\u6B62\u7684\u6A21\u5F0F\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301\u6B63\u5219\u8868\u8FBE\u5F0F\u3002",
+    unixName: "\u963B\u6B62\u7684\u547D\u4EE4 (Unix/Git Bash)",
+    unixDesc: "Unix \u6A21\u5F0F\u5728 Windows \u4E0A\u4E5F\u4F1A\u88AB\u963B\u6B62\uFF0C\u56E0\u4E3A Git Bash \u53EF\u4EE5\u8C03\u7528\u5B83\u4EEC\u3002"
+  },
+  exportPaths: {
+    name: "\u5141\u8BB8\u7684\u5BFC\u51FA\u8DEF\u5F84",
+    desc: "\u5141\u8BB8\u5BFC\u51FA\u6587\u4EF6\u7684\u4ED3\u5E93\u5916\u90E8\u8DEF\u5F84\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301 ~ \u8868\u793A\u4E3B\u76EE\u5F55\u3002"
+  },
+  environment: "\u73AF\u5883",
+  customVariables: {
+    name: "\u81EA\u5B9A\u4E49\u53D8\u91CF",
+    desc: "Claude SDK \u7684\u73AF\u5883\u53D8\u91CF\uFF08KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301 export \u524D\u7F00\u3002"
+  },
+  envSnippets: {
+    name: "\u7247\u6BB5",
+    addBtn: "\u6DFB\u52A0\u7247\u6BB5",
+    noSnippets: "\u5C1A\u65E0\u4FDD\u5B58\u7684\u73AF\u5883\u53D8\u91CF\u7247\u6BB5\u3002\u70B9\u51FB + \u4FDD\u5B58\u5F53\u524D\u914D\u7F6E\u3002",
+    nameRequired: "\u8BF7\u8F93\u5165\u7247\u6BB5\u540D\u79F0",
+    modal: {
+      titleEdit: "\u7F16\u8F91\u7247\u6BB5",
+      titleSave: "\u4FDD\u5B58\u7247\u6BB5",
+      name: "\u540D\u79F0",
+      namePlaceholder: "\u6B64\u914D\u7F6E\u7684\u63CF\u8FF0\u6027\u540D\u79F0",
+      description: "\u63CF\u8FF0",
+      descPlaceholder: "\u53EF\u9009\u63CF\u8FF0",
+      envVars: "\u73AF\u5883\u53D8\u91CF",
+      envVarsPlaceholder: "KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u4E2A\uFF08\u652F\u6301 export \u524D\u7F00\uFF09",
+      save: "\u4FDD\u5B58",
+      update: "\u66F4\u65B0",
+      cancel: "\u53D6\u6D88"
+    }
+  },
+  customContextLimits: {
+    name: "\u81EA\u5B9A\u4E49\u4E0A\u4E0B\u6587\u9650\u5236",
+    desc: "\u4E3A\u60A8\u7684\u81EA\u5B9A\u4E49\u6A21\u578B\u8BBE\u7F6E\u4E0A\u4E0B\u6587\u7A97\u53E3\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9ED8\u8BA4\u503C\uFF08200k \u4EE4\u724C\uFF09\u3002",
+    invalid: "\u683C\u5F0F\u65E0\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u786E\u6570\u91CF\uFF081000-10000000\uFF09\u3002"
+  },
+  advanced: "\u9AD8\u7EA7",
+  show1MModel: {
+    name: "\u542F\u7528\u5177\u6709 1M \u4E0A\u4E0B\u6587\u7A97\u53E3\u7684 Sonnet",
+    desc: "\u5728\u6A21\u578B\u9009\u62E9\u5668\u4E2D\u5C06\u6807\u51C6 Sonnet \u66FF\u6362\u4E3A Sonnet (1M)\u3002\u5728 200k \u4EE4\u724C\u4EE5\u4E0B\u4EF7\u683C\u76F8\u540C\u3002\u9700\u8981 Max \u8BA2\u9605\u3002"
+  },
+  enableChrome: {
+    name: "\u542F\u7528 Chrome \u6269\u5C55",
+    desc: "\u5141\u8BB8 Claude \u901A\u8FC7 claude-in-chrome \u6269\u5C55\u4E0E Chrome \u4EA4\u4E92\u3002\u9700\u8981\u5B89\u88C5\u8BE5\u6269\u5C55\u3002\u9700\u8981\u91CD\u542F\u4F1A\u8BDD\u3002"
+  },
+  enableBangBash: {
+    name: "\u542F\u7528\u547D\u4EE4\u6A21\u5F0F (!)",
+    desc: "\u5728\u7A7A\u8F93\u5165\u6846\u4E2D\u8F93\u5165 ! \u8FDB\u5165\u547D\u4EE4\u6A21\u5F0F\u3002\u901A\u8FC7 Node.js child_process \u76F4\u63A5\u8FD0\u884C\u547D\u4EE4\u3002\u9700\u8981\u91CD\u65B0\u6253\u5F00\u89C6\u56FE\u3002",
+    validation: {
+      noNode: "\u672A\u5728 PATH \u4E2D\u627E\u5230 Node.js\u3002\u8BF7\u5B89\u88C5 Node.js \u6216\u68C0\u67E5 PATH \u914D\u7F6E\u3002"
+    }
+  },
+  maxTabs: {
+    name: "\u6700\u5927\u804A\u5929\u6807\u7B7E\u6570",
+    desc: "\u540C\u65F6\u5F00\u542F\u7684\u6700\u5927\u804A\u5929\u6807\u7B7E\u6570\uFF083-10\uFF09\u3002\u6BCF\u4E2A\u6807\u7B7E\u4F7F\u7528\u72EC\u7ACB\u7684 Claude \u4F1A\u8BDD\u3002",
+    warning: "\u8D85\u8FC7 5 \u4E2A\u6807\u7B7E\u53EF\u80FD\u4F1A\u5F71\u54CD\u6027\u80FD\u548C\u5185\u5B58\u4F7F\u7528\u3002"
+  },
+  tabBarPosition: {
+    name: "\u6807\u7B7E\u680F\u4F4D\u7F6E",
+    desc: "\u9009\u62E9\u6807\u7B7E\u5FBD\u7AE0\u548C\u64CD\u4F5C\u6309\u94AE\u7684\u663E\u793A\u4F4D\u7F6E",
+    input: "\u8F93\u5165\u6846\u4E0A\u65B9\uFF08\u9ED8\u8BA4\uFF09",
+    header: "\u5728\u6807\u9898\u680F"
+  },
+  enableAutoScroll: {
+    name: "\u6D41\u5F0F\u4F20\u8F93\u65F6\u81EA\u52A8\u6EDA\u52A8",
+    desc: "\u5728 Claude \u6D41\u5F0F\u4F20\u8F93\u54CD\u5E94\u65F6\u81EA\u52A8\u6EDA\u52A8\u5230\u5E95\u90E8\u3002\u7981\u7528\u540E\u5C06\u505C\u7559\u5728\u9876\u90E8\uFF0C\u4ECE\u5934\u5F00\u59CB\u9605\u8BFB\u3002"
+  },
+  openInMainTab: {
+    name: "\u5728\u4E3B\u7F16\u8F91\u5668\u533A\u57DF\u6253\u5F00",
+    desc: "\u5728\u4E2D\u592E\u7F16\u8F91\u5668\u533A\u57DF\u4EE5\u4E3B\u6807\u7B7E\u9875\u5F62\u5F0F\u6253\u5F00\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u4FA7\u8FB9\u680F"
+  },
+  cliPath: {
+    name: "Claude CLI \u8DEF\u5F84",
+    desc: "Claude Code CLI \u7684\u81EA\u5B9A\u4E49\u8DEF\u5F84\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52A8\u68C0\u6D4B\u3002",
+    descWindows: "\u5BF9\u4E8E\u539F\u751F\u5B89\u88C5\u7A0B\u5E8F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5BF9\u4E8E npm/pnpm/yarn \u6216\u5176\u4ED6\u5305\u7BA1\u7406\u5668\u5B89\u88C5\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F84\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
+    descUnix: '\u7C98\u8D34 "which claude" \u7684\u8F93\u51FA - \u9002\u7528\u4E8E\u539F\u751F\u5B89\u88C5\u548C npm/pnpm/yarn \u5B89\u88C5\u3002',
+    validation: {
+      notExist: "\u8DEF\u5F84\u4E0D\u5B58\u5728",
+      isDirectory: "\u8DEF\u5F84\u662F\u76EE\u5F55\uFF0C\u4E0D\u662F\u6587\u4EF6"
+    }
+  },
+  language: {
+    name: "\u8BED\u8A00",
+    desc: "\u66F4\u6539\u63D2\u4EF6\u754C\u9762\u7684\u663E\u793A\u8BED\u8A00"
+  }
+};
+var zh_CN_default2 = {
+  common: common9,
+  chat: chat9,
+  settings: settings9
+};
+
+// src/i18n/locales/zh-TW.json
+var zh_TW_exports = {};
+__export(zh_TW_exports, {
+  chat: () => chat10,
+  common: () => common10,
+  default: () => zh_TW_default2,
+  settings: () => settings10
+});
+var common10 = {
+  save: "\u4FDD\u5B58",
+  cancel: "\u53D6\u6D88",
+  delete: "\u522A\u9664",
+  edit: "\u7DE8\u8F2F",
+  add: "\u6DFB\u52A0",
+  remove: "\u79FB\u9664",
+  clear: "\u6E05\u9664",
+  clearAll: "\u6E05\u9664\u5168\u90E8",
+  loading: "\u52A0\u8F09\u4E2D",
+  error: "\u932F\u8AA4",
+  success: "\u6210\u529F",
+  warning: "\u8B66\u544A",
+  confirm: "\u78BA\u8A8D",
+  settings: "\u8A2D\u7F6E",
+  advanced: "\u9AD8\u7D1A",
+  enabled: "\u5DF2\u555F\u7528",
+  disabled: "\u5DF2\u7981\u7528",
+  platform: "\u5E73\u53F0",
+  refresh: "\u91CD\u65B0\u6574\u7406",
+  rewind: "\u56DE\u9000"
+};
+var chat10 = {
+  rewind: {
+    confirmMessage: "\u56DE\u9000\u5230\u6B64\u8655\uFF1F\u6B64\u8A0A\u606F\u4E4B\u5F8C\u7684\u6A94\u6848\u8B8A\u66F4\u5C07\u88AB\u9084\u539F\u3002\u56DE\u9000\u4E0D\u6703\u5F71\u97FF\u624B\u52D5\u6216\u900F\u904E bash \u7DE8\u8F2F\u7684\u6A94\u6848\u3002",
+    confirmButton: "\u56DE\u9000",
+    ariaLabel: "\u56DE\u9000\u5230\u6B64\u8655",
+    notice: "\u5DF2\u56DE\u9000\uFF1A\u9084\u539F\u4E86 {count} \u500B\u6A94\u6848",
+    noticeSaveFailed: "\u5DF2\u56DE\u9000\uFF1A\u9084\u539F\u4E86 {count} \u500B\u6A94\u6848\uFF0C\u4F46\u7121\u6CD5\u5132\u5B58\u72C0\u614B\uFF1A{error}",
+    failed: "\u56DE\u9000\u5931\u6557\uFF1A{error}",
+    cannot: "\u7121\u6CD5\u56DE\u9000\uFF1A{error}",
+    unavailableStreaming: "\u4E32\u6D41\u56DE\u61C9\u4E2D\u7121\u6CD5\u56DE\u9000",
+    unavailableNoUuid: "\u7121\u6CD5\u56DE\u9000\uFF1A\u7F3A\u5C11\u8A0A\u606F\u8B58\u5225\u78BC"
+  },
+  fork: {
+    ariaLabel: "\u5206\u53C9\u5C0D\u8A71",
+    chooseTarget: "\u5206\u53C9\u5C0D\u8A71",
+    targetNewTab: "\u65B0\u5206\u9801",
+    targetCurrentTab: "\u76EE\u524D\u5206\u9801",
+    maxTabsReached: "\u7121\u6CD5\u5206\u53C9\uFF1A\u5DF2\u9054\u5230\u6700\u5927 {count} \u500B\u5206\u9801",
+    notice: "\u5DF2\u5206\u53C9\u5230\u65B0\u5206\u9801",
+    noticeCurrentTab: "\u5DF2\u5728\u76EE\u524D\u5206\u9801\u5206\u53C9",
+    failed: "\u5206\u53C9\u5931\u6557\uFF1A{error}",
+    unavailableStreaming: "\u4E32\u6D41\u56DE\u61C9\u4E2D\u7121\u6CD5\u5206\u53C9",
+    unavailableNoUuid: "\u7121\u6CD5\u5206\u53C9\uFF1A\u7F3A\u5C11\u8A0A\u606F\u8B58\u5225\u78BC",
+    unavailableNoResponse: "\u7121\u6CD5\u5206\u53C9\uFF1A\u6C92\u6709\u53EF\u5206\u53C9\u7684\u56DE\u61C9",
+    errorMessageNotFound: "Message not found",
+    errorNoSession: "No session ID available",
+    errorNoActiveTab: "No active tab",
+    commandNoMessages: "\u7121\u6CD5\u5206\u53C9\uFF1A\u5C0D\u8A71\u4E2D\u6C92\u6709\u8A0A\u606F",
+    commandNoAssistantUuid: "\u7121\u6CD5\u5206\u53C9\uFF1A\u6C92\u6709\u5E36\u8B58\u5225\u78BC\u7684\u52A9\u624B\u56DE\u8986"
+  },
+  bangBash: {
+    placeholder: "> Run a bash command...",
+    commandPanel: "Command panel",
+    copyAriaLabel: "Copy latest command output",
+    clearAriaLabel: "Clear bash output",
+    commandLabel: "{command}",
+    statusLabel: "Status: {status}",
+    collapseOutput: "Collapse command output",
+    expandOutput: "Expand command output",
+    running: "Running...",
+    copyFailed: "Failed to copy to clipboard"
+  }
+};
+var settings10 = {
+  title: "Claudian \u8A2D\u5B9A",
+  customization: "\u500B\u4EBA\u5316\u8A2D\u5B9A",
+  userName: {
+    name: "Claudian \u61C9\u8A72\u5982\u4F55\u7A31\u547C\u60A8\uFF1F",
+    desc: "\u7528\u65BC\u500B\u4EBA\u5316\u554F\u5019\u7684\u4F7F\u7528\u8005\u540D\u7A31\uFF08\u7559\u7A7A\u4F7F\u7528\u901A\u7528\u554F\u5019\uFF09"
+  },
+  excludedTags: {
+    name: "\u6392\u9664\u7684\u6A19\u7C64",
+    desc: "\u5305\u542B\u9019\u4E9B\u6A19\u7C64\u7684\u7B46\u8A18\u4E0D\u6703\u81EA\u52D5\u8F09\u5165\u70BA\u4E0A\u4E0B\u6587\uFF08\u6BCF\u884C\u4E00\u500B\uFF0C\u4E0D\u5E36 #\uFF09"
+  },
+  mediaFolder: {
+    name: "\u5A92\u9AD4\u8CC7\u6599\u593E",
+    desc: "\u5B58\u653E\u9644\u4EF6/\u5716\u7247\u7684\u8CC7\u6599\u593E\u3002\u7576\u7B46\u8A18\u4F7F\u7528 ![[image.jpg]] \u6642\uFF0CClaude \u6703\u5728\u6B64\u67E5\u627E\u3002\u7559\u7A7A\u4F7F\u7528\u5132\u5B58\u5EAB\u6839\u76EE\u9304\u3002"
+  },
+  systemPrompt: {
+    name: "\u81EA\u8A02\u7CFB\u7D71\u63D0\u793A\u8A5E",
+    desc: "\u9644\u52A0\u5230\u9810\u8A2D\u7CFB\u7D71\u63D0\u793A\u8A5E\u7684\u984D\u5916\u6307\u4EE4"
+  },
+  autoTitle: {
+    name: "\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C",
+    desc: "\u5728\u4F7F\u7528\u8005\u9001\u51FA\u7B2C\u4E00\u5247\u8A0A\u606F\u5F8C\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C\u3002"
+  },
+  titleModel: {
+    name: "\u6A19\u984C\u751F\u6210\u6A21\u578B",
+    desc: "\u7528\u65BC\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C\u7684\u6A21\u578B\u3002",
+    auto: "\u81EA\u52D5 (Haiku)"
+  },
+  navMappings: {
+    name: "Vim \u98A8\u683C\u5C0E\u822A\u6620\u5C04",
+    desc: '\u6BCF\u884C\u4E00\u500B\u6620\u5C04\u3002\u683C\u5F0F\uFF1A"map <\u9375> <\u52D5\u4F5C>"\uFF08\u52D5\u4F5C\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
+  },
+  hotkeys: "\u5FEB\u6377\u9375",
+  inlineEditHotkey: {
+    name: "\u5167\u5D4C\u7DE8\u8F2F",
+    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
+    btnChange: "\u8B8A\u66F4",
+    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
+  },
+  openChatHotkey: {
+    name: "\u958B\u555F\u804A\u5929",
+    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
+    btnChange: "\u8B8A\u66F4",
+    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
+  },
+  newSessionHotkey: {
+    name: "\u65B0\u5DE5\u4F5C\u968E\u6BB5",
+    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
+    btnChange: "\u8B8A\u66F4",
+    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
+  },
+  newTabHotkey: {
+    name: "\u65B0\u5206\u9801",
+    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
+    btnChange: "\u8B8A\u66F4",
+    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
+  },
+  closeTabHotkey: {
+    name: "\u95DC\u9589\u5206\u9801",
+    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
+    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
+    btnChange: "\u8B8A\u66F4",
+    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
+  },
+  slashCommands: {
+    name: "\u547D\u4EE4\u8207\u6280\u80FD",
+    desc: "\u5B9A\u7FA9\u7531 /\u540D\u7A31 \u89F8\u767C\u7684\u81EA\u8A02\u547D\u4EE4\u8207\u6280\u80FD\u3002"
+  },
+  hiddenSlashCommands: {
+    name: "\u96B1\u85CF\u547D\u4EE4",
+    desc: "\u5F9E\u4E0B\u62C9\u9078\u55AE\u4E2D\u96B1\u85CF\u7279\u5B9A\u7684\u659C\u7DDA\u547D\u4EE4\u3002\u9069\u7528\u65BC\u96B1\u85CF\u8207 Claudian \u7121\u95DC\u7684 Claude Code \u547D\u4EE4\u3002\u6BCF\u884C\u8F38\u5165\u4E00\u500B\u547D\u4EE4\u540D\u7A31\uFF0C\u7121\u9700\u524D\u5C0E\u659C\u7DDA\u3002",
+    placeholder: "commit\nbuild\ntest"
+  },
+  mcpServers: {
+    name: "MCP \u4F3A\u670D\u5668",
+    desc: "\u8A2D\u5B9A\u6A21\u578B\u4E0A\u4E0B\u6587\u5354\u5B9A\u4F3A\u670D\u5668\uFF0C\u900F\u904E\u5916\u90E8\u5DE5\u5177\u548C\u8CC7\u6599\u4F86\u6E90\u64F4\u5C55 Claude \u7684\u80FD\u529B\u3002\u555F\u7528\u4E0A\u4E0B\u6587\u4FDD\u5B58\u6A21\u5F0F\u7684\u4F3A\u670D\u5668\u9700\u8981 @ \u63D0\u53CA\u624D\u80FD\u555F\u7528\u3002"
+  },
+  plugins: {
+    name: "Claude Code \u5916\u639B\u7A0B\u5F0F",
+    desc: "\u555F\u7528\u6216\u505C\u7528\u5F9E ~/.claude/plugins \u767C\u73FE\u7684 Claude Code \u5916\u639B\u7A0B\u5F0F\u3002\u5DF2\u555F\u7528\u7684\u5916\u639B\u7A0B\u5F0F\u6309\u5132\u5B58\u5EAB\u5132\u5B58\u3002"
+  },
+  subagents: {
+    name: "Subagents",
+    desc: "Configure custom subagents that Claude can delegate to.",
+    noAgents: "No subagents configured. Click + to create one.",
+    deleteConfirm: 'Delete subagent "{name}"?',
+    saveFailed: "Failed to save subagent: {message}",
+    refreshFailed: "\u91CD\u65B0\u6574\u7406\u5B50\u4EE3\u7406\u5931\u6557\uFF1A{message}",
+    deleteFailed: "Failed to delete subagent: {message}",
+    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
+    saved: 'Subagent "{name}" {action}',
+    deleted: 'Subagent "{name}" deleted',
+    duplicateName: 'An agent named "{name}" already exists',
+    descriptionRequired: "Description is required",
+    promptRequired: "System prompt is required",
+    modal: {
+      titleEdit: "Edit Subagent",
+      titleAdd: "Add Subagent",
+      name: "Name",
+      nameDesc: "Lowercase letters, numbers, and hyphens only",
+      namePlaceholder: "code-reviewer",
+      description: "Description",
+      descriptionDesc: "Brief description of this agent",
+      descriptionPlaceholder: "Reviews code for bugs and style",
+      advancedOptions: "Advanced options",
+      model: "Model",
+      modelDesc: "Model override for this agent",
+      tools: "Tools",
+      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
+      disallowedTools: "Disallowed tools",
+      disallowedToolsDesc: "Comma-separated list of tools to disallow",
+      skills: "Skills",
+      skillsDesc: "Comma-separated list of skills",
+      prompt: "System prompt",
+      promptDesc: "Instructions for the agent",
+      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
+    }
+  },
+  safety: "\u5B89\u5168",
+  loadUserSettings: {
+    name: "\u8F09\u5165\u4F7F\u7528\u8005 Claude \u8A2D\u5B9A",
+    desc: "\u8F09\u5165 ~/.claude/settings.json\u3002\u555F\u7528\u5F8C\uFF0C\u4F7F\u7528\u8005\u7684 Claude Code \u6B0A\u9650\u898F\u5247\u53EF\u80FD\u7E5E\u904E\u5B89\u5168\u6A21\u5F0F\u3002"
+  },
+  enableBlocklist: {
+    name: "\u555F\u7528\u547D\u4EE4\u9ED1\u540D\u55AE",
+    desc: "\u963B\u6B62\u6F5B\u5728\u5371\u96AA\u7684 bash \u547D\u4EE4"
+  },
+  blockedCommands: {
+    name: "\u963B\u6B62\u7684\u547D\u4EE4 ({platform})",
+    desc: "\u5728 {platform} \u4E0A\u963B\u6B62\u7684\u6A21\u5F0F\uFF08\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4\u6B63\u5247\u8868\u793A\u5F0F\u3002",
+    unixName: "\u963B\u6B62\u7684\u547D\u4EE4 (Unix/Git Bash)",
+    unixDesc: "Unix \u6A21\u5F0F\u5728 Windows \u4E0A\u4E5F\u6703\u88AB\u963B\u6B62\uFF0C\u56E0\u70BA Git Bash \u53EF\u4EE5\u547C\u53EB\u5B83\u5011\u3002"
+  },
+  exportPaths: {
+    name: "\u5141\u8A31\u7684\u532F\u51FA\u8DEF\u5F91",
+    desc: "\u5141\u8A31\u532F\u51FA\u6A94\u6848\u7684\u5132\u5B58\u5EAB\u5916\u90E8\u8DEF\u5F91\uFF08\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4 ~ \u8868\u793A\u4E3B\u76EE\u9304\u3002"
+  },
+  environment: "\u74B0\u5883",
+  customVariables: {
+    name: "\u81EA\u8A02\u8B8A\u6578",
+    desc: "Claude SDK \u7684\u74B0\u5883\u8B8A\u6578\uFF08KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4 export \u524D\u7DB4\u3002"
+  },
+  envSnippets: {
+    name: "\u7247\u6BB5",
+    addBtn: "\u65B0\u589E\u7247\u6BB5",
+    noSnippets: "\u5C1A\u7121\u4FDD\u5B58\u7684\u74B0\u5883\u8B8A\u6578\u7247\u6BB5\u3002\u9EDE\u64CA + \u4FDD\u5B58\u7576\u524D\u914D\u7F6E\u3002",
+    nameRequired: "\u8ACB\u8F38\u5165\u7247\u6BB5\u540D\u7A31",
+    modal: {
+      titleEdit: "\u7DE8\u8F2F\u7247\u6BB5",
+      titleSave: "\u4FDD\u5B58\u7247\u6BB5",
+      name: "\u540D\u7A31",
+      namePlaceholder: "\u6B64\u914D\u7F6E\u7684\u63CF\u8FF0\u6027\u540D\u7A31",
+      description: "\u63CF\u8FF0",
+      descPlaceholder: "\u53EF\u9078\u63CF\u8FF0",
+      envVars: "\u74B0\u5883\u8B8A\u6578",
+      envVarsPlaceholder: "KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u500B\uFF08\u652F\u63F4 export \u524D\u7DB4\uFF09",
+      save: "\u4FDD\u5B58",
+      update: "\u66F4\u65B0",
+      cancel: "\u53D6\u6D88"
+    }
+  },
+  customContextLimits: {
+    name: "\u81EA\u8A02\u4E0A\u4E0B\u6587\u9650\u5236",
+    desc: "\u70BA\u60A8\u7684\u81EA\u8A02\u6A21\u578B\u8A2D\u5B9A\u4E0A\u4E0B\u6587\u8996\u7A97\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9810\u8A2D\u503C\uFF08200k \u6B0A\u6756\uFF09\u3002",
+    invalid: "\u683C\u5F0F\u7121\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u78BA\u6578\u91CF\uFF081000-10000000\uFF09\u3002"
+  },
+  advanced: "\u9032\u968E",
+  show1MModel: {
+    name: "\u555F\u7528\u5177\u6709 1M \u4E0A\u4E0B\u6587\u8996\u7A97\u7684 Sonnet",
+    desc: "\u5728\u6A21\u578B\u9078\u64C7\u5668\u4E2D\u5C07\u6A19\u6E96 Sonnet \u66FF\u63DB\u70BA Sonnet (1M)\u3002\u5728 200k \u6B0A\u6756\u4EE5\u4E0B\u50F9\u683C\u76F8\u540C\u3002\u9700\u8981 Max \u8A02\u95B1\u3002"
+  },
+  enableChrome: {
+    name: "\u555F\u7528 Chrome \u64F4\u5145\u529F\u80FD",
+    desc: "\u5141\u8A31 Claude \u900F\u904E claude-in-chrome \u64F4\u5145\u529F\u80FD\u8207 Chrome \u4E92\u52D5\u3002\u9700\u8981\u5B89\u88DD\u8A72\u64F4\u5145\u529F\u80FD\u3002\u9700\u8981\u91CD\u65B0\u555F\u52D5\u5DE5\u4F5C\u968E\u6BB5\u3002"
+  },
+  enableBangBash: {
+    name: "Enable bash mode (!)",
+    desc: "Type ! on empty input to enter bash mode. Runs commands directly via Node.js child_process.",
+    validation: {
+      noNode: "Node.js not found on PATH. Install Node.js or check your PATH configuration."
+    }
+  },
+  maxTabs: {
+    name: "\u6700\u5927\u804A\u5929\u6A19\u7C64\u6578",
+    desc: "\u540C\u6642\u958B\u555F\u7684\u6700\u5927\u804A\u5929\u6A19\u7C64\u6578\uFF083-10\uFF09\u3002\u6BCF\u500B\u6A19\u7C64\u4F7F\u7528\u7368\u7ACB\u7684 Claude \u5C0D\u8A71\u3002",
+    warning: "\u8D85\u904E 5 \u500B\u6A19\u7C64\u53EF\u80FD\u6703\u5F71\u97FF\u6548\u80FD\u548C\u8A18\u61B6\u9AD4\u4F7F\u7528\u3002"
+  },
+  tabBarPosition: {
+    name: "\u6A19\u7C64\u5217\u4F4D\u7F6E",
+    desc: "\u9078\u64C7\u6A19\u7C64\u5FBD\u7AE0\u548C\u64CD\u4F5C\u6309\u9215\u7684\u986F\u793A\u4F4D\u7F6E",
+    input: "\u8F38\u5165\u6846\u4E0A\u65B9\uFF08\u9810\u8A2D\uFF09",
+    header: "\u5728\u6A19\u984C\u5217"
+  },
+  enableAutoScroll: {
+    name: "\u4E32\u6D41\u50B3\u8F38\u6642\u81EA\u52D5\u6372\u52D5",
+    desc: "\u5728 Claude \u4E32\u6D41\u50B3\u8F38\u56DE\u61C9\u6642\u81EA\u52D5\u6372\u52D5\u5230\u5E95\u90E8\u3002\u505C\u7528\u5F8C\u5C07\u505C\u7559\u5728\u9802\u90E8\uFF0C\u5F9E\u982D\u958B\u59CB\u95B1\u8B80\u3002"
+  },
+  openInMainTab: {
+    name: "\u5728\u4E3B\u7DE8\u8F2F\u5668\u5340\u57DF\u958B\u555F",
+    desc: "\u5728\u4E2D\u592E\u7DE8\u8F2F\u5668\u5340\u57DF\u4EE5\u4E3B\u5206\u9801\u5F62\u5F0F\u958B\u555F\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u5074\u908A\u6B04"
+  },
+  cliPath: {
+    name: "Claude CLI \u8DEF\u5F91",
+    desc: "Claude Code CLI \u7684\u81EA\u8A02\u8DEF\u5F91\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52D5\u6AA2\u6E2C\u3002",
+    descWindows: "\u5C0D\u65BC\u539F\u751F\u5B89\u88DD\u7A0B\u5F0F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5C0D\u65BC npm/pnpm/yarn \u6216\u5176\u4ED6\u5957\u4EF6\u7BA1\u7406\u5668\u5B89\u88DD\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F91\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
+    descUnix: '\u8CBC\u4E0A "which claude" \u7684\u8F38\u51FA - \u9069\u7528\u65BC\u539F\u751F\u5B89\u88DD\u548C npm/pnpm/yarn \u5B89\u88DD\u3002',
+    validation: {
+      notExist: "\u8DEF\u5F91\u4E0D\u5B58\u5728",
+      isDirectory: "\u8DEF\u5F91\u662F\u76EE\u9304\uFF0C\u4E0D\u662F\u6A94\u6848"
+    }
+  },
+  language: {
+    name: "\u8A9E\u8A00",
+    desc: "\u66F4\u6539\u63D2\u4EF6\u4ECB\u9762\u7684\u986F\u793A\u8A9E\u8A00"
+  }
+};
+var zh_TW_default2 = {
+  common: common10,
+  chat: chat10,
+  settings: settings10
+};
+
+// src/i18n/i18n.ts
+var translations = {
+  en: en_exports,
+  "zh-CN": zh_CN_exports,
+  "zh-TW": zh_TW_exports,
+  ja: ja_exports,
+  ko: ko_exports,
+  de: de_exports,
+  fr: fr_exports,
+  es: es_exports,
+  ru: ru_exports,
+  pt: pt_exports
+};
+var DEFAULT_LOCALE = "en";
+var currentLocale = DEFAULT_LOCALE;
+function t(key, params) {
+  const dict = translations[currentLocale];
+  const keys = key.split(".");
+  let value = dict;
+  for (const k of keys) {
+    if (value && typeof value === "object" && k in value) {
+      value = value[k];
+    } else {
+      if (currentLocale !== DEFAULT_LOCALE) {
+        return tFallback(key, params);
+      }
+      return key;
+    }
+  }
+  if (typeof value !== "string") {
+    return key;
+  }
+  if (params) {
+    return value.replace(/\{(\w+)\}/g, (_, param) => {
+      var _a3, _b;
+      return (_b = (_a3 = params[param]) == null ? void 0 : _a3.toString()) != null ? _b : `{${param}}`;
+    });
+  }
+  return value;
+}
+function tFallback(key, params) {
+  const dict = translations[DEFAULT_LOCALE];
+  const keys = key.split(".");
+  let value = dict;
+  for (const k of keys) {
+    if (value && typeof value === "object" && k in value) {
+      value = value[k];
+    } else {
+      return key;
+    }
+  }
+  if (typeof value !== "string") {
+    return key;
+  }
+  if (params) {
+    return value.replace(/\{(\w+)\}/g, (_, param) => {
+      var _a3, _b;
+      return (_b = (_a3 = params[param]) == null ? void 0 : _a3.toString()) != null ? _b : `{${param}}`;
+    });
+  }
+  return value;
+}
+function setLocale(locale) {
+  if (!translations[locale]) {
+    return false;
+  }
+  currentLocale = locale;
+  return true;
+}
+function getAvailableLocales() {
+  return Object.keys(translations);
+}
+function getLocaleDisplayName(locale) {
+  const names = {
+    "en": "English",
+    "zh-CN": "\u7B80\u4F53\u4E2D\u6587",
+    "zh-TW": "\u7E41\u9AD4\u4E2D\u6587",
+    "ja": "\u65E5\u672C\u8A9E",
+    "ko": "\uD55C\uAD6D\uC5B4",
+    "de": "Deutsch",
+    "fr": "Fran\xE7ais",
+    "es": "Espa\xF1ol",
+    "ru": "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
+    "pt": "Portugu\xEAs"
+  };
+  return names[locale] || locale;
+}
+
 // src/core/commands/builtInCommands.ts
 var BUILT_IN_COMMANDS = [
   {
@@ -50668,7 +54264,17 @@ var BUILT_IN_COMMANDS = [
     description: "Add external context directory",
     action: "add-dir",
     hasArgs: true,
-    argumentHint: "path/to/directory"
+    argumentHint: "[path/to/directory]"
+  },
+  {
+    name: "resume",
+    description: "Resume a previous conversation",
+    action: "resume"
+  },
+  {
+    name: "fork",
+    description: "Fork entire conversation to new session",
+    action: "fork"
   }
 ];
 var commandMap = /* @__PURE__ */ new Map();
@@ -50714,6 +54320,7 @@ var FILTERED_SDK_COMMANDS = /* @__PURE__ */ new Set([
 var SlashCommandDropdown = class {
   constructor(containerEl, inputEl, callbacks, options = {}) {
     this.dropdownEl = null;
+    this.enabled = true;
     this.slashStartIndex = -1;
     this.selectedIndex = 0;
     this.filteredCommands = [];
@@ -50731,10 +54338,17 @@ var SlashCommandDropdown = class {
     this.onInput = () => this.handleInputChange();
     this.inputEl.addEventListener("input", this.onInput);
   }
+  setEnabled(enabled) {
+    this.enabled = enabled;
+    if (!enabled) {
+      this.hide();
+    }
+  }
   setHiddenCommands(commands) {
     this.hiddenCommands = commands;
   }
   handleInputChange() {
+    if (!this.enabled) return;
     const text = this.getInputValue();
     const cursorPos = this.getCursorPosition();
     const textBeforeCursor = text.substring(0, cursorPos);
@@ -50752,7 +54366,7 @@ var SlashCommandDropdown = class {
     this.showDropdown(searchText);
   }
   handleKeydown(e2) {
-    if (!this.isVisible()) return false;
+    if (!this.enabled || !this.isVisible()) return false;
     switch (e2.key) {
       case "ArrowDown":
         e2.preventDefault();
@@ -50892,7 +54506,7 @@ var SlashCommandDropdown = class {
         nameEl.setText(`/${cmd.name}`);
         if (cmd.argumentHint) {
           const hintEl = itemEl.createSpan({ cls: "claudian-slash-hint" });
-          hintEl.setText(`[${cmd.argumentHint}]`);
+          hintEl.setText(normalizeArgumentHint(cmd.argumentHint));
         }
         if (cmd.description) {
           const descEl = itemEl.createDiv({ cls: "claudian-slash-desc" });
@@ -50966,11 +54580,160 @@ var SlashCommandDropdown = class {
   }
 };
 
+// src/features/chat/controllers/contextRowVisibility.ts
+function updateContextRowHasContent(contextRowEl) {
+  const editorIndicator = contextRowEl.querySelector(".claudian-selection-indicator");
+  const canvasIndicator = contextRowEl.querySelector(".claudian-canvas-indicator");
+  const fileIndicator = contextRowEl.querySelector(".claudian-file-indicator");
+  const imagePreview = contextRowEl.querySelector(".claudian-image-preview");
+  const hasEditorSelection = (editorIndicator == null ? void 0 : editorIndicator.style.display) === "block";
+  const hasCanvasSelection = (canvasIndicator == null ? void 0 : canvasIndicator.style.display) === "block";
+  const hasFileChips = (fileIndicator == null ? void 0 : fileIndicator.style.display) === "flex";
+  const hasImageChips = (imagePreview == null ? void 0 : imagePreview.style.display) === "flex";
+  contextRowEl.classList.toggle(
+    "has-content",
+    hasEditorSelection || hasCanvasSelection || hasFileChips || hasImageChips
+  );
+}
+
+// src/features/chat/controllers/CanvasSelectionController.ts
+var CANVAS_POLL_INTERVAL = 250;
+var CanvasSelectionController = class {
+  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange) {
+    this.storedSelection = null;
+    this.pollInterval = null;
+    this.app = app;
+    this.indicatorEl = indicatorEl;
+    this.inputEl = inputEl;
+    this.contextRowEl = contextRowEl;
+    this.onVisibilityChange = onVisibilityChange != null ? onVisibilityChange : null;
+  }
+  start() {
+    if (this.pollInterval) return;
+    this.pollInterval = setInterval(() => this.poll(), CANVAS_POLL_INTERVAL);
+  }
+  stop() {
+    if (this.pollInterval) {
+      clearInterval(this.pollInterval);
+      this.pollInterval = null;
+    }
+    this.clear();
+  }
+  poll() {
+    var _a3;
+    const canvasView = this.getCanvasView();
+    if (!canvasView) return;
+    const canvas = canvasView.canvas;
+    if (!(canvas == null ? void 0 : canvas.selection)) return;
+    const selection = canvas.selection;
+    const canvasPath = (_a3 = canvasView.file) == null ? void 0 : _a3.path;
+    if (!canvasPath) return;
+    const nodeIds = [...selection].map((node) => node.id).filter(Boolean);
+    if (nodeIds.length > 0) {
+      const sameSelection = this.storedSelection && this.storedSelection.canvasPath === canvasPath && this.storedSelection.nodeIds.length === nodeIds.length && this.storedSelection.nodeIds.every((id) => nodeIds.includes(id));
+      if (!sameSelection) {
+        this.storedSelection = { canvasPath, nodeIds };
+        this.updateIndicator();
+      }
+    } else if (document.activeElement !== this.inputEl) {
+      if (this.storedSelection) {
+        this.storedSelection = null;
+        this.updateIndicator();
+      }
+    }
+  }
+  getCanvasView() {
+    var _a3, _b, _c, _d;
+    const activeLeaf = (_c = this.app.workspace.activeLeaf) != null ? _c : (_b = (_a3 = this.app.workspace).getMostRecentLeaf) == null ? void 0 : _b.call(_a3);
+    const activeView = activeLeaf == null ? void 0 : activeLeaf.view;
+    if (((_d = activeView == null ? void 0 : activeView.getViewType) == null ? void 0 : _d.call(activeView)) === "canvas" && activeView.file) {
+      return activeView;
+    }
+    const leaves = this.app.workspace.getLeavesOfType("canvas");
+    if (leaves.length === 0) return null;
+    const leaf = leaves.find((l3) => l3.view.file);
+    return leaf ? leaf.view : null;
+  }
+  updateIndicator() {
+    if (!this.indicatorEl) return;
+    if (this.storedSelection) {
+      const { nodeIds } = this.storedSelection;
+      this.indicatorEl.textContent = nodeIds.length === 1 ? `node "${nodeIds[0]}" selected` : `${nodeIds.length} nodes selected`;
+      this.indicatorEl.style.display = "block";
+    } else {
+      this.indicatorEl.style.display = "none";
+    }
+    this.updateContextRowVisibility();
+  }
+  updateContextRowVisibility() {
+    var _a3;
+    if (!this.contextRowEl) return;
+    updateContextRowHasContent(this.contextRowEl);
+    (_a3 = this.onVisibilityChange) == null ? void 0 : _a3.call(this);
+  }
+  getContext() {
+    if (!this.storedSelection) return null;
+    return {
+      canvasPath: this.storedSelection.canvasPath,
+      nodeIds: [...this.storedSelection.nodeIds]
+    };
+  }
+  hasSelection() {
+    return this.storedSelection !== null;
+  }
+  clear() {
+    this.storedSelection = null;
+    this.updateIndicator();
+  }
+};
+
 // src/features/chat/controllers/ConversationController.ts
-var import_obsidian8 = require("obsidian");
+var import_obsidian12 = require("obsidian");
+
+// src/shared/modals/ConfirmModal.ts
+var import_obsidian6 = require("obsidian");
+function confirmDelete(app, message) {
+  return new Promise((resolve5) => {
+    new ConfirmModal(app, message, resolve5).open();
+  });
+}
+function confirm2(app, message, confirmText) {
+  return new Promise((resolve5) => {
+    new ConfirmModal(app, message, resolve5, confirmText).open();
+  });
+}
+var ConfirmModal = class extends import_obsidian6.Modal {
+  constructor(app, message, resolve5, confirmText) {
+    super(app);
+    this.resolved = false;
+    this.message = message;
+    this.resolve = resolve5;
+    this.confirmText = confirmText != null ? confirmText : t("common.delete");
+  }
+  onOpen() {
+    this.setTitle(t("common.confirm"));
+    this.modalEl.addClass("claudian-confirm-modal");
+    this.contentEl.createEl("p", { text: this.message });
+    new import_obsidian6.Setting(this.contentEl).addButton(
+      (btn) => btn.setButtonText(t("common.cancel")).onClick(() => this.close())
+    ).addButton(
+      (btn) => btn.setButtonText(this.confirmText).setWarning().onClick(() => {
+        this.resolved = true;
+        this.resolve(true);
+        this.close();
+      })
+    );
+  }
+  onClose() {
+    if (!this.resolved) {
+      this.resolve(false);
+    }
+    this.contentEl.empty();
+  }
+};
 
 // src/features/chat/rendering/MessageRenderer.ts
-var import_obsidian7 = require("obsidian");
+var import_obsidian11 = require("obsidian");
 
 // src/utils/fileLink.ts
 var WIKILINK_PATTERN_SOURCE = "(?<!!)\\[\\[([^\\]|#^]+)(?:#[^\\]|]+)?(?:\\^[^\\]|]+)?(?:\\|[^\\]]+)?\\]\\]";
@@ -51106,6 +54869,14 @@ function processFileLinks(app, container) {
   }
 }
 
+// src/utils/inlineEdit.ts
+function normalizeInsertionText(text) {
+  return text.replace(/^(?:\r?\n)+|(?:\r?\n)+$/g, "");
+}
+function escapeHtml(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 // src/utils/imageEmbed.ts
 var IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
   "png",
@@ -51118,9 +54889,9 @@ var IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
   "ico"
 ]);
 var IMAGE_EMBED_PATTERN = /!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
-function isImagePath(path10) {
+function isImagePath(path11) {
   var _a3;
-  const ext = (_a3 = path10.split(".").pop()) == null ? void 0 : _a3.toLowerCase();
+  const ext = (_a3 = path11.split(".").pop()) == null ? void 0 : _a3.toLowerCase();
   return ext ? IMAGE_EXTENSIONS.has(ext) : false;
 }
 function resolveImageFile(app, imagePath, mediaFolder) {
@@ -51134,9 +54905,6 @@ function resolveImageFile(app, imagePath, mediaFolder) {
   const resolved = app.metadataCache.getFirstLinkpathDest(imagePath, "");
   if (resolved) return resolved;
   return null;
-}
-function escapeHtml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 function buildStyleAttribute(altText) {
   if (!altText) return "";
@@ -51182,8 +54950,28 @@ function replaceImageEmbedsWithHtml(markdown, app, mediaFolder = "") {
   );
 }
 
+// src/features/chat/rewind.ts
+function findRewindContext(messages, userIndex) {
+  let prevAssistantUuid;
+  for (let i2 = userIndex - 1; i2 >= 0; i2--) {
+    if (messages[i2].role === "assistant" && messages[i2].sdkAssistantUuid) {
+      prevAssistantUuid = messages[i2].sdkAssistantUuid;
+      break;
+    }
+  }
+  let hasResponse = false;
+  for (let i2 = userIndex + 1; i2 < messages.length; i2++) {
+    if (messages[i2].role === "user") break;
+    if (messages[i2].role === "assistant" && messages[i2].sdkAssistantUuid) {
+      hasResponse = true;
+      break;
+    }
+  }
+  return { prevAssistantUuid, hasResponse };
+}
+
 // src/features/chat/rendering/SubagentRenderer.ts
-var import_obsidian5 = require("obsidian");
+var import_obsidian9 = require("obsidian");
 
 // src/core/tools/todo.ts
 function isValidTodoItem(item) {
@@ -51286,14 +55074,14 @@ function collapseElement(wrapperEl, headerEl, contentEl, state) {
 }
 
 // src/features/chat/rendering/ToolCallRenderer.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian8 = require("obsidian");
 
 // src/shared/icons.ts
 var MCP_ICON_SVG = `<svg fill="currentColor" fill-rule="evenodd" height="1em" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><title>MCP</title><path d="M15.688 2.343a2.588 2.588 0 00-3.61 0l-9.626 9.44a.863.863 0 01-1.203 0 .823.823 0 010-1.18l9.626-9.44a4.313 4.313 0 016.016 0 4.116 4.116 0 011.204 3.54 4.3 4.3 0 013.609 1.18l.05.05a4.115 4.115 0 010 5.9l-8.706 8.537a.274.274 0 000 .393l1.788 1.754a.823.823 0 010 1.18.863.863 0 01-1.203 0l-1.788-1.753a1.92 1.92 0 010-2.754l8.706-8.538a2.47 2.47 0 000-3.54l-.05-.049a2.588 2.588 0 00-3.607-.003l-7.172 7.034-.002.002-.098.097a.863.863 0 01-1.204 0 .823.823 0 010-1.18l7.273-7.133a2.47 2.47 0 00-.003-3.537z"></path><path d="M14.485 4.703a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a4.115 4.115 0 000 5.9 4.314 4.314 0 006.016 0l7.12-6.982a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a2.588 2.588 0 01-3.61 0 2.47 2.47 0 010-3.54l7.12-6.982z"></path></svg>`;
 var CHECK_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
 // src/features/chat/rendering/todoUtils.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian7 = require("obsidian");
 function getTodoStatusIcon(status) {
   return status === "completed" ? "check" : "dot";
 }
@@ -51306,7 +55094,7 @@ function renderTodoItems(container, todos) {
     const item = container.createDiv({ cls: `claudian-todo-item claudian-todo-${todo.status}` });
     const icon = item.createSpan({ cls: "claudian-todo-status-icon" });
     icon.setAttribute("aria-hidden", "true");
-    (0, import_obsidian3.setIcon)(icon, getTodoStatusIcon(todo.status));
+    (0, import_obsidian7.setIcon)(icon, getTodoStatusIcon(todo.status));
     const text = item.createSpan({ cls: "claudian-todo-text" });
     text.setText(getTodoDisplayText(todo));
   }
@@ -51318,7 +55106,54 @@ function setToolIcon(el, name) {
   if (icon === MCP_ICON_MARKER) {
     el.innerHTML = MCP_ICON_SVG;
   } else {
-    (0, import_obsidian4.setIcon)(el, icon);
+    (0, import_obsidian8.setIcon)(el, icon);
+  }
+}
+function getToolName(name, input) {
+  switch (name) {
+    case TOOL_TODO_WRITE: {
+      const todos = input.todos;
+      if (todos && Array.isArray(todos) && todos.length > 0) {
+        const completed = todos.filter((t2) => t2.status === "completed").length;
+        return `Tasks ${completed}/${todos.length}`;
+      }
+      return "Tasks";
+    }
+    case TOOL_ENTER_PLAN_MODE:
+      return "Entering plan mode";
+    case TOOL_EXIT_PLAN_MODE:
+      return "Plan complete";
+    default:
+      return name;
+  }
+}
+function getToolSummary(name, input) {
+  switch (name) {
+    case TOOL_READ:
+    case TOOL_WRITE:
+    case TOOL_EDIT: {
+      const filePath = input.file_path || "";
+      return fileNameOnly(filePath);
+    }
+    case TOOL_BASH: {
+      const cmd = input.command || "";
+      return truncateText(cmd, 60);
+    }
+    case TOOL_GLOB:
+    case TOOL_GREP:
+      return input.pattern || "";
+    case TOOL_WEB_SEARCH:
+      return truncateText(input.query || "", 60);
+    case TOOL_WEB_FETCH:
+      return truncateText(input.url || "", 60);
+    case TOOL_LS:
+      return fileNameOnly(input.path || ".");
+    case TOOL_SKILL:
+      return input.skill || "";
+    case TOOL_TODO_WRITE:
+      return "";
+    default:
+      return "";
   }
 }
 function getToolLabel(name, input) {
@@ -51367,6 +55202,12 @@ function getToolLabel(name, input) {
       return name;
   }
 }
+function fileNameOnly(filePath) {
+  var _a3;
+  if (!filePath) return "";
+  const normalized = filePath.replace(/\\/g, "/");
+  return (_a3 = normalized.split("/").pop()) != null ? _a3 : normalized;
+}
 function shortenPath(filePath) {
   if (!filePath) return "";
   const normalized = filePath.replace(/\\/g, "/");
@@ -51374,37 +55215,113 @@ function shortenPath(filePath) {
   if (parts.length <= 3) return normalized;
   return ".../" + parts.slice(-2).join("/");
 }
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + "...";
+}
 function parseWebSearchResult(result) {
-  const linksMatch = result.match(/Links:\s*(\[[\s\S]*\])/);
+  const linksMatch = result.match(/Links:\s*(\[[\s\S]*?\])(?:\n|$)/);
   if (!linksMatch) return null;
   try {
-    const links = JSON.parse(linksMatch[1]);
-    if (!Array.isArray(links) || links.length === 0) return null;
-    return links;
+    const parsed = JSON.parse(linksMatch[1]);
+    if (!Array.isArray(parsed) || parsed.length === 0) return null;
+    const linksEndIndex = result.indexOf(linksMatch[0]) + linksMatch[0].length;
+    const summary = result.slice(linksEndIndex).trim();
+    return { links: parsed.filter((l3) => l3.title && l3.url), summary };
   } catch (e2) {
     return null;
   }
 }
-function renderWebSearchResult(container, result, maxItems = 3) {
-  const links = parseWebSearchResult(result);
-  if (!links) return false;
-  container.empty();
-  const displayItems = links.slice(0, maxItems);
-  displayItems.forEach((link) => {
-    const item = container.createSpan({ cls: "claudian-tool-result-bullet" });
-    item.setText(`\u2022 ${link.title}`);
-  });
-  if (links.length > maxItems) {
-    const more = container.createSpan({ cls: "claudian-tool-result-item" });
-    more.setText(`${links.length - maxItems} more results`);
+function renderWebSearchExpanded(container, result) {
+  const parsed = parseWebSearchResult(result);
+  if (!parsed || parsed.links.length === 0) {
+    renderLinesExpanded(container, result, 20);
+    return;
   }
-  return true;
+  const linksEl = container.createDiv({ cls: "claudian-tool-lines" });
+  for (const link of parsed.links) {
+    const linkEl = linksEl.createEl("a", { cls: "claudian-tool-link" });
+    linkEl.setAttribute("href", link.url);
+    linkEl.setAttribute("target", "_blank");
+    linkEl.setAttribute("rel", "noopener noreferrer");
+    const iconEl = linkEl.createSpan({ cls: "claudian-tool-link-icon" });
+    (0, import_obsidian8.setIcon)(iconEl, "external-link");
+    linkEl.createSpan({ cls: "claudian-tool-link-title", text: link.title });
+  }
+  if (parsed.summary) {
+    const summaryEl = container.createDiv({ cls: "claudian-tool-web-summary" });
+    summaryEl.setText(parsed.summary.length > 800 ? parsed.summary.slice(0, 800) + "..." : parsed.summary);
+  }
 }
-function renderReadResult(container, result) {
-  container.empty();
-  const lines = result.split(/\r?\n/).filter((line) => line.trim() !== "");
-  const item = container.createSpan({ cls: "claudian-tool-result-item" });
-  item.setText(`${lines.length} lines read`);
+function renderFileSearchExpanded(container, result) {
+  const lines = result.split(/\r?\n/).filter((line) => line.trim());
+  if (lines.length === 0) {
+    container.createDiv({ cls: "claudian-tool-empty", text: "No matches found" });
+    return;
+  }
+  renderLinesExpanded(container, result, 15, true);
+}
+function renderLinesExpanded(container, result, maxLines, hoverable = false) {
+  const lines = result.split(/\r?\n/);
+  const truncated = lines.length > maxLines;
+  const displayLines = truncated ? lines.slice(0, maxLines) : lines;
+  const linesEl = container.createDiv({ cls: "claudian-tool-lines" });
+  for (const line of displayLines) {
+    const stripped = line.replace(/^\s*\d+→/, "");
+    const lineEl = linesEl.createDiv({ cls: "claudian-tool-line" });
+    if (hoverable) lineEl.addClass("hoverable");
+    lineEl.setText(stripped || " ");
+  }
+  if (truncated) {
+    linesEl.createDiv({
+      cls: "claudian-tool-truncated",
+      text: `... ${lines.length - maxLines} more lines`
+    });
+  }
+}
+function renderWebFetchExpanded(container, result) {
+  const maxChars = 500;
+  const linesEl = container.createDiv({ cls: "claudian-tool-lines" });
+  const lineEl = linesEl.createDiv({ cls: "claudian-tool-line" });
+  lineEl.style.whiteSpace = "pre-wrap";
+  lineEl.style.wordBreak = "break-word";
+  if (result.length > maxChars) {
+    lineEl.setText(result.slice(0, maxChars));
+    linesEl.createDiv({
+      cls: "claudian-tool-truncated",
+      text: `... ${result.length - maxChars} more characters`
+    });
+  } else {
+    lineEl.setText(result);
+  }
+}
+function renderExpandedContent(container, toolName, result) {
+  if (!result) {
+    container.createDiv({ cls: "claudian-tool-empty", text: "No result" });
+    return;
+  }
+  switch (toolName) {
+    case TOOL_BASH:
+      renderLinesExpanded(container, result, 20);
+      break;
+    case TOOL_READ:
+      renderLinesExpanded(container, result, 15);
+      break;
+    case TOOL_GLOB:
+    case TOOL_GREP:
+    case TOOL_LS:
+      renderFileSearchExpanded(container, result);
+      break;
+    case TOOL_WEB_SEARCH:
+      renderWebSearchExpanded(container, result);
+      break;
+    case TOOL_WEB_FETCH:
+      renderWebFetchExpanded(container, result);
+      break;
+    default:
+      renderLinesExpanded(container, result, 20);
+      break;
+  }
 }
 function getTodos(input) {
   const todos = input.todos;
@@ -51437,27 +55354,93 @@ function setTodoWriteStatus(statusEl, input) {
   const status = isComplete ? "completed" : "running";
   const ariaLabel = isComplete ? "Status: completed" : "Status: in progress";
   resetStatusElement(statusEl, `status-${status}`, ariaLabel);
-  if (isComplete) (0, import_obsidian4.setIcon)(statusEl, "check");
+  if (isComplete) (0, import_obsidian8.setIcon)(statusEl, "check");
 }
 function setToolStatus(statusEl, status) {
   resetStatusElement(statusEl, `status-${status}`, `Status: ${status}`);
   const icon = STATUS_ICONS[status];
-  if (icon) (0, import_obsidian4.setIcon)(statusEl, icon);
+  if (icon) (0, import_obsidian8.setIcon)(statusEl, icon);
 }
-function renderToolResultContent(container, toolName, result) {
-  if (!result) {
-    container.setText("No result");
+function renderTodoWriteResult(container, input) {
+  container.empty();
+  container.addClass("claudian-todo-panel-content");
+  container.addClass("claudian-todo-list-container");
+  const todos = input.todos;
+  if (!todos || !Array.isArray(todos)) {
+    const item = container.createSpan({ cls: "claudian-tool-result-item" });
+    item.setText("Tasks updated");
     return;
   }
-  if (toolName === TOOL_WEB_SEARCH) {
-    if (!renderWebSearchResult(container, result, 3)) {
-      renderResultLines(container, result, 3);
-    }
-  } else if (toolName === TOOL_READ) {
-    renderReadResult(container, result);
-  } else {
-    renderResultLines(container, result, 3);
+  renderTodoItems(container, todos);
+}
+function isBlockedToolResult(content, isError) {
+  const lower = content.toLowerCase();
+  if (lower.includes("blocked by blocklist")) return true;
+  if (lower.includes("outside the vault")) return true;
+  if (lower.includes("access denied")) return true;
+  if (lower.includes("user denied")) return true;
+  if (lower.includes("approval")) return true;
+  if (isError && lower.includes("deny")) return true;
+  return false;
+}
+function createToolElementStructure(parentEl, toolCall) {
+  const toolEl = parentEl.createDiv({ cls: "claudian-tool-call" });
+  const header = toolEl.createDiv({ cls: "claudian-tool-header" });
+  header.setAttribute("tabindex", "0");
+  header.setAttribute("role", "button");
+  const iconEl = header.createSpan({ cls: "claudian-tool-icon" });
+  iconEl.setAttribute("aria-hidden", "true");
+  setToolIcon(iconEl, toolCall.name);
+  const nameEl = header.createSpan({ cls: "claudian-tool-name" });
+  nameEl.setText(getToolName(toolCall.name, toolCall.input));
+  const summaryEl = header.createSpan({ cls: "claudian-tool-summary" });
+  summaryEl.setText(getToolSummary(toolCall.name, toolCall.input));
+  const currentTaskEl = toolCall.name === TOOL_TODO_WRITE ? createCurrentTaskPreview(header, toolCall.input) : null;
+  const statusEl = header.createSpan({ cls: "claudian-tool-status" });
+  const content = toolEl.createDiv({ cls: "claudian-tool-content" });
+  return { toolEl, header, iconEl, nameEl, summaryEl, statusEl, content, currentTaskEl };
+}
+function formatAnswer(raw) {
+  if (Array.isArray(raw)) return raw.join(", ");
+  if (typeof raw === "string") return raw;
+  return "";
+}
+function resolveAskUserAnswers(toolCall) {
+  if (toolCall.resolvedAnswers) return toolCall.resolvedAnswers;
+  const parsed = extractResolvedAnswersFromResultText(toolCall.result);
+  if (parsed) {
+    toolCall.resolvedAnswers = parsed;
+    return parsed;
   }
+  return void 0;
+}
+function renderAskUserQuestionResult(container, toolCall) {
+  container.empty();
+  const questions = toolCall.input.questions;
+  const answers = resolveAskUserAnswers(toolCall);
+  if (!questions || !Array.isArray(questions) || !answers) return false;
+  const reviewEl = container.createDiv({ cls: "claudian-ask-review" });
+  for (let i2 = 0; i2 < questions.length; i2++) {
+    const q = questions[i2];
+    const answer = formatAnswer(answers[q.question]);
+    const pairEl = reviewEl.createDiv({ cls: "claudian-ask-review-pair" });
+    pairEl.createDiv({ text: `${i2 + 1}.`, cls: "claudian-ask-review-num" });
+    const bodyEl = pairEl.createDiv({ cls: "claudian-ask-review-body" });
+    bodyEl.createDiv({ text: q.question, cls: "claudian-ask-review-q-text" });
+    bodyEl.createDiv({
+      text: answer || "Not answered",
+      cls: answer ? "claudian-ask-review-a-text" : "claudian-ask-review-empty"
+    });
+  }
+  return true;
+}
+function renderAskUserQuestionFallback(container, toolCall, initialText) {
+  contentFallback(container, initialText || toolCall.result || "Waiting for answer...");
+}
+function contentFallback(container, text) {
+  const resultRow = container.createDiv({ cls: "claudian-tool-result-row" });
+  const resultText = resultRow.createSpan({ cls: "claudian-tool-result-text" });
+  resultText.setText(text);
 }
 function createCurrentTaskPreview(header, input) {
   const currentTaskEl = header.createSpan({ cls: "claudian-tool-current" });
@@ -51478,101 +55461,21 @@ function createTodoToggleHandler(currentTaskEl, statusEl, onExpandChange) {
     }
   };
 }
-function renderTodoWriteResult(container, input) {
-  container.empty();
-  container.addClass("claudian-todo-panel-content");
-  container.addClass("claudian-todo-list-container");
-  const todos = input.todos;
-  if (!todos || !Array.isArray(todos)) {
-    const item = container.createSpan({ cls: "claudian-tool-result-item" });
-    item.setText("Tasks updated");
-    return;
-  }
-  renderTodoItems(container, todos);
-}
-function renderResultLines(container, result, maxLines = 3) {
-  container.empty();
-  const lines = result.split(/\r?\n/);
-  const displayLines = lines.slice(0, maxLines);
-  displayLines.forEach((line) => {
-    const stripped = line.replace(/^\s*\d+→/, "");
-    const item = container.createSpan({ cls: "claudian-tool-result-item" });
-    item.setText(stripped);
-  });
-  if (lines.length > maxLines) {
-    const more = container.createSpan({ cls: "claudian-tool-result-item" });
-    more.setText(`${lines.length - maxLines} more lines`);
-  }
-}
-function isBlockedToolResult(content, isError) {
-  const lower = content.toLowerCase();
-  if (lower.includes("blocked by blocklist")) return true;
-  if (lower.includes("outside the vault")) return true;
-  if (lower.includes("access denied")) return true;
-  if (lower.includes("user denied")) return true;
-  if (lower.includes("approval")) return true;
-  if (isError && lower.includes("deny")) return true;
-  return false;
-}
-function createToolElementStructure(parentEl, toolCall) {
-  const toolEl = parentEl.createDiv({ cls: "claudian-tool-call" });
-  const header = toolEl.createDiv({ cls: "claudian-tool-header" });
-  header.setAttribute("tabindex", "0");
-  header.setAttribute("role", "button");
-  const iconEl = header.createSpan({ cls: "claudian-tool-icon" });
-  iconEl.setAttribute("aria-hidden", "true");
-  setToolIcon(iconEl, toolCall.name);
-  const labelEl = header.createSpan({ cls: "claudian-tool-label" });
-  labelEl.setText(getToolLabel(toolCall.name, toolCall.input));
-  const currentTaskEl = toolCall.name === TOOL_TODO_WRITE ? createCurrentTaskPreview(header, toolCall.input) : null;
-  const statusEl = header.createSpan({ cls: "claudian-tool-status" });
-  const content = toolEl.createDiv({ cls: "claudian-tool-content" });
-  return { toolEl, header, labelEl, statusEl, content, currentTaskEl };
-}
-function formatAnswer(raw) {
-  if (Array.isArray(raw)) return raw.join(", ");
-  if (typeof raw === "string") return raw;
-  return "";
-}
-function renderAskUserQuestionResult(container, toolCall) {
-  container.empty();
-  const questions = toolCall.input.questions;
-  const answers = toolCall.resolvedAnswers;
-  if (!questions || !Array.isArray(questions) || !answers) return;
-  const reviewEl = container.createDiv({ cls: "claudian-ask-review" });
-  for (const q of questions) {
-    const answer = formatAnswer(answers[q.question]);
-    const qLine = reviewEl.createDiv({ cls: "claudian-ask-review-q" });
-    qLine.createSpan({ text: q.question, cls: "claudian-ask-review-q-text" });
-    const aLine = reviewEl.createDiv({ cls: "claudian-ask-review-a" });
-    aLine.createSpan({ text: "\u2192 ", cls: "claudian-ask-review-arrow" });
-    aLine.createSpan({
-      text: answer || "Not answered",
-      cls: answer ? "claudian-ask-review-a-text" : "claudian-ask-review-empty"
-    });
-  }
-}
 function renderToolContent(content, toolCall, initialText) {
   if (toolCall.name === TOOL_TODO_WRITE) {
     content.addClass("claudian-tool-content-todo");
     renderTodoWriteResult(content, toolCall.input);
   } else if (toolCall.name === TOOL_ASK_USER_QUESTION) {
     content.addClass("claudian-tool-content-ask");
-    if (initialText || !toolCall.resolvedAnswers) {
-      const resultRow = content.createDiv({ cls: "claudian-tool-result-row" });
-      const resultText = resultRow.createSpan({ cls: "claudian-tool-result-text" });
-      resultText.setText("Waiting for answer...");
-    } else {
-      renderAskUserQuestionResult(content, toolCall);
-    }
-  } else {
-    const resultRow = content.createDiv({ cls: "claudian-tool-result-row" });
-    const resultText = resultRow.createSpan({ cls: "claudian-tool-result-text" });
     if (initialText) {
-      resultText.setText(initialText);
-    } else {
-      renderToolResultContent(resultText, toolCall.name, toolCall.result);
+      renderAskUserQuestionFallback(content, toolCall, "Waiting for answer...");
+    } else if (!renderAskUserQuestionResult(content, toolCall)) {
+      renderAskUserQuestionFallback(content, toolCall);
     }
+  } else if (initialText) {
+    contentFallback(content, initialText);
+  } else {
+    renderExpandedContent(content, toolCall.name, toolCall.result);
   }
 }
 function renderToolCall(parentEl, toolCall, toolCallElements) {
@@ -51602,13 +55505,13 @@ function updateToolCallResult(toolId, toolCall, toolCallElements) {
     if (statusEl2) {
       setTodoWriteStatus(statusEl2, toolCall.input);
     }
-    const content = toolEl.querySelector(".claudian-tool-content");
-    if (content) {
-      renderTodoWriteResult(content, toolCall.input);
+    const content2 = toolEl.querySelector(".claudian-tool-content");
+    if (content2) {
+      renderTodoWriteResult(content2, toolCall.input);
     }
-    const labelEl = toolEl.querySelector(".claudian-tool-label");
-    if (labelEl) {
-      labelEl.setText(getToolLabel(toolCall.name, toolCall.input));
+    const nameEl = toolEl.querySelector(".claudian-tool-name");
+    if (nameEl) {
+      nameEl.setText(getToolName(toolCall.name, toolCall.input));
     }
     const currentTaskEl = toolEl.querySelector(".claudian-tool-current");
     if (currentTaskEl) {
@@ -51622,16 +55525,19 @@ function updateToolCallResult(toolId, toolCall, toolCallElements) {
     setToolStatus(statusEl, toolCall.status);
   }
   if (toolCall.name === TOOL_ASK_USER_QUESTION) {
-    const content = toolEl.querySelector(".claudian-tool-content");
-    if (content) {
-      content.addClass("claudian-tool-content-ask");
-      renderAskUserQuestionResult(content, toolCall);
+    const content2 = toolEl.querySelector(".claudian-tool-content");
+    if (content2) {
+      content2.addClass("claudian-tool-content-ask");
+      if (!renderAskUserQuestionResult(content2, toolCall)) {
+        renderAskUserQuestionFallback(content2, toolCall);
+      }
     }
     return;
   }
-  const resultText = toolEl.querySelector(".claudian-tool-result-text");
-  if (resultText) {
-    renderToolResultContent(resultText, toolCall.name, toolCall.result);
+  const content = toolEl.querySelector(".claudian-tool-content");
+  if (content) {
+    content.empty();
+    renderExpandedContent(content, toolCall.name, toolCall.result);
   }
 }
 function renderStoredToolCall(parentEl, toolCall) {
@@ -51653,48 +55559,171 @@ function renderStoredToolCall(parentEl, toolCall) {
 }
 
 // src/features/chat/rendering/SubagentRenderer.ts
+var SUBAGENT_TOOL_STATUS_ICONS = {
+  completed: "check",
+  error: "x",
+  blocked: "shield-off"
+};
 function extractTaskDescription(input) {
   return input.description || "Subagent task";
+}
+function extractTaskPrompt(input) {
+  return input.prompt || "";
 }
 function truncateDescription(description, maxLength = 40) {
   if (description.length <= maxLength) return description;
   return description.substring(0, maxLength) + "...";
 }
-function truncateResult(result) {
-  const lines = result.split(/\r?\n/).filter((line) => line.trim());
-  if (lines.length <= 2) {
-    return lines.join("\n");
-  }
-  return lines.slice(0, 2).join("\n") + "...";
+function createSection(parentEl, title, bodyClass) {
+  const wrapperEl = parentEl.createDiv({ cls: "claudian-subagent-section" });
+  const headerEl = wrapperEl.createDiv({ cls: "claudian-subagent-section-header" });
+  headerEl.setAttribute("tabindex", "0");
+  headerEl.setAttribute("role", "button");
+  const titleEl = headerEl.createDiv({ cls: "claudian-subagent-section-title" });
+  titleEl.setText(title);
+  const bodyEl = wrapperEl.createDiv({ cls: "claudian-subagent-section-body" });
+  if (bodyClass) bodyEl.addClass(bodyClass);
+  const state = { isExpanded: false };
+  setupCollapsible(wrapperEl, headerEl, bodyEl, state, {
+    baseAriaLabel: title
+  });
+  return { wrapperEl, bodyEl };
 }
-function createStatusRow(parentEl, text, options) {
-  const rowEl = parentEl.createDiv({ cls: "claudian-subagent-done" });
-  if (options == null ? void 0 : options.rowClass) rowEl.addClass(options.rowClass);
-  const textEl = rowEl.createDiv({ cls: "claudian-subagent-done-text" });
-  if (options == null ? void 0 : options.textClass) textEl.addClass(options.textClass);
-  textEl.setText(text);
-  return rowEl;
+function setPromptText(promptBodyEl, prompt) {
+  promptBodyEl.empty();
+  const textEl = promptBodyEl.createDiv({ cls: "claudian-subagent-prompt-text" });
+  textEl.setText(prompt || "No prompt provided");
+}
+function updateSyncHeaderAria(state) {
+  const toolCount = state.info.toolCalls.length;
+  state.headerEl.setAttribute(
+    "aria-label",
+    `Subagent task: ${truncateDescription(state.info.description)} - ${toolCount} tool uses - Status: ${state.info.status} - click to expand`
+  );
+  state.statusEl.setAttribute("aria-label", `Status: ${state.info.status}`);
+}
+function renderSubagentToolContent(contentEl, toolCall) {
+  contentEl.empty();
+  if (!toolCall.result) {
+    const emptyEl = contentEl.createDiv({ cls: "claudian-subagent-tool-empty" });
+    emptyEl.setText(toolCall.status === "running" ? "Running..." : "No output recorded");
+    return;
+  }
+  renderExpandedContent(contentEl, toolCall.name, toolCall.result);
+}
+function setSubagentToolStatus(view, status) {
+  view.statusEl.className = "claudian-subagent-tool-status";
+  view.statusEl.addClass(`status-${status}`);
+  view.statusEl.empty();
+  view.statusEl.setAttribute("aria-label", `Status: ${status}`);
+  const statusIcon = SUBAGENT_TOOL_STATUS_ICONS[status];
+  if (statusIcon) {
+    (0, import_obsidian9.setIcon)(view.statusEl, statusIcon);
+  }
+}
+function updateSubagentToolView(view, toolCall) {
+  view.wrapperEl.className = `claudian-subagent-tool-item claudian-subagent-tool-${toolCall.status}`;
+  view.nameEl.setText(getToolName(toolCall.name, toolCall.input));
+  view.summaryEl.setText(getToolSummary(toolCall.name, toolCall.input));
+  setSubagentToolStatus(view, toolCall.status);
+  renderSubagentToolContent(view.contentEl, toolCall);
+}
+function createSubagentToolView(parentEl, toolCall) {
+  var _a3, _b;
+  const wrapperEl = parentEl.createDiv({
+    cls: `claudian-subagent-tool-item claudian-subagent-tool-${toolCall.status}`
+  });
+  wrapperEl.dataset.toolId = toolCall.id;
+  const headerEl = wrapperEl.createDiv({ cls: "claudian-subagent-tool-header" });
+  headerEl.setAttribute("tabindex", "0");
+  headerEl.setAttribute("role", "button");
+  const iconEl = headerEl.createDiv({ cls: "claudian-subagent-tool-icon" });
+  iconEl.setAttribute("aria-hidden", "true");
+  setToolIcon(iconEl, toolCall.name);
+  const nameEl = headerEl.createDiv({ cls: "claudian-subagent-tool-name" });
+  const summaryEl = headerEl.createDiv({ cls: "claudian-subagent-tool-summary" });
+  const statusEl = headerEl.createDiv({ cls: "claudian-subagent-tool-status" });
+  const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-tool-content" });
+  const collapseState = { isExpanded: (_a3 = toolCall.isExpanded) != null ? _a3 : false };
+  setupCollapsible(wrapperEl, headerEl, contentEl, collapseState, {
+    initiallyExpanded: (_b = toolCall.isExpanded) != null ? _b : false,
+    onToggle: (expanded) => {
+      toolCall.isExpanded = expanded;
+    },
+    baseAriaLabel: getToolLabel(toolCall.name, toolCall.input)
+  });
+  const view = {
+    wrapperEl,
+    nameEl,
+    summaryEl,
+    statusEl,
+    contentEl
+  };
+  updateSubagentToolView(view, toolCall);
+  return view;
+}
+function ensureResultSection(state) {
+  if (state.resultSectionEl && state.resultBodyEl) {
+    return { wrapperEl: state.resultSectionEl, bodyEl: state.resultBodyEl };
+  }
+  const section = createSection(state.contentEl, "Result", "claudian-subagent-result-body");
+  section.wrapperEl.addClass("claudian-subagent-section-result");
+  state.resultSectionEl = section.wrapperEl;
+  state.resultBodyEl = section.bodyEl;
+  return section;
+}
+function setResultText(state, text) {
+  const section = ensureResultSection(state);
+  section.bodyEl.empty();
+  const resultEl = section.bodyEl.createDiv({ cls: "claudian-subagent-result-output" });
+  resultEl.setText(text);
+}
+function hydrateSyncSubagentStateFromStored(state, subagent) {
+  state.info.description = subagent.description;
+  state.info.prompt = subagent.prompt;
+  state.info.mode = subagent.mode;
+  state.info.status = subagent.status;
+  state.info.result = subagent.result;
+  state.labelEl.setText(truncateDescription(subagent.description));
+  setPromptText(state.promptBodyEl, subagent.prompt || "");
+  for (const originalToolCall of subagent.toolCalls) {
+    const toolCall = {
+      ...originalToolCall,
+      input: { ...originalToolCall.input }
+    };
+    addSubagentToolCall(state, toolCall);
+    if (toolCall.status !== "running" || toolCall.result) {
+      updateSubagentToolResult(state, toolCall.id, toolCall);
+    }
+  }
+  if (subagent.status === "completed" || subagent.status === "error") {
+    const fallback = subagent.status === "error" ? "ERROR" : "DONE";
+    finalizeSubagentBlock(state, subagent.result || fallback, subagent.status === "error");
+  } else {
+    state.statusEl.className = "claudian-subagent-status status-running";
+    state.statusEl.empty();
+    updateSyncHeaderAria(state);
+  }
 }
 function createSubagentBlock(parentEl, taskToolId, taskInput) {
   const description = extractTaskDescription(taskInput);
+  const prompt = extractTaskPrompt(taskInput);
   const info = {
     id: taskToolId,
     description,
+    prompt,
     status: "running",
     toolCalls: [],
     isExpanded: false
-    // Collapsed by default
   };
   const wrapperEl = parentEl.createDiv({ cls: "claudian-subagent-list" });
   wrapperEl.dataset.subagentId = taskToolId;
   const headerEl = wrapperEl.createDiv({ cls: "claudian-subagent-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  headerEl.setAttribute("aria-expanded", "false");
-  headerEl.setAttribute("aria-label", `Subagent task: ${truncateDescription(description)} - click to expand`);
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian5.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian9.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(description));
   const countEl = headerEl.createDiv({ cls: "claudian-subagent-count" });
@@ -51702,132 +55731,76 @@ function createSubagentBlock(parentEl, taskToolId, taskInput) {
   const statusEl = headerEl.createDiv({ cls: "claudian-subagent-status status-running" });
   statusEl.setAttribute("aria-label", "Status: running");
   const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-content" });
+  const promptSection = createSection(contentEl, "Prompt", "claudian-subagent-prompt-body");
+  promptSection.wrapperEl.addClass("claudian-subagent-section-prompt");
+  setPromptText(promptSection.bodyEl, prompt);
+  const toolsContainerEl = contentEl.createDiv({ cls: "claudian-subagent-tools" });
   setupCollapsible(wrapperEl, headerEl, contentEl, info);
-  return {
+  const state = {
     wrapperEl,
     contentEl,
     headerEl,
     labelEl,
     countEl,
     statusEl,
-    info,
-    currentToolEl: null,
-    currentResultEl: null
+    promptSectionEl: promptSection.wrapperEl,
+    promptBodyEl: promptSection.bodyEl,
+    toolsContainerEl,
+    resultSectionEl: null,
+    resultBodyEl: null,
+    toolElements: /* @__PURE__ */ new Map(),
+    info
   };
+  updateSyncHeaderAria(state);
+  return state;
 }
 function addSubagentToolCall(state, toolCall) {
   state.info.toolCalls.push(toolCall);
   const toolCount = state.info.toolCalls.length;
   state.countEl.setText(`${toolCount} tool uses`);
-  state.contentEl.empty();
-  state.currentResultEl = null;
-  const itemEl = state.contentEl.createDiv({
-    cls: `claudian-subagent-tool-item claudian-subagent-tool-${toolCall.status}`
-  });
-  itemEl.dataset.toolId = toolCall.id;
-  state.currentToolEl = itemEl;
-  const toolRowEl = itemEl.createDiv({ cls: "claudian-subagent-tool-row" });
-  const labelEl = toolRowEl.createDiv({ cls: "claudian-subagent-tool-text" });
-  labelEl.setText(getToolLabel(toolCall.name, toolCall.input));
+  const toolView = createSubagentToolView(state.toolsContainerEl, toolCall);
+  state.toolElements.set(toolCall.id, toolView);
+  updateSyncHeaderAria(state);
 }
 function updateSubagentToolResult(state, toolId, toolCall) {
   const idx = state.info.toolCalls.findIndex((tc) => tc.id === toolId);
   if (idx !== -1) {
     state.info.toolCalls[idx] = toolCall;
   }
-  if (state.currentToolEl && state.currentToolEl.dataset.toolId === toolId) {
-    state.currentToolEl.className = `claudian-subagent-tool-item claudian-subagent-tool-${toolCall.status}`;
-    if (toolCall.result) {
-      if (!state.currentResultEl) {
-        state.currentResultEl = state.currentToolEl.createDiv({ cls: "claudian-subagent-tool-result" });
-        const bulletEl = state.currentResultEl.createDiv({ cls: "claudian-subagent-bullet" });
-        bulletEl.setText("\u2022");
-        const textEl = state.currentResultEl.createDiv({ cls: "claudian-subagent-result-text" });
-        textEl.setText(truncateResult(toolCall.result));
-      } else {
-        const textEl = state.currentResultEl.querySelector(".claudian-subagent-result-text");
-        if (textEl) {
-          textEl.setText(truncateResult(toolCall.result));
-        }
-      }
-    }
+  const toolView = state.toolElements.get(toolId);
+  if (!toolView) {
+    return;
   }
+  updateSubagentToolView(toolView, toolCall);
 }
 function finalizeSubagentBlock(state, result, isError) {
   state.info.status = isError ? "error" : "completed";
   state.info.result = result;
   state.labelEl.setText(truncateDescription(state.info.description));
-  const toolCount = state.info.toolCalls.length;
-  state.countEl.setText(`${toolCount} tool uses`);
+  state.countEl.setText(`${state.info.toolCalls.length} tool uses`);
   state.statusEl.className = "claudian-subagent-status";
   state.statusEl.addClass(`status-${state.info.status}`);
   state.statusEl.empty();
   if (state.info.status === "completed") {
-    (0, import_obsidian5.setIcon)(state.statusEl, "check");
-  } else {
-    (0, import_obsidian5.setIcon)(state.statusEl, "x");
-  }
-  if (state.info.status === "completed") {
+    (0, import_obsidian9.setIcon)(state.statusEl, "check");
+    state.wrapperEl.removeClass("error");
     state.wrapperEl.addClass("done");
-  } else if (state.info.status === "error") {
+  } else {
+    (0, import_obsidian9.setIcon)(state.statusEl, "x");
+    state.wrapperEl.removeClass("done");
     state.wrapperEl.addClass("error");
   }
-  state.contentEl.empty();
-  state.currentToolEl = null;
-  state.currentResultEl = null;
-  createStatusRow(state.contentEl, isError ? "ERROR" : "DONE");
+  const finalText = (result == null ? void 0 : result.trim()) ? result : isError ? "ERROR" : "DONE";
+  setResultText(state, finalText);
+  updateSyncHeaderAria(state);
 }
 function renderStoredSubagent(parentEl, subagent) {
-  const wrapperEl = parentEl.createDiv({ cls: "claudian-subagent-list" });
-  if (subagent.status === "completed") {
-    wrapperEl.addClass("done");
-  } else if (subagent.status === "error") {
-    wrapperEl.addClass("error");
-  }
-  wrapperEl.dataset.subagentId = subagent.id;
-  const toolCount = subagent.toolCalls.length;
-  const headerEl = wrapperEl.createDiv({ cls: "claudian-subagent-header" });
-  headerEl.setAttribute("tabindex", "0");
-  headerEl.setAttribute("role", "button");
-  headerEl.setAttribute("aria-label", `Subagent task: ${truncateDescription(subagent.description)} - ${toolCount} tool uses - Status: ${subagent.status}`);
-  const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
-  iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian5.setIcon)(iconEl, getToolIcon(TOOL_TASK));
-  const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
-  labelEl.setText(truncateDescription(subagent.description));
-  const countEl = headerEl.createDiv({ cls: "claudian-subagent-count" });
-  countEl.setText(`${toolCount} tool uses`);
-  const statusEl = headerEl.createDiv({ cls: `claudian-subagent-status status-${subagent.status}` });
-  statusEl.setAttribute("aria-label", `Status: ${subagent.status}`);
-  if (subagent.status === "completed") {
-    (0, import_obsidian5.setIcon)(statusEl, "check");
-  } else if (subagent.status === "error") {
-    (0, import_obsidian5.setIcon)(statusEl, "x");
-  }
-  const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-content" });
-  if (subagent.status === "completed" || subagent.status === "error") {
-    createStatusRow(contentEl, subagent.status === "error" ? "ERROR" : "DONE");
-  } else {
-    const lastTool = subagent.toolCalls[subagent.toolCalls.length - 1];
-    if (lastTool) {
-      const itemEl = contentEl.createDiv({
-        cls: `claudian-subagent-tool-item claudian-subagent-tool-${lastTool.status}`
-      });
-      const toolRowEl = itemEl.createDiv({ cls: "claudian-subagent-tool-row" });
-      const toolLabelEl = toolRowEl.createDiv({ cls: "claudian-subagent-tool-text" });
-      toolLabelEl.setText(getToolLabel(lastTool.name, lastTool.input));
-      if (lastTool.result) {
-        const resultEl = itemEl.createDiv({ cls: "claudian-subagent-tool-result" });
-        const bulletEl = resultEl.createDiv({ cls: "claudian-subagent-bullet" });
-        bulletEl.setText("\u2022");
-        const textEl = resultEl.createDiv({ cls: "claudian-subagent-result-text" });
-        textEl.setText(truncateResult(lastTool.result));
-      }
-    }
-  }
-  const state = { isExpanded: false };
-  setupCollapsible(wrapperEl, headerEl, contentEl, state);
-  return wrapperEl;
+  const state = createSubagentBlock(parentEl, subagent.id, {
+    description: subagent.description,
+    prompt: subagent.prompt
+  });
+  hydrateSyncSubagentStateFromStored(state, subagent);
+  return state.wrapperEl;
 }
 function setAsyncWrapperStatus(wrapperEl, status) {
   const classes = ["pending", "running", "awaiting", "completed", "error", "orphaned", "async"];
@@ -51878,11 +55851,43 @@ function getAsyncStatusAriaLabel(asyncStatus) {
 }
 function updateAsyncLabel(state) {
   state.labelEl.setText(truncateDescription(state.info.description));
+  const isFinished = state.info.asyncStatus === "completed" || state.info.asyncStatus === "error" || state.info.asyncStatus === "orphaned";
+  const countText = isFinished ? `${state.info.toolCalls.length} tool uses` : "";
+  state.countEl.setText(countText);
+  const statusLabel = getAsyncStatusAriaLabel(state.info.asyncStatus);
+  const ariaCount = isFinished ? `${state.info.toolCalls.length} tool uses - ` : "";
+  state.headerEl.setAttribute(
+    "aria-label",
+    `Background task: ${truncateDescription(state.info.description)} - ${ariaCount}${statusLabel} - click to expand`
+  );
 }
-function truncatePrompt(prompt, maxLength = 200) {
-  if (!prompt) return "";
-  if (prompt.length <= maxLength) return prompt;
-  return prompt.substring(0, maxLength) + "...";
+function renderAsyncContentLikeSync(contentEl, subagent, displayStatus) {
+  var _a3;
+  contentEl.empty();
+  const promptSection = createSection(contentEl, "Prompt", "claudian-subagent-prompt-body");
+  promptSection.wrapperEl.addClass("claudian-subagent-section-prompt");
+  setPromptText(promptSection.bodyEl, subagent.prompt || "");
+  const toolsContainerEl = contentEl.createDiv({ cls: "claudian-subagent-tools" });
+  for (const originalToolCall of subagent.toolCalls) {
+    const toolCall = {
+      ...originalToolCall,
+      input: { ...originalToolCall.input }
+    };
+    createSubagentToolView(toolsContainerEl, toolCall);
+  }
+  if (displayStatus === "running") {
+    return;
+  }
+  const resultSection = createSection(contentEl, "Result", "claudian-subagent-result-body");
+  resultSection.wrapperEl.addClass("claudian-subagent-section-result");
+  const resultEl = resultSection.bodyEl.createDiv({ cls: "claudian-subagent-result-output" });
+  if (displayStatus === "orphaned") {
+    resultEl.setText(subagent.result || "Conversation ended before task completed");
+    return;
+  }
+  const fallback = displayStatus === "error" ? "ERROR" : "DONE";
+  const finalText = ((_a3 = subagent.result) == null ? void 0 : _a3.trim()) ? subagent.result : fallback;
+  resultEl.setText(finalText);
 }
 function createAsyncSubagentBlock(parentEl, taskToolId, taskInput) {
   const description = taskInput.description || "Background task";
@@ -51904,24 +55909,26 @@ function createAsyncSubagentBlock(parentEl, taskToolId, taskInput) {
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
   headerEl.setAttribute("aria-expanded", "false");
-  headerEl.setAttribute("aria-label", `Background task: ${description} - click to expand`);
+  headerEl.setAttribute("aria-label", `Background task: ${description} - Initializing - click to expand`);
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian5.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian9.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(description));
+  const countEl = headerEl.createDiv({ cls: "claudian-subagent-count" });
   const statusTextEl = headerEl.createDiv({ cls: "claudian-subagent-status-text" });
   statusTextEl.setText("Initializing");
   const statusEl = headerEl.createDiv({ cls: "claudian-subagent-status status-running" });
   statusEl.setAttribute("aria-label", "Status: running");
   const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-content" });
-  createStatusRow(contentEl, truncatePrompt(prompt) || "Background task", { textClass: "claudian-async-prompt" });
+  renderAsyncContentLikeSync(contentEl, info, "running");
   setupCollapsible(wrapperEl, headerEl, contentEl, info);
   return {
     wrapperEl,
     contentEl,
     headerEl,
     labelEl,
+    countEl,
     statusTextEl,
     statusEl,
     info
@@ -51933,8 +55940,7 @@ function updateAsyncSubagentRunning(state, agentId) {
   setAsyncWrapperStatus(state.wrapperEl, "running");
   updateAsyncLabel(state);
   state.statusTextEl.setText("Running in background");
-  state.contentEl.empty();
-  createStatusRow(state.contentEl, truncatePrompt(state.info.prompt || "") || "Background task", { textClass: "claudian-async-prompt" });
+  renderAsyncContentLikeSync(state.contentEl, state.info, "running");
 }
 function finalizeAsyncSubagent(state, result, isError) {
   state.info.asyncStatus = isError ? "error" : "completed";
@@ -51947,24 +55953,16 @@ function finalizeAsyncSubagent(state, result, isError) {
   state.statusEl.addClass(`status-${isError ? "error" : "completed"}`);
   state.statusEl.empty();
   if (isError) {
-    (0, import_obsidian5.setIcon)(state.statusEl, "x");
+    (0, import_obsidian9.setIcon)(state.statusEl, "x");
   } else {
-    (0, import_obsidian5.setIcon)(state.statusEl, "check");
+    (0, import_obsidian9.setIcon)(state.statusEl, "check");
   }
   if (isError) {
     state.wrapperEl.addClass("error");
   } else {
     state.wrapperEl.addClass("done");
   }
-  state.contentEl.empty();
-  let displayText;
-  if (isError && result) {
-    const truncated = result.length > 80 ? result.substring(0, 80) + "..." : result;
-    displayText = `ERROR: ${truncated}`;
-  } else {
-    displayText = isError ? "ERROR" : "DONE";
-  }
-  createStatusRow(state.contentEl, displayText);
+  renderAsyncContentLikeSync(state.contentEl, state.info, isError ? "error" : "completed");
 }
 function markAsyncSubagentOrphaned(state) {
   state.info.asyncStatus = "orphaned";
@@ -51975,11 +55973,10 @@ function markAsyncSubagentOrphaned(state) {
   state.statusTextEl.setText("Orphaned");
   state.statusEl.className = "claudian-subagent-status status-error";
   state.statusEl.empty();
-  (0, import_obsidian5.setIcon)(state.statusEl, "alert-circle");
+  (0, import_obsidian9.setIcon)(state.statusEl, "alert-circle");
   state.wrapperEl.addClass("error");
   state.wrapperEl.addClass("orphaned");
-  state.contentEl.empty();
-  createStatusRow(state.contentEl, "\u26A0\uFE0F Task orphaned", { rowClass: "claudian-async-orphaned" });
+  renderAsyncContentLikeSync(state.contentEl, state.info, "orphaned");
 }
 function renderStoredAsyncSubagent(parentEl, subagent) {
   const wrapperEl = parentEl.createDiv({ cls: "claudian-subagent-list" });
@@ -51997,12 +55994,21 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
   headerEl.setAttribute("aria-expanded", "false");
-  headerEl.setAttribute("aria-label", `Background task: ${subagent.description} - ${statusAriaLabel} - click to expand`);
+  const isFinished = displayStatus === "completed" || displayStatus === "error" || displayStatus === "orphaned";
+  const ariaCount = isFinished ? `${subagent.toolCalls.length} tool uses - ` : "";
+  headerEl.setAttribute(
+    "aria-label",
+    `Background task: ${subagent.description} - ${ariaCount}${statusAriaLabel} - click to expand`
+  );
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian5.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian9.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(subagent.description));
+  const countEl = headerEl.createDiv({ cls: "claudian-subagent-count" });
+  if (isFinished) {
+    countEl.setText(`${subagent.toolCalls.length} tool uses`);
+  }
   const statusTextEl = headerEl.createDiv({ cls: "claudian-subagent-status-text" });
   statusTextEl.setText(statusText);
   let statusIconClass;
@@ -52021,29 +56027,17 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
   statusEl.setAttribute("aria-label", `Status: ${statusAriaLabel}`);
   switch (displayStatus) {
     case "completed":
-      (0, import_obsidian5.setIcon)(statusEl, "check");
+      (0, import_obsidian9.setIcon)(statusEl, "check");
       break;
     case "error":
-      (0, import_obsidian5.setIcon)(statusEl, "x");
+      (0, import_obsidian9.setIcon)(statusEl, "x");
       break;
     case "orphaned":
-      (0, import_obsidian5.setIcon)(statusEl, "alert-circle");
+      (0, import_obsidian9.setIcon)(statusEl, "alert-circle");
       break;
   }
   const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-content" });
-  switch (displayStatus) {
-    case "completed":
-      createStatusRow(contentEl, "DONE");
-      break;
-    case "error":
-      createStatusRow(contentEl, "ERROR");
-      break;
-    case "orphaned":
-      createStatusRow(contentEl, "\u26A0\uFE0F Task orphaned");
-      break;
-    default:
-      createStatusRow(contentEl, truncatePrompt(subagent.prompt || "") || "Background task", { textClass: "claudian-async-prompt" });
-  }
+  renderAsyncContentLikeSync(contentEl, subagent, displayStatus);
   const state = { isExpanded: false };
   setupCollapsible(wrapperEl, headerEl, contentEl, state);
   return wrapperEl;
@@ -52116,7 +56110,7 @@ function renderStoredThinkingBlock(parentEl, content, durationSeconds, renderCon
 }
 
 // src/features/chat/rendering/WriteEditRenderer.ts
-var import_obsidian6 = require("obsidian");
+var import_obsidian10 = require("obsidian");
 
 // src/features/chat/rendering/DiffRenderer.ts
 function splitIntoHunks(diffLines, contextLines = 3) {
@@ -52234,9 +56228,11 @@ function createWriteEditBlock(parentEl, toolCall) {
   headerEl.setAttribute("aria-label", `${toolName}: ${shortenPath2(filePath)} - click to expand`);
   const iconEl = headerEl.createDiv({ cls: "claudian-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian6.setIcon)(iconEl, getToolIcon(toolName));
-  const labelEl = headerEl.createDiv({ cls: "claudian-write-edit-label" });
-  labelEl.setText(`${toolName}: ${shortenPath2(filePath)}`);
+  (0, import_obsidian10.setIcon)(iconEl, getToolIcon(toolName));
+  const nameEl = headerEl.createDiv({ cls: "claudian-write-edit-name" });
+  nameEl.setText(toolName);
+  const summaryEl = headerEl.createDiv({ cls: "claudian-write-edit-summary" });
+  summaryEl.setText(fileNameOnly(filePath) || "file");
   const statsEl = headerEl.createDiv({ cls: "claudian-write-edit-stats" });
   const statusEl = headerEl.createDiv({ cls: "claudian-write-edit-status status-running" });
   statusEl.setAttribute("aria-label", "Status: running");
@@ -52248,7 +56244,8 @@ function createWriteEditBlock(parentEl, toolCall) {
     wrapperEl,
     contentEl,
     headerEl,
-    labelEl,
+    nameEl,
+    summaryEl,
     statsEl,
     statusEl,
     toolCall,
@@ -52272,7 +56269,7 @@ function finalizeWriteEditBlock(state, isError) {
   state.statusEl.empty();
   if (isError) {
     state.statusEl.addClass("status-error");
-    (0, import_obsidian6.setIcon)(state.statusEl, "x");
+    (0, import_obsidian10.setIcon)(state.statusEl, "x");
     state.statusEl.setAttribute("aria-label", "Status: error");
     if (!state.diffLines) {
       state.contentEl.empty();
@@ -52308,9 +56305,11 @@ function renderStoredWriteEdit(parentEl, toolCall) {
   headerEl.setAttribute("role", "button");
   const iconEl = headerEl.createDiv({ cls: "claudian-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian6.setIcon)(iconEl, getToolIcon(toolName));
-  const labelEl = headerEl.createDiv({ cls: "claudian-write-edit-label" });
-  labelEl.setText(`${toolName}: ${shortenPath2(filePath)}`);
+  (0, import_obsidian10.setIcon)(iconEl, getToolIcon(toolName));
+  const nameEl = headerEl.createDiv({ cls: "claudian-write-edit-name" });
+  nameEl.setText(toolName);
+  const summaryEl = headerEl.createDiv({ cls: "claudian-write-edit-summary" });
+  summaryEl.setText(fileNameOnly(filePath) || "file");
   const statsEl = headerEl.createDiv({ cls: "claudian-write-edit-stats" });
   if (toolCall.diffData) {
     renderDiffStats(statsEl, toolCall.diffData.stats);
@@ -52318,7 +56317,7 @@ function renderStoredWriteEdit(parentEl, toolCall) {
   const statusEl = headerEl.createDiv({ cls: "claudian-write-edit-status" });
   if (isError) {
     statusEl.addClass("status-error");
-    (0, import_obsidian6.setIcon)(statusEl, "x");
+    (0, import_obsidian10.setIcon)(statusEl, "x");
   }
   const contentEl = wrapperEl.createDiv({ cls: "claudian-write-edit-content" });
   const row = contentEl.createDiv({ cls: "claudian-write-edit-diff-row" });
@@ -52339,11 +56338,14 @@ function renderStoredWriteEdit(parentEl, toolCall) {
 
 // src/features/chat/rendering/MessageRenderer.ts
 var _MessageRenderer = class _MessageRenderer {
-  constructor(plugin, component, messagesEl) {
+  constructor(plugin, component, messagesEl, rewindCallback, forkCallback) {
+    this.liveMessageEls = /* @__PURE__ */ new Map();
     this.app = plugin.app;
     this.plugin = plugin;
     this.component = component;
     this.messagesEl = messagesEl;
+    this.rewindCallback = rewindCallback;
+    this.forkCallback = forkCallback;
     registerFileLinkHandler(this.app, this.messagesEl, this.component);
   }
   /** Sets the messages container element. */
@@ -52371,14 +56373,22 @@ var _MessageRenderer = class _MessageRenderer {
       }
     }
     const msgEl = this.messagesEl.createDiv({
-      cls: `claudian-message claudian-message-${msg.role}`
+      cls: `claudian-message claudian-message-${msg.role}`,
+      attr: {
+        "data-message-id": msg.id,
+        "data-role": msg.role
+      }
     });
-    const contentEl = msgEl.createDiv({ cls: "claudian-message-content" });
+    const contentEl = msgEl.createDiv({ cls: "claudian-message-content", attr: { dir: "auto" } });
     if (msg.role === "user") {
       const textToShow = (_b = msg.displayContent) != null ? _b : msg.content;
       if (textToShow) {
         const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
         void this.renderContent(textEl, textToShow);
+        this.addUserCopyButton(msgEl, textToShow);
+      }
+      if (this.rewindCallback || this.forkCallback) {
+        this.liveMessageEls.set(msg.id, msgEl);
       }
     }
     this.scrollToBottom();
@@ -52395,18 +56405,16 @@ var _MessageRenderer = class _MessageRenderer {
    */
   renderMessages(messages, getGreeting) {
     this.messagesEl.empty();
+    this.liveMessageEls.clear();
     const newWelcomeEl = this.messagesEl.createDiv({ cls: "claudian-welcome" });
     newWelcomeEl.createDiv({ cls: "claudian-welcome-greeting", text: getGreeting() });
-    for (const msg of messages) {
-      this.renderStoredMessage(msg);
+    for (let i2 = 0; i2 < messages.length; i2++) {
+      this.renderStoredMessage(messages[i2], messages, i2);
     }
     this.scrollToBottom();
     return newWelcomeEl;
   }
-  /**
-   * Renders a persisted message from history.
-   */
-  renderStoredMessage(msg) {
+  renderStoredMessage(msg, allMessages, index) {
     var _a3, _b;
     if (msg.isInterrupt) {
       this.renderInterruptMessage();
@@ -52425,18 +56433,36 @@ var _MessageRenderer = class _MessageRenderer {
       }
     }
     const msgEl = this.messagesEl.createDiv({
-      cls: `claudian-message claudian-message-${msg.role}`
+      cls: `claudian-message claudian-message-${msg.role}`,
+      attr: {
+        "data-message-id": msg.id,
+        "data-role": msg.role
+      }
     });
-    const contentEl = msgEl.createDiv({ cls: "claudian-message-content" });
+    const contentEl = msgEl.createDiv({ cls: "claudian-message-content", attr: { dir: "auto" } });
     if (msg.role === "user") {
       const textToShow = (_b = msg.displayContent) != null ? _b : msg.content;
       if (textToShow) {
         const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
         void this.renderContent(textEl, textToShow);
+        this.addUserCopyButton(msgEl, textToShow);
+      }
+      if (msg.sdkUserUuid && this.isRewindEligible(allMessages, index)) {
+        if (this.rewindCallback) {
+          this.addRewindButton(msgEl, msg.id);
+        }
+        if (this.forkCallback) {
+          this.addForkButton(msgEl, msg.id);
+        }
       }
     } else if (msg.role === "assistant") {
       this.renderAssistantContent(msg, contentEl);
     }
+  }
+  isRewindEligible(allMessages, index) {
+    if (!allMessages || index === void 0) return false;
+    const ctx = findRewindContext(allMessages, index);
+    return !!ctx.prevAssistantUuid && ctx.hasResponse;
   }
   /**
    * Renders an interrupt indicator (stored interrupts from SDK history).
@@ -52444,7 +56470,7 @@ var _MessageRenderer = class _MessageRenderer {
    */
   renderInterruptMessage() {
     const msgEl = this.messagesEl.createDiv({ cls: "claudian-message claudian-message-assistant" });
-    const contentEl = msgEl.createDiv({ cls: "claudian-message-content" });
+    const contentEl = msgEl.createDiv({ cls: "claudian-message-content", attr: { dir: "auto" } });
     const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
     textEl.innerHTML = '<span class="claudian-interrupted">Interrupted</span> <span class="claudian-interrupted-hint">\xB7 What should Claudian do instead?</span>';
   }
@@ -52454,6 +56480,7 @@ var _MessageRenderer = class _MessageRenderer {
   renderAssistantContent(msg, contentEl) {
     var _a3, _b, _c;
     if (msg.contentBlocks && msg.contentBlocks.length > 0) {
+      const renderedToolIds = /* @__PURE__ */ new Set();
       for (const block of msg.contentBlocks) {
         if (block.type === "thinking") {
           renderStoredThinkingBlock(
@@ -52473,20 +56500,25 @@ var _MessageRenderer = class _MessageRenderer {
           const toolCall = (_a3 = msg.toolCalls) == null ? void 0 : _a3.find((tc) => tc.id === block.toolId);
           if (toolCall) {
             this.renderToolCall(contentEl, toolCall);
+            renderedToolIds.add(toolCall.id);
           }
         } else if (block.type === "compact_boundary") {
           const boundaryEl = contentEl.createDiv({ cls: "claudian-compact-boundary" });
           boundaryEl.createSpan({ cls: "claudian-compact-boundary-label", text: "Conversation compacted" });
         } else if (block.type === "subagent") {
-          const subagent = (_b = msg.subagents) == null ? void 0 : _b.find((s) => s.id === block.subagentId);
-          if (subagent) {
-            const mode = block.mode || subagent.mode || "sync";
-            if (mode === "async") {
-              renderStoredAsyncSubagent(contentEl, subagent);
-            } else {
-              renderStoredSubagent(contentEl, subagent);
-            }
-          }
+          const taskToolCall = (_b = msg.toolCalls) == null ? void 0 : _b.find(
+            (tc) => tc.id === block.subagentId && tc.name === TOOL_TASK
+          );
+          if (!taskToolCall) continue;
+          this.renderTaskSubagent(contentEl, taskToolCall, block.mode);
+          renderedToolIds.add(taskToolCall.id);
+        }
+      }
+      if (msg.toolCalls && msg.toolCalls.length > 0) {
+        for (const toolCall of msg.toolCalls) {
+          if (renderedToolIds.has(toolCall.id)) continue;
+          this.renderToolCall(contentEl, toolCall);
+          renderedToolIds.add(toolCall.id);
         }
       }
     } else {
@@ -52516,36 +56548,82 @@ var _MessageRenderer = class _MessageRenderer {
    * TaskOutput is hidden as it's an internal tool for async subagent communication.
    */
   renderToolCall(contentEl, toolCall) {
-    var _a3;
     if (toolCall.name === TOOL_AGENT_OUTPUT) {
       return;
     }
     if (isWriteEditTool(toolCall.name)) {
       renderStoredWriteEdit(contentEl, toolCall);
     } else if (toolCall.name === TOOL_TASK) {
-      let status;
-      switch (toolCall.status) {
-        case "completed":
-          status = "completed";
-          break;
-        case "error":
-          status = "error";
-          break;
-        default:
-          status = "running";
+      this.renderTaskSubagent(contentEl, toolCall);
+    } else {
+      renderStoredToolCall(contentEl, toolCall);
+    }
+  }
+  renderTaskSubagent(contentEl, toolCall, modeHint) {
+    const subagentInfo = this.resolveTaskSubagent(toolCall, modeHint);
+    if (subagentInfo.mode === "async") {
+      renderStoredAsyncSubagent(contentEl, subagentInfo);
+      return;
+    }
+    renderStoredSubagent(contentEl, subagentInfo);
+  }
+  resolveTaskSubagent(toolCall, modeHint) {
+    var _a3, _b, _c;
+    if (toolCall.subagent) {
+      if (!modeHint || toolCall.subagent.mode === modeHint) {
+        return toolCall.subagent;
       }
-      const subagentInfo = {
+      return {
+        ...toolCall.subagent,
+        mode: modeHint
+      };
+    }
+    const description = ((_a3 = toolCall.input) == null ? void 0 : _a3.description) || "Subagent task";
+    const prompt = ((_b = toolCall.input) == null ? void 0 : _b.prompt) || "";
+    const mode = modeHint != null ? modeHint : ((_c = toolCall.input) == null ? void 0 : _c.run_in_background) === true ? "async" : "sync";
+    if (mode !== "async") {
+      return {
         id: toolCall.id,
-        description: ((_a3 = toolCall.input) == null ? void 0 : _a3.description) || "Subagent task",
-        status,
+        description,
+        prompt,
+        status: this.mapToolStatusToSubagentStatus(toolCall.status),
         toolCalls: [],
         isExpanded: false,
         result: toolCall.result
       };
-      renderStoredSubagent(contentEl, subagentInfo);
-    } else {
-      renderStoredToolCall(contentEl, toolCall);
     }
+    const asyncStatus = this.inferAsyncStatusFromTaskTool(toolCall);
+    return {
+      id: toolCall.id,
+      description,
+      prompt,
+      mode: "async",
+      status: asyncStatus,
+      asyncStatus,
+      toolCalls: [],
+      isExpanded: false,
+      result: toolCall.result
+    };
+  }
+  mapToolStatusToSubagentStatus(status) {
+    switch (status) {
+      case "completed":
+        return "completed";
+      case "error":
+      case "blocked":
+        return "error";
+      default:
+        return "running";
+    }
+  }
+  inferAsyncStatusFromTaskTool(toolCall) {
+    if (toolCall.status === "error" || toolCall.status === "blocked") return "error";
+    if (toolCall.status === "running") return "running";
+    const lowerResult = (toolCall.result || "").toLowerCase();
+    if (lowerResult.includes("not_ready") || lowerResult.includes("not ready") || lowerResult.includes('"status":"running"') || lowerResult.includes('"status":"pending"') || lowerResult.includes('"retrieval_status":"running"') || lowerResult.includes('"retrieval_status":"not_ready"')) {
+      return "running";
+    }
+    return "completed";
   }
   // ============================================
   // Image Rendering
@@ -52619,7 +56697,7 @@ var _MessageRenderer = class _MessageRenderer {
         this.app,
         this.plugin.settings.mediaFolder
       );
-      await import_obsidian7.MarkdownRenderer.renderMarkdown(processedMarkdown, el, "", this.component);
+      await import_obsidian11.MarkdownRenderer.renderMarkdown(processedMarkdown, el, "", this.component);
       el.querySelectorAll("pre").forEach((pre) => {
         var _a3, _b;
         if ((_a3 = pre.parentElement) == null ? void 0 : _a3.classList.contains("claudian-code-wrapper")) return;
@@ -52689,6 +56767,87 @@ var _MessageRenderer = class _MessageRenderer {
       }, 1500);
     });
   }
+  refreshActionButtons(msg, allMessages, index) {
+    if (!msg.sdkUserUuid) return;
+    if (!this.isRewindEligible(allMessages, index)) return;
+    const msgEl = this.liveMessageEls.get(msg.id);
+    if (!msgEl) return;
+    if (this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn")) {
+      this.addRewindButton(msgEl, msg.id);
+    }
+    if (this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn")) {
+      this.addForkButton(msgEl, msg.id);
+    }
+    this.cleanupLiveMessageEl(msg.id, msgEl);
+  }
+  cleanupLiveMessageEl(msgId, msgEl) {
+    const needsRewind = this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn");
+    const needsFork = this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn");
+    if (!needsRewind && !needsFork) {
+      this.liveMessageEls.delete(msgId);
+    }
+  }
+  getOrCreateActionsToolbar(msgEl) {
+    const existing = msgEl.querySelector(".claudian-user-msg-actions");
+    if (existing) return existing;
+    return msgEl.createDiv({ cls: "claudian-user-msg-actions" });
+  }
+  addUserCopyButton(msgEl, content) {
+    const toolbar = this.getOrCreateActionsToolbar(msgEl);
+    const copyBtn = toolbar.createSpan({ cls: "claudian-user-msg-copy-btn" });
+    copyBtn.innerHTML = _MessageRenderer.COPY_ICON;
+    copyBtn.setAttribute("aria-label", "Copy message");
+    let feedbackTimeout = null;
+    copyBtn.addEventListener("click", async (e2) => {
+      e2.stopPropagation();
+      try {
+        await navigator.clipboard.writeText(content);
+      } catch (e3) {
+        return;
+      }
+      if (feedbackTimeout) clearTimeout(feedbackTimeout);
+      copyBtn.innerHTML = "";
+      copyBtn.setText("copied!");
+      copyBtn.classList.add("copied");
+      feedbackTimeout = setTimeout(() => {
+        copyBtn.innerHTML = _MessageRenderer.COPY_ICON;
+        copyBtn.classList.remove("copied");
+        feedbackTimeout = null;
+      }, 1500);
+    });
+  }
+  addRewindButton(msgEl, messageId) {
+    const toolbar = this.getOrCreateActionsToolbar(msgEl);
+    const btn = toolbar.createSpan({ cls: "claudian-message-rewind-btn" });
+    if (toolbar.firstChild !== btn) toolbar.insertBefore(btn, toolbar.firstChild);
+    btn.innerHTML = _MessageRenderer.REWIND_ICON;
+    btn.setAttribute("aria-label", t("chat.rewind.ariaLabel"));
+    btn.addEventListener("click", async (e2) => {
+      var _a3;
+      e2.stopPropagation();
+      try {
+        await ((_a3 = this.rewindCallback) == null ? void 0 : _a3.call(this, messageId));
+      } catch (err) {
+        new import_obsidian11.Notice(t("chat.rewind.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
+      }
+    });
+  }
+  addForkButton(msgEl, messageId) {
+    const toolbar = this.getOrCreateActionsToolbar(msgEl);
+    const btn = toolbar.createSpan({ cls: "claudian-message-fork-btn" });
+    if (toolbar.firstChild !== btn) toolbar.insertBefore(btn, toolbar.firstChild);
+    btn.innerHTML = _MessageRenderer.FORK_ICON;
+    btn.setAttribute("aria-label", t("chat.fork.ariaLabel"));
+    btn.addEventListener("click", async (e2) => {
+      var _a3;
+      e2.stopPropagation();
+      try {
+        await ((_a3 = this.forkCallback) == null ? void 0 : _a3.call(this, messageId));
+      } catch (err) {
+        new import_obsidian11.Notice(t("chat.fork.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
+      }
+    });
+  }
   // ============================================
   // Utilities
   // ============================================
@@ -52707,6 +56866,8 @@ var _MessageRenderer = class _MessageRenderer {
     }
   }
 };
+_MessageRenderer.REWIND_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`;
+_MessageRenderer.FORK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>`;
 // ============================================
 // Copy Button
 // ============================================
@@ -52870,7 +57031,7 @@ var ConversationController = class {
   }
   /** Switches to a different conversation. */
   async switchTo(id) {
-    var _a3, _b, _c, _d, _e, _f, _g, _h;
+    var _a3, _b, _c, _d, _e, _f;
     const { plugin, state, renderer, subagentManager } = this.deps;
     if (id === state.currentConversationId) return;
     if (state.isStreaming) return;
@@ -52893,7 +57054,11 @@ var ConversationController = class {
       (_c = this.deps.getStatusPanel()) == null ? void 0 : _c.clearSubagents();
       const hasMessages = state.messages.length > 0;
       const externalContextPaths = hasMessages ? conversation.externalContextPaths || [] : plugin.settings.persistentExternalContextPaths || [];
-      (_e = this.getAgentService()) == null ? void 0 : _e.setSessionId((_d = conversation.sessionId) != null ? _d : null, externalContextPaths);
+      const agentService = this.getAgentService();
+      if (agentService) {
+        const resolvedSessionId = agentService.applyForkState(conversation);
+        agentService.setSessionId(resolvedSessionId, externalContextPaths);
+      }
       this.deps.getInputEl().value = "";
       this.deps.clearQueuedMessage();
       const fileCtx = this.deps.getFileContextManager();
@@ -52916,12 +57081,82 @@ var ConversationController = class {
         () => this.getGreeting()
       );
       this.deps.setWelcomeEl(welcomeEl);
-      (_f = this.deps.getHistoryDropdown()) == null ? void 0 : _f.removeClass("visible");
+      (_d = this.deps.getHistoryDropdown()) == null ? void 0 : _d.removeClass("visible");
       this.updateWelcomeVisibility();
-      (_h = (_g = this.callbacks).onConversationSwitched) == null ? void 0 : _h.call(_g);
+      (_f = (_e = this.callbacks).onConversationSwitched) == null ? void 0 : _f.call(_e);
     } finally {
       state.isSwitchingConversation = false;
     }
+  }
+  async rewind(userMessageId) {
+    var _a3, _b, _c;
+    const { plugin, state, renderer } = this.deps;
+    if (state.isStreaming) {
+      new import_obsidian12.Notice(t("chat.rewind.unavailableStreaming"));
+      return;
+    }
+    const msgs = state.messages;
+    const userIdx = msgs.findIndex((m) => m.id === userMessageId);
+    if (userIdx === -1) {
+      new import_obsidian12.Notice(t("chat.rewind.failed", { error: "Message not found" }));
+      return;
+    }
+    const userMsg = msgs[userIdx];
+    if (!userMsg.sdkUserUuid) {
+      new import_obsidian12.Notice(t("chat.rewind.unavailableNoUuid"));
+      return;
+    }
+    const rewindCtx = findRewindContext(msgs, userIdx);
+    if (!rewindCtx.hasResponse || !rewindCtx.prevAssistantUuid) {
+      new import_obsidian12.Notice(t("chat.rewind.unavailableNoUuid"));
+      return;
+    }
+    const prevAssistantUuid = rewindCtx.prevAssistantUuid;
+    const confirmed = await confirm2(
+      plugin.app,
+      t("chat.rewind.confirmMessage"),
+      t("chat.rewind.confirmButton")
+    );
+    if (!confirmed) return;
+    if (state.isStreaming) {
+      new import_obsidian12.Notice(t("chat.rewind.unavailableStreaming"));
+      return;
+    }
+    const agentService = this.getAgentService();
+    if (!agentService) {
+      new import_obsidian12.Notice(t("chat.rewind.failed", { error: "Agent service not available" }));
+      return;
+    }
+    let result;
+    try {
+      result = await agentService.rewind(userMsg.sdkUserUuid, prevAssistantUuid);
+    } catch (e2) {
+      new import_obsidian12.Notice(t("chat.rewind.failed", { error: e2 instanceof Error ? e2.message : "Unknown error" }));
+      return;
+    }
+    if (!result.canRewind) {
+      new import_obsidian12.Notice(t("chat.rewind.cannot", { error: (_a3 = result.error) != null ? _a3 : "Unknown error" }));
+      return;
+    }
+    state.truncateAt(userMessageId);
+    const inputEl = this.deps.getInputEl();
+    inputEl.value = userMsg.content;
+    inputEl.focus();
+    const welcomeEl = renderer.renderMessages(state.messages, () => this.getGreeting());
+    this.deps.setWelcomeEl(welcomeEl);
+    this.updateWelcomeVisibility();
+    const filesChanged = (_c = (_b = result.filesChanged) == null ? void 0 : _b.length) != null ? _c : 0;
+    let saveError = null;
+    try {
+      await this.save(false, { resumeSessionAt: prevAssistantUuid });
+    } catch (e2) {
+      saveError = e2 instanceof Error ? e2.message : "Failed to save";
+    }
+    if (saveError) {
+      new import_obsidian12.Notice(t("chat.rewind.noticeSaveFailed", { count: String(filesChanged), error: saveError }));
+      return;
+    }
+    new import_obsidian12.Notice(t("chat.rewind.notice", { count: String(filesChanged) }));
   }
   /**
    * Saves the current conversation.
@@ -52932,8 +57167,8 @@ var ConversationController = class {
    * For native sessions (new conversations with sessionId from SDK),
    * only metadata is saved - the SDK handles message persistence.
    */
-  async save(updateLastResponse = false) {
-    var _a3, _b, _c, _d, _e, _f, _g, _h, _i;
+  async save(updateLastResponse = false, options) {
+    var _a3, _b, _c, _d, _e, _f, _g, _h, _i, _j;
     const { plugin, state } = this.deps;
     if (!state.currentConversationId && state.messages.length === 0) {
       return;
@@ -52960,24 +57195,36 @@ var ConversationController = class {
     const oldSdkSessionId = conversation == null ? void 0 : conversation.sdkSessionId;
     const sessionChanged = isNative && sessionId && oldSdkSessionId && sessionId !== oldSdkSessionId;
     const previousSdkSessionIds = sessionChanged ? [.../* @__PURE__ */ new Set([...(conversation == null ? void 0 : conversation.previousSdkSessionIds) || [], oldSdkSessionId])] : conversation == null ? void 0 : conversation.previousSdkSessionIds;
+    const isForkSourceOnly = !!(conversation == null ? void 0 : conversation.forkSource) && !(conversation == null ? void 0 : conversation.sdkSessionId) && sessionId === conversation.forkSource.sessionId;
+    let resolvedSessionId;
+    if (sessionInvalidated) {
+      resolvedSessionId = null;
+    } else if (isForkSourceOnly) {
+      resolvedSessionId = (_h = conversation == null ? void 0 : conversation.sessionId) != null ? _h : null;
+    } else {
+      resolvedSessionId = (_i = sessionId != null ? sessionId : conversation == null ? void 0 : conversation.sessionId) != null ? _i : null;
+    }
     const updates = {
-      // For native sessions, don't persist messages (SDK handles that)
-      // For legacy sessions, persist messages as before
       messages: isNative ? state.messages : state.getPersistedMessages(),
-      // Preserve existing sessionId when SDK hasn't captured a new one yet
-      sessionId: sessionInvalidated ? null : (_h = sessionId != null ? sessionId : conversation == null ? void 0 : conversation.sessionId) != null ? _h : null,
-      sdkSessionId: isNative && sessionId ? sessionId : conversation == null ? void 0 : conversation.sdkSessionId,
+      sessionId: resolvedSessionId,
+      sdkSessionId: isNative && sessionId && !isForkSourceOnly ? sessionId : conversation == null ? void 0 : conversation.sdkSessionId,
       previousSdkSessionIds,
       isNative: isNative || void 0,
       legacyCutoffAt,
       sdkMessagesLoaded: isNative ? true : void 0,
       currentNote,
       externalContextPaths: externalContextPaths.length > 0 ? externalContextPaths : void 0,
-      usage: (_i = state.usage) != null ? _i : void 0,
+      usage: (_j = state.usage) != null ? _j : void 0,
       enabledMcpServers: enabledMcpServers.length > 0 ? enabledMcpServers : void 0
     };
     if (updateLastResponse) {
       updates.lastResponseAt = Date.now();
+    }
+    if (options) {
+      updates.resumeSessionAt = options.resumeSessionAt;
+    }
+    if ((conversation == null ? void 0 : conversation.forkSource) && sessionId && sessionId !== conversation.forkSource.sessionId) {
+      updates.forkSource = void 0;
     }
     await plugin.updateConversation(state.currentConversationId, updates);
   }
@@ -53048,7 +57295,7 @@ var ConversationController = class {
         cls: `claudian-history-item${isCurrent ? " active" : ""}`
       });
       const iconEl = item.createDiv({ cls: "claudian-history-item-icon" });
-      (0, import_obsidian8.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
+      (0, import_obsidian12.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
       const content = item.createDiv({ cls: "claudian-history-item-content" });
       const titleEl = content.createDiv({ cls: "claudian-history-item-title", text: conv.title });
       titleEl.setAttribute("title", conv.title);
@@ -53062,35 +57309,37 @@ var ConversationController = class {
           try {
             await options.onSelectConversation(conv.id);
           } catch (e3) {
+            new import_obsidian12.Notice("Failed to load conversation");
           }
         });
       }
       const actions = item.createDiv({ cls: "claudian-history-item-actions" });
       if (conv.titleGenerationStatus === "pending") {
         const loadingEl = actions.createEl("span", { cls: "claudian-action-btn claudian-action-loading" });
-        (0, import_obsidian8.setIcon)(loadingEl, "loader-2");
+        (0, import_obsidian12.setIcon)(loadingEl, "loader-2");
         loadingEl.setAttribute("aria-label", "Generating title...");
       } else if (conv.titleGenerationStatus === "failed") {
         const regenerateBtn = actions.createEl("button", { cls: "claudian-action-btn" });
-        (0, import_obsidian8.setIcon)(regenerateBtn, "refresh-cw");
+        (0, import_obsidian12.setIcon)(regenerateBtn, "refresh-cw");
         regenerateBtn.setAttribute("aria-label", "Regenerate title");
         regenerateBtn.addEventListener("click", async (e2) => {
           e2.stopPropagation();
           try {
             await this.regenerateTitle(conv.id);
           } catch (e3) {
+            new import_obsidian12.Notice("Failed to regenerate response");
           }
         });
       }
       const renameBtn = actions.createEl("button", { cls: "claudian-action-btn" });
-      (0, import_obsidian8.setIcon)(renameBtn, "pencil");
+      (0, import_obsidian12.setIcon)(renameBtn, "pencil");
       renameBtn.setAttribute("aria-label", "Rename");
       renameBtn.addEventListener("click", (e2) => {
         e2.stopPropagation();
         this.showRenameInput(item, conv.id, conv.title);
       });
       const deleteBtn = actions.createEl("button", { cls: "claudian-action-btn claudian-delete-btn" });
-      (0, import_obsidian8.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian12.setIcon)(deleteBtn, "trash-2");
       deleteBtn.setAttribute("aria-label", "Delete");
       deleteBtn.addEventListener("click", async (e2) => {
         e2.stopPropagation();
@@ -53102,6 +57351,7 @@ var ConversationController = class {
             await this.loadActive();
           }
         } catch (e3) {
+          new import_obsidian12.Notice("Failed to delete conversation");
         }
       });
     }
@@ -53123,6 +57373,7 @@ var ConversationController = class {
         await this.deps.plugin.renameConversation(convId, newTitle);
         this.updateHistoryDropdown();
       } catch (e2) {
+        new import_obsidian12.Notice("Failed to rename conversation");
       }
     };
     input.addEventListener("blur", finishRename);
@@ -53275,11 +57526,146 @@ var ConversationController = class {
 };
 
 // src/features/chat/controllers/InputController.ts
-var import_obsidian10 = require("obsidian");
+var import_obsidian15 = require("obsidian");
+
+// src/shared/components/ResumeSessionDropdown.ts
+var import_obsidian13 = require("obsidian");
+var ResumeSessionDropdown = class {
+  constructor(containerEl, inputEl, conversations, currentConversationId, callbacks) {
+    this.selectedIndex = 0;
+    this.containerEl = containerEl;
+    this.inputEl = inputEl;
+    this.conversations = this.sortConversations(conversations);
+    this.currentConversationId = currentConversationId;
+    this.callbacks = callbacks;
+    this.dropdownEl = this.containerEl.createDiv({ cls: "claudian-resume-dropdown" });
+    this.render();
+    this.dropdownEl.addClass("visible");
+    this.onInput = () => this.dismiss();
+    this.inputEl.addEventListener("input", this.onInput);
+  }
+  handleKeydown(e2) {
+    if (!this.isVisible()) return false;
+    switch (e2.key) {
+      case "ArrowDown":
+        e2.preventDefault();
+        this.navigate(1);
+        return true;
+      case "ArrowUp":
+        e2.preventDefault();
+        this.navigate(-1);
+        return true;
+      case "Enter":
+      case "Tab":
+        if (this.conversations.length > 0) {
+          e2.preventDefault();
+          this.selectItem();
+          return true;
+        }
+        return false;
+      case "Escape":
+        e2.preventDefault();
+        this.dismiss();
+        return true;
+    }
+    return false;
+  }
+  isVisible() {
+    var _a3, _b;
+    return (_b = (_a3 = this.dropdownEl) == null ? void 0 : _a3.hasClass("visible")) != null ? _b : false;
+  }
+  destroy() {
+    var _a3;
+    this.inputEl.removeEventListener("input", this.onInput);
+    (_a3 = this.dropdownEl) == null ? void 0 : _a3.remove();
+  }
+  dismiss() {
+    this.dropdownEl.removeClass("visible");
+    this.callbacks.onDismiss();
+  }
+  selectItem() {
+    if (this.conversations.length === 0) return;
+    const selected = this.conversations[this.selectedIndex];
+    if (!selected) return;
+    if (selected.id === this.currentConversationId) {
+      this.dismiss();
+      return;
+    }
+    this.callbacks.onSelect(selected.id);
+  }
+  navigate(direction) {
+    const maxIndex = this.conversations.length - 1;
+    this.selectedIndex = Math.max(0, Math.min(maxIndex, this.selectedIndex + direction));
+    this.updateSelection();
+  }
+  updateSelection() {
+    const items = this.dropdownEl.querySelectorAll(".claudian-resume-item");
+    items == null ? void 0 : items.forEach((item, index) => {
+      if (index === this.selectedIndex) {
+        item.addClass("selected");
+        item.scrollIntoView({ block: "nearest" });
+      } else {
+        item.removeClass("selected");
+      }
+    });
+  }
+  sortConversations(conversations) {
+    return [...conversations].sort((a, b3) => {
+      var _a3, _b;
+      return ((_a3 = b3.lastResponseAt) != null ? _a3 : b3.createdAt) - ((_b = a.lastResponseAt) != null ? _b : a.createdAt);
+    });
+  }
+  render() {
+    var _a3;
+    this.dropdownEl.empty();
+    const header = this.dropdownEl.createDiv({ cls: "claudian-resume-header" });
+    header.createSpan({ text: "Resume conversation" });
+    if (this.conversations.length === 0) {
+      this.dropdownEl.createDiv({ cls: "claudian-resume-empty", text: "No conversations" });
+      return;
+    }
+    const list = this.dropdownEl.createDiv({ cls: "claudian-resume-list" });
+    for (let i2 = 0; i2 < this.conversations.length; i2++) {
+      const conv = this.conversations[i2];
+      const isCurrent = conv.id === this.currentConversationId;
+      const item = list.createDiv({ cls: "claudian-resume-item" });
+      if (isCurrent) item.addClass("current");
+      if (i2 === this.selectedIndex) item.addClass("selected");
+      const iconEl = item.createDiv({ cls: "claudian-resume-item-icon" });
+      (0, import_obsidian13.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
+      const content = item.createDiv({ cls: "claudian-resume-item-content" });
+      const titleEl = content.createDiv({ cls: "claudian-resume-item-title", text: conv.title });
+      titleEl.setAttribute("title", conv.title);
+      content.createDiv({
+        cls: "claudian-resume-item-date",
+        text: isCurrent ? "Current session" : this.formatDate((_a3 = conv.lastResponseAt) != null ? _a3 : conv.createdAt)
+      });
+      item.addEventListener("click", () => {
+        if (isCurrent) {
+          this.dismiss();
+          return;
+        }
+        this.callbacks.onSelect(conv.id);
+      });
+      item.addEventListener("mouseenter", () => {
+        this.selectedIndex = i2;
+        this.updateSelection();
+      });
+    }
+  }
+  formatDate(timestamp) {
+    const date7 = new Date(timestamp);
+    const now = /* @__PURE__ */ new Date();
+    if (date7.toDateString() === now.toDateString()) {
+      return date7.toLocaleTimeString(void 0, { hour: "2-digit", minute: "2-digit", hour12: false });
+    }
+    return date7.toLocaleDateString(void 0, { month: "short", day: "numeric" });
+  }
+};
 
 // src/shared/modals/InstructionConfirmModal.ts
-var import_obsidian9 = require("obsidian");
-var InstructionModal = class extends import_obsidian9.Modal {
+var import_obsidian14 = require("obsidian");
+var InstructionModal = class extends import_obsidian14.Modal {
   constructor(app, rawInstruction, callbacks) {
     super(app);
     this.state = "loading";
@@ -53323,7 +57709,7 @@ var InstructionModal = class extends import_obsidian9.Modal {
     const responseSection = this.clarificationEl.createDiv({ cls: "claudian-instruction-section" });
     const responseLabel = responseSection.createDiv({ cls: "claudian-instruction-label" });
     responseLabel.setText("Your response:");
-    this.responseTextarea = new import_obsidian9.TextAreaComponent(responseSection);
+    this.responseTextarea = new import_obsidian14.TextAreaComponent(responseSection);
     this.responseTextarea.inputEl.addClass("claudian-instruction-response-textarea");
     this.responseTextarea.inputEl.rows = 3;
     this.responseTextarea.inputEl.placeholder = "Provide more details...";
@@ -53341,7 +57727,7 @@ var InstructionModal = class extends import_obsidian9.Modal {
     this.refinedDisplayEl = refinedSection.createDiv({ cls: "claudian-instruction-refined" });
     this.editContainerEl = refinedSection.createDiv({ cls: "claudian-instruction-edit-container" });
     this.editContainerEl.style.display = "none";
-    this.editTextarea = new import_obsidian9.TextAreaComponent(this.editContainerEl);
+    this.editTextarea = new import_obsidian14.TextAreaComponent(this.editContainerEl);
     this.editTextarea.inputEl.addClass("claudian-instruction-edit-textarea");
     this.editTextarea.inputEl.rows = 4;
     this.buttonsEl = contentEl.createDiv({ cls: "claudian-instruction-buttons" });
@@ -53482,6 +57868,20 @@ var InstructionModal = class extends import_obsidian9.Modal {
   }
 };
 
+// src/utils/canvas.ts
+function formatCanvasContext(context) {
+  if (context.nodeIds.length === 0) return "";
+  return `<canvas_selection path="${context.canvasPath}">
+${context.nodeIds.join(", ")}
+</canvas_selection>`;
+}
+function appendCanvasContext(prompt, context) {
+  const formatted = formatCanvasContext(context);
+  return formatted ? `${prompt}
+
+${formatted}` : prompt;
+}
+
 // src/utils/editor.ts
 function getEditorView(editor) {
   return editor.cm;
@@ -53560,7 +57960,7 @@ function appendMarkdownSnippet(existingPrompt, snippet) {
 var HINTS_TEXT = "Enter to select \xB7 Tab/Arrow keys to navigate \xB7 Esc to cancel";
 var HINTS_TEXT_IMMEDIATE = "Enter to select \xB7 Arrow keys to navigate \xB7 Esc to cancel";
 var InlineAskUserQuestion = class {
-  constructor(containerEl, input, resolve4, signal, config2) {
+  constructor(containerEl, input, resolve5, signal, config2) {
     this.resolved = false;
     this.questions = [];
     this.answers = /* @__PURE__ */ new Map();
@@ -53574,7 +57974,7 @@ var InlineAskUserQuestion = class {
     var _a3, _b, _c;
     this.containerEl = containerEl;
     this.input = input;
-    this.resolveCallback = resolve4;
+    this.resolveCallback = resolve5;
     this.signal = signal;
     this.config = {
       title: (_a3 = config2 == null ? void 0 : config2.title) != null ? _a3 : "Claude has a question",
@@ -53794,17 +58194,15 @@ var InlineAskUserQuestion = class {
     for (let idx = 0; idx < this.questions.length; idx++) {
       const q = this.questions[idx];
       const answerText = this.getAnswerText(idx);
-      const qLine = reviewEl.createDiv({ cls: "claudian-ask-review-q" });
-      qLine.createSpan({ text: "\u25CF ", cls: "claudian-ask-review-bullet" });
-      qLine.createSpan({ text: q.question, cls: "claudian-ask-review-q-text" });
-      qLine.addEventListener("click", () => this.switchTab(idx));
-      const aLine = reviewEl.createDiv({ cls: "claudian-ask-review-a" });
-      aLine.createSpan({ text: "  \u2192 ", cls: "claudian-ask-review-arrow" });
-      aLine.createSpan({
+      const pairEl = reviewEl.createDiv({ cls: "claudian-ask-review-pair" });
+      pairEl.createDiv({ text: `${idx + 1}.`, cls: "claudian-ask-review-num" });
+      const bodyEl = pairEl.createDiv({ cls: "claudian-ask-review-body" });
+      bodyEl.createDiv({ text: q.question, cls: "claudian-ask-review-q-text" });
+      bodyEl.createDiv({
         text: answerText || "Not answered",
         cls: answerText ? "claudian-ask-review-a-text" : "claudian-ask-review-empty"
       });
-      aLine.addEventListener("click", () => this.switchTab(idx));
+      pairEl.addEventListener("click", () => this.switchTab(idx));
     }
     this.contentArea.createDiv({
       text: "Ready to submit your answers?",
@@ -54084,9 +58482,10 @@ var InlineAskUserQuestion = class {
 };
 
 // src/features/chat/rendering/InlineExitPlanMode.ts
+var nodePath = __toESM(require("path"));
 var HINTS_TEXT2 = "Arrow keys to navigate \xB7 Enter to select \xB7 Esc to cancel";
 var InlineExitPlanMode = class {
-  constructor(containerEl, input, resolve4, signal, renderContent) {
+  constructor(containerEl, input, resolve5, signal, renderContent) {
     this.resolved = false;
     this.planContent = null;
     this.planReadError = null;
@@ -54096,7 +58495,7 @@ var InlineExitPlanMode = class {
     this.abortHandler = null;
     this.containerEl = containerEl;
     this.input = input;
-    this.resolveCallback = resolve4;
+    this.resolveCallback = resolve5;
     this.signal = signal;
     this.renderContent = renderContent;
     this.boundKeyDown = this.handleKeyDown.bind(this);
@@ -54190,9 +58589,14 @@ var InlineExitPlanMode = class {
   readPlanContent() {
     const planFilePath = this.input.planFilePath;
     if (!planFilePath) return null;
+    const resolved = nodePath.resolve(planFilePath).replace(/\\/g, "/");
+    if (!resolved.includes("/.claude/plans/")) {
+      this.planReadError = "path outside allowed plan directory";
+      return null;
+    }
     try {
-      const fs10 = require("fs");
-      const content = fs10.readFileSync(planFilePath, "utf-8");
+      const fs11 = require("fs");
+      const content = fs11.readFileSync(planFilePath, "utf-8");
       return content.trim() || null;
     } catch (err) {
       this.planReadError = err instanceof Error ? err.message : "unknown error";
@@ -54313,18 +58717,28 @@ var InputController = class {
     this.pendingApprovalInline = null;
     this.pendingAskInline = null;
     this.pendingExitPlanModeInline = null;
+    this.activeResumeDropdown = null;
+    this.inputContainerHideDepth = 0;
     this.deps = deps;
   }
   getAgentService() {
     var _a3, _b, _c;
     return (_c = (_b = (_a3 = this.deps).getAgentService) == null ? void 0 : _b.call(_a3)) != null ? _c : null;
   }
+  isResumeSessionAtStillNeeded(resumeUuid, previousMessages) {
+    for (let i2 = previousMessages.length - 1; i2 >= 0; i2--) {
+      if (previousMessages[i2].role === "assistant" && previousMessages[i2].sdkAssistantUuid === resumeUuid) {
+        return i2 === previousMessages.length - 1;
+      }
+    }
+    return false;
+  }
   // ============================================
   // Message Sending
   // ============================================
   async sendMessage(options) {
     var _a3, _b, _c, _d, _e;
-    const { plugin, state, renderer, streamController, selectionController, conversationController } = this.deps;
+    const { plugin, state, renderer, streamController, selectionController, canvasSelectionController, conversationController } = this.deps;
     if (state.isCreatingConversation || state.isSwitchingConversation) return;
     const inputEl = this.deps.getInputEl();
     const imageContextManager = this.deps.getImageContextManager();
@@ -54349,17 +58763,20 @@ var InputController = class {
     if (state.isStreaming) {
       const images2 = hasImages ? [...(imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) || []] : void 0;
       const editorContext2 = selectionController.getContext();
+      const canvasContext = canvasSelectionController.getContext();
       if (state.queuedMessage) {
         state.queuedMessage.content += "\n\n" + content;
         if (images2 && images2.length > 0) {
           state.queuedMessage.images = [...state.queuedMessage.images || [], ...images2];
         }
         state.queuedMessage.editorContext = editorContext2;
+        state.queuedMessage.canvasContext = canvasContext;
       } else {
         state.queuedMessage = {
           content,
           images: images2,
-          editorContext: editorContext2
+          editorContext: editorContext2,
+          canvasContext
         };
       }
       if (shouldUseInput) {
@@ -54407,6 +58824,11 @@ var InputController = class {
       }
       if (editorContext) {
         promptToSend = appendEditorContext(promptToSend, editorContext);
+      }
+      const canvasContextOverride = options == null ? void 0 : options.canvasContextOverride;
+      const canvasContext = canvasContextOverride !== void 0 ? canvasContextOverride : canvasSelectionController.getContext();
+      if (canvasContext) {
+        promptToSend = appendCanvasContext(promptToSend, canvasContext);
       }
       if (fileContextManager) {
         promptToSend = fileContextManager.transformContextMentions(promptToSend);
@@ -54465,10 +58887,11 @@ var InputController = class {
     }
     let wasInterrupted = false;
     let wasInvalidated = false;
+    let didEnqueueToSdk = false;
     if (this.deps.ensureServiceInitialized) {
       const ready = await this.deps.ensureServiceInitialized();
       if (!ready) {
-        new import_obsidian10.Notice("Failed to initialize agent service. Please try again.");
+        new import_obsidian15.Notice("Failed to initialize agent service. Please try again.");
         streamController.hideThinkingIndicator();
         state.isStreaming = false;
         return;
@@ -54476,12 +58899,34 @@ var InputController = class {
     }
     const agentService = this.getAgentService();
     if (!agentService) {
-      new import_obsidian10.Notice("Agent service not available. Please reload the plugin.");
+      new import_obsidian15.Notice("Agent service not available. Please reload the plugin.");
       return;
+    }
+    const conversationIdForSend = state.currentConversationId;
+    if (conversationIdForSend) {
+      const conv = plugin.getConversationSync(conversationIdForSend);
+      if (conv == null ? void 0 : conv.resumeSessionAt) {
+        if (this.isResumeSessionAtStillNeeded(conv.resumeSessionAt, state.messages.slice(0, -2))) {
+          agentService.setPendingResumeAt(conv.resumeSessionAt);
+        } else {
+          try {
+            await plugin.updateConversation(conversationIdForSend, { resumeSessionAt: void 0 });
+          } catch (e2) {
+          }
+        }
+      }
     }
     try {
       const previousMessages = state.messages.slice(0, -2);
       for await (const chunk of agentService.query(promptToSend, imagesForMessage, previousMessages, queryOptions)) {
+        if (chunk.type === "sdk_user_uuid") {
+          userMsg.sdkUserUuid = chunk.uuid;
+          continue;
+        }
+        if (chunk.type === "sdk_user_sent") {
+          didEnqueueToSdk = true;
+          continue;
+        }
         if (state.streamGeneration !== streamGeneration) {
           wasInvalidated = true;
           break;
@@ -54500,14 +58945,15 @@ var InputController = class {
     } finally {
       state.clearFlavorTimerInterval();
       if (!wasInvalidated && state.streamGeneration === streamGeneration) {
-        if (wasInterrupted && !state.pendingNewSessionPlan) {
+        const didCancelThisTurn = wasInterrupted || state.cancelRequested;
+        if (didCancelThisTurn && !state.pendingNewSessionPlan) {
           await streamController.appendText('\n\n<span class="claudian-interrupted">Interrupted</span> <span class="claudian-interrupted-hint">\xB7 What should Claudian do instead?</span>');
         }
         streamController.hideThinkingIndicator();
         state.isStreaming = false;
         state.cancelRequested = false;
         const hasCompactBoundary = (_e = assistantMsg.contentBlocks) == null ? void 0 : _e.some((b3) => b3.type === "compact_boundary");
-        if (!wasInterrupted && !hasCompactBoundary) {
+        if (!didCancelThisTurn && !hasCompactBoundary) {
           const durationSeconds = state.responseStartTime ? Math.floor((performance.now() - state.responseStartTime) / 1e3) : 0;
           if (durationSeconds > 0) {
             const flavorWord = COMPLETION_FLAVOR_WORDS[Math.floor(Math.random() * COMPLETION_FLAVOR_WORDS.length)];
@@ -54533,6 +58979,7 @@ var InputController = class {
         if (statusPanel == null ? void 0 : statusPanel.areAllSubagentsCompleted()) {
           statusPanel.clearTerminalSubagents();
         }
+        this.syncScrollToBottomAfterRenderUpdates();
         if (state.pendingNewSessionPlan && assistantMsg.toolCalls) {
           for (const tc of assistantMsg.toolCalls) {
             if (tc.name === TOOL_EXIT_PLAN_MODE && !tc.result) {
@@ -54542,7 +58989,10 @@ var InputController = class {
             }
           }
         }
-        await conversationController.save(true);
+        const saveExtras = didEnqueueToSdk ? { resumeSessionAt: void 0 } : void 0;
+        await conversationController.save(true, saveExtras);
+        const userMsgIndex = state.messages.indexOf(userMsg);
+        renderer.refreshActionButtons(userMsg, state.messages, userMsgIndex >= 0 ? userMsgIndex : void 0);
         const planContent = state.pendingNewSessionPlan;
         if (planContent) {
           state.pendingNewSessionPlan = null;
@@ -54599,7 +59049,7 @@ var InputController = class {
     var _a3;
     const { state } = this.deps;
     if (!state.queuedMessage) return;
-    const { content, images, editorContext } = state.queuedMessage;
+    const { content, images, editorContext, canvasContext } = state.queuedMessage;
     state.queuedMessage = null;
     this.updateQueueIndicator();
     const inputEl = this.deps.getInputEl();
@@ -54607,7 +59057,7 @@ var InputController = class {
     if (images && images.length > 0) {
       (_a3 = this.deps.getImageContextManager()) == null ? void 0 : _a3.setImages(images);
     }
-    setTimeout(() => this.sendMessage({ editorContextOverride: editorContext }), 0);
+    setTimeout(() => this.sendMessage({ editorContextOverride: editorContext, canvasContextOverride: canvasContext }), 0);
   }
   // ============================================
   // Title Generation
@@ -54677,6 +59127,19 @@ var InputController = class {
     (_a3 = this.getAgentService()) == null ? void 0 : _a3.cancel();
     streamController.hideThinkingIndicator();
   }
+  syncScrollToBottomAfterRenderUpdates() {
+    var _a3;
+    const { plugin, state } = this.deps;
+    if (!((_a3 = plugin.settings.enableAutoScroll) != null ? _a3 : true)) return;
+    if (!state.autoScrollEnabled) return;
+    requestAnimationFrame(() => {
+      var _a4;
+      if (!((_a4 = this.deps.plugin.settings.enableAutoScroll) != null ? _a4 : true)) return;
+      if (!this.deps.state.autoScrollEnabled) return;
+      const messagesEl = this.deps.getMessagesEl();
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    });
+  }
   // ============================================
   // Instruction Mode
   // ============================================
@@ -54697,7 +59160,7 @@ var InputController = class {
             const currentPrompt = plugin.settings.systemPrompt;
             plugin.settings.systemPrompt = appendMarkdownSnippet(currentPrompt, finalInstruction);
             await plugin.saveSettings();
-            new import_obsidian10.Notice("Instruction added to custom system prompt");
+            new import_obsidian15.Notice("Instruction added to custom system prompt");
             instructionModeManager == null ? void 0 : instructionModeManager.clear();
           },
           onReject: () => {
@@ -54714,7 +59177,7 @@ var InputController = class {
               if (result2.error === "Cancelled") {
                 return;
               }
-              new import_obsidian10.Notice(result2.error || "Failed to process response");
+              new import_obsidian15.Notice(result2.error || "Failed to process response");
               modal == null ? void 0 : modal.showError(result2.error || "Failed to process response");
               return;
             }
@@ -54740,7 +59203,7 @@ var InputController = class {
           instructionModeManager == null ? void 0 : instructionModeManager.clear();
           return;
         }
-        new import_obsidian10.Notice(result.error || "Failed to refine instruction");
+        new import_obsidian15.Notice(result.error || "Failed to refine instruction");
         modal.showError(result.error || "Failed to refine instruction");
         instructionModeManager == null ? void 0 : instructionModeManager.clear();
         return;
@@ -54750,13 +59213,13 @@ var InputController = class {
       } else if (result.refinedInstruction) {
         modal.showConfirmation(result.refinedInstruction);
       } else {
-        new import_obsidian10.Notice("No instruction received");
+        new import_obsidian15.Notice("No instruction received");
         modal.showError("No instruction received");
         instructionModeManager == null ? void 0 : instructionModeManager.clear();
       }
     } catch (error48) {
       const errorMsg = error48 instanceof Error ? error48.message : "Unknown error";
-      new import_obsidian10.Notice(`Error: ${errorMsg}`);
+      new import_obsidian15.Notice(`Error: ${errorMsg}`);
       modal == null ? void 0 : modal.showError(errorMsg);
       instructionModeManager == null ? void 0 : instructionModeManager.clear();
     }
@@ -54803,7 +59266,7 @@ var InputController = class {
     const selected = Object.values(result)[0];
     const decision = APPROVAL_OPTION_MAP[selected];
     if (!decision) {
-      new import_obsidian10.Notice(`Unexpected approval selection: "${selected}"`);
+      new import_obsidian15.Notice(`Unexpected approval selection: "${selected}"`);
       return "cancel";
     }
     return decision;
@@ -54826,16 +59289,15 @@ var InputController = class {
   }
   showInlineQuestion(parentEl, inputContainerEl, input, setPending, signal, config2) {
     this.deps.streamController.hideThinkingIndicator();
-    const previousDisplay = inputContainerEl.style.display;
-    inputContainerEl.style.display = "none";
-    return new Promise((resolve4, reject) => {
+    this.hideInputContainer(inputContainerEl);
+    return new Promise((resolve5, reject) => {
       const inline = new InlineAskUserQuestion(
         parentEl,
         input,
         (result) => {
           setPending(null);
-          inputContainerEl.style.display = previousDisplay;
-          resolve4(result);
+          this.restoreInputContainer(inputContainerEl);
+          resolve5(result);
         },
         signal,
         config2
@@ -54845,7 +59307,7 @@ var InputController = class {
         inline.render();
       } catch (err) {
         setPending(null);
-        inputContainerEl.style.display = previousDisplay;
+        this.restoreInputContainer(inputContainerEl);
         reject(err);
       }
     });
@@ -54858,17 +59320,17 @@ var InputController = class {
       throw new Error("Input container is detached from DOM");
     }
     streamController.hideThinkingIndicator();
-    inputContainerEl.style.display = "none";
+    this.hideInputContainer(inputContainerEl);
     const enrichedInput = state.planFilePath ? { ...input, planFilePath: state.planFilePath } : input;
     const renderContent = (el, markdown) => this.deps.renderer.renderContent(el, markdown);
-    return new Promise((resolve4, reject) => {
+    return new Promise((resolve5, reject) => {
       const inline = new InlineExitPlanMode(
         parentEl,
         enrichedInput,
         (decision) => {
           this.pendingExitPlanModeInline = null;
-          inputContainerEl.style.display = "";
-          resolve4(decision);
+          this.restoreInputContainer(inputContainerEl);
+          resolve5(decision);
         },
         signal,
         renderContent
@@ -54878,7 +59340,7 @@ var InputController = class {
         inline.render();
       } catch (err) {
         this.pendingExitPlanModeInline = null;
-        inputContainerEl.style.display = "";
+        this.restoreInputContainer(inputContainerEl);
         reject(err);
       }
     });
@@ -54896,6 +59358,24 @@ var InputController = class {
       this.pendingExitPlanModeInline.destroy();
       this.pendingExitPlanModeInline = null;
     }
+    this.resetInputContainerVisibility();
+  }
+  hideInputContainer(inputContainerEl) {
+    this.inputContainerHideDepth++;
+    inputContainerEl.style.display = "none";
+  }
+  restoreInputContainer(inputContainerEl) {
+    if (this.inputContainerHideDepth <= 0) return;
+    this.inputContainerHideDepth--;
+    if (this.inputContainerHideDepth === 0) {
+      inputContainerEl.style.display = "";
+    }
+  }
+  resetInputContainerVisibility() {
+    if (this.inputContainerHideDepth > 0) {
+      this.inputContainerHideDepth = 0;
+      this.deps.getInputContainerEl().style.display = "";
+    }
   }
   // ============================================
   // Built-in Commands
@@ -54909,20 +59389,78 @@ var InputController = class {
       case "add-dir": {
         const externalContextSelector = this.deps.getExternalContextSelector();
         if (!externalContextSelector) {
-          new import_obsidian10.Notice("External context selector not available.");
+          new import_obsidian15.Notice("External context selector not available.");
           return;
         }
         const result = externalContextSelector.addExternalContext(args);
         if (result.success) {
-          new import_obsidian10.Notice(`Added external context: ${result.normalizedPath}`);
+          new import_obsidian15.Notice(`Added external context: ${result.normalizedPath}`);
         } else {
-          new import_obsidian10.Notice(result.error);
+          new import_obsidian15.Notice(result.error);
         }
         break;
       }
+      case "resume":
+        this.showResumeDropdown();
+        break;
+      case "fork": {
+        if (!this.deps.onForkAll) {
+          new import_obsidian15.Notice("Fork not available.");
+          return;
+        }
+        await this.deps.onForkAll();
+        break;
+      }
       default:
-        new import_obsidian10.Notice(`Unknown command: ${action}`);
+        new import_obsidian15.Notice(`Unknown command: ${action}`);
     }
+  }
+  // ============================================
+  // Resume Session Dropdown
+  // ============================================
+  handleResumeKeydown(e2) {
+    var _a3;
+    if (!((_a3 = this.activeResumeDropdown) == null ? void 0 : _a3.isVisible())) return false;
+    return this.activeResumeDropdown.handleKeydown(e2);
+  }
+  isResumeDropdownVisible() {
+    var _a3, _b;
+    return (_b = (_a3 = this.activeResumeDropdown) == null ? void 0 : _a3.isVisible()) != null ? _b : false;
+  }
+  destroyResumeDropdown() {
+    if (this.activeResumeDropdown) {
+      this.activeResumeDropdown.destroy();
+      this.activeResumeDropdown = null;
+    }
+  }
+  showResumeDropdown() {
+    var _a3;
+    const { plugin, state, conversationController } = this.deps;
+    this.destroyResumeDropdown();
+    const conversations = plugin.getConversationList();
+    if (conversations.length === 0) {
+      new import_obsidian15.Notice("No conversations to resume");
+      return;
+    }
+    const openConversation = (_a3 = this.deps.openConversation) != null ? _a3 : ((id) => conversationController.switchTo(id));
+    this.activeResumeDropdown = new ResumeSessionDropdown(
+      this.deps.getInputContainerEl(),
+      this.deps.getInputEl(),
+      conversations,
+      state.currentConversationId,
+      {
+        onSelect: (id) => {
+          this.destroyResumeDropdown();
+          openConversation(id).catch((err) => {
+            const msg = err instanceof Error ? err.message : String(err);
+            new import_obsidian15.Notice(`Failed to open conversation: ${msg}`);
+          });
+        },
+        onDismiss: () => {
+          this.destroyResumeDropdown();
+        }
+      }
+    );
   }
 };
 
@@ -55053,7 +59591,7 @@ var NavigationController = class {
 };
 
 // src/features/chat/controllers/SelectionController.ts
-var import_obsidian11 = require("obsidian");
+var import_obsidian16 = require("obsidian");
 
 // src/shared/components/SelectionHighlight.ts
 var import_state = require("@codemirror/state");
@@ -55113,10 +59651,16 @@ function hideSelectionHighlight(editorView) {
 
 // src/features/chat/controllers/SelectionController.ts
 var SELECTION_POLL_INTERVAL = 250;
+var INPUT_HANDOFF_GRACE_MS = 1500;
 var SelectionController = class {
   constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange) {
     this.storedSelection = null;
+    this.inputHandoffGraceUntil = null;
     this.pollInterval = null;
+    this.inputPointerDownHandler = () => {
+      if (!this.storedSelection) return;
+      this.inputHandoffGraceUntil = Date.now() + INPUT_HANDOFF_GRACE_MS;
+    };
     this.app = app;
     this.indicatorEl = indicatorEl;
     this.inputEl = inputEl;
@@ -55125,6 +59669,7 @@ var SelectionController = class {
   }
   start() {
     if (this.pollInterval) return;
+    this.inputEl.addEventListener("pointerdown", this.inputPointerDownHandler);
     this.pollInterval = setInterval(() => this.poll(), SELECTION_POLL_INTERVAL);
   }
   stop() {
@@ -55132,6 +59677,7 @@ var SelectionController = class {
       clearInterval(this.pollInterval);
       this.pollInterval = null;
     }
+    this.inputEl.removeEventListener("pointerdown", this.inputPointerDownHandler);
     this.clear();
   }
   dispose() {
@@ -55142,13 +59688,14 @@ var SelectionController = class {
   // ============================================
   poll() {
     var _a3, _b, _c, _d;
-    const view = this.app.workspace.getActiveViewOfType(import_obsidian11.MarkdownView);
+    const view = this.app.workspace.getActiveViewOfType(import_obsidian16.MarkdownView);
     if (!view) return;
     const editor = view.editor;
     const editorView = getEditorView(editor);
     if (!editorView) return;
     const selectedText = editor.getSelection();
     if (selectedText.trim()) {
+      this.inputHandoffGraceUntil = null;
       const fromPos = editor.getCursor("from");
       const toPos = editor.getCursor("to");
       const from = editor.posToOffset(fromPos);
@@ -55167,7 +59714,16 @@ var SelectionController = class {
         this.storedSelection = { notePath, selectedText, lineCount, startLine, from, to, editorView };
         this.updateIndicator();
       }
-    } else if (document.activeElement !== this.inputEl) {
+    } else if (this.storedSelection) {
+      if (document.activeElement === this.inputEl) {
+        this.inputHandoffGraceUntil = null;
+        return;
+      }
+      const now = Date.now();
+      if (this.inputHandoffGraceUntil !== null && now <= this.inputHandoffGraceUntil) {
+        return;
+      }
+      this.inputHandoffGraceUntil = null;
       this.clearHighlight();
       this.storedSelection = null;
       this.updateIndicator();
@@ -55202,12 +59758,7 @@ var SelectionController = class {
   updateContextRowVisibility() {
     var _a3;
     if (!this.contextRowEl) return;
-    const hasSelection = this.storedSelection !== null;
-    const fileIndicator = this.contextRowEl.querySelector(".claudian-file-indicator");
-    const imagePreview = this.contextRowEl.querySelector(".claudian-image-preview");
-    const hasFileChips = (fileIndicator == null ? void 0 : fileIndicator.style.display) === "flex";
-    const hasImageChips = (imagePreview == null ? void 0 : imagePreview.style.display) === "flex";
-    this.contextRowEl.classList.toggle("has-content", hasSelection || hasFileChips || hasImageChips);
+    updateContextRowHasContent(this.contextRowEl);
     (_a3 = this.onVisibilityChange) == null ? void 0 : _a3.call(this);
   }
   // ============================================
@@ -55230,6 +59781,7 @@ var SelectionController = class {
   // Clear
   // ============================================
   clear() {
+    this.inputHandoffGraceUntil = null;
     this.clearHighlight();
     this.storedSelection = null;
     this.updateIndicator();
@@ -55313,6 +59865,752 @@ function diffFromToolInput(toolCall, filePath) {
   return void 0;
 }
 
+// src/utils/sdkSession.ts
+var import_fs3 = require("fs");
+var fs6 = __toESM(require("fs/promises"));
+var os6 = __toESM(require("os"));
+var path7 = __toESM(require("path"));
+
+// src/utils/interrupt.ts
+var INTERRUPT_MARKERS = /* @__PURE__ */ new Set([
+  "[Request interrupted by user]",
+  "[Request interrupted by user for tool use]"
+]);
+var COMPACTION_CANCELED_STDERR_PATTERN = /^<local-command-stderr>\s*Error:\s*Compaction canceled\.?\s*<\/local-command-stderr>$/i;
+function normalize2(text) {
+  return text.trim();
+}
+function isBracketInterruptText(text) {
+  return INTERRUPT_MARKERS.has(normalize2(text));
+}
+function isCompactionCanceledStderr(text) {
+  return COMPACTION_CANCELED_STDERR_PATTERN.test(normalize2(text));
+}
+function isInterruptSignalText(text) {
+  return isBracketInterruptText(text) || isCompactionCanceledStderr(text);
+}
+
+// src/utils/subagentJsonl.ts
+function extractFinalResultFromSubagentJsonl(content) {
+  var _a3;
+  const lines = content.split("\n").map((line) => line.trim()).filter((line) => line.length > 0 && line.startsWith("{"));
+  let lastAssistantText = null;
+  let lastResultText = null;
+  for (const line of lines) {
+    let raw;
+    try {
+      raw = JSON.parse(line);
+    } catch (e2) {
+      continue;
+    }
+    if (!raw || typeof raw !== "object") {
+      continue;
+    }
+    const record2 = raw;
+    if (typeof record2.result === "string" && record2.result.trim().length > 0) {
+      lastResultText = record2.result.trim();
+    }
+    if (((_a3 = record2.message) == null ? void 0 : _a3.role) !== "assistant" || !Array.isArray(record2.message.content)) {
+      continue;
+    }
+    for (const blockRaw of record2.message.content) {
+      if (!blockRaw || typeof blockRaw !== "object") {
+        continue;
+      }
+      const block = blockRaw;
+      if (block.type === "text" && typeof block.text === "string" && block.text.trim().length > 0) {
+        lastAssistantText = block.text.trim();
+      }
+    }
+  }
+  return lastAssistantText != null ? lastAssistantText : lastResultText;
+}
+
+// src/utils/sdkSession.ts
+function encodeVaultPathForSDK(vaultPath) {
+  const absolutePath = path7.resolve(vaultPath);
+  return absolutePath.replace(/[^a-zA-Z0-9]/g, "-");
+}
+function getSDKProjectsPath() {
+  return path7.join(os6.homedir(), ".claude", "projects");
+}
+function isValidAgentId(agentId) {
+  if (!agentId || agentId.length > 128) {
+    return false;
+  }
+  if (agentId.includes("..") || agentId.includes("/") || agentId.includes("\\")) {
+    return false;
+  }
+  return /^[a-zA-Z0-9_-]+$/.test(agentId);
+}
+function parseTimestampMs(raw) {
+  if (typeof raw !== "string") return Date.now();
+  const parsed = Date.parse(raw);
+  return Number.isNaN(parsed) ? Date.now() : parsed;
+}
+function parseSubagentEvents(entry) {
+  var _a3;
+  if (!entry || typeof entry !== "object") return [];
+  const record2 = entry;
+  const content = (_a3 = record2.message) == null ? void 0 : _a3.content;
+  if (!Array.isArray(content)) return [];
+  const timestamp = parseTimestampMs(record2.timestamp);
+  const events = [];
+  for (const blockRaw of content) {
+    if (!blockRaw || typeof blockRaw !== "object") continue;
+    const block = blockRaw;
+    if (block.type === "tool_use") {
+      if (typeof block.id !== "string" || typeof block.name !== "string") continue;
+      events.push({
+        type: "tool_use",
+        toolUseId: block.id,
+        toolName: block.name,
+        toolInput: block.input && typeof block.input === "object" ? block.input : {},
+        timestamp
+      });
+      continue;
+    }
+    if (block.type === "tool_result") {
+      if (typeof block.tool_use_id !== "string") continue;
+      const contentText = typeof block.content === "string" ? block.content : block.content === void 0 ? "" : JSON.stringify(block.content);
+      events.push({
+        type: "tool_result",
+        toolUseId: block.tool_use_id,
+        content: contentText,
+        isError: block.is_error === true,
+        timestamp
+      });
+    }
+  }
+  return events;
+}
+function buildToolCallsFromSubagentEvents(events) {
+  const toolsById = /* @__PURE__ */ new Map();
+  for (const event of events) {
+    const existing = toolsById.get(event.toolUseId);
+    if (event.type === "tool_use") {
+      if (!existing) {
+        toolsById.set(event.toolUseId, {
+          toolCall: {
+            id: event.toolUseId,
+            name: event.toolName,
+            input: { ...event.toolInput },
+            status: "running",
+            isExpanded: false
+          },
+          hasToolUse: true,
+          hasToolResult: false,
+          timestamp: event.timestamp
+        });
+      } else {
+        existing.toolCall.name = event.toolName;
+        existing.toolCall.input = { ...event.toolInput };
+        existing.hasToolUse = true;
+        existing.timestamp = event.timestamp;
+      }
+      continue;
+    }
+    if (!existing) {
+      toolsById.set(event.toolUseId, {
+        toolCall: {
+          id: event.toolUseId,
+          name: "Unknown",
+          input: {},
+          status: event.isError ? "error" : "completed",
+          result: event.content,
+          isExpanded: false
+        },
+        hasToolUse: false,
+        hasToolResult: true,
+        timestamp: event.timestamp
+      });
+      continue;
+    }
+    existing.toolCall.status = event.isError ? "error" : "completed";
+    existing.toolCall.result = event.content;
+    existing.hasToolResult = true;
+  }
+  return Array.from(toolsById.values()).filter((entry) => entry.hasToolUse).sort((a, b3) => a.timestamp - b3.timestamp).map((entry) => entry.toolCall);
+}
+function getSubagentSidecarPath(vaultPath, sessionId, agentId) {
+  if (!isValidSessionId(sessionId) || !isValidAgentId(agentId)) {
+    return null;
+  }
+  const encodedVault = encodeVaultPathForSDK(vaultPath);
+  return path7.join(
+    getSDKProjectsPath(),
+    encodedVault,
+    sessionId,
+    "subagents",
+    `agent-${agentId}.jsonl`
+  );
+}
+async function loadSubagentToolCalls(vaultPath, sessionId, agentId) {
+  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId);
+  if (!subagentFilePath) return [];
+  try {
+    if (!(0, import_fs3.existsSync)(subagentFilePath)) return [];
+    const content = await fs6.readFile(subagentFilePath, "utf-8");
+    const lines = content.split("\n").filter((line) => line.trim());
+    const events = [];
+    const seen = /* @__PURE__ */ new Set();
+    for (const line of lines) {
+      let raw;
+      try {
+        raw = JSON.parse(line);
+      } catch (e2) {
+        continue;
+      }
+      for (const event of parseSubagentEvents(raw)) {
+        const key = `${event.type}:${event.toolUseId}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        events.push(event);
+      }
+    }
+    if (events.length === 0) return [];
+    return buildToolCallsFromSubagentEvents(events);
+  } catch (e2) {
+    return [];
+  }
+}
+async function loadSubagentFinalResult(vaultPath, sessionId, agentId) {
+  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId);
+  if (!subagentFilePath) return null;
+  try {
+    if (!(0, import_fs3.existsSync)(subagentFilePath)) return null;
+    const content = await fs6.readFile(subagentFilePath, "utf-8");
+    return extractFinalResultFromSubagentJsonl(content);
+  } catch (e2) {
+    return null;
+  }
+}
+function isValidSessionId(sessionId) {
+  if (!sessionId || sessionId.length === 0 || sessionId.length > 128) {
+    return false;
+  }
+  if (sessionId.includes("..") || sessionId.includes("/") || sessionId.includes("\\")) {
+    return false;
+  }
+  return /^[a-zA-Z0-9_-]+$/.test(sessionId);
+}
+function getSDKSessionPath(vaultPath, sessionId) {
+  if (!isValidSessionId(sessionId)) {
+    throw new Error(`Invalid session ID: ${sessionId}`);
+  }
+  const projectsPath = getSDKProjectsPath();
+  const encodedVault = encodeVaultPathForSDK(vaultPath);
+  return path7.join(projectsPath, encodedVault, `${sessionId}.jsonl`);
+}
+function sdkSessionExists(vaultPath, sessionId) {
+  try {
+    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    return (0, import_fs3.existsSync)(sessionPath);
+  } catch (e2) {
+    return false;
+  }
+}
+async function deleteSDKSession(vaultPath, sessionId) {
+  try {
+    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    if (!(0, import_fs3.existsSync)(sessionPath)) return;
+    await fs6.unlink(sessionPath);
+  } catch (e2) {
+  }
+}
+async function readSDKSession(vaultPath, sessionId) {
+  try {
+    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    if (!(0, import_fs3.existsSync)(sessionPath)) {
+      return { messages: [], skippedLines: 0 };
+    }
+    const content = await fs6.readFile(sessionPath, "utf-8");
+    const lines = content.split("\n").filter((line) => line.trim());
+    const messages = [];
+    let skippedLines = 0;
+    for (const line of lines) {
+      try {
+        const msg = JSON.parse(line);
+        messages.push(msg);
+      } catch (e2) {
+        skippedLines++;
+      }
+    }
+    return { messages, skippedLines };
+  } catch (error48) {
+    const errorMsg = error48 instanceof Error ? error48.message : String(error48);
+    return { messages: [], skippedLines: 0, error: errorMsg };
+  }
+}
+function extractTextContent(content) {
+  if (!content) return "";
+  if (typeof content === "string") return content;
+  return content.filter(
+    (block) => block.type === "text" && typeof block.text === "string" && block.text.trim() !== "(no content)"
+  ).map((block) => block.text).join("\n");
+}
+function isRebuiltContextContent(textContent) {
+  if (!/^(User|Assistant):\s/.test(textContent)) return false;
+  return textContent.includes("\n\nUser:") || textContent.includes("\n\nAssistant:") || textContent.includes("\n\nA:");
+}
+function extractDisplayContent(textContent) {
+  return extractContentBeforeXmlContext(textContent);
+}
+function extractImages(content) {
+  if (!content || typeof content === "string") return void 0;
+  const imageBlocks = content.filter(
+    (block) => {
+      var _a3;
+      return block.type === "image" && !!((_a3 = block.source) == null ? void 0 : _a3.data);
+    }
+  );
+  if (imageBlocks.length === 0) return void 0;
+  return imageBlocks.map((block, index) => ({
+    id: `sdk-img-${Date.now()}-${index}`,
+    name: `image-${index + 1}`,
+    mediaType: block.source.media_type,
+    data: block.source.data,
+    size: Math.ceil(block.source.data.length * 0.75),
+    // Approximate original size from base64
+    source: "paste"
+  }));
+}
+function extractToolCalls(content, toolResults) {
+  var _a3;
+  if (!content || typeof content === "string") return void 0;
+  const toolUses = content.filter(
+    (block) => block.type === "tool_use" && !!block.id && !!block.name
+  );
+  if (toolUses.length === 0) return void 0;
+  const results = toolResults != null ? toolResults : /* @__PURE__ */ new Map();
+  if (!toolResults) {
+    for (const block of content) {
+      if (block.type === "tool_result" && block.tool_use_id) {
+        const resultContent = typeof block.content === "string" ? block.content : JSON.stringify(block.content);
+        results.set(block.tool_use_id, {
+          content: resultContent,
+          isError: (_a3 = block.is_error) != null ? _a3 : false
+        });
+      }
+    }
+  }
+  return toolUses.map((block) => {
+    var _a4;
+    const result = results.get(block.id);
+    return {
+      id: block.id,
+      name: block.name,
+      input: (_a4 = block.input) != null ? _a4 : {},
+      status: result ? result.isError ? "error" : "completed" : "completed",
+      result: result == null ? void 0 : result.content,
+      isExpanded: false
+    };
+  });
+}
+function mapContentBlocks(content) {
+  var _a3;
+  if (!content || typeof content === "string") return void 0;
+  const blocks = [];
+  for (const block of content) {
+    switch (block.type) {
+      case "text": {
+        const trimmed = (_a3 = block.text) == null ? void 0 : _a3.trim();
+        if (trimmed && trimmed !== "(no content)") {
+          blocks.push({ type: "text", content: trimmed });
+        }
+        break;
+      }
+      case "thinking":
+        if (block.thinking) {
+          blocks.push({ type: "thinking", content: block.thinking });
+        }
+        break;
+      case "tool_use":
+        if (block.id) {
+          blocks.push({ type: "tool_use", toolId: block.id });
+        }
+        break;
+    }
+  }
+  return blocks.length > 0 ? blocks : void 0;
+}
+function parseSDKMessageToChat(sdkMsg, toolResults) {
+  var _a3;
+  if (sdkMsg.type === "file-history-snapshot") return null;
+  if (sdkMsg.type === "system") {
+    if (sdkMsg.subtype === "compact_boundary") {
+      const timestamp2 = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
+      return {
+        id: sdkMsg.uuid || `compact-${timestamp2}-${Math.random().toString(36).slice(2)}`,
+        role: "assistant",
+        content: "",
+        timestamp: timestamp2,
+        contentBlocks: [{ type: "compact_boundary" }]
+      };
+    }
+    return null;
+  }
+  if (sdkMsg.type === "result") return null;
+  if (sdkMsg.type !== "user" && sdkMsg.type !== "assistant") return null;
+  const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
+  const textContent = extractTextContent(content);
+  const images = sdkMsg.type === "user" ? extractImages(content) : void 0;
+  const hasToolUse = Array.isArray(content) && content.some((b3) => b3.type === "tool_use");
+  const hasImages = images && images.length > 0;
+  if (!textContent && !hasToolUse && !hasImages && (!content || typeof content === "string")) return null;
+  const timestamp = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
+  const commandNameMatch = sdkMsg.type === "user" ? textContent.match(/<command-name>(\/[^<]+)<\/command-name>/) : null;
+  let displayContent;
+  if (sdkMsg.type === "user") {
+    displayContent = commandNameMatch ? commandNameMatch[1] : extractDisplayContent(textContent);
+  }
+  const isInterrupt = sdkMsg.type === "user" && isInterruptSignalText(textContent);
+  const isRebuiltContext = sdkMsg.type === "user" && isRebuiltContextContent(textContent);
+  return {
+    id: sdkMsg.uuid || `sdk-${timestamp}-${Math.random().toString(36).slice(2)}`,
+    role: sdkMsg.type,
+    content: textContent,
+    displayContent,
+    timestamp,
+    toolCalls: sdkMsg.type === "assistant" ? extractToolCalls(content, toolResults) : void 0,
+    contentBlocks: sdkMsg.type === "assistant" ? mapContentBlocks(content) : void 0,
+    images,
+    ...sdkMsg.type === "user" && sdkMsg.uuid && { sdkUserUuid: sdkMsg.uuid },
+    ...sdkMsg.type === "assistant" && sdkMsg.uuid && { sdkAssistantUuid: sdkMsg.uuid },
+    ...isInterrupt && { isInterrupt: true },
+    ...isRebuiltContext && { isRebuiltContext: true }
+  };
+}
+function collectToolResults(sdkMessages) {
+  var _a3, _b;
+  const results = /* @__PURE__ */ new Map();
+  for (const sdkMsg of sdkMessages) {
+    const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
+    if (!content || typeof content === "string") continue;
+    for (const block of content) {
+      if (block.type === "tool_result" && block.tool_use_id) {
+        const resultContent = typeof block.content === "string" ? block.content : JSON.stringify(block.content);
+        results.set(block.tool_use_id, {
+          content: resultContent,
+          isError: (_b = block.is_error) != null ? _b : false
+        });
+      }
+    }
+  }
+  return results;
+}
+function collectStructuredPatchResults(sdkMessages) {
+  var _a3;
+  const results = /* @__PURE__ */ new Map();
+  for (const sdkMsg of sdkMessages) {
+    if (sdkMsg.type !== "user" || !sdkMsg.toolUseResult) continue;
+    const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
+    if (!content || typeof content === "string") continue;
+    for (const block of content) {
+      if (block.type === "tool_result" && block.tool_use_id) {
+        results.set(block.tool_use_id, sdkMsg.toolUseResult);
+      }
+    }
+  }
+  return results;
+}
+function collectAsyncSubagentResults(sdkMessages) {
+  const results = /* @__PURE__ */ new Map();
+  for (const sdkMsg of sdkMessages) {
+    if (sdkMsg.type !== "queue-operation") continue;
+    if (sdkMsg.operation !== "enqueue") continue;
+    if (typeof sdkMsg.content !== "string") continue;
+    if (!sdkMsg.content.includes("<task-notification>")) continue;
+    const taskId = extractXmlTag(sdkMsg.content, "task-id");
+    const status = extractXmlTag(sdkMsg.content, "status");
+    const result = extractXmlTag(sdkMsg.content, "result");
+    if (!taskId || !result) continue;
+    results.set(taskId, {
+      result,
+      status: status != null ? status : "completed"
+    });
+  }
+  return results;
+}
+function extractXmlTag(content, tagName) {
+  const regex = new RegExp(`<${tagName}>\\s*([\\s\\S]*?)\\s*</${tagName}>`, "i");
+  const match = content.match(regex);
+  if (!match || !match[1]) return null;
+  const trimmed = match[1].trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+function isSystemInjectedMessage(sdkMsg) {
+  var _a3;
+  if (sdkMsg.type !== "user") return false;
+  if ("toolUseResult" in sdkMsg || "sourceToolUseID" in sdkMsg || !!sdkMsg.isMeta) {
+    return true;
+  }
+  const text = extractTextContent((_a3 = sdkMsg.message) == null ? void 0 : _a3.content);
+  if (!text) return false;
+  if (text.includes("<command-name>") && text.includes("<command-message>")) return false;
+  if (isCompactionCanceledStderr(text)) return false;
+  if (text.startsWith("This session is being continued from a previous conversation")) return true;
+  if (text.includes("<command-name>")) return true;
+  if (text.includes("<local-command-stdout>") || text.includes("<local-command-stderr>")) return true;
+  return false;
+}
+function filterActiveBranch(entries, resumeSessionAt) {
+  if (entries.length === 0) return [];
+  const seen = /* @__PURE__ */ new Set();
+  const deduped = [];
+  for (const entry of entries) {
+    if (entry.uuid) {
+      if (seen.has(entry.uuid)) continue;
+      seen.add(entry.uuid);
+    }
+    deduped.push(entry);
+  }
+  const byUuid = /* @__PURE__ */ new Map();
+  const childrenOf = /* @__PURE__ */ new Map();
+  for (const entry of deduped) {
+    if (entry.uuid) {
+      byUuid.set(entry.uuid, entry);
+    }
+    if (entry.parentUuid && entry.uuid) {
+      let children = childrenOf.get(entry.parentUuid);
+      if (!children) {
+        children = /* @__PURE__ */ new Set();
+        childrenOf.set(entry.parentUuid, children);
+      }
+      children.add(entry.uuid);
+    }
+  }
+  const hasBranching = [...childrenOf.values()].some((children) => children.size > 1);
+  let leaf;
+  if (hasBranching) {
+    for (let i2 = deduped.length - 1; i2 >= 0; i2--) {
+      const uuid3 = deduped[i2].uuid;
+      if (uuid3 && !childrenOf.has(uuid3)) {
+        leaf = deduped[i2];
+        break;
+      }
+    }
+    if (resumeSessionAt && (leaf == null ? void 0 : leaf.uuid) && byUuid.has(resumeSessionAt)) {
+      let current2 = leaf;
+      while (current2 == null ? void 0 : current2.uuid) {
+        if (current2.uuid === resumeSessionAt) {
+          leaf = current2;
+          break;
+        }
+        if (current2.parentUuid) {
+          current2 = byUuid.get(current2.parentUuid);
+        } else {
+          break;
+        }
+      }
+    }
+  } else if (resumeSessionAt) {
+    leaf = byUuid.get(resumeSessionAt);
+  } else {
+    return deduped;
+  }
+  if (!leaf || !leaf.uuid) return deduped;
+  const activeUuids = /* @__PURE__ */ new Set();
+  let current = leaf;
+  while (current == null ? void 0 : current.uuid) {
+    activeUuids.add(current.uuid);
+    if (current.parentUuid) {
+      current = byUuid.get(current.parentUuid);
+    } else {
+      break;
+    }
+  }
+  const n2 = deduped.length;
+  const prevIsActive = new Array(n2);
+  const nextIsActive = new Array(n2);
+  let lastPrevActive = false;
+  for (let i2 = 0; i2 < n2; i2++) {
+    if (deduped[i2].uuid) {
+      lastPrevActive = activeUuids.has(deduped[i2].uuid);
+    }
+    prevIsActive[i2] = lastPrevActive;
+  }
+  let lastNextActive = false;
+  for (let i2 = n2 - 1; i2 >= 0; i2--) {
+    if (deduped[i2].uuid) {
+      lastNextActive = activeUuids.has(deduped[i2].uuid);
+    }
+    nextIsActive[i2] = lastNextActive;
+  }
+  return deduped.filter((entry, idx) => {
+    if (entry.uuid) return activeUuids.has(entry.uuid);
+    return prevIsActive[idx] && nextIsActive[idx];
+  });
+}
+function mergeAssistantMessage(target, source) {
+  if (source.content) {
+    if (target.content) {
+      target.content = target.content + "\n\n" + source.content;
+    } else {
+      target.content = source.content;
+    }
+  }
+  if (source.toolCalls) {
+    target.toolCalls = [...target.toolCalls || [], ...source.toolCalls];
+  }
+  if (source.contentBlocks) {
+    target.contentBlocks = [...target.contentBlocks || [], ...source.contentBlocks];
+  }
+  if (source.sdkAssistantUuid) {
+    target.sdkAssistantUuid = source.sdkAssistantUuid;
+  }
+}
+function extractAgentIdFromToolUseResult(toolUseResult) {
+  var _a3, _b;
+  if (!toolUseResult || typeof toolUseResult !== "object") return null;
+  const record2 = toolUseResult;
+  const directAgentId = (_a3 = record2.agentId) != null ? _a3 : record2.agent_id;
+  if (typeof directAgentId === "string" && directAgentId.length > 0) {
+    return directAgentId;
+  }
+  const data = record2.data;
+  if (data && typeof data === "object") {
+    const nested = data;
+    const nestedAgentId = (_b = nested.agent_id) != null ? _b : nested.agentId;
+    if (typeof nestedAgentId === "string" && nestedAgentId.length > 0) {
+      return nestedAgentId;
+    }
+  }
+  return null;
+}
+function buildAsyncSubagentInfo(toolCall, toolUseResult, asyncResults) {
+  var _a3, _b, _c;
+  const agentId = extractAgentIdFromToolUseResult(toolUseResult);
+  if (!agentId) return null;
+  const queueResult = asyncResults.get(agentId);
+  const description = ((_a3 = toolCall.input) == null ? void 0 : _a3.description) || "Background task";
+  const prompt = ((_b = toolCall.input) == null ? void 0 : _b.prompt) || "";
+  const finalResult = (_c = queueResult == null ? void 0 : queueResult.result) != null ? _c : toolCall.result;
+  const isCompleted = (queueResult == null ? void 0 : queueResult.status) === "completed" || toolCall.status === "completed";
+  const isError = (queueResult == null ? void 0 : queueResult.status) === "error" || toolCall.status === "error";
+  const status = isError ? "error" : isCompleted ? "completed" : "running";
+  return {
+    id: toolCall.id,
+    description,
+    prompt,
+    mode: "async",
+    isExpanded: false,
+    status,
+    toolCalls: [],
+    asyncStatus: status === "running" ? "running" : status === "error" ? "error" : "completed",
+    agentId,
+    result: finalResult
+  };
+}
+async function loadSDKSessionMessages(vaultPath, sessionId, resumeSessionAt) {
+  var _a3, _b, _c, _d;
+  const result = await readSDKSession(vaultPath, sessionId);
+  if (result.error) {
+    return { messages: [], skippedLines: result.skippedLines, error: result.error };
+  }
+  const filteredEntries = filterActiveBranch(result.messages, resumeSessionAt);
+  const toolResults = collectToolResults(filteredEntries);
+  const toolUseResults = collectStructuredPatchResults(filteredEntries);
+  const asyncSubagentResults = collectAsyncSubagentResults(filteredEntries);
+  const chatMessages = [];
+  let pendingAssistant = null;
+  for (const sdkMsg of filteredEntries) {
+    if (isSystemInjectedMessage(sdkMsg)) continue;
+    if (sdkMsg.type === "assistant" && ((_a3 = sdkMsg.message) == null ? void 0 : _a3.model) === "<synthetic>") continue;
+    const chatMsg = parseSDKMessageToChat(sdkMsg, toolResults);
+    if (!chatMsg) continue;
+    if (chatMsg.role === "assistant") {
+      const isCompactBoundary = (_b = chatMsg.contentBlocks) == null ? void 0 : _b.some((b3) => b3.type === "compact_boundary");
+      if (isCompactBoundary) {
+        if (pendingAssistant) {
+          chatMessages.push(pendingAssistant);
+        }
+        chatMessages.push(chatMsg);
+        pendingAssistant = null;
+      } else if (pendingAssistant) {
+        mergeAssistantMessage(pendingAssistant, chatMsg);
+      } else {
+        pendingAssistant = chatMsg;
+      }
+    } else {
+      if (pendingAssistant) {
+        chatMessages.push(pendingAssistant);
+        pendingAssistant = null;
+      }
+      chatMessages.push(chatMsg);
+    }
+  }
+  if (pendingAssistant) {
+    chatMessages.push(pendingAssistant);
+  }
+  if (toolUseResults.size > 0) {
+    for (const msg of chatMessages) {
+      if (msg.role !== "assistant" || !msg.toolCalls) continue;
+      for (const toolCall of msg.toolCalls) {
+        const toolUseResult = toolUseResults.get(toolCall.id);
+        if (!toolUseResult) continue;
+        if (!toolCall.diffData) {
+          toolCall.diffData = extractDiffData(toolUseResult, toolCall);
+        }
+        if (toolCall.name === TOOL_ASK_USER_QUESTION) {
+          const answers = (_c = extractResolvedAnswers(toolUseResult)) != null ? _c : extractResolvedAnswersFromResultText(toolCall.result);
+          if (answers) toolCall.resolvedAnswers = answers;
+        }
+      }
+    }
+  }
+  for (const msg of chatMessages) {
+    if (msg.role !== "assistant" || !msg.toolCalls) continue;
+    for (const toolCall of msg.toolCalls) {
+      if (toolCall.name !== TOOL_ASK_USER_QUESTION || toolCall.resolvedAnswers) continue;
+      const answers = extractResolvedAnswersFromResultText(toolCall.result);
+      if (answers) toolCall.resolvedAnswers = answers;
+    }
+  }
+  if (toolUseResults.size > 0 || asyncSubagentResults.size > 0) {
+    const sidecarLoads = [];
+    for (const msg of chatMessages) {
+      if (msg.role !== "assistant" || !msg.toolCalls) continue;
+      for (const toolCall of msg.toolCalls) {
+        if (toolCall.name !== TOOL_TASK) continue;
+        if (toolCall.subagent) continue;
+        if (((_d = toolCall.input) == null ? void 0 : _d.run_in_background) !== true) continue;
+        const toolUseResult = toolUseResults.get(toolCall.id);
+        const subagent = buildAsyncSubagentInfo(
+          toolCall,
+          toolUseResult,
+          asyncSubagentResults
+        );
+        if (subagent) {
+          toolCall.subagent = subagent;
+          if (subagent.result !== void 0) {
+            toolCall.result = subagent.result;
+          }
+          if (subagent.status === "completed") toolCall.status = "completed";
+          else if (subagent.status === "error") toolCall.status = "error";
+          if (subagent.agentId && isValidAgentId(subagent.agentId)) {
+            sidecarLoads.push({
+              subagent,
+              promise: loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId)
+            });
+          }
+        }
+      }
+    }
+    if (sidecarLoads.length > 0) {
+      const results = await Promise.all(sidecarLoads.map((s) => s.promise));
+      for (let i2 = 0; i2 < sidecarLoads.length; i2++) {
+        const toolCalls = results[i2];
+        if (toolCalls.length > 0) {
+          sidecarLoads[i2].subagent.toolCalls = toolCalls;
+        }
+      }
+    }
+  }
+  chatMessages.sort((a, b3) => a.timestamp - b3.timestamp);
+  return { messages: chatMessages, skippedLines: result.skippedLines };
+}
+
 // src/features/chat/controllers/StreamController.ts
 var _StreamController = class _StreamController {
   constructor(deps) {
@@ -55363,7 +60661,7 @@ var _StreamController = class _StreamController {
         break;
       }
       case "tool_result": {
-        this.handleToolResult(chunk, msg);
+        await this.handleToolResult(chunk, msg);
         break;
       }
       case "blocked":
@@ -55392,6 +60690,12 @@ var _StreamController = class _StreamController {
         this.renderCompactBoundary();
         break;
       }
+      case "sdk_assistant_uuid":
+        msg.sdkAssistantUuid = chunk.uuid;
+        break;
+      case "sdk_user_uuid":
+      case "sdk_user_sent":
+        break;
       case "usage": {
         const currentSessionId = (_d = (_c = (_b = (_a3 = this.deps).getAgentService) == null ? void 0 : _b.call(_a3)) == null ? void 0 : _c.getSessionId()) != null ? _d : null;
         const chunkSessionId = (_e = chunk.sessionId) != null ? _e : null;
@@ -55417,7 +60721,7 @@ var _StreamController = class _StreamController {
    * Tools are rendered when flushPendingTools is called (on next content type or tool_result).
    */
   handleRegularToolUse(chunk, msg) {
-    var _a3, _b;
+    var _a3, _b, _c;
     const { state } = this.deps;
     const existingToolCall = (_a3 = msg.toolCalls) == null ? void 0 : _a3.find((tc) => tc.id === chunk.id);
     if (existingToolCall) {
@@ -55435,9 +60739,13 @@ var _StreamController = class _StreamController {
         }
         const toolEl = state.toolCallElements.get(chunk.id);
         if (toolEl) {
-          const labelEl = (_b = toolEl.querySelector(".claudian-tool-label")) != null ? _b : toolEl.querySelector(".claudian-write-edit-label");
-          if (labelEl) {
-            labelEl.setText(getToolLabel(existingToolCall.name, existingToolCall.input));
+          const nameEl = (_b = toolEl.querySelector(".claudian-tool-name")) != null ? _b : toolEl.querySelector(".claudian-write-edit-name");
+          if (nameEl) {
+            nameEl.setText(getToolName(existingToolCall.name, existingToolCall.input));
+          }
+          const summaryEl = (_c = toolEl.querySelector(".claudian-tool-summary")) != null ? _c : toolEl.querySelector(".claudian-write-edit-summary");
+          if (summaryEl) {
+            summaryEl.setText(getToolSummary(existingToolCall.name, existingToolCall.input));
           }
         }
       }
@@ -55509,11 +60817,11 @@ var _StreamController = class _StreamController {
     }
     state.pendingTools.delete(toolId);
   }
-  handleToolResult(chunk, msg) {
-    var _a3;
+  async handleToolResult(chunk, msg) {
+    var _a3, _b;
     const { state, subagentManager } = this.deps;
     if (subagentManager.hasPendingTask(chunk.id)) {
-      this.renderPendingTaskViaManager(chunk.id, msg);
+      this.renderPendingTaskFromTaskResultViaManager(chunk, msg);
     }
     const subagentState = subagentManager.getSyncSubagent(chunk.id);
     if (subagentState) {
@@ -55524,7 +60832,7 @@ var _StreamController = class _StreamController {
       this.showThinkingIndicator();
       return;
     }
-    if (this.handleAgentOutputToolResult(chunk)) {
+    if (await this.handleAgentOutputToolResult(chunk)) {
       this.showThinkingIndicator();
       return;
     }
@@ -55542,8 +60850,8 @@ var _StreamController = class _StreamController {
         existingToolCall.status = "completed";
       }
       existingToolCall.result = chunk.content;
-      if (existingToolCall.name === TOOL_ASK_USER_QUESTION && chunk.toolUseResult) {
-        const answers = extractResolvedAnswers(chunk.toolUseResult);
+      if (existingToolCall.name === TOOL_ASK_USER_QUESTION) {
+        const answers = (_b = extractResolvedAnswers(chunk.toolUseResult)) != null ? _b : extractResolvedAnswersFromResultText(chunk.content);
         if (answers) existingToolCall.resolvedAnswers = answers;
       }
       const writeEditState = state.writeEditStates.get(chunk.id);
@@ -55623,6 +60931,7 @@ var _StreamController = class _StreamController {
   /** Delegates Task tool_use to SubagentManager and updates message based on result. */
   handleTaskToolUseViaManager(chunk, msg) {
     const { state, subagentManager } = this.deps;
+    this.ensureTaskToolCall(msg, chunk.id, chunk.input);
     const result = subagentManager.handleTaskToolUse(chunk.id, chunk.input, state.currentContentEl);
     switch (result.action) {
       case "created_sync":
@@ -55650,13 +60959,36 @@ var _StreamController = class _StreamController {
       this.recordSubagentInMessage(msg, result.info, toolId, "async");
     }
   }
-  recordSubagentInMessage(msg, info, toolId, mode) {
-    msg.subagents = msg.subagents || [];
-    msg.subagents.push(info);
-    msg.contentBlocks = msg.contentBlocks || [];
-    msg.contentBlocks.push(
-      mode ? { type: "subagent", subagentId: toolId, mode } : { type: "subagent", subagentId: toolId }
+  /** Resolves a pending Task when its own tool_result arrives. */
+  renderPendingTaskFromTaskResultViaManager(chunk, msg) {
+    const result = this.deps.subagentManager.renderPendingTaskFromTaskResult(
+      chunk.id,
+      chunk.content,
+      chunk.isError || false,
+      this.deps.state.currentContentEl,
+      chunk.toolUseResult
     );
+    if (!result) return;
+    if (result.mode === "sync") {
+      this.recordSubagentInMessage(msg, result.subagentState.info, chunk.id);
+    } else {
+      this.recordSubagentInMessage(msg, result.info, chunk.id, "async");
+    }
+  }
+  recordSubagentInMessage(msg, info, toolId, mode) {
+    const taskToolCall = this.ensureTaskToolCall(msg, toolId);
+    this.applySubagentToTaskToolCall(taskToolCall, info);
+    msg.contentBlocks = msg.contentBlocks || [];
+    const existingBlock = msg.contentBlocks.find(
+      (block) => block.type === "subagent" && block.subagentId === toolId
+    );
+    if (existingBlock && mode && existingBlock.type === "subagent") {
+      existingBlock.mode = mode;
+    } else if (!existingBlock) {
+      msg.contentBlocks.push(
+        mode ? { type: "subagent", subagentId: toolId, mode } : { type: "subagent", subagentId: toolId }
+      );
+    }
   }
   async handleSubagentChunk(chunk, msg) {
     if (!("parentToolUseId" in chunk) || !chunk.parentToolUseId) {
@@ -55703,11 +61035,22 @@ var _StreamController = class _StreamController {
   finalizeSubagent(chunk, msg) {
     var _a3;
     const isError = chunk.isError || false;
-    this.deps.subagentManager.finalizeSyncSubagent(chunk.id, chunk.content, isError);
-    const subagentInfo = (_a3 = msg.subagents) == null ? void 0 : _a3.find((s) => s.id === chunk.id);
-    if (subagentInfo) {
-      subagentInfo.status = isError ? "error" : "completed";
-      subagentInfo.result = chunk.content;
+    const finalized = this.deps.subagentManager.finalizeSyncSubagent(
+      chunk.id,
+      chunk.content,
+      isError,
+      chunk.toolUseResult
+    );
+    const extractedResult = (_a3 = finalized == null ? void 0 : finalized.result) != null ? _a3 : chunk.content;
+    const taskToolCall = this.ensureTaskToolCall(msg, chunk.id);
+    taskToolCall.status = isError ? "error" : "completed";
+    taskToolCall.result = extractedResult;
+    if (taskToolCall.subagent) {
+      taskToolCall.subagent.status = isError ? "error" : "completed";
+      taskToolCall.subagent.result = extractedResult;
+    }
+    if (finalized) {
+      this.applySubagentToTaskToolCall(taskToolCall, finalized);
     }
     this.showThinkingIndicator();
   }
@@ -55731,19 +61074,103 @@ var _StreamController = class _StreamController {
     if (!subagentManager.isPendingAsyncTask(chunk.id)) {
       return false;
     }
-    subagentManager.handleTaskToolResult(chunk.id, chunk.content, chunk.isError);
+    subagentManager.handleTaskToolResult(chunk.id, chunk.content, chunk.isError, chunk.toolUseResult);
     return true;
   }
   /** Handles TaskOutput result to finalize async subagent. */
-  handleAgentOutputToolResult(chunk) {
+  async handleAgentOutputToolResult(chunk) {
     const { subagentManager } = this.deps;
     const isLinked = subagentManager.isLinkedAgentOutputTool(chunk.id);
     const handled = subagentManager.handleAgentOutputToolResult(
       chunk.id,
       chunk.content,
-      chunk.isError || false
+      chunk.isError || false,
+      chunk.toolUseResult
     );
+    await this.hydrateAsyncSubagentToolCalls(handled);
     return isLinked || handled !== void 0;
+  }
+  async hydrateAsyncSubagentToolCalls(subagent) {
+    var _a3, _b, _c, _d;
+    if (!subagent) return;
+    if (subagent.mode !== "async") return;
+    if (!subagent.agentId) return;
+    const asyncStatus = (_a3 = subagent.asyncStatus) != null ? _a3 : subagent.status;
+    if (asyncStatus !== "completed" && asyncStatus !== "error") return;
+    const sessionId = (_d = (_c = (_b = this.deps).getAgentService) == null ? void 0 : _c.call(_b)) == null ? void 0 : _d.getSessionId();
+    if (!sessionId) return;
+    const vaultPath = getVaultPath(this.deps.plugin.app);
+    if (!vaultPath) return;
+    const { hasHydrated, finalResultHydrated } = await this.tryHydrateAsyncSubagent(
+      subagent,
+      vaultPath,
+      sessionId,
+      true
+    );
+    if (hasHydrated) {
+      this.deps.subagentManager.refreshAsyncSubagent(subagent);
+    }
+    if (!finalResultHydrated) {
+      this.scheduleAsyncSubagentResultRetry(subagent, vaultPath, sessionId, 0);
+    }
+  }
+  async tryHydrateAsyncSubagent(subagent, vaultPath, sessionId, hydrateToolCalls) {
+    var _a3;
+    let hasHydrated = false;
+    let finalResultHydrated = false;
+    if (hydrateToolCalls && !((_a3 = subagent.toolCalls) == null ? void 0 : _a3.length)) {
+      const recoveredToolCalls = await loadSubagentToolCalls(
+        vaultPath,
+        sessionId,
+        subagent.agentId || ""
+      );
+      if (recoveredToolCalls.length > 0) {
+        subagent.toolCalls = recoveredToolCalls.map((toolCall) => ({
+          ...toolCall,
+          input: { ...toolCall.input }
+        }));
+        hasHydrated = true;
+      }
+    }
+    const recoveredFinalResult = await loadSubagentFinalResult(
+      vaultPath,
+      sessionId,
+      subagent.agentId || ""
+    );
+    if (recoveredFinalResult && recoveredFinalResult.trim().length > 0) {
+      finalResultHydrated = true;
+      if (recoveredFinalResult !== subagent.result) {
+        subagent.result = recoveredFinalResult;
+        hasHydrated = true;
+      }
+    }
+    return { hasHydrated, finalResultHydrated };
+  }
+  scheduleAsyncSubagentResultRetry(subagent, vaultPath, sessionId, attempt) {
+    if (!subagent.agentId) return;
+    if (attempt >= _StreamController.ASYNC_SUBAGENT_RESULT_RETRY_DELAYS_MS.length) return;
+    const delay = _StreamController.ASYNC_SUBAGENT_RESULT_RETRY_DELAYS_MS[attempt];
+    setTimeout(() => {
+      void this.retryAsyncSubagentResult(subagent, vaultPath, sessionId, attempt);
+    }, delay);
+  }
+  async retryAsyncSubagentResult(subagent, vaultPath, sessionId, attempt) {
+    var _a3;
+    if (!subagent.agentId) return;
+    const asyncStatus = (_a3 = subagent.asyncStatus) != null ? _a3 : subagent.status;
+    if (asyncStatus !== "completed" && asyncStatus !== "error") return;
+    const { hasHydrated, finalResultHydrated } = await this.tryHydrateAsyncSubagent(
+      subagent,
+      vaultPath,
+      sessionId,
+      false
+    );
+    if (hasHydrated) {
+      this.deps.subagentManager.refreshAsyncSubagent(subagent);
+    }
+    if (!finalResultHydrated) {
+      this.scheduleAsyncSubagentResultRetry(subagent, vaultPath, sessionId, attempt + 1);
+    }
   }
   /** Callback from SubagentManager when async state changes. Updates messages only (DOM handled by manager). */
   onAsyncSubagentStateChange(subagent) {
@@ -55754,14 +61181,50 @@ var _StreamController = class _StreamController {
     const { state } = this.deps;
     for (let i2 = state.messages.length - 1; i2 >= 0; i2--) {
       const msg = state.messages[i2];
-      if (msg.role === "assistant" && msg.subagents) {
-        const idx = msg.subagents.findIndex((s) => s.id === subagent.id);
-        if (idx !== -1) {
-          msg.subagents[idx] = subagent;
-          return;
-        }
+      if (msg.role !== "assistant") continue;
+      if (this.linkTaskToolCallToSubagent(msg, subagent)) {
+        return;
       }
     }
+  }
+  ensureTaskToolCall(msg, toolId, input) {
+    msg.toolCalls = msg.toolCalls || [];
+    const existing = msg.toolCalls.find(
+      (tc) => tc.id === toolId && tc.name === TOOL_TASK
+    );
+    if (existing) {
+      if (input && Object.keys(input).length > 0) {
+        existing.input = { ...existing.input, ...input };
+      }
+      return existing;
+    }
+    const taskToolCall = {
+      id: toolId,
+      name: TOOL_TASK,
+      input: input ? { ...input } : {},
+      status: "running",
+      isExpanded: false
+    };
+    msg.toolCalls.push(taskToolCall);
+    return taskToolCall;
+  }
+  applySubagentToTaskToolCall(taskToolCall, subagent) {
+    taskToolCall.subagent = subagent;
+    if (subagent.status === "completed") taskToolCall.status = "completed";
+    else if (subagent.status === "error") taskToolCall.status = "error";
+    else taskToolCall.status = "running";
+    if (subagent.result !== void 0) {
+      taskToolCall.result = subagent.result;
+    }
+  }
+  linkTaskToolCallToSubagent(msg, subagent) {
+    var _a3;
+    const taskToolCall = (_a3 = msg.toolCalls) == null ? void 0 : _a3.find(
+      (tc) => tc.id === subagent.id && tc.name === TOOL_TASK
+    );
+    if (!taskToolCall) return false;
+    this.applySubagentToTaskToolCall(taskToolCall, subagent);
+    return true;
   }
   /**
    * Schedules showing the thinking indicator after a delay.
@@ -55861,12 +61324,53 @@ var _StreamController = class _StreamController {
     state.responseStartTime = null;
   }
 };
+_StreamController.ASYNC_SUBAGENT_RESULT_RETRY_DELAYS_MS = [200, 600, 1500];
 // ============================================
 // Thinking Indicator
 // ============================================
 /** Debounce delay before showing thinking indicator (ms). */
 _StreamController.THINKING_INDICATOR_DELAY = 400;
 var StreamController = _StreamController;
+
+// src/features/chat/services/BangBashService.ts
+var import_child_process3 = require("child_process");
+var TIMEOUT_MS = 3e4;
+var MAX_BUFFER = 1024 * 1024;
+var BangBashService = class {
+  constructor(cwd, enhancedPath) {
+    this.cwd = cwd;
+    this.enhancedPath = enhancedPath;
+  }
+  execute(command) {
+    return new Promise((resolve5) => {
+      (0, import_child_process3.exec)(command, {
+        cwd: this.cwd,
+        env: { ...process.env, PATH: this.enhancedPath },
+        timeout: TIMEOUT_MS,
+        maxBuffer: MAX_BUFFER,
+        shell: process.platform === "win32" ? "cmd.exe" : "/bin/bash"
+      }, (error48, stdout, stderr) => {
+        if (error48 && "killed" in error48 && error48.killed) {
+          const isMaxBuffer = "code" in error48 && error48.code === "ERR_CHILD_PROCESS_STDIO_MAXBUFFER";
+          resolve5({
+            command,
+            stdout: stdout != null ? stdout : "",
+            stderr: stderr != null ? stderr : "",
+            exitCode: 124,
+            error: isMaxBuffer ? "Output exceeded maximum buffer size (1MB)" : `Command timed out after ${TIMEOUT_MS / 1e3}s`
+          });
+          return;
+        }
+        resolve5({
+          command,
+          stdout: stdout != null ? stdout : "",
+          stderr: stderr != null ? stderr : "",
+          exitCode: typeof (error48 == null ? void 0 : error48.code) === "number" ? error48.code : error48 ? 1 : 0
+        });
+      });
+    });
+  }
+};
 
 // src/core/prompts/instructionRefine.ts
 function buildRefineSystemPrompt(existingInstructions) {
@@ -56052,7 +61556,10 @@ var InstructionRefineService = class {
 };
 
 // src/features/chat/services/SubagentManager.ts
-var SubagentManager = class {
+var import_fs4 = require("fs");
+var import_os2 = require("os");
+var import_path10 = require("path");
+var _SubagentManager = class _SubagentManager {
   constructor(onStateChange) {
     this.syncSubagents = /* @__PURE__ */ new Map();
     this.pendingTasks = /* @__PURE__ */ new Map();
@@ -56099,8 +61606,7 @@ var SubagentManager = class {
       if (currentContentEl) {
         pending.parentEl = currentContentEl;
       }
-      const runInBackground2 = pending.toolCall.input.run_in_background;
-      if (runInBackground2 !== void 0) {
+      if (this.resolveTaskMode(pending.toolCall.input)) {
         const result = this.renderPendingTask(taskToolId, currentContentEl);
         if (result) {
           return result.mode === "sync" ? { action: "created_sync", subagentState: result.subagentState } : { action: "created_async", info: result.info, domState: result.domState };
@@ -56109,37 +61615,33 @@ var SubagentManager = class {
       return { action: "buffered" };
     }
     if (!currentContentEl) {
-      const toolCall2 = {
+      const toolCall = {
         id: taskToolId,
         name: "Task",
         input: taskInput || {},
         status: "running",
         isExpanded: false
       };
-      this.pendingTasks.set(taskToolId, { toolCall: toolCall2, parentEl: null });
+      this.pendingTasks.set(taskToolId, { toolCall, parentEl: null });
       return { action: "buffered" };
     }
-    const runInBackground = taskInput == null ? void 0 : taskInput.run_in_background;
-    if (runInBackground !== void 0) {
-      this._spawnedThisStream++;
-      if (runInBackground === true) {
-        return this.createAsyncTask(taskToolId, taskInput, currentContentEl);
-      } else {
-        return this.createSyncTask(taskToolId, taskInput, currentContentEl);
-      }
+    const mode = this.resolveTaskMode(taskInput);
+    if (!mode) {
+      const toolCall = {
+        id: taskToolId,
+        name: "Task",
+        input: taskInput || {},
+        status: "running",
+        isExpanded: false
+      };
+      this.pendingTasks.set(taskToolId, { toolCall, parentEl: currentContentEl });
+      return { action: "buffered" };
     }
-    const toolCall = {
-      id: taskToolId,
-      name: "Task",
-      input: taskInput || {},
-      status: "running",
-      isExpanded: false
-    };
-    this.pendingTasks.set(taskToolId, {
-      toolCall,
-      parentEl: currentContentEl
-    });
-    return { action: "buffered" };
+    this._spawnedThisStream++;
+    if (mode === "async") {
+      return this.createAsyncTask(taskToolId, taskInput, currentContentEl);
+    }
+    return this.createSyncTask(taskToolId, taskInput, currentContentEl);
   }
   // ============================================
   // Pending Task Resolution
@@ -56177,6 +61679,38 @@ var SubagentManager = class {
     }
     return null;
   }
+  /**
+   * Resolves a pending Task when its own tool_result arrives.
+   * If mode is still unknown, infer async from task result shape (agent_id/agentId),
+   * otherwise fall back to sync so it never remains pending indefinitely.
+   */
+  renderPendingTaskFromTaskResult(toolId, taskResult, isError, parentElOverride, taskToolUseResult) {
+    const pending = this.pendingTasks.get(toolId);
+    if (!pending) return null;
+    const input = pending.toolCall.input;
+    const targetEl = parentElOverride != null ? parentElOverride : pending.parentEl;
+    if (!targetEl) return null;
+    const explicitMode = this.resolveTaskMode(input);
+    const inferredMode = explicitMode != null ? explicitMode : this.inferModeFromTaskResult(taskResult, isError, taskToolUseResult);
+    this.pendingTasks.delete(toolId);
+    try {
+      if (inferredMode === "async") {
+        const result = this.createAsyncTask(pending.toolCall.id, input, targetEl);
+        if (result.action === "created_async") {
+          this._spawnedThisStream++;
+          return { mode: "async", info: result.info, domState: result.domState };
+        }
+      } else {
+        const result = this.createSyncTask(pending.toolCall.id, input, targetEl);
+        if (result.action === "created_sync") {
+          this._spawnedThisStream++;
+          return { mode: "sync", subagentState: result.subagentState };
+        }
+      }
+    } catch (e2) {
+    }
+    return null;
+  }
   // ============================================
   // Sync Subagent Operations
   // ============================================
@@ -56193,27 +61727,26 @@ var SubagentManager = class {
     if (!subagentState) return;
     updateSubagentToolResult(subagentState, toolId, toolCall);
   }
-  finalizeSyncSubagent(toolId, result, isError) {
+  finalizeSyncSubagent(toolId, result, isError, toolUseResult) {
     const subagentState = this.syncSubagents.get(toolId);
     if (!subagentState) return null;
-    finalizeSubagentBlock(subagentState, result, isError);
+    const extractedResult = this.extractAgentResult(result, "", toolUseResult);
+    finalizeSubagentBlock(subagentState, extractedResult, isError);
     this.syncSubagents.delete(toolId);
     return subagentState.info;
   }
   // ============================================
   // Async Subagent Lifecycle
   // ============================================
-  isAsyncTask(taskInput) {
-    return taskInput.run_in_background === true;
-  }
-  handleTaskToolResult(taskToolId, result, isError) {
+  handleTaskToolResult(taskToolId, result, isError, toolUseResult) {
+    var _a3;
     const subagent = this.pendingAsyncSubagents.get(taskToolId);
     if (!subagent) return;
     if (isError) {
       this.transitionToError(subagent, taskToolId, result || "Task failed to start");
       return;
     }
-    const agentId = this.parseAgentId(result);
+    const agentId = (_a3 = this.extractAgentIdFromTaskToolUseResult(toolUseResult)) != null ? _a3 : this.parseAgentId(result);
     if (!agentId) {
       const truncatedResult = result.length > 100 ? result.substring(0, 100) + "..." : result;
       this.transitionToError(subagent, taskToolId, `Failed to parse agent_id. Result: ${truncatedResult}`);
@@ -56236,7 +61769,7 @@ var SubagentManager = class {
     subagent.outputToolId = toolCall.id;
     this.outputToolIdToAgentId.set(toolCall.id, agentId);
   }
-  handleAgentOutputToolResult(toolId, result, isError) {
+  handleAgentOutputToolResult(toolId, result, isError, toolUseResult) {
     let agentId = this.outputToolIdToAgentId.get(toolId);
     let subagent = agentId ? this.activeAsyncSubagents.get(agentId) : void 0;
     if (!subagent) {
@@ -56259,7 +61792,7 @@ var SubagentManager = class {
       this.outputToolIdToAgentId.delete(toolId);
       return subagent;
     }
-    const extractedResult = this.extractAgentResult(result, agentId != null ? agentId : "");
+    const extractedResult = this.extractAgentResult(result, agentId != null ? agentId : "", toolUseResult);
     subagent.asyncStatus = isError ? "error" : "completed";
     subagent.status = isError ? "error" : "completed";
     subagent.result = extractedResult;
@@ -56276,9 +61809,6 @@ var SubagentManager = class {
   isLinkedAgentOutputTool(toolId) {
     return this.outputToolIdToAgentId.has(toolId);
   }
-  getByAgentId(agentId) {
-    return this.activeAsyncSubagents.get(agentId);
-  }
   getByTaskId(taskToolId) {
     const pending = this.pendingAsyncSubagents.get(taskToolId);
     if (pending) return pending;
@@ -56288,8 +61818,13 @@ var SubagentManager = class {
     }
     return void 0;
   }
-  getAsyncDomState(taskToolId) {
-    return this.asyncDomStates.get(taskToolId);
+  /**
+   * Re-renders an async subagent after data-only updates (for example,
+   * hydrating tool calls from SDK sidecar files) without changing lifecycle state.
+   */
+  refreshAsyncSubagent(subagent) {
+    this.updateAsyncDomState(subagent);
+    this.onStateChange(subagent);
   }
   // ============================================
   // Lifecycle
@@ -56330,15 +61865,6 @@ var SubagentManager = class {
     this.taskIdToAgentId.clear();
     this.outputToolIdToAgentId.clear();
     this.asyncDomStates.clear();
-  }
-  getAllActive() {
-    return [
-      ...this.pendingAsyncSubagents.values(),
-      ...this.activeAsyncSubagents.values()
-    ];
-  }
-  hasActiveAsync() {
-    return this.pendingAsyncSubagents.size > 0 || this.activeAsyncSubagents.size > 0;
   }
   // ============================================
   // Private: State Transitions
@@ -56403,7 +61929,116 @@ var SubagentManager = class {
     const prompt = newInput.prompt || "";
     if (prompt) {
       info.prompt = prompt;
+      const promptEl = wrapperEl.querySelector(".claudian-subagent-prompt-text");
+      if (promptEl) {
+        promptEl.setText(prompt);
+      }
     }
+  }
+  resolveTaskMode(taskInput) {
+    if (!Object.prototype.hasOwnProperty.call(taskInput, "run_in_background")) {
+      return null;
+    }
+    if (taskInput.run_in_background === true) {
+      return "async";
+    }
+    if (taskInput.run_in_background === false) {
+      return "sync";
+    }
+    return null;
+  }
+  inferModeFromTaskResult(taskResult, isError, taskToolUseResult) {
+    if (isError) {
+      return "sync";
+    }
+    if (this.hasAsyncMarkerInToolUseResult(taskToolUseResult)) {
+      return "async";
+    }
+    return this.parseAgentIdStrict(taskResult) ? "async" : "sync";
+  }
+  parseAgentIdStrict(result) {
+    var _a3;
+    const fromRaw = this.extractAgentIdFromString(result);
+    if (fromRaw) return fromRaw;
+    const payload = this.unwrapTextPayload(result);
+    const fromPayload = this.extractAgentIdFromString(payload);
+    if (fromPayload) return fromPayload;
+    try {
+      const parsed = JSON.parse(result);
+      if (Array.isArray(parsed)) {
+        for (const block of parsed) {
+          if (block && typeof block === "object" && typeof block.text === "string") {
+            const fromText = this.extractAgentIdFromString(block.text);
+            if (fromText) return fromText;
+          }
+        }
+      }
+      const agentId = parsed.agent_id || parsed.agentId || ((_a3 = parsed == null ? void 0 : parsed.data) == null ? void 0 : _a3.agent_id);
+      if (typeof agentId === "string" && agentId.length > 0) {
+        return agentId;
+      }
+    } catch (e2) {
+    }
+    return null;
+  }
+  extractAgentIdFromString(value) {
+    const regexPatterns = [
+      /"agent_id"\s*:\s*"([^"]+)"/,
+      /"agentId"\s*:\s*"([^"]+)"/,
+      /agent_id[=:]\s*"?([a-zA-Z0-9_-]+)"?/i,
+      /agentId[=:]\s*"?([a-zA-Z0-9_-]+)"?/i
+    ];
+    for (const pattern of regexPatterns) {
+      const match = value.match(pattern);
+      if (match && match[1]) {
+        return match[1];
+      }
+    }
+    return null;
+  }
+  hasAsyncMarkerInToolUseResult(taskToolUseResult) {
+    var _a3, _b;
+    if (!taskToolUseResult || typeof taskToolUseResult !== "object") {
+      return false;
+    }
+    const record2 = taskToolUseResult;
+    if (record2.isAsync === true) {
+      return true;
+    }
+    const directAgentId = (_a3 = record2.agentId) != null ? _a3 : record2.agent_id;
+    if (typeof directAgentId === "string" && directAgentId.length > 0) {
+      return true;
+    }
+    const data = record2.data;
+    if (data && typeof data === "object") {
+      const nestedRecord = data;
+      const nestedAgentId = (_b = nestedRecord.agent_id) != null ? _b : nestedRecord.agentId;
+      if (typeof nestedAgentId === "string" && nestedAgentId.length > 0) {
+        return true;
+      }
+    }
+    if (typeof record2.status === "string" && record2.status.toLowerCase() === "async_launched") {
+      return true;
+    }
+    if (typeof record2.outputFile === "string" && record2.outputFile.length > 0) {
+      return true;
+    }
+    if (Array.isArray(record2.content)) {
+      for (const block of record2.content) {
+        if (block && typeof block === "object") {
+          const text = block.text;
+          if (typeof text === "string" && this.extractAgentIdFromString(text)) {
+            return true;
+          }
+        } else if (typeof block === "string" && this.extractAgentIdFromString(block)) {
+          return true;
+        }
+      }
+    }
+    if (typeof record2.content === "string" && this.extractAgentIdFromString(record2.content)) {
+      return true;
+    }
+    return false;
   }
   // ============================================
   // Private: Async DOM State Updates
@@ -56449,7 +62084,7 @@ var SubagentManager = class {
         return true;
       }
       if (hasAgents) {
-        const agentStatuses = Object.values(parsed.agents).map((a) => a && typeof a.status === "string" ? a.status.toLowerCase() : "");
+        const agentStatuses = Object.values(parsed.agents).map((a) => a && typeof a === "object" && "status" in a && typeof a.status === "string" ? a.status.toLowerCase() : "");
         const anyRunning = agentStatuses.some(
           (s) => s === "running" || s === "pending" || s === "not_ready"
         );
@@ -56475,14 +62110,27 @@ var SubagentManager = class {
     }
     return false;
   }
-  extractAgentResult(result, agentId) {
+  extractAgentResult(result, agentId, toolUseResult) {
+    const structuredResult = this.extractResultFromToolUseResult(toolUseResult);
+    if (structuredResult) {
+      return structuredResult;
+    }
     const payload = this.unwrapTextPayload(result);
     try {
       const parsed = JSON.parse(payload);
+      const taskResult = this.extractResultFromTaskObject(parsed.task);
+      if (taskResult) {
+        return taskResult;
+      }
       if (parsed.agents && agentId && parsed.agents[agentId]) {
         const agentData = parsed.agents[agentId];
-        if (agentData.result) {
-          return agentData.result;
+        const parsedResult2 = this.extractResultFromCandidateString(agentData == null ? void 0 : agentData.result);
+        if (parsedResult2) {
+          return parsedResult2;
+        }
+        const parsedOutput2 = this.extractResultFromCandidateString(agentData == null ? void 0 : agentData.output);
+        if (parsedOutput2) {
+          return parsedOutput2;
         }
         return JSON.stringify(agentData, null, 2);
       }
@@ -56490,15 +62138,79 @@ var SubagentManager = class {
         const agentIds = Object.keys(parsed.agents);
         if (agentIds.length > 0) {
           const firstAgent = parsed.agents[agentIds[0]];
-          if (firstAgent.result) {
-            return firstAgent.result;
+          const parsedResult2 = this.extractResultFromCandidateString(firstAgent == null ? void 0 : firstAgent.result);
+          if (parsedResult2) {
+            return parsedResult2;
+          }
+          const parsedOutput2 = this.extractResultFromCandidateString(firstAgent == null ? void 0 : firstAgent.output);
+          if (parsedOutput2) {
+            return parsedOutput2;
           }
           return JSON.stringify(firstAgent, null, 2);
         }
       }
+      const parsedResult = this.extractResultFromCandidateString(parsed.result);
+      if (parsedResult) {
+        return parsedResult;
+      }
+      const parsedOutput = this.extractResultFromCandidateString(parsed.output);
+      if (parsedOutput) {
+        return parsedOutput;
+      }
     } catch (e2) {
     }
+    const taggedResult = this.extractResultFromTaggedPayload(payload);
+    if (taggedResult) {
+      return taggedResult;
+    }
     return payload;
+  }
+  extractResultFromToolUseResult(toolUseResult) {
+    var _a3, _b;
+    if (!toolUseResult || typeof toolUseResult !== "object") {
+      return null;
+    }
+    const record2 = toolUseResult;
+    if (record2.retrieval_status === "error") {
+      const errorMsg = typeof record2.error === "string" ? record2.error : "Task retrieval failed";
+      return `Error: ${errorMsg}`;
+    }
+    const result = (_b = (_a3 = this.extractResultFromTaskObject(record2.task)) != null ? _a3 : this.extractResultFromCandidateString(record2.result)) != null ? _b : this.extractResultFromCandidateString(record2.output);
+    if (result) return result;
+    if (Array.isArray(record2.content)) {
+      const firstText = record2.content.find((b3) => b3 && typeof b3 === "object" && b3.type === "text" && typeof b3.text === "string");
+      if (firstText) {
+        const text = firstText.text.trim();
+        if (text.length > 0) return text;
+      }
+    }
+    return null;
+  }
+  extractResultFromTaskObject(task) {
+    var _a3;
+    if (!task || typeof task !== "object") {
+      return null;
+    }
+    const taskRecord = task;
+    return (_a3 = this.extractResultFromCandidateString(taskRecord.result)) != null ? _a3 : this.extractResultFromCandidateString(taskRecord.output);
+  }
+  extractResultFromCandidateString(candidate) {
+    if (typeof candidate !== "string") {
+      return null;
+    }
+    const trimmed = candidate.trim();
+    if (!trimmed) {
+      return null;
+    }
+    const taggedResult = this.extractResultFromTaggedPayload(trimmed);
+    if (taggedResult) {
+      return taggedResult;
+    }
+    const jsonlResult = this.extractResultFromOutputJsonl(trimmed);
+    if (jsonlResult) {
+      return jsonlResult;
+    }
+    return trimmed;
   }
   parseAgentId(result) {
     var _a3;
@@ -56531,6 +62243,46 @@ var SubagentManager = class {
     }
     return null;
   }
+  extractAgentIdFromTaskToolUseResult(toolUseResult) {
+    var _a3, _b;
+    if (!toolUseResult || typeof toolUseResult !== "object") {
+      return null;
+    }
+    const record2 = toolUseResult;
+    const directAgentId = (_a3 = record2.agent_id) != null ? _a3 : record2.agentId;
+    if (typeof directAgentId === "string" && directAgentId.length > 0) {
+      return directAgentId;
+    }
+    const data = record2.data;
+    if (data && typeof data === "object") {
+      const nested = data;
+      const nestedAgentId = (_b = nested.agent_id) != null ? _b : nested.agentId;
+      if (typeof nestedAgentId === "string" && nestedAgentId.length > 0) {
+        return nestedAgentId;
+      }
+    }
+    if (Array.isArray(record2.content)) {
+      for (const block of record2.content) {
+        if (typeof block === "string") {
+          const extracted = this.extractAgentIdFromString(block);
+          if (extracted) return extracted;
+          continue;
+        }
+        if (!block || typeof block !== "object") {
+          continue;
+        }
+        const blockRecord = block;
+        if (typeof blockRecord.text === "string") {
+          const extracted = this.extractAgentIdFromString(blockRecord.text);
+          if (extracted) return extracted;
+        }
+      }
+    } else if (typeof record2.content === "string") {
+      const extracted = this.extractAgentIdFromString(record2.content);
+      if (extracted) return extracted;
+    }
+    return null;
+  }
   inferAgentIdFromResult(result) {
     try {
       const parsed = JSON.parse(result);
@@ -56557,11 +62309,100 @@ var SubagentManager = class {
     }
     return raw;
   }
+  extractResultFromTaggedPayload(payload) {
+    const directResult = this.extractTagContent(payload, "result");
+    if (directResult) return directResult;
+    const outputContent = this.extractTagContent(payload, "output");
+    if (!outputContent) return null;
+    const extractedFromJsonl = this.extractResultFromOutputJsonl(outputContent);
+    if (extractedFromJsonl) return extractedFromJsonl;
+    const nestedResult = this.extractTagContent(outputContent, "result");
+    if (nestedResult) return nestedResult;
+    const trimmed = outputContent.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  }
+  extractTagContent(payload, tagName) {
+    const tagRegex = new RegExp(`<${tagName}>\\s*([\\s\\S]*?)\\s*</${tagName}>`, "i");
+    const match = payload.match(tagRegex);
+    if (!match || !match[1]) return null;
+    const content = match[1].trim();
+    return content.length > 0 ? content : null;
+  }
+  extractResultFromOutputJsonl(outputContent) {
+    const inlineResult = extractFinalResultFromSubagentJsonl(outputContent);
+    if (inlineResult) {
+      return inlineResult;
+    }
+    const fullOutputPath = this.extractFullOutputPath(outputContent);
+    if (!fullOutputPath) {
+      return null;
+    }
+    const fullOutput = this.readFullOutputFile(fullOutputPath);
+    if (!fullOutput) {
+      return null;
+    }
+    return extractFinalResultFromSubagentJsonl(fullOutput);
+  }
+  extractFullOutputPath(content) {
+    const truncatedPattern = /\[Truncated\.\s*Full output:\s*([^\]\n]+)\]/i;
+    const match = content.match(truncatedPattern);
+    if (!match || !match[1]) {
+      return null;
+    }
+    const outputPath = match[1].trim();
+    return outputPath.length > 0 ? outputPath : null;
+  }
+  readFullOutputFile(fullOutputPath) {
+    try {
+      if (!this.isTrustedOutputPath(fullOutputPath)) {
+        return null;
+      }
+      if (!(0, import_fs4.existsSync)(fullOutputPath)) {
+        return null;
+      }
+      const fileContent = (0, import_fs4.readFileSync)(fullOutputPath, "utf-8");
+      const trimmed = fileContent.trim();
+      return trimmed.length > 0 ? trimmed : null;
+    } catch (e2) {
+      return null;
+    }
+  }
   extractAgentIdFromInput(input) {
     const agentId = input.task_id || input.agentId || input.agent_id;
     return agentId || null;
   }
+  static resolveTrustedTmpRoots() {
+    const roots = /* @__PURE__ */ new Set();
+    const candidates = [(0, import_os2.tmpdir)(), "/tmp", "/private/tmp"];
+    for (const candidate of candidates) {
+      try {
+        roots.add((0, import_fs4.realpathSync)(candidate));
+      } catch (e2) {
+      }
+    }
+    return Array.from(roots);
+  }
+  isTrustedOutputPath(fullOutputPath) {
+    if (!(0, import_path10.isAbsolute)(fullOutputPath)) {
+      return false;
+    }
+    if (!fullOutputPath.toLowerCase().endsWith(_SubagentManager.TRUSTED_OUTPUT_EXT)) {
+      return false;
+    }
+    let resolvedPath;
+    try {
+      resolvedPath = (0, import_fs4.realpathSync)(fullOutputPath);
+    } catch (e2) {
+      return false;
+    }
+    return _SubagentManager.TRUSTED_TMP_ROOTS.some(
+      (root) => resolvedPath === root || resolvedPath.startsWith(`${root}${import_path10.sep}`)
+    );
+  }
 };
+_SubagentManager.TRUSTED_OUTPUT_EXT = ".output";
+_SubagentManager.TRUSTED_TMP_ROOTS = _SubagentManager.resolveTrustedTmpRoots();
+var SubagentManager = _SubagentManager;
 
 // src/core/prompts/titleGeneration.ts
 var TITLE_GENERATION_SYSTEM_PROMPT = `You are a specialist in summarizing user intent.
@@ -56790,6 +62631,15 @@ var ChatState = class {
     var _a3, _b;
     this.state.messages = [];
     (_b = (_a3 = this._callbacks).onMessagesChanged) == null ? void 0 : _b.call(_a3);
+  }
+  truncateAt(messageId) {
+    var _a3, _b;
+    const idx = this.state.messages.findIndex((m) => m.id === messageId);
+    if (idx === -1) return 0;
+    const removed = this.state.messages.length - idx;
+    this.state.messages = this.state.messages.slice(0, idx);
+    (_b = (_a3 = this._callbacks).onMessagesChanged) == null ? void 0 : _b.call(_a3);
+    return removed;
   }
   // ============================================
   // Streaming Control
@@ -57033,14 +62883,101 @@ var ChatState = class {
   }
 };
 
+// src/features/chat/ui/BangBashModeManager.ts
+var import_obsidian17 = require("obsidian");
+var BangBashModeManager = class {
+  constructor(inputEl, callbacks) {
+    this.state = { active: false, rawCommand: "" };
+    this.isSubmitting = false;
+    this.originalPlaceholder = "";
+    this.inputEl = inputEl;
+    this.callbacks = callbacks;
+    this.originalPlaceholder = inputEl.placeholder;
+  }
+  handleTriggerKey(e2) {
+    if (!this.state.active && this.inputEl.value === "" && e2.key === "!") {
+      if (this.enterMode()) {
+        e2.preventDefault();
+        return true;
+      }
+    }
+    return false;
+  }
+  handleInputChange() {
+    if (!this.state.active) return;
+    this.state.rawCommand = this.inputEl.value;
+  }
+  enterMode() {
+    const wrapper = this.callbacks.getInputWrapper();
+    if (!wrapper) return false;
+    wrapper.addClass("claudian-input-bang-bash-mode");
+    this.state = { active: true, rawCommand: "" };
+    this.inputEl.placeholder = t("chat.bangBash.placeholder");
+    return true;
+  }
+  exitMode() {
+    const wrapper = this.callbacks.getInputWrapper();
+    if (wrapper) {
+      wrapper.removeClass("claudian-input-bang-bash-mode");
+    }
+    this.state = { active: false, rawCommand: "" };
+    this.inputEl.placeholder = this.originalPlaceholder;
+  }
+  handleKeydown(e2) {
+    if (!this.state.active) return false;
+    if (e2.key === "Enter" && !e2.shiftKey && !e2.isComposing) {
+      e2.preventDefault();
+      if (this.state.rawCommand.trim()) {
+        this.submit();
+      }
+      return true;
+    }
+    if (e2.key === "Escape" && !e2.isComposing) {
+      e2.preventDefault();
+      this.clear();
+      return true;
+    }
+    return false;
+  }
+  isActive() {
+    return this.state.active;
+  }
+  getRawCommand() {
+    return this.state.rawCommand;
+  }
+  async submit() {
+    if (this.isSubmitting) return;
+    const rawCommand = this.state.rawCommand.trim();
+    if (!rawCommand) return;
+    this.isSubmitting = true;
+    try {
+      this.clear();
+      await this.callbacks.onSubmit(rawCommand);
+    } catch (e2) {
+      new import_obsidian17.Notice(`Command failed: ${e2 instanceof Error ? e2.message : String(e2)}`);
+    } finally {
+      this.isSubmitting = false;
+    }
+  }
+  clear() {
+    var _a3, _b;
+    this.inputEl.value = "";
+    this.exitMode();
+    (_b = (_a3 = this.callbacks).resetInputHeight) == null ? void 0 : _b.call(_a3);
+  }
+  destroy() {
+    this.exitMode();
+  }
+};
+
 // src/features/chat/ui/FileContext.ts
-var import_obsidian14 = require("obsidian");
+var import_obsidian21 = require("obsidian");
 
 // src/shared/mention/MentionDropdownController.ts
-var import_obsidian12 = require("obsidian");
+var import_obsidian18 = require("obsidian");
 
 // src/utils/externalContext.ts
-var fs5 = __toESM(require("fs"));
+var fs7 = __toESM(require("fs"));
 function normalizePathForComparison3(p2) {
   return normalizePathForComparison(p2);
 }
@@ -57066,9 +63003,40 @@ function getFolderName(p2) {
   const segments = normalized.split("/");
   return segments[segments.length - 1] || normalized;
 }
+function getContextDisplayName(normalizedPath, folderName, needsDisambiguation) {
+  if (!needsDisambiguation) return folderName;
+  const segments = normalizedPath.split("/").filter(Boolean);
+  if (segments.length < 2) return folderName;
+  const parent = segments[segments.length - 2];
+  if (!parent) return folderName;
+  return `${parent}/${folderName}`;
+}
+function buildExternalContextDisplayEntries(externalContexts) {
+  var _a3;
+  const counts = /* @__PURE__ */ new Map();
+  const normalizedPaths = /* @__PURE__ */ new Map();
+  for (const contextPath of externalContexts) {
+    const normalized = normalizePathForComparison3(contextPath);
+    normalizedPaths.set(contextPath, normalized);
+    const folderName = getFolderName(normalized);
+    counts.set(folderName, ((_a3 = counts.get(folderName)) != null ? _a3 : 0) + 1);
+  }
+  return externalContexts.map((contextRoot) => {
+    var _a4, _b;
+    const normalized = (_a4 = normalizedPaths.get(contextRoot)) != null ? _a4 : normalizePathForComparison3(contextRoot);
+    const folderName = getFolderName(contextRoot);
+    const needsDisambiguation = ((_b = counts.get(folderName)) != null ? _b : 0) > 1;
+    const displayName = getContextDisplayName(normalized, folderName, needsDisambiguation);
+    return {
+      contextRoot,
+      displayName,
+      displayNameLower: displayName.toLowerCase()
+    };
+  });
+}
 function validateDirectoryPath(p2) {
   try {
-    const stats = fs5.statSync(p2);
+    const stats = fs7.statSync(p2);
     if (!stats.isDirectory()) {
       return { valid: false, error: "Path exists but is not a directory" };
     }
@@ -57096,8 +63064,8 @@ function isDuplicatePath(newPath, existingPaths) {
 }
 
 // src/utils/externalContextScanner.ts
-var fs6 = __toESM(require("fs"));
-var path6 = __toESM(require("path"));
+var fs8 = __toESM(require("fs"));
+var path8 = __toESM(require("path"));
 var CACHE_TTL_MS = 3e4;
 var MAX_FILES_PER_PATH = 1e3;
 var MAX_DEPTH = 10;
@@ -57142,25 +63110,25 @@ var ExternalContextScanner = class {
     if (depth > MAX_DEPTH) return [];
     const files = [];
     try {
-      if (!fs6.existsSync(dir)) return [];
-      const stat = fs6.statSync(dir);
+      if (!fs8.existsSync(dir)) return [];
+      const stat = fs8.statSync(dir);
       if (!stat.isDirectory()) return [];
-      const entries = fs6.readdirSync(dir, { withFileTypes: true });
+      const entries = fs8.readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
         if (entry.name.startsWith(".")) continue;
         if (SKIP_DIRECTORIES.has(entry.name)) continue;
         if (entry.isSymbolicLink()) continue;
-        const fullPath = path6.join(dir, entry.name);
+        const fullPath = path8.join(dir, entry.name);
         if (entry.isDirectory()) {
           const subFiles = this.scanDirectory(fullPath, contextRoot, depth + 1);
           files.push(...subFiles);
         } else if (entry.isFile()) {
           try {
-            const fileStat = fs6.statSync(fullPath);
+            const fileStat = fs8.statSync(fullPath);
             files.push({
               path: fullPath,
               name: entry.name,
-              relativePath: path6.relative(contextRoot, fullPath),
+              relativePath: path8.relative(contextRoot, fullPath),
               contextRoot,
               mtime: fileStat.mtimeMs
             });
@@ -57285,16 +63253,6 @@ var SelectableDropdown = class {
   }
 };
 
-// src/shared/mention/types.ts
-function createExternalContextEntry(contextRoot, folderName, displayName) {
-  return {
-    contextRoot,
-    folderName,
-    displayName,
-    displayNameLower: displayName.toLowerCase()
-  };
-}
-
 // src/shared/mention/MentionDropdownController.ts
 var MentionDropdownController = class {
   constructor(containerEl, inputEl, callbacks, options = {}) {
@@ -57306,6 +63264,7 @@ var MentionDropdownController = class {
     this.activeAgentFilter = false;
     this.mcpManager = null;
     this.agentService = null;
+    this.debounceTimer = null;
     var _a3;
     this.containerEl = containerEl;
     this.inputEl = inputEl;
@@ -57347,6 +63306,9 @@ var MentionDropdownController = class {
     return (_b = (_a3 = this.dropdown.getElement()) == null ? void 0 : _a3.contains(el)) != null ? _b : false;
   }
   destroy() {
+    if (this.debounceTimer !== null) {
+      clearTimeout(this.debounceTimer);
+    }
     this.dropdown.destroy();
   }
   updateMcpMentionsFromText(text) {
@@ -57362,27 +63324,32 @@ var MentionDropdownController = class {
     }
   }
   handleInputChange() {
-    const text = this.inputEl.value;
-    this.updateMcpMentionsFromText(text);
-    const cursorPos = this.inputEl.selectionStart || 0;
-    const textBeforeCursor = text.substring(0, cursorPos);
-    const lastAtIndex = textBeforeCursor.lastIndexOf("@");
-    if (lastAtIndex === -1) {
-      this.hide();
-      return;
+    if (this.debounceTimer !== null) {
+      clearTimeout(this.debounceTimer);
     }
-    const charBeforeAt = lastAtIndex > 0 ? textBeforeCursor[lastAtIndex - 1] : " ";
-    if (!/\s/.test(charBeforeAt) && lastAtIndex !== 0) {
-      this.hide();
-      return;
-    }
-    const searchText = textBeforeCursor.substring(lastAtIndex + 1);
-    if (/\s/.test(searchText)) {
-      this.hide();
-      return;
-    }
-    this.mentionStartIndex = lastAtIndex;
-    this.showMentionDropdown(searchText);
+    this.debounceTimer = setTimeout(() => {
+      const text = this.inputEl.value;
+      this.updateMcpMentionsFromText(text);
+      const cursorPos = this.inputEl.selectionStart || 0;
+      const textBeforeCursor = text.substring(0, cursorPos);
+      const lastAtIndex = textBeforeCursor.lastIndexOf("@");
+      if (lastAtIndex === -1) {
+        this.hide();
+        return;
+      }
+      const charBeforeAt = lastAtIndex > 0 ? textBeforeCursor[lastAtIndex - 1] : " ";
+      if (!/\s/.test(charBeforeAt) && lastAtIndex !== 0) {
+        this.hide();
+        return;
+      }
+      const searchText = textBeforeCursor.substring(lastAtIndex + 1);
+      if (/\s/.test(searchText)) {
+        this.hide();
+        return;
+      }
+      this.mentionStartIndex = lastAtIndex;
+      this.showMentionDropdown(searchText);
+    }, 200);
   }
   handleKeydown(e2) {
     if (!this.dropdown.isVisible()) return false;
@@ -57414,39 +63381,12 @@ var MentionDropdownController = class {
     }
     return false;
   }
-  buildExternalContextEntries(externalContexts) {
-    var _a3;
-    const counts = /* @__PURE__ */ new Map();
-    const normalizedPaths = /* @__PURE__ */ new Map();
-    for (const contextPath of externalContexts) {
-      const normalized = normalizePathForComparison3(contextPath);
-      normalizedPaths.set(contextPath, normalized);
-      const folderName = getFolderName(normalized);
-      counts.set(folderName, ((_a3 = counts.get(folderName)) != null ? _a3 : 0) + 1);
-    }
-    return externalContexts.map((contextRoot) => {
-      var _a4, _b;
-      const normalized = (_a4 = normalizedPaths.get(contextRoot)) != null ? _a4 : normalizePathForComparison3(contextRoot);
-      const folderName = getFolderName(contextRoot);
-      const needsDisambiguation = ((_b = counts.get(folderName)) != null ? _b : 0) > 1;
-      const displayName = this.getContextDisplayName(normalized, folderName, needsDisambiguation);
-      return createExternalContextEntry(contextRoot, folderName, displayName);
-    });
-  }
-  getContextDisplayName(normalizedPath, folderName, needsDisambiguation) {
-    if (!needsDisambiguation) return folderName;
-    const segments = normalizedPath.split("/").filter(Boolean);
-    if (segments.length < 2) return folderName;
-    const parent = segments[segments.length - 2];
-    if (!parent) return folderName;
-    return `${parent}/${folderName}`;
-  }
   showMentionDropdown(searchText) {
     const searchLower = searchText.toLowerCase();
     this.filteredMentionItems = [];
     this.filteredContextFiles = [];
     const externalContexts = this.callbacks.getExternalContexts() || [];
-    const contextEntries = this.buildExternalContextEntries(externalContexts);
+    const contextEntries = buildExternalContextDisplayEntries(externalContexts);
     const isFilterSearch = searchText.includes("/");
     let fileSearchText = searchLower;
     if (isFilterSearch && searchLower.startsWith("agents/")) {
@@ -57506,7 +63446,13 @@ var MentionDropdownController = class {
           folderName: this.activeContextFilter.folderName
         });
       }
-      this.selectedMentionIndex = 0;
+      const firstVaultItemIndex2 = this.filteredMentionItems.length;
+      const vaultItemCount2 = this.appendVaultItems(searchLower);
+      if (this.filteredContextFiles.length === 0 && vaultItemCount2 > 0) {
+        this.selectedMentionIndex = firstVaultItemIndex2;
+      } else {
+        this.selectedMentionIndex = 0;
+      }
       this.renderMentionDropdown();
       return;
     }
@@ -57546,33 +63492,45 @@ var MentionDropdownController = class {
         }
       }
     }
-    const firstVaultFileIndex = this.filteredMentionItems.length;
-    const allFiles = this.callbacks.getCachedMarkdownFiles();
-    const vaultFiles = allFiles.filter((file2) => {
-      const pathLower = file2.path.toLowerCase();
-      const nameLower = file2.name.toLowerCase();
-      return pathLower.includes(searchLower) || nameLower.includes(searchLower);
-    }).sort((a, b3) => {
-      const aNameMatch = a.name.toLowerCase().startsWith(searchLower);
-      const bNameMatch = b3.name.toLowerCase().startsWith(searchLower);
-      if (aNameMatch && !bNameMatch) return -1;
-      if (!aNameMatch && bNameMatch) return 1;
-      return b3.stat.mtime - a.stat.mtime;
-    });
-    for (const file2 of vaultFiles) {
-      this.filteredMentionItems.push({
-        type: "file",
-        name: file2.name,
-        path: file2.path,
-        file: file2
-      });
-    }
-    if (vaultFiles.length > 0) {
-      this.selectedMentionIndex = firstVaultFileIndex;
-    } else {
-      this.selectedMentionIndex = 0;
-    }
+    const firstVaultItemIndex = this.filteredMentionItems.length;
+    const vaultItemCount = this.appendVaultItems(searchLower);
+    this.selectedMentionIndex = vaultItemCount > 0 ? firstVaultItemIndex : 0;
     this.renderMentionDropdown();
+  }
+  appendVaultItems(searchLower) {
+    const compare = (a, b3) => {
+      if (a.startsWithQuery !== b3.startsWithQuery) return a.startsWithQuery ? -1 : 1;
+      return a.path.localeCompare(b3.path);
+    };
+    const scoredFolders = this.callbacks.getCachedVaultFolders().map((f3) => ({
+      name: f3.name,
+      path: f3.path.replace(/\\/g, "/").replace(/\/+$/, "")
+    })).filter(
+      (f3) => f3.path.length > 0 && (f3.path.toLowerCase().includes(searchLower) || f3.name.toLowerCase().includes(searchLower))
+    ).map((f3) => ({
+      type: "folder",
+      name: f3.name,
+      path: f3.path,
+      startsWithQuery: f3.name.toLowerCase().startsWith(searchLower)
+    })).sort(compare).slice(0, 50);
+    const scoredFiles = this.callbacks.getCachedMarkdownFiles().filter(
+      (f3) => f3.path.toLowerCase().includes(searchLower) || f3.name.toLowerCase().includes(searchLower)
+    ).map((f3) => ({
+      type: "file",
+      name: f3.name,
+      path: f3.path,
+      file: f3,
+      startsWithQuery: f3.name.toLowerCase().startsWith(searchLower)
+    })).sort(compare).slice(0, 100);
+    const merged = [...scoredFolders, ...scoredFiles].sort(compare);
+    for (const item of merged) {
+      if (item.type === "folder") {
+        this.filteredMentionItems.push({ type: "folder", name: item.name, path: item.path });
+      } else {
+        this.filteredMentionItems.push({ type: "file", name: item.name, path: item.path, file: item.file });
+      }
+    }
+    return merged.length;
   }
   renderMentionDropdown() {
     this.dropdown.render({
@@ -57581,6 +63539,7 @@ var MentionDropdownController = class {
       emptyText: "No matches",
       getItemClass: (item) => {
         if (item.type === "mcp-server") return "mcp-server";
+        if (item.type === "folder") return "vault-folder";
         if (item.type === "agent") return "agent";
         if (item.type === "agent-folder") return "agent-folder";
         if (item.type === "context-file") return "context-file";
@@ -57591,14 +63550,16 @@ var MentionDropdownController = class {
         const iconEl = itemEl.createSpan({ cls: "claudian-mention-icon" });
         if (item.type === "mcp-server") {
           iconEl.innerHTML = MCP_ICON_SVG;
+        } else if (item.type === "folder") {
+          (0, import_obsidian18.setIcon)(iconEl, "folder");
         } else if (item.type === "agent" || item.type === "agent-folder") {
-          (0, import_obsidian12.setIcon)(iconEl, "bot");
+          (0, import_obsidian18.setIcon)(iconEl, "bot");
         } else if (item.type === "context-file") {
-          (0, import_obsidian12.setIcon)(iconEl, "folder-open");
+          (0, import_obsidian18.setIcon)(iconEl, "folder-open");
         } else if (item.type === "context-folder") {
-          (0, import_obsidian12.setIcon)(iconEl, "folder");
+          (0, import_obsidian18.setIcon)(iconEl, "folder");
         } else {
-          (0, import_obsidian12.setIcon)(iconEl, "file-text");
+          (0, import_obsidian18.setIcon)(iconEl, "file-text");
         }
         const textEl = itemEl.createSpan({ cls: "claudian-mention-text" });
         if (item.type === "mcp-server") {
@@ -57626,6 +63587,11 @@ var MentionDropdownController = class {
             cls: "claudian-mention-name claudian-mention-name-context"
           });
           nameEl.setText(item.name);
+        } else if (item.type === "folder") {
+          const nameEl = textEl.createSpan({
+            cls: "claudian-mention-name claudian-mention-name-folder"
+          });
+          nameEl.setText(`@${item.path}/`);
         } else {
           const pathEl = textEl.createSpan({ cls: "claudian-mention-path" });
           pathEl.setText(item.path || item.name);
@@ -57705,13 +63671,14 @@ var MentionDropdownController = class {
     } else if (selectedItem.type === "context-file") {
       const displayName = selectedItem.folderName ? `@${selectedItem.folderName}/${selectedItem.name}` : `@${selectedItem.name}`;
       if (selectedItem.absolutePath) {
-        if (this.callbacks.onAttachContextFile) {
-          this.callbacks.onAttachContextFile(displayName, selectedItem.absolutePath);
-        } else {
-          this.callbacks.onAttachFile(selectedItem.absolutePath);
-        }
+        this.callbacks.onAttachFile(selectedItem.absolutePath);
       }
       const replacement = `${displayName} `;
+      this.inputEl.value = beforeAt + replacement + afterCursor;
+      this.inputEl.selectionStart = this.inputEl.selectionEnd = beforeAt.length + replacement.length;
+    } else if (selectedItem.type === "folder") {
+      const normalizedPath = this.callbacks.normalizePathForVault(selectedItem.path);
+      const replacement = `@${normalizedPath != null ? normalizedPath : selectedItem.path}/ `;
       this.inputEl.value = beforeAt + replacement + afterCursor;
       this.inputEl.selectionStart = this.inputEl.selectionEnd = beforeAt.length + replacement.length;
     } else {
@@ -57730,18 +63697,115 @@ var MentionDropdownController = class {
   }
 };
 
-// src/features/chat/ui/file-context/state/FileContextState.ts
-function escapeRegExp2(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// src/utils/contextMentionResolver.ts
+var TRAILING_PUNCTUATION_REGEX = /[),.!?:;]+$/;
+var BOUNDARY_PUNCTUATION = /* @__PURE__ */ new Set([",", ")", "!", "?", ":", ";"]);
+function isWhitespace(char) {
+  return /\s/.test(char);
 }
+function collectMentionEndCandidates(text, pathStart) {
+  const candidates = /* @__PURE__ */ new Set();
+  for (let index = pathStart; index < text.length; index++) {
+    const char = text[index];
+    if (isWhitespace(char)) {
+      candidates.add(index);
+      continue;
+    }
+    if (BOUNDARY_PUNCTUATION.has(char)) {
+      candidates.add(index + 1);
+    }
+  }
+  candidates.add(text.length);
+  return Array.from(candidates).sort((a, b3) => b3 - a);
+}
+function isMentionStart(text, index) {
+  if (text[index] !== "@") return false;
+  if (index === 0) return true;
+  return isWhitespace(text[index - 1]);
+}
+function normalizeMentionPath(pathText) {
+  return pathText.replace(/\\/g, "/").replace(/^\.?\//, "").replace(/\/+/g, "/").replace(/\/+$/, "");
+}
+function normalizeForPlatformLookup(value) {
+  return process.platform === "win32" ? value.toLowerCase() : value;
+}
+function buildExternalContextLookup(files) {
+  const lookup = /* @__PURE__ */ new Map();
+  for (const file2 of files) {
+    const normalized = normalizeMentionPath(file2.relativePath);
+    if (!normalized) continue;
+    const key = normalizeForPlatformLookup(normalized);
+    if (!lookup.has(key)) {
+      lookup.set(key, file2.path);
+    }
+  }
+  return lookup;
+}
+function resolveExternalMentionAtIndex(text, mentionStart, contextEntries, getContextLookup) {
+  const mentionBodyStart = mentionStart + 1;
+  let bestMatch = null;
+  for (const entry of contextEntries) {
+    const displayNameEnd = mentionBodyStart + entry.displayName.length;
+    if (displayNameEnd >= text.length) continue;
+    const mentionDisplayName = text.slice(mentionBodyStart, displayNameEnd).toLowerCase();
+    if (mentionDisplayName !== entry.displayNameLower) continue;
+    const separator = text[displayNameEnd];
+    if (separator !== "/" && separator !== "\\") continue;
+    const lookup = getContextLookup(entry.contextRoot);
+    const match = findBestMentionLookupMatch(
+      text,
+      displayNameEnd + 1,
+      lookup,
+      normalizeMentionPath,
+      normalizeForPlatformLookup
+    );
+    if (!match) continue;
+    if (!bestMatch || match.endIndex > bestMatch.endIndex) {
+      bestMatch = match;
+    }
+  }
+  return bestMatch;
+}
+function findBestMentionLookupMatch(text, pathStart, pathLookup, normalizePath, normalizeLookupKey) {
+  var _a3, _b;
+  if (pathLookup.size === 0 || pathStart >= text.length) return null;
+  const endCandidates = collectMentionEndCandidates(text, pathStart);
+  for (const endIndex of endCandidates) {
+    if (endIndex <= pathStart) continue;
+    const rawPath = text.slice(pathStart, endIndex);
+    const trailingPunctuation = (_b = (_a3 = rawPath.match(TRAILING_PUNCTUATION_REGEX)) == null ? void 0 : _a3[0]) != null ? _b : "";
+    const rawPathWithoutPunctuation = trailingPunctuation ? rawPath.slice(0, -trailingPunctuation.length) : rawPath;
+    const normalizedPath = normalizePath(rawPathWithoutPunctuation);
+    if (!normalizedPath) continue;
+    const resolvedPath = pathLookup.get(normalizeLookupKey(normalizedPath));
+    if (resolvedPath) {
+      return {
+        resolvedPath,
+        endIndex,
+        trailingPunctuation
+      };
+    }
+  }
+  return null;
+}
+function createExternalContextLookupGetter(getContextFiles) {
+  const lookupCache = /* @__PURE__ */ new Map();
+  return (contextRoot) => {
+    const cached2 = lookupCache.get(contextRoot);
+    if (cached2) return cached2;
+    const lookup = buildExternalContextLookup(getContextFiles(contextRoot));
+    lookupCache.set(contextRoot, lookup);
+    return lookup;
+  };
+}
+
+// src/features/chat/ui/file-context/state/FileContextState.ts
 var FileContextState = class {
   constructor() {
     this.attachedFiles = /* @__PURE__ */ new Set();
     this.sessionStarted = false;
     this.mentionedMcpServers = /* @__PURE__ */ new Set();
     this.currentNoteSent = false;
-    /** Maps display name to absolute path for external context files only. */
-    this.contextFileMap = /* @__PURE__ */ new Map();
   }
   getAttachedFiles() {
     return new Set(this.attachedFiles);
@@ -57762,13 +63826,11 @@ var FileContextState = class {
     this.sessionStarted = false;
     this.currentNoteSent = false;
     this.attachedFiles.clear();
-    this.contextFileMap.clear();
     this.clearMcpMentions();
   }
   resetForLoadedConversation(hasMessages) {
     this.currentNoteSent = hasMessages;
     this.attachedFiles.clear();
-    this.contextFileMap.clear();
     this.sessionStarted = hasMessages;
     this.clearMcpMentions();
   }
@@ -57778,28 +63840,14 @@ var FileContextState = class {
       this.attachedFiles.add(file2);
     }
   }
-  attachFile(path10) {
-    this.attachedFiles.add(path10);
+  attachFile(path11) {
+    this.attachedFiles.add(path11);
   }
-  /** Attach an external context file with display name to absolute path mapping. */
-  attachContextFile(displayName, absolutePath) {
-    this.attachedFiles.add(absolutePath);
-    this.contextFileMap.set(displayName, absolutePath);
-  }
-  detachFile(path10) {
-    this.attachedFiles.delete(path10);
+  detachFile(path11) {
+    this.attachedFiles.delete(path11);
   }
   clearAttachments() {
     this.attachedFiles.clear();
-    this.contextFileMap.clear();
-  }
-  /** Transform text by replacing external context file display names with absolute paths. */
-  transformContextMentions(text) {
-    let result = text;
-    for (const [displayName, absolutePath] of this.contextFileMap) {
-      result = result.replace(new RegExp(escapeRegExp2(displayName), "g"), absolutePath);
-    }
-    return result;
   }
   getMentionedMcpServers() {
     return new Set(this.mentionedMcpServers);
@@ -57824,22 +63872,86 @@ var MarkdownFileCache = class {
   constructor(app) {
     this.cachedFiles = [];
     this.dirty = true;
+    this.isInitialized = false;
     this.app = app;
+  }
+  initializeInBackground() {
+    if (this.isInitialized) return;
+    setTimeout(() => {
+      this.tryRefreshFiles();
+    }, 0);
   }
   markDirty() {
     this.dirty = true;
   }
   getFiles() {
-    if (this.dirty || this.cachedFiles.length === 0) {
+    if (this.dirty || !this.isInitialized) {
+      this.tryRefreshFiles();
+    }
+    return this.cachedFiles;
+  }
+  tryRefreshFiles() {
+    try {
       this.cachedFiles = this.app.vault.getMarkdownFiles();
       this.dirty = false;
+    } catch (e2) {
+      if (this.cachedFiles.length > 0) {
+        this.dirty = false;
+      }
+    } finally {
+      this.isInitialized = true;
     }
-    return [...this.cachedFiles];
+  }
+};
+
+// src/features/chat/ui/file-context/state/VaultFolderCache.ts
+var import_obsidian19 = require("obsidian");
+function isVisibleFolder(folder) {
+  const normalizedPath = folder.path.replace(/\\/g, "/").replace(/\/+$/, "");
+  if (!normalizedPath) return false;
+  return !normalizedPath.split("/").some((segment) => segment.startsWith("."));
+}
+var VaultFolderCache = class {
+  constructor(app) {
+    this.cachedFolders = [];
+    this.dirty = true;
+    this.isInitialized = false;
+    this.app = app;
+  }
+  initializeInBackground() {
+    if (this.isInitialized) return;
+    setTimeout(() => {
+      this.tryRefreshFolders();
+    }, 0);
+  }
+  markDirty() {
+    this.dirty = true;
+  }
+  getFolders() {
+    if (this.dirty || !this.isInitialized) {
+      this.tryRefreshFolders();
+    }
+    return this.cachedFolders;
+  }
+  tryRefreshFolders() {
+    try {
+      this.cachedFolders = this.loadFolders();
+      this.dirty = false;
+    } catch (e2) {
+      if (this.cachedFolders.length > 0) {
+        this.dirty = false;
+      }
+    } finally {
+      this.isInitialized = true;
+    }
+  }
+  loadFolders() {
+    return this.app.vault.getAllLoadedFiles().filter((file2) => file2 instanceof import_obsidian19.TFolder).filter((folder) => isVisibleFolder(folder));
   }
 };
 
 // src/features/chat/ui/file-context/view/FileChipsView.ts
-var import_obsidian13 = require("obsidian");
+var import_obsidian20 = require("obsidian");
 var FileChipsView = class {
   constructor(containerEl, callbacks) {
     this.containerEl = containerEl;
@@ -57867,7 +63979,7 @@ var FileChipsView = class {
   renderFileChip(filePath, onRemove) {
     const chipEl = this.fileIndicatorEl.createDiv({ cls: "claudian-file-chip" });
     const iconEl = chipEl.createSpan({ cls: "claudian-file-chip-icon" });
-    (0, import_obsidian13.setIcon)(iconEl, "file-text");
+    (0, import_obsidian20.setIcon)(iconEl, "file-text");
     const normalizedPath = filePath.replace(/\\/g, "/");
     const filename = normalizedPath.split("/").pop() || filePath;
     const nameEl = chipEl.createSpan({ cls: "claudian-file-chip-name" });
@@ -57903,6 +64015,9 @@ var FileContextManager = class {
     this.callbacks = callbacks;
     this.state = new FileContextState();
     this.fileCache = new MarkdownFileCache(this.app);
+    this.fileCache.initializeInBackground();
+    this.folderCache = new VaultFolderCache(this.app);
+    this.folderCache.initializeInBackground();
     this.chipsView = new FileChipsView(this.chipsContainerEl, {
       onRemoveAttachment: (filePath) => {
         if (filePath === this.currentNotePath) {
@@ -57913,14 +64028,14 @@ var FileContextManager = class {
       },
       onOpenFile: async (filePath) => {
         const file2 = this.app.vault.getAbstractFileByPath(filePath);
-        if (!(file2 instanceof import_obsidian14.TFile)) {
-          new import_obsidian14.Notice(`Could not open file: ${filePath}`);
+        if (!(file2 instanceof import_obsidian21.TFile)) {
+          new import_obsidian21.Notice(`Could not open file: ${filePath}`);
           return;
         }
         try {
           await this.app.workspace.getLeaf().openFile(file2);
         } catch (error48) {
-          new import_obsidian14.Notice(`Failed to open file: ${error48 instanceof Error ? error48.message : String(error48)}`);
+          new import_obsidian21.Notice(`Failed to open file: ${error48 instanceof Error ? error48.message : String(error48)}`);
         }
       }
     });
@@ -57929,7 +64044,6 @@ var FileContextManager = class {
       this.inputEl,
       {
         onAttachFile: (filePath) => this.state.attachFile(filePath),
-        onAttachContextFile: (displayName, absolutePath) => this.state.attachContextFile(displayName, absolutePath),
         onMcpMentionChange: (servers) => {
           var _a3;
           return (_a3 = this.onMcpMentionChange) == null ? void 0 : _a3.call(this, servers);
@@ -57945,15 +64059,16 @@ var FileContextManager = class {
           var _a3, _b;
           return ((_b = (_a3 = this.callbacks).getExternalContexts) == null ? void 0 : _b.call(_a3)) || [];
         },
+        getCachedVaultFolders: () => this.folderCache.getFolders().map((folder) => ({ name: folder.name, path: folder.path })),
         getCachedMarkdownFiles: () => this.fileCache.getFiles(),
         normalizePathForVault: (rawPath) => this.normalizePathForVault(rawPath)
       }
     );
     this.deleteEventRef = this.app.vault.on("delete", (file2) => {
-      if (file2 instanceof import_obsidian14.TFile) this.handleFileDeleted(file2.path);
+      if (file2 instanceof import_obsidian21.TFile) this.handleFileDeleted(file2.path);
     });
     this.renameEventRef = this.app.vault.on("rename", (file2, oldPath) => {
-      if (file2 instanceof import_obsidian14.TFile) this.handleFileRenamed(oldPath, file2.path);
+      if (file2 instanceof import_obsidian21.TFile) this.handleFileRenamed(oldPath, file2.path);
     });
   }
   /** Returns the current note path (shown as chip). */
@@ -58025,8 +64140,11 @@ var FileContextManager = class {
       this.refreshCurrentNoteChip();
     }
   }
-  markFilesCacheDirty() {
+  markFileCacheDirty() {
     this.fileCache.markDirty();
+  }
+  markFolderCacheDirty() {
+    this.folderCache.markDirty();
   }
   /** Handles input changes to detect @ mentions. */
   handleInputChange() {
@@ -58046,7 +64164,7 @@ var FileContextManager = class {
     return this.mentionDropdown.containsElement(el);
   }
   transformContextMentions(text) {
-    return this.state.transformContextMentions(text);
+    return this.transformPastedExternalContextMentions(text);
   }
   /** Cleans up event listeners (call on view close). */
   destroy() {
@@ -58129,6 +64247,31 @@ var FileContextManager = class {
   updateMcpMentionsFromText(text) {
     this.mentionDropdown.updateMcpMentionsFromText(text);
   }
+  transformPastedExternalContextMentions(text) {
+    var _a3, _b;
+    const externalContexts = ((_b = (_a3 = this.callbacks).getExternalContexts) == null ? void 0 : _b.call(_a3)) || [];
+    if (externalContexts.length === 0 || !text.includes("@")) return text;
+    const contextEntries = buildExternalContextDisplayEntries(externalContexts).sort((a, b3) => b3.displayNameLower.length - a.displayNameLower.length);
+    const getContextLookup = createExternalContextLookupGetter(
+      (contextRoot) => externalContextScanner.scanPaths([contextRoot])
+    );
+    let replaced = false;
+    let cursor = 0;
+    const chunks = [];
+    for (let index = 0; index < text.length; index++) {
+      if (!isMentionStart(text, index)) continue;
+      const resolved = resolveExternalMentionAtIndex(text, index, contextEntries, getContextLookup);
+      if (!resolved) continue;
+      chunks.push(text.slice(cursor, index));
+      chunks.push(`${resolved.resolvedPath}${resolved.trailingPunctuation}`);
+      cursor = resolved.endIndex;
+      index = resolved.endIndex - 1;
+      replaced = true;
+    }
+    if (!replaced) return text;
+    chunks.push(text.slice(cursor));
+    return chunks.join("");
+  }
   hasExcludedTag(file2) {
     var _a3;
     const excludedTags = this.callbacks.getExcludedTags();
@@ -58152,8 +64295,8 @@ var FileContextManager = class {
 };
 
 // src/features/chat/ui/ImageContext.ts
-var import_obsidian15 = require("obsidian");
-var path7 = __toESM(require("path"));
+var import_obsidian22 = require("obsidian");
+var path9 = __toESM(require("path"));
 var MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 var IMAGE_EXTENSIONS2 = {
   ".jpg": "image/jpeg",
@@ -58292,7 +64435,7 @@ var ImageContextManager = class {
     return file2.type.startsWith("image/") && this.getMediaType(file2.name) !== null;
   }
   getMediaType(filename) {
-    const ext = path7.extname(filename).toLowerCase();
+    const ext = path9.extname(filename).toLowerCase();
     return IMAGE_EXTENSIONS2[ext] || null;
   }
   async addImageFromFile(file2, source) {
@@ -58402,7 +64545,7 @@ var ImageContextManager = class {
   }
   truncateName(name, maxLen) {
     if (name.length <= maxLen) return name;
-    const ext = path7.extname(name);
+    const ext = path9.extname(name);
     const base = name.slice(0, name.length - ext.length);
     const truncatedBase = base.slice(0, maxLen - ext.length - 3);
     return `${truncatedBase}...${ext}`;
@@ -58421,13 +64564,13 @@ var ImageContextManager = class {
         userMessage = `${message} (Permission denied)`;
       }
     }
-    new import_obsidian15.Notice(userMessage);
+    new import_obsidian22.Notice(userMessage);
   }
 };
 
 // src/features/chat/ui/InputToolbar.ts
-var import_obsidian16 = require("obsidian");
-var path8 = __toESM(require("path"));
+var import_obsidian23 = require("obsidian");
+var path10 = __toESM(require("path"));
 var ModelSelector = class {
   constructor(parentEl, callbacks) {
     this.buttonEl = null;
@@ -58628,28 +64771,28 @@ var ExternalContextSelector = class {
     this.renderDropdown();
     if (invalidPaths.length > 0) {
       const pathNames = invalidPaths.map((p2) => this.shortenPath(p2)).join(", ");
-      new import_obsidian16.Notice(`Removed ${invalidPaths.length} invalid external context path(s): ${pathNames}`, 5e3);
+      new import_obsidian23.Notice(`Removed ${invalidPaths.length} invalid external context path(s): ${pathNames}`, 5e3);
       (_a3 = this.onPersistenceChangeCallback) == null ? void 0 : _a3.call(this, [...this.persistentPaths]);
     }
   }
-  togglePersistence(path10) {
+  togglePersistence(path11) {
     var _a3;
-    if (this.persistentPaths.has(path10)) {
-      this.persistentPaths.delete(path10);
+    if (this.persistentPaths.has(path11)) {
+      this.persistentPaths.delete(path11);
     } else {
-      if (!isValidDirectoryPath(path10)) {
-        new import_obsidian16.Notice(`Cannot persist "${this.shortenPath(path10)}" - directory no longer exists`, 4e3);
+      if (!isValidDirectoryPath(path11)) {
+        new import_obsidian23.Notice(`Cannot persist "${this.shortenPath(path11)}" - directory no longer exists`, 4e3);
         return;
       }
-      this.persistentPaths.add(path10);
+      this.persistentPaths.add(path11);
     }
     (_a3 = this.onPersistenceChangeCallback) == null ? void 0 : _a3.call(this, [...this.persistentPaths]);
     this.renderDropdown();
   }
   mergePersistentPaths() {
     const pathSet = new Set(this.externalContextPaths);
-    for (const path10 of this.persistentPaths) {
-      pathSet.add(path10);
+    for (const path11 of this.persistentPaths) {
+      pathSet.add(path11);
     }
     this.externalContextPaths = [...pathSet];
   }
@@ -58696,7 +64839,7 @@ var ExternalContextSelector = class {
     }
     const expandedPath = expandHomePath(cleanPath);
     const normalizedPath = normalizePathForFilesystem(expandedPath);
-    if (!path8.isAbsolute(normalizedPath)) {
+    if (!path10.isAbsolute(normalizedPath)) {
       return { success: false, error: "Path must be absolute. Usage: /add-dir /absolute/path" };
     }
     const validation = validateDirectoryPath(normalizedPath);
@@ -58734,7 +64877,7 @@ var ExternalContextSelector = class {
     this.container.empty();
     const iconWrapper = this.container.createDiv({ cls: "claudian-external-context-icon-wrapper" });
     this.iconEl = iconWrapper.createDiv({ cls: "claudian-external-context-icon" });
-    (0, import_obsidian16.setIcon)(this.iconEl, "folder");
+    (0, import_obsidian23.setIcon)(this.iconEl, "folder");
     this.badgeEl = iconWrapper.createDiv({ cls: "claudian-external-context-badge" });
     this.updateDisplay();
     iconWrapper.addEventListener("click", (e2) => {
@@ -58755,12 +64898,12 @@ var ExternalContextSelector = class {
       if (!result.canceled && result.filePaths.length > 0) {
         const selectedPath = result.filePaths[0];
         if (isDuplicatePath(selectedPath, this.externalContextPaths)) {
-          new import_obsidian16.Notice("This folder is already added as an external context.", 3e3);
+          new import_obsidian23.Notice("This folder is already added as an external context.", 3e3);
           return;
         }
         const conflict = findConflictingPath(selectedPath, this.externalContextPaths);
         if (conflict) {
-          new import_obsidian16.Notice(this.formatConflictMessage(selectedPath, conflict), 5e3);
+          new import_obsidian23.Notice(this.formatConflictMessage(selectedPath, conflict), 5e3);
           return;
         }
         this.externalContextPaths = [...this.externalContextPaths, selectedPath];
@@ -58769,7 +64912,7 @@ var ExternalContextSelector = class {
         this.renderDropdown();
       }
     } catch (e2) {
-      new import_obsidian16.Notice("Unable to open folder picker.", 5e3);
+      new import_obsidian23.Notice("Unable to open folder picker.", 5e3);
     }
   }
   /** Formats a conflict error message for display. */
@@ -58799,14 +64942,14 @@ var ExternalContextSelector = class {
         if (isPersistent) {
           lockBtn.addClass("locked");
         }
-        (0, import_obsidian16.setIcon)(lockBtn, isPersistent ? "lock" : "unlock");
+        (0, import_obsidian23.setIcon)(lockBtn, isPersistent ? "lock" : "unlock");
         lockBtn.setAttribute("title", isPersistent ? "Persistent (click to make session-only)" : "Session-only (click to persist)");
         lockBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
           this.togglePersistence(pathStr);
         });
         const removeBtn = itemEl.createSpan({ cls: "claudian-external-context-remove" });
-        (0, import_obsidian16.setIcon)(removeBtn, "x");
+        (0, import_obsidian23.setIcon)(removeBtn, "x");
         removeBtn.setAttribute("title", "Remove path");
         removeBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
@@ -58818,11 +64961,11 @@ var ExternalContextSelector = class {
   /** Shorten path for display (replace home dir with ~) */
   shortenPath(fullPath) {
     try {
-      const os6 = require("os");
-      const homeDir = os6.homedir();
-      const normalize2 = (value) => value.replace(/\\/g, "/");
-      const normalizedFull = normalize2(fullPath);
-      const normalizedHome = normalize2(homeDir);
+      const os7 = require("os");
+      const homeDir = os7.homedir();
+      const normalize3 = (value) => value.replace(/\\/g, "/");
+      const normalizedFull = normalize3(fullPath);
+      const normalizedHome = normalize3(homeDir);
       const compareFull = process.platform === "win32" ? normalizedFull.toLowerCase() : normalizedFull;
       const compareHome = process.platform === "win32" ? normalizedHome.toLowerCase() : normalizedHome;
       if (compareFull.startsWith(compareHome)) {
@@ -59217,9 +65360,83 @@ var InstructionModeManager = class {
   }
 };
 
+// src/features/chat/ui/NavigationSidebar.ts
+var import_obsidian24 = require("obsidian");
+var NavigationSidebar = class {
+  constructor(parentEl, messagesEl) {
+    this.parentEl = parentEl;
+    this.messagesEl = messagesEl;
+    this.container = this.parentEl.createDiv({ cls: "claudian-nav-sidebar" });
+    this.topBtn = this.createButton("claudian-nav-btn-top", "chevrons-up", "Scroll to top");
+    this.prevBtn = this.createButton("claudian-nav-btn-prev", "chevron-up", "Previous message");
+    this.nextBtn = this.createButton("claudian-nav-btn-next", "chevron-down", "Next message");
+    this.bottomBtn = this.createButton("claudian-nav-btn-bottom", "chevrons-down", "Scroll to bottom");
+    this.setupEventListeners();
+    this.updateVisibility();
+  }
+  createButton(cls, icon, label) {
+    const btn = this.container.createDiv({ cls: `claudian-nav-btn ${cls}` });
+    (0, import_obsidian24.setIcon)(btn, icon);
+    btn.setAttribute("aria-label", label);
+    return btn;
+  }
+  setupEventListeners() {
+    this.scrollHandler = () => this.updateVisibility();
+    this.messagesEl.addEventListener("scroll", this.scrollHandler, { passive: true });
+    this.topBtn.addEventListener("click", () => {
+      this.messagesEl.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    this.bottomBtn.addEventListener("click", () => {
+      this.messagesEl.scrollTo({ top: this.messagesEl.scrollHeight, behavior: "smooth" });
+    });
+    this.prevBtn.addEventListener("click", () => this.scrollToMessage("prev"));
+    this.nextBtn.addEventListener("click", () => this.scrollToMessage("next"));
+  }
+  /**
+   * Updates visibility of the sidebar based on scroll state.
+   * Visible if content overflows.
+   */
+  updateVisibility() {
+    const { scrollHeight, clientHeight } = this.messagesEl;
+    const isScrollable = scrollHeight > clientHeight + 50;
+    this.container.classList.toggle("visible", isScrollable);
+  }
+  /**
+   * Scrolls to previous or next user message, skipping assistant messages.
+   */
+  scrollToMessage(direction) {
+    const messages = Array.from(this.messagesEl.querySelectorAll(".claudian-message-user"));
+    if (messages.length === 0) return;
+    const scrollTop = this.messagesEl.scrollTop;
+    const threshold = 30;
+    if (direction === "prev") {
+      for (let i2 = messages.length - 1; i2 >= 0; i2--) {
+        if (messages[i2].offsetTop < scrollTop - threshold) {
+          this.messagesEl.scrollTo({ top: messages[i2].offsetTop - 10, behavior: "smooth" });
+          return;
+        }
+      }
+      this.messagesEl.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      for (let i2 = 0; i2 < messages.length; i2++) {
+        if (messages[i2].offsetTop > scrollTop + threshold) {
+          this.messagesEl.scrollTo({ top: messages[i2].offsetTop - 10, behavior: "smooth" });
+          return;
+        }
+      }
+      this.messagesEl.scrollTo({ top: this.messagesEl.scrollHeight, behavior: "smooth" });
+    }
+  }
+  destroy() {
+    this.messagesEl.removeEventListener("scroll", this.scrollHandler);
+    this.container.remove();
+  }
+};
+
 // src/features/chat/ui/StatusPanel.ts
-var import_obsidian17 = require("obsidian");
+var import_obsidian25 = require("obsidian");
 var TERMINAL_STATES = ["completed", "error", "orphaned"];
+var MAX_BASH_OUTPUTS = 50;
 var StatusPanel = class {
   constructor() {
     this.containerEl = null;
@@ -59227,6 +65444,13 @@ var StatusPanel = class {
     // Async subagent section (above todos)
     this.subagentContainerEl = null;
     this.currentSubagents = /* @__PURE__ */ new Map();
+    // Bash output section (between subagents and todos)
+    this.bashOutputContainerEl = null;
+    this.bashHeaderEl = null;
+    this.bashContentEl = null;
+    this.isBashExpanded = true;
+    this.currentBashOutputs = /* @__PURE__ */ new Map();
+    this.bashEntryExpanded = /* @__PURE__ */ new Map();
     // Todo section
     this.todoContainerEl = null;
     this.todoHeaderEl = null;
@@ -59236,6 +65460,8 @@ var StatusPanel = class {
     // Event handler references for cleanup
     this.todoClickHandler = null;
     this.todoKeydownHandler = null;
+    this.bashClickHandler = null;
+    this.bashKeydownHandler = null;
   }
   /**
    * Mount the panel into the messages container.
@@ -59263,16 +65489,30 @@ var StatusPanel = class {
     }
     this.todoClickHandler = null;
     this.todoKeydownHandler = null;
+    if (this.bashHeaderEl) {
+      if (this.bashClickHandler) {
+        this.bashHeaderEl.removeEventListener("click", this.bashClickHandler);
+      }
+      if (this.bashKeydownHandler) {
+        this.bashHeaderEl.removeEventListener("keydown", this.bashKeydownHandler);
+      }
+    }
+    this.bashClickHandler = null;
+    this.bashKeydownHandler = null;
     if (this.panelEl) {
       this.panelEl.remove();
     }
     this.panelEl = null;
     this.subagentContainerEl = null;
+    this.bashOutputContainerEl = null;
+    this.bashHeaderEl = null;
+    this.bashContentEl = null;
     this.todoContainerEl = null;
     this.todoHeaderEl = null;
     this.todoContentEl = null;
     this.createPanel();
     this.renderSubagentStatus();
+    this.renderBashOutputs();
     if (this.currentTodos && this.currentTodos.length > 0) {
       this.updateTodos(this.currentTodos);
     }
@@ -59290,6 +65530,27 @@ var StatusPanel = class {
     this.subagentContainerEl.className = "claudian-status-panel-subagents";
     this.subagentContainerEl.style.display = "none";
     this.panelEl.appendChild(this.subagentContainerEl);
+    this.bashOutputContainerEl = document.createElement("div");
+    this.bashOutputContainerEl.className = "claudian-status-panel-bash";
+    this.bashOutputContainerEl.style.display = "none";
+    this.bashHeaderEl = document.createElement("div");
+    this.bashHeaderEl.className = "claudian-tool-header claudian-status-panel-bash-header";
+    this.bashHeaderEl.setAttribute("tabindex", "0");
+    this.bashHeaderEl.setAttribute("role", "button");
+    this.bashClickHandler = () => this.toggleBashSection();
+    this.bashKeydownHandler = (e2) => {
+      if (e2.key === "Enter" || e2.key === " ") {
+        e2.preventDefault();
+        this.toggleBashSection();
+      }
+    };
+    this.bashHeaderEl.addEventListener("click", this.bashClickHandler);
+    this.bashHeaderEl.addEventListener("keydown", this.bashKeydownHandler);
+    this.bashContentEl = document.createElement("div");
+    this.bashContentEl.className = "claudian-status-panel-bash-content";
+    this.bashOutputContainerEl.appendChild(this.bashHeaderEl);
+    this.bashOutputContainerEl.appendChild(this.bashContentEl);
+    this.panelEl.appendChild(this.bashOutputContainerEl);
     this.todoContainerEl = document.createElement("div");
     this.todoContainerEl.className = "claudian-status-panel-todos";
     this.todoContainerEl.style.display = "none";
@@ -59347,7 +65608,7 @@ var StatusPanel = class {
     this.todoHeaderEl.empty();
     const icon = document.createElement("span");
     icon.className = "claudian-status-panel-icon";
-    (0, import_obsidian17.setIcon)(icon, getToolIcon(TOOL_TODO_WRITE));
+    (0, import_obsidian25.setIcon)(icon, getToolIcon(TOOL_TODO_WRITE));
     this.todoHeaderEl.appendChild(icon);
     const label = document.createElement("span");
     label.className = "claudian-status-panel-label";
@@ -59357,7 +65618,7 @@ var StatusPanel = class {
       if (completedCount === totalCount && totalCount > 0) {
         const status = document.createElement("span");
         status.className = "claudian-status-panel-status status-completed";
-        (0, import_obsidian17.setIcon)(status, "check");
+        (0, import_obsidian25.setIcon)(status, "check");
         this.todoHeaderEl.appendChild(status);
       }
       if (currentTask) {
@@ -59516,7 +65777,7 @@ var StatusPanel = class {
       rowEl.className = showRunningOnThisRow ? "claudian-status-panel-done-row claudian-status-panel-combined-row" : "claudian-status-panel-done-row";
       const botIconEl = document.createElement("span");
       botIconEl.className = "claudian-status-panel-icon claudian-status-panel-bot-icon";
-      (0, import_obsidian17.setIcon)(botIconEl, getToolIcon(TOOL_TASK));
+      (0, import_obsidian25.setIcon)(botIconEl, getToolIcon(TOOL_TASK));
       rowEl.appendChild(botIconEl);
       const textEl = document.createElement("span");
       textEl.className = "claudian-status-panel-done-text";
@@ -59524,7 +65785,7 @@ var StatusPanel = class {
       rowEl.appendChild(textEl);
       const iconEl = document.createElement("span");
       iconEl.className = "claudian-status-panel-icon claudian-status-panel-done-icon";
-      (0, import_obsidian17.setIcon)(iconEl, "check");
+      (0, import_obsidian25.setIcon)(iconEl, "check");
       rowEl.appendChild(iconEl);
       if (showRunningOnThisRow) {
         const runningEl = document.createElement("span");
@@ -59546,6 +65807,185 @@ var StatusPanel = class {
     this.scrollToBottom();
   }
   // ============================================
+  // Bash Output Methods
+  // ============================================
+  addBashOutput(info) {
+    this.currentBashOutputs.set(info.id, info);
+    while (this.currentBashOutputs.size > MAX_BASH_OUTPUTS) {
+      const oldest = this.currentBashOutputs.keys().next().value;
+      if (!oldest) break;
+      this.currentBashOutputs.delete(oldest);
+      this.bashEntryExpanded.delete(oldest);
+    }
+    this.renderBashOutputs();
+  }
+  updateBashOutput(id, updates) {
+    const existing = this.currentBashOutputs.get(id);
+    if (!existing) return;
+    this.currentBashOutputs.set(id, { ...existing, ...updates });
+    this.renderBashOutputs();
+  }
+  clearBashOutputs() {
+    this.currentBashOutputs.clear();
+    this.bashEntryExpanded.clear();
+    this.renderBashOutputs();
+  }
+  renderBashOutputs(options = {}) {
+    var _a3;
+    if (!this.bashOutputContainerEl || !this.bashHeaderEl || !this.bashContentEl) return;
+    const scroll = (_a3 = options.scroll) != null ? _a3 : true;
+    if (this.currentBashOutputs.size === 0) {
+      this.bashOutputContainerEl.style.display = "none";
+      return;
+    }
+    this.bashOutputContainerEl.style.display = "block";
+    this.bashHeaderEl.empty();
+    this.bashContentEl.empty();
+    const headerIconEl = document.createElement("span");
+    headerIconEl.className = "claudian-tool-icon";
+    headerIconEl.setAttribute("aria-hidden", "true");
+    (0, import_obsidian25.setIcon)(headerIconEl, "terminal");
+    this.bashHeaderEl.appendChild(headerIconEl);
+    const latest = Array.from(this.currentBashOutputs.values()).at(-1);
+    const headerLabelEl = document.createElement("span");
+    headerLabelEl.className = "claudian-tool-label";
+    if (this.isBashExpanded) {
+      headerLabelEl.textContent = t("chat.bangBash.commandPanel");
+    } else {
+      headerLabelEl.textContent = latest ? this.truncateDescription(latest.command, 60) : t("chat.bangBash.commandPanel");
+    }
+    this.bashHeaderEl.appendChild(headerLabelEl);
+    const previewEl = document.createElement("span");
+    previewEl.className = "claudian-tool-current";
+    previewEl.style.display = this.isBashExpanded ? "" : "none";
+    this.bashHeaderEl.appendChild(previewEl);
+    const summaryStatusEl = document.createElement("span");
+    summaryStatusEl.className = "claudian-tool-status";
+    if (!this.isBashExpanded && latest) {
+      summaryStatusEl.classList.add(`status-${latest.status}`);
+      summaryStatusEl.setAttribute("aria-label", t("chat.bangBash.statusLabel", { status: latest.status }));
+      if (latest.status === "completed") (0, import_obsidian25.setIcon)(summaryStatusEl, "check");
+      if (latest.status === "error") (0, import_obsidian25.setIcon)(summaryStatusEl, "x");
+    } else {
+      summaryStatusEl.style.display = "none";
+    }
+    this.bashHeaderEl.appendChild(summaryStatusEl);
+    this.bashHeaderEl.setAttribute("aria-expanded", String(this.isBashExpanded));
+    const actionsEl = document.createElement("span");
+    actionsEl.className = "claudian-status-panel-bash-actions";
+    this.appendActionButton(actionsEl, "copy", t("chat.bangBash.copyAriaLabel"), "copy", () => {
+      void this.copyLatestBashOutput();
+    });
+    this.appendActionButton(actionsEl, "clear", t("chat.bangBash.clearAriaLabel"), "trash", () => {
+      this.clearBashOutputs();
+    });
+    this.bashHeaderEl.appendChild(actionsEl);
+    this.bashContentEl.style.display = this.isBashExpanded ? "block" : "none";
+    if (!this.isBashExpanded) {
+      return;
+    }
+    for (const info of this.currentBashOutputs.values()) {
+      this.bashContentEl.appendChild(this.renderBashEntry(info));
+    }
+    if (scroll) {
+      this.bashContentEl.scrollTop = this.bashContentEl.scrollHeight;
+      this.scrollToBottom();
+    }
+  }
+  renderBashEntry(info) {
+    var _a3;
+    const entryEl = document.createElement("div");
+    entryEl.className = "claudian-tool-call claudian-status-panel-bash-entry";
+    const entryHeaderEl = document.createElement("div");
+    entryHeaderEl.className = "claudian-tool-header";
+    entryHeaderEl.setAttribute("tabindex", "0");
+    entryHeaderEl.setAttribute("role", "button");
+    const entryIconEl = document.createElement("span");
+    entryIconEl.className = "claudian-tool-icon";
+    entryIconEl.setAttribute("aria-hidden", "true");
+    (0, import_obsidian25.setIcon)(entryIconEl, "dollar-sign");
+    entryHeaderEl.appendChild(entryIconEl);
+    const entryLabelEl = document.createElement("span");
+    entryLabelEl.className = "claudian-tool-label";
+    entryLabelEl.textContent = t("chat.bangBash.commandLabel", { command: this.truncateDescription(info.command, 60) });
+    entryHeaderEl.appendChild(entryLabelEl);
+    const entryStatusEl = document.createElement("span");
+    entryStatusEl.className = "claudian-tool-status";
+    entryStatusEl.classList.add(`status-${info.status}`);
+    entryStatusEl.setAttribute("aria-label", t("chat.bangBash.statusLabel", { status: info.status }));
+    if (info.status === "completed") (0, import_obsidian25.setIcon)(entryStatusEl, "check");
+    if (info.status === "error") (0, import_obsidian25.setIcon)(entryStatusEl, "x");
+    entryHeaderEl.appendChild(entryStatusEl);
+    entryEl.appendChild(entryHeaderEl);
+    const contentEl = document.createElement("div");
+    contentEl.className = "claudian-tool-content";
+    const isEntryExpanded = (_a3 = this.bashEntryExpanded.get(info.id)) != null ? _a3 : true;
+    contentEl.style.display = isEntryExpanded ? "block" : "none";
+    entryHeaderEl.setAttribute("aria-expanded", String(isEntryExpanded));
+    entryHeaderEl.setAttribute("aria-label", isEntryExpanded ? t("chat.bangBash.collapseOutput") : t("chat.bangBash.expandOutput"));
+    entryHeaderEl.addEventListener("click", () => {
+      this.bashEntryExpanded.set(info.id, !isEntryExpanded);
+      this.renderBashOutputs({ scroll: false });
+    });
+    entryHeaderEl.addEventListener("keydown", (e2) => {
+      if (e2.key === "Enter" || e2.key === " ") {
+        e2.preventDefault();
+        this.bashEntryExpanded.set(info.id, !isEntryExpanded);
+        this.renderBashOutputs({ scroll: false });
+      }
+    });
+    const rowEl = document.createElement("div");
+    rowEl.className = "claudian-tool-result-row";
+    const textEl = document.createElement("span");
+    textEl.className = "claudian-tool-result-text";
+    if (info.status === "running" && !info.output) {
+      textEl.textContent = t("chat.bangBash.running");
+    } else if (info.output) {
+      textEl.textContent = info.output;
+    }
+    rowEl.appendChild(textEl);
+    contentEl.appendChild(rowEl);
+    entryEl.appendChild(contentEl);
+    return entryEl;
+  }
+  async copyLatestBashOutput() {
+    var _a3;
+    const latest = Array.from(this.currentBashOutputs.values()).at(-1);
+    if (!latest) return;
+    const output = ((_a3 = latest.output) == null ? void 0 : _a3.trim()) || (latest.status === "running" ? t("chat.bangBash.running") : "");
+    const text = output ? `$ ${latest.command}
+${output}` : `$ ${latest.command}`;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e2) {
+      new import_obsidian25.Notice(t("chat.bangBash.copyFailed"));
+    }
+  }
+  appendActionButton(parent, name, ariaLabel, icon, action) {
+    const el = document.createElement("span");
+    el.className = `claudian-status-panel-bash-action claudian-status-panel-bash-action-${name}`;
+    el.setAttribute("role", "button");
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("aria-label", ariaLabel);
+    (0, import_obsidian25.setIcon)(el, icon);
+    el.addEventListener("click", (e2) => {
+      e2.stopPropagation();
+      action();
+    });
+    el.addEventListener("keydown", (e2) => {
+      if (e2.key === "Enter" || e2.key === " ") {
+        e2.preventDefault();
+        e2.stopPropagation();
+        action();
+      }
+    });
+    parent.appendChild(el);
+  }
+  toggleBashSection() {
+    this.isBashExpanded = !this.isBashExpanded;
+    this.renderBashOutputs({ scroll: false });
+  }
+  // ============================================
   // Cleanup
   // ============================================
   /**
@@ -59562,12 +66002,26 @@ var StatusPanel = class {
     }
     this.todoClickHandler = null;
     this.todoKeydownHandler = null;
+    if (this.bashHeaderEl) {
+      if (this.bashClickHandler) {
+        this.bashHeaderEl.removeEventListener("click", this.bashClickHandler);
+      }
+      if (this.bashKeydownHandler) {
+        this.bashHeaderEl.removeEventListener("keydown", this.bashKeydownHandler);
+      }
+    }
+    this.bashClickHandler = null;
+    this.bashKeydownHandler = null;
     this.currentSubagents.clear();
+    this.currentBashOutputs.clear();
     if (this.panelEl) {
       this.panelEl.remove();
       this.panelEl = null;
     }
     this.subagentContainerEl = null;
+    this.bashOutputContainerEl = null;
+    this.bashHeaderEl = null;
+    this.bashContentEl = null;
     this.todoContainerEl = null;
     this.todoHeaderEl = null;
     this.todoContentEl = null;
@@ -59622,6 +66076,7 @@ function createTab(options) {
     state,
     controllers: {
       selectionController: null,
+      canvasSelectionController: null,
       conversationController: null,
       streamController: null,
       inputController: null,
@@ -59642,8 +66097,10 @@ function createTab(options) {
       permissionToggle: null,
       slashCommandDropdown: null,
       instructionModeManager: null,
+      bangBashModeManager: null,
       contextUsageMeter: null,
-      statusPanel: null
+      statusPanel: null,
+      navigationSidebar: null
     },
     dom,
     renderer: null
@@ -59666,14 +66123,6 @@ function buildTabDOM(contentEl) {
   const messagesWrapperEl = contentEl.createDiv({ cls: "claudian-messages-wrapper" });
   const messagesEl = messagesWrapperEl.createDiv({ cls: "claudian-messages" });
   const welcomeEl = messagesEl.createDiv({ cls: "claudian-welcome" });
-  const scrollToBottomEl = messagesWrapperEl.createEl("button", {
-    cls: "claudian-scroll-to-bottom",
-    attr: {
-      "aria-label": "Scroll to bottom",
-      type: "button"
-    }
-  });
-  scrollToBottomEl.textContent = "Scroll to bottom";
   const statusPanelContainerEl = contentEl.createDiv({ cls: "claudian-status-panel-container" });
   const inputContainerEl = contentEl.createDiv({ cls: "claudian-input-container" });
   const navRowEl = inputContainerEl.createDiv({ cls: "claudian-input-nav-row" });
@@ -59683,7 +66132,8 @@ function buildTabDOM(contentEl) {
     cls: "claudian-input",
     attr: {
       placeholder: "How can I help you today?",
-      rows: "3"
+      rows: "3",
+      dir: "auto"
     }
   });
   return {
@@ -59697,7 +66147,7 @@ function buildTabDOM(contentEl) {
     navRowEl,
     contextRowEl,
     selectionIndicatorEl: null,
-    scrollToBottomEl,
+    canvasIndicatorEl: null,
     eventCleanups: []
   };
 }
@@ -59719,8 +66169,8 @@ async function initializeTabService(tab, plugin, mcpManager) {
     let externalContextPaths = plugin.settings.persistentExternalContextPaths || [];
     if (tab.conversationId) {
       const conversation = await plugin.getConversationById(tab.conversationId);
-      sessionId = (_a3 = conversation == null ? void 0 : conversation.sessionId) != null ? _a3 : void 0;
       if (conversation) {
+        sessionId = (_a3 = service.applyForkState(conversation)) != null ? _a3 : void 0;
         const hasMessages = conversation.messages.length > 0;
         externalContextPaths = hasMessages ? conversation.externalContextPaths || [] : plugin.settings.persistentExternalContextPaths || [];
       }
@@ -59750,10 +66200,11 @@ function initializeContextManagers(tab, plugin) {
     {
       getExcludedTags: () => plugin.settings.excludedTags,
       onChipsChanged: () => {
-        var _a3, _b;
+        var _a3, _b, _c;
         (_a3 = tab.controllers.selectionController) == null ? void 0 : _a3.updateContextRowVisibility();
+        (_b = tab.controllers.canvasSelectionController) == null ? void 0 : _b.updateContextRowVisibility();
         autoResizeTextarea(dom.inputEl);
-        (_b = tab.renderer) == null ? void 0 : _b.scrollToBottomIfNeeded();
+        (_c = tab.renderer) == null ? void 0 : _c.scrollToBottomIfNeeded();
       },
       getExternalContexts: () => {
         var _a3;
@@ -59769,10 +66220,11 @@ function initializeContextManagers(tab, plugin) {
     dom.inputEl,
     {
       onImagesChanged: () => {
-        var _a3, _b;
+        var _a3, _b, _c;
         (_a3 = tab.controllers.selectionController) == null ? void 0 : _a3.updateContextRowVisibility();
+        (_b = tab.controllers.canvasSelectionController) == null ? void 0 : _b.updateContextRowVisibility();
         autoResizeTextarea(dom.inputEl);
-        (_b = tab.renderer) == null ? void 0 : _b.scrollToBottomIfNeeded();
+        (_c = tab.renderer) == null ? void 0 : _c.scrollToBottomIfNeeded();
       }
     },
     dom.contextRowEl
@@ -59810,6 +66262,29 @@ function initializeInstructionAndTodo(tab, plugin) {
       getInputWrapper: () => dom.inputWrapper
     }
   );
+  if (plugin.settings.enableBangBash) {
+    const vaultPath = getVaultPath(plugin.app);
+    if (vaultPath) {
+      const enhancedPath = getEnhancedPath();
+      const bashService = new BangBashService(vaultPath, enhancedPath);
+      tab.ui.bangBashModeManager = new BangBashModeManager(
+        dom.inputEl,
+        {
+          onSubmit: async (command) => {
+            const statusPanel = tab.ui.statusPanel;
+            if (!statusPanel) return;
+            const id = `bash-${Date.now()}`;
+            statusPanel.addBashOutput({ id, command, status: "running", output: "" });
+            const result = await bashService.execute(command);
+            const output = [result.stdout, result.stderr, result.error].filter(Boolean).join("\n").trim();
+            const status = result.exitCode === 0 ? "completed" : "error";
+            statusPanel.updateBashOutput(id, { status, output, exitCode: result.exitCode });
+          },
+          getInputWrapper: () => dom.inputWrapper
+        }
+      );
+    }
+  }
   tab.ui.statusPanel = new StatusPanel();
   tab.ui.statusPanel.mount(dom.statusPanelContainerEl);
 }
@@ -59890,21 +66365,21 @@ function initializeTabUI(tab, plugin, options = {}) {
   initializeContextManagers(tab, plugin);
   dom.selectionIndicatorEl = dom.contextRowEl.createDiv({ cls: "claudian-selection-indicator" });
   dom.selectionIndicatorEl.style.display = "none";
+  dom.canvasIndicatorEl = dom.contextRowEl.createDiv({ cls: "claudian-canvas-indicator" });
+  dom.canvasIndicatorEl.style.display = "none";
   initializeSlashCommands(
     tab,
     options.getSdkCommands,
     () => new Set((plugin.settings.hiddenSlashCommands || []).map((c3) => c3.toLowerCase()))
   );
+  if (dom.messagesEl.parentElement) {
+    tab.ui.navigationSidebar = new NavigationSidebar(
+      dom.messagesEl.parentElement,
+      dom.messagesEl
+    );
+  }
   initializeInstructionAndTodo(tab, plugin);
   initializeInputToolbar(tab, plugin);
-  const updateScrollToBottomVisibility = () => {
-    if (dom.scrollToBottomEl) {
-      const hasOverflow = dom.messagesEl.scrollHeight > dom.messagesEl.clientHeight;
-      const shouldShow = !state.autoScrollEnabled && hasOverflow;
-      dom.scrollToBottomEl.classList.toggle("visible", shouldShow);
-    }
-  };
-  dom.updateScrollVisibility = updateScrollToBottomVisibility;
   state.callbacks = {
     ...state.callbacks,
     onUsageChanged: (usage) => {
@@ -59915,21 +66390,130 @@ function initializeTabUI(tab, plugin, options = {}) {
       var _a3;
       return (_a3 = tab.ui.statusPanel) == null ? void 0 : _a3.updateTodos(todos);
     },
-    onAutoScrollChanged: () => updateScrollToBottomVisibility()
+    onAutoScrollChanged: () => {
+      var _a3;
+      return (_a3 = tab.ui.navigationSidebar) == null ? void 0 : _a3.updateVisibility();
+    }
   };
   const resizeObserver = new ResizeObserver(() => {
-    updateScrollToBottomVisibility();
+    var _a3;
+    (_a3 = tab.ui.navigationSidebar) == null ? void 0 : _a3.updateVisibility();
   });
   resizeObserver.observe(dom.messagesEl);
   dom.eventCleanups.push(() => resizeObserver.disconnect());
-  updateScrollToBottomVisibility();
 }
-function initializeTabControllers(tab, plugin, component, mcpManager) {
+function deepCloneMessages(messages) {
+  const sc = globalThis.structuredClone;
+  if (typeof sc === "function") {
+    return sc(messages);
+  }
+  return JSON.parse(JSON.stringify(messages));
+}
+function countUserMessagesForForkTitle(messages) {
+  return messages.filter((m) => m.role === "user" && !m.isInterrupt && !m.isRebuiltContext).length;
+}
+function resolveForkSource(tab, plugin) {
+  var _a3, _b, _c, _d, _e, _f;
+  let sourceSessionId = (_b = (_a3 = tab.service) == null ? void 0 : _a3.getSessionId()) != null ? _b : null;
+  if (!sourceSessionId && tab.conversationId) {
+    const conversation = plugin.getConversationSync(tab.conversationId);
+    sourceSessionId = (_f = (_e = (_c = conversation == null ? void 0 : conversation.sdkSessionId) != null ? _c : conversation == null ? void 0 : conversation.sessionId) != null ? _e : (_d = conversation == null ? void 0 : conversation.forkSource) == null ? void 0 : _d.sessionId) != null ? _f : null;
+  }
+  if (!sourceSessionId) {
+    new import_obsidian26.Notice(t("chat.fork.failed", { error: t("chat.fork.errorNoSession") }));
+    return null;
+  }
+  const sourceConversation = tab.conversationId ? plugin.getConversationSync(tab.conversationId) : void 0;
+  return {
+    sourceSessionId,
+    sourceTitle: sourceConversation == null ? void 0 : sourceConversation.title,
+    currentNote: sourceConversation == null ? void 0 : sourceConversation.currentNote
+  };
+}
+async function handleForkRequest(tab, plugin, userMessageId, forkRequestCallback) {
+  const { state } = tab;
+  if (state.isStreaming) {
+    new import_obsidian26.Notice(t("chat.fork.unavailableStreaming"));
+    return;
+  }
+  const msgs = state.messages;
+  const userIdx = msgs.findIndex((m) => m.id === userMessageId);
+  if (userIdx === -1) {
+    new import_obsidian26.Notice(t("chat.fork.failed", { error: t("chat.fork.errorMessageNotFound") }));
+    return;
+  }
+  if (!msgs[userIdx].sdkUserUuid) {
+    new import_obsidian26.Notice(t("chat.fork.unavailableNoUuid"));
+    return;
+  }
+  const rewindCtx = findRewindContext(msgs, userIdx);
+  if (!rewindCtx.hasResponse || !rewindCtx.prevAssistantUuid) {
+    new import_obsidian26.Notice(t("chat.fork.unavailableNoResponse"));
+    return;
+  }
+  const source = resolveForkSource(tab, plugin);
+  if (!source) return;
+  await forkRequestCallback({
+    messages: deepCloneMessages(msgs.slice(0, userIdx)),
+    sourceSessionId: source.sourceSessionId,
+    resumeAt: rewindCtx.prevAssistantUuid,
+    sourceTitle: source.sourceTitle,
+    forkAtUserMessage: countUserMessagesForForkTitle(msgs.slice(0, userIdx + 1)),
+    currentNote: source.currentNote
+  });
+}
+async function handleForkAll(tab, plugin, forkRequestCallback) {
+  const { state } = tab;
+  if (state.isStreaming) {
+    new import_obsidian26.Notice(t("chat.fork.unavailableStreaming"));
+    return;
+  }
+  const msgs = state.messages;
+  if (msgs.length === 0) {
+    new import_obsidian26.Notice(t("chat.fork.commandNoMessages"));
+    return;
+  }
+  let lastAssistantUuid;
+  for (let i2 = msgs.length - 1; i2 >= 0; i2--) {
+    if (msgs[i2].role === "assistant" && msgs[i2].sdkAssistantUuid) {
+      lastAssistantUuid = msgs[i2].sdkAssistantUuid;
+      break;
+    }
+  }
+  if (!lastAssistantUuid) {
+    new import_obsidian26.Notice(t("chat.fork.commandNoAssistantUuid"));
+    return;
+  }
+  const source = resolveForkSource(tab, plugin);
+  if (!source) return;
+  await forkRequestCallback({
+    messages: deepCloneMessages(msgs),
+    sourceSessionId: source.sourceSessionId,
+    resumeAt: lastAssistantUuid,
+    sourceTitle: source.sourceTitle,
+    forkAtUserMessage: countUserMessagesForForkTitle(msgs) + 1,
+    currentNote: source.currentNote
+  });
+}
+function initializeTabControllers(tab, plugin, component, mcpManager, forkRequestCallback, openConversation) {
   const { dom, state, services, ui } = tab;
-  tab.renderer = new MessageRenderer(plugin, component, dom.messagesEl);
+  tab.renderer = new MessageRenderer(
+    plugin,
+    component,
+    dom.messagesEl,
+    (id) => tab.controllers.conversationController.rewind(id),
+    forkRequestCallback ? (id) => handleForkRequest(tab, plugin, id, forkRequestCallback) : void 0
+  );
   tab.controllers.selectionController = new SelectionController(
     plugin.app,
     dom.selectionIndicatorEl,
+    dom.inputEl,
+    dom.contextRowEl,
+    () => autoResizeTextarea(dom.inputEl)
+  );
+  tab.controllers.canvasSelectionController = new CanvasSelectionController(
+    plugin.app,
+    dom.canvasIndicatorEl,
     dom.inputEl,
     dom.contextRowEl,
     () => autoResizeTextarea(dom.inputEl)
@@ -59949,8 +66533,12 @@ function initializeTabControllers(tab, plugin, component, mcpManager) {
   });
   services.subagentManager.setCallback(
     (subagent) => {
-      var _a3;
+      var _a3, _b;
       (_a3 = tab.controllers.streamController) == null ? void 0 : _a3.onAsyncSubagentStateChange(subagent);
+      if (!tab.state.isStreaming && tab.state.currentConversationId) {
+        void ((_b = tab.controllers.conversationController) == null ? void 0 : _b.save(false).catch(() => {
+        }));
+      }
       if (subagent.mode === "async" && ui.statusPanel) {
         ui.statusPanel.updateSubagent({
           id: subagent.id,
@@ -59998,6 +66586,7 @@ function initializeTabControllers(tab, plugin, component, mcpManager) {
     renderer: tab.renderer,
     streamController: tab.controllers.streamController,
     selectionController: tab.controllers.selectionController,
+    canvasSelectionController: tab.controllers.canvasSelectionController,
     conversationController: tab.controllers.conversationController,
     getInputEl: () => dom.inputEl,
     getInputContainerEl: () => dom.inputContainerEl,
@@ -60030,7 +66619,9 @@ function initializeTabControllers(tab, plugin, component, mcpManager) {
       } catch (e2) {
         return false;
       }
-    }
+    },
+    openConversation,
+    onForkAll: forkRequestCallback ? () => handleForkAll(tab, plugin, forkRequestCallback) : void 0
   });
   tab.controllers.navigationController = new NavigationController({
     getMessagesEl: () => dom.messagesEl,
@@ -60038,54 +66629,84 @@ function initializeTabControllers(tab, plugin, component, mcpManager) {
     getSettings: () => plugin.settings.keyboardNavigation,
     isStreaming: () => state.isStreaming,
     shouldSkipEscapeHandling: () => {
-      var _a3, _b, _c;
+      var _a3, _b, _c, _d, _e;
       if ((_a3 = ui.instructionModeManager) == null ? void 0 : _a3.isActive()) return true;
-      if ((_b = ui.slashCommandDropdown) == null ? void 0 : _b.isVisible()) return true;
-      if ((_c = ui.fileContextManager) == null ? void 0 : _c.isMentionDropdownVisible()) return true;
+      if ((_b = ui.bangBashModeManager) == null ? void 0 : _b.isActive()) return true;
+      if ((_c = tab.controllers.inputController) == null ? void 0 : _c.isResumeDropdownVisible()) return true;
+      if ((_d = ui.slashCommandDropdown) == null ? void 0 : _d.isVisible()) return true;
+      if ((_e = ui.fileContextManager) == null ? void 0 : _e.isMentionDropdownVisible()) return true;
       return false;
     }
   });
   tab.controllers.navigationController.initialize();
 }
 function wireTabInputEvents(tab, plugin) {
+  var _a3, _b;
   const { dom, ui, state, controllers } = tab;
+  let wasBangBashActive = (_b = (_a3 = ui.bangBashModeManager) == null ? void 0 : _a3.isActive()) != null ? _b : false;
+  const syncBangBashSuppression = () => {
+    var _a4, _b2, _c, _d;
+    const isActive = (_b2 = (_a4 = ui.bangBashModeManager) == null ? void 0 : _a4.isActive()) != null ? _b2 : false;
+    if (isActive === wasBangBashActive) return;
+    wasBangBashActive = isActive;
+    (_c = ui.slashCommandDropdown) == null ? void 0 : _c.setEnabled(!isActive);
+    if (isActive) {
+      (_d = ui.fileContextManager) == null ? void 0 : _d.hideMentionDropdown();
+    }
+  };
   const keydownHandler = (e2) => {
-    var _a3, _b, _c, _d, _e, _f;
-    if ((_a3 = ui.instructionModeManager) == null ? void 0 : _a3.handleTriggerKey(e2)) {
+    var _a4, _b2, _c, _d, _e, _f, _g, _h, _i;
+    if ((_a4 = ui.bangBashModeManager) == null ? void 0 : _a4.isActive()) {
+      ui.bangBashModeManager.handleKeydown(e2);
+      syncBangBashSuppression();
       return;
     }
-    if ((_b = ui.instructionModeManager) == null ? void 0 : _b.handleKeydown(e2)) {
+    if ((_b2 = ui.instructionModeManager) == null ? void 0 : _b2.handleTriggerKey(e2)) {
       return;
     }
-    if ((_c = ui.slashCommandDropdown) == null ? void 0 : _c.handleKeydown(e2)) {
+    if ((_c = ui.bangBashModeManager) == null ? void 0 : _c.handleTriggerKey(e2)) {
+      syncBangBashSuppression();
       return;
     }
-    if ((_d = ui.fileContextManager) == null ? void 0 : _d.handleMentionKeydown(e2)) {
+    if ((_d = ui.instructionModeManager) == null ? void 0 : _d.handleKeydown(e2)) {
+      return;
+    }
+    if ((_e = controllers.inputController) == null ? void 0 : _e.handleResumeKeydown(e2)) {
+      return;
+    }
+    if ((_f = ui.slashCommandDropdown) == null ? void 0 : _f.handleKeydown(e2)) {
+      return;
+    }
+    if ((_g = ui.fileContextManager) == null ? void 0 : _g.handleMentionKeydown(e2)) {
       return;
     }
     if (e2.key === "Escape" && !e2.isComposing && state.isStreaming) {
       e2.preventDefault();
-      (_e = controllers.inputController) == null ? void 0 : _e.cancelStreaming();
+      (_h = controllers.inputController) == null ? void 0 : _h.cancelStreaming();
       return;
     }
     if (e2.key === "Enter" && !e2.shiftKey && !e2.isComposing) {
       e2.preventDefault();
-      void ((_f = controllers.inputController) == null ? void 0 : _f.sendMessage());
+      void ((_i = controllers.inputController) == null ? void 0 : _i.sendMessage());
     }
   };
   dom.inputEl.addEventListener("keydown", keydownHandler);
   dom.eventCleanups.push(() => dom.inputEl.removeEventListener("keydown", keydownHandler));
   const inputHandler = () => {
-    var _a3, _b;
-    (_a3 = ui.fileContextManager) == null ? void 0 : _a3.handleInputChange();
-    (_b = ui.instructionModeManager) == null ? void 0 : _b.handleInputChange();
+    var _a4, _b2, _c, _d;
+    if (!((_a4 = ui.bangBashModeManager) == null ? void 0 : _a4.isActive())) {
+      (_b2 = ui.fileContextManager) == null ? void 0 : _b2.handleInputChange();
+    }
+    (_c = ui.instructionModeManager) == null ? void 0 : _c.handleInputChange();
+    (_d = ui.bangBashModeManager) == null ? void 0 : _d.handleInputChange();
+    syncBangBashSuppression();
     autoResizeTextarea(dom.inputEl);
   };
   dom.inputEl.addEventListener("input", inputHandler);
   dom.eventCleanups.push(() => dom.inputEl.removeEventListener("input", inputHandler));
   const focusHandler = () => {
-    var _a3;
-    (_a3 = controllers.selectionController) == null ? void 0 : _a3.showHighlight();
+    var _a4;
+    (_a4 = controllers.selectionController) == null ? void 0 : _a4.showHighlight();
   };
   dom.inputEl.addEventListener("focus", focusHandler);
   dom.eventCleanups.push(() => dom.inputEl.removeEventListener("focus", focusHandler));
@@ -60093,8 +66714,8 @@ function wireTabInputEvents(tab, plugin) {
   const RE_ENABLE_DELAY = 150;
   let reEnableTimeout = null;
   const isAutoScrollAllowed = () => {
-    var _a3;
-    return (_a3 = plugin.settings.enableAutoScroll) != null ? _a3 : true;
+    var _a4;
+    return (_a4 = plugin.settings.enableAutoScroll) != null ? _a4 : true;
   };
   const scrollHandler = () => {
     if (!isAutoScrollAllowed()) {
@@ -60130,56 +66751,52 @@ function wireTabInputEvents(tab, plugin) {
     dom.messagesEl.removeEventListener("scroll", scrollHandler);
     if (reEnableTimeout) clearTimeout(reEnableTimeout);
   });
-  if (dom.scrollToBottomEl) {
-    const scrollToBottomHandler = () => {
-      dom.messagesEl.scrollTop = dom.messagesEl.scrollHeight;
-      if (isAutoScrollAllowed()) {
-        state.autoScrollEnabled = true;
-      }
-    };
-    dom.scrollToBottomEl.addEventListener("click", scrollToBottomHandler);
-    dom.eventCleanups.push(() => {
-      var _a3;
-      return (_a3 = dom.scrollToBottomEl) == null ? void 0 : _a3.removeEventListener("click", scrollToBottomHandler);
-    });
-  }
 }
 function activateTab(tab) {
   var _a3, _b, _c;
   tab.dom.contentEl.style.display = "flex";
   (_a3 = tab.controllers.selectionController) == null ? void 0 : _a3.start();
-  (_c = (_b = tab.dom).updateScrollVisibility) == null ? void 0 : _c.call(_b);
+  (_b = tab.controllers.canvasSelectionController) == null ? void 0 : _b.start();
+  (_c = tab.ui.navigationSidebar) == null ? void 0 : _c.updateVisibility();
 }
 function deactivateTab(tab) {
-  var _a3;
+  var _a3, _b;
   tab.dom.contentEl.style.display = "none";
   (_a3 = tab.controllers.selectionController) == null ? void 0 : _a3.stop();
+  (_b = tab.controllers.canvasSelectionController) == null ? void 0 : _b.stop();
 }
 async function destroyTab(tab) {
-  var _a3, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+  var _a3, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o;
   (_a3 = tab.controllers.selectionController) == null ? void 0 : _a3.stop();
   (_b = tab.controllers.selectionController) == null ? void 0 : _b.clear();
-  (_c = tab.controllers.navigationController) == null ? void 0 : _c.dispose();
+  (_c = tab.controllers.canvasSelectionController) == null ? void 0 : _c.stop();
+  (_d = tab.controllers.canvasSelectionController) == null ? void 0 : _d.clear();
+  (_e = tab.controllers.navigationController) == null ? void 0 : _e.dispose();
   cleanupThinkingBlock(tab.state.currentThinkingState);
   tab.state.currentThinkingState = null;
-  (_d = tab.ui.fileContextManager) == null ? void 0 : _d.destroy();
-  (_e = tab.ui.slashCommandDropdown) == null ? void 0 : _e.destroy();
+  (_f = tab.controllers.inputController) == null ? void 0 : _f.destroyResumeDropdown();
+  (_g = tab.ui.fileContextManager) == null ? void 0 : _g.destroy();
+  (_h = tab.ui.slashCommandDropdown) == null ? void 0 : _h.destroy();
   tab.ui.slashCommandDropdown = null;
-  (_f = tab.ui.instructionModeManager) == null ? void 0 : _f.destroy();
+  (_i = tab.ui.instructionModeManager) == null ? void 0 : _i.destroy();
   tab.ui.instructionModeManager = null;
-  (_g = tab.services.instructionRefineService) == null ? void 0 : _g.cancel();
+  (_j = tab.ui.bangBashModeManager) == null ? void 0 : _j.destroy();
+  tab.ui.bangBashModeManager = null;
+  (_k = tab.services.instructionRefineService) == null ? void 0 : _k.cancel();
   tab.services.instructionRefineService = null;
-  (_h = tab.services.titleGenerationService) == null ? void 0 : _h.cancel();
+  (_l = tab.services.titleGenerationService) == null ? void 0 : _l.cancel();
   tab.services.titleGenerationService = null;
-  (_i = tab.ui.statusPanel) == null ? void 0 : _i.destroy();
+  (_m = tab.ui.statusPanel) == null ? void 0 : _m.destroy();
   tab.ui.statusPanel = null;
+  (_n = tab.ui.navigationSidebar) == null ? void 0 : _n.destroy();
+  tab.ui.navigationSidebar = null;
   tab.services.subagentManager.orphanAllActive();
   tab.services.subagentManager.clear();
   for (const cleanup of tab.dom.eventCleanups) {
     cleanup();
   }
   tab.dom.eventCleanups.length = 0;
-  (_j = tab.service) == null ? void 0 : _j.closePersistentQuery("tab closed");
+  (_o = tab.service) == null ? void 0 : _o.closePersistentQuery("tab closed");
   tab.service = null;
   tab.dom.contentEl.remove();
 }
@@ -60307,6 +66924,45 @@ var TabBar = class {
 };
 
 // src/features/chat/tabs/TabManager.ts
+var import_obsidian28 = require("obsidian");
+
+// src/shared/modals/ForkTargetModal.ts
+var import_obsidian27 = require("obsidian");
+function chooseForkTarget(app) {
+  return new Promise((resolve5) => {
+    new ForkTargetModal(app, resolve5).open();
+  });
+}
+var ForkTargetModal = class extends import_obsidian27.Modal {
+  constructor(app, resolve5) {
+    super(app);
+    this.resolved = false;
+    this.resolve = resolve5;
+  }
+  onOpen() {
+    this.setTitle(t("chat.fork.chooseTarget"));
+    this.modalEl.addClass("claudian-fork-target-modal");
+    const list = this.contentEl.createDiv({ cls: "claudian-fork-target-list" });
+    this.createOption(list, "current-tab", t("chat.fork.targetCurrentTab"));
+    this.createOption(list, "new-tab", t("chat.fork.targetNewTab"));
+  }
+  createOption(container, target, label) {
+    const item = container.createDiv({ cls: "claudian-fork-target-option", text: label });
+    item.addEventListener("click", () => {
+      this.resolved = true;
+      this.resolve(target);
+      this.close();
+    });
+  }
+  onClose() {
+    if (!this.resolved) {
+      this.resolve(null);
+    }
+    this.contentEl.empty();
+  }
+};
+
+// src/features/chat/tabs/TabManager.ts
 var TabManager = class {
   constructor(plugin, mcpManager, containerEl, view, callbacks = {}) {
     this.tabs = /* @__PURE__ */ new Map();
@@ -60371,7 +67027,14 @@ var TabManager = class {
     initializeTabUI(tab, this.plugin, {
       getSdkCommands: () => this.getSdkCommands()
     });
-    initializeTabControllers(tab, this.plugin, this.view, this.mcpManager);
+    initializeTabControllers(
+      tab,
+      this.plugin,
+      this.view,
+      this.mcpManager,
+      (forkContext) => this.handleForkRequest(forkContext),
+      (conversationId2) => this.openConversation(conversationId2)
+    );
     wireTabInputEvents(tab, this.plugin);
     this.tabs.set(tab.id, tab);
     (_b = (_a3 = this.callbacks).onTabCreated) == null ? void 0 : _b.call(_a3, tab);
@@ -60383,7 +67046,7 @@ var TabManager = class {
    * @param tabId The tab to switch to.
    */
   async switchToTab(tabId) {
-    var _a3, _b, _c, _d, _e;
+    var _a3, _b, _c, _d;
     const tab = this.tabs.get(tabId);
     if (!tab) {
       return;
@@ -60409,12 +67072,13 @@ var TabManager = class {
         if (conversation) {
           const hasMessages = conversation.messages.length > 0;
           const externalContextPaths = hasMessages ? conversation.externalContextPaths || [] : this.plugin.settings.persistentExternalContextPaths || [];
-          tab.service.setSessionId((_b = conversation.sessionId) != null ? _b : null, externalContextPaths);
+          const resolvedSessionId = tab.service.applyForkState(conversation);
+          tab.service.setSessionId(resolvedSessionId, externalContextPaths);
         }
       } else if (!tab.conversationId && tab.state.messages.length === 0) {
-        (_c = tab.controllers.conversationController) == null ? void 0 : _c.initializeWelcome();
+        (_b = tab.controllers.conversationController) == null ? void 0 : _b.initializeWelcome();
       }
-      (_e = (_d = this.callbacks).onTabSwitched) == null ? void 0 : _e.call(_d, previousTabId, tabId);
+      (_d = (_c = this.callbacks).onTabSwitched) == null ? void 0 : _d.call(_c, previousTabId, tabId);
     } finally {
       this.isSwitchingTab = false;
     }
@@ -60553,6 +67217,85 @@ var TabManager = class {
     }
   }
   // ============================================
+  // Fork
+  // ============================================
+  async handleForkRequest(context) {
+    const target = await chooseForkTarget(this.plugin.app);
+    if (!target) return;
+    if (target === "new-tab") {
+      const tab = await this.forkToNewTab(context);
+      if (!tab) {
+        const maxTabs = this.getMaxTabs();
+        new import_obsidian28.Notice(t("chat.fork.maxTabsReached", { count: String(maxTabs) }));
+        return;
+      }
+      new import_obsidian28.Notice(t("chat.fork.notice"));
+    } else {
+      const success2 = await this.forkInCurrentTab(context);
+      if (!success2) {
+        new import_obsidian28.Notice(t("chat.fork.failed", { error: t("chat.fork.errorNoActiveTab") }));
+        return;
+      }
+      new import_obsidian28.Notice(t("chat.fork.noticeCurrentTab"));
+    }
+  }
+  async forkToNewTab(context) {
+    const maxTabs = this.getMaxTabs();
+    if (this.tabs.size >= maxTabs) {
+      return null;
+    }
+    const conversationId = await this.createForkConversation(context);
+    try {
+      return await this.createTab(conversationId);
+    } catch (error48) {
+      await this.plugin.deleteConversation(conversationId).catch(() => {
+      });
+      throw error48;
+    }
+  }
+  async forkInCurrentTab(context) {
+    const activeTab = this.getActiveTab();
+    if (!(activeTab == null ? void 0 : activeTab.controllers.conversationController)) return false;
+    const conversationId = await this.createForkConversation(context);
+    try {
+      await activeTab.controllers.conversationController.switchTo(conversationId);
+    } catch (error48) {
+      await this.plugin.deleteConversation(conversationId).catch(() => {
+      });
+      throw error48;
+    }
+    return true;
+  }
+  async createForkConversation(context) {
+    const conversation = await this.plugin.createConversation();
+    const title = context.sourceTitle ? this.buildForkTitle(context.sourceTitle, context.forkAtUserMessage) : void 0;
+    await this.plugin.updateConversation(conversation.id, {
+      messages: context.messages,
+      forkSource: { sessionId: context.sourceSessionId, resumeAt: context.resumeAt },
+      // Prevent immediate SDK message load from merging duplicates with the copied messages.
+      // This is in-memory only (not persisted in metadata).
+      sdkMessagesLoaded: true,
+      ...title && { title },
+      ...context.currentNote && { currentNote: context.currentNote }
+    });
+    return conversation.id;
+  }
+  buildForkTitle(sourceTitle, forkAtUserMessage) {
+    const MAX_TITLE_LENGTH = 50;
+    const forkSuffix = forkAtUserMessage ? ` (#${forkAtUserMessage})` : "";
+    const forkPrefix = "Fork: ";
+    const maxSourceLength = MAX_TITLE_LENGTH - forkPrefix.length - forkSuffix.length;
+    const truncatedSource = sourceTitle.length > maxSourceLength ? sourceTitle.slice(0, maxSourceLength - 1) + "\u2026" : sourceTitle;
+    let title = forkPrefix + truncatedSource + forkSuffix;
+    const existingTitles = new Set(this.plugin.getConversationList().map((c3) => c3.title));
+    if (existingTitles.has(title)) {
+      let n2 = 2;
+      while (existingTitles.has(`${title} ${n2}`)) n2++;
+      title = `${title} ${n2}`;
+    }
+    return title;
+  }
+  // ============================================
   // Persistence
   // ============================================
   /** Gets the state to persist. */
@@ -60629,16 +67372,16 @@ var TabManager = class {
    * @param fn Function to call on each service.
    */
   async broadcastToAllTabs(fn) {
-    const promises = [];
+    const promises2 = [];
     for (const tab of this.tabs.values()) {
       if (tab.service && tab.serviceInitialized) {
-        promises.push(
+        promises2.push(
           fn(tab.service).catch(() => {
           })
         );
       }
     }
-    await Promise.all(promises);
+    await Promise.all(promises2);
   }
   // ============================================
   // Cleanup
@@ -60658,7 +67401,7 @@ var TabManager = class {
 };
 
 // src/features/chat/ClaudianView.ts
-var ClaudianView = class extends import_obsidian18.ItemView {
+var ClaudianView = class extends import_obsidian29.ItemView {
   constructor(leaf, plugin) {
     super(leaf);
     // Tab management
@@ -60802,10 +67545,10 @@ var ClaudianView = class extends import_obsidian18.ItemView {
     svg.setAttribute("width", LOGO_SVG.width);
     svg.setAttribute("height", LOGO_SVG.height);
     svg.setAttribute("fill", "none");
-    const path10 = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path10.setAttribute("d", LOGO_SVG.path);
-    path10.setAttribute("fill", LOGO_SVG.fill);
-    svg.appendChild(path10);
+    const path11 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path11.setAttribute("d", LOGO_SVG.path);
+    path11.setAttribute("fill", LOGO_SVG.fill);
+    svg.appendChild(path11);
     this.logoEl.appendChild(svg);
     this.titleTextEl = this.titleSlotEl.createEl("h4", { text: "Claudian", cls: "claudian-title-text" });
     this.headerActionsEl = header.createDiv({ cls: "claudian-header-actions claudian-header-actions-slot" });
@@ -60828,13 +67571,13 @@ var ClaudianView = class extends import_obsidian18.ItemView {
     this.headerActionsContent = document.createElement("div");
     this.headerActionsContent.className = "claudian-header-actions";
     const newTabBtn = this.headerActionsContent.createDiv({ cls: "claudian-header-btn claudian-new-tab-btn" });
-    (0, import_obsidian18.setIcon)(newTabBtn, "square-plus");
+    (0, import_obsidian29.setIcon)(newTabBtn, "square-plus");
     newTabBtn.setAttribute("aria-label", "New tab");
     newTabBtn.addEventListener("click", async () => {
       await this.handleNewTab();
     });
     const newBtn = this.headerActionsContent.createDiv({ cls: "claudian-header-btn" });
-    (0, import_obsidian18.setIcon)(newBtn, "square-pen");
+    (0, import_obsidian29.setIcon)(newBtn, "square-pen");
     newBtn.setAttribute("aria-label", "New conversation");
     newBtn.addEventListener("click", async () => {
       var _a3;
@@ -60843,7 +67586,7 @@ var ClaudianView = class extends import_obsidian18.ItemView {
     });
     const historyContainer = this.headerActionsContent.createDiv({ cls: "claudian-history-container" });
     const historyBtn = historyContainer.createDiv({ cls: "claudian-header-btn" });
-    (0, import_obsidian18.setIcon)(historyBtn, "history");
+    (0, import_obsidian29.setIcon)(historyBtn, "history");
     historyBtn.setAttribute("aria-label", "Chat history");
     this.historyDropdown = historyContainer.createDiv({ cls: "claudian-history-menu" });
     historyBtn.addEventListener("click", (e2) => {
@@ -60915,7 +67658,7 @@ var ClaudianView = class extends import_obsidian18.ItemView {
     const tab = await ((_a3 = this.tabManager) == null ? void 0 : _a3.createTab());
     if (!tab) {
       const maxTabs = (_b = this.plugin.settings.maxTabs) != null ? _b : 3;
-      new import_obsidian18.Notice(`Maximum ${maxTabs} tabs allowed`);
+      new import_obsidian29.Notice(`Maximum ${maxTabs} tabs allowed`);
       return;
     }
     this.updateTabBarVisibility();
@@ -61019,7 +67762,7 @@ var ClaudianView = class extends import_obsidian18.ItemView {
         }
       }
     });
-    this.registerDomEvent(document, "keydown", (e2) => {
+    this.registerDomEvent(this.containerEl, "keydown", (e2) => {
       var _a3, _b;
       if (e2.key === "Escape" && !e2.isComposing) {
         const activeTab = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab();
@@ -61029,15 +67772,18 @@ var ClaudianView = class extends import_obsidian18.ItemView {
         }
       }
     });
-    const markDirty = () => {
-      var _a3, _b, _c;
-      (_c = (_b = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab()) == null ? void 0 : _b.ui.fileContextManager) == null ? void 0 : _c.markFilesCacheDirty();
+    const markCacheDirty = (includesFolders) => {
+      var _a3, _b;
+      const mgr = (_b = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab()) == null ? void 0 : _b.ui.fileContextManager;
+      if (!mgr) return;
+      mgr.markFileCacheDirty();
+      if (includesFolders) mgr.markFolderCacheDirty();
     };
     this.eventRefs.push(
-      this.plugin.app.vault.on("create", markDirty),
-      this.plugin.app.vault.on("delete", markDirty),
-      this.plugin.app.vault.on("rename", markDirty),
-      this.plugin.app.vault.on("modify", markDirty)
+      this.plugin.app.vault.on("create", () => markCacheDirty(true)),
+      this.plugin.app.vault.on("delete", () => markCacheDirty(true)),
+      this.plugin.app.vault.on("rename", () => markCacheDirty(true)),
+      this.plugin.app.vault.on("modify", () => markCacheDirty(false))
     );
     this.registerEvent(
       this.plugin.app.workspace.on("file-open", (file2) => {
@@ -61120,15 +67866,7 @@ var ClaudianView = class extends import_obsidian18.ItemView {
 };
 
 // src/features/inline-edit/ui/InlineEditModal.ts
-var import_obsidian19 = require("obsidian");
-
-// src/utils/inlineEdit.ts
-function normalizeInsertionText(text) {
-  return text.replace(/^(?:\r?\n)+|(?:\r?\n)+$/g, "");
-}
-function escapeHtml2(text) {
-  return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
+var import_obsidian30 = require("obsidian");
 
 // src/core/prompts/inlineEdit.ts
 function getInlineEditSystemPrompt() {
@@ -61687,7 +68425,7 @@ function computeDiff(oldText, newText) {
 }
 function diffToHtml(ops) {
   return ops.map((op) => {
-    const escaped = escapeHtml2(op.text);
+    const escaped = escapeHtml(op.text);
     switch (op.type) {
       case "delete":
         return `<span class="claudian-diff-del">${escaped}</span>`;
@@ -61699,11 +68437,14 @@ function diffToHtml(ops) {
   }).join("");
 }
 var InlineEditModal = class {
-  constructor(app, plugin, editContext, notePath) {
+  constructor(app, plugin, editor, view, editContext, notePath, getExternalContexts = () => []) {
     this.app = app;
     this.plugin = plugin;
+    this.editor = editor;
+    this.view = view;
     this.editContext = editContext;
     this.notePath = notePath;
+    this.getExternalContexts = getExternalContexts;
     this.controller = null;
   }
   async openAndWait() {
@@ -61711,12 +68452,17 @@ var InlineEditModal = class {
       activeController.reject();
       return { decision: "reject" };
     }
-    const view = this.app.workspace.getActiveViewOfType(import_obsidian19.MarkdownView);
-    if (!view) return { decision: "reject" };
-    const editor = view.editor;
-    const editorView = getEditorView(editor);
-    if (!editorView) return { decision: "reject" };
-    return new Promise((resolve4) => {
+    let editor = this.editor;
+    let editorView = getEditorView(editor);
+    if (!editorView) {
+      editor = this.view.editor;
+      editorView = getEditorView(editor);
+    }
+    if (!editorView) {
+      new import_obsidian30.Notice("Inline edit unavailable: could not access the active editor. Try reopening the note.");
+      return { decision: "reject" };
+    }
+    return new Promise((resolve5) => {
       this.controller = new InlineEditController(
         this.app,
         this.plugin,
@@ -61724,7 +68470,8 @@ var InlineEditModal = class {
         editor,
         this.editContext,
         this.notePath,
-        resolve4
+        this.getExternalContexts,
+        resolve5
       );
       activeController = this.controller;
       this.controller.show();
@@ -61732,13 +68479,14 @@ var InlineEditModal = class {
   }
 };
 var InlineEditController = class {
-  constructor(app, plugin, editorView, editor, editContext, notePath, resolve4) {
+  constructor(app, plugin, editorView, editor, editContext, notePath, getExternalContexts, resolve5) {
     this.app = app;
     this.plugin = plugin;
     this.editorView = editorView;
     this.editor = editor;
     this.notePath = notePath;
-    this.resolve = resolve4;
+    this.getExternalContexts = getExternalContexts;
+    this.resolve = resolve5;
     this.inputEl = null;
     this.spinnerEl = null;
     this.agentReplyEl = null;
@@ -61752,7 +68500,8 @@ var InlineEditController = class {
     this.isConversing = false;
     this.slashCommandDropdown = null;
     this.mentionDropdown = null;
-    this.attachedFiles = /* @__PURE__ */ new Set();
+    this.folderCache = null;
+    this.hasShownMarkdownFilesError = false;
     this.inlineEditService = new InlineEditService(plugin);
     this.mode = editContext.mode;
     if (editContext.mode === "cursor") {
@@ -61879,25 +68628,26 @@ var InlineEditController = class {
         hiddenCommands: new Set((this.plugin.settings.hiddenSlashCommands || []).map((c3) => c3.toLowerCase()))
       }
     );
+    this.folderCache = new VaultFolderCache(this.app);
     this.mentionDropdown = new MentionDropdownController(
       document.body,
       this.inputEl,
       {
-        onAttachFile: (filePath) => this.attachedFiles.add(filePath),
+        // Inline-edit resolves @mentions at send time from input text.
+        onAttachFile: () => {
+        },
         onMcpMentionChange: () => {
         },
         getMentionedMcpServers: () => /* @__PURE__ */ new Set(),
         setMentionedMcpServers: () => false,
         addMentionedMcpServer: () => {
         },
-        getExternalContexts: () => [],
-        getCachedMarkdownFiles: () => {
-          try {
-            return this.app.vault.getMarkdownFiles();
-          } catch (e2) {
-            return [];
-          }
+        getExternalContexts: this.getExternalContexts,
+        getCachedVaultFolders: () => {
+          var _a3, _b;
+          return (_b = (_a3 = this.folderCache) == null ? void 0 : _a3.getFolders().map((f3) => ({ name: f3.name, path: f3.path }))) != null ? _b : [];
         },
+        getCachedMarkdownFiles: () => this.getMarkdownFilesSafely(),
         normalizePathForVault: (rawPath) => this.normalizePathForVault(rawPath)
       },
       { fixed: true }
@@ -61920,8 +68670,7 @@ var InlineEditController = class {
     this.removeSelectionListeners();
     this.inputEl.disabled = true;
     this.spinnerEl.style.display = "block";
-    const contextFiles = Array.from(this.attachedFiles);
-    this.attachedFiles.clear();
+    const contextFiles = this.resolveContextFilesFromMessage(userMessage);
     let result;
     if (this.isConversing) {
       result = await this.inlineEditService.continueConversation(userMessage, contextFiles);
@@ -62014,7 +68763,7 @@ var InlineEditController = class {
     hideSelectionHighlight(this.editorView);
     const trimmedText = normalizeInsertionText(this.insertedText);
     this.insertedText = trimmedText;
-    const escaped = escapeHtml2(trimmedText);
+    const escaped = escapeHtml(trimmedText);
     const diffHtml = `<span class="claudian-diff-ins">${escaped}</span>`;
     this.editorView.dispatch({
       effects: showInsertion.of({
@@ -62077,7 +68826,7 @@ var InlineEditController = class {
     this.slashCommandDropdown = null;
     (_b = this.mentionDropdown) == null ? void 0 : _b.destroy();
     this.mentionDropdown = null;
-    this.attachedFiles.clear();
+    this.folderCache = null;
     if (activeController === this) {
       activeController = null;
     }
@@ -62112,2543 +68861,70 @@ var InlineEditController = class {
       const vaultPath = getVaultPath(this.app);
       return normalizePathForVault(rawPath, vaultPath);
     } catch (e2) {
-      new import_obsidian19.Notice("Failed to attach file: invalid path");
+      new import_obsidian30.Notice("Failed to attach file: invalid path");
       return null;
+    }
+  }
+  resolveContextFilesFromMessage(message) {
+    if (!message.includes("@")) return [];
+    const markdownFiles = this.getMarkdownFilesSafely();
+    const pathLookup = /* @__PURE__ */ new Map();
+    for (const file2 of markdownFiles) {
+      const normalized = this.normalizePathForVault(file2.path);
+      if (!normalized) continue;
+      const lookupKey = normalizeForPlatformLookup(normalizeMentionPath(normalized));
+      if (!pathLookup.has(lookupKey)) {
+        pathLookup.set(lookupKey, normalized);
+      }
+    }
+    const resolved = /* @__PURE__ */ new Set();
+    const externalEntries = buildExternalContextDisplayEntries(this.getExternalContexts()).sort((a, b3) => b3.displayNameLower.length - a.displayNameLower.length);
+    const getExternalLookup = createExternalContextLookupGetter(
+      (contextRoot) => externalContextScanner.scanPaths([contextRoot])
+    );
+    for (let index = 0; index < message.length; index++) {
+      if (!isMentionStart(message, index)) continue;
+      const externalMatch = resolveExternalMentionAtIndex(
+        message,
+        index,
+        externalEntries,
+        getExternalLookup
+      );
+      if (externalMatch) {
+        resolved.add(externalMatch.resolvedPath);
+        index = externalMatch.endIndex - 1;
+        continue;
+      }
+      const vaultMatch = findBestMentionLookupMatch(
+        message,
+        index + 1,
+        pathLookup,
+        normalizeMentionPath,
+        normalizeForPlatformLookup
+      );
+      if (vaultMatch) {
+        resolved.add(vaultMatch.resolvedPath);
+        index = vaultMatch.endIndex - 1;
+      }
+    }
+    return [...resolved];
+  }
+  getMarkdownFilesSafely() {
+    try {
+      return this.app.vault.getMarkdownFiles();
+    } catch (e2) {
+      if (!this.hasShownMarkdownFilesError) {
+        this.hasShownMarkdownFilesError = true;
+        new import_obsidian30.Notice("Failed to load vault markdown files. Vault @-mentions may be unavailable.");
+      }
+      return [];
     }
   }
 };
 
 // src/features/settings/ClaudianSettings.ts
-var fs7 = __toESM(require("fs"));
-var import_obsidian28 = require("obsidian");
-
-// src/i18n/locales/de.json
-var de_exports = {};
-__export(de_exports, {
-  common: () => common,
-  default: () => de_default2,
-  settings: () => settings
-});
-var common = {
-  save: "Speichern",
-  cancel: "Abbrechen",
-  delete: "L\xF6schen",
-  edit: "Bearbeiten",
-  add: "Hinzuf\xFCgen",
-  remove: "Entfernen",
-  clear: "L\xF6schen",
-  clearAll: "Alle l\xF6schen",
-  loading: "L\xE4dt",
-  error: "Fehler",
-  success: "Erfolg",
-  warning: "Warnung",
-  confirm: "Best\xE4tigen",
-  settings: "Einstellungen",
-  advanced: "Erweitert",
-  enabled: "Aktiviert",
-  disabled: "Deaktiviert",
-  platform: "Plattform"
-};
-var settings = {
-  title: "Claudian Einstellungen",
-  customization: "Anpassung",
-  userName: {
-    name: "Wie soll Claudian dich nennen?",
-    desc: "Dein Name f\xFCr personalisierte Begr\xFC\xDFungen (leer lassen f\xFCr allgemeine Begr\xFC\xDFungen)"
-  },
-  excludedTags: {
-    name: "Ausgeschlossene Tags",
-    desc: "Notizen mit diesen Tags werden nicht automatisch als Kontext geladen (einer pro Zeile, ohne #)"
-  },
-  mediaFolder: {
-    name: "Medienordner",
-    desc: "Ordner mit Anh\xE4ngen/Bildern. Wenn Notizen ![[image.jpg]] verwenden, sucht Claude hier. Leer lassen f\xFCr Vault-Stammverzeichnis."
-  },
-  systemPrompt: {
-    name: "Benutzerdefinierter System-Prompt",
-    desc: "Zus\xE4tzliche Anweisungen, die an den Standard-System-Prompt angeh\xE4ngt werden"
-  },
-  autoTitle: {
-    name: "Konversationstitel automatisch generieren",
-    desc: "Generiert automatisch Konversationstitel nach der ersten Nutzernachricht."
-  },
-  titleModel: {
-    name: "Titel-Generierungsmodell",
-    desc: "Modell zur automatischen Generierung von Konversationstiteln.",
-    auto: "Automatisch (Haiku)"
-  },
-  navMappings: {
-    name: "Vim-Style Navigationszuordnungen",
-    desc: 'Eine Zuordnung pro Zeile. Format: "map <Taste> <Aktion>" (Aktionen: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "Tastenk\xFCrzel",
-  inlineEditHotkey: {
-    name: "Inline-Bearbeitung",
-    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
-    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
-    btnChange: "\xC4ndern",
-    btnSet: "Festlegen"
-  },
-  openChatHotkey: {
-    name: "Chat \xF6ffnen",
-    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
-    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
-    btnChange: "\xC4ndern",
-    btnSet: "Festlegen"
-  },
-  newSessionHotkey: {
-    name: "Neue Sitzung",
-    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
-    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
-    btnChange: "\xC4ndern",
-    btnSet: "Festlegen"
-  },
-  newTabHotkey: {
-    name: "Neuer Tab",
-    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
-    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
-    btnChange: "\xC4ndern",
-    btnSet: "Festlegen"
-  },
-  closeTabHotkey: {
-    name: "Tab schlie\xDFen",
-    descWithKey: "Aktuelles Tastenk\xFCrzel: {hotkey}",
-    descNoKey: "Kein Tastenk\xFCrzel festgelegt",
-    btnChange: "\xC4ndern",
-    btnSet: "Festlegen"
-  },
-  slashCommands: {
-    name: "Befehle und F\xE4higkeiten",
-    desc: "Definiere benutzerdefinierte Befehle und F\xE4higkeiten, die durch /Name ausgel\xF6st werden."
-  },
-  hiddenSlashCommands: {
-    name: "Ausgeblendete Befehle",
-    desc: "Bestimmte Schr\xE4gstrich-Befehle aus dem Dropdown ausblenden. N\xFCtzlich, um Claude Code-Befehle auszublenden, die f\xFCr Claudian nicht relevant sind. Gib Befehlsnamen ohne f\xFChrenden Schr\xE4gstrich ein, einen pro Zeile.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP-Server",
-    desc: "Konfiguriere Model Context Protocol Server, um Claude mit externen Tools und Datenquellen zu erweitern. Server mit Kontext-Speichermodus ben\xF6tigen @mention zur Aktivierung."
-  },
-  plugins: {
-    name: "Claude Code Plugins",
-    desc: "Aktiviere oder deaktiviere Claude Code Plugins aus ~/.claude/plugins. Aktivierte Plugins werden pro Vault gespeichert."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "Sicherheit",
-  loadUserSettings: {
-    name: "Benutzer-Claude-Einstellungen laden",
-    desc: "L\xE4dt ~/.claude/settings.json. Wenn aktiviert, k\xF6nnen Benutzer-Claude-Code-Berechtigungsregeln den Sicherheitsmodus umgehen."
-  },
-  enableBlocklist: {
-    name: "Befehlsblockliste aktivieren",
-    desc: "Blockiert potenziell gef\xE4hrliche Bash-Befehle"
-  },
-  blockedCommands: {
-    name: "Blockierte Befehle ({platform})",
-    desc: "Muster zum Blockieren auf {platform} (einer pro Zeile). Unterst\xFCtzt Regex.",
-    unixName: "Blockierte Befehle (Unix/Git Bash)",
-    unixDesc: "Unix-Muster werden auch auf Windows blockiert, da Git Bash sie aufrufen kann."
-  },
-  exportPaths: {
-    name: "Zugelassene Exportpfade",
-    desc: "Pfade au\xDFerhalb des Vaults, in die Dateien exportiert werden k\xF6nnen (einer pro Zeile). Unterst\xFCtzt ~ f\xFCr Home-Verzeichnis."
-  },
-  environment: "Umgebung",
-  customVariables: {
-    name: "Benutzerdefinierte Variablen",
-    desc: "Umgebungsvariablen f\xFCr Claude SDK (KEY=VALUE-Format, eine pro Zeile). Export-Pr\xE4fix unterst\xFCtzt."
-  },
-  envSnippets: {
-    name: "Snippets",
-    addBtn: "Snippet hinzuf\xFCgen",
-    noSnippets: "Keine gespeicherten Umgebungsvariablen-Snippets. Klicken Sie auf +, um Ihre aktuelle Konfiguration zu speichern.",
-    nameRequired: "Bitte geben Sie einen Namen f\xFCr das Snippet ein",
-    modal: {
-      titleEdit: "Snippet bearbeiten",
-      titleSave: "Snippet speichern",
-      name: "Name",
-      namePlaceholder: "Ein beschreibender Name f\xFCr diese Umgebungskonfiguration",
-      description: "Beschreibung",
-      descPlaceholder: "Optionale Beschreibung",
-      envVars: "Umgebungsvariablen",
-      envVarsPlaceholder: "KEY=VALUE-Format, eine pro Zeile (export-Pr\xE4fix unterst\xFCtzt)",
-      save: "Speichern",
-      update: "Aktualisieren",
-      cancel: "Abbrechen"
-    }
-  },
-  customContextLimits: {
-    name: "Benutzerdefinierte Kontextlimits",
-    desc: "Legen Sie die Kontextfenstergr\xF6\xDFen f\xFCr Ihre benutzerdefinierten Modelle fest. Leer lassen f\xFCr den Standardwert (200k Token).",
-    invalid: "Ung\xFCltiges Format. Verwenden Sie: 256k, 1m oder exakte Anzahl (1000-10000000)."
-  },
-  advanced: "Erweitert",
-  show1MModel: {
-    name: "Sonnet mit 1M-Kontextfenster aktivieren",
-    desc: "Standard-Sonnet durch Sonnet (1M) in der Modellauswahl ersetzen. Gleiche Preise unter 200k Token. Erfordert Max-Abonnement."
-  },
-  enableChrome: {
-    name: "Chrome-Erweiterung aktivieren",
-    desc: "Erlaubt Claude die Interaktion mit Chrome \xFCber die claude-in-chrome-Erweiterung. Die Erweiterung muss installiert sein. Erfordert Neustart der Sitzung."
-  },
-  maxTabs: {
-    name: "Maximale Chat-Tabs",
-    desc: "Maximale Anzahl gleichzeitiger Chat-Tabs (3-10). Jeder Tab verwendet eine separate Claude-Sitzung.",
-    warning: "Mehr als 5 Tabs k\xF6nnen Leistung und Speichernutzung beeintr\xE4chtigen."
-  },
-  tabBarPosition: {
-    name: "Tab-Leiste Position",
-    desc: "W\xE4hlen Sie, wo Tab-Badges und Aktionsschaltfl\xE4chen angezeigt werden",
-    input: "\xDCber Eingabefeld (Standard)",
-    header: "In Kopfzeile"
-  },
-  enableAutoScroll: {
-    name: "Automatisches Scrollen w\xE4hrend Streaming",
-    desc: "Automatisch nach unten scrollen, w\xE4hrend Claude Antworten streamt. Deaktivieren, um oben zu bleiben und von Anfang an zu lesen."
-  },
-  openInMainTab: {
-    name: "Im Haupteditorbereich \xF6ffnen",
-    desc: "Chat-Panel als Haupttab im zentralen Editorbereich statt in der rechten Seitenleiste \xF6ffnen"
-  },
-  cliPath: {
-    name: "Claude CLI-Pfad",
-    desc: "Benutzerdefinierter Pfad zum Claude Code CLI. Leer lassen f\xFCr automatische Erkennung.",
-    descWindows: "F\xFCr den nativen Installer verwenden Sie claude.exe. F\xFCr npm/pnpm/yarn oder andere Paketmanager-Installationen verwenden Sie den cli.js-Pfad (nicht claude.cmd).",
-    descUnix: 'F\xFCgen Sie die Ausgabe von "which claude" ein \u2014 funktioniert sowohl f\xFCr native als auch npm/pnpm/yarn-Installationen.',
-    validation: {
-      notExist: "Pfad existiert nicht",
-      isDirectory: "Pfad ist ein Verzeichnis, keine Datei"
-    }
-  },
-  language: {
-    name: "Sprache",
-    desc: "Anzeigesprache der Plugin-Oberfl\xE4che \xE4ndern"
-  }
-};
-var de_default2 = {
-  common,
-  settings
-};
-
-// src/i18n/locales/en.json
-var en_exports = {};
-__export(en_exports, {
-  common: () => common2,
-  default: () => en_default3,
-  settings: () => settings2
-});
-var common2 = {
-  save: "Save",
-  cancel: "Cancel",
-  delete: "Delete",
-  edit: "Edit",
-  add: "Add",
-  remove: "Remove",
-  clear: "Clear",
-  clearAll: "Clear all",
-  loading: "Loading",
-  error: "Error",
-  success: "Success",
-  warning: "Warning",
-  confirm: "Confirm",
-  settings: "Settings",
-  advanced: "Advanced",
-  enabled: "Enabled",
-  disabled: "Disabled",
-  platform: "Platform"
-};
-var settings2 = {
-  title: "Claudian Settings",
-  customization: "Customization",
-  userName: {
-    name: "What should Claudian call you?",
-    desc: "Your name for personalized greetings (leave empty for generic greetings)"
-  },
-  excludedTags: {
-    name: "Excluded tags",
-    desc: "Notes with these tags will not auto-load as context (one per line, without #)"
-  },
-  mediaFolder: {
-    name: "Media folder",
-    desc: "Folder containing attachments/images. When notes use ![[image.jpg]], Claude will look here. Leave empty for vault root."
-  },
-  systemPrompt: {
-    name: "Custom system prompt",
-    desc: "Additional instructions appended to the default system prompt"
-  },
-  autoTitle: {
-    name: "Auto-generate conversation titles",
-    desc: "Automatically generate conversation titles after the first user message is sent."
-  },
-  titleModel: {
-    name: "Title generation model",
-    desc: "Model used for auto-generating conversation titles.",
-    auto: "Auto (Haiku)"
-  },
-  navMappings: {
-    name: "Vim-style navigation mappings",
-    desc: 'One mapping per line. Format: "map <key> <action>" (actions: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "Hotkeys",
-  inlineEditHotkey: {
-    name: "Inline Edit",
-    descWithKey: "Current hotkey: {hotkey}",
-    descNoKey: "No hotkey set",
-    btnChange: "Change",
-    btnSet: "Set hotkey"
-  },
-  openChatHotkey: {
-    name: "Open Chat",
-    descWithKey: "Current hotkey: {hotkey}",
-    descNoKey: "No hotkey set",
-    btnChange: "Change",
-    btnSet: "Set hotkey"
-  },
-  newSessionHotkey: {
-    name: "New Session",
-    descWithKey: "Current hotkey: {hotkey}",
-    descNoKey: "No hotkey set",
-    btnChange: "Change",
-    btnSet: "Set hotkey"
-  },
-  newTabHotkey: {
-    name: "New Tab",
-    descWithKey: "Current hotkey: {hotkey}",
-    descNoKey: "No hotkey set",
-    btnChange: "Change",
-    btnSet: "Set hotkey"
-  },
-  closeTabHotkey: {
-    name: "Close Tab",
-    descWithKey: "Current hotkey: {hotkey}",
-    descNoKey: "No hotkey set",
-    btnChange: "Change",
-    btnSet: "Set hotkey"
-  },
-  slashCommands: {
-    name: "Commands and Skills",
-    desc: "Define custom commands and skills triggered by /name."
-  },
-  hiddenSlashCommands: {
-    name: "Hidden Commands",
-    desc: "Hide specific slash commands from the dropdown. Useful for hiding Claude Code commands that are not relevant to Claudian. Enter command names without the leading slash, one per line.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP Servers",
-    desc: "Configure Model Context Protocol servers to extend Claude's capabilities with external tools and data sources. Servers with context-saving mode require @mention to activate."
-  },
-  plugins: {
-    name: "Claude Code Plugins",
-    desc: "Enable or disable Claude Code plugins discovered from ~/.claude/plugins. Enabled plugins are stored per vault."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "Safety",
-  loadUserSettings: {
-    name: "Load user Claude settings",
-    desc: "Load ~/.claude/settings.json. When enabled, user's Claude Code permission rules may bypass Safe mode."
-  },
-  enableBlocklist: {
-    name: "Enable command blocklist",
-    desc: "Block potentially dangerous bash commands"
-  },
-  blockedCommands: {
-    name: "Blocked commands ({platform})",
-    desc: "Patterns to block on {platform} (one per line). Supports regex.",
-    unixName: "Blocked commands (Unix/Git Bash)",
-    unixDesc: "Unix patterns also blocked on Windows because Git Bash can invoke them."
-  },
-  exportPaths: {
-    name: "Allowed export paths",
-    desc: "Paths outside the vault where files can be exported (one per line). Supports ~ for home directory."
-  },
-  environment: "Environment",
-  customVariables: {
-    name: "Custom variables",
-    desc: "Environment variables for Claude SDK (KEY=VALUE format, one per line). Shell export prefix supported."
-  },
-  envSnippets: {
-    name: "Snippets",
-    addBtn: "Add snippet",
-    noSnippets: "No saved environment snippets yet. Click + to save your current environment configuration.",
-    nameRequired: "Please enter a name for the snippet",
-    modal: {
-      titleEdit: "Edit snippet",
-      titleSave: "Save snippet",
-      name: "Name",
-      namePlaceholder: "A descriptive name for this environment configuration",
-      description: "Description",
-      descPlaceholder: "Optional description",
-      envVars: "Environment variables",
-      envVarsPlaceholder: "KEY=VALUE format, one per line (export prefix supported)",
-      save: "Save",
-      update: "Update",
-      cancel: "Cancel"
-    }
-  },
-  customContextLimits: {
-    name: "Custom Context Limits",
-    desc: "Set context window sizes for your custom models. Leave empty to use the default (200k tokens).",
-    invalid: "Invalid format. Use: 256k, 1m, or exact count (1000-10000000)."
-  },
-  advanced: "Advanced",
-  show1MModel: {
-    name: "Enable Sonnet with 1M context window",
-    desc: "Replace standard Sonnet with Sonnet (1M) in the model selector. Same pricing under 200k tokens. Requires Max subscription."
-  },
-  enableChrome: {
-    name: "Enable Chrome extension",
-    desc: "Allow Claude to interact with Chrome via the claude-in-chrome extension. Requires the extension to be installed. Requires session restart."
-  },
-  maxTabs: {
-    name: "Maximum chat tabs",
-    desc: "Maximum number of concurrent chat tabs (3-10). Each tab uses a separate Claude session.",
-    warning: "More than 5 tabs may impact performance and memory usage."
-  },
-  tabBarPosition: {
-    name: "Tab bar position",
-    desc: "Choose where to display tab badges and action buttons",
-    input: "Above input (default)",
-    header: "In header"
-  },
-  enableAutoScroll: {
-    name: "Auto-scroll during streaming",
-    desc: "Automatically scroll to the bottom as Claude streams responses. Disable to stay at the top and read from the beginning."
-  },
-  openInMainTab: {
-    name: "Open in main editor area",
-    desc: "Open chat panel as a main tab in the center editor area instead of the right sidebar"
-  },
-  cliPath: {
-    name: "Claude CLI path",
-    desc: "Custom path to Claude Code CLI. Leave empty for auto-detection.",
-    descWindows: "For the native installer, use claude.exe. For npm/pnpm/yarn or other package manager installs, use the cli.js path (not claude.cmd).",
-    descUnix: 'Paste the output of "which claude" \u2014 works for both native and npm/pnpm/yarn installs.',
-    validation: {
-      notExist: "Path does not exist",
-      isDirectory: "Path is a directory, not a file"
-    }
-  },
-  language: {
-    name: "Language",
-    desc: "Change the display language of the plugin interface"
-  }
-};
-var en_default3 = {
-  common: common2,
-  settings: settings2
-};
-
-// src/i18n/locales/es.json
-var es_exports = {};
-__export(es_exports, {
-  common: () => common3,
-  default: () => es_default2,
-  settings: () => settings3
-});
-var common3 = {
-  save: "Guardar",
-  cancel: "Cancelar",
-  delete: "Eliminar",
-  edit: "Editar",
-  add: "Agregar",
-  remove: "Eliminar",
-  clear: "Limpiar",
-  clearAll: "Limpiar todo",
-  loading: "Cargando",
-  error: "Error",
-  success: "\xC9xito",
-  warning: "Advertencia",
-  confirm: "Confirmar",
-  settings: "Configuraci\xF3n",
-  advanced: "Avanzado",
-  enabled: "Habilitado",
-  disabled: "Deshabilitado",
-  platform: "Plataforma"
-};
-var settings3 = {
-  title: "Configuraci\xF3n de Claudian",
-  customization: "Personalizaci\xF3n",
-  userName: {
-    name: "\xBFC\xF3mo deber\xEDa Claudian llamarte?",
-    desc: "Tu nombre para saludos personalizados (dejar vac\xEDo para saludos gen\xE9ricos)"
-  },
-  excludedTags: {
-    name: "Etiquetas excluidas",
-    desc: "Las notas con estas etiquetas no se cargar\xE1n autom\xE1ticamente como contexto (una por l\xEDnea, sin #)"
-  },
-  mediaFolder: {
-    name: "Carpeta de medios",
-    desc: "Carpeta que contiene archivos adjuntos/imagenes. Cuando las notas usan ![[image.jpg]], Claude buscar\xE1 aqu\xED. Dejar vac\xEDo para la ra\xEDz del dep\xF3sito."
-  },
-  systemPrompt: {
-    name: "Prompt de sistema personalizado",
-    desc: "Instrucciones adicionales a\xF1adidas al prompt de sistema por defecto"
-  },
-  autoTitle: {
-    name: "Generar autom\xE1ticamente t\xEDtulos de conversaci\xF3n",
-    desc: "Genera autom\xE1ticamente t\xEDtulos de conversaci\xF3n despu\xE9s del primer mensaje del usuario."
-  },
-  titleModel: {
-    name: "Modelo de generaci\xF3n de t\xEDtulos",
-    desc: "Modelo utilizado para generar autom\xE1ticamente t\xEDtulos de conversaci\xF3n.",
-    auto: "Auto (Haiku)"
-  },
-  navMappings: {
-    name: "Mapeos de navegaci\xF3n estilo Vim",
-    desc: 'Un mapeo por l\xEDnea. Formato: "map <tecla> <acci\xF3n>" (acciones: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "Atajos de teclado",
-  inlineEditHotkey: {
-    name: "Edici\xF3n en l\xEDnea",
-    descWithKey: "Atajo actual: {hotkey}",
-    descNoKey: "Sin atajo configurado",
-    btnChange: "Cambiar",
-    btnSet: "Configurar"
-  },
-  openChatHotkey: {
-    name: "Abrir chat",
-    descWithKey: "Atajo actual: {hotkey}",
-    descNoKey: "Sin atajo configurado",
-    btnChange: "Cambiar",
-    btnSet: "Configurar"
-  },
-  newSessionHotkey: {
-    name: "Nueva sesi\xF3n",
-    descWithKey: "Atajo actual: {hotkey}",
-    descNoKey: "Sin atajo configurado",
-    btnChange: "Cambiar",
-    btnSet: "Configurar"
-  },
-  newTabHotkey: {
-    name: "Nueva pesta\xF1a",
-    descWithKey: "Atajo actual: {hotkey}",
-    descNoKey: "Sin atajo configurado",
-    btnChange: "Cambiar",
-    btnSet: "Configurar"
-  },
-  closeTabHotkey: {
-    name: "Cerrar pesta\xF1a",
-    descWithKey: "Atajo actual: {hotkey}",
-    descNoKey: "Sin atajo configurado",
-    btnChange: "Cambiar",
-    btnSet: "Configurar"
-  },
-  slashCommands: {
-    name: "Comandos y habilidades",
-    desc: "Define comandos y habilidades personalizados activados por /nombre."
-  },
-  hiddenSlashCommands: {
-    name: "Comandos ocultos",
-    desc: "Oculta comandos slash espec\xEDficos del men\xFA desplegable. \xDAtil para ocultar comandos de Claude Code que no son relevantes para Claudian. Ingresa nombres de comandos sin la barra inicial, uno por l\xEDnea.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "Servidores MCP",
-    desc: "Configura servidores Model Context Protocol para extender las capacidades de Claude con herramientas y fuentes de datos externas. Los servidores con modo de guardado de contexto requieren @mention para activarse."
-  },
-  plugins: {
-    name: "Plugins de Claude Code",
-    desc: "Habilita o deshabilita plugins de Claude Code descubiertos desde ~/.claude/plugins. Los plugins habilitados se almacenan por b\xF3veda."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "Seguridad",
-  loadUserSettings: {
-    name: "Cargar configuraci\xF3n de usuario Claude",
-    desc: "Carga ~/.claude/settings.json. Cuando est\xE1 habilitado, las reglas de permisos del usuario pueden eludir el modo seguro."
-  },
-  enableBlocklist: {
-    name: "Habilitar lista negra de comandos",
-    desc: "Bloquea comandos bash potencialmente peligrosos"
-  },
-  blockedCommands: {
-    name: "Comandos bloqueados ({platform})",
-    desc: "Patrones a bloquear en {platform} (uno por l\xEDnea). Soporta expresiones regulares.",
-    unixName: "Comandos bloqueados (Unix/Git Bash)",
-    unixDesc: "Los patrones Unix tambi\xE9n se bloquean en Windows porque Git Bash puede invocarlos."
-  },
-  exportPaths: {
-    name: "Rutas de exportaci\xF3n permitidas",
-    desc: "Rutas fuera del dep\xF3sito donde se pueden exportar archivos (una por l\xEDnea). Soporta ~ para el directorio home."
-  },
-  environment: "Entorno",
-  customVariables: {
-    name: "Variables personalizadas",
-    desc: "Variables de entorno para Claude SDK (formato KEY=VALUE, una por l\xEDnea). Prefijo export soportado."
-  },
-  envSnippets: {
-    name: "Snippets",
-    addBtn: "A\xF1adir fragmento",
-    noSnippets: "No hay fragmentos de entorno guardados. Haga clic en + para guardar su configuraci\xF3n actual.",
-    nameRequired: "Por favor ingrese un nombre para el fragmento",
-    modal: {
-      titleEdit: "Editar fragmento",
-      titleSave: "Guardar fragmento",
-      name: "Nombre",
-      namePlaceholder: "Un nombre descriptivo para esta configuraci\xF3n",
-      description: "Descripci\xF3n",
-      descPlaceholder: "Descripci\xF3n opcional",
-      envVars: "Variables de entorno",
-      envVarsPlaceholder: "Formato KEY=VALUE, una por l\xEDnea (prefijo export soportado)",
-      save: "Guardar",
-      update: "Actualizar",
-      cancel: "Cancelar"
-    }
-  },
-  customContextLimits: {
-    name: "L\xEDmites de contexto personalizados",
-    desc: "Establezca tama\xF1os de ventana de contexto para sus modelos personalizados. Deje vac\xEDo para usar el valor predeterminado (200k tokens).",
-    invalid: "Formato inv\xE1lido. Use: 256k, 1m o n\xFAmero exacto (1000-10000000)."
-  },
-  advanced: "Avanzado",
-  show1MModel: {
-    name: "Habilitar Sonnet con ventana de contexto de 1M",
-    desc: "Reemplazar Sonnet est\xE1ndar con Sonnet (1M) en el selector de modelos. Mismo precio bajo 200k tokens. Requiere suscripci\xF3n Max."
-  },
-  enableChrome: {
-    name: "Habilitar extensi\xF3n de Chrome",
-    desc: "Permitir que Claude interact\xFAe con Chrome a trav\xE9s de la extensi\xF3n claude-in-chrome. Requiere que la extensi\xF3n est\xE9 instalada. Requiere reinicio de sesi\xF3n."
-  },
-  maxTabs: {
-    name: "M\xE1ximo de pesta\xF1as de chat",
-    desc: "N\xFAmero m\xE1ximo de pesta\xF1as de chat simult\xE1neas (3-10). Cada pesta\xF1a usa una sesi\xF3n de Claude separada.",
-    warning: "M\xE1s de 5 pesta\xF1as puede afectar el rendimiento y el uso de memoria."
-  },
-  tabBarPosition: {
-    name: "Posici\xF3n de la barra de pesta\xF1as",
-    desc: "Elige d\xF3nde mostrar las insignias de pesta\xF1as y los botones de acci\xF3n",
-    input: "Sobre el \xE1rea de entrada (predeterminado)",
-    header: "En el encabezado"
-  },
-  enableAutoScroll: {
-    name: "Desplazamiento autom\xE1tico durante streaming",
-    desc: "Desplazarse autom\xE1ticamente hacia abajo mientras Claude transmite respuestas. Desactivar para quedarse arriba y leer desde el principio."
-  },
-  openInMainTab: {
-    name: "Abrir en \xE1rea de editor principal",
-    desc: "Abrir el panel de chat como una pesta\xF1a principal en el \xE1rea de editor central en lugar de la barra lateral derecha"
-  },
-  cliPath: {
-    name: "Ruta CLI Claude",
-    desc: "Ruta personalizada a Claude Code CLI. Dejar vac\xEDo para detecci\xF3n autom\xE1tica.",
-    descWindows: "Para el instalador nativo, use claude.exe. Para instalaciones con npm/pnpm/yarn u otros gestores de paquetes, use la ruta cli.js (no claude.cmd).",
-    descUnix: 'Pegue la salida de "which claude" \u2014 funciona tanto para instalaciones nativas como npm/pnpm/yarn.',
-    validation: {
-      notExist: "La ruta no existe",
-      isDirectory: "La ruta es un directorio, no un archivo"
-    }
-  },
-  language: {
-    name: "Idioma",
-    desc: "Cambiar el idioma de visualizaci\xF3n de la interfaz del plugin"
-  }
-};
-var es_default2 = {
-  common: common3,
-  settings: settings3
-};
-
-// src/i18n/locales/fr.json
-var fr_exports = {};
-__export(fr_exports, {
-  common: () => common4,
-  default: () => fr_default2,
-  settings: () => settings4
-});
-var common4 = {
-  save: "Enregistrer",
-  cancel: "Annuler",
-  delete: "Supprimer",
-  edit: "Modifier",
-  add: "Ajouter",
-  remove: "Supprimer",
-  clear: "Effacer",
-  clearAll: "Tout effacer",
-  loading: "Chargement",
-  error: "Erreur",
-  success: "Succ\xE8s",
-  warning: "Avertissement",
-  confirm: "Confirmer",
-  settings: "Param\xE8tres",
-  advanced: "Avanc\xE9",
-  enabled: "Activ\xE9",
-  disabled: "D\xE9sactiv\xE9",
-  platform: "Plateforme"
-};
-var settings4 = {
-  title: "Param\xE8tres Claudian",
-  customization: "Personnalisation",
-  userName: {
-    name: "Comment Claudian doit-il vous appeler ?",
-    desc: "Votre nom pour les salutations personnalis\xE9es (laisser vide pour les salutations g\xE9n\xE9riques)"
-  },
-  excludedTags: {
-    name: "Tags exclus",
-    desc: "Les notes avec ces tags ne seront pas charg\xE9es automatiquement comme contexte (un par ligne, sans #)"
-  },
-  mediaFolder: {
-    name: "Dossier des m\xE9dias",
-    desc: "Dossier contenant les pi\xE8ces jointes/images. Lorsque les notes utilisent ![[image.jpg]], Claude cherchera ici. Laisser vide pour la racine du coffre."
-  },
-  systemPrompt: {
-    name: "Prompt syst\xE8me personnalis\xE9",
-    desc: "Instructions suppl\xE9mentaires ajout\xE9es au prompt syst\xE8me par d\xE9faut"
-  },
-  autoTitle: {
-    name: "G\xE9n\xE9rer automatiquement les titres de conversation",
-    desc: "G\xE9n\xE8re automatiquement les titres de conversation apr\xE8s le premier message de l'utilisateur."
-  },
-  titleModel: {
-    name: "Mod\xE8le de g\xE9n\xE9ration de titre",
-    desc: "Mod\xE8le utilis\xE9 pour g\xE9n\xE9rer automatiquement les titres de conversation.",
-    auto: "Auto (Haiku)"
-  },
-  navMappings: {
-    name: "Mappages de navigation style Vim",
-    desc: 'Un mappage par ligne. Format : "map <touche> <action>" (actions : scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "Raccourcis clavier",
-  inlineEditHotkey: {
-    name: "\xC9dition en ligne",
-    descWithKey: "Raccourci actuel : {hotkey}",
-    descNoKey: "Aucun raccourci d\xE9fini",
-    btnChange: "Modifier",
-    btnSet: "D\xE9finir"
-  },
-  openChatHotkey: {
-    name: "Ouvrir le chat",
-    descWithKey: "Raccourci actuel : {hotkey}",
-    descNoKey: "Aucun raccourci d\xE9fini",
-    btnChange: "Modifier",
-    btnSet: "D\xE9finir"
-  },
-  newSessionHotkey: {
-    name: "Nouvelle session",
-    descWithKey: "Raccourci actuel : {hotkey}",
-    descNoKey: "Aucun raccourci d\xE9fini",
-    btnChange: "Modifier",
-    btnSet: "D\xE9finir"
-  },
-  newTabHotkey: {
-    name: "Nouvel onglet",
-    descWithKey: "Raccourci actuel : {hotkey}",
-    descNoKey: "Aucun raccourci d\xE9fini",
-    btnChange: "Modifier",
-    btnSet: "D\xE9finir"
-  },
-  closeTabHotkey: {
-    name: "Fermer l'onglet",
-    descWithKey: "Raccourci actuel : {hotkey}",
-    descNoKey: "Aucun raccourci d\xE9fini",
-    btnChange: "Modifier",
-    btnSet: "D\xE9finir"
-  },
-  slashCommands: {
-    name: "Commandes et comp\xE9tences",
-    desc: "D\xE9finissez des commandes et comp\xE9tences personnalis\xE9es d\xE9clench\xE9es par /nom."
-  },
-  hiddenSlashCommands: {
-    name: "Commandes masqu\xE9es",
-    desc: "Masquer des commandes slash sp\xE9cifiques du menu d\xE9roulant. Utile pour masquer les commandes Claude Code qui ne sont pas pertinentes pour Claudian. Entrez les noms de commandes sans le slash initial, un par ligne.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "Serveurs MCP",
-    desc: "Configurez les serveurs Model Context Protocol pour \xE9tendre les capacit\xE9s de Claude avec des outils et sources de donn\xE9es externes. Les serveurs avec mode de sauvegarde de contexte n\xE9cessitent une @mention pour s'activer."
-  },
-  plugins: {
-    name: "Plugins Claude Code",
-    desc: "Activez ou d\xE9sactivez les plugins Claude Code d\xE9couverts dans ~/.claude/plugins. Les plugins activ\xE9s sont stock\xE9s par coffre."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "S\xE9curit\xE9",
-  loadUserSettings: {
-    name: "Charger les param\xE8tres utilisateur Claude",
-    desc: "Charge ~/.claude/settings.json. Lorsqu'activ\xE9, les r\xE8gles de permission de l'utilisateur peuvent contourner le mode s\xE9curis\xE9."
-  },
-  enableBlocklist: {
-    name: "Activer la liste noire de commandes",
-    desc: "Bloque les commandes bash potentiellement dangereuses"
-  },
-  blockedCommands: {
-    name: "Commandes bloqu\xE9es ({platform})",
-    desc: "Mod\xE8les \xE0 bloquer sur {platform} (un par ligne). Supporte les expressions r\xE9guli\xE8res.",
-    unixName: "Commandes bloqu\xE9es (Unix/Git Bash)",
-    unixDesc: "Les mod\xE8les Unix sont \xE9galement bloqu\xE9s sur Windows car Git Bash peut les appeler."
-  },
-  exportPaths: {
-    name: "Chemins d'exportation autoris\xE9s",
-    desc: "Chemins en dehors du coffre o\xF9 les fichiers peuvent \xEAtre export\xE9s (un par ligne). Supporte ~ pour le r\xE9pertoire home."
-  },
-  environment: "Environnement",
-  customVariables: {
-    name: "Variables personnalis\xE9es",
-    desc: "Variables d'environnement pour Claude SDK (format KEY=VALUE, une par ligne). Pr\xE9fixe export support\xE9."
-  },
-  envSnippets: {
-    name: "Snippets",
-    addBtn: "Ajouter un extrait",
-    noSnippets: "Aucun extrait d'environnement enregistr\xE9. Cliquez sur + pour sauvegarder votre configuration actuelle.",
-    nameRequired: "Veuillez entrer un nom pour l'extrait",
-    modal: {
-      titleEdit: "Modifier l'extrait",
-      titleSave: "Sauvegarder l'extrait",
-      name: "Nom",
-      namePlaceholder: "Un nom descriptif pour cette configuration",
-      description: "Description",
-      descPlaceholder: "Description optionnelle",
-      envVars: "Variables d'environnement",
-      envVarsPlaceholder: "Format KEY=VALUE, une par ligne (pr\xE9fixe export support\xE9)",
-      save: "Enregistrer",
-      update: "Mettre \xE0 jour",
-      cancel: "Annuler"
-    }
-  },
-  customContextLimits: {
-    name: "Limites de contexte personnalis\xE9es",
-    desc: "D\xE9finissez les tailles de fen\xEAtre de contexte pour vos mod\xE8les personnalis\xE9s. Laissez vide pour utiliser la valeur par d\xE9faut (200k tokens).",
-    invalid: "Format invalide. Utilisez : 256k, 1m ou nombre exact (1000-10000000)."
-  },
-  advanced: "Avanc\xE9",
-  show1MModel: {
-    name: "Activer Sonnet avec fen\xEAtre de contexte de 1M",
-    desc: "Remplacer Sonnet standard par Sonnet (1M) dans le s\xE9lecteur de mod\xE8les. M\xEAme tarif sous 200k tokens. N\xE9cessite un abonnement Max."
-  },
-  enableChrome: {
-    name: "Activer l'extension Chrome",
-    desc: "Permettre \xE0 Claude d'interagir avec Chrome via l'extension claude-in-chrome. L'extension doit \xEAtre install\xE9e. N\xE9cessite un red\xE9marrage de session."
-  },
-  maxTabs: {
-    name: "Maximum d'onglets de chat",
-    desc: "Nombre maximum d'onglets de chat simultan\xE9s (3-10). Chaque onglet utilise une session Claude s\xE9par\xE9e.",
-    warning: "Plus de 5 onglets peut affecter les performances et l'utilisation de la m\xE9moire."
-  },
-  tabBarPosition: {
-    name: "Position de la barre d'onglets",
-    desc: "Choisissez o\xF9 afficher les badges d'onglets et les boutons d'action",
-    input: "Au-dessus de la saisie (par d\xE9faut)",
-    header: "Dans l'en-t\xEAte"
-  },
-  enableAutoScroll: {
-    name: "D\xE9filement automatique pendant le streaming",
-    desc: "D\xE9filer automatiquement vers le bas pendant que Claude diffuse les r\xE9ponses. D\xE9sactiver pour rester en haut et lire depuis le d\xE9but."
-  },
-  openInMainTab: {
-    name: "Ouvrir dans la zone d'\xE9diteur principale",
-    desc: "Ouvrir le panneau de chat comme un onglet principal dans la zone d'\xE9diteur centrale au lieu de la barre lat\xE9rale droite"
-  },
-  cliPath: {
-    name: "Chemin CLI Claude",
-    desc: "Chemin personnalis\xE9 vers Claude Code CLI. Laisser vide pour la d\xE9tection automatique.",
-    descWindows: "Pour l'installateur natif, utilisez claude.exe. Pour les installations npm/pnpm/yarn ou autres gestionnaires de paquets, utilisez le chemin cli.js (pas claude.cmd).",
-    descUnix: 'Collez la sortie de "which claude" \u2014 fonctionne pour les installations natives et npm/pnpm/yarn.',
-    validation: {
-      notExist: "Le chemin n'existe pas",
-      isDirectory: "Le chemin est un r\xE9pertoire, pas un fichier"
-    }
-  },
-  language: {
-    name: "Langue",
-    desc: "Changer la langue d'affichage de l'interface du plugin"
-  }
-};
-var fr_default2 = {
-  common: common4,
-  settings: settings4
-};
-
-// src/i18n/locales/ja.json
-var ja_exports = {};
-__export(ja_exports, {
-  common: () => common5,
-  default: () => ja_default2,
-  settings: () => settings5
-});
-var common5 = {
-  save: "\u4FDD\u5B58",
-  cancel: "\u30AD\u30E3\u30F3\u30BB\u30EB",
-  delete: "\u524A\u9664",
-  edit: "\u7DE8\u96C6",
-  add: "\u8FFD\u52A0",
-  remove: "\u524A\u9664",
-  clear: "\u30AF\u30EA\u30A2",
-  clearAll: "\u3059\u3079\u3066\u30AF\u30EA\u30A2",
-  loading: "\u8AAD\u307F\u8FBC\u307F\u4E2D",
-  error: "\u30A8\u30E9\u30FC",
-  success: "\u6210\u529F",
-  warning: "\u8B66\u544A",
-  confirm: "\u78BA\u8A8D",
-  settings: "\u8A2D\u5B9A",
-  advanced: "\u8A73\u7D30",
-  enabled: "\u6709\u52B9",
-  disabled: "\u7121\u52B9",
-  platform: "\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0"
-};
-var settings5 = {
-  title: "Claudian \u8A2D\u5B9A",
-  customization: "\u30AB\u30B9\u30BF\u30DE\u30A4\u30BA",
-  userName: {
-    name: "Claudian \u306F\u3069\u306E\u3088\u3046\u306B\u547C\u3073\u307E\u3059\u304B\uFF1F",
-    desc: "\u30D1\u30FC\u30BD\u30CA\u30E9\u30A4\u30BA\u3055\u308C\u305F\u6328\u62F6\u306B\u4F7F\u7528\u3059\u308B\u540D\u524D\uFF08\u7A7A\u6B04\u3067\u4E00\u822C\u306E\u6328\u62F6\uFF09"
-  },
-  excludedTags: {
-    name: "\u9664\u5916\u30BF\u30B0",
-    desc: "\u3053\u308C\u3089\u306E\u30BF\u30B0\u3092\u542B\u3080\u30CE\u30FC\u30C8\u306F\u81EA\u52D5\u7684\u306B\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u3068\u3057\u3066\u8AAD\u307F\u8FBC\u307E\u308C\u307E\u305B\u3093\uFF081\u884C\u306B1\u3064\u3001#\u306A\u3057\uFF09"
-  },
-  mediaFolder: {
-    name: "\u30E1\u30C7\u30A3\u30A2\u30D5\u30A9\u30EB\u30C0",
-    desc: "\u6DFB\u4ED8\u30D5\u30A1\u30A4\u30EB/\u753B\u50CF\u3092\u683C\u7D0D\u3059\u308B\u30D5\u30A9\u30EB\u30C0\u3002\u30CE\u30FC\u30C8\u304C ![[image.jpg]] \u3092\u4F7F\u7528\u3059\u308B\u5834\u5408\u3001Claude \u306F\u3053\u3053\u3067\u63A2\u3057\u307E\u3059\u3002\u7A7A\u6B04\u3067\u30EA\u30DD\u30B8\u30C8\u30EA\u306E\u30EB\u30FC\u30C8\u3092\u4F7F\u7528\u3002"
-  },
-  systemPrompt: {
-    name: "\u30AB\u30B9\u30BF\u30E0\u30B7\u30B9\u30C6\u30E0\u30D7\u30ED\u30F3\u30D7\u30C8",
-    desc: "\u30C7\u30D5\u30A9\u30EB\u30C8\u306E\u30B7\u30B9\u30C6\u30E0\u30D7\u30ED\u30F3\u30D7\u30C8\u306B\u8FFD\u52A0\u3055\u308C\u308B\u8FFD\u52A0\u6307\u793A"
-  },
-  autoTitle: {
-    name: "\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u751F\u6210",
-    desc: "\u6700\u521D\u306E\u30E6\u30FC\u30B6\u30FC\u30E1\u30C3\u30BB\u30FC\u30B8\u9001\u4FE1\u5F8C\u306B\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u7684\u306B\u751F\u6210\u3057\u307E\u3059\u3002"
-  },
-  titleModel: {
-    name: "\u30BF\u30A4\u30C8\u30EB\u751F\u6210\u30E2\u30C7\u30EB",
-    desc: "\u4F1A\u8A71\u30BF\u30A4\u30C8\u30EB\u3092\u81EA\u52D5\u751F\u6210\u3059\u308B\u305F\u3081\u306B\u4F7F\u7528\u3055\u308C\u308B\u30E2\u30C7\u30EB\u3002",
-    auto: "\u81EA\u52D5 (Haiku)"
-  },
-  navMappings: {
-    name: "Vim\u30B9\u30BF\u30A4\u30EB\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3\u30DE\u30C3\u30D4\u30F3\u30B0",
-    desc: '1\u884C\u306B1\u3064\u306E\u30DE\u30C3\u30D4\u30F3\u30B0\u3002\u5F62\u5F0F\uFF1A"map <\u30AD\u30FC> <\u30A2\u30AF\u30B7\u30E7\u30F3>"\uFF08\u30A2\u30AF\u30B7\u30E7\u30F3\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
-  },
-  hotkeys: "\u30DB\u30C3\u30C8\u30AD\u30FC",
-  inlineEditHotkey: {
-    name: "\u30A4\u30F3\u30E9\u30A4\u30F3\u7DE8\u96C6",
-    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
-    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
-    btnChange: "\u5909\u66F4",
-    btnSet: "\u8A2D\u5B9A"
-  },
-  openChatHotkey: {
-    name: "\u30C1\u30E3\u30C3\u30C8\u3092\u958B\u304F",
-    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
-    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
-    btnChange: "\u5909\u66F4",
-    btnSet: "\u8A2D\u5B9A"
-  },
-  newSessionHotkey: {
-    name: "\u65B0\u898F\u30BB\u30C3\u30B7\u30E7\u30F3",
-    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
-    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
-    btnChange: "\u5909\u66F4",
-    btnSet: "\u8A2D\u5B9A"
-  },
-  newTabHotkey: {
-    name: "\u65B0\u898F\u30BF\u30D6",
-    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
-    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
-    btnChange: "\u5909\u66F4",
-    btnSet: "\u8A2D\u5B9A"
-  },
-  closeTabHotkey: {
-    name: "\u30BF\u30D6\u3092\u9589\u3058\u308B",
-    descWithKey: "\u73FE\u5728\u306E\u30DB\u30C3\u30C8\u30AD\u30FC: {hotkey}",
-    descNoKey: "\u30DB\u30C3\u30C8\u30AD\u30FC\u672A\u8A2D\u5B9A",
-    btnChange: "\u5909\u66F4",
-    btnSet: "\u8A2D\u5B9A"
-  },
-  slashCommands: {
-    name: "\u30B3\u30DE\u30F3\u30C9\u3068\u30B9\u30AD\u30EB",
-    desc: "/\u540D\u524D \u3067\u30C8\u30EA\u30AC\u30FC\u3055\u308C\u308B\u30AB\u30B9\u30BF\u30E0\u30B3\u30DE\u30F3\u30C9\u3068\u30B9\u30AD\u30EB\u3092\u5B9A\u7FA9\u3057\u307E\u3059\u3002"
-  },
-  hiddenSlashCommands: {
-    name: "\u975E\u8868\u793A\u30B3\u30DE\u30F3\u30C9",
-    desc: "\u30C9\u30ED\u30C3\u30D7\u30C0\u30A6\u30F3\u304B\u3089\u7279\u5B9A\u306E\u30B9\u30E9\u30C3\u30B7\u30E5\u30B3\u30DE\u30F3\u30C9\u3092\u975E\u8868\u793A\u306B\u3057\u307E\u3059\u3002Claudian \u306B\u95A2\u4FC2\u306E\u306A\u3044 Claude Code \u30B3\u30DE\u30F3\u30C9\u3092\u975E\u8868\u793A\u306B\u3059\u308B\u306E\u306B\u4FBF\u5229\u3067\u3059\u3002\u5148\u982D\u306E\u30B9\u30E9\u30C3\u30B7\u30E5\u306A\u3057\u3067\u30B3\u30DE\u30F3\u30C9\u540D\u30921\u884C\u306B1\u3064\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP \u30B5\u30FC\u30D0\u30FC",
-    desc: "\u30E2\u30C7\u30EB\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30D7\u30ED\u30C8\u30B3\u30EB\u30B5\u30FC\u30D0\u30FC\u3092\u8A2D\u5B9A\u3057\u3001\u5916\u90E8\u30C4\u30FC\u30EB\u3084\u30C7\u30FC\u30BF\u30BD\u30FC\u30B9\u3067 Claude \u306E\u6A5F\u80FD\u3092\u62E1\u5F35\u3057\u307E\u3059\u3002\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u4FDD\u5B58\u30E2\u30FC\u30C9\u306E\u30B5\u30FC\u30D0\u30FC\u306F @mention \u3067\u30A2\u30AF\u30C6\u30A3\u30D6\u306B\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002"
-  },
-  plugins: {
-    name: "Claude Code \u30D7\u30E9\u30B0\u30A4\u30F3",
-    desc: "~/.claude/plugins \u304B\u3089\u691C\u51FA\u3055\u308C\u305F Claude Code \u30D7\u30E9\u30B0\u30A4\u30F3\u3092\u6709\u52B9\u5316\u307E\u305F\u306F\u7121\u52B9\u5316\u3057\u307E\u3059\u3002\u6709\u52B9\u5316\u3055\u308C\u305F\u30D7\u30E9\u30B0\u30A4\u30F3\u306F\u4FDD\u7BA1\u5EAB\u3054\u3068\u306B\u4FDD\u5B58\u3055\u308C\u307E\u3059\u3002"
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3",
-  loadUserSettings: {
-    name: "\u30E6\u30FC\u30B6\u30FCClaude\u8A2D\u5B9A\u3092\u8AAD\u307F\u8FBC\u3080",
-    desc: "~/.claude/settings.json \u3092\u8AAD\u307F\u8FBC\u307F\u307E\u3059\u3002\u6709\u52B9\u306B\u3059\u308B\u3068\u3001\u30E6\u30FC\u30B6\u30FC\u306E Claude Code \u8A31\u53EF\u30EB\u30FC\u30EB\u304C\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u30E2\u30FC\u30C9\u3092\u30D0\u30A4\u30D1\u30B9\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002"
-  },
-  enableBlocklist: {
-    name: "\u30B3\u30DE\u30F3\u30C9\u30D6\u30E9\u30C3\u30AF\u30EA\u30B9\u30C8\u3092\u6709\u52B9\u5316",
-    desc: "\u6F5C\u5728\u7684\u306B\u5371\u967A\u306Abash\u30B3\u30DE\u30F3\u30C9\u3092\u30D6\u30ED\u30C3\u30AF"
-  },
-  blockedCommands: {
-    name: "\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u305F\u30B3\u30DE\u30F3\u30C9 ({platform})",
-    desc: "{platform} \u3067\u30D6\u30ED\u30C3\u30AF\u3059\u308B\u30D1\u30BF\u30FC\u30F3\uFF081\u884C\u306B1\u3064\uFF09\u3002\u6B63\u898F\u8868\u73FE\u3092\u30B5\u30DD\u30FC\u30C8\u3002",
-    unixName: "\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u305F\u30B3\u30DE\u30F3\u30C9 (Unix/Git Bash)",
-    unixDesc: "Git Bash\u304C\u547C\u3073\u51FA\u305B\u308B\u305F\u3081\u3001Unix\u30D1\u30BF\u30FC\u30F3\u3082Windows\u4E0A\u3067\u30D6\u30ED\u30C3\u30AF\u3055\u308C\u307E\u3059\u3002"
-  },
-  exportPaths: {
-    name: "\u8A31\u53EF\u3055\u308C\u305F\u30A8\u30AF\u30B9\u30DD\u30FC\u30C8\u30D1\u30B9",
-    desc: "\u30D5\u30A1\u30A4\u30EB\u3092\u30A8\u30AF\u30B9\u30DD\u30FC\u30C8\u3067\u304D\u308B\u30EA\u30DD\u30B8\u30C8\u30EA\u5916\u306E\u30D1\u30B9\uFF081\u884C\u306B1\u3064\uFF09\u3002~ \u3067\u30DB\u30FC\u30E0\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u3092\u30B5\u30DD\u30FC\u30C8\u3002"
-  },
-  environment: "\u74B0\u5883",
-  customVariables: {
-    name: "\u30AB\u30B9\u30BF\u30E0\u5909\u6570",
-    desc: "Claude SDK\u306E\u74B0\u5883\u5909\u6570\uFF08KEY=VALUE\u5F62\u5F0F\u30011\u884C\u306B1\u3064\uFF09\u3002export\u30D7\u30EC\u30D5\u30A3\u30C3\u30AF\u30B9\u5BFE\u5FDC\u3002"
-  },
-  envSnippets: {
-    name: "\u30B9\u30CB\u30DA\u30C3\u30C8",
-    addBtn: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u8FFD\u52A0",
-    noSnippets: "\u4FDD\u5B58\u3055\u308C\u305F\u74B0\u5883\u5909\u6570\u30B9\u30CB\u30DA\u30C3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002+\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u73FE\u5728\u306E\u8A2D\u5B9A\u3092\u4FDD\u5B58\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-    nameRequired: "\u30B9\u30CB\u30DA\u30C3\u30C8\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
-    modal: {
-      titleEdit: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u7DE8\u96C6",
-      titleSave: "\u30B9\u30CB\u30DA\u30C3\u30C8\u3092\u4FDD\u5B58",
-      name: "\u540D\u524D",
-      namePlaceholder: "\u3053\u306E\u8A2D\u5B9A\u306E\u308F\u304B\u308A\u3084\u3059\u3044\u540D\u524D",
-      description: "\u8AAC\u660E",
-      descPlaceholder: "\u4EFB\u610F\u306E\u8AAC\u660E",
-      envVars: "\u74B0\u5883\u5909\u6570",
-      envVarsPlaceholder: "KEY=VALUE\u5F62\u5F0F\u30011\u884C\u306B1\u3064\uFF08export\u30D7\u30EC\u30D5\u30A3\u30C3\u30AF\u30B9\u5BFE\u5FDC\uFF09",
-      save: "\u4FDD\u5B58",
-      update: "\u66F4\u65B0",
-      cancel: "\u30AD\u30E3\u30F3\u30BB\u30EB"
-    }
-  },
-  customContextLimits: {
-    name: "\u30AB\u30B9\u30BF\u30E0\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u5236\u9650",
-    desc: "\u30AB\u30B9\u30BF\u30E0\u30E2\u30C7\u30EB\u306E\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6\u30B5\u30A4\u30BA\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002\u30C7\u30D5\u30A9\u30EB\u30C8\uFF08200k\u30C8\u30FC\u30AF\u30F3\uFF09\u3092\u4F7F\u7528\u3059\u308B\u5834\u5408\u306F\u7A7A\u6B04\u306E\u307E\u307E\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-    invalid: "\u7121\u52B9\u306A\u5F62\u5F0F\u3067\u3059\u3002\u4F7F\u7528\uFF1A256k\u30011m\u3001\u307E\u305F\u306F\u6B63\u78BA\u306A\u6570\u5024\uFF081000-10000000\uFF09\u3002"
-  },
-  advanced: "\u8A73\u7D30\u8A2D\u5B9A",
-  show1MModel: {
-    name: "1M\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6\u3092\u6301\u3064Sonnet\u3092\u6709\u52B9\u5316",
-    desc: "\u30E2\u30C7\u30EB\u30BB\u30EC\u30AF\u30BF\u30FC\u3067\u6A19\u6E96Sonnet\u3092 Sonnet (1M) \u306B\u7F6E\u304D\u63DB\u3048\u307E\u3059\u3002200k\u30C8\u30FC\u30AF\u30F3\u672A\u6E80\u3067\u306F\u540C\u3058\u4FA1\u683C\u3002Max\u30B5\u30D6\u30B9\u30AF\u30EA\u30D7\u30B7\u30E7\u30F3\u304C\u5FC5\u8981\u3067\u3059\u3002"
-  },
-  enableChrome: {
-    name: "Chrome\u62E1\u5F35\u6A5F\u80FD\u3092\u6709\u52B9\u5316",
-    desc: "claude-in-chrome\u62E1\u5F35\u6A5F\u80FD\u3092\u901A\u3058\u3066Claude\u304CChrome\u3068\u9023\u643A\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u307E\u3059\u3002\u62E1\u5F35\u6A5F\u80FD\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u304C\u5FC5\u8981\u3067\u3059\u3002\u30BB\u30C3\u30B7\u30E7\u30F3\u306E\u518D\u8D77\u52D5\u304C\u5FC5\u8981\u3067\u3059\u3002"
-  },
-  maxTabs: {
-    name: "\u6700\u5927\u30C1\u30E3\u30C3\u30C8\u30BF\u30D6\u6570",
-    desc: "\u540C\u6642\u306B\u958B\u3051\u308B\u6700\u5927\u30C1\u30E3\u30C3\u30C8\u30BF\u30D6\u6570\uFF083-10\uFF09\u3002\u5404\u30BF\u30D6\u306F\u500B\u5225\u306E Claude \u30BB\u30C3\u30B7\u30E7\u30F3\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002",
-    warning: "5 \u30BF\u30D6\u3092\u8D85\u3048\u308B\u3068\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u3084\u30E1\u30E2\u30EA\u4F7F\u7528\u91CF\u306B\u5F71\u97FF\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002"
-  },
-  tabBarPosition: {
-    name: "\u30BF\u30D6\u30D0\u30FC\u306E\u4F4D\u7F6E",
-    desc: "\u30BF\u30D6\u30D0\u30C3\u30B8\u3068\u30A2\u30AF\u30B7\u30E7\u30F3\u30DC\u30BF\u30F3\u306E\u8868\u793A\u4F4D\u7F6E\u3092\u9078\u629E",
-    input: "\u5165\u529B\u6B04\u306E\u4E0A\uFF08\u30C7\u30D5\u30A9\u30EB\u30C8\uFF09",
-    header: "\u30D8\u30C3\u30C0\u30FC\u5185"
-  },
-  enableAutoScroll: {
-    name: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306E\u81EA\u52D5\u30B9\u30AF\u30ED\u30FC\u30EB",
-    desc: "Claude\u304C\u5FDC\u7B54\u3092\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u3057\u3066\u3044\u308B\u9593\u3001\u81EA\u52D5\u7684\u306B\u4E0B\u306B\u30B9\u30AF\u30ED\u30FC\u30EB\u3057\u307E\u3059\u3002\u7121\u52B9\u306B\u3059\u308B\u3068\u4E0A\u90E8\u306B\u7559\u307E\u308A\u3001\u6700\u521D\u304B\u3089\u8AAD\u3080\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002"
-  },
-  openInMainTab: {
-    name: "\u30E1\u30A4\u30F3\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u3067\u958B\u304F",
-    desc: "\u30C1\u30E3\u30C3\u30C8\u30D1\u30CD\u30EB\u3092\u53F3\u30B5\u30A4\u30C9\u30D0\u30FC\u3067\u306F\u306A\u304F\u3001\u4E2D\u592E\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u306E\u30E1\u30A4\u30F3\u30BF\u30D6\u3068\u3057\u3066\u958B\u304D\u307E\u3059"
-  },
-  cliPath: {
-    name: "Claude CLI \u30D1\u30B9",
-    desc: "Claude Code CLI \u306E\u30AB\u30B9\u30BF\u30E0\u30D1\u30B9\u3002\u7A7A\u6B04\u3067\u81EA\u52D5\u691C\u51FA\u3092\u4F7F\u7528\u3002",
-    descWindows: "\u30CD\u30A4\u30C6\u30A3\u30D6\u30A4\u30F3\u30B9\u30C8\u30FC\u30E9\u30FC\u306E\u5834\u5408\u306F claude.exe \u3092\u4F7F\u7528\u3002npm/pnpm/yarn \u3084\u305D\u306E\u4ED6\u306E\u30D1\u30C3\u30B1\u30FC\u30B8\u30DE\u30CD\u30FC\u30B8\u30E3\u30FC\u3067\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u5834\u5408\u306F cli.js \u30D1\u30B9\u3092\u4F7F\u7528\uFF08claude.cmd \u3067\u306F\u306A\u3044\uFF09\u3002",
-    descUnix: '"which claude" \u306E\u51FA\u529B\u3092\u8CBC\u308A\u4ED8\u3051\u3066\u304F\u3060\u3055\u3044 - \u30CD\u30A4\u30C6\u30A3\u30D6\u3068 npm/pnpm/yarn \u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u4E21\u65B9\u3067\u52D5\u4F5C\u3057\u307E\u3059\u3002',
-    validation: {
-      notExist: "\u30D1\u30B9\u304C\u5B58\u5728\u3057\u307E\u305B\u3093",
-      isDirectory: "\u30D1\u30B9\u306F\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u3067\u30D5\u30A1\u30A4\u30EB\u3067\u306F\u3042\u308A\u307E\u305B\u3093"
-    }
-  },
-  language: {
-    name: "\u8A00\u8A9E",
-    desc: "\u30D7\u30E9\u30B0\u30A4\u30F3\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u306E\u8868\u793A\u8A00\u8A9E\u3092\u5909\u66F4"
-  }
-};
-var ja_default2 = {
-  common: common5,
-  settings: settings5
-};
-
-// src/i18n/locales/ko.json
-var ko_exports = {};
-__export(ko_exports, {
-  common: () => common6,
-  default: () => ko_default2,
-  settings: () => settings6
-});
-var common6 = {
-  save: "\uC800\uC7A5",
-  cancel: "\uCDE8\uC18C",
-  delete: "\uC0AD\uC81C",
-  edit: "\uD3B8\uC9D1",
-  add: "\uCD94\uAC00",
-  remove: "\uC81C\uAC70",
-  clear: "\uC9C0\uC6B0\uAE30",
-  clearAll: "\uBAA8\uB450 \uC9C0\uC6B0\uAE30",
-  loading: "\uB85C\uB529 \uC911",
-  error: "\uC624\uB958",
-  success: "\uC131\uACF5",
-  warning: "\uACBD\uACE0",
-  confirm: "\uD655\uC778",
-  settings: "\uC124\uC815",
-  advanced: "\uACE0\uAE09",
-  enabled: "\uD65C\uC131\uD654",
-  disabled: "\uBE44\uD65C\uC131\uD654",
-  platform: "\uD50C\uB7AB\uD3FC"
-};
-var settings6 = {
-  title: "Claudian \uC124\uC815",
-  customization: "\uC0AC\uC6A9\uC790 \uC815\uC758",
-  userName: {
-    name: "Claudian\uC774 \uB2F9\uC2E0\uC744 \uC5B4\uB5BB\uAC8C \uBD88\uB7EC\uC57C \uD569\uB2C8\uAE4C?",
-    desc: "\uAC1C\uC778\uD654\uB41C \uC778\uC0AC\uC5D0 \uC0AC\uC6A9\uD560 \uC774\uB984 (\uBE44\uC6CC\uB450\uBA74 \uC77C\uBC18 \uC778\uC0AC)"
-  },
-  excludedTags: {
-    name: "\uC81C\uC678 \uD0DC\uADF8",
-    desc: "\uC774 \uD0DC\uADF8\uAC00 \uD3EC\uD568\uB41C \uB178\uD2B8\uB294 \uC790\uB3D9\uC73C\uB85C \uCEE8\uD14D\uC2A4\uD2B8\uB85C \uB85C\uB4DC\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4 (\uD55C \uC904\uC5D0 \uD558\uB098, # \uC81C\uC678)"
-  },
-  mediaFolder: {
-    name: "\uBBF8\uB514\uC5B4 \uD3F4\uB354",
-    desc: "\uCCA8\uBD80 \uD30C\uC77C/\uC774\uBBF8\uC9C0\uB97C \uC800\uC7A5\uD560 \uD3F4\uB354. \uB178\uD2B8\uAC00 ![[image.jpg]]\uB97C \uC0AC\uC6A9\uD560 \uB54C Claude\uAC00 \uC5EC\uAE30\uC11C \uCC3E\uC2B5\uB2C8\uB2E4. \uBE44\uC6CC\uB450\uBA74 \uC800\uC7A5\uC18C \uB8E8\uD2B8 \uC0AC\uC6A9."
-  },
-  systemPrompt: {
-    name: "\uCEE4\uC2A4\uD140 \uC2DC\uC2A4\uD15C \uD504\uB86C\uD504\uD2B8",
-    desc: "\uAE30\uBCF8 \uC2DC\uC2A4\uD15C \uD504\uB86C\uD504\uD2B8\uC5D0 \uCD94\uAC00\uB418\uB294 \uCD94\uAC00 \uC9C0\uCE68"
-  },
-  autoTitle: {
-    name: "\uB300\uD654 \uC81C\uBAA9 \uC790\uB3D9 \uC0DD\uC131",
-    desc: "\uCCAB \uBC88\uC9F8 \uC0AC\uC6A9\uC790 \uBA54\uC2DC\uC9C0 \uC804\uC1A1 \uD6C4 \uC790\uB3D9\uC73C\uB85C \uB300\uD654 \uC81C\uBAA9\uC744 \uC0DD\uC131\uD569\uB2C8\uB2E4."
-  },
-  titleModel: {
-    name: "\uC81C\uBAA9 \uC0DD\uC131 \uBAA8\uB378",
-    desc: "\uB300\uD654 \uC81C\uBAA9\uC744 \uC790\uB3D9 \uC0DD\uC131\uD558\uB294 \uB370 \uC0AC\uC6A9\uB418\uB294 \uBAA8\uB378.",
-    auto: "\uC790\uB3D9 (Haiku)"
-  },
-  navMappings: {
-    name: "Vim \uC2A4\uD0C0\uC77C \uB124\uBE44\uAC8C\uC774\uC158 \uB9E4\uD551",
-    desc: '\uD55C \uC904\uC5D0 \uD558\uB098\uC758 \uB9E4\uD551. \uD615\uC2DD: "map <\uD0A4> <\uB3D9\uC791>" (\uB3D9\uC791: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "\uB2E8\uCD95\uD0A4",
-  inlineEditHotkey: {
-    name: "\uC778\uB77C\uC778 \uD3B8\uC9D1",
-    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
-    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
-    btnChange: "\uBCC0\uACBD",
-    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
-  },
-  openChatHotkey: {
-    name: "\uCC44\uD305 \uC5F4\uAE30",
-    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
-    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
-    btnChange: "\uBCC0\uACBD",
-    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
-  },
-  newSessionHotkey: {
-    name: "\uC0C8 \uC138\uC158",
-    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
-    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
-    btnChange: "\uBCC0\uACBD",
-    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
-  },
-  newTabHotkey: {
-    name: "\uC0C8 \uD0ED",
-    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
-    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
-    btnChange: "\uBCC0\uACBD",
-    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
-  },
-  closeTabHotkey: {
-    name: "\uD0ED \uB2EB\uAE30",
-    descWithKey: "\uD604\uC7AC \uB2E8\uCD95\uD0A4: {hotkey}",
-    descNoKey: "\uB2E8\uCD95\uD0A4 \uBBF8\uC124\uC815",
-    btnChange: "\uBCC0\uACBD",
-    btnSet: "\uB2E8\uCD95\uD0A4 \uC124\uC815"
-  },
-  slashCommands: {
-    name: "\uBA85\uB839\uC5B4\uC640 \uC2A4\uD0AC",
-    desc: "/\uC774\uB984\uC73C\uB85C \uD2B8\uB9AC\uAC70\uB418\uB294 \uCEE4\uC2A4\uD140 \uBA85\uB839\uC5B4\uC640 \uC2A4\uD0AC\uC744 \uC815\uC758\uD569\uB2C8\uB2E4."
-  },
-  hiddenSlashCommands: {
-    name: "\uC228\uACA8\uC9C4 \uBA85\uB839\uC5B4",
-    desc: "\uB4DC\uB86D\uB2E4\uC6B4\uC5D0\uC11C \uD2B9\uC815 \uC2AC\uB798\uC2DC \uBA85\uB839\uC5B4\uB97C \uC228\uAE41\uB2C8\uB2E4. Claudian\uACFC \uAD00\uB828 \uC5C6\uB294 Claude Code \uBA85\uB839\uC5B4\uB97C \uC228\uAE30\uB294 \uB370 \uC720\uC6A9\uD569\uB2C8\uB2E4. \uC55E\uC758 \uC2AC\uB798\uC2DC \uC5C6\uC774 \uD55C \uC904\uC5D0 \uD558\uB098\uC529 \uBA85\uB839\uC5B4 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP \uC11C\uBC84",
-    desc: "\uBAA8\uB378 \uCEE8\uD14D\uC2A4\uD2B8 \uD504\uB85C\uD1A0\uCF5C \uC11C\uBC84\uB97C \uC124\uC815\uD558\uC5EC \uC678\uBD80 \uB3C4\uAD6C\uC640 \uB370\uC774\uD130 \uC18C\uC2A4\uB85C Claude\uC758 \uAE30\uB2A5\uC744 \uD655\uC7A5\uD569\uB2C8\uB2E4. \uCEE8\uD14D\uC2A4\uD2B8 \uC800\uC7A5 \uBAA8\uB4DC \uC11C\uBC84\uB294 @mention\uC73C\uB85C \uD65C\uC131\uD654\uD574\uC57C \uD569\uB2C8\uB2E4."
-  },
-  plugins: {
-    name: "Claude Code \uD50C\uB7EC\uADF8\uC778",
-    desc: "~/.claude/plugins\uC5D0\uC11C \uBC1C\uACAC\uB41C Claude Code \uD50C\uB7EC\uADF8\uC778\uC744 \uD65C\uC131\uD654 \uB610\uB294 \uBE44\uD65C\uC131\uD654\uD569\uB2C8\uB2E4. \uD65C\uC131\uD654\uB41C \uD50C\uB7EC\uADF8\uC778\uC740 \uBCFC\uD2B8\uBCC4\uB85C \uC800\uC7A5\uB429\uB2C8\uB2E4."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "\uBCF4\uC548",
-  loadUserSettings: {
-    name: "\uC0AC\uC6A9\uC790 Claude \uC124\uC815 \uB85C\uB4DC",
-    desc: "~/.claude/settings.json\uC744 \uB85C\uB4DC\uD569\uB2C8\uB2E4. \uD65C\uC131\uD654\uD558\uBA74 \uC0AC\uC6A9\uC790\uC758 Claude Code \uD5C8\uC6A9 \uADDC\uCE59\uC774 \uBCF4\uC548 \uBAA8\uB4DC\uB97C \uC6B0\uD68C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  },
-  enableBlocklist: {
-    name: "\uBA85\uB839\uC5B4 \uBE14\uB799\uB9AC\uC2A4\uD2B8 \uD65C\uC131\uD654",
-    desc: "\uC7A0\uC7AC\uC801\uC73C\uB85C \uC704\uD5D8\uD55C bash \uBA85\uB839\uC5B4 \uCC28\uB2E8"
-  },
-  blockedCommands: {
-    name: "\uCC28\uB2E8\uB41C \uBA85\uB839\uC5B4 ({platform})",
-    desc: "{platform}\uC5D0\uC11C \uCC28\uB2E8\uD560 \uD328\uD134 (\uD55C \uC904\uC5D0 \uD558\uB098). \uC815\uADDC\uC2DD \uC9C0\uC6D0.",
-    unixName: "\uCC28\uB2E8\uB41C \uBA85\uB839\uC5B4 (Unix/Git Bash)",
-    unixDesc: "Git Bash\uAC00 \uD638\uCD9C\uD560 \uC218 \uC788\uC73C\uBBC0\uB85C Unix \uD328\uD134\uB3C4 Windows\uC5D0\uC11C \uCC28\uB2E8\uB429\uB2C8\uB2E4."
-  },
-  exportPaths: {
-    name: "\uD5C8\uC6A9\uB41C \uB0B4\uBCF4\uB0B4\uAE30 \uACBD\uB85C",
-    desc: "\uD30C\uC77C\uC744 \uB0B4\uBCF4\uB0BC \uC218 \uC788\uB294 \uC800\uC7A5\uC18C \uC678\uBD80 \uACBD\uB85C (\uD55C \uC904\uC5D0 \uD558\uB098). ~\uB85C \uD648 \uB514\uB809\uD1A0\uB9AC \uC9C0\uC6D0."
-  },
-  environment: "\uD658\uACBD",
-  customVariables: {
-    name: "\uCEE4\uC2A4\uD140 \uBCC0\uC218",
-    desc: "Claude SDK \uD658\uACBD \uBCC0\uC218 (KEY=VALUE \uD615\uC2DD, \uD55C \uC904\uC5D0 \uD558\uB098). export \uC811\uB450\uC0AC \uC9C0\uC6D0."
-  },
-  envSnippets: {
-    name: "\uC2A4\uB2C8\uD3AB",
-    addBtn: "\uC2A4\uB2C8\uD3AB \uCD94\uAC00",
-    noSnippets: "\uC800\uC7A5\uB41C \uD658\uACBD \uBCC0\uC218 \uC2A4\uB2C8\uD3AB\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. +\uB97C \uD074\uB9AD\uD558\uC5EC \uD604\uC7AC \uAD6C\uC131\uC744 \uC800\uC7A5\uD558\uC138\uC694.",
-    nameRequired: "\uC2A4\uB2C8\uD3AB \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694",
-    modal: {
-      titleEdit: "\uC2A4\uB2C8\uD3AB \uD3B8\uC9D1",
-      titleSave: "\uC2A4\uB2C8\uD3AB \uC800\uC7A5",
-      name: "\uC774\uB984",
-      namePlaceholder: "\uC774 \uAD6C\uC131\uC5D0 \uB300\uD55C \uC124\uBA85\uC801\uC778 \uC774\uB984",
-      description: "\uC124\uBA85",
-      descPlaceholder: "\uC120\uD0DD\uC801 \uC124\uBA85",
-      envVars: "\uD658\uACBD \uBCC0\uC218",
-      envVarsPlaceholder: "KEY=VALUE \uD615\uC2DD, \uD55C \uC904\uC5D0 \uD558\uB098 (export \uC811\uB450\uC0AC \uC9C0\uC6D0)",
-      save: "\uC800\uC7A5",
-      update: "\uC5C5\uB370\uC774\uD2B8",
-      cancel: "\uCDE8\uC18C"
-    }
-  },
-  customContextLimits: {
-    name: "\uC0AC\uC6A9\uC790 \uC815\uC758 \uCEE8\uD14D\uC2A4\uD2B8 \uC81C\uD55C",
-    desc: "\uC0AC\uC6A9\uC790 \uC815\uC758 \uBAA8\uB378\uC758 \uCEE8\uD14D\uC2A4\uD2B8 \uCC3D \uD06C\uAE30\uB97C \uC124\uC815\uD569\uB2C8\uB2E4. \uAE30\uBCF8\uAC12(200k \uD1A0\uD070)\uC744 \uC0AC\uC6A9\uD558\uB824\uBA74 \uBE44\uC6CC\uB450\uC138\uC694.",
-    invalid: "\uC798\uBABB\uB41C \uD615\uC2DD\uC785\uB2C8\uB2E4. \uC0AC\uC6A9: 256k, 1m \uB610\uB294 \uC815\uD655\uD55C \uC22B\uC790(1000-10000000)."
-  },
-  advanced: "\uACE0\uAE09",
-  show1MModel: {
-    name: "1M \uCEE8\uD14D\uC2A4\uD2B8 \uCC3D\uC744 \uAC00\uC9C4 Sonnet \uD65C\uC131\uD654",
-    desc: "\uBAA8\uB378 \uC120\uD0DD\uAE30\uC5D0\uC11C \uD45C\uC900 Sonnet\uC744 Sonnet (1M)\uC73C\uB85C \uAD50\uCCB4\uD569\uB2C8\uB2E4. 200k \uD1A0\uD070 \uBBF8\uB9CC\uC5D0\uC11C\uB294 \uB3D9\uC77C\uD55C \uAC00\uACA9. Max \uAD6C\uB3C5\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
-  },
-  enableChrome: {
-    name: "Chrome \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8 \uD65C\uC131\uD654",
-    desc: "claude-in-chrome \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8\uC744 \uD1B5\uD574 Claude\uAC00 Chrome\uACFC \uC0C1\uD638\uC791\uC6A9\uD560 \uC218 \uC788\uB3C4\uB85D \uD569\uB2C8\uB2E4. \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8\uC774 \uC124\uCE58\uB418\uC5B4 \uC788\uC5B4\uC57C \uD569\uB2C8\uB2E4. \uC138\uC158 \uC7AC\uC2DC\uC791\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
-  },
-  maxTabs: {
-    name: "\uCD5C\uB300 \uCC44\uD305 \uD0ED \uC218",
-    desc: "\uB3D9\uC2DC\uC5D0 \uC5F4 \uC218 \uC788\uB294 \uCD5C\uB300 \uCC44\uD305 \uD0ED \uC218(3-10). \uAC01 \uD0ED\uC740 \uBCC4\uB3C4\uC758 Claude \uC138\uC158\uC744 \uC0AC\uC6A9\uD569\uB2C8\uB2E4.",
-    warning: "5\uAC1C \uD0ED\uC744 \uCD08\uACFC\uD558\uBA74 \uC131\uB2A5 \uBC0F \uBA54\uBAA8\uB9AC \uC0AC\uC6A9\uB7C9\uC5D0 \uC601\uD5A5\uC744 \uC904 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  },
-  tabBarPosition: {
-    name: "\uD0ED \uBC14 \uC704\uCE58",
-    desc: "\uD0ED \uBC30\uC9C0\uC640 \uC791\uC5C5 \uBC84\uD2BC\uC758 \uD45C\uC2DC \uC704\uCE58 \uC120\uD0DD",
-    input: "\uC785\uB825\uCC3D \uC704(\uAE30\uBCF8\uAC12)",
-    header: "\uD5E4\uB354\uC5D0"
-  },
-  enableAutoScroll: {
-    name: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911 \uC790\uB3D9 \uC2A4\uD06C\uB864",
-    desc: "Claude\uAC00 \uC751\uB2F5\uC744 \uC2A4\uD2B8\uB9AC\uBC0D\uD558\uB294 \uB3D9\uC548 \uC790\uB3D9\uC73C\uB85C \uC544\uB798\uB85C \uC2A4\uD06C\uB864\uD569\uB2C8\uB2E4. \uBE44\uD65C\uC131\uD654\uD558\uBA74 \uC0C1\uB2E8\uC5D0 \uBA38\uBB3C\uB7EC \uCC98\uC74C\uBD80\uD130 \uC77D\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  },
-  openInMainTab: {
-    name: "\uBA54\uC778 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC5D0\uC11C \uC5F4\uAE30",
-    desc: "\uCC44\uD305 \uD328\uB110\uC744 \uC624\uB978\uCABD \uC0AC\uC774\uB4DC\uBC14\uAC00 \uC544\uB2CC \uC911\uC559 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC758 \uBA54\uC778 \uD0ED\uC73C\uB85C \uC5FD\uB2C8\uB2E4"
-  },
-  cliPath: {
-    name: "Claude CLI \uACBD\uB85C",
-    desc: "Claude Code CLI\uC758 \uC0AC\uC6A9\uC790 \uC815\uC758 \uACBD\uB85C. \uBE44\uC6CC\uB450\uBA74 \uC790\uB3D9 \uAC10\uC9C0 \uC0AC\uC6A9.",
-    descWindows: "\uB124\uC774\uD2F0\uBE0C \uC124\uCE58 \uD504\uB85C\uADF8\uB7A8\uC758 \uACBD\uC6B0 claude.exe\uB97C \uC0AC\uC6A9\uD558\uC138\uC694. npm/pnpm/yarn \uB610\uB294 \uAE30\uD0C0 \uD328\uD0A4\uC9C0 \uAD00\uB9AC\uC790 \uC124\uCE58\uC758 \uACBD\uC6B0 cli.js \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uC138\uC694 (claude.cmd\uAC00 \uC544\uB2D8).",
-    descUnix: '"which claude"\uC758 \uCD9C\uB825\uC744 \uBD99\uC5EC\uB123\uC73C\uC138\uC694 - \uB124\uC774\uD2F0\uBE0C \uBC0F npm/pnpm/yarn \uC124\uCE58 \uBAA8\uB450\uC5D0\uC11C \uC791\uB3D9\uD569\uB2C8\uB2E4.',
-    validation: {
-      notExist: "\uACBD\uB85C\uAC00 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4",
-      isDirectory: "\uACBD\uB85C\uAC00 \uB514\uB809\uD1A0\uB9AC\uC785\uB2C8\uB2E4 \uD30C\uC77C\uC774 \uC544\uB2D9\uB2C8\uB2E4"
-    }
-  },
-  language: {
-    name: "\uC5B8\uC5B4",
-    desc: "\uD50C\uB7EC\uADF8\uC778 \uC778\uD130\uD398\uC774\uC2A4\uC758 \uD45C\uC2DC \uC5B8\uC5B4 \uBCC0\uACBD"
-  }
-};
-var ko_default2 = {
-  common: common6,
-  settings: settings6
-};
-
-// src/i18n/locales/pt.json
-var pt_exports = {};
-__export(pt_exports, {
-  common: () => common7,
-  default: () => pt_default2,
-  settings: () => settings7
-});
-var common7 = {
-  save: "Salvar",
-  cancel: "Cancelar",
-  delete: "Excluir",
-  edit: "Editar",
-  add: "Adicionar",
-  remove: "Remover",
-  clear: "Limpar",
-  clearAll: "Limpar tudo",
-  loading: "Carregando",
-  error: "Erro",
-  success: "Sucesso",
-  warning: "Aviso",
-  confirm: "Confirmar",
-  settings: "Configura\xE7\xF5es",
-  advanced: "Avan\xE7ado",
-  enabled: "Ativado",
-  disabled: "Desativado",
-  platform: "Plataforma"
-};
-var settings7 = {
-  title: "Configura\xE7\xF5es do Claudian",
-  customization: "Personaliza\xE7\xE3o",
-  userName: {
-    name: "Como o Claudian deve cham\xE1-lo?",
-    desc: "Seu nome para sauda\xE7\xF5es personalizadas (deixe vazio para sauda\xE7\xF5es gen\xE9ricas)"
-  },
-  excludedTags: {
-    name: "Tags exclu\xEDdas",
-    desc: "Notas com estas tags n\xE3o ser\xE3o carregadas automaticamente como contexto (uma por linha, sem #)"
-  },
-  mediaFolder: {
-    name: "Pasta de m\xEDdia",
-    desc: "Pasta contendo anexos/imagens. Quando notas usam ![[image.jpg]], Claude procurar\xE1 aqui. Deixe vazio para a raiz do reposit\xF3rio."
-  },
-  systemPrompt: {
-    name: "Prompt de sistema personalizado",
-    desc: "Instru\xE7\xF5es adicionais anexadas ao prompt de sistema padr\xE3o"
-  },
-  autoTitle: {
-    name: "Gerar automaticamente t\xEDtulos de conversa",
-    desc: "Gera automaticamente t\xEDtulos de conversa ap\xF3s a primeira mensagem do usu\xE1rio."
-  },
-  titleModel: {
-    name: "Modelo de gera\xE7\xE3o de t\xEDtulo",
-    desc: "Modelo usado para gerar automaticamente t\xEDtulos de conversa.",
-    auto: "Auto (Haiku)"
-  },
-  navMappings: {
-    name: "Mapeamentos de navega\xE7\xE3o estilo Vim",
-    desc: 'Um mapeamento por linha. Formato: "map <tecla> <a\xE7\xE3o>" (a\xE7\xF5es: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "Atalhos",
-  inlineEditHotkey: {
-    name: "Edi\xE7\xE3o em linha",
-    descWithKey: "Atalho atual: {hotkey}",
-    descNoKey: "Nenhum atalho definido",
-    btnChange: "Alterar",
-    btnSet: "Definir"
-  },
-  openChatHotkey: {
-    name: "Abrir chat",
-    descWithKey: "Atalho atual: {hotkey}",
-    descNoKey: "Nenhum atalho definido",
-    btnChange: "Alterar",
-    btnSet: "Definir"
-  },
-  newSessionHotkey: {
-    name: "Nova sess\xE3o",
-    descWithKey: "Atalho atual: {hotkey}",
-    descNoKey: "Nenhum atalho definido",
-    btnChange: "Alterar",
-    btnSet: "Definir"
-  },
-  newTabHotkey: {
-    name: "Nova aba",
-    descWithKey: "Atalho atual: {hotkey}",
-    descNoKey: "Nenhum atalho definido",
-    btnChange: "Alterar",
-    btnSet: "Definir"
-  },
-  closeTabHotkey: {
-    name: "Fechar aba",
-    descWithKey: "Atalho atual: {hotkey}",
-    descNoKey: "Nenhum atalho definido",
-    btnChange: "Alterar",
-    btnSet: "Definir"
-  },
-  slashCommands: {
-    name: "Comandos e habilidades",
-    desc: "Defina comandos e habilidades personalizados acionados por /nome."
-  },
-  hiddenSlashCommands: {
-    name: "Comandos ocultos",
-    desc: "Ocultar comandos slash espec\xEDficos do menu suspenso. \xDAtil para ocultar comandos do Claude Code que n\xE3o s\xE3o relevantes para o Claudian. Digite os nomes dos comandos sem a barra inicial, um por linha.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "Servidores MCP",
-    desc: "Configure servidores Model Context Protocol para estender as capacidades do Claude com ferramentas e fontes de dados externas. Servidores com modo de salvamento de contexto exigem @mention para ativar."
-  },
-  plugins: {
-    name: "Plugins do Claude Code",
-    desc: "Ative ou desative plugins do Claude Code descobertos em ~/.claude/plugins. Plugins ativados s\xE3o armazenados por cofre."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "Seguran\xE7a",
-  loadUserSettings: {
-    name: "Carregar configura\xE7\xF5es do usu\xE1rio Claude",
-    desc: "Carrega ~/.claude/settings.json. Quando habilitado, as regras de permiss\xE3o do usu\xE1rio podem ignorar o modo seguro."
-  },
-  enableBlocklist: {
-    name: "Habilitar lista negra de comandos",
-    desc: "Bloqueia comandos bash potencialmente perigosos"
-  },
-  blockedCommands: {
-    name: "Comandos bloqueados ({platform})",
-    desc: "Padr\xF5es para bloquear em {platform} (um por linha). Suporta express\xF5es regulares.",
-    unixName: "Comandos bloqueados (Unix/Git Bash)",
-    unixDesc: "Padr\xF5es Unix tamb\xE9m bloqueados no Windows porque Git Bash pode invoc\xE1-los."
-  },
-  exportPaths: {
-    name: "Caminhos de exporta\xE7\xE3o permitidos",
-    desc: "Caminhos fora do reposit\xF3rio onde arquivos podem ser exportados (um por linha). Suporta ~ para diret\xF3rio home."
-  },
-  environment: "Ambiente",
-  customVariables: {
-    name: "Vari\xE1veis personalizadas",
-    desc: "Vari\xE1veis de ambiente para Claude SDK (formato KEY=VALUE, uma por linha). Prefixo export suportado."
-  },
-  envSnippets: {
-    name: "Snippets",
-    addBtn: "Adicionar snippet",
-    noSnippets: "Nenhum snippet de ambiente salvo. Clique em + para salvar sua configura\xE7\xE3o atual.",
-    nameRequired: "Por favor, insira um nome para o snippet",
-    modal: {
-      titleEdit: "Editar snippet",
-      titleSave: "Salvar snippet",
-      name: "Nome",
-      namePlaceholder: "Um nome descritivo para esta configura\xE7\xE3o",
-      description: "Descri\xE7\xE3o",
-      descPlaceholder: "Descri\xE7\xE3o opcional",
-      envVars: "Vari\xE1veis de ambiente",
-      envVarsPlaceholder: "Formato KEY=VALUE, uma por linha (prefixo export suportado)",
-      save: "Salvar",
-      update: "Atualizar",
-      cancel: "Cancelar"
-    }
-  },
-  customContextLimits: {
-    name: "Limites de contexto personalizados",
-    desc: "Defina tamanhos de janela de contexto para seus modelos personalizados. Deixe vazio para usar o padr\xE3o (200k tokens).",
-    invalid: "Formato inv\xE1lido. Use: 256k, 1m ou n\xFAmero exato (1000-10000000)."
-  },
-  advanced: "Avan\xE7ado",
-  show1MModel: {
-    name: "Habilitar Sonnet com janela de contexto de 1M",
-    desc: "Substituir Sonnet padr\xE3o por Sonnet (1M) no seletor de modelos. Mesmo pre\xE7o abaixo de 200k tokens. Requer assinatura Max."
-  },
-  enableChrome: {
-    name: "Habilitar extens\xE3o do Chrome",
-    desc: "Permitir que o Claude interaja com o Chrome atrav\xE9s da extens\xE3o claude-in-chrome. Requer que a extens\xE3o esteja instalada. Requer rein\xEDcio de sess\xE3o."
-  },
-  maxTabs: {
-    name: "M\xE1ximo de abas de chat",
-    desc: "N\xFAmero m\xE1ximo de abas de chat simult\xE2neas (3-10). Cada aba usa uma sess\xE3o Claude separada.",
-    warning: "Mais de 5 abas pode afetar o desempenho e o uso de mem\xF3ria."
-  },
-  tabBarPosition: {
-    name: "Posi\xE7\xE3o da barra de abas",
-    desc: "Escolha onde exibir os emblemas de abas e bot\xF5es de a\xE7\xE3o",
-    input: "Acima da entrada (padr\xE3o)",
-    header: "No cabe\xE7alho"
-  },
-  enableAutoScroll: {
-    name: "Rolagem autom\xE1tica durante streaming",
-    desc: "Rolar automaticamente para baixo enquanto o Claude transmite respostas. Desativar para ficar no topo e ler desde o in\xEDcio."
-  },
-  openInMainTab: {
-    name: "Abrir na \xE1rea do editor principal",
-    desc: "Abrir o painel de chat como uma aba principal na \xE1rea do editor central em vez da barra lateral direita"
-  },
-  cliPath: {
-    name: "Caminho CLI Claude",
-    desc: "Caminho personalizado para Claude Code CLI. Deixe vazio para detec\xE7\xE3o autom\xE1tica.",
-    descWindows: "Para o instalador nativo, use claude.exe. Para instala\xE7\xF5es com npm/pnpm/yarn ou outros gerenciadores de pacotes, use o caminho cli.js (n\xE3o claude.cmd).",
-    descUnix: 'Cole a sa\xEDda de "which claude" \u2014 funciona tanto para instala\xE7\xF5es nativas quanto npm/pnpm/yarn.',
-    validation: {
-      notExist: "Caminho n\xE3o existe",
-      isDirectory: "Caminho \xE9 um diret\xF3rio, n\xE3o um arquivo"
-    }
-  },
-  language: {
-    name: "Idioma",
-    desc: "Alterar o idioma de exibi\xE7\xE3o da interface do plugin"
-  }
-};
-var pt_default2 = {
-  common: common7,
-  settings: settings7
-};
-
-// src/i18n/locales/ru.json
-var ru_exports = {};
-__export(ru_exports, {
-  common: () => common8,
-  default: () => ru_default2,
-  settings: () => settings8
-});
-var common8 = {
-  save: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
-  cancel: "\u041E\u0442\u043C\u0435\u043D\u0430",
-  delete: "\u0423\u0434\u0430\u043B\u0438\u0442\u044C",
-  edit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C",
-  add: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C",
-  remove: "\u0423\u0434\u0430\u043B\u0438\u0442\u044C",
-  clear: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C",
-  clearAll: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0432\u0441\u0451",
-  loading: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430",
-  error: "\u041E\u0448\u0438\u0431\u043A\u0430",
-  success: "\u0423\u0441\u043F\u0435\u0445",
-  warning: "\u041F\u0440\u0435\u0434\u0443\u043F\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u0435",
-  confirm: "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C",
-  settings: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438",
-  advanced: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E",
-  enabled: "\u0412\u043A\u043B\u044E\u0447\u0435\u043D\u043E",
-  disabled: "\u041E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u043E",
-  platform: "\u041F\u043B\u0430\u0442\u0444\u043E\u0440\u043C\u0430"
-};
-var settings8 = {
-  title: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 Claudian",
-  customization: "\u041F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F",
-  userName: {
-    name: "\u041A\u0430\u043A Claudian \u0434\u043E\u043B\u0436\u0435\u043D \u043E\u0431\u0440\u0430\u0449\u0430\u0442\u044C\u0441\u044F \u043A \u0432\u0430\u043C?",
-    desc: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \u0434\u043B\u044F \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0439 (\u043E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043E\u0431\u0449\u0438\u0445 \u043F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0439)"
-  },
-  excludedTags: {
-    name: "\u0418\u0441\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0435 \u0442\u0435\u0433\u0438",
-    desc: "\u0417\u0430\u043C\u0435\u0442\u043A\u0438 \u0441 \u044D\u0442\u0438\u043C\u0438 \u0442\u0435\u0433\u0430\u043C\u0438 \u043D\u0435 \u0431\u0443\u0434\u0443\u0442 \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0437\u0430\u0433\u0440\u0443\u0436\u0430\u0442\u044C\u0441\u044F \u043A\u0430\u043A \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442 (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435, \u0431\u0435\u0437 #)"
-  },
-  mediaFolder: {
-    name: "\u041F\u0430\u043F\u043A\u0430 \u043C\u0435\u0434\u0438\u0430\u0444\u0430\u0439\u043B\u043E\u0432",
-    desc: "\u041F\u0430\u043F\u043A\u0430 \u0441 \u0432\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u043C\u0438/\u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F\u043C\u0438. \u041A\u043E\u0433\u0434\u0430 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044E\u0442 ![[image.jpg]], Claude \u0431\u0443\u0434\u0435\u0442 \u0438\u0441\u043A\u0430\u0442\u044C \u0437\u0434\u0435\u0441\u044C. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043A\u043E\u0440\u043D\u044F \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430."
-  },
-  systemPrompt: {
-    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u043C\u043F\u0442",
-    desc: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438, \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u043C\u044B\u0435 \u043A \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u043E\u043C\u0443 \u043F\u0440\u043E\u043C\u043F\u0442\u0443 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E"
-  },
-  autoTitle: {
-    name: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0433\u0435\u043D\u0435\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0438 \u0431\u0435\u0441\u0435\u0434",
-    desc: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u0433\u0435\u043D\u0435\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0438 \u0431\u0435\u0441\u0435\u0434 \u043F\u043E\u0441\u043B\u0435 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F."
-  },
-  titleModel: {
-    name: "\u041C\u043E\u0434\u0435\u043B\u044C \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u0438 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u0432",
-    desc: "\u041C\u043E\u0434\u0435\u043B\u044C, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u0430\u044F \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u0438 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u0432 \u0431\u0435\u0441\u0435\u0434.",
-    auto: "\u0410\u0432\u0442\u043E (Haiku)"
-  },
-  navMappings: {
-    name: "\u0421\u043E\u043F\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u043D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u0438 \u0432 \u0441\u0442\u0438\u043B\u0435 Vim",
-    desc: '\u041F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0441\u043E\u043F\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0438\u044E \u0432 \u0441\u0442\u0440\u043E\u043A\u0435. \u0424\u043E\u0440\u043C\u0430\u0442: "map <\u043A\u043B\u044E\u0447> <\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435>" (\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F: scrollUp, scrollDown, focusInput).'
-  },
-  hotkeys: "\u0413\u043E\u0440\u044F\u0447\u0438\u0435 \u043A\u043B\u0430\u0432\u0438\u0448\u0438",
-  inlineEditHotkey: {
-    name: "\u0418\u043D\u043B\u0430\u0439\u043D-\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435",
-    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
-    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
-    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
-    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
-  },
-  openChatHotkey: {
-    name: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0447\u0430\u0442",
-    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
-    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
-    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
-    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
-  },
-  newSessionHotkey: {
-    name: "\u041D\u043E\u0432\u0430\u044F \u0441\u0435\u0441\u0441\u0438\u044F",
-    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
-    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
-    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
-    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
-  },
-  newTabHotkey: {
-    name: "\u041D\u043E\u0432\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430",
-    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
-    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
-    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
-    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
-  },
-  closeTabHotkey: {
-    name: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u0432\u043A\u043B\u0430\u0434\u043A\u0443",
-    descWithKey: "\u0422\u0435\u043A\u0443\u0449\u0430\u044F \u043A\u043B\u0430\u0432\u0438\u0448\u0430: {hotkey}",
-    descNoKey: "\u041A\u043B\u0430\u0432\u0438\u0448\u0430 \u043D\u0435 \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0430",
-    btnChange: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C",
-    btnSet: "\u041D\u0430\u0437\u043D\u0430\u0447\u0438\u0442\u044C"
-  },
-  slashCommands: {
-    name: "\u041A\u043E\u043C\u0430\u043D\u0434\u044B \u0438 \u043D\u0430\u0432\u044B\u043A\u0438",
-    desc: "\u041E\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u0439\u0442\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u0438 \u043D\u0430\u0432\u044B\u043A\u0438, \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u0435\u043C\u044B\u0435 \u0447\u0435\u0440\u0435\u0437 /\u0438\u043C\u044F."
-  },
-  hiddenSlashCommands: {
-    name: "\u0421\u043A\u0440\u044B\u0442\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B",
-    desc: "\u0421\u043A\u0440\u044B\u0442\u044C \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0451\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B \u0441\u043E \u0441\u043B\u044D\u0448\u0435\u043C \u0438\u0437 \u0432\u044B\u043F\u0430\u0434\u0430\u044E\u0449\u0435\u0433\u043E \u0441\u043F\u0438\u0441\u043A\u0430. \u041F\u043E\u043B\u0435\u0437\u043D\u043E \u0434\u043B\u044F \u0441\u043A\u0440\u044B\u0442\u0438\u044F \u043A\u043E\u043C\u0430\u043D\u0434 Claude Code, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043D\u0435 \u0430\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B \u0434\u043B\u044F Claudian. \u0412\u0432\u043E\u0434\u0438\u0442\u0435 \u0438\u043C\u0435\u043D\u0430 \u043A\u043E\u043C\u0430\u043D\u0434 \u0431\u0435\u0437 \u043D\u0430\u0447\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u0441\u043B\u044D\u0448\u0430, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443.",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP \u0441\u0435\u0440\u0432\u0435\u0440\u044B",
-    desc: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0441\u0435\u0440\u0432\u0435\u0440\u044B Model Context Protocol \u0434\u043B\u044F \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u044F \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0435\u0439 Claude \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0432\u043D\u0435\u0448\u043D\u0438\u0445 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u043E\u0432 \u0438 \u0438\u0441\u0442\u043E\u0447\u043D\u0438\u043A\u043E\u0432 \u0434\u0430\u043D\u043D\u044B\u0445. \u0421\u0435\u0440\u0432\u0435\u0440\u044B \u0441 \u0440\u0435\u0436\u0438\u043C\u043E\u043C \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044F \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 \u0442\u0440\u0435\u0431\u0443\u044E\u0442 @mention \u0434\u043B\u044F \u0430\u043A\u0442\u0438\u0432\u0430\u0446\u0438\u0438."
-  },
-  plugins: {
-    name: "\u041F\u043B\u0430\u0433\u0438\u043D\u044B Claude Code",
-    desc: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u0438\u043B\u0438 \u043E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u043F\u043B\u0430\u0433\u0438\u043D\u044B Claude Code \u0438\u0437 ~/.claude/plugins. \u0412\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0435 \u043F\u043B\u0430\u0433\u0438\u043D\u044B \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u044E\u0442\u0441\u044F \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430."
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C",
-  loadUserSettings: {
-    name: "\u0417\u0430\u0433\u0440\u0443\u0436\u0430\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 Claude",
-    desc: "\u0417\u0430\u0433\u0440\u0443\u0436\u0430\u0435\u0442 ~/.claude/settings.json. \u041F\u0440\u0438 \u0432\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0438 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0439 Claude Code \u043C\u043E\u0433\u0443\u0442 \u043E\u0431\u0445\u043E\u0434\u0438\u0442\u044C \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u044B\u0439 \u0440\u0435\u0436\u0438\u043C."
-  },
-  enableBlocklist: {
-    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0447\u0435\u0440\u043D\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A \u043A\u043E\u043C\u0430\u043D\u0434",
-    desc: "\u0411\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043F\u043E\u0442\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u043E \u043E\u043F\u0430\u0441\u043D\u044B\u0435 bash \u043A\u043E\u043C\u0430\u043D\u0434\u044B"
-  },
-  blockedCommands: {
-    name: "\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B ({platform})",
-    desc: "\u0428\u0430\u0431\u043B\u043E\u043D\u044B \u0434\u043B\u044F \u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u043A\u0438 \u043D\u0430 {platform} (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u044E\u0442\u0441\u044F \u0440\u0435\u0433\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u0432\u044B\u0440\u0430\u0436\u0435\u043D\u0438\u044F.",
-    unixName: "\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u044B (Unix/Git Bash)",
-    unixDesc: "Unix \u0448\u0430\u0431\u043B\u043E\u043D\u044B \u0442\u0430\u043A\u0436\u0435 \u0431\u043B\u043E\u043A\u0438\u0440\u0443\u044E\u0442\u0441\u044F \u043D\u0430 Windows, \u0442\u0430\u043A \u043A\u0430\u043A Git Bash \u043C\u043E\u0436\u0435\u0442 \u0438\u0445 \u0432\u044B\u0437\u044B\u0432\u0430\u0442\u044C."
-  },
-  exportPaths: {
-    name: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043D\u044B\u0435 \u043F\u0443\u0442\u0438 \u044D\u043A\u0441\u043F\u043E\u0440\u0442\u0430",
-    desc: "\u041F\u0443\u0442\u0438 \u0432\u043D\u0435 \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430, \u043A\u0443\u0434\u0430 \u043C\u043E\u0436\u043D\u043E \u044D\u043A\u0441\u043F\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0444\u0430\u0439\u043B\u044B (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442 ~ \u0434\u043B\u044F \u0434\u043E\u043C\u0430\u0448\u043D\u0435\u0433\u043E \u043A\u0430\u0442\u0430\u043B\u043E\u0433\u0430."
-  },
-  environment: "\u041E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u0435",
-  customVariables: {
-    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435",
-    desc: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F \u0434\u043B\u044F Claude SDK (\u0444\u043E\u0440\u043C\u0430\u0442 KEY=VALUE, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435). \u041F\u0440\u0435\u0444\u0438\u043A\u0441 export \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F."
-  },
-  envSnippets: {
-    name: "\u0421\u043D\u0438\u043F\u043F\u0435\u0442\u044B",
-    addBtn: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
-    noSnippets: "\u041D\u0435\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043D\u044B\u0445 \u0441\u043D\u0438\u043F\u043F\u0435\u0442\u043E\u0432 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F. \u041D\u0430\u0436\u043C\u0438\u0442\u0435 +, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u044E.",
-    nameRequired: "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u043D\u0438\u043F\u043F\u0435\u0442\u0430",
-    modal: {
-      titleEdit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
-      titleSave: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0441\u043D\u0438\u043F\u043F\u0435\u0442",
-      name: "\u0418\u043C\u044F",
-      namePlaceholder: "\u041E\u043F\u0438\u0441\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0434\u043B\u044F \u044D\u0442\u043E\u0439 \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438",
-      description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
-      descPlaceholder: "\u041E\u043F\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
-      envVars: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F",
-      envVarsPlaceholder: "\u0424\u043E\u0440\u043C\u0430\u0442 KEY=VALUE, \u043F\u043E \u043E\u0434\u043D\u043E\u0439 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435 (\u043F\u0440\u0435\u0444\u0438\u043A\u0441 export \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F)",
-      save: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
-      update: "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C",
-      cancel: "\u041E\u0442\u043C\u0435\u043D\u0430"
-    }
-  },
-  customContextLimits: {
-    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043B\u0438\u043C\u0438\u0442\u044B \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430",
-    desc: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0440\u0430\u0437\u043C\u0435\u0440\u044B \u043E\u043A\u043D\u0430 \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 \u0434\u043B\u044F \u0432\u0430\u0448\u0438\u0445 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0445 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (200k \u0442\u043E\u043A\u0435\u043D\u043E\u0432).",
-    invalid: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435: 256k, 1m \u0438\u043B\u0438 \u0442\u043E\u0447\u043D\u043E\u0435 \u0447\u0438\u0441\u043B\u043E (1000-10000000)."
-  },
-  advanced: "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E",
-  show1MModel: {
-    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C Sonnet \u0441 \u043E\u043A\u043D\u043E\u043C \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 1M",
-    desc: "\u0417\u0430\u043C\u0435\u043D\u0438\u0442\u044C \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u043D\u044B\u0439 Sonnet \u043D\u0430 Sonnet (1M) \u0432 \u0432\u044B\u0431\u043E\u0440\u0435 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u0422\u0430 \u0436\u0435 \u0446\u0435\u043D\u0430 \u0434\u043E 200k \u0442\u043E\u043A\u0435\u043D\u043E\u0432. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043F\u043E\u0434\u043F\u0438\u0441\u043A\u0430 Max."
-  },
-  enableChrome: {
-    name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435 Chrome",
-    desc: "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u044C Claude \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0441 Chrome \u0447\u0435\u0440\u0435\u0437 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435 claude-in-chrome. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u044F. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A \u0441\u0435\u0441\u0441\u0438\u0438."
-  },
-  maxTabs: {
-    name: "\u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0447\u0430\u0442\u0430",
-    desc: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043E\u0434\u043D\u043E\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0445 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0447\u0430\u0442\u0430 (3-10). \u041A\u0430\u0436\u0434\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u0443\u044E \u0441\u0435\u0441\u0441\u0438\u044E Claude.",
-    warning: "\u0411\u043E\u043B\u0435\u0435 5 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u0432\u043B\u0438\u044F\u0442\u044C \u043D\u0430 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u043F\u0430\u043C\u044F\u0442\u0438."
-  },
-  tabBarPosition: {
-    name: "\u041F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043F\u0430\u043D\u0435\u043B\u0438 \u0432\u043A\u043B\u0430\u0434\u043E\u043A",
-    desc: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435, \u0433\u0434\u0435 \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0442\u044C \u0437\u043D\u0430\u0447\u043A\u0438 \u0432\u043A\u043B\u0430\u0434\u043E\u043A \u0438 \u043A\u043D\u043E\u043F\u043A\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439",
-    input: "\u041D\u0430\u0434 \u043F\u043E\u043B\u0435\u043C \u0432\u0432\u043E\u0434\u0430 (\u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E)",
-    header: "\u0412 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u0435"
-  },
-  enableAutoScroll: {
-    name: "\u0410\u0432\u0442\u043E\u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0430 \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438",
-    desc: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043F\u0440\u043E\u043A\u0440\u0443\u0447\u0438\u0432\u0430\u0442\u044C \u0432\u043D\u0438\u0437, \u043F\u043E\u043A\u0430 Claude \u043F\u0435\u0440\u0435\u0434\u0430\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u044B. \u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u0435, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0430\u0442\u044C\u0441\u044F \u043D\u0430\u0432\u0435\u0440\u0445\u0443 \u0438 \u0447\u0438\u0442\u0430\u0442\u044C \u0441 \u043D\u0430\u0447\u0430\u043B\u0430."
-  },
-  openInMainTab: {
-    name: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0432 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430",
-    desc: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u0447\u0430\u0442\u0430 \u0432 \u0432\u0438\u0434\u0435 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0432\u043A\u043B\u0430\u0434\u043A\u0438 \u0432 \u0446\u0435\u043D\u0442\u0440\u0430\u043B\u044C\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430 \u0432\u043C\u0435\u0441\u0442\u043E \u043F\u0440\u0430\u0432\u043E\u0439 \u0431\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0430\u043D\u0435\u043B\u0438"
-  },
-  cliPath: {
-    name: "\u041F\u0443\u0442\u044C \u043A CLI Claude",
-    desc: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u043F\u0443\u0442\u044C \u043A Claude Code CLI. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F.",
-    descWindows: "\u0414\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0449\u0438\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 claude.exe. \u0414\u043B\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A \u0447\u0435\u0440\u0435\u0437 npm/pnpm/yarn \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u044B \u043F\u0430\u043A\u0435\u0442\u043E\u0432 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u0443\u0442\u044C \u043A cli.js (\u043D\u0435 claude.cmd).",
-    descUnix: '\u0412\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u0432\u044B\u0432\u043E\u0434 \u043A\u043E\u043C\u0430\u043D\u0434\u044B "which claude" \u2014 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u043A\u0430\u043A \u0434\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u044B\u0445 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A, \u0442\u0430\u043A \u0438 \u0434\u043B\u044F npm/pnpm/yarn.',
-    validation: {
-      notExist: "\u041F\u0443\u0442\u044C \u043D\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442",
-      isDirectory: "\u041F\u0443\u0442\u044C \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0434\u0438\u0440\u0435\u043A\u0442\u043E\u0440\u0438\u0435\u0439, \u0430 \u043D\u0435 \u0444\u0430\u0439\u043B\u043E\u043C"
-    }
-  },
-  language: {
-    name: "\u042F\u0437\u044B\u043A",
-    desc: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u044F\u0437\u044B\u043A \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430 \u043F\u043B\u0430\u0433\u0438\u043D\u0430"
-  }
-};
-var ru_default2 = {
-  common: common8,
-  settings: settings8
-};
-
-// src/i18n/locales/zh-CN.json
-var zh_CN_exports = {};
-__export(zh_CN_exports, {
-  common: () => common9,
-  default: () => zh_CN_default2,
-  settings: () => settings9
-});
-var common9 = {
-  save: "\u4FDD\u5B58",
-  cancel: "\u53D6\u6D88",
-  delete: "\u5220\u9664",
-  edit: "\u7F16\u8F91",
-  add: "\u6DFB\u52A0",
-  remove: "\u79FB\u9664",
-  clear: "\u6E05\u9664",
-  clearAll: "\u6E05\u9664\u5168\u90E8",
-  loading: "\u52A0\u8F7D\u4E2D",
-  error: "\u9519\u8BEF",
-  success: "\u6210\u529F",
-  warning: "\u8B66\u544A",
-  confirm: "\u786E\u8BA4",
-  settings: "\u8BBE\u7F6E",
-  advanced: "\u9AD8\u7EA7",
-  enabled: "\u5DF2\u542F\u7528",
-  disabled: "\u5DF2\u7981\u7528",
-  platform: "\u5E73\u53F0"
-};
-var settings9 = {
-  title: "Claudian \u8BBE\u7F6E",
-  customization: "\u4E2A\u6027\u5316\u8BBE\u7F6E",
-  userName: {
-    name: "Claudian \u5E94\u8BE5\u5982\u4F55\u79F0\u547C\u4F60\uFF1F",
-    desc: "\u7528\u4E8E\u4E2A\u6027\u5316\u95EE\u5019\u7684\u7528\u6237\u540D\uFF08\u7559\u7A7A\u4F7F\u7528\u901A\u7528\u95EE\u5019\uFF09"
-  },
-  excludedTags: {
-    name: "\u6392\u9664\u7684\u6807\u7B7E",
-    desc: "\u5305\u542B\u8FD9\u4E9B\u6807\u7B7E\u7684\u7B14\u8BB0\u4E0D\u4F1A\u81EA\u52A8\u52A0\u8F7D\u4E3A\u4E0A\u4E0B\u6587\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF0C\u4E0D\u5E26 #\uFF09"
-  },
-  mediaFolder: {
-    name: "\u5A92\u4F53\u6587\u4EF6\u5939",
-    desc: "\u5B58\u653E\u9644\u4EF6/\u56FE\u7247\u7684\u6587\u4EF6\u5939\u3002\u5F53\u7B14\u8BB0\u4F7F\u7528 ![[image.jpg]] \u65F6\uFF0CClaude \u4F1A\u5728\u6B64\u67E5\u627E\u3002\u7559\u7A7A\u4F7F\u7528\u4ED3\u5E93\u6839\u76EE\u5F55\u3002"
-  },
-  systemPrompt: {
-    name: "\u81EA\u5B9A\u4E49\u7CFB\u7EDF\u63D0\u793A\u8BCD",
-    desc: "\u9644\u52A0\u5230\u9ED8\u8BA4\u7CFB\u7EDF\u63D0\u793A\u8BCD\u7684\u989D\u5916\u6307\u4EE4"
-  },
-  autoTitle: {
-    name: "\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898",
-    desc: "\u5728\u7528\u6237\u53D1\u9001\u9996\u6761\u6D88\u606F\u540E\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898\u3002"
-  },
-  titleModel: {
-    name: "\u6807\u9898\u751F\u6210\u6A21\u578B",
-    desc: "\u7528\u4E8E\u81EA\u52A8\u751F\u6210\u5BF9\u8BDD\u6807\u9898\u7684\u6A21\u578B\u3002",
-    auto: "\u81EA\u52A8 (Haiku)"
-  },
-  navMappings: {
-    name: "Vim \u98CE\u683C\u5BFC\u822A\u6620\u5C04",
-    desc: '\u6BCF\u884C\u4E00\u4E2A\u6620\u5C04\u3002\u683C\u5F0F\uFF1A"map <\u952E> <\u52A8\u4F5C>"\uFF08\u52A8\u4F5C\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
-  },
-  hotkeys: "\u5FEB\u6377\u952E",
-  inlineEditHotkey: {
-    name: "\u5185\u8054\u7F16\u8F91",
-    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
-    btnChange: "\u66F4\u6539",
-    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
-  },
-  openChatHotkey: {
-    name: "\u6253\u5F00\u804A\u5929",
-    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
-    btnChange: "\u66F4\u6539",
-    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
-  },
-  newSessionHotkey: {
-    name: "\u65B0\u4F1A\u8BDD",
-    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
-    btnChange: "\u66F4\u6539",
-    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
-  },
-  newTabHotkey: {
-    name: "\u65B0\u6807\u7B7E\u9875",
-    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
-    btnChange: "\u66F4\u6539",
-    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
-  },
-  closeTabHotkey: {
-    name: "\u5173\u95ED\u6807\u7B7E\u9875",
-    descWithKey: "\u5F53\u524D\u5FEB\u6377\u952E\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8BBE\u7F6E\u5FEB\u6377\u952E",
-    btnChange: "\u66F4\u6539",
-    btnSet: "\u8BBE\u7F6E\u5FEB\u6377\u952E"
-  },
-  slashCommands: {
-    name: "\u547D\u4EE4\u4E0E\u6280\u80FD",
-    desc: "\u5B9A\u4E49\u7531 /\u540D\u79F0 \u89E6\u53D1\u7684\u81EA\u5B9A\u4E49\u547D\u4EE4\u4E0E\u6280\u80FD\u3002"
-  },
-  hiddenSlashCommands: {
-    name: "\u9690\u85CF\u547D\u4EE4",
-    desc: "\u4ECE\u4E0B\u62C9\u83DC\u5355\u4E2D\u9690\u85CF\u7279\u5B9A\u7684\u659C\u6760\u547D\u4EE4\u3002\u9002\u7528\u4E8E\u9690\u85CF\u4E0E Claudian \u65E0\u5173\u7684 Claude Code \u547D\u4EE4\u3002\u6BCF\u884C\u8F93\u5165\u4E00\u4E2A\u547D\u4EE4\u540D\u79F0\uFF0C\u65E0\u9700\u524D\u5BFC\u659C\u6760\u3002",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP \u670D\u52A1\u5668",
-    desc: "\u914D\u7F6E\u6A21\u578B\u4E0A\u4E0B\u6587\u534F\u8BAE\u670D\u52A1\u5668\uFF0C\u901A\u8FC7\u5916\u90E8\u5DE5\u5177\u548C\u6570\u636E\u6E90\u6269\u5C55 Claude \u7684\u80FD\u529B\u3002\u542F\u7528\u4E0A\u4E0B\u6587\u4FDD\u5B58\u6A21\u5F0F\u7684\u670D\u52A1\u5668\u9700\u8981 @ \u63D0\u53CA\u624D\u80FD\u6FC0\u6D3B\u3002"
-  },
-  plugins: {
-    name: "Claude Code \u63D2\u4EF6",
-    desc: "\u542F\u7528\u6216\u7981\u7528\u4ECE ~/.claude/plugins \u53D1\u73B0\u7684 Claude Code \u63D2\u4EF6\u3002\u542F\u7528\u7684\u63D2\u4EF6\u6309 Vault \u5B58\u50A8\u3002"
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "\u5B89\u5168",
-  loadUserSettings: {
-    name: "\u52A0\u8F7D\u7528\u6237 Claude \u8BBE\u7F6E",
-    desc: "\u52A0\u8F7D ~/.claude/settings.json\u3002\u542F\u7528\u540E\uFF0C\u7528\u6237\u7684 Claude Code \u6743\u9650\u89C4\u5219\u53EF\u80FD\u7ED5\u8FC7\u5B89\u5168\u6A21\u5F0F\u3002"
-  },
-  enableBlocklist: {
-    name: "\u542F\u7528\u547D\u4EE4\u9ED1\u540D\u5355",
-    desc: "\u963B\u6B62\u6F5C\u5728\u5371\u9669\u7684 bash \u547D\u4EE4"
-  },
-  blockedCommands: {
-    name: "\u963B\u6B62\u7684\u547D\u4EE4 ({platform})",
-    desc: "\u5728 {platform} \u4E0A\u963B\u6B62\u7684\u6A21\u5F0F\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301\u6B63\u5219\u8868\u8FBE\u5F0F\u3002",
-    unixName: "\u963B\u6B62\u7684\u547D\u4EE4 (Unix/Git Bash)",
-    unixDesc: "Unix \u6A21\u5F0F\u5728 Windows \u4E0A\u4E5F\u4F1A\u88AB\u963B\u6B62\uFF0C\u56E0\u4E3A Git Bash \u53EF\u4EE5\u8C03\u7528\u5B83\u4EEC\u3002"
-  },
-  exportPaths: {
-    name: "\u5141\u8BB8\u7684\u5BFC\u51FA\u8DEF\u5F84",
-    desc: "\u5141\u8BB8\u5BFC\u51FA\u6587\u4EF6\u7684\u4ED3\u5E93\u5916\u90E8\u8DEF\u5F84\uFF08\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301 ~ \u8868\u793A\u4E3B\u76EE\u5F55\u3002"
-  },
-  environment: "\u73AF\u5883",
-  customVariables: {
-    name: "\u81EA\u5B9A\u4E49\u53D8\u91CF",
-    desc: "Claude SDK \u7684\u73AF\u5883\u53D8\u91CF\uFF08KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u4E2A\uFF09\u3002\u652F\u6301 export \u524D\u7F00\u3002"
-  },
-  envSnippets: {
-    name: "\u7247\u6BB5",
-    addBtn: "\u6DFB\u52A0\u7247\u6BB5",
-    noSnippets: "\u5C1A\u65E0\u4FDD\u5B58\u7684\u73AF\u5883\u53D8\u91CF\u7247\u6BB5\u3002\u70B9\u51FB + \u4FDD\u5B58\u5F53\u524D\u914D\u7F6E\u3002",
-    nameRequired: "\u8BF7\u8F93\u5165\u7247\u6BB5\u540D\u79F0",
-    modal: {
-      titleEdit: "\u7F16\u8F91\u7247\u6BB5",
-      titleSave: "\u4FDD\u5B58\u7247\u6BB5",
-      name: "\u540D\u79F0",
-      namePlaceholder: "\u6B64\u914D\u7F6E\u7684\u63CF\u8FF0\u6027\u540D\u79F0",
-      description: "\u63CF\u8FF0",
-      descPlaceholder: "\u53EF\u9009\u63CF\u8FF0",
-      envVars: "\u73AF\u5883\u53D8\u91CF",
-      envVarsPlaceholder: "KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u4E2A\uFF08\u652F\u6301 export \u524D\u7F00\uFF09",
-      save: "\u4FDD\u5B58",
-      update: "\u66F4\u65B0",
-      cancel: "\u53D6\u6D88"
-    }
-  },
-  customContextLimits: {
-    name: "\u81EA\u5B9A\u4E49\u4E0A\u4E0B\u6587\u9650\u5236",
-    desc: "\u4E3A\u60A8\u7684\u81EA\u5B9A\u4E49\u6A21\u578B\u8BBE\u7F6E\u4E0A\u4E0B\u6587\u7A97\u53E3\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9ED8\u8BA4\u503C\uFF08200k \u4EE4\u724C\uFF09\u3002",
-    invalid: "\u683C\u5F0F\u65E0\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u786E\u6570\u91CF\uFF081000-10000000\uFF09\u3002"
-  },
-  advanced: "\u9AD8\u7EA7",
-  show1MModel: {
-    name: "\u542F\u7528\u5177\u6709 1M \u4E0A\u4E0B\u6587\u7A97\u53E3\u7684 Sonnet",
-    desc: "\u5728\u6A21\u578B\u9009\u62E9\u5668\u4E2D\u5C06\u6807\u51C6 Sonnet \u66FF\u6362\u4E3A Sonnet (1M)\u3002\u5728 200k \u4EE4\u724C\u4EE5\u4E0B\u4EF7\u683C\u76F8\u540C\u3002\u9700\u8981 Max \u8BA2\u9605\u3002"
-  },
-  enableChrome: {
-    name: "\u542F\u7528 Chrome \u6269\u5C55",
-    desc: "\u5141\u8BB8 Claude \u901A\u8FC7 claude-in-chrome \u6269\u5C55\u4E0E Chrome \u4EA4\u4E92\u3002\u9700\u8981\u5B89\u88C5\u8BE5\u6269\u5C55\u3002\u9700\u8981\u91CD\u542F\u4F1A\u8BDD\u3002"
-  },
-  maxTabs: {
-    name: "\u6700\u5927\u804A\u5929\u6807\u7B7E\u6570",
-    desc: "\u540C\u65F6\u5F00\u542F\u7684\u6700\u5927\u804A\u5929\u6807\u7B7E\u6570\uFF083-10\uFF09\u3002\u6BCF\u4E2A\u6807\u7B7E\u4F7F\u7528\u72EC\u7ACB\u7684 Claude \u4F1A\u8BDD\u3002",
-    warning: "\u8D85\u8FC7 5 \u4E2A\u6807\u7B7E\u53EF\u80FD\u4F1A\u5F71\u54CD\u6027\u80FD\u548C\u5185\u5B58\u4F7F\u7528\u3002"
-  },
-  tabBarPosition: {
-    name: "\u6807\u7B7E\u680F\u4F4D\u7F6E",
-    desc: "\u9009\u62E9\u6807\u7B7E\u5FBD\u7AE0\u548C\u64CD\u4F5C\u6309\u94AE\u7684\u663E\u793A\u4F4D\u7F6E",
-    input: "\u8F93\u5165\u6846\u4E0A\u65B9\uFF08\u9ED8\u8BA4\uFF09",
-    header: "\u5728\u6807\u9898\u680F"
-  },
-  enableAutoScroll: {
-    name: "\u6D41\u5F0F\u4F20\u8F93\u65F6\u81EA\u52A8\u6EDA\u52A8",
-    desc: "\u5728 Claude \u6D41\u5F0F\u4F20\u8F93\u54CD\u5E94\u65F6\u81EA\u52A8\u6EDA\u52A8\u5230\u5E95\u90E8\u3002\u7981\u7528\u540E\u5C06\u505C\u7559\u5728\u9876\u90E8\uFF0C\u4ECE\u5934\u5F00\u59CB\u9605\u8BFB\u3002"
-  },
-  openInMainTab: {
-    name: "\u5728\u4E3B\u7F16\u8F91\u5668\u533A\u57DF\u6253\u5F00",
-    desc: "\u5728\u4E2D\u592E\u7F16\u8F91\u5668\u533A\u57DF\u4EE5\u4E3B\u6807\u7B7E\u9875\u5F62\u5F0F\u6253\u5F00\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u4FA7\u8FB9\u680F"
-  },
-  cliPath: {
-    name: "Claude CLI \u8DEF\u5F84",
-    desc: "Claude Code CLI \u7684\u81EA\u5B9A\u4E49\u8DEF\u5F84\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52A8\u68C0\u6D4B\u3002",
-    descWindows: "\u5BF9\u4E8E\u539F\u751F\u5B89\u88C5\u7A0B\u5E8F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5BF9\u4E8E npm/pnpm/yarn \u6216\u5176\u4ED6\u5305\u7BA1\u7406\u5668\u5B89\u88C5\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F84\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
-    descUnix: '\u7C98\u8D34 "which claude" \u7684\u8F93\u51FA - \u9002\u7528\u4E8E\u539F\u751F\u5B89\u88C5\u548C npm/pnpm/yarn \u5B89\u88C5\u3002',
-    validation: {
-      notExist: "\u8DEF\u5F84\u4E0D\u5B58\u5728",
-      isDirectory: "\u8DEF\u5F84\u662F\u76EE\u5F55\uFF0C\u4E0D\u662F\u6587\u4EF6"
-    }
-  },
-  language: {
-    name: "\u8BED\u8A00",
-    desc: "\u66F4\u6539\u63D2\u4EF6\u754C\u9762\u7684\u663E\u793A\u8BED\u8A00"
-  }
-};
-var zh_CN_default2 = {
-  common: common9,
-  settings: settings9
-};
-
-// src/i18n/locales/zh-TW.json
-var zh_TW_exports = {};
-__export(zh_TW_exports, {
-  common: () => common10,
-  default: () => zh_TW_default2,
-  settings: () => settings10
-});
-var common10 = {
-  save: "\u4FDD\u5B58",
-  cancel: "\u53D6\u6D88",
-  delete: "\u522A\u9664",
-  edit: "\u7DE8\u8F2F",
-  add: "\u6DFB\u52A0",
-  remove: "\u79FB\u9664",
-  clear: "\u6E05\u9664",
-  clearAll: "\u6E05\u9664\u5168\u90E8",
-  loading: "\u52A0\u8F09\u4E2D",
-  error: "\u932F\u8AA4",
-  success: "\u6210\u529F",
-  warning: "\u8B66\u544A",
-  confirm: "\u78BA\u8A8D",
-  settings: "\u8A2D\u7F6E",
-  advanced: "\u9AD8\u7D1A",
-  enabled: "\u5DF2\u555F\u7528",
-  disabled: "\u5DF2\u7981\u7528",
-  platform: "\u5E73\u53F0"
-};
-var settings10 = {
-  title: "Claudian \u8A2D\u5B9A",
-  customization: "\u500B\u4EBA\u5316\u8A2D\u5B9A",
-  userName: {
-    name: "Claudian \u61C9\u8A72\u5982\u4F55\u7A31\u547C\u60A8\uFF1F",
-    desc: "\u7528\u65BC\u500B\u4EBA\u5316\u554F\u5019\u7684\u4F7F\u7528\u8005\u540D\u7A31\uFF08\u7559\u7A7A\u4F7F\u7528\u901A\u7528\u554F\u5019\uFF09"
-  },
-  excludedTags: {
-    name: "\u6392\u9664\u7684\u6A19\u7C64",
-    desc: "\u5305\u542B\u9019\u4E9B\u6A19\u7C64\u7684\u7B46\u8A18\u4E0D\u6703\u81EA\u52D5\u8F09\u5165\u70BA\u4E0A\u4E0B\u6587\uFF08\u6BCF\u884C\u4E00\u500B\uFF0C\u4E0D\u5E36 #\uFF09"
-  },
-  mediaFolder: {
-    name: "\u5A92\u9AD4\u8CC7\u6599\u593E",
-    desc: "\u5B58\u653E\u9644\u4EF6/\u5716\u7247\u7684\u8CC7\u6599\u593E\u3002\u7576\u7B46\u8A18\u4F7F\u7528 ![[image.jpg]] \u6642\uFF0CClaude \u6703\u5728\u6B64\u67E5\u627E\u3002\u7559\u7A7A\u4F7F\u7528\u5132\u5B58\u5EAB\u6839\u76EE\u9304\u3002"
-  },
-  systemPrompt: {
-    name: "\u81EA\u8A02\u7CFB\u7D71\u63D0\u793A\u8A5E",
-    desc: "\u9644\u52A0\u5230\u9810\u8A2D\u7CFB\u7D71\u63D0\u793A\u8A5E\u7684\u984D\u5916\u6307\u4EE4"
-  },
-  autoTitle: {
-    name: "\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C",
-    desc: "\u5728\u4F7F\u7528\u8005\u9001\u51FA\u7B2C\u4E00\u5247\u8A0A\u606F\u5F8C\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C\u3002"
-  },
-  titleModel: {
-    name: "\u6A19\u984C\u751F\u6210\u6A21\u578B",
-    desc: "\u7528\u65BC\u81EA\u52D5\u751F\u6210\u5C0D\u8A71\u6A19\u984C\u7684\u6A21\u578B\u3002",
-    auto: "\u81EA\u52D5 (Haiku)"
-  },
-  navMappings: {
-    name: "Vim \u98A8\u683C\u5C0E\u822A\u6620\u5C04",
-    desc: '\u6BCF\u884C\u4E00\u500B\u6620\u5C04\u3002\u683C\u5F0F\uFF1A"map <\u9375> <\u52D5\u4F5C>"\uFF08\u52D5\u4F5C\uFF1AscrollUp, scrollDown, focusInput\uFF09\u3002'
-  },
-  hotkeys: "\u5FEB\u6377\u9375",
-  inlineEditHotkey: {
-    name: "\u5167\u5D4C\u7DE8\u8F2F",
-    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
-    btnChange: "\u8B8A\u66F4",
-    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
-  },
-  openChatHotkey: {
-    name: "\u958B\u555F\u804A\u5929",
-    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
-    btnChange: "\u8B8A\u66F4",
-    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
-  },
-  newSessionHotkey: {
-    name: "\u65B0\u5DE5\u4F5C\u968E\u6BB5",
-    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
-    btnChange: "\u8B8A\u66F4",
-    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
-  },
-  newTabHotkey: {
-    name: "\u65B0\u5206\u9801",
-    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
-    btnChange: "\u8B8A\u66F4",
-    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
-  },
-  closeTabHotkey: {
-    name: "\u95DC\u9589\u5206\u9801",
-    descWithKey: "\u76EE\u524D\u5FEB\u6377\u9375\uFF1A{hotkey}",
-    descNoKey: "\u672A\u8A2D\u5B9A\u5FEB\u6377\u9375",
-    btnChange: "\u8B8A\u66F4",
-    btnSet: "\u8A2D\u5B9A\u5FEB\u6377\u9375"
-  },
-  slashCommands: {
-    name: "\u547D\u4EE4\u8207\u6280\u80FD",
-    desc: "\u5B9A\u7FA9\u7531 /\u540D\u7A31 \u89F8\u767C\u7684\u81EA\u8A02\u547D\u4EE4\u8207\u6280\u80FD\u3002"
-  },
-  hiddenSlashCommands: {
-    name: "\u96B1\u85CF\u547D\u4EE4",
-    desc: "\u5F9E\u4E0B\u62C9\u9078\u55AE\u4E2D\u96B1\u85CF\u7279\u5B9A\u7684\u659C\u7DDA\u547D\u4EE4\u3002\u9069\u7528\u65BC\u96B1\u85CF\u8207 Claudian \u7121\u95DC\u7684 Claude Code \u547D\u4EE4\u3002\u6BCF\u884C\u8F38\u5165\u4E00\u500B\u547D\u4EE4\u540D\u7A31\uFF0C\u7121\u9700\u524D\u5C0E\u659C\u7DDA\u3002",
-    placeholder: "commit\nbuild\ntest"
-  },
-  mcpServers: {
-    name: "MCP \u4F3A\u670D\u5668",
-    desc: "\u8A2D\u5B9A\u6A21\u578B\u4E0A\u4E0B\u6587\u5354\u5B9A\u4F3A\u670D\u5668\uFF0C\u900F\u904E\u5916\u90E8\u5DE5\u5177\u548C\u8CC7\u6599\u4F86\u6E90\u64F4\u5C55 Claude \u7684\u80FD\u529B\u3002\u555F\u7528\u4E0A\u4E0B\u6587\u4FDD\u5B58\u6A21\u5F0F\u7684\u4F3A\u670D\u5668\u9700\u8981 @ \u63D0\u53CA\u624D\u80FD\u555F\u7528\u3002"
-  },
-  plugins: {
-    name: "Claude Code \u5916\u639B\u7A0B\u5F0F",
-    desc: "\u555F\u7528\u6216\u505C\u7528\u5F9E ~/.claude/plugins \u767C\u73FE\u7684 Claude Code \u5916\u639B\u7A0B\u5F0F\u3002\u5DF2\u555F\u7528\u7684\u5916\u639B\u7A0B\u5F0F\u6309\u5132\u5B58\u5EAB\u5132\u5B58\u3002"
-  },
-  subagents: {
-    name: "Subagents",
-    desc: "Configure custom subagents that Claude can delegate to.",
-    noAgents: "No subagents configured. Click + to create one.",
-    deleteConfirm: 'Delete subagent "{name}"?',
-    saveFailed: "Failed to save subagent: {message}",
-    deleteFailed: "Failed to delete subagent: {message}",
-    renameCleanupFailed: 'Warning: could not remove old file for "{name}"',
-    saved: 'Subagent "{name}" {action}',
-    deleted: 'Subagent "{name}" deleted',
-    duplicateName: 'An agent named "{name}" already exists',
-    descriptionRequired: "Description is required",
-    promptRequired: "System prompt is required",
-    modal: {
-      titleEdit: "Edit Subagent",
-      titleAdd: "Add Subagent",
-      name: "Name",
-      nameDesc: "Lowercase letters, numbers, and hyphens only",
-      namePlaceholder: "code-reviewer",
-      description: "Description",
-      descriptionDesc: "Brief description of this agent",
-      descriptionPlaceholder: "Reviews code for bugs and style",
-      advancedOptions: "Advanced options",
-      model: "Model",
-      modelDesc: "Model override for this agent",
-      tools: "Tools",
-      toolsDesc: "Comma-separated list of allowed tools (empty = all)",
-      disallowedTools: "Disallowed tools",
-      disallowedToolsDesc: "Comma-separated list of tools to disallow",
-      skills: "Skills",
-      skillsDesc: "Comma-separated list of skills",
-      prompt: "System prompt",
-      promptDesc: "Instructions for the agent",
-      promptPlaceholder: "You are a code reviewer. Analyze the given code for..."
-    }
-  },
-  safety: "\u5B89\u5168",
-  loadUserSettings: {
-    name: "\u8F09\u5165\u4F7F\u7528\u8005 Claude \u8A2D\u5B9A",
-    desc: "\u8F09\u5165 ~/.claude/settings.json\u3002\u555F\u7528\u5F8C\uFF0C\u4F7F\u7528\u8005\u7684 Claude Code \u6B0A\u9650\u898F\u5247\u53EF\u80FD\u7E5E\u904E\u5B89\u5168\u6A21\u5F0F\u3002"
-  },
-  enableBlocklist: {
-    name: "\u555F\u7528\u547D\u4EE4\u9ED1\u540D\u55AE",
-    desc: "\u963B\u6B62\u6F5B\u5728\u5371\u96AA\u7684 bash \u547D\u4EE4"
-  },
-  blockedCommands: {
-    name: "\u963B\u6B62\u7684\u547D\u4EE4 ({platform})",
-    desc: "\u5728 {platform} \u4E0A\u963B\u6B62\u7684\u6A21\u5F0F\uFF08\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4\u6B63\u5247\u8868\u793A\u5F0F\u3002",
-    unixName: "\u963B\u6B62\u7684\u547D\u4EE4 (Unix/Git Bash)",
-    unixDesc: "Unix \u6A21\u5F0F\u5728 Windows \u4E0A\u4E5F\u6703\u88AB\u963B\u6B62\uFF0C\u56E0\u70BA Git Bash \u53EF\u4EE5\u547C\u53EB\u5B83\u5011\u3002"
-  },
-  exportPaths: {
-    name: "\u5141\u8A31\u7684\u532F\u51FA\u8DEF\u5F91",
-    desc: "\u5141\u8A31\u532F\u51FA\u6A94\u6848\u7684\u5132\u5B58\u5EAB\u5916\u90E8\u8DEF\u5F91\uFF08\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4 ~ \u8868\u793A\u4E3B\u76EE\u9304\u3002"
-  },
-  environment: "\u74B0\u5883",
-  customVariables: {
-    name: "\u81EA\u8A02\u8B8A\u6578",
-    desc: "Claude SDK \u7684\u74B0\u5883\u8B8A\u6578\uFF08KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u500B\uFF09\u3002\u652F\u63F4 export \u524D\u7DB4\u3002"
-  },
-  envSnippets: {
-    name: "\u7247\u6BB5",
-    addBtn: "\u65B0\u589E\u7247\u6BB5",
-    noSnippets: "\u5C1A\u7121\u4FDD\u5B58\u7684\u74B0\u5883\u8B8A\u6578\u7247\u6BB5\u3002\u9EDE\u64CA + \u4FDD\u5B58\u7576\u524D\u914D\u7F6E\u3002",
-    nameRequired: "\u8ACB\u8F38\u5165\u7247\u6BB5\u540D\u7A31",
-    modal: {
-      titleEdit: "\u7DE8\u8F2F\u7247\u6BB5",
-      titleSave: "\u4FDD\u5B58\u7247\u6BB5",
-      name: "\u540D\u7A31",
-      namePlaceholder: "\u6B64\u914D\u7F6E\u7684\u63CF\u8FF0\u6027\u540D\u7A31",
-      description: "\u63CF\u8FF0",
-      descPlaceholder: "\u53EF\u9078\u63CF\u8FF0",
-      envVars: "\u74B0\u5883\u8B8A\u6578",
-      envVarsPlaceholder: "KEY=VALUE \u683C\u5F0F\uFF0C\u6BCF\u884C\u4E00\u500B\uFF08\u652F\u63F4 export \u524D\u7DB4\uFF09",
-      save: "\u4FDD\u5B58",
-      update: "\u66F4\u65B0",
-      cancel: "\u53D6\u6D88"
-    }
-  },
-  customContextLimits: {
-    name: "\u81EA\u8A02\u4E0A\u4E0B\u6587\u9650\u5236",
-    desc: "\u70BA\u60A8\u7684\u81EA\u8A02\u6A21\u578B\u8A2D\u5B9A\u4E0A\u4E0B\u6587\u8996\u7A97\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9810\u8A2D\u503C\uFF08200k \u6B0A\u6756\uFF09\u3002",
-    invalid: "\u683C\u5F0F\u7121\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u78BA\u6578\u91CF\uFF081000-10000000\uFF09\u3002"
-  },
-  advanced: "\u9032\u968E",
-  show1MModel: {
-    name: "\u555F\u7528\u5177\u6709 1M \u4E0A\u4E0B\u6587\u8996\u7A97\u7684 Sonnet",
-    desc: "\u5728\u6A21\u578B\u9078\u64C7\u5668\u4E2D\u5C07\u6A19\u6E96 Sonnet \u66FF\u63DB\u70BA Sonnet (1M)\u3002\u5728 200k \u6B0A\u6756\u4EE5\u4E0B\u50F9\u683C\u76F8\u540C\u3002\u9700\u8981 Max \u8A02\u95B1\u3002"
-  },
-  enableChrome: {
-    name: "\u555F\u7528 Chrome \u64F4\u5145\u529F\u80FD",
-    desc: "\u5141\u8A31 Claude \u900F\u904E claude-in-chrome \u64F4\u5145\u529F\u80FD\u8207 Chrome \u4E92\u52D5\u3002\u9700\u8981\u5B89\u88DD\u8A72\u64F4\u5145\u529F\u80FD\u3002\u9700\u8981\u91CD\u65B0\u555F\u52D5\u5DE5\u4F5C\u968E\u6BB5\u3002"
-  },
-  maxTabs: {
-    name: "\u6700\u5927\u804A\u5929\u6A19\u7C64\u6578",
-    desc: "\u540C\u6642\u958B\u555F\u7684\u6700\u5927\u804A\u5929\u6A19\u7C64\u6578\uFF083-10\uFF09\u3002\u6BCF\u500B\u6A19\u7C64\u4F7F\u7528\u7368\u7ACB\u7684 Claude \u5C0D\u8A71\u3002",
-    warning: "\u8D85\u904E 5 \u500B\u6A19\u7C64\u53EF\u80FD\u6703\u5F71\u97FF\u6548\u80FD\u548C\u8A18\u61B6\u9AD4\u4F7F\u7528\u3002"
-  },
-  tabBarPosition: {
-    name: "\u6A19\u7C64\u5217\u4F4D\u7F6E",
-    desc: "\u9078\u64C7\u6A19\u7C64\u5FBD\u7AE0\u548C\u64CD\u4F5C\u6309\u9215\u7684\u986F\u793A\u4F4D\u7F6E",
-    input: "\u8F38\u5165\u6846\u4E0A\u65B9\uFF08\u9810\u8A2D\uFF09",
-    header: "\u5728\u6A19\u984C\u5217"
-  },
-  enableAutoScroll: {
-    name: "\u4E32\u6D41\u50B3\u8F38\u6642\u81EA\u52D5\u6372\u52D5",
-    desc: "\u5728 Claude \u4E32\u6D41\u50B3\u8F38\u56DE\u61C9\u6642\u81EA\u52D5\u6372\u52D5\u5230\u5E95\u90E8\u3002\u505C\u7528\u5F8C\u5C07\u505C\u7559\u5728\u9802\u90E8\uFF0C\u5F9E\u982D\u958B\u59CB\u95B1\u8B80\u3002"
-  },
-  openInMainTab: {
-    name: "\u5728\u4E3B\u7DE8\u8F2F\u5668\u5340\u57DF\u958B\u555F",
-    desc: "\u5728\u4E2D\u592E\u7DE8\u8F2F\u5668\u5340\u57DF\u4EE5\u4E3B\u5206\u9801\u5F62\u5F0F\u958B\u555F\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u5074\u908A\u6B04"
-  },
-  cliPath: {
-    name: "Claude CLI \u8DEF\u5F91",
-    desc: "Claude Code CLI \u7684\u81EA\u8A02\u8DEF\u5F91\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52D5\u6AA2\u6E2C\u3002",
-    descWindows: "\u5C0D\u65BC\u539F\u751F\u5B89\u88DD\u7A0B\u5F0F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5C0D\u65BC npm/pnpm/yarn \u6216\u5176\u4ED6\u5957\u4EF6\u7BA1\u7406\u5668\u5B89\u88DD\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F91\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
-    descUnix: '\u8CBC\u4E0A "which claude" \u7684\u8F38\u51FA - \u9069\u7528\u65BC\u539F\u751F\u5B89\u88DD\u548C npm/pnpm/yarn \u5B89\u88DD\u3002',
-    validation: {
-      notExist: "\u8DEF\u5F91\u4E0D\u5B58\u5728",
-      isDirectory: "\u8DEF\u5F91\u662F\u76EE\u9304\uFF0C\u4E0D\u662F\u6A94\u6848"
-    }
-  },
-  language: {
-    name: "\u8A9E\u8A00",
-    desc: "\u66F4\u6539\u63D2\u4EF6\u4ECB\u9762\u7684\u986F\u793A\u8A9E\u8A00"
-  }
-};
-var zh_TW_default2 = {
-  common: common10,
-  settings: settings10
-};
-
-// src/i18n/i18n.ts
-var translations = {
-  en: en_exports,
-  "zh-CN": zh_CN_exports,
-  "zh-TW": zh_TW_exports,
-  ja: ja_exports,
-  ko: ko_exports,
-  de: de_exports,
-  fr: fr_exports,
-  es: es_exports,
-  ru: ru_exports,
-  pt: pt_exports
-};
-var DEFAULT_LOCALE = "en";
-var currentLocale = DEFAULT_LOCALE;
-function t(key, params) {
-  const dict = translations[currentLocale];
-  const keys = key.split(".");
-  let value = dict;
-  for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
-      value = value[k];
-    } else {
-      if (currentLocale !== DEFAULT_LOCALE) {
-        return tFallback(key, params);
-      }
-      return key;
-    }
-  }
-  if (typeof value !== "string") {
-    return key;
-  }
-  if (params) {
-    return value.replace(/\{(\w+)\}/g, (_, param) => {
-      var _a3, _b;
-      return (_b = (_a3 = params[param]) == null ? void 0 : _a3.toString()) != null ? _b : `{${param}}`;
-    });
-  }
-  return value;
-}
-function tFallback(key, params) {
-  const dict = translations[DEFAULT_LOCALE];
-  const keys = key.split(".");
-  let value = dict;
-  for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
-      value = value[k];
-    } else {
-      return key;
-    }
-  }
-  if (typeof value !== "string") {
-    return key;
-  }
-  if (params) {
-    return value.replace(/\{(\w+)\}/g, (_, param) => {
-      var _a3, _b;
-      return (_b = (_a3 = params[param]) == null ? void 0 : _a3.toString()) != null ? _b : `{${param}}`;
-    });
-  }
-  return value;
-}
-function setLocale(locale) {
-  if (!translations[locale]) {
-    return false;
-  }
-  currentLocale = locale;
-  return true;
-}
-function getAvailableLocales() {
-  return Object.keys(translations);
-}
-function getLocaleDisplayName(locale) {
-  const names = {
-    "en": "English",
-    "zh-CN": "\u7B80\u4F53\u4E2D\u6587",
-    "zh-TW": "\u7E41\u9AD4\u4E2D\u6587",
-    "ja": "\u65E5\u672C\u8A9E",
-    "ko": "\uD55C\uAD6D\uC5B4",
-    "de": "Deutsch",
-    "fr": "Fran\xE7ais",
-    "es": "Espa\xF1ol",
-    "ru": "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
-    "pt": "Portugu\xEAs"
-  };
-  return names[locale] || locale;
-}
+var fs9 = __toESM(require("fs"));
+var import_obsidian38 = require("obsidian");
 
 // src/features/settings/keyboardNavigation.ts
 var NAV_ACTIONS = ["scrollUp", "scrollDown", "focusInput"];
@@ -64696,52 +68972,14 @@ var parseNavMappings = (value) => {
 };
 
 // src/features/settings/ui/AgentSettings.ts
-var import_obsidian21 = require("obsidian");
-
-// src/shared/modals/ConfirmModal.ts
-var import_obsidian20 = require("obsidian");
-function confirmDelete(app, message) {
-  return new Promise((resolve4) => {
-    new ConfirmModal(app, message, resolve4).open();
-  });
-}
-var ConfirmModal = class extends import_obsidian20.Modal {
-  constructor(app, message, resolve4) {
-    super(app);
-    this.resolved = false;
-    this.message = message;
-    this.resolve = resolve4;
-  }
-  onOpen() {
-    this.setTitle(t("common.confirm"));
-    this.modalEl.addClass("claudian-confirm-modal");
-    this.contentEl.createEl("p", { text: this.message });
-    new import_obsidian20.Setting(this.contentEl).addButton(
-      (btn) => btn.setButtonText(t("common.cancel")).onClick(() => this.close())
-    ).addButton(
-      (btn) => btn.setButtonText(t("common.delete")).setWarning().onClick(() => {
-        this.resolved = true;
-        this.resolve(true);
-        this.close();
-      })
-    );
-  }
-  onClose() {
-    if (!this.resolved) {
-      this.resolve(false);
-    }
-    this.contentEl.empty();
-  }
-};
-
-// src/features/settings/ui/AgentSettings.ts
+var import_obsidian31 = require("obsidian");
 var MODEL_OPTIONS = [
   { value: "inherit", label: "Inherit" },
   { value: "sonnet", label: "Sonnet" },
   { value: "opus", label: "Opus" },
   { value: "haiku", label: "Haiku" }
 ];
-var AgentModal = class extends import_obsidian21.Modal {
+var AgentModal = class extends import_obsidian31.Modal {
   constructor(app, plugin, existingAgent, onSave) {
     super(app);
     this.plugin = plugin;
@@ -64761,12 +68999,12 @@ var AgentModal = class extends import_obsidian21.Modal {
     let toolsInput;
     let disallowedToolsInput;
     let skillsInput;
-    new import_obsidian21.Setting(contentEl).setName(t("settings.subagents.modal.name")).setDesc(t("settings.subagents.modal.nameDesc")).addText((text) => {
+    new import_obsidian31.Setting(contentEl).setName(t("settings.subagents.modal.name")).setDesc(t("settings.subagents.modal.nameDesc")).addText((text) => {
       var _a4;
       nameInput = text.inputEl;
       text.setValue(((_a4 = this.existingAgent) == null ? void 0 : _a4.name) || "").setPlaceholder(t("settings.subagents.modal.namePlaceholder"));
     });
-    new import_obsidian21.Setting(contentEl).setName(t("settings.subagents.modal.description")).setDesc(t("settings.subagents.modal.descriptionDesc")).addText((text) => {
+    new import_obsidian31.Setting(contentEl).setName(t("settings.subagents.modal.description")).setDesc(t("settings.subagents.modal.descriptionDesc")).addText((text) => {
       var _a4;
       descInput = text.inputEl;
       text.setValue(((_a4 = this.existingAgent) == null ? void 0 : _a4.description) || "").setPlaceholder(t("settings.subagents.modal.descriptionPlaceholder"));
@@ -64779,7 +69017,7 @@ var AgentModal = class extends import_obsidian21.Modal {
     if (((_c = this.existingAgent) == null ? void 0 : _c.model) && this.existingAgent.model !== "inherit" || ((_e = (_d = this.existingAgent) == null ? void 0 : _d.tools) == null ? void 0 : _e.length) || ((_g = (_f = this.existingAgent) == null ? void 0 : _f.disallowedTools) == null ? void 0 : _g.length) || ((_i = (_h = this.existingAgent) == null ? void 0 : _h.skills) == null ? void 0 : _i.length)) {
       details.open = true;
     }
-    new import_obsidian21.Setting(details).setName(t("settings.subagents.modal.model")).setDesc(t("settings.subagents.modal.modelDesc")).addDropdown((dropdown) => {
+    new import_obsidian31.Setting(details).setName(t("settings.subagents.modal.model")).setDesc(t("settings.subagents.modal.modelDesc")).addDropdown((dropdown) => {
       for (const opt of MODEL_OPTIONS) {
         dropdown.addOption(opt.value, opt.label);
       }
@@ -64787,22 +69025,22 @@ var AgentModal = class extends import_obsidian21.Modal {
         modelValue = value;
       });
     });
-    new import_obsidian21.Setting(details).setName(t("settings.subagents.modal.tools")).setDesc(t("settings.subagents.modal.toolsDesc")).addText((text) => {
+    new import_obsidian31.Setting(details).setName(t("settings.subagents.modal.tools")).setDesc(t("settings.subagents.modal.toolsDesc")).addText((text) => {
       var _a4, _b2;
       toolsInput = text.inputEl;
       text.setValue(((_b2 = (_a4 = this.existingAgent) == null ? void 0 : _a4.tools) == null ? void 0 : _b2.join(", ")) || "");
     });
-    new import_obsidian21.Setting(details).setName(t("settings.subagents.modal.disallowedTools")).setDesc(t("settings.subagents.modal.disallowedToolsDesc")).addText((text) => {
+    new import_obsidian31.Setting(details).setName(t("settings.subagents.modal.disallowedTools")).setDesc(t("settings.subagents.modal.disallowedToolsDesc")).addText((text) => {
       var _a4, _b2;
       disallowedToolsInput = text.inputEl;
       text.setValue(((_b2 = (_a4 = this.existingAgent) == null ? void 0 : _a4.disallowedTools) == null ? void 0 : _b2.join(", ")) || "");
     });
-    new import_obsidian21.Setting(details).setName(t("settings.subagents.modal.skills")).setDesc(t("settings.subagents.modal.skillsDesc")).addText((text) => {
+    new import_obsidian31.Setting(details).setName(t("settings.subagents.modal.skills")).setDesc(t("settings.subagents.modal.skillsDesc")).addText((text) => {
       var _a4, _b2;
       skillsInput = text.inputEl;
       text.setValue(((_b2 = (_a4 = this.existingAgent) == null ? void 0 : _a4.skills) == null ? void 0 : _b2.join(", ")) || "");
     });
-    new import_obsidian21.Setting(contentEl).setName(t("settings.subagents.modal.prompt")).setDesc(t("settings.subagents.modal.promptDesc"));
+    new import_obsidian31.Setting(contentEl).setName(t("settings.subagents.modal.prompt")).setDesc(t("settings.subagents.modal.promptDesc"));
     const contentArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
@@ -64822,21 +69060,21 @@ var AgentModal = class extends import_obsidian21.Modal {
       cls: "claudian-save-btn"
     });
     saveBtn.addEventListener("click", async () => {
-      var _a4, _b2, _c2;
+      var _a4, _b2, _c2, _d2;
       const name = nameInput.value.trim();
       const nameError = validateAgentName(name);
       if (nameError) {
-        new import_obsidian21.Notice(nameError);
+        new import_obsidian31.Notice(nameError);
         return;
       }
       const description = descInput.value.trim();
       if (!description) {
-        new import_obsidian21.Notice(t("settings.subagents.descriptionRequired"));
+        new import_obsidian31.Notice(t("settings.subagents.descriptionRequired"));
         return;
       }
       const prompt = contentArea.value;
       if (!prompt.trim()) {
-        new import_obsidian21.Notice(t("settings.subagents.promptRequired"));
+        new import_obsidian31.Notice(t("settings.subagents.promptRequired"));
         return;
       }
       const allAgents = this.plugin.agentManager.getAvailableAgents();
@@ -64847,7 +69085,7 @@ var AgentModal = class extends import_obsidian21.Modal {
         }
       );
       if (duplicate) {
-        new import_obsidian21.Notice(t("settings.subagents.duplicateName", { name }));
+        new import_obsidian31.Notice(t("settings.subagents.duplicateName", { name }));
         return;
       }
       const parseList = (input) => {
@@ -64864,17 +69102,17 @@ var AgentModal = class extends import_obsidian21.Modal {
         disallowedTools: parseList(disallowedToolsInput),
         model: modelValue || "inherit",
         source: "vault",
-        filePath: this.existingAgent && this.existingAgent.name === name ? this.existingAgent.filePath : void 0,
+        filePath: (_a4 = this.existingAgent) == null ? void 0 : _a4.filePath,
         skills: parseList(skillsInput),
-        permissionMode: (_a4 = this.existingAgent) == null ? void 0 : _a4.permissionMode,
-        hooks: (_b2 = this.existingAgent) == null ? void 0 : _b2.hooks,
-        extraFrontmatter: (_c2 = this.existingAgent) == null ? void 0 : _c2.extraFrontmatter
+        permissionMode: (_b2 = this.existingAgent) == null ? void 0 : _b2.permissionMode,
+        hooks: (_c2 = this.existingAgent) == null ? void 0 : _c2.hooks,
+        extraFrontmatter: (_d2 = this.existingAgent) == null ? void 0 : _d2.extraFrontmatter
       };
       try {
         await this.onSave(agent);
       } catch (err) {
         const message = err instanceof Error ? err.message : "Unknown error";
-        new import_obsidian21.Notice(t("settings.subagents.saveFailed", { message }));
+        new import_obsidian31.Notice(t("settings.subagents.saveFailed", { message }));
         return;
       }
       this.close();
@@ -64895,12 +69133,22 @@ var AgentSettings = class {
     const headerEl = this.containerEl.createDiv({ cls: "claudian-sp-header" });
     headerEl.createSpan({ text: t("settings.subagents.name"), cls: "claudian-sp-label" });
     const actionsEl = headerEl.createDiv({ cls: "claudian-sp-header-actions" });
+    const refreshBtn = actionsEl.createEl("button", {
+      cls: "claudian-settings-action-btn",
+      attr: { "aria-label": t("common.refresh") }
+    });
+    (0, import_obsidian31.setIcon)(refreshBtn, "refresh-cw");
+    refreshBtn.addEventListener("click", () => {
+      void this.refreshAgents();
+    });
     const addBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t("common.add") }
     });
-    (0, import_obsidian21.setIcon)(addBtn, "plus");
-    addBtn.addEventListener("click", () => this.openAgentModal(null));
+    (0, import_obsidian31.setIcon)(addBtn, "plus");
+    addBtn.addEventListener("click", () => {
+      void this.openAgentModal(null);
+    });
     const allAgents = this.plugin.agentManager.getAvailableAgents();
     const vaultAgents = allAgents.filter((a) => a.source === "vault");
     if (vaultAgents.length === 0) {
@@ -64928,13 +69176,15 @@ var AgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t("common.edit") }
     });
-    (0, import_obsidian21.setIcon)(editBtn, "pencil");
-    editBtn.addEventListener("click", () => this.openAgentModal(agent));
+    (0, import_obsidian31.setIcon)(editBtn, "pencil");
+    editBtn.addEventListener("click", () => {
+      void this.openAgentModal(agent);
+    });
     const deleteBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn claudian-settings-delete-btn",
       attr: { "aria-label": t("common.delete") }
     });
-    (0, import_obsidian21.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian31.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", async () => {
       const confirmed = await confirmDelete(
         this.plugin.app,
@@ -64945,26 +69195,50 @@ var AgentSettings = class {
         await this.deleteAgent(agent);
       } catch (err) {
         const message = err instanceof Error ? err.message : "Unknown error";
-        new import_obsidian21.Notice(t("settings.subagents.deleteFailed", { message }));
+        new import_obsidian31.Notice(t("settings.subagents.deleteFailed", { message }));
       }
     });
   }
-  openAgentModal(existingAgent) {
+  async refreshAgents() {
+    try {
+      await this.plugin.agentManager.loadAgents();
+      this.render();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unknown error";
+      new import_obsidian31.Notice(t("settings.subagents.refreshFailed", { message }));
+    }
+  }
+  async openAgentModal(existingAgent) {
+    var _a3;
+    let fresh;
+    if (existingAgent) {
+      try {
+        fresh = (_a3 = await this.plugin.storage.agents.load(existingAgent)) != null ? _a3 : existingAgent;
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Unknown error";
+        new import_obsidian31.Notice(`Failed to load subagent "${existingAgent.name}": ${message}`);
+        return;
+      }
+    } else {
+      fresh = null;
+    }
     new AgentModal(
       this.plugin.app,
       this.plugin,
-      existingAgent,
-      (agent) => this.saveAgent(agent, existingAgent)
+      fresh,
+      (agent) => this.saveAgent(agent, fresh)
     ).open();
   }
   async saveAgent(agent, existing) {
-    await this.plugin.storage.agents.save(agent);
     if (existing && existing.name !== agent.name) {
+      await this.plugin.storage.agents.save({ ...agent, filePath: void 0 });
       try {
         await this.plugin.storage.agents.delete(existing);
       } catch (e2) {
-        new import_obsidian21.Notice(t("settings.subagents.renameCleanupFailed", { name: existing.name }));
+        new import_obsidian31.Notice(t("settings.subagents.renameCleanupFailed", { name: existing.name }));
       }
+    } else {
+      await this.plugin.storage.agents.save(agent);
     }
     try {
       await this.plugin.agentManager.loadAgents();
@@ -64972,7 +69246,7 @@ var AgentSettings = class {
     }
     this.render();
     const action = existing ? "updated" : "created";
-    new import_obsidian21.Notice(t("settings.subagents.saved", { name: agent.name, action }));
+    new import_obsidian31.Notice(t("settings.subagents.saved", { name: agent.name, action }));
   }
   async deleteAgent(agent) {
     await this.plugin.storage.agents.delete(agent);
@@ -64981,13 +69255,13 @@ var AgentSettings = class {
     } catch (e2) {
     }
     this.render();
-    new import_obsidian21.Notice(t("settings.subagents.deleted", { name: agent.name }));
+    new import_obsidian31.Notice(t("settings.subagents.deleted", { name: agent.name }));
   }
 };
 
 // src/features/settings/ui/EnvSnippetManager.ts
-var import_obsidian22 = require("obsidian");
-var EnvSnippetModal = class extends import_obsidian22.Modal {
+var import_obsidian32 = require("obsidian");
+var EnvSnippetModal = class extends import_obsidian32.Modal {
   constructor(app, plugin, snippet, onSave) {
     super(app);
     this.plugin = plugin;
@@ -65016,7 +69290,7 @@ var EnvSnippetModal = class extends import_obsidian22.Modal {
       var _a3;
       const name = nameEl.value.trim();
       if (!name) {
-        new import_obsidian22.Notice(t("settings.envSnippets.nameRequired"));
+        new import_obsidian32.Notice(t("settings.envSnippets.nameRequired"));
         return;
       }
       const contextLimits = {};
@@ -65073,19 +69347,19 @@ var EnvSnippetModal = class extends import_obsidian22.Modal {
         contextLimitInputs.set(modelId, input);
       }
     };
-    new import_obsidian22.Setting(contentEl).setName(t("settings.envSnippets.modal.name")).setDesc(t("settings.envSnippets.modal.namePlaceholder")).addText((text) => {
+    new import_obsidian32.Setting(contentEl).setName(t("settings.envSnippets.modal.name")).setDesc(t("settings.envSnippets.modal.namePlaceholder")).addText((text) => {
       var _a3;
       nameEl = text.inputEl;
       text.setValue(((_a3 = this.snippet) == null ? void 0 : _a3.name) || "");
       text.inputEl.addEventListener("keydown", handleKeyDown);
     });
-    new import_obsidian22.Setting(contentEl).setName(t("settings.envSnippets.modal.description")).setDesc(t("settings.envSnippets.modal.descPlaceholder")).addText((text) => {
+    new import_obsidian32.Setting(contentEl).setName(t("settings.envSnippets.modal.description")).setDesc(t("settings.envSnippets.modal.descPlaceholder")).addText((text) => {
       var _a3;
       descEl = text.inputEl;
       text.setValue(((_a3 = this.snippet) == null ? void 0 : _a3.description) || "");
       text.inputEl.addEventListener("keydown", handleKeyDown);
     });
-    const envVarsSetting = new import_obsidian22.Setting(contentEl).setName(t("settings.envSnippets.modal.envVars")).setDesc(t("settings.envSnippets.modal.envVarsPlaceholder")).addTextArea((text) => {
+    const envVarsSetting = new import_obsidian32.Setting(contentEl).setName(t("settings.envSnippets.modal.envVars")).setDesc(t("settings.envSnippets.modal.envVarsPlaceholder")).addTextArea((text) => {
       var _a3, _b;
       envVarsEl = text.inputEl;
       const envVarsToShow = (_b = (_a3 = this.snippet) == null ? void 0 : _a3.envVars) != null ? _b : this.plugin.settings.environmentVariables;
@@ -65130,7 +69404,7 @@ var EnvSnippetManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t("settings.envSnippets.addBtn") }
     });
-    (0, import_obsidian22.setIcon)(saveBtn, "plus");
+    (0, import_obsidian32.setIcon)(saveBtn, "plus");
     saveBtn.addEventListener("click", () => this.saveCurrentEnv());
     const snippets = this.plugin.settings.envSnippets;
     if (snippets.length === 0) {
@@ -65153,19 +69427,19 @@ var EnvSnippetManager = class {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Insert" }
       });
-      (0, import_obsidian22.setIcon)(restoreBtn, "clipboard-paste");
+      (0, import_obsidian32.setIcon)(restoreBtn, "clipboard-paste");
       restoreBtn.addEventListener("click", async () => {
         try {
           await this.insertSnippet(snippet);
         } catch (e2) {
-          new import_obsidian22.Notice("Failed to insert snippet");
+          new import_obsidian32.Notice("Failed to insert snippet");
         }
       });
       const editBtn = actionsEl.createEl("button", {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Edit" }
       });
-      (0, import_obsidian22.setIcon)(editBtn, "pencil");
+      (0, import_obsidian32.setIcon)(editBtn, "pencil");
       editBtn.addEventListener("click", () => {
         this.editSnippet(snippet);
       });
@@ -65173,14 +69447,14 @@ var EnvSnippetManager = class {
         cls: "claudian-settings-action-btn claudian-settings-delete-btn",
         attr: { "aria-label": "Delete" }
       });
-      (0, import_obsidian22.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian32.setIcon)(deleteBtn, "trash-2");
       deleteBtn.addEventListener("click", async () => {
         try {
           if (confirm(`Delete environment snippet "${snippet.name}"?`)) {
             await this.deleteSnippet(snippet);
           }
         } catch (e2) {
-          new import_obsidian22.Notice("Failed to delete snippet");
+          new import_obsidian32.Notice("Failed to delete snippet");
         }
       });
     }
@@ -65194,7 +69468,7 @@ var EnvSnippetManager = class {
         this.plugin.settings.envSnippets.push(snippet);
         await this.plugin.saveSettings();
         this.render();
-        new import_obsidian22.Notice(`Environment snippet "${snippet.name}" saved`);
+        new import_obsidian32.Notice(`Environment snippet "${snippet.name}" saved`);
       }
     );
     modal.open();
@@ -65231,7 +69505,7 @@ var EnvSnippetManager = class {
           this.plugin.settings.envSnippets[index] = updatedSnippet;
           await this.plugin.saveSettings();
           this.render();
-          new import_obsidian22.Notice(`Environment snippet "${updatedSnippet.name}" updated`);
+          new import_obsidian32.Notice(`Environment snippet "${updatedSnippet.name}" updated`);
         }
       }
     );
@@ -65241,7 +69515,7 @@ var EnvSnippetManager = class {
     this.plugin.settings.envSnippets = this.plugin.settings.envSnippets.filter((s) => s.id !== snippet.id);
     await this.plugin.saveSettings();
     this.render();
-    new import_obsidian22.Notice(`Environment snippet "${snippet.name}" deleted`);
+    new import_obsidian32.Notice(`Environment snippet "${snippet.name}" deleted`);
   }
   refresh() {
     this.render();
@@ -65249,11 +69523,11 @@ var EnvSnippetManager = class {
 };
 
 // src/features/settings/ui/McpSettingsManager.ts
-var import_obsidian25 = require("obsidian");
+var import_obsidian35 = require("obsidian");
 
 // src/features/settings/ui/McpServerModal.ts
-var import_obsidian23 = require("obsidian");
-var McpServerModal = class extends import_obsidian23.Modal {
+var import_obsidian33 = require("obsidian");
+var McpServerModal = class extends import_obsidian33.Modal {
   constructor(app, plugin, existingServer, onSave, initialType, prefillConfig) {
     super(app);
     this.serverName = "";
@@ -65303,7 +69577,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
     this.setTitle(this.existingServer ? "Edit MCP Server" : "Add MCP Server");
     this.modalEl.addClass("claudian-mcp-modal");
     const { contentEl } = this;
-    new import_obsidian23.Setting(contentEl).setName("Server name").setDesc("Unique identifier for this server").addText((text) => {
+    new import_obsidian33.Setting(contentEl).setName("Server name").setDesc("Unique identifier for this server").addText((text) => {
       this.nameInputEl = text.inputEl;
       text.setValue(this.serverName);
       text.setPlaceholder("my-mcp-server");
@@ -65312,7 +69586,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
       });
       text.inputEl.addEventListener("keydown", (e2) => this.handleKeyDown(e2));
     });
-    new import_obsidian23.Setting(contentEl).setName("Type").setDesc("Server connection type").addDropdown((dropdown) => {
+    new import_obsidian33.Setting(contentEl).setName("Type").setDesc("Server connection type").addDropdown((dropdown) => {
       dropdown.addOption("stdio", "stdio (local command)");
       dropdown.addOption("sse", "sse (Server-Sent Events)");
       dropdown.addOption("http", "http (HTTP endpoint)");
@@ -65324,13 +69598,13 @@ var McpServerModal = class extends import_obsidian23.Modal {
     });
     this.typeFieldsEl = contentEl.createDiv({ cls: "claudian-mcp-type-fields" });
     this.renderTypeFields();
-    new import_obsidian23.Setting(contentEl).setName("Enabled").setDesc("Whether this server is active").addToggle((toggle) => {
+    new import_obsidian33.Setting(contentEl).setName("Enabled").setDesc("Whether this server is active").addToggle((toggle) => {
       toggle.setValue(this.enabled);
       toggle.onChange((value) => {
         this.enabled = value;
       });
     });
-    new import_obsidian23.Setting(contentEl).setName("Context-saving mode").setDesc("Hide tools from agent unless @-mentioned (saves context window)").addToggle((toggle) => {
+    new import_obsidian33.Setting(contentEl).setName("Context-saving mode").setDesc("Hide tools from agent unless @-mentioned (saves context window)").addToggle((toggle) => {
       toggle.setValue(this.contextSaving);
       toggle.onChange((value) => {
         this.contextSaving = value;
@@ -65359,7 +69633,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
   }
   renderStdioFields() {
     if (!this.typeFieldsEl) return;
-    const cmdSetting = new import_obsidian23.Setting(this.typeFieldsEl).setName("Command").setDesc("Full command with arguments");
+    const cmdSetting = new import_obsidian33.Setting(this.typeFieldsEl).setName("Command").setDesc("Full command with arguments");
     cmdSetting.settingEl.addClass("claudian-mcp-cmd-setting");
     const cmdTextarea = cmdSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-cmd-textarea"
@@ -65370,7 +69644,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
     cmdTextarea.addEventListener("input", () => {
       this.command = cmdTextarea.value;
     });
-    const envSetting = new import_obsidian23.Setting(this.typeFieldsEl).setName("Environment variables").setDesc("KEY=VALUE per line (optional)");
+    const envSetting = new import_obsidian33.Setting(this.typeFieldsEl).setName("Environment variables").setDesc("KEY=VALUE per line (optional)");
     envSetting.settingEl.addClass("claudian-mcp-env-setting");
     const envTextarea = envSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-env-textarea"
@@ -65384,7 +69658,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
   }
   renderUrlFields() {
     if (!this.typeFieldsEl) return;
-    new import_obsidian23.Setting(this.typeFieldsEl).setName("URL").setDesc(this.serverType === "sse" ? "SSE endpoint URL" : "HTTP endpoint URL").addText((text) => {
+    new import_obsidian33.Setting(this.typeFieldsEl).setName("URL").setDesc(this.serverType === "sse" ? "SSE endpoint URL" : "HTTP endpoint URL").addText((text) => {
       text.setValue(this.url);
       text.setPlaceholder("http://localhost:3000/sse");
       text.onChange((value) => {
@@ -65392,7 +69666,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
       });
       text.inputEl.addEventListener("keydown", (e2) => this.handleKeyDown(e2));
     });
-    const headersSetting = new import_obsidian23.Setting(this.typeFieldsEl).setName("Headers").setDesc("HTTP headers (KEY=VALUE per line)");
+    const headersSetting = new import_obsidian33.Setting(this.typeFieldsEl).setName("Headers").setDesc("HTTP headers (KEY=VALUE per line)");
     headersSetting.settingEl.addClass("claudian-mcp-env-setting");
     const headersTextarea = headersSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-env-textarea"
@@ -65417,12 +69691,12 @@ var McpServerModal = class extends import_obsidian23.Modal {
     var _a3, _b, _c;
     const name = this.serverName.trim();
     if (!name) {
-      new import_obsidian23.Notice("Please enter a server name");
+      new import_obsidian33.Notice("Please enter a server name");
       (_a3 = this.nameInputEl) == null ? void 0 : _a3.focus();
       return;
     }
     if (!/^[a-zA-Z0-9._-]+$/.test(name)) {
-      new import_obsidian23.Notice("Server name can only contain letters, numbers, dots, hyphens, and underscores");
+      new import_obsidian33.Notice("Server name can only contain letters, numbers, dots, hyphens, and underscores");
       (_b = this.nameInputEl) == null ? void 0 : _b.focus();
       return;
     }
@@ -65430,7 +69704,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
     if (this.serverType === "stdio") {
       const fullCommand = this.command.trim();
       if (!fullCommand) {
-        new import_obsidian23.Notice("Please enter a command");
+        new import_obsidian33.Notice("Please enter a command");
         return;
       }
       const { cmd, args } = parseCommand(fullCommand);
@@ -65446,7 +69720,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
     } else {
       const url2 = this.url.trim();
       if (!url2) {
-        new import_obsidian23.Notice("Please enter a URL");
+        new import_obsidian33.Notice("Please enter a URL");
         return;
       }
       if (this.serverType === "sse") {
@@ -65501,7 +69775,7 @@ var McpServerModal = class extends import_obsidian23.Modal {
 };
 
 // src/features/settings/ui/McpTestModal.ts
-var import_obsidian24 = require("obsidian");
+var import_obsidian34 = require("obsidian");
 function formatToggleError(error48) {
   if (!(error48 instanceof Error)) return "Failed to update tool setting";
   const msg = error48.message.toLowerCase();
@@ -65516,7 +69790,7 @@ function formatToggleError(error48) {
   }
   return error48.message || "Failed to update tool setting";
 }
-var McpTestModal = class extends import_obsidian24.Modal {
+var McpTestModal = class extends import_obsidian34.Modal {
   constructor(app, serverName, initialDisabledTools, onToolToggle, onBulkToggle) {
     super(app);
     this.result = null;
@@ -65569,10 +69843,10 @@ var McpTestModal = class extends import_obsidian24.Modal {
     const statusEl = this.contentEl_.createDiv({ cls: "claudian-mcp-test-status" });
     const iconEl = statusEl.createSpan({ cls: "claudian-mcp-test-icon" });
     if (this.result.success) {
-      (0, import_obsidian24.setIcon)(iconEl, "check-circle");
+      (0, import_obsidian34.setIcon)(iconEl, "check-circle");
       iconEl.addClass("success");
     } else {
-      (0, import_obsidian24.setIcon)(iconEl, "x-circle");
+      (0, import_obsidian34.setIcon)(iconEl, "x-circle");
       iconEl.addClass("error");
     }
     const textEl = statusEl.createSpan({ cls: "claudian-mcp-test-text" });
@@ -65624,7 +69898,7 @@ var McpTestModal = class extends import_obsidian24.Modal {
     const toolEl = container.createDiv({ cls: "claudian-mcp-test-tool" });
     const headerEl = toolEl.createDiv({ cls: "claudian-mcp-test-tool-header" });
     const iconEl = headerEl.createSpan({ cls: "claudian-mcp-test-tool-icon" });
-    (0, import_obsidian24.setIcon)(iconEl, "wrench");
+    (0, import_obsidian34.setIcon)(iconEl, "wrench");
     const nameEl = headerEl.createSpan({ cls: "claudian-mcp-test-tool-name" });
     nameEl.setText(tool.name);
     const toggleEl = headerEl.createDiv({ cls: "claudian-mcp-test-tool-toggle" });
@@ -65682,7 +69956,7 @@ var McpTestModal = class extends import_obsidian24.Modal {
       container.toggleClass("is-enabled", !wasDisabled);
       this.updateToolState(toolEl, !wasDisabled);
       this.updateToggleAllButton();
-      new import_obsidian24.Notice(formatToggleError(error48));
+      new import_obsidian34.Notice(formatToggleError(error48));
     } finally {
       checkbox.disabled = false;
     }
@@ -65737,7 +70011,7 @@ var McpTestModal = class extends import_obsidian24.Modal {
         this.updateToolState(toolEl, isEnabled);
       }
       this.updateToggleAllButton();
-      new import_obsidian24.Notice(formatToggleError(error48));
+      new import_obsidian34.Notice(formatToggleError(error48));
     }
     for (const { checkbox } of this.toolToggles.values()) {
       checkbox.disabled = false;
@@ -65784,24 +70058,24 @@ var McpSettingsManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Add" }
     });
-    (0, import_obsidian25.setIcon)(addBtn, "plus");
+    (0, import_obsidian35.setIcon)(addBtn, "plus");
     const dropdown = addContainer.createDiv({ cls: "claudian-mcp-add-dropdown" });
     const stdioOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian25.setIcon)(stdioOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "terminal");
+    (0, import_obsidian35.setIcon)(stdioOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "terminal");
     stdioOption.createSpan({ text: "stdio (local command)" });
     stdioOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
       this.openModal(null, "stdio");
     });
     const httpOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian25.setIcon)(httpOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "globe");
+    (0, import_obsidian35.setIcon)(httpOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "globe");
     httpOption.createSpan({ text: "http / sse (remote)" });
     httpOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
       this.openModal(null, "http");
     });
     const importOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian25.setIcon)(importOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "clipboard-paste");
+    (0, import_obsidian35.setIcon)(importOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "clipboard-paste");
     importOption.createSpan({ text: "Import from clipboard" });
     importOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
@@ -65856,25 +70130,25 @@ var McpSettingsManager = class {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": "Verify (show tools)" }
     });
-    (0, import_obsidian25.setIcon)(testBtn, "zap");
+    (0, import_obsidian35.setIcon)(testBtn, "zap");
     testBtn.addEventListener("click", () => this.testServer(server));
     const toggleBtn = actionsEl.createEl("button", {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": server.enabled ? "Disable" : "Enable" }
     });
-    (0, import_obsidian25.setIcon)(toggleBtn, server.enabled ? "toggle-right" : "toggle-left");
+    (0, import_obsidian35.setIcon)(toggleBtn, server.enabled ? "toggle-right" : "toggle-left");
     toggleBtn.addEventListener("click", () => this.toggleServer(server));
     const editBtn = actionsEl.createEl("button", {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": "Edit" }
     });
-    (0, import_obsidian25.setIcon)(editBtn, "pencil");
+    (0, import_obsidian35.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => this.openModal(server));
     const deleteBtn = actionsEl.createEl("button", {
       cls: "claudian-mcp-action-btn claudian-mcp-delete-btn",
       attr: { "aria-label": "Delete" }
     });
-    (0, import_obsidian25.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian35.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", () => this.deleteServer(server));
   }
   async testServer(server) {
@@ -65910,7 +70184,7 @@ var McpSettingsManager = class {
     try {
       await this.broadcastMcpReloadToAllViews();
     } catch (e2) {
-      new import_obsidian25.Notice("Setting saved but reload failed. Changes will apply on next session.");
+      new import_obsidian35.Notice("Setting saved but reload failed. Changes will apply on next session.");
     }
   }
   async updateDisabledTool(server, toolName, enabled) {
@@ -65959,12 +70233,12 @@ var McpSettingsManager = class {
     try {
       const text = await navigator.clipboard.readText();
       if (!text.trim()) {
-        new import_obsidian25.Notice("Clipboard is empty");
+        new import_obsidian35.Notice("Clipboard is empty");
         return;
       }
       const parsed = McpStorage.tryParseClipboardConfig(text);
       if (!parsed || parsed.servers.length === 0) {
-        new import_obsidian25.Notice("No valid MCP configuration found in clipboard");
+        new import_obsidian35.Notice("No valid MCP configuration found in clipboard");
         return;
       }
       if (parsed.needsName || parsed.servers.length === 1) {
@@ -65983,13 +70257,13 @@ var McpSettingsManager = class {
         );
         modal.open();
         if (parsed.needsName) {
-          new import_obsidian25.Notice("Enter a name for the server");
+          new import_obsidian35.Notice("Enter a name for the server");
         }
         return;
       }
       await this.importServers(parsed.servers);
     } catch (e2) {
-      new import_obsidian25.Notice("Failed to read clipboard");
+      new import_obsidian35.Notice("Failed to read clipboard");
     }
   }
   async saveServer(server, existing) {
@@ -65999,7 +70273,7 @@ var McpSettingsManager = class {
         if (server.name !== existing.name) {
           const conflict = this.servers.find((s) => s.name === server.name);
           if (conflict) {
-            new import_obsidian25.Notice(`Server "${server.name}" already exists`);
+            new import_obsidian35.Notice(`Server "${server.name}" already exists`);
             return;
           }
         }
@@ -66008,7 +70282,7 @@ var McpSettingsManager = class {
     } else {
       const conflict = this.servers.find((s) => s.name === server.name);
       if (conflict) {
-        new import_obsidian25.Notice(`Server "${server.name}" already exists`);
+        new import_obsidian35.Notice(`Server "${server.name}" already exists`);
         return;
       }
       this.servers.push(server);
@@ -66016,7 +70290,7 @@ var McpSettingsManager = class {
     await this.plugin.storage.mcp.save(this.servers);
     await this.broadcastMcpReloadToAllViews();
     this.render();
-    new import_obsidian25.Notice(existing ? `MCP server "${server.name}" updated` : `MCP server "${server.name}" added`);
+    new import_obsidian35.Notice(existing ? `MCP server "${server.name}" updated` : `MCP server "${server.name}" added`);
   }
   async importServers(servers) {
     const added = [];
@@ -66041,7 +70315,7 @@ var McpSettingsManager = class {
       added.push(name);
     }
     if (added.length === 0) {
-      new import_obsidian25.Notice("No new MCP servers imported");
+      new import_obsidian35.Notice("No new MCP servers imported");
       return;
     }
     await this.plugin.storage.mcp.save(this.servers);
@@ -66051,14 +70325,14 @@ var McpSettingsManager = class {
     if (skipped.length > 0) {
       message += ` (${skipped.length} skipped)`;
     }
-    new import_obsidian25.Notice(message);
+    new import_obsidian35.Notice(message);
   }
   async toggleServer(server) {
     server.enabled = !server.enabled;
     await this.plugin.storage.mcp.save(this.servers);
     await this.broadcastMcpReloadToAllViews();
     this.render();
-    new import_obsidian25.Notice(`MCP server "${server.name}" ${server.enabled ? "enabled" : "disabled"}`);
+    new import_obsidian35.Notice(`MCP server "${server.name}" ${server.enabled ? "enabled" : "disabled"}`);
   }
   async deleteServer(server) {
     if (!confirm(`Delete MCP server "${server.name}"?`)) {
@@ -66068,7 +70342,7 @@ var McpSettingsManager = class {
     await this.plugin.storage.mcp.save(this.servers);
     await this.broadcastMcpReloadToAllViews();
     this.render();
-    new import_obsidian25.Notice(`MCP server "${server.name}" deleted`);
+    new import_obsidian35.Notice(`MCP server "${server.name}" deleted`);
   }
   /** Refresh the server list (call after external changes). */
   refresh() {
@@ -66077,7 +70351,7 @@ var McpSettingsManager = class {
 };
 
 // src/features/settings/ui/PluginSettingsManager.ts
-var import_obsidian26 = require("obsidian");
+var import_obsidian36 = require("obsidian");
 var PluginSettingsManager = class {
   constructor(containerEl, plugin) {
     this.containerEl = containerEl;
@@ -66092,7 +70366,7 @@ var PluginSettingsManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Refresh" }
     });
-    (0, import_obsidian26.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian36.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => this.refreshPlugins());
     const plugins = this.plugin.pluginManager.getPlugins();
     if (plugins.length === 0) {
@@ -66138,7 +70412,7 @@ var PluginSettingsManager = class {
       cls: "claudian-plugin-action-btn",
       attr: { "aria-label": plugin.enabled ? "Disable" : "Enable" }
     });
-    (0, import_obsidian26.setIcon)(toggleBtn, plugin.enabled ? "toggle-right" : "toggle-left");
+    (0, import_obsidian36.setIcon)(toggleBtn, plugin.enabled ? "toggle-right" : "toggle-left");
     toggleBtn.addEventListener("click", () => this.togglePlugin(plugin.id));
   }
   async togglePlugin(pluginId) {
@@ -66158,14 +70432,14 @@ var PluginSettingsManager = class {
             }
           );
         } catch (e2) {
-          new import_obsidian26.Notice("Plugin toggled, but some tabs failed to restart.");
+          new import_obsidian36.Notice("Plugin toggled, but some tabs failed to restart.");
         }
       }
-      new import_obsidian26.Notice(`Plugin "${pluginId}" ${wasEnabled ? "disabled" : "enabled"}`);
+      new import_obsidian36.Notice(`Plugin "${pluginId}" ${wasEnabled ? "disabled" : "enabled"}`);
     } catch (err) {
       await this.plugin.pluginManager.togglePlugin(pluginId);
       const message = err instanceof Error ? err.message : "Unknown error";
-      new import_obsidian26.Notice(`Failed to toggle plugin: ${message}`);
+      new import_obsidian36.Notice(`Failed to toggle plugin: ${message}`);
     } finally {
       this.render();
     }
@@ -66174,10 +70448,10 @@ var PluginSettingsManager = class {
     try {
       await this.plugin.pluginManager.loadPlugins();
       await this.plugin.agentManager.loadAgents();
-      new import_obsidian26.Notice("Plugin list refreshed");
+      new import_obsidian36.Notice("Plugin list refreshed");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unknown error";
-      new import_obsidian26.Notice(`Failed to refresh plugins: ${message}`);
+      new import_obsidian36.Notice(`Failed to refresh plugins: ${message}`);
     } finally {
       this.render();
     }
@@ -66188,7 +70462,7 @@ var PluginSettingsManager = class {
 };
 
 // src/features/settings/ui/SlashCommandSettings.ts
-var import_obsidian27 = require("obsidian");
+var import_obsidian37 = require("obsidian");
 function resolveAllowedTools(inputValue, parsedTools) {
   const trimmed = inputValue.trim();
   if (trimmed) {
@@ -66199,7 +70473,7 @@ function resolveAllowedTools(inputValue, parsedTools) {
   }
   return void 0;
 }
-var SlashCommandModal = class extends import_obsidian27.Modal {
+var SlashCommandModal = class extends import_obsidian37.Modal {
   constructor(app, plugin, existingCmd, onSave) {
     super(app);
     this.plugin = plugin;
@@ -66233,7 +70507,7 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
         disableUserToggle.setValue(false);
       }
     };
-    new import_obsidian27.Setting(contentEl).setName("Type").setDesc("Command or skill").addDropdown((dropdown) => {
+    new import_obsidian37.Setting(contentEl).setName("Type").setDesc("Command or skill").addDropdown((dropdown) => {
       dropdown.addOption("command", "Command").addOption("skill", "Skill").setValue(selectedType).onChange((value) => {
         selectedType = value;
         this.setTitle(this.existingCmd ? `Edit ${typeLabel()}` : `Add ${typeLabel()}`);
@@ -66243,12 +70517,12 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
         dropdown.setDisabled(true);
       }
     });
-    new import_obsidian27.Setting(contentEl).setName("Command name").setDesc('The name used after / (e.g., "review" for /review)').addText((text) => {
+    new import_obsidian37.Setting(contentEl).setName("Command name").setDesc('The name used after / (e.g., "review" for /review)').addText((text) => {
       var _a4;
       nameInput = text.inputEl;
       text.setValue(((_a4 = this.existingCmd) == null ? void 0 : _a4.name) || "").setPlaceholder("review-code");
     });
-    new import_obsidian27.Setting(contentEl).setName("Description").setDesc("Optional description shown in dropdown").addText((text) => {
+    new import_obsidian37.Setting(contentEl).setName("Description").setDesc("Optional description shown in dropdown").addText((text) => {
       var _a4;
       descInput = text.inputEl;
       text.setValue(((_a4 = this.existingCmd) == null ? void 0 : _a4.description) || "");
@@ -66261,46 +70535,46 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
     if (((_f = this.existingCmd) == null ? void 0 : _f.argumentHint) || ((_g = this.existingCmd) == null ? void 0 : _g.model) || ((_i = (_h = this.existingCmd) == null ? void 0 : _h.allowedTools) == null ? void 0 : _i.length) || ((_j = this.existingCmd) == null ? void 0 : _j.disableModelInvocation) || ((_k = this.existingCmd) == null ? void 0 : _k.userInvocable) === false || ((_l = this.existingCmd) == null ? void 0 : _l.context) || ((_m = this.existingCmd) == null ? void 0 : _m.agent)) {
       details.open = true;
     }
-    new import_obsidian27.Setting(details).setName("Argument hint").setDesc('Placeholder text for arguments (e.g., "[file] [focus]")').addText((text) => {
+    new import_obsidian37.Setting(details).setName("Argument hint").setDesc('Placeholder text for arguments (e.g., "[file] [focus]")').addText((text) => {
       var _a4;
       hintInput = text.inputEl;
       text.setValue(((_a4 = this.existingCmd) == null ? void 0 : _a4.argumentHint) || "");
     });
-    new import_obsidian27.Setting(details).setName("Model override").setDesc("Optional model to use for this command").addText((text) => {
+    new import_obsidian37.Setting(details).setName("Model override").setDesc("Optional model to use for this command").addText((text) => {
       var _a4;
       modelInput = text.inputEl;
       text.setValue(((_a4 = this.existingCmd) == null ? void 0 : _a4.model) || "").setPlaceholder("claude-sonnet-4-5");
     });
-    new import_obsidian27.Setting(details).setName("Allowed tools").setDesc("Comma-separated list of tools to allow (empty = all)").addText((text) => {
+    new import_obsidian37.Setting(details).setName("Allowed tools").setDesc("Comma-separated list of tools to allow (empty = all)").addText((text) => {
       var _a4, _b2;
       toolsInput = text.inputEl;
       text.setValue(((_b2 = (_a4 = this.existingCmd) == null ? void 0 : _a4.allowedTools) == null ? void 0 : _b2.join(", ")) || "");
     });
-    new import_obsidian27.Setting(details).setName("Disable model invocation").setDesc("Prevent the model from invoking this command itself").addToggle((toggle) => {
+    new import_obsidian37.Setting(details).setName("Disable model invocation").setDesc("Prevent the model from invoking this command itself").addToggle((toggle) => {
       toggle.setValue(disableModelToggle).onChange((value) => {
         disableModelToggle = value;
       });
     });
-    disableUserSetting = new import_obsidian27.Setting(details).setName("Disable user invocation").setDesc("Prevent the user from invoking this skill directly").addToggle((toggle) => {
+    disableUserSetting = new import_obsidian37.Setting(details).setName("Disable user invocation").setDesc("Prevent the user from invoking this skill directly").addToggle((toggle) => {
       disableUserToggle = toggle;
       toggle.setValue(disableUserInvocation).onChange((value) => {
         disableUserInvocation = value;
       });
     });
     updateSkillOnlyFields();
-    new import_obsidian27.Setting(details).setName("Context").setDesc("Run in a subagent (fork)").addToggle((toggle) => {
+    new import_obsidian37.Setting(details).setName("Context").setDesc("Run in a subagent (fork)").addToggle((toggle) => {
       toggle.setValue(contextValue === "fork").onChange((value) => {
         contextValue = value ? "fork" : "";
         agentSetting.settingEl.style.display = value ? "" : "none";
       });
     });
-    const agentSetting = new import_obsidian27.Setting(details).setName("Agent").setDesc("Subagent type when context is fork").addText((text) => {
+    const agentSetting = new import_obsidian37.Setting(details).setName("Agent").setDesc("Subagent type when context is fork").addText((text) => {
       var _a4;
       agentInput = text.inputEl;
       text.setValue(((_a4 = this.existingCmd) == null ? void 0 : _a4.agent) || "").setPlaceholder("code-reviewer");
     });
     agentSetting.settingEl.style.display = contextValue === "fork" ? "" : "none";
-    new import_obsidian27.Setting(contentEl).setName("Prompt template").setDesc("Use $ARGUMENTS, $1, $2, @file, !`bash`");
+    new import_obsidian37.Setting(contentEl).setName("Prompt template").setDesc("Use $ARGUMENTS, $1, $2, @file, !`bash`");
     const contentArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
@@ -66325,12 +70599,12 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
       const name = nameInput.value.trim();
       const nameError = validateCommandName(name);
       if (nameError) {
-        new import_obsidian27.Notice(nameError);
+        new import_obsidian37.Notice(nameError);
         return;
       }
       const content = contentArea.value;
       if (!content.trim()) {
-        new import_obsidian27.Notice("Prompt template is required");
+        new import_obsidian37.Notice("Prompt template is required");
         return;
       }
       const existing = this.plugin.settings.slashCommands.find(
@@ -66340,7 +70614,7 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
         }
       );
       if (existing) {
-        new import_obsidian27.Notice(`A command named "/${name}" already exists`);
+        new import_obsidian37.Notice(`A command named "/${name}" already exists`);
         return;
       }
       const parsed = parseSlashCommandContent(content);
@@ -66351,7 +70625,7 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
         id,
         name,
         description: descInput.value.trim() || parsed.description || void 0,
-        argumentHint: hintInput.value.trim() || parsed.argumentHint || void 0,
+        argumentHint: normalizeArgumentHint(hintInput.value.trim()) || parsed.argumentHint || void 0,
         model: modelInput.value.trim() || parsed.model || void 0,
         allowedTools: resolveAllowedTools(toolsInput.value, parsed.allowedTools),
         content: promptContent,
@@ -66365,7 +70639,7 @@ var SlashCommandModal = class extends import_obsidian27.Modal {
         await this.onSave(cmd);
       } catch (e2) {
         const label = isSkillType ? "skill" : "slash command";
-        new import_obsidian27.Notice(`Failed to save ${label}`);
+        new import_obsidian37.Notice(`Failed to save ${label}`);
         return;
       }
       this.close();
@@ -66397,7 +70671,7 @@ var SlashCommandSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Add" }
     });
-    (0, import_obsidian27.setIcon)(addBtn, "plus");
+    (0, import_obsidian37.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => this.openCommandModal(null));
     const commands = this.plugin.settings.slashCommands;
     if (commands.length === 0) {
@@ -66432,19 +70706,19 @@ var SlashCommandSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Edit" }
     });
-    (0, import_obsidian27.setIcon)(editBtn, "pencil");
+    (0, import_obsidian37.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => this.openCommandModal(cmd));
     if (!isSkill(cmd)) {
       const convertBtn = actionsEl.createEl("button", {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Convert to skill" }
       });
-      (0, import_obsidian27.setIcon)(convertBtn, "package");
+      (0, import_obsidian37.setIcon)(convertBtn, "package");
       convertBtn.addEventListener("click", async () => {
         try {
           await this.transformToSkill(cmd);
         } catch (e2) {
-          new import_obsidian27.Notice("Failed to convert to skill");
+          new import_obsidian37.Notice("Failed to convert to skill");
         }
       });
     }
@@ -66452,13 +70726,13 @@ var SlashCommandSettings = class {
       cls: "claudian-settings-action-btn claudian-settings-delete-btn",
       attr: { "aria-label": "Delete" }
     });
-    (0, import_obsidian27.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian37.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", async () => {
       try {
         await this.deleteCommand(cmd);
       } catch (e2) {
         const label = isSkill(cmd) ? "skill" : "slash command";
-        new import_obsidian27.Notice(`Failed to delete ${label}`);
+        new import_obsidian37.Notice(`Failed to delete ${label}`);
       }
     });
   }
@@ -66484,14 +70758,14 @@ var SlashCommandSettings = class {
     await this.reloadCommands();
     this.render();
     const label = isSkill(cmd) ? "Skill" : "Slash command";
-    new import_obsidian27.Notice(`${label} "/${cmd.name}" ${existing ? "updated" : "created"}`);
+    new import_obsidian37.Notice(`${label} "/${cmd.name}" ${existing ? "updated" : "created"}`);
   }
   async deleteCommand(cmd) {
     await this.storageFor(cmd).delete(cmd.id);
     await this.reloadCommands();
     this.render();
     const label = isSkill(cmd) ? "Skill" : "Slash command";
-    new import_obsidian27.Notice(`${label} "/${cmd.name}" deleted`);
+    new import_obsidian37.Notice(`${label} "/${cmd.name}" deleted`);
   }
   async transformToSkill(cmd) {
     const skillName = cmd.name.toLowerCase().replace(/[^a-z0-9-]/g, "-").slice(0, 64);
@@ -66499,7 +70773,7 @@ var SlashCommandSettings = class {
       (c3) => isSkill(c3) && c3.name === skillName
     );
     if (existingSkill) {
-      new import_obsidian27.Notice(`A skill named "/${skillName}" already exists`);
+      new import_obsidian37.Notice(`A skill named "/${skillName}" already exists`);
       return;
     }
     const description = cmd.description || extractFirstParagraph(cmd.content);
@@ -66514,7 +70788,7 @@ var SlashCommandSettings = class {
     await this.plugin.storage.commands.delete(cmd.id);
     await this.reloadCommands();
     this.render();
-    new import_obsidian27.Notice(`Converted "/${cmd.name}" to skill`);
+    new import_obsidian37.Notice(`Converted "/${cmd.name}" to skill`);
   }
   async reloadCommands() {
     this.plugin.settings.slashCommands = await this.plugin.storage.loadAllSlashCommands();
@@ -66567,7 +70841,7 @@ function addHotkeySettingRow(containerEl, app, commandId, translationPrefix) {
   }
   item.addEventListener("click", () => openHotkeySettings(app));
 }
-var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
+var ClaudianSettingTab = class extends import_obsidian38.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.contextLimitsContainer = null;
@@ -66578,7 +70852,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     containerEl.empty();
     containerEl.addClass("claudian-settings");
     setLocale(this.plugin.settings.locale);
-    new import_obsidian28.Setting(containerEl).setName(t("settings.language.name")).setDesc(t("settings.language.desc")).addDropdown((dropdown) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.language.name")).setDesc(t("settings.language.desc")).addDropdown((dropdown) => {
       const locales = getAvailableLocales();
       for (const locale of locales) {
         dropdown.addOption(locale, getLocaleDisplayName(locale));
@@ -66593,15 +70867,15 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         this.display();
       });
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.customization")).setHeading();
-    new import_obsidian28.Setting(containerEl).setName(t("settings.userName.name")).setDesc(t("settings.userName.desc")).addText((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.customization")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.userName.name")).setDesc(t("settings.userName.desc")).addText((text) => {
       text.setPlaceholder(t("settings.userName.name")).setValue(this.plugin.settings.userName).onChange(async (value) => {
         this.plugin.settings.userName = value;
         await this.plugin.saveSettings();
       });
       text.inputEl.addEventListener("blur", () => this.restartServiceForPromptChange());
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.excludedTags.name")).setDesc(t("settings.excludedTags.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.excludedTags.name")).setDesc(t("settings.excludedTags.desc")).addTextArea((text) => {
       text.setPlaceholder("system\nprivate\ndraft").setValue(this.plugin.settings.excludedTags.join("\n")).onChange(async (value) => {
         this.plugin.settings.excludedTags = value.split(/\r?\n/).map((s) => s.trim().replace(/^#/, "")).filter((s) => s.length > 0);
         await this.plugin.saveSettings();
@@ -66609,7 +70883,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.rows = 4;
       text.inputEl.cols = 30;
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.mediaFolder.name")).setDesc(t("settings.mediaFolder.desc")).addText((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.mediaFolder.name")).setDesc(t("settings.mediaFolder.desc")).addText((text) => {
       text.setPlaceholder("attachments").setValue(this.plugin.settings.mediaFolder).onChange(async (value) => {
         this.plugin.settings.mediaFolder = value.trim();
         await this.plugin.saveSettings();
@@ -66617,7 +70891,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.addClass("claudian-settings-media-input");
       text.inputEl.addEventListener("blur", () => this.restartServiceForPromptChange());
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.systemPrompt.name")).setDesc(t("settings.systemPrompt.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.systemPrompt.name")).setDesc(t("settings.systemPrompt.desc")).addTextArea((text) => {
       text.setPlaceholder(t("settings.systemPrompt.name")).setValue(this.plugin.settings.systemPrompt).onChange(async (value) => {
         this.plugin.settings.systemPrompt = value;
         await this.plugin.saveSettings();
@@ -66626,7 +70900,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.cols = 50;
       text.inputEl.addEventListener("blur", () => this.restartServiceForPromptChange());
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.enableAutoScroll.name")).setDesc(t("settings.enableAutoScroll.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.enableAutoScroll.name")).setDesc(t("settings.enableAutoScroll.desc")).addToggle(
       (toggle) => {
         var _a3;
         return toggle.setValue((_a3 = this.plugin.settings.enableAutoScroll) != null ? _a3 : true).onChange(async (value) => {
@@ -66635,7 +70909,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         });
       }
     );
-    new import_obsidian28.Setting(containerEl).setName(t("settings.autoTitle.name")).setDesc(t("settings.autoTitle.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.autoTitle.name")).setDesc(t("settings.autoTitle.desc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.enableAutoTitleGeneration).onChange(async (value) => {
         this.plugin.settings.enableAutoTitleGeneration = value;
         await this.plugin.saveSettings();
@@ -66643,7 +70917,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       })
     );
     if (this.plugin.settings.enableAutoTitleGeneration) {
-      new import_obsidian28.Setting(containerEl).setName(t("settings.titleModel.name")).setDesc(t("settings.titleModel.desc")).addDropdown((dropdown) => {
+      new import_obsidian38.Setting(containerEl).setName(t("settings.titleModel.name")).setDesc(t("settings.titleModel.desc")).addDropdown((dropdown) => {
         dropdown.addOption("", t("settings.titleModel.auto"));
         const envVars = parseEnvironmentVariables(this.plugin.settings.environmentVariables);
         const customModels = getModelsFromEnvironment(envVars);
@@ -66657,7 +70931,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         });
       });
     }
-    new import_obsidian28.Setting(containerEl).setName(t("settings.navMappings.name")).setDesc(t("settings.navMappings.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.navMappings.name")).setDesc(t("settings.navMappings.desc")).addTextArea((text) => {
       let pendingValue = buildNavMappingText(this.plugin.settings.keyboardNavigation);
       let saveTimeout = null;
       const commitValue = async (showError) => {
@@ -66668,7 +70942,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         const result = parseNavMappings(pendingValue);
         if (!result.settings) {
           if (showError) {
-            new import_obsidian28.Notice(`${t("common.error")}: ${result.error}`);
+            new import_obsidian38.Notice(`${t("common.error")}: ${result.error}`);
             pendingValue = buildNavMappingText(this.plugin.settings.keyboardNavigation);
             text.setValue(pendingValue);
           }
@@ -66698,7 +70972,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         await commitValue(true);
       });
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.tabBarPosition.name")).setDesc(t("settings.tabBarPosition.desc")).addDropdown((dropdown) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.tabBarPosition.name")).setDesc(t("settings.tabBarPosition.desc")).addDropdown((dropdown) => {
       var _a3;
       dropdown.addOption("input", t("settings.tabBarPosition.input")).addOption("header", t("settings.tabBarPosition.header")).setValue((_a3 = this.plugin.settings.tabBarPosition) != null ? _a3 : "input").onChange(async (value) => {
         this.plugin.settings.tabBarPosition = value;
@@ -66710,20 +70984,20 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         }
       });
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.openInMainTab.name")).setDesc(t("settings.openInMainTab.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.openInMainTab.name")).setDesc(t("settings.openInMainTab.desc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.openInMainTab).onChange(async (value) => {
         this.plugin.settings.openInMainTab = value;
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian28.Setting(containerEl).setName(t("settings.hotkeys")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.hotkeys")).setHeading();
     const hotkeyGrid = containerEl.createDiv({ cls: "claudian-hotkey-grid" });
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:inline-edit", "settings.inlineEditHotkey");
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:open-view", "settings.openChatHotkey");
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:new-session", "settings.newSessionHotkey");
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:new-tab", "settings.newTabHotkey");
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:close-current-tab", "settings.closeTabHotkey");
-    new import_obsidian28.Setting(containerEl).setName(t("settings.slashCommands.name")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.slashCommands.name")).setHeading();
     const slashCommandsDesc = containerEl.createDiv({ cls: "claudian-sp-settings-desc" });
     const descP = slashCommandsDesc.createEl("p", { cls: "setting-item-description" });
     descP.appendText(t("settings.slashCommands.desc") + " ");
@@ -66733,7 +71007,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     });
     const slashCommandsContainer = containerEl.createDiv({ cls: "claudian-slash-commands-container" });
     new SlashCommandSettings(slashCommandsContainer, this.plugin);
-    new import_obsidian28.Setting(containerEl).setName(t("settings.hiddenSlashCommands.name")).setDesc(t("settings.hiddenSlashCommands.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.hiddenSlashCommands.name")).setDesc(t("settings.hiddenSlashCommands.desc")).addTextArea((text) => {
       text.setPlaceholder(t("settings.hiddenSlashCommands.placeholder")).setValue((this.plugin.settings.hiddenSlashCommands || []).join("\n")).onChange(async (value) => {
         var _a3;
         this.plugin.settings.hiddenSlashCommands = value.split(/\r?\n/).map((s) => s.trim().replace(/^\//, "")).filter((s) => s.length > 0);
@@ -66743,7 +71017,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.rows = 4;
       text.inputEl.cols = 30;
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.subagents.name")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.subagents.name")).setHeading();
     const agentsDesc = containerEl.createDiv({ cls: "claudian-sp-settings-desc" });
     agentsDesc.createEl("p", {
       text: t("settings.subagents.desc"),
@@ -66751,7 +71025,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     });
     const agentsContainer = containerEl.createDiv({ cls: "claudian-agents-container" });
     new AgentSettings(agentsContainer, this.plugin);
-    new import_obsidian28.Setting(containerEl).setName(t("settings.mcpServers.name")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.mcpServers.name")).setHeading();
     const mcpDesc = containerEl.createDiv({ cls: "claudian-mcp-settings-desc" });
     mcpDesc.createEl("p", {
       text: t("settings.mcpServers.desc"),
@@ -66759,7 +71033,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     });
     const mcpContainer = containerEl.createDiv({ cls: "claudian-mcp-container" });
     new McpSettingsManager(mcpContainer, this.plugin);
-    new import_obsidian28.Setting(containerEl).setName(t("settings.plugins.name")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.plugins.name")).setHeading();
     const pluginsDesc = containerEl.createDiv({ cls: "claudian-plugin-settings-desc" });
     pluginsDesc.createEl("p", {
       text: t("settings.plugins.desc"),
@@ -66767,14 +71041,14 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     });
     const pluginsContainer = containerEl.createDiv({ cls: "claudian-plugins-container" });
     new PluginSettingsManager(pluginsContainer, this.plugin);
-    new import_obsidian28.Setting(containerEl).setName(t("settings.safety")).setHeading();
-    new import_obsidian28.Setting(containerEl).setName(t("settings.loadUserSettings.name")).setDesc(t("settings.loadUserSettings.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.safety")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.loadUserSettings.name")).setDesc(t("settings.loadUserSettings.desc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.loadUserClaudeSettings).onChange(async (value) => {
         this.plugin.settings.loadUserClaudeSettings = value;
         await this.plugin.saveSettings();
       })
     );
-    new import_obsidian28.Setting(containerEl).setName(t("settings.enableBlocklist.name")).setDesc(t("settings.enableBlocklist.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.enableBlocklist.name")).setDesc(t("settings.enableBlocklist.desc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.enableBlocklist).onChange(async (value) => {
         this.plugin.settings.enableBlocklist = value;
         await this.plugin.saveSettings();
@@ -66783,7 +71057,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     const platformKey = getCurrentPlatformKey();
     const isWindows2 = platformKey === "windows";
     const platformLabel = isWindows2 ? "Windows" : "Unix";
-    new import_obsidian28.Setting(containerEl).setName(t("settings.blockedCommands.name", { platform: platformLabel })).setDesc(t("settings.blockedCommands.desc", { platform: platformLabel })).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.blockedCommands.name", { platform: platformLabel })).setDesc(t("settings.blockedCommands.desc", { platform: platformLabel })).addTextArea((text) => {
       const placeholder = isWindows2 ? "del /s /q\nrd /s /q\nRemove-Item -Recurse -Force" : "rm -rf\nchmod 777\nmkfs";
       text.setPlaceholder(placeholder).setValue(this.plugin.settings.blockedCommands[platformKey].join("\n")).onChange(async (value) => {
         this.plugin.settings.blockedCommands[platformKey] = value.split(/\r?\n/).map((s) => s.trim()).filter((s) => s.length > 0);
@@ -66793,7 +71067,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.cols = 40;
     });
     if (isWindows2) {
-      new import_obsidian28.Setting(containerEl).setName(t("settings.blockedCommands.unixName")).setDesc(t("settings.blockedCommands.unixDesc")).addTextArea((text) => {
+      new import_obsidian38.Setting(containerEl).setName(t("settings.blockedCommands.unixName")).setDesc(t("settings.blockedCommands.unixDesc")).addTextArea((text) => {
         text.setPlaceholder("rm -rf\nchmod 777\nmkfs").setValue(this.plugin.settings.blockedCommands.unix.join("\n")).onChange(async (value) => {
           this.plugin.settings.blockedCommands.unix = value.split(/\r?\n/).map((s) => s.trim()).filter((s) => s.length > 0);
           await this.plugin.saveSettings();
@@ -66802,7 +71076,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         text.inputEl.cols = 40;
       });
     }
-    new import_obsidian28.Setting(containerEl).setName(t("settings.exportPaths.name")).setDesc(t("settings.exportPaths.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.exportPaths.name")).setDesc(t("settings.exportPaths.desc")).addTextArea((text) => {
       const placeholder = process.platform === "win32" ? "~/Desktop\n~/Downloads\n%TEMP%" : "~/Desktop\n~/Downloads\n/tmp";
       text.setPlaceholder(placeholder).setValue(this.plugin.settings.allowedExportPaths.join("\n")).onChange(async (value) => {
         this.plugin.settings.allowedExportPaths = value.split(/\r?\n/).map((s) => s.trim()).filter((s) => s.length > 0);
@@ -66812,8 +71086,8 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       text.inputEl.cols = 40;
       text.inputEl.addEventListener("blur", () => this.restartServiceForPromptChange());
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.environment")).setHeading();
-    new import_obsidian28.Setting(containerEl).setName(t("settings.customVariables.name")).setDesc(t("settings.customVariables.desc")).addTextArea((text) => {
+    new import_obsidian38.Setting(containerEl).setName(t("settings.environment")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.customVariables.name")).setDesc(t("settings.customVariables.desc")).addTextArea((text) => {
       text.setPlaceholder("ANTHROPIC_API_KEY=your-key\nANTHROPIC_BASE_URL=https://api.example.com\nANTHROPIC_MODEL=custom-model").setValue(this.plugin.settings.environmentVariables);
       text.inputEl.rows = 6;
       text.inputEl.cols = 50;
@@ -66829,8 +71103,8 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     new EnvSnippetManager(envSnippetsContainer, this.plugin, () => {
       this.renderContextLimitsSection();
     });
-    new import_obsidian28.Setting(containerEl).setName(t("settings.advanced")).setHeading();
-    new import_obsidian28.Setting(containerEl).setName(t("settings.show1MModel.name")).setDesc(t("settings.show1MModel.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.advanced")).setHeading();
+    new import_obsidian38.Setting(containerEl).setName(t("settings.show1MModel.name")).setDesc(t("settings.show1MModel.desc")).addToggle(
       (toggle) => {
         var _a3;
         return toggle.setValue((_a3 = this.plugin.settings.show1MModel) != null ? _a3 : false).onChange(async (value) => {
@@ -66842,7 +71116,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         });
       }
     );
-    new import_obsidian28.Setting(containerEl).setName(t("settings.enableChrome.name")).setDesc(t("settings.enableChrome.desc")).addToggle(
+    new import_obsidian38.Setting(containerEl).setName(t("settings.enableChrome.name")).setDesc(t("settings.enableChrome.desc")).addToggle(
       (toggle) => {
         var _a3;
         return toggle.setValue((_a3 = this.plugin.settings.enableChrome) != null ? _a3 : false).onChange(async (value) => {
@@ -66851,7 +71125,33 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
         });
       }
     );
-    const maxTabsSetting = new import_obsidian28.Setting(containerEl).setName(t("settings.maxTabs.name")).setDesc(t("settings.maxTabs.desc"));
+    new import_obsidian38.Setting(containerEl).setName(t("settings.enableBangBash.name")).setDesc(t("settings.enableBangBash.desc")).addToggle(
+      (toggle) => {
+        var _a3;
+        return toggle.setValue((_a3 = this.plugin.settings.enableBangBash) != null ? _a3 : false).onChange(async (value) => {
+          bangBashValidationEl.style.display = "none";
+          if (value) {
+            const enhancedPath = getEnhancedPath();
+            const nodePath2 = findNodeExecutable(enhancedPath);
+            if (!nodePath2) {
+              bangBashValidationEl.setText(t("settings.enableBangBash.validation.noNode"));
+              bangBashValidationEl.style.display = "block";
+              toggle.setValue(false);
+              return;
+            }
+          }
+          this.plugin.settings.enableBangBash = value;
+          await this.plugin.saveSettings();
+        });
+      }
+    );
+    const bangBashValidationEl = containerEl.createDiv({ cls: "claudian-bang-bash-validation" });
+    bangBashValidationEl.style.color = "var(--text-error)";
+    bangBashValidationEl.style.fontSize = "0.85em";
+    bangBashValidationEl.style.marginTop = "-0.5em";
+    bangBashValidationEl.style.marginBottom = "0.5em";
+    bangBashValidationEl.style.display = "none";
+    const maxTabsSetting = new import_obsidian38.Setting(containerEl).setName(t("settings.maxTabs.name")).setDesc(t("settings.maxTabs.desc"));
     const maxTabsWarningEl = containerEl.createDiv({ cls: "claudian-max-tabs-warning" });
     maxTabsWarningEl.style.color = "var(--text-warning)";
     maxTabsWarningEl.style.fontSize = "0.85em";
@@ -66874,7 +71174,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
     const hostnameKey = getHostnameKey();
     const platformDesc = process.platform === "win32" ? t("settings.cliPath.descWindows") : t("settings.cliPath.descUnix");
     const cliPathDescription = `${t("settings.cliPath.desc")} ${platformDesc}`;
-    const cliPathSetting = new import_obsidian28.Setting(containerEl).setName(`${t("settings.cliPath.name")} (${hostnameKey})`).setDesc(cliPathDescription);
+    const cliPathSetting = new import_obsidian38.Setting(containerEl).setName(`${t("settings.cliPath.name")} (${hostnameKey})`).setDesc(cliPathDescription);
     const validationEl = containerEl.createDiv({ cls: "claudian-cli-path-validation" });
     validationEl.style.color = "var(--text-error)";
     validationEl.style.fontSize = "0.85em";
@@ -66885,10 +71185,10 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
       const trimmed = value.trim();
       if (!trimmed) return null;
       const expandedPath = expandHomePath(trimmed);
-      if (!fs7.existsSync(expandedPath)) {
+      if (!fs9.existsSync(expandedPath)) {
         return t("settings.cliPath.validation.notExist");
       }
-      const stat = fs7.statSync(expandedPath);
+      const stat = fs9.statSync(expandedPath);
       if (!stat.isFile()) {
         return t("settings.cliPath.validation.isDirectory");
       }
@@ -67000,7 +71300,7 @@ var ClaudianSettingTab = class extends import_obsidian28.PluginSettingTab {
 };
 
 // src/utils/claudeCli.ts
-var fs8 = __toESM(require("fs"));
+var fs10 = __toESM(require("fs"));
 var ClaudeCliResolver = class {
   constructor() {
     this.resolvedPath = null;
@@ -67043,8 +71343,8 @@ function resolveClaudeCliPath(hostnamePath, legacyPath, envText) {
   if (trimmedHostname) {
     try {
       const expandedPath = expandHomePath(trimmedHostname);
-      if (fs8.existsSync(expandedPath)) {
-        const stat = fs8.statSync(expandedPath);
+      if (fs10.existsSync(expandedPath)) {
+        const stat = fs10.statSync(expandedPath);
         if (stat.isFile()) {
           return expandedPath;
         }
@@ -67056,8 +71356,8 @@ function resolveClaudeCliPath(hostnamePath, legacyPath, envText) {
   if (trimmedLegacy) {
     try {
       const expandedPath = expandHomePath(trimmedLegacy);
-      if (fs8.existsSync(expandedPath)) {
-        const stat = fs8.statSync(expandedPath);
+      if (fs10.existsSync(expandedPath)) {
+        const stat = fs10.statSync(expandedPath);
         if (stat.isFile()) {
           return expandedPath;
         }
@@ -67069,341 +71369,8 @@ function resolveClaudeCliPath(hostnamePath, legacyPath, envText) {
   return findClaudeCLIPath(customEnv.PATH);
 }
 
-// src/utils/sdkSession.ts
-var import_fs3 = require("fs");
-var fs9 = __toESM(require("fs/promises"));
-var os5 = __toESM(require("os"));
-var path9 = __toESM(require("path"));
-function encodeVaultPathForSDK(vaultPath) {
-  const absolutePath = path9.resolve(vaultPath);
-  return absolutePath.replace(/[^a-zA-Z0-9]/g, "-");
-}
-function getSDKProjectsPath() {
-  return path9.join(os5.homedir(), ".claude", "projects");
-}
-function isValidSessionId(sessionId) {
-  if (!sessionId || sessionId.length === 0 || sessionId.length > 128) {
-    return false;
-  }
-  if (sessionId.includes("..") || sessionId.includes("/") || sessionId.includes("\\")) {
-    return false;
-  }
-  return /^[a-zA-Z0-9_-]+$/.test(sessionId);
-}
-function getSDKSessionPath(vaultPath, sessionId) {
-  if (!isValidSessionId(sessionId)) {
-    throw new Error(`Invalid session ID: ${sessionId}`);
-  }
-  const projectsPath = getSDKProjectsPath();
-  const encodedVault = encodeVaultPathForSDK(vaultPath);
-  return path9.join(projectsPath, encodedVault, `${sessionId}.jsonl`);
-}
-function sdkSessionExists(vaultPath, sessionId) {
-  try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
-    return (0, import_fs3.existsSync)(sessionPath);
-  } catch (e2) {
-    return false;
-  }
-}
-async function deleteSDKSession(vaultPath, sessionId) {
-  try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
-    if (!(0, import_fs3.existsSync)(sessionPath)) return;
-    await fs9.unlink(sessionPath);
-  } catch (e2) {
-  }
-}
-async function readSDKSession(vaultPath, sessionId) {
-  try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
-    if (!(0, import_fs3.existsSync)(sessionPath)) {
-      return { messages: [], skippedLines: 0 };
-    }
-    const content = await fs9.readFile(sessionPath, "utf-8");
-    const lines = content.split("\n").filter((line) => line.trim());
-    const messages = [];
-    let skippedLines = 0;
-    for (const line of lines) {
-      try {
-        const msg = JSON.parse(line);
-        messages.push(msg);
-      } catch (e2) {
-        skippedLines++;
-      }
-    }
-    return { messages, skippedLines };
-  } catch (error48) {
-    const errorMsg = error48 instanceof Error ? error48.message : String(error48);
-    return { messages: [], skippedLines: 0, error: errorMsg };
-  }
-}
-function extractTextContent(content) {
-  if (!content) return "";
-  if (typeof content === "string") return content;
-  return content.filter(
-    (block) => block.type === "text" && typeof block.text === "string" && block.text.trim() !== "(no content)"
-  ).map((block) => block.text).join("\n");
-}
-function isRebuiltContextContent(textContent) {
-  if (!/^(User|Assistant):\s/.test(textContent)) return false;
-  return textContent.includes("\n\nUser:") || textContent.includes("\n\nAssistant:") || textContent.includes("\n\nA:");
-}
-function extractDisplayContent(textContent) {
-  return extractContentBeforeXmlContext(textContent);
-}
-function extractImages(content) {
-  if (!content || typeof content === "string") return void 0;
-  const imageBlocks = content.filter(
-    (block) => {
-      var _a3;
-      return block.type === "image" && !!((_a3 = block.source) == null ? void 0 : _a3.data);
-    }
-  );
-  if (imageBlocks.length === 0) return void 0;
-  return imageBlocks.map((block, index) => ({
-    id: `sdk-img-${Date.now()}-${index}`,
-    name: `image-${index + 1}`,
-    mediaType: block.source.media_type,
-    data: block.source.data,
-    size: Math.ceil(block.source.data.length * 0.75),
-    // Approximate original size from base64
-    source: "paste"
-  }));
-}
-function extractToolCalls(content, toolResults) {
-  var _a3;
-  if (!content || typeof content === "string") return void 0;
-  const toolUses = content.filter(
-    (block) => block.type === "tool_use" && !!block.id && !!block.name
-  );
-  if (toolUses.length === 0) return void 0;
-  const results = toolResults != null ? toolResults : /* @__PURE__ */ new Map();
-  if (!toolResults) {
-    for (const block of content) {
-      if (block.type === "tool_result" && block.tool_use_id) {
-        const resultContent = typeof block.content === "string" ? block.content : JSON.stringify(block.content);
-        results.set(block.tool_use_id, {
-          content: resultContent,
-          isError: (_a3 = block.is_error) != null ? _a3 : false
-        });
-      }
-    }
-  }
-  return toolUses.map((block) => {
-    var _a4;
-    const result = results.get(block.id);
-    return {
-      id: block.id,
-      name: block.name,
-      input: (_a4 = block.input) != null ? _a4 : {},
-      status: result ? result.isError ? "error" : "completed" : "completed",
-      result: result == null ? void 0 : result.content,
-      isExpanded: false
-    };
-  });
-}
-function mapContentBlocks(content) {
-  var _a3;
-  if (!content || typeof content === "string") return void 0;
-  const blocks = [];
-  for (const block of content) {
-    switch (block.type) {
-      case "text": {
-        const trimmed = (_a3 = block.text) == null ? void 0 : _a3.trim();
-        if (trimmed && trimmed !== "(no content)") {
-          blocks.push({ type: "text", content: trimmed });
-        }
-        break;
-      }
-      case "thinking":
-        if (block.thinking) {
-          blocks.push({ type: "thinking", content: block.thinking });
-        }
-        break;
-      case "tool_use":
-        if (block.id) {
-          blocks.push({ type: "tool_use", toolId: block.id });
-        }
-        break;
-    }
-  }
-  return blocks.length > 0 ? blocks : void 0;
-}
-function parseSDKMessageToChat(sdkMsg, toolResults) {
-  var _a3;
-  if (sdkMsg.type === "file-history-snapshot") return null;
-  if (sdkMsg.type === "system") {
-    if (sdkMsg.subtype === "compact_boundary") {
-      const timestamp2 = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
-      return {
-        id: sdkMsg.uuid || `compact-${timestamp2}-${Math.random().toString(36).slice(2)}`,
-        role: "assistant",
-        content: "",
-        timestamp: timestamp2,
-        contentBlocks: [{ type: "compact_boundary" }]
-      };
-    }
-    return null;
-  }
-  if (sdkMsg.type === "result") return null;
-  if (sdkMsg.type !== "user" && sdkMsg.type !== "assistant") return null;
-  const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
-  const textContent = extractTextContent(content);
-  const images = sdkMsg.type === "user" ? extractImages(content) : void 0;
-  const hasToolUse = Array.isArray(content) && content.some((b3) => b3.type === "tool_use");
-  const hasImages = images && images.length > 0;
-  if (!textContent && !hasToolUse && !hasImages && (!content || typeof content === "string")) return null;
-  const timestamp = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
-  const commandNameMatch = sdkMsg.type === "user" ? textContent.match(/<command-name>(\/[^<]+)<\/command-name>/) : null;
-  let displayContent;
-  if (sdkMsg.type === "user") {
-    displayContent = commandNameMatch ? commandNameMatch[1] : extractDisplayContent(textContent);
-  }
-  const isInterrupt = sdkMsg.type === "user" && (textContent === "[Request interrupted by user]" || textContent === "[Request interrupted by user for tool use]" || textContent.includes("<local-command-stderr>") && textContent.includes("Compaction canceled"));
-  const isRebuiltContext = sdkMsg.type === "user" && isRebuiltContextContent(textContent);
-  return {
-    id: sdkMsg.uuid || `sdk-${timestamp}-${Math.random().toString(36).slice(2)}`,
-    role: sdkMsg.type,
-    content: textContent,
-    displayContent,
-    timestamp,
-    toolCalls: sdkMsg.type === "assistant" ? extractToolCalls(content, toolResults) : void 0,
-    contentBlocks: sdkMsg.type === "assistant" ? mapContentBlocks(content) : void 0,
-    images,
-    ...isInterrupt && { isInterrupt: true },
-    ...isRebuiltContext && { isRebuiltContext: true }
-  };
-}
-function collectToolResults(sdkMessages) {
-  var _a3, _b;
-  const results = /* @__PURE__ */ new Map();
-  for (const sdkMsg of sdkMessages) {
-    const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
-    if (!content || typeof content === "string") continue;
-    for (const block of content) {
-      if (block.type === "tool_result" && block.tool_use_id) {
-        const resultContent = typeof block.content === "string" ? block.content : JSON.stringify(block.content);
-        results.set(block.tool_use_id, {
-          content: resultContent,
-          isError: (_b = block.is_error) != null ? _b : false
-        });
-      }
-    }
-  }
-  return results;
-}
-function collectStructuredPatchResults(sdkMessages) {
-  var _a3;
-  const results = /* @__PURE__ */ new Map();
-  for (const sdkMsg of sdkMessages) {
-    if (sdkMsg.type !== "user" || !sdkMsg.toolUseResult) continue;
-    const content = (_a3 = sdkMsg.message) == null ? void 0 : _a3.content;
-    if (!content || typeof content === "string") continue;
-    for (const block of content) {
-      if (block.type === "tool_result" && block.tool_use_id) {
-        results.set(block.tool_use_id, sdkMsg.toolUseResult);
-      }
-    }
-  }
-  return results;
-}
-function isSystemInjectedMessage(sdkMsg) {
-  var _a3;
-  if (sdkMsg.type !== "user") return false;
-  if ("toolUseResult" in sdkMsg || "sourceToolUseID" in sdkMsg || !!sdkMsg.isMeta) {
-    return true;
-  }
-  const text = extractTextContent((_a3 = sdkMsg.message) == null ? void 0 : _a3.content);
-  if (!text) return false;
-  if (text.includes("<command-name>") && text.includes("<command-message>")) return false;
-  if (text.includes("<local-command-stderr>") && text.includes("Compaction canceled")) return false;
-  if (text.startsWith("This session is being continued from a previous conversation")) return true;
-  if (text.includes("<command-name>")) return true;
-  if (text.includes("<local-command-stdout>") || text.includes("<local-command-stderr>")) return true;
-  return false;
-}
-function mergeAssistantMessage(target, source) {
-  if (source.content) {
-    if (target.content) {
-      target.content = target.content + "\n\n" + source.content;
-    } else {
-      target.content = source.content;
-    }
-  }
-  if (source.toolCalls) {
-    target.toolCalls = [...target.toolCalls || [], ...source.toolCalls];
-  }
-  if (source.contentBlocks) {
-    target.contentBlocks = [...target.contentBlocks || [], ...source.contentBlocks];
-  }
-}
-async function loadSDKSessionMessages(vaultPath, sessionId) {
-  var _a3, _b;
-  const result = await readSDKSession(vaultPath, sessionId);
-  if (result.error) {
-    return { messages: [], skippedLines: result.skippedLines, error: result.error };
-  }
-  const toolResults = collectToolResults(result.messages);
-  const toolUseResults = collectStructuredPatchResults(result.messages);
-  const chatMessages = [];
-  let pendingAssistant = null;
-  const seenUuids = /* @__PURE__ */ new Set();
-  for (const sdkMsg of result.messages) {
-    if (sdkMsg.uuid) {
-      if (seenUuids.has(sdkMsg.uuid)) continue;
-      seenUuids.add(sdkMsg.uuid);
-    }
-    if (isSystemInjectedMessage(sdkMsg)) continue;
-    if (sdkMsg.type === "assistant" && ((_a3 = sdkMsg.message) == null ? void 0 : _a3.model) === "<synthetic>") continue;
-    const chatMsg = parseSDKMessageToChat(sdkMsg, toolResults);
-    if (!chatMsg) continue;
-    if (chatMsg.role === "assistant") {
-      const isCompactBoundary = (_b = chatMsg.contentBlocks) == null ? void 0 : _b.some((b3) => b3.type === "compact_boundary");
-      if (isCompactBoundary) {
-        if (pendingAssistant) {
-          chatMessages.push(pendingAssistant);
-        }
-        chatMessages.push(chatMsg);
-        pendingAssistant = null;
-      } else if (pendingAssistant) {
-        mergeAssistantMessage(pendingAssistant, chatMsg);
-      } else {
-        pendingAssistant = chatMsg;
-      }
-    } else {
-      if (pendingAssistant) {
-        chatMessages.push(pendingAssistant);
-        pendingAssistant = null;
-      }
-      chatMessages.push(chatMsg);
-    }
-  }
-  if (pendingAssistant) {
-    chatMessages.push(pendingAssistant);
-  }
-  if (toolUseResults.size > 0) {
-    for (const msg of chatMessages) {
-      if (msg.role !== "assistant" || !msg.toolCalls) continue;
-      for (const toolCall of msg.toolCalls) {
-        const toolUseResult = toolUseResults.get(toolCall.id);
-        if (!toolUseResult) continue;
-        if (!toolCall.diffData) {
-          toolCall.diffData = extractDiffData(toolUseResult, toolCall);
-        }
-        if (toolCall.name === TOOL_ASK_USER_QUESTION) {
-          const answers = extractResolvedAnswers(toolUseResult);
-          if (answers) toolCall.resolvedAnswers = answers;
-        }
-      }
-    }
-  }
-  chatMessages.sort((a, b3) => a.timestamp - b3.timestamp);
-  return { messages: chatMessages, skippedLines: result.skippedLines };
-}
-
 // src/main.ts
-var ClaudianPlugin = class extends import_obsidian29.Plugin {
+var ClaudianPlugin = class extends import_obsidian39.Plugin {
   constructor() {
     super(...arguments);
     this.conversations = [];
@@ -67453,10 +71420,21 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
           );
           editContext = { mode: "cursor", cursorContext };
         }
-        const modal = new InlineEditModal(this.app, this, editContext, notePath);
+        const modal = new InlineEditModal(
+          this.app,
+          this,
+          editor,
+          view,
+          editContext,
+          notePath,
+          () => {
+            var _a4, _b, _c, _d;
+            return (_d = (_c = (_b = (_a4 = this.getView()) == null ? void 0 : _a4.getActiveTab()) == null ? void 0 : _b.ui.externalContextSelector) == null ? void 0 : _c.getExternalContexts()) != null ? _d : [];
+          }
+        );
         const result = await modal.openAndWait();
         if (result.decision === "accept" && result.editedText !== void 0) {
-          new import_obsidian29.Notice(editContext.mode === "cursor" ? "Inserted" : "Edit applied");
+          new import_obsidian39.Notice(editContext.mode === "cursor" ? "Inserted" : "Edit applied");
         }
       }
     });
@@ -67542,7 +71520,7 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
   }
   /** Loads settings and conversations from persistent storage. */
   async loadSettings() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o;
+    var _a3, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q2, _r;
     this.storage = new StorageService(this);
     const { claudian } = await this.storage.initialize();
     const slashCommands = await this.storage.loadAllSlashCommands();
@@ -67592,6 +71570,9 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
       }
       conversation.previousSdkSessionIds = (_n = meta3.previousSdkSessionIds) != null ? _n : conversation.previousSdkSessionIds;
       conversation.legacyCutoffAt = (_o = meta3.legacyCutoffAt) != null ? _o : conversation.legacyCutoffAt;
+      conversation.subagentData = (_p = meta3.subagentData) != null ? _p : conversation.subagentData;
+      conversation.resumeSessionAt = (_q2 = meta3.resumeSessionAt) != null ? _q2 : conversation.resumeSessionAt;
+      conversation.forkSource = (_r = meta3.forkSource) != null ? _r : conversation.forkSource;
     }
     const nativeMetadata = await this.storage.sessions.listNativeMetadata();
     const nativeConversations = nativeMetadata.filter((meta3) => !legacyIds.has(meta3.id)).map((meta3) => {
@@ -67615,8 +71596,10 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
         titleGenerationStatus: meta3.titleGenerationStatus,
         legacyCutoffAt: meta3.legacyCutoffAt,
         isNative: true,
-        subagentData: meta3.subagentData
+        subagentData: meta3.subagentData,
         // Preserve for applying to loaded messages
+        resumeSessionAt: meta3.resumeSessionAt,
+        forkSource: meta3.forkSource
       };
     });
     this.conversations = [...legacyConversations, ...nativeConversations].sort(
@@ -67626,7 +71609,7 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
       }
     );
     if (failedCount > 0) {
-      new import_obsidian29.Notice(`Failed to load ${failedCount} conversation${failedCount > 1 ? "s" : ""}`);
+      new import_obsidian39.Notice(`Failed to load ${failedCount} conversation${failedCount > 1 ? "s" : ""}`);
     }
     setLocale(this.settings.locale);
     const backfilledConversations = this.backfillConversationResponseTimestamps();
@@ -67727,12 +71710,12 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
         }
       }
       if (failedTabs > 0) {
-        new import_obsidian29.Notice(`Environment changes applied, but ${failedTabs} tab(s) failed to restart.`);
+        new import_obsidian39.Notice(`Environment changes applied, but ${failedTabs} tab(s) failed to restart.`);
       }
     }
     view == null ? void 0 : view.refreshModelSelector();
     const noticeText = changed ? "Environment variables applied. Sessions will be rebuilt on next message." : "Environment variables applied.";
-    new import_obsidian29.Notice(noticeText);
+    new import_obsidian39.Notice(noticeText);
   }
   /** Returns the runtime environment variables (fixed at plugin load). */
   getActiveEnvironmentVariables() {
@@ -67821,12 +71804,17 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
     }
     return firstUserMsg.content.substring(0, 50) + (firstUserMsg.content.length > 50 ? "..." : "");
   }
+  /** Fork has no owned session yet; still referencing the source session for resume. */
+  isPendingFork(conversation) {
+    return !!conversation.forkSource && !conversation.sdkSessionId && !conversation.sessionId;
+  }
   async loadSdkMessagesForConversation(conversation) {
-    var _a3;
+    var _a3, _b;
     if (!conversation.isNative || conversation.sdkMessagesLoaded) return;
     const vaultPath = getVaultPath(this.app);
     if (!vaultPath) return;
-    const allSessionIds = [
+    const isPendingFork = this.isPendingFork(conversation);
+    const allSessionIds = isPendingFork ? [conversation.forkSource.sessionId] : [
       ...conversation.previousSdkSessionIds || [],
       (_a3 = conversation.sdkSessionId) != null ? _a3 : conversation.sessionId
     ].filter((id) => !!id);
@@ -67835,12 +71823,19 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
     let missingSessionCount = 0;
     let errorCount = 0;
     let successCount = 0;
+    const currentSessionId = isPendingFork ? conversation.forkSource.sessionId : (_b = conversation.sdkSessionId) != null ? _b : conversation.sessionId;
     for (const sessionId of allSessionIds) {
       if (!sdkSessionExists(vaultPath, sessionId)) {
         missingSessionCount++;
         continue;
       }
-      const result = await loadSDKSessionMessages(vaultPath, sessionId);
+      const isCurrentSession = sessionId === currentSessionId;
+      const truncateAt = isCurrentSession ? isPendingFork ? conversation.forkSource.resumeAt : conversation.resumeSessionAt : void 0;
+      const result = await loadSDKSessionMessages(
+        vaultPath,
+        sessionId,
+        truncateAt
+      );
       if (result.error) {
         errorCount++;
         continue;
@@ -67860,10 +71855,41 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
       ...afterCutoff
     ]).sort((a, b3) => a.timestamp - b3.timestamp);
     if (conversation.subagentData) {
+      await this.enrichAsyncSubagentToolCalls(
+        conversation.subagentData,
+        vaultPath,
+        allSessionIds
+      );
       this.applySubagentData(merged, conversation.subagentData);
     }
     conversation.messages = merged;
     conversation.sdkMessagesLoaded = true;
+  }
+  async enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds) {
+    var _a3, _b;
+    const uniqueSessionIds = [...new Set(sessionIds)];
+    if (uniqueSessionIds.length === 0) return;
+    const loaderCache = /* @__PURE__ */ new Map();
+    for (const subagent of Object.values(subagentData)) {
+      if (subagent.mode !== "async") continue;
+      if (!subagent.agentId) continue;
+      if (((_b = (_a3 = subagent.toolCalls) == null ? void 0 : _a3.length) != null ? _b : 0) > 0) continue;
+      for (const sessionId of uniqueSessionIds) {
+        const cacheKey = `${sessionId}:${subagent.agentId}`;
+        let loader = loaderCache.get(cacheKey);
+        if (!loader) {
+          loader = loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId);
+          loaderCache.set(cacheKey, loader);
+        }
+        const recoveredToolCalls = await loader;
+        if (recoveredToolCalls.length === 0) continue;
+        subagent.toolCalls = recoveredToolCalls.map((toolCall) => ({
+          ...toolCall,
+          input: { ...toolCall.input }
+        }));
+        break;
+      }
+    }
   }
   /**
    * Applies cached subagentData to messages.
@@ -67871,37 +71897,113 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
    * Also updates contentBlocks to properly identify Task tools as subagents.
    */
   applySubagentData(messages, subagentData) {
-    var _a3;
+    var _a3, _b, _c, _d, _e;
+    const attachedSubagentIds = /* @__PURE__ */ new Set();
+    const chooseRicherResult = (sdkResult, cachedResult) => {
+      const sdkText = typeof sdkResult === "string" ? sdkResult.trim() : "";
+      const cachedText = typeof cachedResult === "string" ? cachedResult.trim() : "";
+      if (sdkText.length === 0 && cachedText.length === 0) return void 0;
+      if (sdkText.length === 0) return cachedResult;
+      if (cachedText.length === 0) return sdkResult;
+      return sdkText.length >= cachedText.length ? sdkResult : cachedResult;
+    };
+    const ensureTaskToolCall = (msg, subagentId, subagent) => {
+      msg.toolCalls = msg.toolCalls || [];
+      let taskToolCall = msg.toolCalls.find(
+        (tc) => tc.id === subagentId && tc.name === TOOL_TASK
+      );
+      if (!taskToolCall) {
+        taskToolCall = {
+          id: subagentId,
+          name: TOOL_TASK,
+          input: {
+            description: subagent.description,
+            prompt: subagent.prompt || "",
+            ...subagent.mode === "async" ? { run_in_background: true } : {}
+          },
+          status: subagent.status,
+          result: subagent.result,
+          isExpanded: false,
+          subagent
+        };
+        msg.toolCalls.push(taskToolCall);
+        return taskToolCall;
+      }
+      if (!taskToolCall.input.description) taskToolCall.input.description = subagent.description;
+      if (!taskToolCall.input.prompt) taskToolCall.input.prompt = subagent.prompt || "";
+      if (subagent.mode === "async") taskToolCall.input.run_in_background = true;
+      taskToolCall.status = subagent.status;
+      const mergedResult = chooseRicherResult(taskToolCall.result, subagent.result);
+      if (mergedResult !== void 0) {
+        taskToolCall.result = mergedResult;
+        subagent.result = mergedResult;
+      }
+      taskToolCall.subagent = subagent;
+      return taskToolCall;
+    };
     for (const msg of messages) {
       if (msg.role !== "assistant") continue;
       for (const [subagentId, subagent] of Object.entries(subagentData)) {
-        if (!msg.subagents) {
-          msg.subagents = [];
-        }
         const hasSubagentBlock = (_a3 = msg.contentBlocks) == null ? void 0 : _a3.some(
           (b3) => b3.type === "subagent" && b3.subagentId === subagentId || b3.type === "tool_use" && b3.toolId === subagentId
         );
-        if (!hasSubagentBlock) continue;
-        const existingIdx = msg.subagents.findIndex((s) => s.id === subagentId);
-        if (existingIdx === -1) {
-          msg.subagents.push(subagent);
-        } else {
-          msg.subagents[existingIdx] = subagent;
+        const hasTaskToolCall = (_c = (_b = msg.toolCalls) == null ? void 0 : _b.some((tc) => tc.id === subagentId)) != null ? _c : false;
+        if (!hasSubagentBlock && !hasTaskToolCall) continue;
+        ensureTaskToolCall(msg, subagentId, subagent);
+        if (!msg.contentBlocks) {
+          msg.contentBlocks = [];
         }
-        if (msg.contentBlocks) {
-          for (let i2 = 0; i2 < msg.contentBlocks.length; i2++) {
-            const block = msg.contentBlocks[i2];
-            if (block.type === "tool_use" && block.toolId === subagentId) {
-              msg.contentBlocks[i2] = {
-                type: "subagent",
-                subagentId,
-                mode: subagent.mode
-              };
-            } else if (block.type === "subagent" && block.subagentId === subagentId && !block.mode) {
-              block.mode = subagent.mode;
-            }
+        let hasNormalizedSubagentBlock = false;
+        for (let i2 = 0; i2 < msg.contentBlocks.length; i2++) {
+          const block = msg.contentBlocks[i2];
+          if (block.type === "tool_use" && block.toolId === subagentId) {
+            msg.contentBlocks[i2] = {
+              type: "subagent",
+              subagentId,
+              mode: subagent.mode
+            };
+            hasNormalizedSubagentBlock = true;
+          } else if (block.type === "subagent" && block.subagentId === subagentId && !block.mode) {
+            block.mode = subagent.mode;
+            hasNormalizedSubagentBlock = true;
+          } else if (block.type === "subagent" && block.subagentId === subagentId) {
+            hasNormalizedSubagentBlock = true;
           }
         }
+        if (!hasNormalizedSubagentBlock && hasTaskToolCall) {
+          msg.contentBlocks.push({
+            type: "subagent",
+            subagentId,
+            mode: subagent.mode
+          });
+        }
+        attachedSubagentIds.add(subagentId);
+      }
+    }
+    for (const [subagentId, subagent] of Object.entries(subagentData)) {
+      if (attachedSubagentIds.has(subagentId)) continue;
+      let anchor = [...messages].reverse().find((msg) => msg.role === "assistant");
+      if (!anchor) {
+        anchor = {
+          id: `subagent-recovery-${subagentId}`,
+          role: "assistant",
+          content: "",
+          timestamp: (_e = (_d = subagent.completedAt) != null ? _d : subagent.startedAt) != null ? _e : Date.now(),
+          contentBlocks: []
+        };
+        messages.push(anchor);
+      }
+      ensureTaskToolCall(anchor, subagentId, subagent);
+      anchor.contentBlocks = anchor.contentBlocks || [];
+      const hasSubagentBlock = anchor.contentBlocks.some(
+        (block) => block.type === "subagent" && block.subagentId === subagentId
+      );
+      if (!hasSubagentBlock) {
+        anchor.contentBlocks.push({
+          type: "subagent",
+          subagentId,
+          mode: subagent.mode
+        });
       }
     }
   }
@@ -68003,7 +72105,8 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
    * For native sessions, saves metadata only (SDK handles messages including images).
    * For legacy sessions, saves full JSONL.
    *
-   * Image data is cleared from memory after save (SDK/JSONL has persisted it).
+   * Image data is cleared from memory after save (SDK/JSONL has persisted it),
+   * except for pending fork conversations whose images aren't yet in SDK storage.
    */
   async updateConversation(id, updates) {
     const conversation = this.conversations.find((c3) => c3.id === id);
@@ -68016,10 +72119,12 @@ var ClaudianPlugin = class extends import_obsidian29.Plugin {
     } else {
       await this.storage.sessions.saveConversation(conversation);
     }
-    for (const msg of conversation.messages) {
-      if (msg.images) {
-        for (const img of msg.images) {
-          img.data = "";
+    if (!this.isPendingFork(conversation)) {
+      for (const msg of conversation.messages) {
+        if (msg.images) {
+          for (const img of msg.images) {
+            img.data = "";
+          }
         }
       }
     }
