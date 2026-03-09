@@ -3,6 +3,18 @@
   "title": "Analyze limit existence and solve for parameter a",
   "titleGenerationStatus": "success",
   "createdAt": 1773031267179,
-  "updatedAt": 1773031270974,
-  "sessionId": null
+  "updatedAt": 1773031445217,
+  "lastResponseAt": 1773031445217,
+  "sessionId": "285547c0-db91-45ff-a4e3-8adeb1db83fe",
+  "sdkSessionId": "285547c0-db91-45ff-a4e3-8adeb1db83fe",
+  "currentNote": "考研数学/高数-函数极限与连续/4-极限计算方法/四则运算规则.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
