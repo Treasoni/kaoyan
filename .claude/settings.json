@@ -2,6 +2,9 @@
   "permissions": {
     "allow": [
       "Read(//Users/zhqznc/Documents/高数资料/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义"
     ]
   }
 }
