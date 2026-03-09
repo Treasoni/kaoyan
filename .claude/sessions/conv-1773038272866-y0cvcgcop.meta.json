@@ -3,6 +3,17 @@
   "title": "Refine math limit expression understanding",
   "titleGenerationStatus": "success",
   "createdAt": 1773038272866,
-  "updatedAt": 1773038279109,
-  "sessionId": null
+  "updatedAt": 1773038380367,
+  "lastResponseAt": 1773038380367,
+  "sessionId": "5c854cf3-8491-4208-85b1-cde3a62c3cbe",
+  "sdkSessionId": "5c854cf3-8491-4208-85b1-cde3a62c3cbe",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
