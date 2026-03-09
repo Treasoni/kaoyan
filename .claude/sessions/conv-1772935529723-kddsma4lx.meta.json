@@ -3,11 +3,10 @@
   "title": "Sync latest learning progress",
   "titleGenerationStatus": "success",
   "createdAt": 1772935529723,
-  "updatedAt": 1772938210707,
+  "updatedAt": 1773026930803,
   "lastResponseAt": 1772938210707,
   "sessionId": "7487a1f5-3c30-4672-9324-a9493d352976",
   "sdkSessionId": "7487a1f5-3c30-4672-9324-a9493d352976",
-  "currentNote": "考研计划/每日计划/2026-03-07-完成记录.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
