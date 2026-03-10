@@ -5,7 +5,8 @@
       "Skill(understanding)",
       "Skill(understanding:*)",
       "Skill(parse-words)",
-      "Skill(parse-words:*)"
+      "Skill(parse-words:*)",
+      "Bash(ls -la /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-plan/*.md)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义"
