@@ -294,8 +294,19 @@ n. 地址； vt. 称呼
 
 ## 真题语境文章
 
-{article_with_real_exam_contexts}
-```
+{article_including_all_target_words}
+
+> ⚠️ **词汇覆盖检查**: 本文已包含所有 {total_count} 个目标单词
+
+---
+
+## 📖 文章译文
+
+{chinese_translation}
+
+---
+
+## 📖 阅读理解练习
 
 ### 模板2: 真题语境卡片
 
