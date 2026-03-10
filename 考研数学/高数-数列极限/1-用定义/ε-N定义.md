@@ -63,13 +63,13 @@ $$
 
 ### 重要结论
 
-**1. 等价表述**
+#### **1. 等价表述**
 
 $$
 \lim_{n \to \infty} x_n = a \Leftrightarrow \text{任意} \varepsilon > 0, \text{存在} N \in \mathbb{N}_+, \text{当} n > N \text{时}, \text{恒有} |x_n - a| < \varepsilon
 $$
 
-**2. 与函数极限的对比**
+#### **2. 与函数极限的对比**
 
 | 数列极限 | 函数极限 |
 |----------|----------|
@@ -77,13 +77,22 @@ $$
 | 任意 $\varepsilon > 0$，存在 $N \in \mathbb{N}_+$ | 任意 $\varepsilon > 0$，存在 $X > 0$ |
 | 当 $n > N$ 时，$\|x_n - a\| < \varepsilon$ | 当 $x > X$ 时，$\|f(x) - a\| < \varepsilon$ |
 
-**3. 无穷小量与无穷大量**
+#### **3. 无穷小量与无穷大量**
 
-- **无穷小量**：当 $a = 0$ 时，称 $x_n$ 为 $n \to \infty$ 时的无穷小量
+用 $\varepsilon-N$ 语言表述：
+
+- **极限的一般定义**：
+  $$
+  \lim_{n \to \infty} x_n = a \Leftrightarrow \forall \varepsilon > 0, \exists N \in \mathbb{N}_+, \text{当} n > N \text{时}, \text{恒有} |x_n - a| < \varepsilon
+  $$
+
+- **无穷小量**：当 $a = 0$ 时，称 $x_n$ 为 $n \to \infty$ 时的**无穷小量**。
+
 - **无穷大量**：
   $$
-  \lim_{n \to \infty} x_n = \infty \Leftrightarrow \text{任意} X > 0, \text{存在} N \in \mathbb{N}_+, \text{当} n > N \text{时}, |x_n| > X
+  \lim_{n \to \infty} x_n = \infty \Leftrightarrow \forall X > 0, \exists N \in \mathbb{N}_+, \text{当} n > N \text{时}, \text{恒有} |x_n| > X
   $$
+  此时称 $x_n$ 为 $n \to \infty$ 时的**无穷大量**。
 
 ## 典型题型
 

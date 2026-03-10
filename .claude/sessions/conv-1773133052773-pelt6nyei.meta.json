@@ -3,6 +3,18 @@
   "title": "Add无穷大无穷小定义到数学笔记",
   "titleGenerationStatus": "success",
   "createdAt": 1773133052773,
-  "updatedAt": 1773133055890,
-  "sessionId": null
+  "updatedAt": 1773133205333,
+  "lastResponseAt": 1773133205333,
+  "sessionId": "2d0869ce-a8a5-49be-8dc1-5c673d8a30aa",
+  "sdkSessionId": "2d0869ce-a8a5-49be-8dc1-5c673d8a30aa",
+  "currentNote": "考研数学/高数-数列极限/1-用定义/ε-N定义.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
