@@ -3,13 +3,16 @@
   "title": "Analyze limit concepts and one-sided convergence",
   "titleGenerationStatus": "success",
   "createdAt": 1773113694279,
-  "updatedAt": 1773113761383,
-  "lastResponseAt": 1773113761383,
+  "updatedAt": 1773114823223,
+  "lastResponseAt": 1773114823223,
   "sessionId": "6c744cf2-4010-4372-add4-ef69f9dbdeea",
   "sdkSessionId": "6c744cf2-4010-4372-add4-ef69f9dbdeea",
   "currentNote": "CLAUDE.md",
+  "enabledMcpServers": [
+    "zai-mcp-server"
+  ],
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
