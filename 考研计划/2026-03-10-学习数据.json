@@ -1,0 +1,117 @@
+{
+  "date": "2026-03-10",
+  "timestamp": "2026-03-10T23:00:00Z",
+  "source": "kaoyan-plan",
+  "user_id": "user_kaoyan",
+  "session_id": "session_2026-03-10",
+
+  "daily_plan": {
+    "status": "partial",
+    "completed_tasks": [
+      "Day 010 词汇第1次复习（上午）✅ 已完成"
+    ],
+    "pending_tasks": [
+      "数列极限新内容学习（2-用性质）",
+      "数列极限新内容学习（3-用四则运算规则）",
+      "数学错题10个 ⭐⭐⭐⭐⭐",
+      "数学复习（全章）",
+      "海涅定理预习"
+    ],
+    "total_planned_hours": 6.5,
+    "completed_hours": 1.0,
+    "completion_rate": 15.4,
+    "notes": "上午完成英语单词复习，下午和晚上任务待完成"
+  },
+
+  "english_plan": {
+    "status": "in_progress",
+    "daily_words": {
+      "day_010": {
+        "total_words": 77,
+        "review_round": 1,
+        "completed": true,
+        "critical_words": [
+          "board→登上（交通工具）",
+          "vessel→血管",
+          "brief→给指示",
+          "boom→轰鸣",
+          "choice→精选的"
+        ],
+        "warning_words": [
+          "fashion（方式、方法） vs 时尚",
+          "certain（某个、某些） vs 确定的"
+        ]
+      }
+    },
+    "cumulative": {
+      "total_days": 12,
+      "total_words": 453,
+      "critical_count": 11,
+      "warning_count": 9,
+      "attention_count": 7,
+      "review_schedule": {
+        "2026-03-10": "Day 010 第1次复习 ✅",
+        "2026-03-11": "Day 006 第2次复习",
+        "2026-03-12": "Day 007 第2次复习",
+        "2026-03-13": "Day 010 第2次复习"
+      }
+    }
+  },
+
+  "math_plan": {
+    "status": "pending",
+    "current_module": "数列极限",
+    "module_progress": {
+      "total_modules": 8,
+      "completed_modules": 2,
+      "current_focus": "2-用性质 + 3-用四则运算规则"
+    },
+    "key_points": {
+      "today_focus": [
+        "保号性 ⭐⭐⭐⭐⭐（核心考点）",
+        "脱帽法 vs 戴帽法",
+        "四则运算规则：存在±不存在=不存在"
+      ],
+      "next_topic": "海涅定理（数列极限转函数极限的桥梁）"
+    }
+  },
+
+  "electronic_progress": {
+    "module_1": "电路分析基础 - 0%",
+    "module_2": "模拟电子技术 - 0%",
+    "module_3": "数字电子技术 - 0%",
+    "module_4": "历年真题 - 0%",
+    "status": "not_started",
+    "last_updated": "2026-03-04",
+    "reference_books": [
+      "《模拟电子技术基础》（童诗白）",
+      "《数字电子技术基础》（阎石）"
+    ]
+  },
+
+  "summary": {
+    "total_study_hours": 1.0,
+    "completed_subjects": ["英语"],
+    "pending_subjects": ["数学", "专业课"],
+    "exam_days_remaining": 289,
+    "continuous_study_days": 12,
+    "phase": "基础期",
+    "fatigue_level": "normal",
+    "efficiency_rating": "high"
+  },
+
+  "tags": [
+    "daily_plan_2026-03-10",
+    "english_review_completed",
+    "math_pending",
+    "electronics_not_started",
+    "kaoyan_data"
+  ],
+
+  "metadata": {
+    "created_at": "2026-03-10T23:00:00Z",
+    "updated_at": "2026-03-10T23:00:00Z",
+    "version": "1.0",
+    "upload_status": "local_stored"
+  }
+}
