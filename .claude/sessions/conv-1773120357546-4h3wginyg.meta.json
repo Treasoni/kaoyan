@@ -3,14 +3,11 @@
   "title": "Upload learning progress to MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1773120357546,
-  "updatedAt": 1773120558039,
+  "updatedAt": 1773131099116,
   "lastResponseAt": 1773120558039,
   "sessionId": "84bcf8cc-ee6c-4fc0-81f6-63e103fc2b64",
   "sdkSessionId": "84bcf8cc-ee6c-4fc0-81f6-63e103fc2b64",
   "currentNote": "CLAUDE.md",
-  "enabledMcpServers": [
-    "MemoryOperatingSystem"
-  ],
   "usage": {
     "model": "glm-4.5-air",
     "inputTokens": 0,

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773131132480-sm9ju6fvt",
+  "title": "Proof absolute value limit property with triang...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773131132480,
+  "updatedAt": 1773131260576,
+  "lastResponseAt": 1773131260576,
+  "sessionId": "38009f16-69f8-4bfb-8485-37a6f7976541",
+  "sdkSessionId": "38009f16-69f8-4bfb-8485-37a6f7976541",
+  "currentNote": "考研数学/高数-数列极限/1-用定义/子列收敛关系.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

@@ -50,6 +50,10 @@
         "--header",
         "Authorization: Bearer c820db9d1a8a4dac8e921e1b3463ce2e.NcOIVrXBALz8GEvb"
       ]
+    },
+    "time": {
+      "type": "sse",
+      "url": "https://mcp.api-inference.modelscope.net/b3158d0b497140/sse"
     }
   }
 }
