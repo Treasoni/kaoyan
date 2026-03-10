@@ -359,35 +359,23 @@ core_word_density: "5/22 (23%)"
 
 ---
 
-## 熟词僻义检测算法
+## 熟词僻义检测
 
-```python
-# 伪代码
-def detect_polysemy(word):
-    """检测单词是否在考研中有僻义"""
+> 📁 详细实现见 [code.md](code.md) 的 `detect_polysemy` 函数
 
-    # 1. 检索考研大纲词表
-    outline_entry = search_exam_outline(word)
+### 检测逻辑
 
-    # 2. 对比大纲释义与常见释义
-    common_meanings = get_common_dictionary_meanings(word)
-    exam_meanings = outline_entry.meanings
+1. 检索考研大纲词表
+2. 对比大纲释义与常见释义
+3. 计算语义重叠度
+4. 重叠度 < 50% → 触发僻义预警
 
-    # 3. 计算语义重叠度
-    overlap = calculate_semantic_overlap(common_meanings, exam_meanings)
+### 预警级别
 
-    # 4. 判断是否存在僻义
-    if overlap < 0.5:  # 重叠度低于50%，存在显著僻义
-        return PolysemyAlert(
-            word=word,
-            alert_type="critical" if overlap < 0.3 else "warning",
-            rare_meanings=[m for m in exam_meanings if m not in common_meanings],
-            common_meanings=common_meanings,
-            exam_frequency=calculate_exam_frequency(word)
-        )
-
-    return None
-```
+| 级别 | 重叠度 | 说明 |
+|------|--------|------|
+| ⚠️ Critical | < 30% | 高频陷阱词，必须重点记忆 |
+| ⚡ Warning | 30-50% | 中等陷阱词，需要留意 |
 
 ---
 
