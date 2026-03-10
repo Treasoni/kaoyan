@@ -19,9 +19,19 @@
 ```
 kaoyan-plan (中央调度器)
     ↓
-kaoyan-math → 数学学习与笔记生成
-kaoyan-english → 英语词汇与真题管理
-kaoyan-electronics → 电子技术基础学习
+├── kaoyan-math (路由器)
+│   ├── kaoyan-math-core → MemOS集成、调度信号、跨学科关联
+│   ├── kaoyan-math-notes → 笔记生成与更新
+│   └── kaoyan-math-structure → 知识点结构模板
+│
+├── kaoyan-english (路由器)
+│   ├── kaoyan-english-core → MemOS集成、记忆压缩、动态权重
+│   ├── kaoyan-english-vocab → 词汇整理、真题语境文章
+│   ├── kaoyan-english-review → SM-2复习计划、进度追踪
+│   ├── kaoyan-english-quiz → 单词测试
+│   └── kaoyan-english-writing → 写作输出训练
+│
+└── kaoyan-electronics → 电子技术基础学习
 ```
 
 ### 关键规则
@@ -33,6 +43,26 @@ kaoyan-electronics → 电子技术基础学习
 6. **持久化存储**：启用MemOS自动追踪错题和薄弱知识点
 7. **知识图谱构建**：自动建立知识点之间的依赖关系
 8. **学习前同步**：每次开始学习前，先执行 `/sync 拉取` 获取最新学习进度；学习结束后执行 `/sync 上传` 保存状态
+
+## 技能架构说明
+
+### 数学技能 (kaoyan-math)
+
+| 子技能 | 功能 | 触发场景 |
+|--------|------|----------|
+| kaoyan-math-core | 核心协调层 | 数学配置、欠账检查、跨学科关联 |
+| kaoyan-math-notes | 笔记生成更新 | 生成/更新数学笔记、LaTeX格式 |
+| kaoyan-math-structure | 知识点结构 | 查询目录结构、知识点关系图 |
+
+### 英语技能 (kaoyan-english)
+
+| 子技能 | 功能 | 触发场景 |
+|--------|------|----------|
+| kaoyan-english-core | 核心协调层 | 英语配置、欠账检查、记忆压缩 |
+| kaoyan-english-vocab | 词汇整理 | PDF提取、真题语境文章、查词 |
+| kaoyan-english-review | 复习计划 | SM-2计划、统计dashboard |
+| kaoyan-english-quiz | 单词测试 | 词义测试、僻义测试 |
+| kaoyan-english-writing | 写作输出 | 写作替换、汉译英、词义辨析 |
 
 ## 目录结构说明
 
@@ -200,7 +230,7 @@ kaoyan-electronics → 电子技术基础学习
 
 ### 英语学习（英语二）
 
-#### `/kaoyyan-english` - 词汇和真题管理
+#### `/kaoyan-english` - 词汇和真题管理
 - **功能**：
   - 从单词表（markdown格式）提取词汇
   - **自动生成四类学习笔记**：
@@ -393,9 +423,13 @@ fatigue = 主观感受 × 0.6 + 行为数据 × 0.4
 | `/kaoyan-plan` | 生成/更新学习计划 | 每日学习开始、进度更新 |
 | `/kaoyan-math` | 数学二学习和笔记生成 | 数学知识点学习、习题解答 |
 | `/kaoyan-english` | 英语二词汇和真题管理 | 单词记忆、阅读理解、写作 |
-| `/parse-words` | 解析文章中高亮的单词 🆕 | 真题语境文章词汇解析 |
+| `/parse-words` | 解析文章中高亮的单词 | 真题语境文章词汇解析 |
 | `/kaoyan-electronics` | 电子技术基础学习 | 专业课学习、真题解析 |
 | `/understanding` | 检查学习理解并格式化输出 | 学完知识点后验证理解 |
+
+> **子技能说明**：
+> - **kaoyan-math** 路由至 core/notes/structure 子技能
+> - **kaoyan-english** 路由至 core/vocab/review/quiz/writing 子技能
 
 ## 技术栈
 
@@ -457,5 +491,5 @@ fatigue = 主观感受 × 0.6 + 行为数据 × 0.4
 ---
 
 **创建日期**：2026-02-26
-**最后更新**：2026-03-07（添加科学时间分配规范）
+**最后更新**：2026-03-10（更新技能架构说明，拆分kaoyan-math和kaoyan-english子技能）
 **维护者**：Claude Code + 用户协作
