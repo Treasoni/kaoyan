@@ -119,46 +119,19 @@ version: 1.0.0
 
 ## 真题语境检索策略
 
-```python
-# 伪代码
-def generate_context_article(word_list, user_preferences):
-    """生成语境文章"""
-    # word_list: 今日目标词汇
-    # user_preferences: 考试类型(英一/英二)、偏好主题等
+> 📁 详细实现见 [code.md](code.md) 的 `generate_context_article` 函数
 
-    contexts = []
+### 检索优先级
 
-    for word in word_list:
-        # 1. 优先检索真题语境
-        real_exam_context = search_real_exam_pool(
-            word,
-            exam_type=user_preferences.exam_type,
-            recent_years=5  # 优先近5年
-        )
-        if real_exam_context:
-            contexts.append(real_exam_context)
-            continue
+1. **真题语境池** → 优先使用近5年真题
+2. **外刊同源库** → The Economist, The Guardian
+3. **AI生成** → 模拟真题风格（最后选项）
 
-        # 2. 检索外刊同源语境
-        journal_context = search_journal_pool(word)
-        if journal_context:
-            contexts.append(journal_context)
-            continue
+### 文章要求
 
-        # 3. 最后才用AI生成
-        ai_context = generate_ai_context(
-            word,
-            style="The Economist",  # 明确指定外刊风格
-            complexity=calculate_sentence_complexity(word)
-        )
-        ai_context.metadata.source = "AI生成(模拟)"
-        contexts.append(ai_context)
-
-    # 4. 将语境串联成"真题模拟材料"
-    article = weave_contexts_into_article(contexts)
-
-    return article
-```
+- ✅ 必须包含用户提供的**所有目标单词**
+- ✅ 文章译文放在文章**下面**
+- ✅ 风格模拟考研真题阅读理解
 
 ---
 
