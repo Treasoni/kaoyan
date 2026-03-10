@@ -3,13 +3,16 @@
   "title": "下午完成2-用性质。用时100分钟",
   "titleGenerationStatus": "failed",
   "createdAt": 1773141757821,
-  "updatedAt": 1773157867956,
-  "lastResponseAt": 1773157867956,
+  "updatedAt": 1773158544554,
+  "lastResponseAt": 1773158544554,
   "sessionId": "2213f538-9688-45f4-9d97-cb58b75eeca2",
   "sdkSessionId": "2213f538-9688-45f4-9d97-cb58b75eeca2",
   "currentNote": "考研计划/每日计划/2026-03-10-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,

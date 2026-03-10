@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773158167361-3n0f0ev7m",
+  "title": "Process English vocabulary learning materials",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773158167362,
+  "updatedAt": 1773158276461,
+  "lastResponseAt": 1773158276461,
+  "sessionId": null,
+  "currentNote": "考研英语/英语单词/2026-3-10.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
