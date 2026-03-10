@@ -6,6 +6,8 @@ version: 1.0.0
 
 # 考研英语复习计划技能 (Kaoyan English Review)
 
+> 📁 详细代码实现见 [code.md](code.md)
+
 ## 技能概述
 
 本技能专注于考研英语词汇的复习计划和进度追踪，帮助用户：

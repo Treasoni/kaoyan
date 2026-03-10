@@ -6,6 +6,8 @@ version: 1.0.0
 
 # 考研英语词汇整理技能 (Kaoyan English Vocab)
 
+> 📁 详细代码实现见 [code.md](code.md)
+
 ## 技能概述
 
 本技能专注于考研英语词汇的整理和查询，帮助用户：
