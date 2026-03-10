@@ -276,10 +276,10 @@ n. 地址； vt. 称呼
 
 ## 重点词汇
 
-| 单词 | 音标 | 释义 | ⚠️僻义 |
-|------|------|------|--------|
-| exemplify | /ɪɡˈzemplɪfaɪ/ | 举例说明 | |
-| address | /əˈdres/ | 地址/处理 | [critical] |
+| 单词 | 音标 | 词性 | 释义 | ⚠️僻义 | 💡记忆提示 | 📝常见搭配 |
+|------|------|------|------|--------|----------|------------|
+| exemplify | /ɪɡˈzemplɪfaɪ/ | v. | 举例说明 | | 词根: exempl(例子)+ify动词化 | exemplify the point |
+| address | /əˈdres/ | vt./n. | 处理；地址 | [critical] | 搭配记忆: address the problem | address the issue, address concerns |
 
 ---
 

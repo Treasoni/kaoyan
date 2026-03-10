@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773161521712-mnl4g8l9q",
+  "title": "Greet user for exam prep assistance",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773161521713,
+  "updatedAt": 1773161542309,
+  "lastResponseAt": 1773161542309,
+  "sessionId": "ee34f33f-84ac-466b-905e-c9d39962e0e5",
+  "sdkSessionId": "ee34f33f-84ac-466b-905e-c9d39962e0e5",
+  "currentNote": "考研英语/📊 学习进度.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 29766,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 192,
+    "contextWindow": 200000,
+    "contextTokens": 29958,
+    "percentage": 15
+  }
+}

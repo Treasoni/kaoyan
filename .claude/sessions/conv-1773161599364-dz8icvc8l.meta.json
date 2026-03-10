@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773161599364-dz8icvc8l",
+  "title": "Check English vocabulary review status",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773161599365,
+  "updatedAt": 1773161940295,
+  "lastResponseAt": 1773161940295,
+  "sessionId": "4fb1ccf5-e385-4f30-894a-fbbaf89e90f4",
+  "sdkSessionId": "4fb1ccf5-e385-4f30-894a-fbbaf89e90f4",
+  "currentNote": "考研英语/📊 学习进度.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
