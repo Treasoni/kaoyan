@@ -38,13 +38,13 @@
       "Remove-Partition"
     ]
   },
-  "permissionMode": "yolo",
+  "permissionMode": "plan",
   "model": "glm-5",
   "thinkingBudget": "low",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
   "show1MModel": false,
-  "enableChrome": false,
+  "enableChrome": true,
   "enableBangBash": false,
   "excludedTags": [],
   "mediaFolder": "",
@@ -64,7 +64,9 @@
   },
   "locale": "zh-CN",
   "claudeCliPath": "",
-  "claudeCliPathsByHost": {},
+  "claudeCliPathsByHost": {
+    "zhqzncdeMacBook-Air.local": "/Users/zhqznc/.local/bin/claude"
+  },
   "loadUserClaudeSettings": true,
   "lastClaudeModel": "haiku",
   "lastCustomModel": "glm-5",
