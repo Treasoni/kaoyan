@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773155958214-hozuynal1",
+  "title": "Parse highlighted words from articles",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773155958214,
+  "updatedAt": 1773155983002,
+  "lastResponseAt": 1773155983002,
+  "sessionId": "b01e01c3-7fcd-4883-92af-bf15f7bd66c1",
+  "sdkSessionId": "b01e01c3-7fcd-4883-92af-bf15f7bd66c1",
+  "currentNote": "考研英语/📰 真题语境文章/Context-Day-007-2026-03-06.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

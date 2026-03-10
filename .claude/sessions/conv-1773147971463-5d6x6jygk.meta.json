@@ -3,18 +3,17 @@
   "title": "Correct Heine theorem definition about deleted ...",
   "titleGenerationStatus": "success",
   "createdAt": 1773147971466,
-  "updatedAt": 1773148014588,
-  "lastResponseAt": 1773148014588,
+  "updatedAt": 1773155936808,
+  "lastResponseAt": 1773150231429,
   "sessionId": "571f1858-82ef-4903-9306-034614d81dfc",
   "sdkSessionId": "571f1858-82ef-4903-9306-034614d81dfc",
-  "currentNote": "考研数学/高数-数列极限/4-用海涅定理/海涅定理.md",
   "usage": {
     "model": "glm-4.7",
-    "inputTokens": 0,
+    "inputTokens": 24,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 37120,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 37144,
+    "percentage": 19
   }
 }
