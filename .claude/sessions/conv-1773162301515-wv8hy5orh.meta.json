@@ -3,13 +3,14 @@
   "title": "Update English study plan for 2026-03-11",
   "titleGenerationStatus": "success",
   "createdAt": 1773162301516,
-  "updatedAt": 1773242295897,
-  "lastResponseAt": 1773242295897,
+  "updatedAt": 1773244370740,
+  "lastResponseAt": 1773244370740,
   "sessionId": "8ec1f325-3e83-4f78-a0a0-c1eb5846024d",
   "sdkSessionId": "8ec1f325-3e83-4f78-a0a0-c1eb5846024d",
   "currentNote": "考研计划/每日计划/2026-03-11-每日计划.md",
   "enabledMcpServers": [
-    "time"
+    "time",
+    "MemoryOperatingSystem"
   ],
   "usage": {
     "model": "glm-4.7",

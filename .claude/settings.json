@@ -7,7 +7,9 @@
       "Skill(parse-words)",
       "Skill(parse-words:*)",
       "Bash(ls -la /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-plan/*.md)",
-      "mcp__zai-mcp-server__diagnose_error_screenshot"
+      "mcp__zai-mcp-server__diagnose_error_screenshot",
+      "mcp__MemoryOperatingSystem__add_message",
+      "mcp__MemoryOperatingSystem__add_feedback"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义"
