@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773237176022-50wjseshn",
+  "title": "Parse highlighted vocabulary from text",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773237176022,
+  "updatedAt": 1773237242641,
+  "lastResponseAt": 1773237242641,
+  "sessionId": "05babfd1-bfe5-4b56-9dc8-1599e80b7908",
+  "sdkSessionId": "05babfd1-bfe5-4b56-9dc8-1599e80b7908",
+  "currentNote": "考研英语/📰 真题语境文章/Context-Day-008-2026-03-07.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
