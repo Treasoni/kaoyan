@@ -3,9 +3,10 @@
   "title": "Manage English vocabulary and exam preparation",
   "titleGenerationStatus": "success",
   "createdAt": 1773242318703,
-  "updatedAt": 1773242365999,
-  "lastResponseAt": 1773242365999,
-  "sessionId": null,
+  "updatedAt": 1773242969787,
+  "lastResponseAt": 1773242969787,
+  "sessionId": "28ef6375-6acd-4582-af65-9a381bc4b446",
+  "sdkSessionId": "28ef6375-6acd-4582-af65-9a381bc4b446",
   "currentNote": "考研英语/英语单词/2026-3-11.md",
   "usage": {
     "model": "glm-4.7",
