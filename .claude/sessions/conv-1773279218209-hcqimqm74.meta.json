@@ -3,18 +3,18 @@
   "title": "Parse highlighted vocabulary from article",
   "titleGenerationStatus": "success",
   "createdAt": 1773279218209,
-  "updatedAt": 1773279265214,
-  "lastResponseAt": 1773279265214,
+  "updatedAt": 1773280307683,
+  "lastResponseAt": 1773279673342,
   "sessionId": "4aabc2b4-f1d5-4352-a353-41e6b899953f",
   "sdkSessionId": "4aabc2b4-f1d5-4352-a353-41e6b899953f",
   "currentNote": "考研英语/📰 真题语境文章/Day-012-2026-03-11.md",
   "usage": {
     "model": "glm-4.7",
-    "inputTokens": 90,
+    "inputTokens": 1349,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 40320,
+    "cacheReadInputTokens": 47104,
     "contextWindow": 200000,
-    "contextTokens": 40410,
-    "percentage": 20
+    "contextTokens": 48453,
+    "percentage": 24
   }
 }
