@@ -3,6 +3,21 @@
   "title": "完成6-单调有界准则学习，待做习题",
   "titleGenerationStatus": "success",
   "createdAt": 1773321920153,
-  "updatedAt": 1773321925769,
-  "sessionId": null
+  "updatedAt": 1773322132540,
+  "lastResponseAt": 1773322110670,
+  "sessionId": "d1cab5ce-2215-4852-9519-0b73786fdd7d",
+  "sdkSessionId": "d1cab5ce-2215-4852-9519-0b73786fdd7d",
+  "currentNote": "考研计划/每日计划/2026-03-12-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
