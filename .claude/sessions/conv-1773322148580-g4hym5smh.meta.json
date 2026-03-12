@@ -3,8 +3,8 @@
   "title": "Sync Study Progress Across Subjects",
   "titleGenerationStatus": "success",
   "createdAt": 1773322148581,
-  "updatedAt": 1773330428670,
-  "lastResponseAt": 1773330428670,
+  "updatedAt": 1773330603077,
+  "lastResponseAt": 1773330603077,
   "sessionId": "26b6b94c-9eed-41c7-b771-a778a9e0301b",
   "sdkSessionId": "26b6b94c-9eed-41c7-b771-a778a9e0301b",
   "currentNote": "考研计划/每日计划/2026-03-12-每日计划.md",
@@ -14,11 +14,11 @@
   ],
   "usage": {
     "model": "glm-4.7",
-    "inputTokens": 182,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 93056,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 93238,
-    "percentage": 47
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
