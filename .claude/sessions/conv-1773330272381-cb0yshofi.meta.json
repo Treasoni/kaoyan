@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773330272381-cb0yshofi",
+  "title": "管理考研英语词汇与真题学习",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773330272382,
+  "updatedAt": 1773330295589,
+  "lastResponseAt": 1773330295589,
+  "sessionId": null,
+  "currentNote": "考研英语/英语单词/2026-3-12.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
