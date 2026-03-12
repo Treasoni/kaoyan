@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773315193019-lqsdjunrv",
+  "title": "Analyze function inverse solution errors",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773315193019,
+  "updatedAt": 1773315323624,
+  "lastResponseAt": 1773315323624,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-函数极限与连续/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
