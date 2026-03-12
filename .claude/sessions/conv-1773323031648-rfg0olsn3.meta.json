@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773323031648-rfg0olsn3",
+  "title": "Explain equivalent infinitesimal differences fo...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773323031648,
+  "updatedAt": 1773323257922,
+  "lastResponseAt": 1773323257922,
+  "sessionId": "c508f75b-6bb8-4dd5-ac1d-6ced7b8a4c42",
+  "sdkSessionId": "c508f75b-6bb8-4dd5-ac1d-6ced7b8a4c42",
+  "currentNote": "考研数学/高数-函数极限与连续/📝 章节总结.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
