@@ -3,8 +3,8 @@
   "title": "Pull MemOS learning progress data",
   "titleGenerationStatus": "success",
   "createdAt": 1773244609522,
-  "updatedAt": 1773244951393,
-  "lastResponseAt": 1773244951393,
+  "updatedAt": 1773277097798,
+  "lastResponseAt": 1773277097798,
   "sessionId": "2c6d6221-d1b6-4747-8239-56286d1685b8",
   "sdkSessionId": "2c6d6221-d1b6-4747-8239-56286d1685b8",
   "currentNote": "考研数学/高数-数列极限/📊 学习进度.md",
@@ -14,11 +14,11 @@
   ],
   "usage": {
     "model": "glm-4.7",
-    "inputTokens": 0,
+    "inputTokens": 91735,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 128,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 91863,
+    "percentage": 46
   }
 }
