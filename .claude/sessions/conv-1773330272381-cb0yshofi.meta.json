@@ -3,9 +3,10 @@
   "title": "管理考研英语词汇与真题学习",
   "titleGenerationStatus": "success",
   "createdAt": 1773330272382,
-  "updatedAt": 1773330295589,
-  "lastResponseAt": 1773330295589,
-  "sessionId": null,
+  "updatedAt": 1773330471144,
+  "lastResponseAt": 1773330471144,
+  "sessionId": "63bec19b-1826-4227-bfb6-1aa6e564afe2",
+  "sdkSessionId": "63bec19b-1826-4227-bfb6-1aa6e564afe2",
   "currentNote": "考研英语/英语单词/2026-3-12.md",
   "usage": {
     "model": "glm-4.7",
