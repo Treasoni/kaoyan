@@ -1,11 +1,11 @@
 ---
 date: 2026-03-13
-day: Day-015
+day: Day-014
 source_words: 2026-3-13
-tags: [考研英语, 词汇统计, Day-015]
+tags: [考研英语, 词汇统计, Day-014]
 ---
 
-# Statistics Day-015：2026-03-13 词汇统计
+# Statistics Day-014：2026-03-13 词汇统计
 
 > [!info] 统计概览
 > - **总词数**：57词
