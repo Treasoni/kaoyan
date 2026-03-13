@@ -3,18 +3,18 @@
   "title": "Analyze infinite small function relationships",
   "titleGenerationStatus": "success",
   "createdAt": 1773384564000,
-  "updatedAt": 1773400894647,
-  "lastResponseAt": 1773400894647,
+  "updatedAt": 1773405670128,
+  "lastResponseAt": 1773405670128,
   "sessionId": "9c0d9207-a3e0-4012-a925-7e4a36351b3e",
   "sdkSessionId": "9c0d9207-a3e0-4012-a925-7e4a36351b3e",
   "currentNote": "考研数学/高数-函数极限与连续/错题本.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 34,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 122880,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 122914,
+    "percentage": 61
   }
 }
