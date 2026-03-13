@@ -1,0 +1,23 @@
+{
+  "id": "conv-1773367892330-fa7ti0e13",
+  "title": "Complete Day 010 review session (77 words, 35 min)",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773367892330,
+  "updatedAt": 1773367987910,
+  "lastResponseAt": 1773367987910,
+  "sessionId": "62db80c4-9dda-4a65-963b-33601b3af52c",
+  "sdkSessionId": "62db80c4-9dda-4a65-963b-33601b3af52c",
+  "currentNote": "考研计划/每日计划/2026-03-13-每日计划.md",
+  "enabledMcpServers": [
+    "time"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
