@@ -900,58 +900,126 @@ def record_mental_status(user_id, mental_status, stress_level, trigger=None):
 
 ### 单词表验证（v3.2新增）
 
-```python
-def validate_vocabulary_review_files():
-    """
-    验证是否有新学的单词表未被安排复习（v3.2新增）
+> [!important] SM-2算法标准间隔（已修正）
+> - 第1次复习：学习后 **1天**
+> - 第2次复习：第1次复习后 **3天**（累计4天）
+> - 第3次复习：第2次复习后 **7天**（累计11天）
 
-    功能：
-        1. 扫描单词表目录获取最新文件
-        2. 对比学习进度文件检查是否已记录
-        3. 根据SM-2算法判断是否需要复习
-        4. 返回遗漏的复习任务列表
+```python
+# SM-2算法标准间隔常量
+SM2_INTERVALS = {
+    1: 1,   # 第1次复习：学习后1天
+    2: 3,   # 第2次复习：第1次后3天
+    3: 7,   # 第3次复习：第2次后7天
+}
+
+
+def calculate_sm2_next_review(learning_date, review_count):
+    """
+    计算下次复习日期（标准SM-2算法）
+
+    参数:
+        learning_date: 学习日期
+        review_count: 已完成复习次数（0=刚学，1=已复习1次，2=已复习2次）
 
     返回:
-        list: 需要添加到复习计划的单词表任务列表
-              格式: [{'day': int, 'file': str, 'date': str, 'review_type': str, 'word_count': int}]
+        dict: {
+            'next_review_date': 下次复习日期,
+            'review_type': 复习类型（第N次复习）,
+            'cumulative_days': 累计天数,
+            'is_overdue': 是否逾期
+        }
     """
-    from datetime import datetime
+    from datetime import timedelta
+
+    next_review = review_count + 1  # 下次是第N次复习
+
+    # 计算累计间隔
+    cumulative_days = 0
+    for i in range(1, next_review + 1):
+        if i == 1:
+            cumulative_days += SM2_INTERVALS[1]  # 1天
+        elif i == 2:
+            cumulative_days += SM2_INTERVALS[2]  # +3天 = 4天
+        else:
+            cumulative_days += SM2_INTERVALS[3]  # +7天 = 11天
+
+    next_review_date = learning_date + timedelta(days=cumulative_days)
+
+    return {
+        'next_review_date': next_review_date,
+        'review_type': f"第{next_review}次复习",
+        'cumulative_days': cumulative_days,
+        'is_overdue': datetime.now().date() > next_review_date
+    }
+
+
+def validate_vocabulary_review_files():
+    """
+    验证是否有单词表需要复习（v3.3修正版 - 完整SM-2算法）
+
+    功能：
+        1. 读取学习进度文件获取每个Day的复习历史
+        2. 根据SM-2算法计算每个Day的下次复习日期
+        3. 检查是否有到期/逾期的复习任务
+        4. 返回需要复习的任务列表（按优先级排序）
+
+    返回:
+        list: 需要添加到复习计划的任务列表
+    """
+    from datetime import datetime, timedelta
     import re
     import os
-    import glob as glob_module
 
-    # 1. 扫描单词表目录
-    vocab_dir = "考研英语/英语单词"
-    vocab_files = glob_module.glob(os.path.join(vocab_dir, "2026-3-*.md"))
-    vocab_files.sort(reverse=True)  # 按日期降序排列
+    today = datetime.now().date()
+    missed_reviews = []
 
-    if not vocab_files:
-        return []
-
-    # 2. 读取学习进度文件，提取已记录的Day
+    # 1. 读取学习进度文件
     progress_file = os.path.join("考研英语", "📊 学习进度.md")
     try:
         with open(progress_file, 'r', encoding='utf-8') as f:
             progress_content = f.read()
     except Exception as e:
         log_warning(f"无法读取学习进度文件: {e}")
-        progress_content = ""
+        return []
 
-    # 提取进度文件中已记录的Day编号
-    recorded_days = []
-    for match in re.finditer(r'Day\s+(\d+)', progress_content):
+    # 2. 提取每个Day的学习日期和复习记录
+    # 格式：| 日期 | Day | 复习次数 | ...
+    day_records = {}  # {day_num: {'learning_date': date, 'review_count': int, 'word_count': int}}
+
+    # 匹配复习历史记录表格中的行
+    # 例如：| 03-02 | Day 001 | 第1次 | 70词 | ...
+    review_pattern = r'\|\s*(\d{2}-\d{2})\s*\|\s*Day\s*(\d+)\s*\|\s*第(\d+)次\s*\|'
+    for match in re.finditer(review_pattern, progress_content):
+        date_str = match.group(1)
+        day_num = int(match.group(2))
+        review_num = int(match.group(3))
+
+        # 解析日期（假设2026年）
         try:
-            recorded_days.append(int(match.group(1)))
+            record_date = datetime.strptime(f"2026-{date_str}", "%Y-%m-%d").date()
         except ValueError:
             continue
 
-    max_recorded_day = max(recorded_days) if recorded_days else 0
+        if day_num not in day_records:
+            day_records[day_num] = {
+                'learning_date': record_date,
+                'review_count': 0,
+                'word_count': 0
+            }
 
-    # 3. 检查最新的单词表文件
-    missed_reviews = []
-    today = datetime.now().date()
+        # 更新复习次数（取最大值）
+        day_records[day_num]['review_count'] = max(
+            day_records[day_num]['review_count'],
+            review_num
+        )
 
-    for vocab_file in vocab_files[:3]:  # 检查最新的3个文件
+    # 3. 从单词表目录补充学习日期和词汇量
+    vocab_dir = "考研英语/英语单词"
+    import glob as glob_module
+    vocab_files = glob_module.glob(os.path.join(vocab_dir, "*.md"))
+
+    for vocab_file in vocab_files:
         # 从文件名提取日期
         date_match = re.search(r'(\d{4}-\d{2}-\d{2})\.md$', vocab_file)
         if not date_match:
@@ -967,42 +1035,72 @@ def validate_vocabulary_review_files():
         try:
             with open(vocab_file, 'r', encoding='utf-8') as f:
                 content = f.read()
-                # 提取Day编号（通常在文件开头的标题中）
                 day_match = re.search(r'#\s*(?:考研英语单词表\s*-\s*)?Day\s*(\d+)', content)
                 day_num = int(day_match.group(1)) if day_match else None
 
-                # 提取单词数量
                 count_match = re.search(r'单词总[数词量].*?(\d+)', content)
-                word_count = int(count_match.group(1)) if count_match else 0
-        except Exception as e:
-            log_warning(f"无法读取单词表文件 {vocab_file}: {e}")
+                word_count = int(count_match.group(1)) if count_match else 50
+        except Exception:
             continue
 
         if not day_num:
             continue
 
-        # 4. 检查是否需要复习（根据SM-2算法）
-        days_since_learning = (today - file_date).days
+        # 补充或创建Day记录
+        if day_num not in day_records:
+            day_records[day_num] = {
+                'learning_date': file_date,
+                'review_count': 0,
+                'word_count': word_count
+            }
+        else:
+            day_records[day_num]['word_count'] = word_count
+            # 如果没有学习日期，从文件名推断
+            if not day_records[day_num].get('learning_date'):
+                day_records[day_num]['learning_date'] = file_date
 
-        # 判断条件：
-        # - Day编号大于进度文件中记录的最大Day（说明是新学习的）
-        # - 距离学习至少1天（第1次复习应在学习后1天进行）
-        # - 不超过7天（避免太久远的历史记录）
-        if day_num > max_recorded_day and 1 <= days_since_learning <= 7:
-            review_type = "第1次复习" if days_since_learning >= 1 else "新学"
+    # 4. 计算每个Day的下次复习日期
+    for day_num, record in day_records.items():
+        learning_date = record.get('learning_date')
+        review_count = record.get('review_count', 0)
+        word_count = record.get('word_count', 50)
 
+        if not learning_date:
+            continue
+
+        # 计算下次复习信息
+        review_info = calculate_sm2_next_review(learning_date, review_count)
+        next_review_date = review_info['next_review_date']
+        review_type = review_info['review_type']
+        is_overdue = review_info['is_overdue']
+
+        # 检查是否需要复习（今天或之前）
+        days_until_review = (next_review_date - today).days
+
+        if days_until_review <= 0:  # 今天或逾期
             missed_reviews.append({
                 'day': day_num,
-                'file': os.path.basename(vocab_file),
-                'date': file_date_str,
                 'review_type': review_type,
+                'next_review_date': next_review_date.isoformat(),
                 'word_count': word_count,
-                'priority': 'high',  # 新学单词优先复习
+                'priority': 'critical' if is_overdue else 'high',
                 'subject': '英语',
-                'estimated_duration': max(20, word_count * 0.5)  # 估算复习时长（分钟）
+                'is_overdue': is_overdue,
+                'days_overdue': abs(days_until_review),
+                'estimated_duration': max(15, word_count * 0.4)  # 估算复习时长
             })
 
-            log_warning(f"发现未安排复习的单词表: Day {day_num} ({file_date_str}, {word_count}词)")
+            if is_overdue:
+                log_warning(f"发现逾期复习: Day {day_num} {review_type}（已逾期{abs(days_until_review)}天）")
+            else:
+                log_info(f"发现今日复习: Day {day_num} {review_type}")
+
+    # 5. 按优先级排序（逾期>今日>高词汇量）
+    missed_reviews.sort(key=lambda x: (
+        -int(x.get('is_overdue', False)),  # 逾期优先
+        -x.get('days_overdue', 0),          # 逾期越久越优先
+        -x.get('word_count', 0)             # 词汇量大的优先
+    ))
 
     return missed_reviews
 

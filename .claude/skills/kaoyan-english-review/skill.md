@@ -102,7 +102,14 @@ def calculate_next_review_kaoyan(card, quality, exam_date):
 
 
 def calculate_sm2_interval(card, quality):
-    """标准SM-2算法"""
+    """标准SM-2算法
+
+    标准SM-2间隔规则：
+        - 第1次复习：学习后1天
+        - 第2次复习：第1次复习后3天（累计4天）
+        - 第3次复习：第2次复习后7天（累计11天）
+        - 后续复习：interval × ease_factor
+    """
     # quality: 0-5评分
     # 5: 完美记忆
     # 4: 正确但有犹豫
@@ -114,9 +121,11 @@ def calculate_sm2_interval(card, quality):
     if quality >= 3:
         # 回答正确，增加间隔
         if card.review_count == 0:
-            card.interval = 1
+            card.interval = 1  # 第1次：1天
         elif card.review_count == 1:
-            card.interval = 6
+            card.interval = 3  # 第2次：3天（累计4天）
+        elif card.review_count == 2:
+            card.interval = 7  # 第3次：7天（累计11天）
         else:
             card.interval = card.interval * card.ease_factor
 

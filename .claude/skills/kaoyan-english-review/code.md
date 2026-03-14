@@ -80,14 +80,26 @@ def calculate_sm2_interval(card, quality):
 
     Returns:
         int: 复习间隔（天）
+
+    标准SM-2间隔规则：
+        - 第1次复习：学习后1天
+        - 第2次复习：第1次复习后3天（累计4天）
+        - 第3次复习：第2次复习后7天（累计11天）
+        - 后续复习：interval × ease_factor
     """
     if quality >= 3:
         # 回答正确，增加间隔
         if card.review_count == 0:
+            # 第1次复习：学习后1天
             interval = 1
         elif card.review_count == 1:
-            interval = 6
+            # 第2次复习：第1次复习后3天（累计4天）
+            interval = 3
+        elif card.review_count == 2:
+            # 第3次复习：第2次复习后7天（累计11天）
+            interval = 7
         else:
+            # 后续复习：interval × ease_factor
             interval = int(card.interval * card.ease_factor)
 
         # 更新ease factor
