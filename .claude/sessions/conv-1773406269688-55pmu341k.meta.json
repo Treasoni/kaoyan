@@ -3,14 +3,14 @@
   "title": "Update Completion Record for Error Problems",
   "titleGenerationStatus": "success",
   "createdAt": 1773406269689,
-  "updatedAt": 1773409666105,
-  "lastResponseAt": 1773409666105,
+  "updatedAt": 1773454293535,
+  "lastResponseAt": 1773413185333,
   "sessionId": "a9e0b861-2aab-4f5d-816d-ef35d168f1d3",
   "sdkSessionId": "a9e0b861-2aab-4f5d-816d-ef35d168f1d3",
   "currentNote": "考研计划/每日计划/2026-03-13-每日计划.md",
   "enabledMcpServers": [
-    "MemoryOperatingSystem",
-    "time"
+    "time",
+    "MemoryOperatingSystem"
   ],
   "usage": {
     "model": "glm-5",
