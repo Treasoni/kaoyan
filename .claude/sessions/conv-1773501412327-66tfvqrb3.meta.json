@@ -3,8 +3,8 @@
   "title": "Sync MemOS learning progress",
   "titleGenerationStatus": "success",
   "createdAt": 1773501412327,
-  "updatedAt": 1773501610529,
-  "lastResponseAt": 1773501610529,
+  "updatedAt": 1773502492879,
+  "lastResponseAt": 1773502492879,
   "sessionId": "65addf32-e23b-4bb9-b628-57ef7b65ff6d",
   "sdkSessionId": "65addf32-e23b-4bb9-b628-57ef7b65ff6d",
   "currentNote": "考研数学/高数-一元微分学/一元微分学的概念/1-导数/单侧导数.md",
@@ -13,11 +13,11 @@
   ],
   "usage": {
     "model": "glm-4.7",
-    "inputTokens": 134,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 77440,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 77574,
-    "percentage": 39
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
