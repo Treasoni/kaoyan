@@ -87,7 +87,14 @@ def generate_daily_plan_v3(user_input, mode="minimal", previous_plan=None):
     else:
         fatigue = 0.0
 
-    # 8. 分配时段到科目（含最小块时长检查）
+    # 8. v3.2: 验证单词表复习任务（防止遗漏新学单词）
+    missed_vocab_tasks = validate_vocabulary_review_files()
+    if missed_vocab_tasks:
+        logger.warning(f"发现 {len(missed_vocab_tasks)} 个未安排复习的单词表，已自动添加")
+        # 将遗漏的复习任务添加到上午时段
+        user_input.setdefault("morning_tasks", []).extend(missed_vocab_tasks)
+
+    # 9. 分配时段到科目（含最小块时长检查）
     plan = allocate_slots_to_subjects(
         free_slots,
         slot_preferences,
@@ -95,7 +102,14 @@ def generate_daily_plan_v3(user_input, mode="minimal", previous_plan=None):
         min_block_check=True
     )
 
-    # 9. MemOS: 保存计划 (可降级)
+    # 10. v3.2: 计划生成后一致性检查
+    consistency_issues = consistency_check_after_plan_generation(plan)
+    if consistency_issues:
+        logger.warning(f"发现 {len(consistency_issues)} 个一致性问题:")
+        for issue in consistency_issues:
+            logger.warning(f"  - {issue.get('message')}")
+
+    # 11. MemOS: 保存计划 (可降级)
     safe_save_plan(plan, user_input, mode)
 
     return plan
@@ -882,6 +896,184 @@ def record_mental_status(user_id, mental_status, stress_level, trigger=None):
         )
     except Exception as e:
         log_warning(f"Failed to record mental status: {e}")
+```
+
+### 单词表验证（v3.2新增）
+
+```python
+def validate_vocabulary_review_files():
+    """
+    验证是否有新学的单词表未被安排复习（v3.2新增）
+
+    功能：
+        1. 扫描单词表目录获取最新文件
+        2. 对比学习进度文件检查是否已记录
+        3. 根据SM-2算法判断是否需要复习
+        4. 返回遗漏的复习任务列表
+
+    返回:
+        list: 需要添加到复习计划的单词表任务列表
+              格式: [{'day': int, 'file': str, 'date': str, 'review_type': str, 'word_count': int}]
+    """
+    from datetime import datetime
+    import re
+    import os
+    import glob as glob_module
+
+    # 1. 扫描单词表目录
+    vocab_dir = "考研英语/英语单词"
+    vocab_files = glob_module.glob(os.path.join(vocab_dir, "2026-3-*.md"))
+    vocab_files.sort(reverse=True)  # 按日期降序排列
+
+    if not vocab_files:
+        return []
+
+    # 2. 读取学习进度文件，提取已记录的Day
+    progress_file = os.path.join("考研英语", "📊 学习进度.md")
+    try:
+        with open(progress_file, 'r', encoding='utf-8') as f:
+            progress_content = f.read()
+    except Exception as e:
+        log_warning(f"无法读取学习进度文件: {e}")
+        progress_content = ""
+
+    # 提取进度文件中已记录的Day编号
+    recorded_days = []
+    for match in re.finditer(r'Day\s+(\d+)', progress_content):
+        try:
+            recorded_days.append(int(match.group(1)))
+        except ValueError:
+            continue
+
+    max_recorded_day = max(recorded_days) if recorded_days else 0
+
+    # 3. 检查最新的单词表文件
+    missed_reviews = []
+    today = datetime.now().date()
+
+    for vocab_file in vocab_files[:3]:  # 检查最新的3个文件
+        # 从文件名提取日期
+        date_match = re.search(r'(\d{4}-\d{2}-\d{2})\.md$', vocab_file)
+        if not date_match:
+            continue
+
+        file_date_str = date_match.group(1)
+        try:
+            file_date = datetime.strptime(file_date_str, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+
+        # 从文件内容提取Day编号和单词数量
+        try:
+            with open(vocab_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                # 提取Day编号（通常在文件开头的标题中）
+                day_match = re.search(r'#\s*(?:考研英语单词表\s*-\s*)?Day\s*(\d+)', content)
+                day_num = int(day_match.group(1)) if day_match else None
+
+                # 提取单词数量
+                count_match = re.search(r'单词总[数词量].*?(\d+)', content)
+                word_count = int(count_match.group(1)) if count_match else 0
+        except Exception as e:
+            log_warning(f"无法读取单词表文件 {vocab_file}: {e}")
+            continue
+
+        if not day_num:
+            continue
+
+        # 4. 检查是否需要复习（根据SM-2算法）
+        days_since_learning = (today - file_date).days
+
+        # 判断条件：
+        # - Day编号大于进度文件中记录的最大Day（说明是新学习的）
+        # - 距离学习至少1天（第1次复习应在学习后1天进行）
+        # - 不超过7天（避免太久远的历史记录）
+        if day_num > max_recorded_day and 1 <= days_since_learning <= 7:
+            review_type = "第1次复习" if days_since_learning >= 1 else "新学"
+
+            missed_reviews.append({
+                'day': day_num,
+                'file': os.path.basename(vocab_file),
+                'date': file_date_str,
+                'review_type': review_type,
+                'word_count': word_count,
+                'priority': 'high',  # 新学单词优先复习
+                'subject': '英语',
+                'estimated_duration': max(20, word_count * 0.5)  # 估算复习时长（分钟）
+            })
+
+            log_warning(f"发现未安排复习的单词表: Day {day_num} ({file_date_str}, {word_count}词)")
+
+    return missed_reviews
+
+
+def consistency_check_after_plan_generation(plan, vocab_dir="考研英语/英语单词"):
+    """
+    计划生成后的一致性检查（v3.2新增）
+
+    功能：
+        验证生成的计划是否包含所有必要的复习任务
+
+    参数:
+        plan: 已生成的学习计划
+        vocab_dir: 单词表目录路径
+
+    返回:
+        list: 发现的问题列表
+    """
+    from datetime import datetime
+    import re
+    import os
+    import glob as glob_module
+
+    issues = []
+
+    # 1. 获取最新的单词表文件
+    vocab_files = glob_module.glob(os.path.join(vocab_dir, "2026-3-*.md"))
+    vocab_files.sort(reverse=True)
+
+    if not vocab_files:
+        return issues
+
+    latest_file = vocab_files[0]
+
+    # 2. 提取学习日期和Day编号
+    date_match = re.search(r'(\d{4}-\d{2}-\d{2})\.md$', latest_file)
+    if not date_match:
+        return issues
+
+    try:
+        file_date = datetime.strptime(date_match.group(1), "%Y-%m-%d").date()
+    except ValueError:
+        return issues
+
+    # 3. 检查是否需要复习
+    days_since_learning = (datetime.now().date() - file_date).days
+
+    if days_since_learning >= 1:
+        # 提取Day编号
+        try:
+            with open(latest_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                day_match = re.search(r'Day\s*(\d+)', content)
+                day_num = int(day_match.group(1)) if day_match else None
+        except Exception:
+            return issues
+
+        if day_num:
+            # 4. 检查计划中是否包含该Day的复习任务
+            plan_content = str(plan)
+            search_pattern = f"Day\\s*{day_num}\\s*第?\\d*次?复习"
+
+            if not re.search(search_pattern, plan_content):
+                issues.append({
+                    'type': 'missed_review',
+                    'day': day_num,
+                    'file': os.path.basename(latest_file),
+                    'message': f"Day {day_num} 需要第1次复习，但未在计划中发现"
+                })
+
+    return issues
 ```
 
 ---

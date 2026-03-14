@@ -1,7 +1,7 @@
 ---
 name: kaoyan-plan
-description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), and plan upsert logic with tagging for version control.
-version: 3.5.0
+description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), vocabulary review validation (prevents missing newly learned vocabulary), plan upsert logic with tagging for version control.
+version: 3.6.0
 ---
 
 # 考研规划Skill (Kaoyan Plan Generation Skill)
@@ -178,6 +178,20 @@ version: 3.5.0
 ---
 
 ## 版本历史
+
+### v3.6.0 (2026-03-14)
+**单词表验证增强**（v3.2新增）：
+- 新增 `validate_vocabulary_review_files()` 函数
+  - 自动扫描单词表目录获取最新文件
+  - 对比学习进度文件检查是否已记录
+  - 根据SM-2算法判断是否需要复习
+  - 返回遗漏的复习任务列表并自动添加到计划
+- 新增 `consistency_check_after_plan_generation()` 函数
+  - 计划生成后执行一致性检查
+  - 验证是否遗漏了新学单词表的复习任务
+  - 返回发现的问题列表用于警告提示
+- 修复问题：防止生成计划时漏掉新学习的单词表（如Day 15）
+- 主规划算法集成：在步骤8和步骤10之间调用验证函数
 
 ### v3.5.0 (2026-03-10)
 **模块化重构**：
