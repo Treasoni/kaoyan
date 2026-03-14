@@ -3,13 +3,16 @@
   "title": "Update learning progress with review and exercises",
   "titleGenerationStatus": "success",
   "createdAt": 1773498066450,
-  "updatedAt": 1773498170499,
-  "lastResponseAt": 1773498170499,
+  "updatedAt": 1773499983590,
+  "lastResponseAt": 1773499983590,
   "sessionId": "4912dcbe-95f6-4d14-b420-844ab8aeb88f",
   "sdkSessionId": "4912dcbe-95f6-4d14-b420-844ab8aeb88f",
   "currentNote": "考研计划/每日计划/2026-03-14-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
   "usage": {
-    "model": "glm-5",
+    "model": "glm-4.7",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,

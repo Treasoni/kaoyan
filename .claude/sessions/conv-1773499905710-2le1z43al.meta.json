@@ -1,0 +1,26 @@
+{
+  "id": "conv-1773499905710-2le1z43al",
+  "title": "Manage English vocabulary and exam preparation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773499905710,
+  "updatedAt": 1773500032741,
+  "lastResponseAt": 1773500032741,
+  "sessionId": "0c5e052c-9e0b-48d9-8a61-0d3b9441245f",
+  "sdkSessionId": "0c5e052c-9e0b-48d9-8a61-0d3b9441245f",
+  "currentNote": "考研英语/英语单词/2026-3-14.md",
+  "enabledMcpServers": [
+    "time",
+    "web-reader",
+    "web-search-prime",
+    "zai-mcp-server"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
