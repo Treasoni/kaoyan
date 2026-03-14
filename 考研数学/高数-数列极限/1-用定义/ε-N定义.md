@@ -218,6 +218,42 @@ $$
 >
 > **评注**：$\frac{1}{n}$ 依赖于 $n$，对收敛速度提出了要求
 
+> [!example] 例4：极限与绝对值的关系（例2.2）
+> **题目**：证明若 $\lim_{n\to \infty}a_n = A$，则 $\lim_{n\to \infty}\left|a_n\right| = \left|A\right|$
+>
+> **分析**：证明 $\lim_{n\to \infty}|a_n| = |A|$，关键是要找到 $\left|\left|a_n\right| - \left|A\right|\right|$ 与 $\left|a_{n} - A\right|$ 的关系，这时要联想到**三角不等式**。
+>
+> **证明**：
+> 因为 $\lim_{n\to \infty}a_n = A$，所以对任意正数 $\varepsilon$，存在正整数 $N$，当 $n > N$ 时，有
+> $$
+> \left| a_{n} - A \right| < \varepsilon
+> $$
+>
+> 又由三角不等式 $||a| - |b|| \leqslant |a - b|$，有
+> $$
+> \left| \left| a_{n} \right| - \left| A \right| \right| \leqslant \left| a_{n} - A \right| < \varepsilon
+> $$
+>
+> 故 $\lim_{n\to \infty}\left|a_n\right| = \left|A\right|$。$\square$
+>
+> **评注**：
+>
+> (1) **此命题反过来不对**：取 $a_{n} = (-1)^{n}$，则 $\lim_{n\to \infty}\left|(-1)^n\right| = 1$，但 $\lim_{n\to \infty}(-1)^n$ 不存在。
+>
+> (2) **特殊情况 $A = 0$**：
+> $$
+> \lim_{n\to \infty}a_n = 0 \Leftrightarrow \lim_{n\to \infty}\left|a_n\right| = 0
+> $$
+> 这个结论**常用**！
+>
+> **应用举例**：求 $\lim_{n \to \infty} \frac{\sin n}{n^{2}}$
+>
+> 由 $0 \leqslant \left| \frac{\sin n}{n^{2}} \right| \leqslant \frac{1}{n^{2}}$，得 $\lim_{n \to \infty} \left| \frac{\sin n}{n^{2}} \right| = 0$，故 $\lim_{n \to \infty} \frac{\sin n}{n^{2}} = 0$
+>
+> **技巧总结**：若要证 $\lim_{n\to \infty}a_n = 0$，可转化为证 $\lim_{n\to \infty}|a_n| = 0$。由于 $|a_{n}|\geqslant 0$，若使用夹逼准则，便省了一半的力气——只需找到一个数列 $\{b_n\}$ 满足 $|a_{n}|\leqslant b_{n}$，且 $\lim_{n\to \infty}b_n = 0$ 即可。
+>
+> (3) **对函数极限同样成立**：若 $\lim_{x \to x_0} f(x) = A$，则 $\lim_{x \to x_0} |f(x)| = |A|$，但反之不成立。而 $\lim_{x \to x_0} f(x) = 0 \Leftrightarrow \lim_{x \to x_0} |f(x)| = 0$。
+
 ## 相关知识点 📚
 
 ### 前置知识
