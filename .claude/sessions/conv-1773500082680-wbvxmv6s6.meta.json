@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773500082680-wbvxmv6s6",
+  "title": "Generate English study files for graduate exam ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773500082680,
+  "updatedAt": 1773500386633,
+  "lastResponseAt": 1773500386633,
+  "sessionId": "e4bee25a-af32-4aa2-8de7-e7832df6c866",
+  "sdkSessionId": "e4bee25a-af32-4aa2-8de7-e7832df6c866",
+  "currentNote": "考研英语/英语单词/2026-3-14.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
