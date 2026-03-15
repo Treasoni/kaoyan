@@ -222,8 +222,9 @@ def generate_sunday_review_plan_with_memory(user_input, user_context):
 
 
 def record_task_completion(user_id, completed_tasks, planned_tasks):
-    """记录任务完成情况到MemOS"""
+    """记录任务完成情况到MemOS + 更新英语进度（v3.7新增）"""
     try:
+        # 1. 原有逻辑：计算统计并保存到MemOS
         stats = calculate_completion_stats(completed_tasks, planned_tasks)
         add_message(
             conversation_id=user_id,
@@ -236,8 +237,223 @@ def record_task_completion(user_id, completed_tasks, planned_tasks):
             }],
             user_id=user_id
         )
+
+        # 2. v3.7新增：检测并更新英语进度
+        english_tasks = extract_english_tasks(completed_tasks)
+        if english_tasks:
+            update_english_progress_file(english_tasks)
+
     except Exception as e:
         log_warning(f"Failed to record completion: {e}")
+
+
+def extract_english_tasks(completed_tasks):
+    """
+    从完成任务中提取英语学习任务（v3.7新增）
+
+    功能：
+        1. 识别英语学习任务（通过关键词匹配）
+        2. 解析任务描述，提取Day编号、复习次数、词汇数量
+        3. 返回结构化的任务列表
+
+    支持的任务格式：
+        - "Day 015 第1次复习"
+        - "Day 016 新学"
+        - "单词复习（Day 011+012第2次复习）" - 多个任务
+
+    返回:
+        list: 英语任务列表，每个任务包含 day, review_count, vocab_count
+    """
+    import re
+
+    english_tasks = []
+
+    for task in completed_tasks:
+        task_desc = task.get("description", "")
+        if not task_desc:
+            task_desc = str(task.get("task", ""))
+
+        # 检查是否为英语学习任务
+        english_keywords = ["Day", "单词", "词汇", "复习", "新学"]
+        if not any(keyword in task_desc for keyword in english_keywords):
+            continue
+
+        # 解析单个任务
+        # 格式1: "Day 015 第1次复习"
+        single_match = re.search(r'Day\s*(\d+).*?(第\d+次|新学)', task_desc)
+        if single_match:
+            day_num = single_match.group(1).zfill(3)  # 补零到3位：15 -> 015
+            review_type = single_match.group(2)
+
+            # 估算词汇数量（从学习进度文件或默认值）
+            vocab_count = estimate_vocab_count(day_num)
+
+            english_tasks.append({
+                "day": day_num,
+                "review_count": review_type,
+                "vocab_count": vocab_count,
+                "description": f"Day {day_num} {review_type}"
+            })
+            continue
+
+        # 格式2: "单词复习（Day 011+012第2次复习）" - 多个任务
+        multi_match = re.search(r'Day\s*(\d+).*?\+\s*Day\s*(\d+).*?第(\d+)次', task_desc)
+        if multi_match:
+            day1 = multi_match.group(1).zfill(3)
+            day2 = multi_match.group(2).zfill(3)
+            review_num = multi_match.group(3)
+            review_type = f"第{review_num}次"
+
+            vocab_count1 = estimate_vocab_count(day1)
+            vocab_count2 = estimate_vocab_count(day2)
+
+            english_tasks.append({
+                "day": day1,
+                "review_count": review_type,
+                "vocab_count": vocab_count1,
+                "description": f"Day {day1} {review_type}"
+            })
+
+            english_tasks.append({
+                "day": day2,
+                "review_count": review_type,
+                "vocab_count": vocab_count2,
+                "description": f"Day {day2} {review_type}"
+            })
+            continue
+
+    return english_tasks
+
+
+def estimate_vocab_count(day_num):
+    """
+    估算指定Day的词汇数量（v3.7新增）
+
+    参数:
+        day_num: Day编号（字符串，如"015"）
+
+    返回:
+        int: 估算的词汇数量
+    """
+    # 已知Day的词汇量映射
+    known_vocab_counts = {
+        "001": 70, "002": 45, "003": 45, "004": 52, "005": 52,
+        "006": 47, "007": 38, "008": 50, "009": 36, "010": 77,
+        "011": 50, "012": 50, "013": 50, "014": 57, "015": 85,
+        "016": 70
+    }
+
+    # 返回已知词汇量或默认值50
+    return known_vocab_counts.get(day_num, 50)
+
+
+def update_english_progress_file(english_tasks):
+    """
+    更新英语学习进度文件（v3.7新增）
+
+    功能：
+        1. 读取当前进度文件
+        2. 在复习历史记录中添加新记录
+        3. 在今日完成情况中添加新记录
+        4. 在已完成复习列表中添加新记录
+        5. 保存更新后的文件
+
+    参数:
+        english_tasks: 英语任务列表
+    """
+    import re
+    from datetime import datetime
+
+    progress_file = "考研英语/📊 学习进度.md"
+
+    try:
+        # 1. 读取当前进度文件
+        with open(progress_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # 2. 准备今日日期
+        today = datetime.now().strftime("%m-%d")  # 格式：03-15
+        today_full = datetime.now().strftime("%Y-%m-%d")  # 格式：2026-03-15
+
+        # 3. 生成需要添加的内容
+        review_records = []
+        completion_records = []
+        completed_list = []
+
+        for task in english_tasks:
+            day = task["day"]
+            review_count = task["review_count"]
+            vocab_count = task["vocab_count"]
+
+            # 生成复习历史记录
+            if review_count == "新学":
+                review_records.append(f"| **{today}** | **Day {day}** | **新学**  | **~{vocab_count}词** | -      | -      | ✅ **已完成**   | **自动记录** |")
+            else:
+                review_records.append(f"| **{today}** | **Day {day}** | **{review_count}** | **~{vocab_count}词** | **1天** | **1天** | ✅ **已完成**   | **自动记录** |")
+
+            # 生成已完成复习记录
+            completed_list.append(f"- [x] {today_full}: Day {day} 词汇{review_count}（~{vocab_count}词）✅ 已完成（自动记录）")
+
+        # 4. 更新文件内容
+        updated_content = content
+
+        # 4.1 在复习历史记录表格末尾添加新记录
+        # 查找表格结束位置
+        history_table_pattern = r'(### 复习历史记录（已修正）.*?)(\n### 待进行复习安排)'
+        match = re.search(history_table_pattern, updated_content, re.DOTALL)
+        if match:
+            table_end = match.group(1).rstrip()
+            for record in review_records:
+                table_end += f"\n{record}"
+            updated_content = updated_content[:match.start(1)] + table_end + "\n\n" + match.group(2)
+
+        # 4.2 在今日完成情况中添加新记录
+        completion_section = f"> [!info] 今日完成情况 ({today_full})"
+        if completion_section in updated_content:
+            # 找到今日完成情况块的结束位置
+            completion_start = updated_content.find(completion_section)
+            completion_end = updated_content.find("\n\n###", completion_start)
+
+            if completion_end > 0:
+                completion_block = updated_content[completion_start:completion_end]
+
+                # 在最后一条记录后添加新记录
+                for record in completion_records:
+                    # 提取记录中的任务描述
+                    task_match = re.search(r'Day\s*\d+.*?复习|新学', record)
+                    if task_match:
+                        task_desc = task_match.group(0)
+                        new_record = f"> - ✅ {task_desc}（自动记录）"
+                        completion_block = completion_block.rstrip() + f"\n{new_record}"
+
+                updated_content = updated_content[:completion_start] + completion_block + updated_content[completion_end:]
+
+        # 4.3 在已完成复习列表中添加新记录
+        # 查找"### ⏳ 待进行复习（按日期排序）"部分之前的已完成部分
+        completed_section_pattern = r'(### ✅ 已完成复习（Day \d+-\d+）)(.*?)(### ⏳ 待进行复习)'
+        match = re.search(completed_section_pattern, updated_content, re.DOTALL)
+        if match:
+            completed_section = match.group(2)
+            for record in completed_list:
+                completed_section = completed_section.rstrip() + f"\n{record}"
+            updated_content = updated_content[:match.start(2)] + completed_section + "\n\n" + match.group(3)
+
+        # 5. 保存更新后的文件
+        with open(progress_file, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+
+        log_info(f"✅ 已自动更新英语学习进度：{len(english_tasks)}个任务")
+
+    except FileNotFoundError:
+        log_warning(f"英语进度文件不存在：{progress_file}")
+    except Exception as e:
+        log_warning(f"更新英语进度文件失败：{e}")
+
+
+def log_info(message):
+    """记录信息日志（v3.7新增）"""
+    # 在实际实现中可以使用logger
+    pass
 
 
 def load_weekly_data_for_review(user_id):

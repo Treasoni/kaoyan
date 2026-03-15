@@ -1,7 +1,7 @@
 ---
 name: kaoyan-plan
 description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), vocabulary review validation (prevents missing newly learned vocabulary), plan upsert logic with tagging for version control.
-version: 3.6.0
+version: 3.7.0
 ---
 
 # 考研规划Skill (Kaoyan Plan Generation Skill)
@@ -178,6 +178,25 @@ version: 3.6.0
 ---
 
 ## 版本历史
+
+### v3.7.0 (2026-03-15)
+**自动更新英语学习进度**（用户需求）：
+- 新增 `extract_english_tasks()` 函数
+  - 从完成任务中智能识别英语学习任务
+  - 支持解析"Day 015 第1次复习"、"Day 016 新学"等格式
+  - 支持解析多任务格式（Day 011+012第2次复习）
+- 新增 `estimate_vocab_count()` 函数
+  - 已知Day的词汇量映射
+  - 自动估算复习任务的词汇数量
+- 新增 `update_english_progress_file()` 函数
+  - 自动更新复习历史记录表格
+  - 自动更新今日完成情况
+  - 自动更新已完成复习列表
+  - 智能文件更新，避免数据丢失
+- 修改 `record_task_completion()` 函数
+  - 集成英语进度自动更新逻辑
+  - 保持向后兼容，失败时不影响原有功能
+- 解决问题：用户在每日计划中标记完成时，英语学习进度文件能够自动同步更新
 
 ### v3.6.0 (2026-03-14)
 **单词表验证增强**（v3.2新增）：
