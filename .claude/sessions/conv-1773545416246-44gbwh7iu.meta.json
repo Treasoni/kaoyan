@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773545416246-44gbwh7iu",
+  "title": "Analyze derivative definition symbol mistakes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773545416246,
+  "updatedAt": 1773545518923,
+  "lastResponseAt": 1773545518923,
+  "sessionId": "bad96277-8386-4068-8a9e-e15a05b1708d",
+  "sdkSessionId": "bad96277-8386-4068-8a9e-e15a05b1708d",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的概念/1-导数/导数的定义.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
