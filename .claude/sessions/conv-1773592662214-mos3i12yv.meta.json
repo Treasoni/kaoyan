@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773592662214-mos3i12yv",
+  "title": "Sync learning progress from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773592662214,
+  "updatedAt": 1773592931210,
+  "lastResponseAt": 1773592931210,
+  "sessionId": "10f7748d-dd98-4348-aef4-89327d077177",
+  "sdkSessionId": "10f7748d-dd98-4348-aef4-89327d077177",
+  "currentNote": "考研英语/📊 学习进度.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

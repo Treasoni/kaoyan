@@ -221,8 +221,193 @@ def generate_sunday_review_plan_with_memory(user_input, user_context):
     }
 
 
+def parse_user_completion_report(user_input):
+    """
+    解析用户完成的任务报告（v3.8.0新增）
+
+    功能：
+        从用户输入中提取所有完成的任务，包括计划外的任务
+
+    支持的任务格式：
+        - "Day 015 第1次复习"
+        - "Day 016 新学"
+        - "1-导数模块全部6个知识点"
+        - "数学错题10道"
+        - "单词复习（Day 011+012第2次复习）"
+
+    参数:
+        user_input: 用户输入字符串或字典
+
+    返回:
+        list: 完成的任务列表，每个任务包含:
+            - subject: 科目（英语/数学/专业课/政治）
+            - task: 任务描述
+            - duration: 实际用时（可选）
+            - extra: 是否为计划外任务（布尔值）
+    """
+    import re
+
+    # 如果是字典，提取文本内容
+    if isinstance(user_input, dict):
+        text = user_input.get("content", user_input.get("text", ""))
+    else:
+        text = str(user_input)
+
+    completed_tasks = []
+    lines = text.split('\n')
+
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+
+        # 检测英语学习任务
+        if any(keyword in line for keyword in ["Day", "单词", "词汇", "复习", "新学"]):
+            day_match = re.search(r'Day\s*(\d+)', line)
+            if day_match:
+                task = {
+                    "subject": "英语",
+                    "task": line,
+                    "duration": None,  # 可以后续解析
+                    "extra": False  # 默认为计划内，后续对比时标记
+                }
+                completed_tasks.append(task)
+                continue
+
+        # 检测数学学习任务
+        if any(keyword in line for keyword in ["导数", "极限", "积分", "微分", "知识点", "模块", "错题"]):
+            task = {
+                "subject": "数学",
+                "task": line,
+                "duration": None,
+                "extra": False
+            }
+            completed_tasks.append(task)
+            continue
+
+        # 检测专业课任务
+        if any(keyword in line for keyword in ["电路", "模电", "数电", "电子技术"]):
+            task = {
+                "subject": "专业课",
+                "task": line,
+                "duration": None,
+                "extra": False
+            }
+            completed_tasks.append(task)
+            continue
+
+        # 检测政治任务
+        if any(keyword in line for keyword in ["马原", "毛中特", "史纲", "思修"]):
+            task = {
+                "subject": "政治",
+                "task": line,
+                "duration": None,
+                "extra": False
+            }
+            completed_tasks.append(task)
+            continue
+
+    return completed_tasks
+
+
+def generate_completion_record_file(user_id, completed_tasks, planned_tasks, date):
+    """
+    生成每日完成记录文件（v3.8.0新增）
+
+    关键改进：
+        1. completed_tasks = 用户报告的所有任务（包括计划外的）
+        2. planned_tasks = 计划中的任务（用于对比和标记）
+        3. 完成记录包含所有 completed_tasks
+
+    参数:
+        user_id: 用户ID
+        completed_tasks: 用户完成的任务列表（包含计划外任务）
+        planned_tasks: 计划中的任务列表（用于对比）
+        date: 日期字符串（YYYY-MM-DD）
+
+    返回:
+        str: 生成的完成记录文件路径
+    """
+    from datetime import datetime
+    import os
+
+    # 1. 标记计划外任务
+    planned_descriptions = {task.get("task", "") for task in planned_tasks}
+    for task in completed_tasks:
+        if task.get("task", "") not in planned_descriptions:
+            task["extra"] = True  # 标记为计划外任务
+
+    # 2. 按科目分组
+    tasks_by_subject = {
+        "英语": [],
+        "数学": [],
+        "专业课": [],
+        "政治": []
+    }
+
+    for task in completed_tasks:
+        subject = task.get("subject", "")
+        if subject in tasks_by_subject:
+            tasks_by_subject[subject].append(task)
+
+    # 3. 生成完成记录 Markdown
+    record_content = f"""# 今日学习完成记录 - {date}
+
+> 📊 **完成日期**：{date}
+> 🎉 **基于用户实际报告生成**
+
+---
+
+## 📊 今日学习统计
+
+| 统计项 | 数据 |
+|--------|------|
+| **完成任务总数** | **{len(completed_tasks)}个** |
+| **计划内任务** | **{len([t for t in completed_tasks if not t.get("extra")])}个** |
+| **计划外任务** | **{len([t for t in completed_tasks if t.get("extra")])}个** ⭐ |
+
+---
+
+## ✅ 任务完成详情
+
+"""
+
+    # 4. 按科目生成完成记录
+    for subject in ["英语", "数学", "专业课", "政治"]:
+        tasks = tasks_by_subject.get(subject, [])
+        if not tasks:
+            continue
+
+        record_content += f"### {subject}学习完成情况\n\n"
+
+        for i, task in enumerate(tasks, 1):
+            extra_mark = " ⭐**计划外**" if task.get("extra") else ""
+            record_content += f"{i}. {task.get('task', '')}{extra_mark}\n"
+
+        record_content += "\n"
+
+    # 5. 添加完成统计
+    record_content += "---\n\n## 📈 完成统计\n\n"
+    record_content += f"- ✅ **总完成任务**：{len(completed_tasks)}个\n"
+    record_content += f"- 📋 **计划内完成**：{len([t for t in completed_tasks if not t.get('extra')])}个\n"
+    record_content += f"- ⭐ **计划外完成**：{len([t for t in completed_tasks if t.get('extra')])}个\n"
+
+    # 6. 保存文件
+    record_dir = "考研计划/每日计划"
+    os.makedirs(record_dir, exist_ok=True)
+    record_file = os.path.join(record_dir, f"{date}-完成记录.md")
+
+    with open(record_file, 'w', encoding='utf-8') as f:
+        f.write(record_content)
+
+    log_info(f"✅ 已生成完成记录：{record_file}")
+    return record_file
+
+
 def record_task_completion(user_id, completed_tasks, planned_tasks):
-    """记录任务完成情况到MemOS + 更新英语进度（v3.7新增）"""
+    """记录任务完成情况到MemOS + 更新英语进度 + 生成完成记录（v3.8.0改进）"""
+    from datetime import datetime
+
     try:
         # 1. 原有逻辑：计算统计并保存到MemOS
         stats = calculate_completion_stats(completed_tasks, planned_tasks)
@@ -242,6 +427,17 @@ def record_task_completion(user_id, completed_tasks, planned_tasks):
         english_tasks = extract_english_tasks(completed_tasks)
         if english_tasks:
             update_english_progress_file(english_tasks)
+
+        # 3. v3.8.0新增：生成完成记录文件（包含所有用户报告的任务）
+        today = datetime.now().strftime("%Y-%m-%d")
+        record_file = generate_completion_record_file(
+            user_id=user_id,
+            completed_tasks=completed_tasks,
+            planned_tasks=planned_tasks,
+            date=today
+        )
+
+        log_info(f"✅ 完成记录已保存：{record_file}")
 
     except Exception as e:
         log_warning(f"Failed to record completion: {e}")

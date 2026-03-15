@@ -1,7 +1,7 @@
 ---
 name: kaoyan-plan
-description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), vocabulary review validation (prevents missing newly learned vocabulary), plan upsert logic with tagging for version control.
-version: 3.7.0
+description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), vocabulary review validation (prevents missing newly learned vocabulary), plan upsert logic with tagging for version control, completion record generation based on user actual reports (supports extra tasks).
+version: 3.8.0
 ---
 
 # 考研规划Skill (Kaoyan Plan Generation Skill)
@@ -178,6 +178,35 @@ version: 3.7.0
 ---
 
 ## 版本历史
+
+### v3.8.0 (2026-03-16)
+**修复完成记录遗漏问题**（核心功能修复）：
+- 新增 `parse_user_completion_report()` 函数
+  - 从用户输入中提取所有完成的任务（包括计划外任务）
+  - 支持解析多种任务格式（Day复习、知识点、错题等）
+  - 自动识别科目分类
+- 新增 `generate_completion_record_file()` 函数
+  - 生成每日完成记录文件
+  - **关键改进**：完成记录基于用户实际报告，而非计划任务
+  - 自动标记计划外任务（⭐标记）
+  - 按科目分组展示
+- 修改 `record_task_completion()` 函数
+  - 集成完成记录文件生成
+  - 确保所有用户报告的任务都被记录
+  - 支持超额完成场景
+- 解决问题：当用户超额完成任务时，完成记录不再遗漏计划外的任务
+
+**使用建议**：
+- 报告完成任务时，请明确列出所有完成的任务
+- 推荐格式：
+  ```markdown
+  我完成了：
+  ### 英语学习
+  1. Day 008 第2次复习（~50词）✅
+  2. Day 016 新学（~70词）✅
+  ### 数学学习
+  1. 1-导数模块全部6个知识点 ✅
+  ```
 
 ### v3.7.0 (2026-03-15)
 **自动更新英语学习进度**（用户需求）：
