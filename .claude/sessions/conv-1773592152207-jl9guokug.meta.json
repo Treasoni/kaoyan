@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773592152207-jl9guokug",
+  "title": "Update English learning completion record",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773592152208,
+  "updatedAt": 1773592175110,
+  "lastResponseAt": 1773592175110,
+  "sessionId": null,
+  "currentNote": "考研计划/每日计划/2026-03-15-每日计划.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
