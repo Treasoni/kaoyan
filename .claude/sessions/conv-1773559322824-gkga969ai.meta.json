@@ -3,9 +3,10 @@
   "title": "Analyze higher-order derivatives using symmetry...",
   "titleGenerationStatus": "success",
   "createdAt": 1773559322824,
-  "updatedAt": 1773559341418,
-  "lastResponseAt": 1773559341418,
-  "sessionId": null,
+  "updatedAt": 1773559716239,
+  "lastResponseAt": 1773559716239,
+  "sessionId": "8fb27f99-bae6-4a1f-8489-ba2c7ba8ab5d",
+  "sdkSessionId": "8fb27f99-bae6-4a1f-8489-ba2c7ba8ab5d",
   "currentNote": "考研数学/高数-一元微分学/一元微分学的概念/1-导数/导数与函数性质.md",
   "usage": {
     "model": "glm-5",
