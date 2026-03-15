@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773559322824-gkga969ai",
+  "title": "Analyze higher-order derivatives using symmetry...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773559322824,
+  "updatedAt": 1773559341418,
+  "lastResponseAt": 1773559341418,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的概念/1-导数/导数与函数性质.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
