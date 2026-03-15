@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773546512690-wfkdyjv63",
+  "title": "Compare function values using periodicity and p...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773546512690,
+  "updatedAt": 1773546594993,
+  "lastResponseAt": 1773546594993,
+  "sessionId": "0706dc87-ab38-49d0-8548-6a964307e83e",
+  "sdkSessionId": "0706dc87-ab38-49d0-8548-6a964307e83e",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
