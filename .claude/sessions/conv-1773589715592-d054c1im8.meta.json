@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773589715592-d054c1im8",
+  "title": "Update study progress: math derivatives and Eng...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773589715593,
+  "updatedAt": 1773590006783,
+  "lastResponseAt": 1773590006783,
+  "sessionId": null,
+  "currentNote": "考研计划/每日计划/2026-03-15-每日计划.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
