@@ -22,7 +22,12 @@
       "Edit(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/scripts/plot_functions.py)",
       "WebSearch",
       "Skill(sync:上传)",
-      "Skill(sync:上传:*)"
+      "Skill(sync:上传:*)",
+      "Edit(.claude/skills/kaoyan-english-core/code.md)",
+      "Edit(.claude/skills/kaoyan-english-quiz/skill.md)",
+      "Edit(.claude/skills/kaoyan-english-review/skill.md)",
+      "Edit(.claude/skills/kaoyan-english-writing/skill.md)",
+      "Bash(rm -f \"/Users/zhqznc/.claude/plans/streamed-moseying-dusk.md\")"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",

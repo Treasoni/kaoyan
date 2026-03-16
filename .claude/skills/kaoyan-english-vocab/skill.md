@@ -487,5 +487,43 @@ core_word_density: "5/22 (23%)"
 
 ---
 
+## Day编号计算规则 ⚠️ (更新于2026-03-16)
+
+**重要**：本技能使用 `kaoyan-english-core` 提供的共享Day编号计算函数。
+
+### 推荐做法
+
+```python
+# 使用共享函数获取验证后的Day编号
+from kaoyan_english_core import get_validated_day_number, generate_day_filenames
+
+# 获取Day编号（双重验证）
+day_number = get_validated_day_number("2026-03-16")  # 返回：17
+
+# 生成文件名
+filenames = generate_day_filenames("2026-03-16", day_number)
+# {
+#     "context_article": "Day-017-2026-03-16.md",
+#     "statistics": "Statistics-Day-017-2026-03-16.md"
+# }
+```
+
+### 核心函数位置
+
+详细实现请参考：`.claude/skills/kaoyan-english-core/code.md` 第8节
+
+### Day编号对应关系
+
+| 日期 | Day编号 |
+|------|---------|
+| 2026-02-28 | Day 001 |
+| 2026-03-01 | Day 002 |
+| 2026-03-15 | Day 016 |
+| 2026-03-16 | Day 017 |
+| 2026-03-17 | Day 018 |
+
+---
+
 *创建日期: 2026-03-10*
 *版本: 1.0.0*
+*最后更新: 2026-03-16（引用core的Day编号计算函数）*

@@ -305,5 +305,42 @@ def calculate_sm2_interval(card, quality):
 
 ---
 
+## Day编号计算规则 ⚠️
+
+本技能使用 `kaoyan-english-core` 提供的共享Day编号计算函数。
+
+### 推荐做法
+
+```python
+# 使用共享函数获取验证后的Day编号
+from kaoyan_english_core import get_validated_day_number, generate_day_filenames
+
+# 获取Day编号（双重验证）
+day_number = get_validated_day_number("2026-03-16")  # 返回：17
+
+# 生成文件名
+filenames = generate_day_filenames("2026-03-16", day_number)
+```
+
+### 函数说明
+
+| 函数 | 说明 | 位置 |
+|------|------|------|
+| `get_validated_day_number()` | 双重验证获取Day编号 | core/code.md §8.1 |
+| `generate_day_filenames()` | 生成四类文件名 | core/code.md §8.1 |
+
+### Day编号对应关系
+
+| 日期 | Day编号 |
+|------|---------|
+| 2026-02-28 | Day 001 |
+| 2026-03-01 | Day 002 |
+| 2026-03-15 | Day 016 |
+| 2026-03-16 | Day 017 |
+| 2026-03-17 | Day 018 |
+
+---
+
 *创建日期: 2026-03-10*
 *版本: 1.0.0*
+*最后更新: 2026-03-16（添加Day编号计算规则）*

@@ -570,5 +570,219 @@ review_record:
 
 ---
 
+## 8. Day编号计算（共享功能）
+
+### 8.1 calculate_day_number
+
+基于日期计算Day编号，所有英语子技能共享此函数。
+
+```python
+from datetime import datetime
+
+def calculate_day_number(target_date=None):
+    """基于日期计算Day编号
+
+    起始日期：2026-02-28 = Day 001
+    计算公式：Day编号 = 1 + (目标日期 - 起始日期)的天数
+
+    Args:
+        target_date: 目标日期（YYYY-MM-DD格式字符串或datetime对象）
+                     默认为None，使用当前日期
+
+    Returns:
+        int: Day编号（例如：17表示Day 017）
+
+    Examples:
+        >>> calculate_day_number("2026-02-28")
+        1
+        >>> calculate_day_number("2026-03-01")
+        2
+        >>> calculate_day_number("2026-03-16")
+        17
+        >>> calculate_day_number("2026-03-17")
+        18
+    """
+    # 考研英语学习起始日期
+    START_DATE = "2026-02-28"
+    START_DAY = 1
+
+    # 处理输入参数
+    if target_date is None:
+        target_date = datetime.now()
+    elif isinstance(target_date, str):
+        target_date = datetime.strptime(target_date, "%Y-%m-%d")
+
+    # 解析起始日期
+    start_date = datetime.strptime(START_DATE, "%Y-%m-%d")
+
+    # 计算天数差
+    days_diff = (target_date - start_date).days
+
+    # 计算Day编号
+    day_number = START_DAY + days_diff
+
+    # 确保Day编号不小于1
+    return max(day_number, START_DAY)
+
+
+def get_max_day_number_from_files(directory="考研英语/📰 真题语境文章"):
+    """从现有文件中提取最大Day编号
+
+    扫描指定目录中的所有.md文件，从文件名格式
+    'Day-XXX-YYYY-MM-DD.md' 中提取Day编号。
+
+    Args:
+        directory: 要扫描的目录路径
+
+    Returns:
+        int: 找到的最大Day编号，如果没有文件则返回0
+    """
+    import os
+    import re
+
+    max_day = 0
+
+    try:
+        for filename in os.listdir(directory):
+            if filename.endswith(".md"):
+                # 匹配文件名格式：Day-XXX-YYYY-MM-DD.md
+                match = re.match(r"Day-(\d+)-\d{4}-\d{2}-\d{2}\.md", filename)
+                if match:
+                    day_num = int(match.group(1))
+                    max_day = max(max_day, day_num)
+    except FileNotFoundError:
+        # 目录不存在，返回0
+        pass
+    except Exception as e:
+        # 其他错误，记录警告并返回0
+        log_warning(f"Failed to scan directory {directory}: {e}")
+
+    return max_day
+
+
+def get_validated_day_number(target_date=None,
+                             directory="考研英语/📰 真题语境文章"):
+    """获取验证后的Day编号（双重验证机制）
+
+    同时使用两种方法计算Day编号：
+    1. 基于现有文件的最大Day编号 + 1
+    2. 基于日期计算的Day编号
+
+    取两者中的较大值，确保：
+    - 不覆盖现有文件（使用较大的编号）
+    - Day编号与日期基本一致（差异过大时警告）
+
+    Args:
+        target_date: 目标日期（YYYY-MM-DD格式），默认为今天
+        directory: 用于文件检查的目录
+
+    Returns:
+        int: 验证后的Day编号
+
+    Warning:
+        如果两种方法计算的Day编号差异 > 2，
+        会发出警告（可能存在学习中断或文件缺失）
+    """
+    from_files = get_max_day_number_from_files(directory) + 1
+    from_date = calculate_day_number(target_date)
+
+    # 检查差异
+    diff = abs(from_files - from_date)
+    if diff > 2:
+        log_warning(
+            f"Day编号差异较大：文件检查显示Day {from_files}，"
+            f"但日期计算显示Day {from_date}（差异{diff}天）"
+        )
+        log_info("将使用较大的Day编号以避免覆盖现有文件")
+
+    # 返回较大的值（防止覆盖）
+    return max(from_files, from_date)
+
+
+def format_day_number(day_number, padding=3):
+    """格式化Day编号为字符串
+
+    Args:
+        day_number: Day编号（整数）
+        padding: 填充宽度，默认为3（例如：17 → "017"）
+
+    Returns:
+        str: 格式化后的Day编号字符串
+
+    Examples:
+        >>> format_day_number(1)
+        '001'
+        >>> format_day_number(17)
+        '017'
+        >>> format_day_number(100)
+        '100'
+    """
+    return f"{day_number:0{padding}d}"
+
+
+def generate_day_filenames(target_date=None, day_number=None):
+    """生成四类学习笔记的文件名
+
+    Args:
+        target_date: 目标日期（YYYY-MM-DD格式）
+        day_number: Day编号（整数），如果为None则自动计算
+
+    Returns:
+        dict: 包含四类文件名的字典
+
+    Examples:
+        >>> generate_day_filenames("2026-03-16", 17)
+        {
+            "context_article": "Day-017-2026-03-16.md",
+            "quiz": "Quiz-Day-017-2026-03-16.md",
+            "statistics": "Statistics-Day-017-2026-03-16.md",
+            "writing": "Day-017-2026-03-16.md"
+        }
+    """
+    if day_number is None:
+        day_number = get_validated_day_number(target_date)
+
+    if target_date is None:
+        target_date = datetime.now().strftime("%Y-%m-%d")
+
+    day_str = format_day_number(day_number)
+
+    return {
+        "context_article": f"Day-{day_str}-{target_date}.md",
+        "quiz": f"Quiz-Day-{day_str}-{target_date}.md",
+        "statistics": f"Statistics-Day-{day_str}-{target_date}.md",
+        "writing": f"Day-{day_str}-{target_date}.md"
+    }
+```
+
+### 8.2 使用示例
+
+```python
+# 示例1：计算今天的Day编号
+today_day = calculate_day_number()
+print(f"Today is Day {format_day_number(today_day)}")
+
+# 示例2：计算指定日期的Day编号
+day_17 = calculate_day_number("2026-03-16")
+print(f"2026-03-16 is Day {format_day_number(day_17)}")
+
+# 示例3：获取验证后的Day编号（推荐）
+validated_day = get_validated_day_number("2026-03-16")
+print(f"Validated Day number: {validated_day}")
+
+# 示例4：生成所有文件名
+filenames = generate_day_filenames("2026-03-16", 17)
+print(filenames)
+# {
+#     "context_article": "Day-017-2026-03-16.md",
+#     "quiz": "Quiz-Day-017-2026-03-16.md",
+#     "statistics": "Statistics-Day-017-2026-03-16.md",
+#     "writing": "Day-017-2026-03-16.md"
+# }
+```
+
+---
+
 *创建日期: 2026-03-10*
 *版本: 1.0.0*
+*最后更新: 2026-03-16（添加Day编号计算模块）*
