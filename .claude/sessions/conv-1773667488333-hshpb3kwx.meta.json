@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773667488333-hshpb3kwx",
+  "title": "Update考研学习进度记录",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773667488334,
+  "updatedAt": 1773667582294,
+  "lastResponseAt": 1773667582294,
+  "sessionId": null,
+  "currentNote": "考研计划/每日计划/2026-03-16-每日计划.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
