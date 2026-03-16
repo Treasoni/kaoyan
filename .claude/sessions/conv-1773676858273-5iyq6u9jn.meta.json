@@ -1,0 +1,27 @@
+{
+  "id": "conv-1773676858273-5iyq6u9jn",
+  "title": "Sync learning progress from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773676858273,
+  "updatedAt": 1773677291009,
+  "lastResponseAt": 1773677291009,
+  "sessionId": "6b767318-ff35-446d-8e08-4b02492635d1",
+  "sdkSessionId": "6b767318-ff35-446d-8e08-4b02492635d1",
+  "currentNote": "考研专业课/数字电子技术/1-数字与码制/04-逻辑函数化简.md",
+  "enabledMcpServers": [
+    "time",
+    "web-reader",
+    "web-search-prime",
+    "zai-mcp-server",
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
