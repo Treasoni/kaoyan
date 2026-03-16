@@ -23,8 +23,33 @@ import matplotlib
 from typing import List, Tuple, Optional
 
 # 设置中文字体支持
-matplotlib.rcParams['font.sans-serif'] = ['SimHei', 'PingFang SC', 'Heiti TC', 'STHeiti', 'Arial Unicode MS']
+import matplotlib.font_manager as fm
+
+# 尝试找到可用的中文字体
+def get_chinese_font():
+    """查找可用的中文字体"""
+    chinese_fonts = ['PingFang SC', 'Heiti TC', 'STHeiti', 'Songti SC', 'Kailasa',
+                     'Hiragino Sans GB', 'Microsoft YaHei', 'SimHei', 'WenQuanYi Micro Hei']
+
+    available_fonts = [f.name for f in fm.fontManager.ttflist]
+
+    for font in chinese_fonts:
+        if font in available_fonts:
+            return font
+
+    # 如果没有找到中文字体，返回默认字体
+    return None
+
+chinese_font = get_chinese_font()
+if chinese_font:
+    matplotlib.rcParams['font.sans-serif'] = [chinese_font, 'DejaVu Sans', 'Arial']
+    print(f"使用中文字体: {chinese_font}")
+else:
+    matplotlib.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial']
+    print("未找到中文字体，使用默认字体")
+
 matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
+matplotlib.rcParams['mathtext.fontset'] = 'cm'  # 使用 Computer Modern 数学字体
 
 # 设置 seaborn 风格
 try:
@@ -106,16 +131,18 @@ def plot_corner_point(ax, x_range: Tuple[float, float] = (-2, 2)):
     x_left = np.linspace(-1.5, 0, 100)
     x_right = np.linspace(0, 1.5, 100)
 
-    ax.plot(x_left, -x_left, '--', color='#E94F37', linewidth=1.5, alpha=0.8, label=r'左导数 $f\'_-(0) = -1$')
-    ax.plot(x_right, x_right, '--', color='#F39C12', linewidth=1.5, alpha=0.8, label=r'右导数 $f\'_+(0) = +1$')
+    ax.plot(x_left, -x_left, '--', color='#E94F37', linewidth=1.5, alpha=0.8,
+            label=r'Left derivative: $f^{\prime}_{-}(0) = -1$')
+    ax.plot(x_right, x_right, '--', color='#F39C12', linewidth=1.5, alpha=0.8,
+            label=r'Right derivative: $f^{\prime}_{+}(0) = +1$')
 
     # 标记原点
     ax.plot(0, 0, 'ko', markersize=8, zorder=5)
-    ax.annotate('角点\n$(0, 0)$', xy=(0, 0), xytext=(0.5, 0.8),
+    ax.annotate('Corner Point\n$(0, 0)$', xy=(0, 0), xytext=(0.5, 0.8),
                 fontsize=11, ha='left',
                 arrowprops=dict(arrowstyle='->', color='#333333', lw=1))
 
-    ax.set_title(r'角点: $y = |x|$ 在 $x = 0$', fontsize=14, pad=10)
+    ax.set_title(r'Corner Point: $y = |x|$ at $x = 0$', fontsize=14, pad=10)
     ax.legend(loc='upper right', fontsize=10)
 
 
@@ -128,11 +155,11 @@ def plot_infinite_derivative(ax, x_range: Tuple[float, float] = (-2, 2)):
 
     # 绘制垂直切线（用虚线表示）
     ax.axvline(x=0, color='#E94F37', linestyle='--', linewidth=1.5,
-               alpha=0.8, label=r'垂直切线 $x = 0$')
+               alpha=0.8, label=r'Vertical tangent: $x = 0$')
 
     # 标记原点
     ax.plot(0, 0, 'ko', markersize=8, zorder=5)
-    ax.annotate('垂直切线\n$f\'(0) = +\infty$', xy=(0, 0), xytext=(0.8, 0.8),
+    ax.annotate('Vertical Tangent\n$f^{\prime}(0) = +\infty$', xy=(0, 0), xytext=(0.8, 0.8),
                 fontsize=11, ha='left',
                 arrowprops=dict(arrowstyle='->', color='#333333', lw=1))
 
@@ -140,7 +167,7 @@ def plot_infinite_derivative(ax, x_range: Tuple[float, float] = (-2, 2)):
     ax.annotate('', xy=(0, 1.2), xytext=(0, 0.3),
                 arrowprops=dict(arrowstyle='->', color='#E94F37', lw=2))
 
-    ax.set_title(r'无穷导数: $y = x^{1/3}$ 在 $x = 0$', fontsize=14, pad=10)
+    ax.set_title(r'Infinite Derivative: $y = x^{1/3}$ at $x = 0$', fontsize=14, pad=10)
     ax.legend(loc='upper left', fontsize=10)
 
 
