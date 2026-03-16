@@ -19,7 +19,8 @@
       "Bash(python:*)",
       "Bash(python3:*)",
       "Bash(pip3 install:*)",
-      "Edit(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/scripts/plot_functions.py)"
+      "Edit(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/scripts/plot_functions.py)",
+      "WebSearch"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",

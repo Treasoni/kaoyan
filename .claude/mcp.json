@@ -54,6 +54,22 @@
     "time": {
       "type": "sse",
       "url": "https://mcp.api-inference.modelscope.net/b3158d0b497140/sse"
+    },
+    "browsermcp": {
+      "command": "{",
+      "args": [
+        "mcpServers:",
+        "{",
+        "browsermcp:",
+        "{",
+        "command:",
+        "npx,",
+        "args:",
+        "[@browsermcp/mcp@latest]",
+        "}",
+        "}",
+        "}"
+      ]
     }
   }
 }
