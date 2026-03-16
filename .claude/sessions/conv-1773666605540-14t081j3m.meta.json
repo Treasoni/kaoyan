@@ -3,18 +3,18 @@
   "title": "Generate English vocabulary learning notes",
   "titleGenerationStatus": "success",
   "createdAt": 1773666605540,
-  "updatedAt": 1773666624952,
-  "lastResponseAt": 1773666624952,
+  "updatedAt": 1773667130449,
+  "lastResponseAt": 1773667130449,
   "sessionId": "7ad63ae2-840f-4436-ab9f-979e617aa704",
   "sdkSessionId": "7ad63ae2-840f-4436-ab9f-979e617aa704",
   "currentNote": "考研英语/英语单词/2026-3-16.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 65,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 78528,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 78593,
+    "percentage": 39
   }
 }
