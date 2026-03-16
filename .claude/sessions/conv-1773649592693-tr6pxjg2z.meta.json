@@ -1,0 +1,19 @@
+{
+  "id": "conv-1773649592693-tr6pxjg2z",
+  "title": "3月16日 16:26",
+  "createdAt": 1773649592693,
+  "updatedAt": 1773649750440,
+  "lastResponseAt": 1773649750439,
+  "sessionId": "0ba84467-2ddd-4f9d-a3ff-4417c9ae70d0",
+  "sdkSessionId": "0ba84467-2ddd-4f9d-a3ff-4417c9ae70d0",
+  "currentNote": "考研数学/高数-数列极限/5-用夹逼准则/夹逼准则.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
