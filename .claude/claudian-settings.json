@@ -38,7 +38,7 @@
       "Remove-Partition"
     ]
   },
-  "permissionMode": "plan",
+  "permissionMode": "normal",
   "model": "glm-5",
   "thinkingBudget": "low",
   "enableAutoTitleGeneration": true,

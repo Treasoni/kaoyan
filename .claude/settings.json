@@ -12,7 +12,13 @@
       "mcp__MemoryOperatingSystem__add_feedback",
       "mcp__MemoryOperatingSystem__search_memory",
       "Edit(.claude/skills/kaoyan-plan/code.md)",
-      "Edit(.claude/skills/kaoyan-plan/SKILL.md)"
+      "Edit(.claude/skills/kaoyan-plan/SKILL.md)",
+      "Bash(mkdir -p .claude/skills/math-graph/scripts)",
+      "Write(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/SKILL.md)",
+      "Write(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/scripts/plot_functions.py)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
