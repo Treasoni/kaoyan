@@ -20,7 +20,9 @@
       "Bash(python3:*)",
       "Bash(pip3 install:*)",
       "Edit(/Users/zhqznc/Documents/考研复习/.claude/skills/math-graph/scripts/plot_functions.py)",
-      "WebSearch"
+      "WebSearch",
+      "Skill(sync:上传)",
+      "Skill(sync:上传:*)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",

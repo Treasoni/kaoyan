@@ -3,10 +3,14 @@
   "title": "Update考研学习进度记录",
   "titleGenerationStatus": "success",
   "createdAt": 1773667488334,
-  "updatedAt": 1773667582294,
-  "lastResponseAt": 1773667582294,
-  "sessionId": null,
+  "updatedAt": 1773667709652,
+  "lastResponseAt": 1773667709652,
+  "sessionId": "4bd66e26-3126-4404-9a87-7c6434f718b6",
+  "sdkSessionId": "4bd66e26-3126-4404-9a87-7c6434f718b6",
   "currentNote": "考研计划/每日计划/2026-03-16-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
   "usage": {
     "model": "glm-4.7",
     "inputTokens": 0,

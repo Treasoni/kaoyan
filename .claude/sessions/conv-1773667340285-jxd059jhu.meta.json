@@ -3,8 +3,17 @@
   "title": "Route English vocabulary learning to specialize...",
   "titleGenerationStatus": "success",
   "createdAt": 1773667340285,
-  "updatedAt": 1773667350243,
-  "lastResponseAt": 1773667346664,
+  "updatedAt": 1773667670365,
+  "lastResponseAt": 1773667670365,
   "sessionId": null,
-  "currentNote": "考研英语/英语单词/2026-3-16.md"
+  "currentNote": "考研英语/英语单词/2026-3-16.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
