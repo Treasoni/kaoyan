@@ -1,0 +1,5596 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "《数字电子技术》知识点"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                405,
+                84,
+                621,
+                99
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第1章 数字逻辑基础"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                405,
+                105,
+                613,
+                123
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1．数字信号、模拟信号的定义"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2．数字电路的分类 "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3．数制、编码其及转换 "
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                131,
+                357,
+                195
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：能熟练在 10 进制、2 进制、8 进制、16 进制、8421BCD 之间进行相互转换。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                203,
+                752,
+                219
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 1：（37.25） "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "_ { 1 0 } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "( ) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "_ 2 ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "( )16= ( )8421BCD"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                225,
+                636,
+                243
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：（37.25） "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "_ { 1 0 } \\mathrm { = ( 1 0 0 1 0 1 . 0 1 ) _ { 2 } \\mathrm { = ( 2 5 . 4 ) _ { 1 6 } \\mathrm { = ( 0 0 1 1 0 1 1 . 0 0 1 0 0 1 0 1 ) _ { 8 4 2 1 B C D } } } }"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                250,
+                628,
+                266
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4．基本逻辑运算的特点"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                274,
+                305,
+                290
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "与运算：见零为零，全 1为 1；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                298,
+                351,
+                313
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "或运算：见 1 为 1，全零为零；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                322,
+                351,
+                337
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "与非运算：见零为 1，全 1 为零；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                344,
+                369,
+                361
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "或非运算：见 1 为零，全零为 1；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                369,
+                369,
+                385
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "异或运算：相异为 1，相同为零；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                393,
+                369,
+                409
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "同或运算：相同为 1，相异为零；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                417,
+                368,
+                432
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "非运算：零变 1， 1变零；"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                441,
+                324,
+                456
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练应用上述逻辑运算。"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                464,
+                356,
+                480
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5．数字电路逻辑功能的几种表示方法及相互转换。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                488,
+                507,
+                504
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "真值表（组合逻辑电路）或状态转换真值表（时序逻辑电路）：是由变量的所有可能取值组合及其对应的函数值所构成的表格。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "逻辑表达式：是由逻辑变量和与、或、非 3 种运算符连接起来所构成的式子。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "卡诺图：是由表示变量的所有可能取值组合的小方格所构成的图形。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                512,
+                902,
+                598
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{4}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "逻辑图："
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                630,
+                196,
+                646
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "示逻辑运算符号所构成"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{5}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "波形图或是由输入变有可能取值"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                653,
+                206,
+                765
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/fe275764b438995eab091e94e31891d3aabecbb8e6926ee9ede71406868b0e57.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                240,
+                627,
+                500,
+                734
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/b9d3a6d8ea94afaff0bd9f9dc64db4ea9b44d88b94860218755cba1125d81de2.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                589,
+                633,
+                808,
+                753
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "是由表的逻辑的图形。时序图：量的所组合的"
+                    }
+                ]
+            },
+            "bbox": [
+                836,
+                630,
+                900,
+                765
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "高、低电平及其对应的输出函数值的高、低电平所构成的图形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                772,
+                603,
+                788
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{6}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "状态图（只有时序电路才有）：描述时序逻辑电路的状态转换关系及转换条件的图形称为状态图。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                796,
+                875,
+                812
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：掌握这五种（对组合逻辑电路）或六种（对时序逻辑电路）方法之间的相互转换。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                820,
+                796,
+                835
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "6．逻辑代数运算的基本规则"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                844,
+                339,
+                860
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "反演规则：对于任何一个逻辑表达式 Y，如果将表达式中的所有“·”换成“＋”，“＋”换成“·”，“0”换成“1”，“1”换成“0”，原变量换成反变量，反变量换成原变量，那么所得到的表达式就是函数 Y 的反函数 Y（或称补函数）。这个规则称为反演规则。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "对偶规则：对于任何一个逻辑表达式 Y，如果将表达式中的所有“·”换成“＋”，“＋”换成“·”，“0”换成“1”，“1”换成“0”，而变量保持不变，则可得到的一个新的函数表达式 Y ＇，Y ＇ 称为函 Y 的对偶函数。这个规则称为对偶规则。要求：熟练应用反演规则和对偶规则求逻辑函数的反函数和对偶函数。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                89,
+                905,
+                247
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 3：求下列逻辑函数的反函数和对偶函数： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = A \\overline { { B } } + C \\overline { { D } } E"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                255,
+                613,
+                271
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：反函数： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { Y } } = ( \\overline { { A } } + B ) ( \\overline { { C } } + D + \\overline { { E } } )"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                277,
+                428,
+                296
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "对偶函数： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y ^ { D } = ( A + \\overline { { B } } ) ( C + \\overline { { D } } + E )"
+                    }
+                ]
+            },
+            "bbox": [
+                147,
+                300,
+                455,
+                319
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "7．逻辑函数化简 "
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                114,
+                326,
+                253,
+                342
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（1）最小项的定义及应用；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（2）二、三、四变量的卡诺图。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                351,
+                366,
+                390
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握逻辑函数的两种化简方法。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                398,
+                445,
+                414
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "公式法化简：逻辑函数的公式化简法就是运用逻辑代数的基本公式、定理和规则来化简逻辑函数。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                422,
+                885,
+                437
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 4：用公式化简逻辑函数： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y _ { 1 } = A B C + \\overline { { A } } B C + \\overline { { B } } C"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                444,
+                559,
+                462
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y _ { 1 } = A B C + { \\overline { { A } } } B C + B { \\overline { { C } } } = ( A + { \\overline { { A } } } ) B C + B { \\overline { { C } } } = B C + B { \\overline { { C } } } = B"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                467,
+                642,
+                487
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 5：用公式法化简逻辑函数为最简与或式： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "F = \\overline { { A \\overline { { C } } \\cdot B } } + \\overline { { A \\overline { { C } } + B } } + B C"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                489,
+                704,
+                506
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "F = \\overline { { { A \\overline { { C } } } } } B + \\overline { { { A \\overline { { C } } } } } + B + B C = \\overline { { { A \\overline { { C } } } } } B + \\overline { { { A \\overline { { C } } } } } \\overline { { B } } + B C = \\overline { { { A \\overline { { C } } } } } ( B + \\overline { { B } } ) + B C"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                508,
+                702,
+                529
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "= \\overline {{A \\overline {{C}}}} + B C = \\overline {{A}} + C + B C = \\overline {{A}} + C",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/bb58e6ac4e5ac63566cd01de4dcbdc3f434b97c2eff8b48a6261ffc8e4cc8060.jpg"
+                }
+            },
+            "bbox": [
+                169,
+                538,
+                453,
+                558
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 6：用公式法化简逻辑函数为最简与或式： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "F = A { \\overline { { B } } } + A B C + A ( B + A )"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                571,
+                705,
+                589
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "F = \\overline { { { A \\overline { { B } } } } } + A B C + A ( B + A ) = ( A \\overline { { { B } } } + A B C ) \\cdot \\overline { { { A ( B + A ) } } }"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                592,
+                596,
+                611
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array}{l} = (A \\bar {B} + A B C) \\cdot (\\bar {A} + \\bar {B} + \\bar {A}) = (A \\bar {B} + A B C) \\cdot (\\bar {A} + \\bar {A} \\bar {B}) \\\\ = (A \\bar {B} + A B C) \\cdot \\bar {A} = 0 \\\\ \\end{array}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f8ffe14e2961551b32915fae3320744dd447dc307fd91e17dd83b3a15c0f95b0.jpg"
+                }
+            },
+            "bbox": [
+                213,
+                614,
+                643,
+                661
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "图形化简：逻辑函数的图形化简法是将逻辑函数用卡诺图来表示，利用卡诺图来化简逻辑函数。（主要适合于 3 个或 4 个变量的化简）"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                669,
+                902,
+                707
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 7：用卡诺图化简逻辑函数： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { Y ( A , B , C ) = \\sum m ( 0 , 2 , 3 , 7 ) + \\sum d ( 4 , 6 ) } \\end{array}"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                714,
+                709,
+                733
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：画出卡诺图为"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                741,
+                260,
+                755
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "则 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = \\overline { { C } } + B"
+                    }
+                ]
+            },
+            "bbox": [
+                149,
+                785,
+                258,
+                803
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/6e1b301864ccb62e903dc524e8078005ac0c6f11b3e0cfa5eab54fcd9efb9518.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                675,
+                749,
+                897,
+                841
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 8：已知逻辑函数 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Z = A { \\overline { { B } } } + { \\overline { { A } } } { \\overline { { B } } } C + { \\overline { { A } } } B { \\overline { { C } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，约束条件为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "B C = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "。用卡诺图化简。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                831,
+                655,
+                872
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/4feb0c38cf84b43765d5152222af944f9bb130839d563176bb1eaaf2fee52cbb.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                394,
+                902,
+                623,
+                996
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "最简逻辑表达式为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left\\{ \\begin{array} { c } { { Z = A \\overline { { { B } } } + \\overline { { { A } } } B + C } } \\\\ { { B C = 0 } } \\end{array} \\right."
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                184,
+                438,
+                225
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第2章 逻辑门电路"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                420,
+                234,
+                598,
+                250
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(1)基本概念 "
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                254,
+                211,
+                268
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1）数字电路中晶体管作为开关使用时，是指它的工作状态处于饱和状态和截止状态。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2）TTL 门电路典型高电平为 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "3 . 6 \\mathrm { V }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "，典型低电平为 0.3 V。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3）OC 门和 OD 门具有线与功能。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "4）三态门电路的特点、逻辑功能和应用。高阻态、高电平、低电平。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "5）门电路参数：噪声容限 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathbf { V _ { N H } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "或 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathbf { V _ { N L } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "、扇出系数 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathbf { N _ { 0 } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "、平均传输时间 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\bf t _ { p d }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "6）OC 门（集电极开路门）的主要应用。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "7）三态门的主要应用。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "8）门电路多余输入端的处理。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                272,
+                769,
+                416
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：掌握八种逻辑门电路的逻辑功能；掌握 OC 门和 OD 门，三态门电路的逻辑功能；能根据输入信号画出各种逻辑门电路的输出波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                420,
+                905,
+                454
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 9：画出下列电路的输出波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                458,
+                386,
+                472
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/432741e3c84bd31801d7ca2528c4921047a4ebb33b43c278fc23186e3185b917.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                206,
+                483,
+                571,
+                596
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/e3b9ec96ace52c70f87817eb1e83edf392206b135a3a41f34c0976389fa246ff.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                611,
+                476,
+                816,
+                590
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：由逻辑图写出表达式为： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = \\overline { { { A } } } + \\overline { { { B } } } \\overline { { { C } } } = \\overline { { { A } } } + \\overline { { { B + C } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，则输出 Y 见上。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                615,
+                690,
+                632
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 10：P91，作业 2.7、2.8."
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                643,
+                347,
+                657
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第3章 组合逻辑电路"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                410,
+                659,
+                608,
+                677
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1．常用组合逻辑部件的作用和特点"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2．会用组合逻辑部件设计逻辑函数"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                678,
+                394,
+                713
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：掌握编码器、译码器、数据选择器、数值比较器、半加器、全加器的定义，功能和特点，以及应用。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                717,
+                897,
+                750
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 11：能对两个 1位二进制数进行相加而求得和及进位的逻辑电路称为半加器。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                753,
+                747,
+                769
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第4章 触发器"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                440,
+                790,
+                578,
+                807
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1）触发器的的概念和特点："
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                810,
+                327,
+                824
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "触发器是构成时序逻辑电路的基本逻辑单元。其具有如下特点："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                828,
+                601,
+                843
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "它有两个稳定的状态：0 状态和 1 状态；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "在不同的输入情况下，它可以被置成 0 状态或 1 状态，即两个稳态可以相互转换；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "当输入信号消失后，所置成的状态能够保持不变。具有记忆功能"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                846,
+                759,
+                898
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2）不同逻辑功能的触发器的特性方程为："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                902,
+                433,
+                917
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "RS触发器： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Q ^ { n + 1 } = S + \\overline { { { R } } } Q ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，约束条件为： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathrm { R S } } { = } 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，具有置 0、置 1、保持功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                91,
+                771,
+                115
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "JK 触发器： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { Q } ^ { n + 1 } = J \\overline { { { Q } } } ^ { n } + \\overline { { { K } } } Q ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，具有置 0、置 1、保持、翻转功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                129,
+                673,
+                151
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "D 触发器： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ { Q } ^ { n + 1 } } = D"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，具有置 0、置 1 功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                167,
+                473,
+                185
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "T触发器： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Q ^ { n + 1 } = T \\overline { { { Q } } } ^ { n } + \\overline { { { T } } } Q ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，具有保持、翻转功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                200,
+                589,
+                225
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { ~ T ~ } ^ { \\prime }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "′触发器： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Q ^ { n + 1 } = \\overline { { { Q } } } ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(计数工作状态)，具有翻转功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                240,
+                569,
+                260
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：能根据触发器（重点是 JK-FF 和 D-FF）的特性方程熟练地画出输出波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                269,
+                732,
+                286
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 12：已知 J，K-FF 电路和其输入波形，试画出"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                288,
+                519,
+                304
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/d4e130151d89cf15a51dbfc2d3960d3a53355d5332f2bbb111cbd21c80865bc1.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                292,
+                317,
+                473,
+                419
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/1fe28217927cf5e65d1ee11494c6eea2750ddd0704843eca7ac73e2a9987e214.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                527,
+                317,
+                724,
+                429
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第5章 时序逻辑电路"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                405,
+                454,
+                613,
+                470
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1．常用时序逻辑部件的作用和特点"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "时序逻辑部件：计数器、寄存器。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2．同步时序逻辑电路的设计方法"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3．用中规模集成电路设计时序逻辑电路"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                473,
+                430,
+                545
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：掌握编码器、译码器、数据选择器、数值比较器、半加器、全加器的定义，功能和特点，以及应用。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                546,
+                899,
+                582
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第6 章 半导体存储器与可编程逻辑器件"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                322,
+                602,
+                695,
+                620
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1.半导体存储器的分类、基本结构、工作原理；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2．半导体存储器的使用方法，半导体存储器扩展存储容量的方法，可编程逻辑器件PLD、PAL、GAL的分类、基本结构、基本功能和使用方法，可编程逻辑器件的编程方法和在系统可编程技术。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                626,
+                905,
+                697
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：掌握半导体存储器的分类、基本结构、工作原理，掌握可编程逻辑器件PLD、PAL、GAL的分类、基本结构、基本功能；掌握半导体存储器和可编程逻辑器件的编程方法。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                709,
+                905,
+                753
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "第7 章 脉冲波形的产生与整形"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                364,
+                778,
+                655,
+                795
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1)施密特触发器是一种能够把输入波形整形成为适合于数字电路需要的矩形脉冲的电路。要求：会根据输入波形画输出波形。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "特点：具有滞回特性，有两个稳态，输出仅由输入决定，即在输入信号达到对应门限电压时触发翻转，没有记忆功能。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2)多谐振荡器是一种不需要输入信号控制，就能自动产生矩形脉冲的自激振荡电路。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                797,
+                905,
+                888
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "特点：没有稳态，只有两个暂稳态，且两个暂稳态能自动转换。"
+                    }
+                ]
+            },
+            "bbox": [
+                137,
+                890,
+                630,
+                906
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3)单稳态触发器在输入负脉冲作用下，产生定时、延时脉冲信号，或对输入波形整形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                909,
+                779,
+                925
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "特点： "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "电路有一个稳态和一个暂稳态。 "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "在外来触发脉冲作用下，电路由稳态翻转到暂稳态。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "暂稳态是一个不能长久保持的状态，经过一段时间后，电路会自动返回到稳态。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                139,
+                85,
+                821,
+                136
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握 555 定时器构成的上述电路，并会求有关参数（脉宽、周期、频率）和画输出波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                140,
+                887,
+                155
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 7：已知施密特电路具有逆时针的滞回特性，试画出输出波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                159,
+                633,
+                174
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                178,
+                142,
+                192
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/dbc66558688765f6bcfa75147fcfdd5cfa4bb653a8f1352b14dbea159610e653.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "第 8 章 A/D 和 D/A 转换器"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                280,
+                199,
+                737,
+                373
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1）A/D和 D/A转换器概念："
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                418,
+                322,
+                432
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "模数转换器：能将模拟信号转换为数字信号的电路称为模数转换器，简称 A/D转换器或 ADC。由采样、保持、量化、编码四部分构成。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                436,
+                897,
+                469
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "数模转换器：能将数字信号转换为模拟信号的电路称为数模转换器，简称 D/A转换器或 DAC。由基准电压、变换网络、电子开关、反向求和构成。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                473,
+                902,
+                506
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "ADC 和 DAC 是沟通模拟电路和数字电路的桥梁，也可称之为两者之间的接口。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                510,
+                702,
+                525
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2）D/A转换器的分辨率 "
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                529,
+                300,
+                544
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "分辨率用输入二进制数的有效位数表示。在分辨率为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\boldsymbol { \\mathit { \\Pi } } _ { \\mathit { \\Pi } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "位的 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { D } / \\mathrm { A }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "转换器中，输出电压能区分 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "个不同"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                558,
+                902,
+                574
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "的输入二进制代码状态，能给出 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 ^ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "个不同等级的输出模拟电压。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                595,
+                611,
+                609
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "分辨率也可以用 D/A转换器的最小输出电压与最大输出电压的比值来表示。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                621,
+                690,
+                636
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 8：10 位 D/A转换器的分辨率为："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                640,
+                406,
+                655
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\frac {1}{2 ^ {1 0} - 1} = \\frac {1}{1 0 2 3} \\approx 0. 0 0 1",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/a2cd65b78467878e40a42ce216792b39771fc514d587c0b46dc626f36cacbf12.jpg"
+                }
+            },
+            "bbox": [
+                176,
+                659,
+                416,
+                703
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3）A/D转换器的分辨率A/D 转换器的分辨率用输出二进制数的位数表示，位数越多，误差越小，转换精度越高。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                707,
+                902,
+                741
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 9：输入模拟电压的变化范围为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { 0 \\sim 5 V }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，输出 8 位二进制数可以分辨的最小模拟电压为 5V×2－8＝"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                755,
+                902,
+                771
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "20mV；而输出 12位二进制数可以分辨的最小模拟电压为 5V×2－12≈1.22mV。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                791,
+                712,
+                808
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "典型题型总结及要求"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                401,
+                91,
+                618,
+                112
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "（一）分析题型"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                122,
+                121,
+                243,
+                137
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1．组合逻辑电路分析："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                140,
+                294,
+                155
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "分析思路："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                159,
+                196,
+                173
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由逻辑图写出输出逻辑表达式；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "将逻辑表达式化简为最简与或表达式；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由最简与或表达式列出真值表；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{4}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "分析真值表，说明电路逻辑功能。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                177,
+                436,
+                244
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握由门电路和组合逻辑器件 74LS138、74LS153、74LS151构成的各种组合逻辑电路的分析。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                250,
+                895,
+                284
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 11：分析如图逻辑电路的逻辑功能。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                288,
+                430,
+                303
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/7f2466568ec0579e9e71e91222479da4e960aec11e7c157587ae1cb7094f8744.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                315,
+                309,
+                697,
+                468
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解："
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                473,
+                142,
+                488
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "由逻辑图写出输出逻辑表达式"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                492,
+                366,
+                505
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "Y = \\overline {{Y _ {1} Y _ {2} Y _ {3}}} = \\overline {{\\overline {{A B}} \\overline {{B C}} \\overline {{A C}}}}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/35f1de736c21159dee30ddfe39fbd7a25eef0895daed4633074f0b7aef252034.jpg"
+                }
+            },
+            "bbox": [
+                147,
+                508,
+                547,
+                550
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "将逻辑表达式化简为最简与或表达式"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                554,
+                418,
+                569
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "Y = A B + B C + C A",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d20f0e11d9edadeef55a4f5e1383ce63a0055cefa4a923fc0e1a1f1fb677d410.jpg"
+                }
+            },
+            "bbox": [
+                147,
+                589,
+                430,
+                619
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由最简与或表达式列出真值表"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{4}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "分析真值表，说明电路逻辑功能"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                621,
+                383,
+                653
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/6cf3f69ca9b443aa3ad02ab3bacb839c9be2b5c2d1c151302252e2df68d5a34e.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td>A B C</td><td>Y</td></tr><tr><td>0 0 0</td><td>0</td></tr><tr><td>0 0 1</td><td>0</td></tr><tr><td>0 1 0</td><td>0</td></tr><tr><td>0 1 1</td><td>1</td></tr><tr><td>1 0 0</td><td>0</td></tr><tr><td>1 0 1</td><td>1</td></tr><tr><td>1 1 0</td><td>1</td></tr><tr><td>1 1 1</td><td>1</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                673,
+                451,
+                828,
+                651
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "当输入 A、B、C 中有 2 个或 3 个为 1 时，输出 Y 为 1，否则输出 Y为 0。所以这个电路实际上是一种 3人表决用的组合逻辑电路：只要有 2 票或 3 票同意，表决就通过。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                659,
+                899,
+                692
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2．时序逻辑电路分析："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                114,
+                696,
+                294,
+                711
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "分析思路："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                715,
+                196,
+                728
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由电路图写出时钟方程、驱动方程和输出方程；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "将驱动方程代入触发器的特征方程，确定电路状态方程；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "分析计算状态方程，列出电路状态表；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{4}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由电路状态表画出状态图或时序图；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{5}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "分析状态图或时序图，说明电路逻辑功能。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                733,
+                576,
+                820
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握同步时序电路，比如同步加法计数器、减法计数器、环形计数器、扭环形计数器的分析。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                826,
+                895,
+                859
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 12：如图所示时序逻辑电路，试分析它的逻辑功能，验证是否能自启动，并画出状态转换图和时序图。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                868,
+                895,
+                906
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f8d2283b74468db36ee0fa9ebe54544e04a1988aa669797f71ab4969d4ab6550.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                290,
+                95,
+                672,
+                235
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解："
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                233,
+                142,
+                247
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "时钟方程为： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\scriptstyle \\mathrm { C P 0 = C P 1 = C P }"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                256,
+                361,
+                269
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "激励方程为："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                275,
+                247,
+                288
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left\\{ \\begin{array}{l} J _ {0} = \\overline {{Q}} _ {1} ^ {n} \\\\ K _ {0} = 1 \\end{array} \\right. \\quad \\left\\{ \\begin{array}{l} J _ {1} = \\overline {{Q}} _ {0} ^ {n} \\\\ K _ {1} = 1 \\end{array} \\right.",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e425cc3bd7406248c10cf229c9a11710419754e6e1c230961b8ec59c790337e4.jpg"
+                }
+            },
+            "bbox": [
+                152,
+                297,
+                342,
+                340
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "将激励方程代入 J-K-FF 的特性方程可得状态方程为"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                348,
+                547,
+                363
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left\\{ \\begin{array}{l} Q _ {0} ^ {n + 1} = J 0 \\bar {Q} _ {0} ^ {n} + \\bar {K} Q _ {0} ^ {n} = \\bar {Q} _ {0} ^ {n} \\bar {Q} _ {0} ^ {n} \\\\ Q _ {1} ^ {n + 1} = J 1 \\bar {Q} _ {1} ^ {n} + \\bar {K} Q _ {1} ^ {n} = Q _ {0} ^ {n} \\bar {Q} _ {1} ^ {n} \\end{array} \\right.",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/42d518594e50ad14a41ce2902c0af0fef64ac10e40867a5c5ca9c6b9e3c15a58.jpg"
+                }
+            },
+            "bbox": [
+                152,
+                372,
+                406,
+                414
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "由状态方程做出状态转换表为："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                423,
+                389,
+                437
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/5744541b6624eba75a7204103212e890632f51aa94943db29c2c5d1f71bbb683.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td>Q1nQ0n</td><td>Q1n+1</td><td>Q0n+1</td></tr><tr><td>0 0</td><td>0</td><td>1</td></tr><tr><td>0 1</td><td>1</td><td>0</td></tr><tr><td>1 0</td><td>0</td><td>0</td></tr><tr><td>1 1</td><td>0</td><td>0</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                161,
+                439,
+                421,
+                563
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "则状态转换图和时序图为："
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                582,
+                354,
+                596
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/42f472cf4f99ac962063c5773f0a52ee91181843053838d67ac6994bf0ecbeaa.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                201,
+                604,
+                522,
+                745
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/13457050e3ba200652380484074da3369b6c3dcfa36bfc033de424a102a2b8ac.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                561,
+                608,
+                823,
+                734
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "可见电路具有自启动特性，这是一个三进制计数器。"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                747,
+                515,
+                764
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "（二）设计题型"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                124,
+                785,
+                242,
+                801
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1．组合逻辑电路设计："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                117,
+                804,
+                294,
+                819
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "设计思路："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                117,
+                822,
+                196,
+                838
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由电路功能描述列出真值表；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由真值表写出逻辑表达式或卡若图；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "将表达式化简为最简与或表达式；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{4}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "实现逻辑变换，画出逻辑电路图。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                841,
+                418,
+                910
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握用常用门电路和组合逻辑器件 74LS138、74LS153、74LS151 设计实现各种组合逻辑电路。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                84,
+                900,
+                118
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 13：某汽车驾驶员培训班进行结业考试，有三名评判员，其中 A为主评判员，B 和 C 为副评判员，在评判时按照服从多数原则通过，但主评判员认为合格也通过，试用与非门实现该逻辑电路。（或用74138、74151、74153 实现）"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                121,
+                900,
+                174
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：由题意可作出真值表为：用卡诺图化简为"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                177,
+                472,
+                193
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/7c2268e8af976699e661b66882458a06bc6a59b69c1785921e893917ab28036a.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td>A</td><td>B</td><td>C</td><td>Y</td></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                161,
+                211,
+                363,
+                390
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/b9219f71b0a283034a6442e69f26dc514de50bac96cd6870c7d041deb535f782.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                497,
+                202,
+                794,
+                326
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "则输出逻辑表达式为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = A + B C = { \\overline { { { \\overline { { A } } } { \\overline { { B C } } } } } }"
+                    }
+                ]
+            },
+            "bbox": [
+                149,
+                394,
+                519,
+                420
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "用与非门实现逻辑电路图为："
+                    }
+                ]
+            },
+            "bbox": [
+                149,
+                426,
+                371,
+                442
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/038c05d85ce2dd050e43b8fa13985ac7e8831f72d2b345ac1c89179e859dedc9.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                176,
+                451,
+                512,
+                561
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2．时序逻辑电路设计："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                112,
+                594,
+                294,
+                608
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "设计思路："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                114,
+                612,
+                196,
+                626
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{1}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "由设计要求画出原始状态图或时序图；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "简化状态图，并分配状态；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "选择触发器类型，求时钟方程、输出方程、驱动方程；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{4}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "画出逻辑电路图；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{5}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "检查电路能否自启动。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                630,
+                547,
+                719
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握同步时序电路，比如同步加法计数器、减法计数器的设计实现。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                722,
+                727,
+                739
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 14：设计一个按自然态序变化的 7 进制同步加法计数器，计数规则为逢七进 1，产生一个进位输出。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                760,
+                904,
+                776
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "建立原始状态图："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                778,
+                300,
+                794
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f168565023a964bb12eab5d7f1ad3c28ef803256cf51521ab8a67c623ce913ef.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                248,
+                93,
+                779,
+                241
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{2}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "简化状态图，并分配状态：已经是最简，已是二进制状态；"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "\\textcircled{3}"
+                            },
+                            {
+                                "type": "text",
+                                "content": "选择触发器类型，求时钟方程、输出方程、驱动方程：因需用 3 位二进制代码，选用 3 个 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "C P"
+                            },
+                            {
+                                "type": "text",
+                                "content": "下降沿触发的 JK 触发器，分别用 FF0、FF1、FF2 表示。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                250,
+                900,
+                310
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "由于要求采用同步方案，故时钟方程为："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                325,
+                423,
+                338
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "输出方程："
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                344,
+                196,
+                357
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "C P _ {0} = C P _ {1} = C P _ {2} = C P",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/28c620b8a92d6469b20e244d401c4cd759e41b3bf5ee685efb68e6d943336cd3.jpg"
+                }
+            },
+            "bbox": [
+                115,
+                370,
+                389,
+                400
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "Y = Q _ {1} ^ {n} Q _ {2} ^ {n}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/1089dd4e9e6f0a2e22fa51d1cc705c51a9e0bc88e32cfd389815aa62ff9ad971.jpg"
+                }
+            },
+            "bbox": [
+                115,
+                407,
+                250,
+                435
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/fb2a0004b83adfb2658dee793ed16f258c695a9eed13ef85cc19da3f2240721d.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                124,
+                442,
+                465,
+                586
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/6c1d254b2e9612bc8d89c57261d362834baff91f63a2b3e6cf769aee1e9b5ea3.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { Q } _ { 0 } ^ { n + 1 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "的卡诺图"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                218,
+                596,
+                529,
+                706
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/fd2a7797bc0636028718515783ede0d0216449a0d45d82066d80431b7267e2bc.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\boldsymbol { \\mathcal { Q } } _ { 2 } ^ { n + 1 }"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                552,
+                596,
+                875,
+                712
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/8891a16936844b47048ed4244279c425e905b91109251d45dcfdb766999cbea0.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { Q } _ { 1 } ^ { n + 1 }"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                218,
+                766,
+                529,
+                876
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/339f9d53a0eaf4f061feb502de9fe1bd03a5f1444cfc352d5f399bca9a41a814.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                554,
+                764,
+                868,
+                910
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "状态方程："
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                901,
+                196,
+                917
+            ]
+        }
+    ],
+    [
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left\\{ \\begin{array}{l} Q _ {0} ^ {n + 1} = \\overline {{Q _ {2} ^ {n} Q _ {1} ^ {n}}} \\overline {{Q}} _ {0} ^ {n} + \\overline {{1}} Q _ {0} ^ {n} \\\\ \\overline {{Q}} _ {1} ^ {n + 1} = Q _ {0} ^ {n} \\overline {{Q}} _ {1} ^ {n} + \\overline {{Q}} _ {2} ^ {n} \\overline {{Q}} _ {0} ^ {n} Q _ {1} ^ {n} \\\\ \\overline {{Q}} _ {2} ^ {n + 1} = Q _ {1} ^ {n} Q _ {0} ^ {n} \\overline {{Q}} _ {2} ^ {n} + \\overline {{Q}} _ {1} ^ {n} Q _ {2} ^ {n} \\end{array} \\right.",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/55097e931f6bdb0283ef2499250bdd2a97e1d3ef264c891b57ea3dd98f3dbd35.jpg"
+                }
+            },
+            "bbox": [
+                115,
+                86,
+                436,
+                202
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "Q ^ {n + 1} = J \\bar {Q} ^ {n} + \\bar {K} Q ^ {n}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/70d9d7e268c4bf0b8d1da1b26f1ba1ea57be24b10e142bfc1c46d41b36788010.jpg"
+                }
+            },
+            "bbox": [
+                115,
+                206,
+                433,
+                247
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "比较，得驱动方程："
+                    }
+                ]
+            },
+            "bbox": [
+                537,
+                87,
+                766,
+                108
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left\\{ \\begin{array}{l} J _ {0} = \\overline {{Q _ {2} ^ {n} Q _ {1} ^ {n}}} 、 K _ {0} = 1 \\\\ J _ {1} = Q _ {0} ^ {n} 、 K _ {1} = \\overline {{Q _ {2} ^ {n} Q _ {0} ^ {n}}} \\\\ J _ {2} = Q _ {1} ^ {n} Q _ {0} ^ {n} 、 K _ {2} = Q _ {1} ^ {n} \\end{array} \\right.",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/bec368af31b155903585d4ac22800cf84241b0ba80dcf09911c737c7920202f6.jpg"
+                }
+            },
+            "bbox": [
+                482,
+                116,
+                791,
+                233
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/700246cd8e65d87f534e48c18dfb4375f88b9d61e45bb22c92faedf23926988a.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                221,
+                275,
+                885,
+                458
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{4}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "画出电路图"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                449,
+                225,
+                464
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textcircled{5}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "检查电路能否自启动："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                473,
+                302,
+                488
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "将无效状态 111 代入状态方程计算：可见 111 的次态为有效状态 000，电路能够自启动。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                492,
+                789,
+                507
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3．集成计数器和寄存器的应用：构成 N 进制计数器，构成环形计数器和扭环形计数器。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                529,
+                789,
+                544
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left\\{ \\begin{array}{l} Q _ {0} ^ {n + 1} = \\overline {{Q _ {2} ^ {n} Q _ {1} ^ {n}}} \\overline {{Q}} _ {0} ^ {n} + \\overline {{1}} Q _ {0} ^ {n} = 0 \\\\ \\overline {{Q}} _ {1} ^ {n + 1} = Q _ {0} ^ {n} \\overline {{Q}} _ {1} ^ {n} + \\overline {{Q}} _ {2} ^ {n} \\overline {{Q}} _ {0} ^ {n} Q _ {1} ^ {n} = 0 \\\\ \\overline {{Q}} _ {2} ^ {n + 1} = Q _ {1} ^ {n} Q _ {0} ^ {n} \\overline {{Q}} _ {2} ^ {n} + \\overline {{Q}} _ {1} ^ {n} Q _ {2} ^ {n} = 0 \\end{array} \\right.",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/8c596ab064767437fb4d83a2abf48b5e4ffcecb663041d816fa1527723f71d40.jpg"
+                }
+            },
+            "bbox": [
+                115,
+                546,
+                526,
+                675
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "要求：熟练掌握 74LS160、74LS161、74LS162、74LS163 四种集成计数器应用，比如分析或设计 N 进制计数器；熟练掌握 74LS194 应用，比如分析或设计环形计数器和扭环形计数器。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                678,
+                904,
+                712
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1.用同步清零端或置数端归零构成 N 进置计数器"
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                715,
+                490,
+                730
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（1）写出状态 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { S } _ { \\mathrm { v - 1 } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "的二进制代码。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（2）求归零逻辑，即求同步清零端或置数控制端信号的逻辑表达式。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（3）画连线图。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                741,
+                645,
+                804
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2.用异步清零端或置数端归零构成 N 进置计数器"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                807,
+                490,
+                822
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（1）写出状态 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { S } _ { \\mathrm { N } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "的二进制代码。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（2）求归零逻辑，即求异步清零端或置数控制端信号的逻辑表达式。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "（3）画连线图。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                121,
+                827,
+                645,
+                878
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 15：用 74LS161来构成一个十二进制计数器。解："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                882,
+                534,
+                897
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(1)用异步清零端 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { C R } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "归零： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { S } _ { \\mathrm { N } } { = } \\mathrm { S } _ { 1 2 } { = } 1 1 0 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "则电路为："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                92,
+                522,
+                112
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\overline {{C R}} = \\overline {{Q _ {3} ^ {n} Q _ {2} ^ {n}}}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/11233b02f2200f7e3310f1198991a7199b4153b64549984f83b49365c4012576.jpg"
+                }
+            },
+            "bbox": [
+                191,
+                124,
+                331,
+                162
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "注：这里 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { D } 0 \\sim \\mathrm { D } 3"
+                    },
+                    {
+                        "type": "text",
+                        "content": "可随意处理。"
+                    }
+                ]
+            },
+            "bbox": [
+                147,
+                172,
+                381,
+                187
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/3f996e1a7532c74787f381156fe44573d8e7634d76112e64392e59706c4f5926.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "（a）用异步清零端 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { C R } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "归零"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                344,
+                205,
+                721,
+                404
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(2)用同步置数端 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { L D } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "归零："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                449,
+                319,
+                468
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathrm {S} _ {\\mathrm {N}} = \\mathrm {S} _ {1 1} = 1 0 1 1",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/7cee98fb3a68205d705e33c53121b62aefb4fb4bcf2d8d44f71ce5b60f21cb2b.jpg"
+                }
+            },
+            "bbox": [
+                161,
+                486,
+                282,
+                502
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\overline {{L D}} = \\overline {{Q _ {3} ^ {n} Q _ {1} ^ {n} Q _ {0} ^ {n}}}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/325502bb53afc10ce5bef0faad018c89a63870715870d1a056e111effcfce6ae.jpg"
+                }
+            },
+            "bbox": [
+                161,
+                521,
+                327,
+                557
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "则电路为：注：这里 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { D } _ { 0 } { \\sim } \\mathrm { D } _ { 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "必须都接 0。"
+                    }
+                ]
+            },
+            "bbox": [
+                149,
+                567,
+                465,
+                583
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/d8bd1bb2f23d117c9294b9db5969febb1e99cdf3fed3b996fb89d9dee6b28ebd.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "（b）用同步置数端 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { L D } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "归零"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                324,
+                595,
+                684,
+                785
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 16：用 74LS160 来构成一个 48进制同步加法计数器。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                818,
+                563,
+                832
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解：因 74LS160为同步十进制计数器，要构成 48 进制同步加法计数器须用二片 74LS160来实现，现采"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                837,
+                900,
+                850
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "用异步清零实现： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { S } _ { 4 8 } { = } 0 1 0 0 1 0 0 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，取高位片的 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { Q _ { C } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "和低位片的 Q 作归零反馈信号。即清零端 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { C R } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "归零"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                865,
+                900,
+                879
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "信号为： "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { C R } } = \\overline { { Q _ { C _ { F } ^ { \\Xi } \\Xi } Q } } _ { D / E }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，则电路连线图为："
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                897,
+                475,
+                917
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/e29802cccb701c2f4925fbf17a36e6b17cadaa96341ebcaa266cbf57f6654be2.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                124,
+                87,
+                872,
+                448
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "（三）计算和画图题型：要求：会分析电路工作原理，说明电路功能；会根据题意计算电路参数，或正确画出电路波形。"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                454,
+                905,
+                489
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "举例 17：如图电路，完成下列问题："
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                492,
+                394,
+                508
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1)说明这是什么电路？"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2)求电路的输出信号频率 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "f"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3)画出 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { V _ { c } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "及 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { V } _ { \\mathrm { 0 } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "的波形。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                511,
+                327,
+                563
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/a6ee882068d25558bce13e3bc0e2a5a7cf6382930f29fc3b3911d5d06312374a.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                117,
+                570,
+                724,
+                838
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "解："
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                850,
+                144,
+                865
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1) 这是一个由 555定时器构成的多谐振荡器。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2) 其振荡周期为"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                873,
+                473,
+                910
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/7f2109c6359a9769336c20c51c25273969e5bc3553b7572b67d871bf804b535b.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                531,
+                891,
+                931,
+                992
+            ]
+        }
+    ],
+    [
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array}{l} T = 0. 7 \\left(R _ {1} + 2 R _ {2}\\right) C \\\\ = 0. 7 (2 0 + 4 0) \\times 1 0 ^ {3} \\times 2 0 \\times 1 0 ^ {- 6} \\\\ = 0. 8 4 s \\\\ \\end{array}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/472da079b95615f05205541b64e1acc172c809dc4b236b6a23e7b144abb59b0b.jpg"
+                }
+            },
+            "bbox": [
+                156,
+                86,
+                480,
+                154
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "则其频率为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f = \\frac { 1 } { T } = \\frac { 1 } { 0 . 8 4 } \\approx 1 . 2 H z"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                164,
+                436,
+                205
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3)V 及 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { V } _ { \\mathrm { 0 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "的波形的波形为："
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                214,
+                319,
+                229
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "三、基本概念练习"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                250,
+                260,
+                266
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "一、判断题"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                269,
+                208,
+                285
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1．CMOS门电路为双极型电路，而 TTL门电路则为单极型电路。（ ）"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2.能够实现“线与”功能的门电路是 OC 门或 OD门。（ ）"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3．施密特触发器的特点是只有一个稳态，需在外加信号作用下才能由稳态翻转到暂稳态。（ ）"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "4．在时钟脉冲的控制下，根据输入信号 T 不同情况，凡是具有保持和翻转功能的电路，称为 T 触发器。（ ）"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "5.某电路任意时刻的输出不仅取决于当时的输入信号，而且与电路的原状态有关，该电路为时序逻辑电 路。( ) "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "6.若集成 555 定时器的第 4 脚接低电平时，不管输入信号为任意值，定时器始终输出高电平。( )"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                288,
+                902,
+                432
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "二、填空题："
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                454,
+                213,
+                469
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1．（44．375） "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { 1 0 } ^ { \\overline { { - } } } ."
+                            },
+                            {
+                                "type": "text",
+                                "content": "8 16 = 8421BCD。 "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2． "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { Y = A B }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "（ "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\mathrm { C + D }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "），它的反函数 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "{ \\overline { { Y } } } = { } _ { - }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "；对偶函数 "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "Y ^ { \\prime } = _ { _ - }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3．或非逻辑运算特点是 ，异或逻辑运算特点为 "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "equation_inline",
+                                "content": "4 . \\mathrm { n } { - } 2 ^ { \\mathrm { ~ n ~ } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "线译码器的输入代码为 个，输出代码为 个。 "
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "5.就单稳态触发器和施密特触发器而言，若要实现延时、定时的功能，应选用 ；若要实现波形变换、整形的功能，应选用 。"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "6.一位二进制计数器可实现 分频；n 位二进制计数器，最后一个触发器输出的脉冲频率是输入频率的 倍。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                473,
+                902,
+                634
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "三、选择题"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                115,
+                657,
+                208,
+                671
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1.八位二进制数所能表示的最大十进制数为( )。"
+                    }
+                ]
+            },
+            "bbox": [
+                115,
+                674,
+                515,
+                688
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(a) 255 "
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                690,
+                216,
+                705
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(b) 88 "
+                    }
+                ]
+            },
+            "bbox": [
+                268,
+                690,
+                322,
+                703
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(c) 99 "
+                    }
+                ]
+            },
+            "bbox": [
+                401,
+                690,
+                453,
+                703
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d) 128 "
+                    }
+                ]
+            },
+            "bbox": [
+                532,
+                690,
+                594,
+                703
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2.下图中能实现 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = { \\overline { { A \\oplus B } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "逻辑运算的电路是( )。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                715,
+                539,
+                733
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/818ba27da9a0e68d14d55d1b8531f63dfc01ef633978af38af4d4137313661b8.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                119,
+                763,
+                315,
+                843
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "（a）"
+                    }
+                ]
+            },
+            "bbox": [
+                184,
+                862,
+                208,
+                878
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/3c78e2e616cf1076bf0645007980716f8b1280471fe2c2f9a11e91f40694e80d.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                326,
+                769,
+                478,
+                843
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                352,
+                865,
+                376,
+                879
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/8e2754f4dfb6fe7af0a2ec8aeade395261a2bb4bed22711ba2057aba9a121eb9.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                487,
+                765,
+                684,
+                844
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "（c）"
+                    }
+                ]
+            },
+            "bbox": [
+                552,
+                863,
+                574,
+                878
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/0c4d8faaa6d48055a483687a456f7fcd0df5db2943bdf55ec11abb31466baae8.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                697,
+                747,
+                847,
+                850
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d）"
+                    }
+                ]
+            },
+            "bbox": [
+                739,
+                862,
+                763,
+                878
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3.8421BCD十进制译码器，数字输入信号端和数字输出信号端分别有（ ）个。 "
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                884,
+                747,
+                898
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(a)4 和 16"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                901,
+                233,
+                916
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(b) 3 和 8"
+                    }
+                ]
+            },
+            "bbox": [
+                268,
+                901,
+                347,
+                915
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(c) 3 和 10"
+                    }
+                ]
+            },
+            "bbox": [
+                401,
+                902,
+                489,
+                914
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d) 4 和 10 "
+                    }
+                ]
+            },
+            "bbox": [
+                534,
+                902,
+                621,
+                915
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4．四个触发器构成十进制加法计数器，若触发器输出从低位至高位分别为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf Q _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "、Q1、Q2、 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf Q _ { 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，则输出进位信号 C 为( )"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                83,
+                904,
+                112
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(a) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf { Q } _ { 3 } \\mathsf { Q } _ { 1 }"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                116,
+                216,
+                130
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(b) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf { Q } _ { 3 } \\mathsf { Q } _ { 2 } \\mathsf { Q } _ { 1 } \\mathsf { Q } _ { 0 }"
+                    }
+                ]
+            },
+            "bbox": [
+                277,
+                116,
+                366,
+                130
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(c) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf { Q } _ { 2 } \\mathsf { Q } _ { 1 } \\mathsf { Q } _ { 0 }"
+                    }
+                ]
+            },
+            "bbox": [
+                428,
+                116,
+                502,
+                130
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d) "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathsf { Q } _ { 3 } \\mathsf { Q } _ { 0 }"
+                    }
+                ]
+            },
+            "bbox": [
+                551,
+                116,
+                611,
+                129
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5．能将输入三角波信号转换成矩形脉冲信号输出的电路是( )。"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                131,
+                645,
+                146
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(a) 多谐振荡器"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                148,
+                277,
+                162
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(b) A／D 转换器"
+                    }
+                ]
+            },
+            "bbox": [
+                401,
+                149,
+                527,
+                162
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(c) 单稳态触发器"
+                    }
+                ]
+            },
+            "bbox": [
+                152,
+                164,
+                294,
+                178
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d) 施密特触发器 "
+                    }
+                ]
+            },
+            "bbox": [
+                401,
+                164,
+                541,
+                178
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "6.若 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { A } / \\mathrm { D }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "转换器输入模拟电压的变化范围为 "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "0 { \\sim } 5 \\mathrm { V }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "，则输出 10 位二进制数可以分辨的最小模拟电压为( )"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                181,
+                904,
+                215
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(a)1.5mV "
+                    }
+                ]
+            },
+            "bbox": [
+                134,
+                219,
+                206,
+                233
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(b)2.4mV "
+                    }
+                ]
+            },
+            "bbox": [
+                285,
+                219,
+                356,
+                233
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(c)4.9mV "
+                    }
+                ]
+            },
+            "bbox": [
+                428,
+                219,
+                497,
+                233
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(d)6.5mV "
+                    }
+                ]
+            },
+            "bbox": [
+                569,
+                219,
+                638,
+                233
+            ]
+        }
+    ]
+]
