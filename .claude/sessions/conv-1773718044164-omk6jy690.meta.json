@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773718044164-omk6jy690",
+  "title": "Analyze limit convergence for positive sequence",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773718044164,
+  "updatedAt": 1773718152237,
+  "lastResponseAt": 1773718152237,
+  "sessionId": "0866cece-f74e-4b13-a864-c502a7f6b97f",
+  "sdkSessionId": "0866cece-f74e-4b13-a864-c502a7f6b97f",
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
