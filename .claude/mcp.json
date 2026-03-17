@@ -70,6 +70,26 @@
         "}",
         "}"
       ]
+    },
+    "filesystem": {
+      "command": "{",
+      "args": [
+        "mcpServers:",
+        "{",
+        "filesystem:",
+        "{",
+        "args:",
+        "[",
+        "-y,",
+        "@modelcontextprotocol/server-filesystem,",
+        "/Users/zhqznc/Documents",
+        "],",
+        "command:",
+        "npx",
+        "}",
+        "}",
+        "}"
+      ]
     }
   }
 }

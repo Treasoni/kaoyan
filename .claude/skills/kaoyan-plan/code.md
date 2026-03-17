@@ -392,10 +392,52 @@ def generate_completion_record_file(user_id, completed_tasks, planned_tasks, dat
     record_content += f"- 📋 **计划内完成**：{len([t for t in completed_tasks if not t.get('extra')])}个\n"
     record_content += f"- ⭐ **计划外完成**：{len([t for t in completed_tasks if t.get('extra')])}个\n"
 
-    # 6. 保存文件
-    record_dir = "考研计划/每日计划"
-    os.makedirs(record_dir, exist_ok=True)
-    record_file = os.path.join(record_dir, f"{date}-完成记录.md")
+## 工作流程
+
+```
+[用户输入]
+      ↓
+[MemOS: 读取用户上下文]
+  - 用户画像
+  - 昨日计划
+  - 本周进度
+  - **专业课进度** (新增 v3.9.0)
+      ↓
+[识别输入模式]
+  ├─ 极简模式 → 使用默认值/记忆数据
+  ├─ 标准模式 → 询问考试日期/偏好
+  └─ 高级模式 → 分析完整数据
+      ↓
+[检查特殊状态]
+  ├─ 任务欠账 → 生成补课方案（>10h触发熔断)
+  ├─ 周日复盘 → 生成复盘计划
+  └─ 连续疲惫 → 触发心理调节模式
+      ↓
+[解析课表 + 个性化适配]
+  - Chronotype适配
+  - 疬劳度调整
+  - 最小块时长检查
+  - **专业课进度适配** (新增 v3.9.0)
+  - 科学时间块切分
+      ↓
+[生成计划 + MemOS保存]
+```
+
+> ⚠️ **重要**：生成计划前，应检查以下专业课进度文件：
+> - `考研专业课/📊 学习进度.md`
+> - `考研专业课/数字电子技术/1-数字与码制/📊 学习进度.md`
+> - 以及其他章节的进度文件
+>
+> **专业课进度适配规则**：
+> 1. 如果专业课进度为0%，优先安排基础章节
+> 2. 如果专业课进度<50%，在计划中包含复习环节
+> 3. 如果专业课进度≥50%，可以安排新的学习内容
+
+> 4. 裂痕检测：如果超过7天未学习专业课，发出提醒
+
+---
+
+## 概念
 
     with open(record_file, 'w', encoding='utf-8') as f:
         f.write(record_content)
@@ -1640,6 +1682,118 @@ def split_large_time_block(duration, subject):
 16:00-16:45 | 数学 | 第3块（45分钟）
 16:45-17:00 | ☕ 休息 | 15分钟
 ```
+
+---
+
+### 专业课进度检查函数
+
+```python
+def check_electronics_progress(user_context):
+    """
+    检查专业课学习进度（新增 v3.9.0）
+
+    功能：
+        1. 读取专业课进度文件
+        2. 返回进度信息，包括：
+           - 数字电子技术进度
+           - 模拟电子技术进度
+           - 电路分析进度
+        3. 返回需要学习的知识点建议
+
+    参数:
+        user_context: 用户上下文（可选）
+
+    返回:
+        dict: {
+            "digital_progress": float (0-100),
+            "analog_progress": float (0-100),
+            "circuit_progress": float (0-100),
+            "current_chapter": str,
+            "suggested_tasks": list
+            "days_since_last_study": int  # 距上次学习的天数
+        }
+    """
+    from datetime import datetime
+    import os
+
+    progress_info = {
+        "digital_progress": 0.0,
+        "analog_progress": 0.0,
+        "circuit_progress": 0.0,
+        "current_chapter": None,
+        "suggested_tasks": [],
+        "days_since_last_study": float('inf')
+    }
+
+    # 1. 读取数字电子技术进度
+    digital_progress_file = "考研专业课/数字电子技术/1-数字与码制/📊 学习进度.md"
+    if os.path.exists(digital_progress_file):
+        try:
+        with open(digital_progress_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+            # 解析进度信息
+            # 简单的实现：查找完成率
+            if "完成率" in content:
+                progress_info["digital_progress"] = extract_progress(content, "完成率")
+                # 查找当前章节
+                progress_info["current_chapter"] = "数字电子技术"
+    except:
+        pass
+
+    # 2. 读取总进度文件
+    main_progress_file = "考研专业课/📊 学习进度.md"
+    if os.path.exists(main_progress_file):
+        try:
+        with open(main_progress_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                # 提取各模块进度
+                # 这里可以解析总体进度
+                pass
+        except:
+            pass
+
+    # 3. 计算距上次学习的天数
+    # 查找最近的完成记录文件
+    record_files = [
+        "考研计划/每日计划/*-完成记录.md",
+        "考研专业课/数字电子技术/1-数字与码制/📊 学习进度.md"
+    ]
+    latest_study_date = None
+    for record_file in record_files:
+        if os.path.exists(record_file):
+            try:
+                mtime = os.path.getmtime(record_file)
+                if latest_study_date is None or mtime > latest_study_date:
+                    latest_study_date = mtime
+            except:
+                pass
+
+    if latest_study_date:
+        progress_info["days_since_last_study"] = (datetime.now() - latest_study_date).days
+
+    # 4. 生成建议
+    if progress_info["digital_progress"] < 50:
+        progress_info["suggested_tasks"].append({
+            "type": "continue_first_chapter",
+            "reason": "第一章进度不足50%，建议继续学习"
+        })
+
+    if progress_info.get("days_since_last_study", 7:
+        progress_info["suggested_tasks"].append({
+            "type": "review_needed",
+            "reason": f"超过7天未学习专业课，建议今天安排复习"
+        })
+
+    return progress_info
+
+
+def extract_progress(content, keyword):
+    """从文件内容中提取进度百分比"""
+    import re
+    match = re.search(rf'{keyword}.*?(\d+(?:\.\d+)?%')
+    if match:
+        return float(match.group(1))
+    return 0.0
 
 ---
 

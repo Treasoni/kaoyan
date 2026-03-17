@@ -1,0 +1,23 @@
+{
+  "id": "conv-1773708514812-4segzswi9",
+  "title": "Generate math sequence limits mind map",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773708514812,
+  "updatedAt": 1773709662408,
+  "lastResponseAt": 1773709662408,
+  "sessionId": "7b7395d5-4b48-4c28-8bbf-aa966975aafa",
+  "sdkSessionId": "7b7395d5-4b48-4c28-8bbf-aa966975aafa",
+  "currentNote": "考研数学/高数-数列极限/7-收敛速度问题/README.md",
+  "enabledMcpServers": [
+    "mind-map-mcp"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
