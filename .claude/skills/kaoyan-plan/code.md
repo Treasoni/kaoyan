@@ -632,6 +632,12 @@ def update_english_progress_file(english_tasks):
             # 生成已完成复习记录
             completed_list.append(f"- [x] {today_full}: Day {day} 词汇{review_count}（~{vocab_count}词）✅ 已完成（自动记录）")
 
+            # 生成今日完成情况记录（v3.9.0 修复）
+            if review_count == "新学":
+                completion_records.append(f"> - ✅ Day {day} 新学（~{vocab_count}词）（自动记录）")
+            else:
+                completion_records.append(f"> - ✅ Day {day} {review_count}（~{vocab_count}词）（自动记录）")
+
         # 4. 更新文件内容
         updated_content = content
 
