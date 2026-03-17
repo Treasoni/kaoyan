@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773715095668-nunmtin63",
+  "title": "Organize existing mind maps",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773715095669,
+  "updatedAt": 1773715948413,
+  "lastResponseAt": 1773715948413,
+  "sessionId": "ff8dbeea-585a-41d4-bcf5-18699a09bb40",
+  "sdkSessionId": "ff8dbeea-585a-41d4-bcf5-18699a09bb40",
+  "currentNote": "考研数学/高数-数列极限/数列极限.详细思维导图.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

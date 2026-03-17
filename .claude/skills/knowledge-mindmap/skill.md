@@ -2,28 +2,42 @@
 name: knowledge-mindmap
 description: 自动分析知识点目录结构，生成 Excalidraw 格式的详细思维导图。适用于考研数学、专业课等知识体系的可视化整理。触发词包括"知识点思维导图"、"生成思维导图"、"知识结构图"、"目录结构图"。
 metadata:
-  version: 1.0.0
+  version: 2.0.0
 ---
 
-# Knowledge Mindmap Generator
+# Knowledge Mindmap Generator v2.0
 
 自动分析知识点目录结构，生成 Excalidraw 格式的详细思维导图。
 
-## 功能说明
+## v2.0 新特性
 
-这个 skill 专门用于：
-- 分析知识点目录的层级结构
-- 提取各模块的核心内容
-- 生成可视化思维导图
-- 保存为 Obsidian Excalidraw 格式
+- **智能布局算法**：根据模块数量自动分布，避免重叠
+- **多格式导入**：支持 Markdown 层级列表、JSON 笔记、Excel 表格
+- **图形丰富性**：圆角、阴影、图标区分模块类型
+- **交互性增强**：超链接到笔记原文，点击即可跳转
+- **自动分层折叠**：模块过多时生成折叠结构
 
-## 使用场景
+## 使用方法
 
-| 场景 | 示例 |
-|------|------|
-| 数学知识体系 | `/knowledge-mindmap 考研数学/高数-极限` |
-| 专业课结构 | `/knowledge-mindmap 考研专业课/模电` |
-| 章节总结 | `/knowledge-mindmap 当前章节` |
+### 基本用法
+
+```
+/knowledge-mindmap [目录路径]
+```
+
+### 高级选项
+
+```
+/knowledge-mindmap [目录路径] --format=[simple|detailed|folded]
+/knowledge-mindmap [目录路径] --style=[compact|expanded|tree]
+/knowledge-mindmap [目录路径] --max-modules=[数字]
+```
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--format` | 输出格式：simple（简洁）/ detailed（详细）/ folded（折叠） | detailed |
+| `--style` | 布局样式：compact（紧凑）/ expanded（展开）/ tree（树形） | expanded |
+| `--max-modules` | 折叠模式下核心模块最大数量 | 5 |
 
 ## 工作流程
 
@@ -55,20 +69,285 @@ metadata:
 - 解题方法和技巧
 - 易错点和注意事项
 
-### 3. 思维导图生成阶段
+### 3. 智能布局阶段
 
-生成 Excalidraw JSON 格式的思维导图。
+**布局算法流程：**
+
+```
+分析模块数量和层级
+    ↓
+选择最优布局模板
+    ↓
+计算各模块坐标
+    ↓
+自动调整避免重叠
+    ↓
+生成连接线
+```
+
+---
+
+## 智能布局算法
+
+### 模块数量自适应
+
+| 模块数量 | 布局策略 | 画布尺寸 |
+|---------|---------|---------|
+| 1-3 个 | 线性布局 | 800×400 |
+| 4-6 个 | 放射状布局 | 1000×600 |
+| 7-10 个 | 环形布局 | 1200×800 |
+| 11+ 个 | 分层折叠 | 1400×900 |
+
+### 坐标计算公式
+
+**放射状布局（4-6 个模块）：**
+
+```
+中心坐标: (canvasWidth/2, canvasHeight/2)
+模块角度: 360° / 模块数量
+模块距离: min(canvasWidth, canvasHeight) * 0.35
+
+模块i坐标:
+  x = centerX + distance * cos(angle * i - 90°)
+  y = centerY + distance * sin(angle * i - 90°)
+```
+
+**环形布局（7-10 个模块）：**
+
+```
+内环（核心模块）: 距离中心 150px
+外环（普通模块）: 距离中心 300px
+辅助系统: 底部独立区域
+```
+
+### 避免重叠检测
+
+```python
+def check_overlap(box1, box2, margin=20):
+    """检测两个矩形是否重叠，margin 为安全间距"""
+    return not (
+        box1.x + box1.width + margin < box2.x or
+        box2.x + box2.width + margin < box1.x or
+        box1.y + box1.height + margin < box2.y or
+        box2.y + box2.height + margin < box1.y
+    )
+
+def adjust_position(box, others, step=10, max_attempts=50):
+    """自动调整位置避免重叠"""
+    for _ in range(max_attempts):
+        if all(not check_overlap(box, other) for other in others):
+            return box
+        box.x += step
+    return box
+```
+
+---
+
+## 多格式导入支持
+
+### 1. Markdown 层级列表
+
+**输入格式：**
+```markdown
+- 数列极限
+  - 0-数列的概念
+    - 数列定义
+    - 子列概念
+  - 2-用性质 ⭐⭐⭐⭐⭐
+    - 唯一性
+    - 有界性
+    - 保号性
+```
+
+**解析规则：**
+- 缩进表示层级关系
+- `⭐⭐⭐⭐⭐` 标记核心模块
+- 子项自动成为模块内容
+
+### 2. JSON 笔记格式
+
+**输入格式：**
+```json
+{
+  "title": "数列极限",
+  "modules": [
+    {
+      "id": "module-1",
+      "title": "用性质",
+      "level": 5,
+      "content": ["唯一性", "有界性", "保号性"],
+      "file": "2-用性质/README.md"
+    }
+  ]
+}
+```
+
+### 3. Excel 表格格式
+
+| 列名 | 说明 | 必填 |
+|------|------|------|
+| 模块ID | 唯一标识 | 是 |
+| 模块名称 | 显示标题 | 是 |
+| 层级 | 1-5星 | 否 |
+| 内容 | 分号分隔 | 否 |
+| 链接 | 笔记路径 | 否 |
+
+---
+
+## 图形丰富性
+
+### 模块类型图标
+
+| 类型 | 图标 | 颜色 | 用途 |
+|------|------|------|------|
+| **定义** | 📖 | `#3b82f6` | 概念、定义类 |
+| **定理** | 📐 | `#8b5cf6` | 定理、性质类 |
+| **方法** | 🔧 | `#f59e0b` | 解题方法类 |
+| **公式** | 📝 | `#10b981` | 重要公式类 |
+| **易错** | ⚠️ | `#ef4444` | 易错点提醒 |
+| **核心** | ⭐ | `#f59e0b` | 五星重点 |
+
+### 视觉样式
+
+```json
+{
+  "核心模块": {
+    "strokeWidth": 3,
+    "strokeColor": "#f59e0b",
+    "backgroundColor": "#fef3c7",
+    "roundness": {"type": 3},
+    "shadow": true
+  },
+  "普通模块": {
+    "strokeWidth": 2,
+    "strokeColor": "#3b82f6",
+    "backgroundColor": "#eff6ff",
+    "roundness": {"type": 3},
+    "shadow": false
+  },
+  "辅助系统": {
+    "strokeWidth": 2,
+    "strokeColor": "#9ca3af",
+    "strokeStyle": "dashed",
+    "backgroundColor": "#f3f4f6"
+  }
+}
+```
+
+### 圆角设置
+
+```json
+{
+  "roundness": {"type": 3}  // 圆角矩形
+}
+```
+
+---
+
+## 交互性增强
+
+### 超链接功能
+
+为每个模块添加指向原笔记的链接：
+
+```json
+{
+  "id": "box-2",
+  "type": "rectangle",
+  "link": "2-用性质/README.md",
+  ...
+}
+```
+
+**链接格式：**
+- 相对路径：`2-用性质/README.md`
+- Wiki链接：`[[2-用性质/README]]`
+- 外部链接：`https://...`
+
+### 点击跳转
+
+用户在 Excalidraw 视图中点击模块时：
+1. 自动打开对应的笔记文件
+2. 或跳转到指定章节
+
+### 实现 JSON
+
+```json
+{
+  "id": "module-properties",
+  "type": "rectangle",
+  "x": 520,
+  "y": 50,
+  "width": 200,
+  "height": 200,
+  "link": "obsidian://open?vault=考研复习&file=考研数学/高数-数列极限/2-用性质/README",
+  "strokeColor": "#f59e0b",
+  ...
+}
+```
+
+---
+
+## 自动分层折叠
+
+### 折叠策略
+
+当模块数量超过阈值（默认10个）时：
+
+1. **识别核心模块**：根据星级和重要性
+2. **折叠次要模块**：归入"更多..."折叠区
+3. **保留辅助系统**：始终显示在底部
+
+### 折叠模式布局
+
+```
+                    [核心模块1]
+                        ↑
+[核心模块2] ←← [中心主题] →→ [核心模块3]
+                        ↓
+                   [更多模块...]  ← 点击展开
+                        ↓
+                   [辅助系统]
+```
+
+### 展开后的子图
+
+```
+[更多模块]
+    ├── 模块4: 四则运算
+    ├── 模块5: 收敛速度
+    └── 模块6: 压缩映射
+```
+
+### JSON 实现
+
+```json
+{
+  "id": "folded-group",
+  "type": "rectangle",
+  "x": 500,
+  "y": 600,
+  "width": 200,
+  "height": 80,
+  "strokeColor": "#9ca3af",
+  "strokeStyle": "dashed",
+  "text": "更多模块（点击展开）\n+4 个模块",
+  "link": "#expanded-view"
+}
+```
+
+---
 
 ## 输出格式
 
-### Obsidian Excalidraw 格式（默认）
+### Obsidian Excalidraw 格式
 
 ```markdown
 ---
 excalidraw-plugin: parsed
-tags: [excalidraw]
+tags: [excalidraw, mindmap]
 ---
-==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
 
 # Excalidraw Data
 
@@ -76,31 +355,24 @@ tags: [excalidraw]
 %%
 ## Drawing
 \`\`\`json
-{JSON 完整数据}
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin",
+  "elements": [...],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
 \`\`\`
 %%
 ```
 
-**关键要点：**
-- Frontmatter 必须包含 `tags: [excalidraw]`
-- JSON 必须被 `%%` 标记包围
-- 文件扩展名：`.md`
+---
 
 ## 设计规范
-
-### 布局策略
-
-采用**中心发散布局**：
-
-```
-                    [模块1]
-                        ↑
-[模块2] ←← [模块3] ←← [中心主题] →→ [模块4] →→ [模块5]
-                        ↓
-                    [模块6]
-                        ↓
-                   [辅助系统]
-```
 
 ### 颜色编码
 
@@ -108,11 +380,12 @@ tags: [excalidraw]
 |---------|---------|---------|------|
 | **中心节点** | `#1e40af` | `#dbeafe` | 椭圆形，主题核心 |
 | **五星模块** | `#f59e0b` | `#fef3c7` | 核心考点，粗边框 |
+| **四星模块** | `#8b5cf6` | `#f3e8ff` | 重要内容 |
 | **普通模块** | `#3b82f6` | `#eff6ff` | 基础知识点 |
 | **辅助系统** | `#9ca3af` | `#f3f4f6` | 虚线边框 |
-| **连接线** | 根据目标类型 | - | 实线或虚线 |
+| **折叠区** | `#6b7280` | `#f9fafb` | 可展开区域 |
 
-### 模块尺寸
+### 尺寸规范
 
 | 模块类型 | 宽度 | 高度 | 字体大小 |
 |---------|------|------|---------|
@@ -120,67 +393,17 @@ tags: [excalidraw]
 | 五星模块 | 200-240px | 200-280px | 15px |
 | 普通模块 | 200-260px | 150-200px | 15px |
 | 辅助系统 | 500-620px | 180-200px | 14px |
+| 折叠区 | 200px | 80px | 14px |
 
-## JSON 结构规范
+---
 
-### 完整结构
+## JSON 元素模板
 
-```json
-{
-  "type": "excalidraw",
-  "version": 2,
-  "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin",
-  "elements": [
-    /* 所有元素 */
-  ],
-  "appState": {
-    "gridSize": null,
-    "viewBackgroundColor": "#ffffff"
-  },
-  "files": {}
-}
-```
-
-### 元素模板
-
-#### 中心节点（椭圆）
+### 带链接的核心模块
 
 ```json
 {
-  "id": "center",
-  "type": "ellipse",
-  "x": 400,
-  "y": 250,
-  "width": 400,
-  "height": 140,
-  "angle": 0,
-  "strokeColor": "#1e40af",
-  "backgroundColor": "#dbeafe",
-  "fillStyle": "solid",
-  "strokeWidth": 3,
-  "strokeStyle": "solid",
-  "roughness": 1,
-  "opacity": 100,
-  "groupIds": [],
-  "frameId": null,
-  "index": "a0",
-  "roundness": {"type": 2},
-  "seed": 100,
-  "version": 1,
-  "versionNonce": 101,
-  "isDeleted": false,
-  "boundElements": [],
-  "updated": 1751928342106,
-  "link": null,
-  "locked": false
-}
-```
-
-#### 五星模块（矩形）
-
-```json
-{
-  "id": "box-star-1",
+  "id": "star-module-1",
   "type": "rectangle",
   "x": 300,
   "y": 20,
@@ -196,7 +419,7 @@ tags: [excalidraw]
   "opacity": 100,
   "groupIds": [],
   "frameId": null,
-  "index": "a1",
+  "index": "a6",
   "roundness": {"type": 3},
   "seed": 112,
   "version": 1,
@@ -204,56 +427,23 @@ tags: [excalidraw]
   "isDeleted": false,
   "boundElements": [],
   "updated": 1751928342106,
-  "link": null,
+  "link": "obsidian://open?vault=考研复习&file=考研数学/高数-数列极限/2-用性质/README",
   "locked": false
 }
 ```
 
-#### 普通模块（矩形）
+### 带图标的文本
 
 ```json
 {
-  "id": "box-normal-1",
-  "type": "rectangle",
-  "x": 30,
-  "y": 50,
-  "width": 260,
-  "height": 180,
-  "angle": 0,
-  "strokeColor": "#3b82f6",
-  "backgroundColor": "#eff6ff",
-  "fillStyle": "solid",
-  "strokeWidth": 2,
-  "strokeStyle": "solid",
-  "roughness": 1,
-  "opacity": 100,
-  "groupIds": [],
-  "frameId": null,
-  "index": "a2",
-  "roundness": {"type": 3},
-  "seed": 104,
-  "version": 1,
-  "versionNonce": 105,
-  "isDeleted": false,
-  "boundElements": [],
-  "updated": 1751928342106,
-  "link": null,
-  "locked": false
-}
-```
-
-#### 文本元素
-
-```json
-{
-  "id": "text-1",
+  "id": "text-star-1",
   "type": "text",
-  "x": 50,
-  "y": 60,
-  "width": 220,
-  "height": 160,
+  "x": 320,
+  "y": 30,
+  "width": 200,
+  "height": 260,
   "angle": 0,
-  "strokeColor": "#374151",
+  "strokeColor": "#1e40af",
   "backgroundColor": "transparent",
   "fillStyle": "solid",
   "strokeWidth": 2,
@@ -262,41 +452,41 @@ tags: [excalidraw]
   "opacity": 100,
   "groupIds": [],
   "frameId": null,
-  "index": "a3",
+  "index": "a7",
   "roundness": {"type": 3},
-  "seed": 106,
+  "seed": 114,
   "version": 1,
-  "versionNonce": 107,
+  "versionNonce": 115,
   "isDeleted": false,
   "boundElements": [],
   "updated": 1751928342106,
   "link": null,
   "locked": false,
-  "text": "模块标题\n⭐⭐⭐⭐⭐\n\n• 要点1\n• 要点2\n• 要点3",
-  "rawText": "模块标题\n⭐⭐⭐⭐⭐\n\n• 要点1\n• 要点2\n• 要点3",
+  "text": "2-用性质\n⭐⭐⭐⭐⭐\n\n• 唯一性\n• 有界性\n• 保号性\n  - 脱帽法\n  - 戴帽法\n  - 最值问题",
+  "rawText": "2-用性质\n⭐⭐⭐⭐⭐\n\n• 唯一性\n• 有界性\n• 保号性\n  - 脱帽法\n  - 戴帽法\n  - 最值问题",
   "fontSize": 15,
   "fontFamily": 5,
   "textAlign": "left",
   "verticalAlign": "top",
   "containerId": null,
-  "originalText": "模块标题\n⭐⭐⭐⭐⭐\n\n• 要点1\n• 要点2\n• 要点3",
+  "originalText": "2-用性质\n⭐⭐⭐⭐⭐\n\n• 唯一性\n• 有界性\n• 保号性\n  - 脱帽法\n  - 戴帽法\n  - 最值问题",
   "autoResize": true,
   "lineHeight": 1.25
 }
 ```
 
-#### 连接箭头
+### 智能连接线
 
 ```json
 {
-  "id": "arrow-1",
+  "id": "arrow-smart-1",
   "type": "arrow",
-  "x": 400,
-  "y": 250,
-  "width": 120,
-  "height": 140,
+  "x": 600,
+  "y": 300,
+  "width": 150,
+  "height": 180,
   "angle": 0,
-  "strokeColor": "#3b82f6",
+  "strokeColor": "#f59e0b",
   "backgroundColor": "transparent",
   "fillStyle": "solid",
   "strokeWidth": 2,
@@ -305,24 +495,26 @@ tags: [excalidraw]
   "opacity": 100,
   "groupIds": [],
   "frameId": null,
-  "index": "a20",
+  "index": "a22",
   "roundness": {"type": 2},
-  "seed": 140,
+  "seed": 144,
   "version": 1,
-  "versionNonce": 141,
+  "versionNonce": 145,
   "isDeleted": false,
   "boundElements": [],
   "updated": 1751928342106,
   "link": null,
   "locked": false,
-  "points": [[0, 0], [-100, -100], [-120, -140]],
+  "points": [[0, 0], [-80, -160], [-150, -180]],
   "lastCommittedPoint": [0, 0],
-  "startBinding": null,
-  "endBinding": null,
+  "startBinding": {"elementId": "center", "focus": 0, "gap": 10},
+  "endBinding": {"elementId": "star-module-1", "focus": 0, "gap": 10},
   "startArrowhead": null,
   "endArrowhead": "arrow"
 }
 ```
+
+---
 
 ## 文本处理规则
 
@@ -351,6 +543,8 @@ tags: [excalidraw]
 - **行高**：`lineHeight: 1.25`
 - **对齐方式**：`textAlign: "left"`, `verticalAlign: "top"`
 
+---
+
 ## 自动保存流程
 
 ### 1. 生成文件名
@@ -368,9 +562,12 @@ tags: [excalidraw]
 ### 3. 用户反馈
 
 生成完成后报告：
-- 文件保存位置
+- 文件保存位置（可点击跳转）
 - 如何在 Obsidian 中查看
 - 思维导图结构概览
+- 点击模块可跳转到原笔记
+
+---
 
 ## 常见问题排查
 
@@ -389,9 +586,20 @@ tags: [excalidraw]
 **问题**：元素重叠或位置不当。
 
 **解决方案**：
-- 调整各模块的 x, y 坐标
-- 确保模块间有足够间距
-- 检查画布范围（建议 0-1200 x 0-800）
+- 使用智能布局算法自动调整
+- 设置 `--style=compact` 紧凑布局
+- 减少显示的模块数量
+
+### 链接不工作
+
+**问题**：点击模块无法跳转。
+
+**检查项**：
+1. 确保 `link` 字段使用正确的 Obsidian URI 格式
+2. 检查文件路径是否正确
+3. 确保 vault 名称匹配
+
+---
 
 ## 示例输出
 
@@ -403,14 +611,21 @@ tags: [excalidraw]
 使用方法：
 1. 在 Obsidian 中打开此文件
 2. 按 Ctrl+E（Mac: Cmd+E）切换到阅读模式
-3. 或点击右上角 ··· → Switch to EXCALIDRAW VIEW
+3. 点击任意模块可跳转到原笔记
 
 结构概览：
 - 中心主题：数列极限
 - 核心模块（⭐⭐⭐⭐⭐）：用性质、海涅定理、夹逼准则、单调有界
 - 基础模块：数列概念、定义、四则运算、收敛速度
 - 辅助系统：索引、进度、总结、错题本
+
+交互功能：
+✓ 点击模块跳转到原笔记
+✓ 五星模块金色高亮
+✓ 智能布局避免重叠
 ```
+
+---
 
 ## 注意事项
 
@@ -419,3 +634,5 @@ tags: [excalidraw]
 3. **元素 ID 唯一**：每个元素必须有唯一的 `id`
 4. **文本长度**：避免单个文本元素过长，适当分行
 5. **星级标注**：保留原有的星级标注（⭐），便于识别重点
+6. **链接格式**：使用 Obsidian URI 格式确保跳转功能正常
+7. **模块数量**：超过10个模块建议使用折叠模式
