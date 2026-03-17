@@ -3,11 +3,14 @@
   "title": "Generate Math Sequence Limits Mind Map",
   "titleGenerationStatus": "success",
   "createdAt": 1773710422982,
-  "updatedAt": 1773713523569,
-  "lastResponseAt": 1773713523569,
+  "updatedAt": 1773713734828,
+  "lastResponseAt": 1773713734828,
   "sessionId": "0d65a7e0-ab62-4041-aadf-61039dd88e48",
   "sdkSessionId": "0d65a7e0-ab62-4041-aadf-61039dd88e48",
   "currentNote": "考研英语/📰 真题语境文章/Context-Day-006-2026-03-05.md",
+  "enabledMcpServers": [
+    "filesystem"
+  ],
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
