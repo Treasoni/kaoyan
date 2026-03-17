@@ -39,8 +39,8 @@
       "Remove-Partition"
     ]
   },
-  "permissionMode": "yolo",
-  "model": "glm-4.7",
+  "permissionMode": "plan",
+  "model": "glm-5",
   "thinkingBudget": "low",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
@@ -71,7 +71,7 @@
   },
   "loadUserClaudeSettings": true,
   "lastClaudeModel": "haiku",
-  "lastCustomModel": "glm-4.7",
+  "lastCustomModel": "glm-5",
   "lastEnvHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.5-air|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7",
   "maxTabs": 3,
   "tabBarPosition": "input",
