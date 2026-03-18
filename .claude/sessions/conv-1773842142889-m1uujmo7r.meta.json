@@ -3,6 +3,17 @@
   "title": "Generate English vocabulary learning system for...",
   "titleGenerationStatus": "success",
   "createdAt": 1773842142890,
-  "updatedAt": 1773842147674,
-  "sessionId": null
+  "updatedAt": 1773847423047,
+  "lastResponseAt": 1773847423047,
+  "sessionId": null,
+  "currentNote": "考研英语/英语单词/2026-3-18.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
