@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773806929547-kbdt0h6cf",
+  "title": "Verify differential calculus concepts and chain...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773806929547,
+  "updatedAt": 1773806988245,
+  "lastResponseAt": 1773806988245,
+  "sessionId": "55df3980-6e57-402d-8c67-61e0439bd738",
+  "sdkSessionId": "55df3980-6e57-402d-8c67-61e0439bd738",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/3-复合函数的导数/微分形式不变性.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
