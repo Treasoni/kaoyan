@@ -3,6 +3,18 @@
   "title": "Solve limit existence condition with equivalence",
   "titleGenerationStatus": "success",
   "createdAt": 1773815555775,
-  "updatedAt": 1773815560349,
-  "sessionId": null
+  "updatedAt": 1773815950429,
+  "lastResponseAt": 1773815950429,
+  "sessionId": "4e5d24a0-ffbe-4987-8533-a4f236caa100",
+  "sdkSessionId": "4e5d24a0-ffbe-4987-8533-a4f236caa100",
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
