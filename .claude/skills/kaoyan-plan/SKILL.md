@@ -1,7 +1,7 @@
 ---
 name: kaoyan-plan
 description: This skill should be used when the user asks to generate study plans for 考研 (Chinese graduate entrance exam), parse course schedules, create daily/weekly study schedules, or optimize study time allocation. Supports three input modes (minimal/standard/advanced), adapts to individual chronotypes (morning person/night owl), handles task debt from missed plans with circuit breaker protection (>10h triggers recovery mode), enforces Sunday review, respects minimum block duration requirements for different subjects, implements science-based time block splitting based on cognitive science (attention decay, decision fatigue, spacing effect), integrates with MemOS for persistent learning progress tracking, includes context refresh mechanism (auto-prompts profile update after 30 days), mental health intervention (triggers after 3 consecutive tired days), vocabulary review validation (prevents missing newly learned vocabulary), plan upsert logic with tagging for version control, completion record generation based on user actual reports (supports extra tasks).
-version: 3.8.0
+version: 3.10.0
 ---
 
 # 考研规划Skill (Kaoyan Plan Generation Skill)
@@ -188,6 +188,13 @@ version: 3.8.0
   - 在第 633 行后添加 `completion_records` 填充逻辑
   - 循环中同步生成今日完成情况记录
 - 解决问题：英语学习进度文件的"今日完成情况"部分现在能正确自动更新
+
+### v3.10.0 (2026-03-18)
+**新增"待进行复习安排"自动更新**（功能增强）：
+- 新增：在 `update_english_progress_file()` 函数中添加"待进行复习安排"更新逻辑
+  - 当用户完成"新学"任务时，自动在"待进行复习安排"表格中添加次日的第1次复习计划
+  - 按日期排序插入，确保计划顺序正确
+- 解决问题：完成"新学"后不再遗漏"待进行复习安排"的更新
 
 ### v3.8.0 (2026-03-16)
 **修复完成记录遗漏问题**（核心功能修复）：

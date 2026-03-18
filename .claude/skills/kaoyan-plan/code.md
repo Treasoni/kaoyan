@@ -682,6 +682,60 @@ def update_english_progress_file(english_tasks):
                 completed_section = completed_section.rstrip() + f"\n{record}"
             updated_content = updated_content[:match.start(2)] + completed_section + "\n\n" + match.group(3)
 
+        # 4.4 【v3.10.0 新增】在"待进行复习安排"中添加次日复习计划
+        # 对于"新学"任务，需要添加次日的第1次复习计划
+        tomorrow = (datetime.now() + timedelta(days=1)).strftime("%m-%d")
+        tomorrow_full = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+
+        pending_review_records = []
+        for task in english_tasks:
+            day = task["day"]
+            review_count = task["review_count"]
+            vocab_count = task["vocab_count"]
+
+            # 只对"新学"任务添加次日复习计划
+            if review_count == "新学":
+                pending_review_records.append({
+                    "day": day,
+                    "review_type": "第1次",
+                    "vocab_count": vocab_count,
+                    "date": tomorrow
+                })
+
+        # 在"待进行复习安排"表格中插入新记录
+        if pending_review_records:
+            pending_section_pattern = r'(### 待进行复习安排\s*\n\s*\|[^\n]+\n\s*\|[^\n]+\n)(.*?)(\n> \[!info\] 今日完成情况)'
+            match = re.search(pending_section_pattern, updated_content, re.DOTALL)
+
+            if match:
+                table_header = match.group(1)
+                table_content = match.group(2)
+
+                # 找到明日日期的行，在其前面插入新记录
+                for record in pending_review_records:
+                    new_row = f"| **{record['date']}** | **Day {record['day']}** | **{record['review_type']}** | **~{record['vocab_count']}词** | **1天** | ⭐ **明日新增** |\n"
+
+                    # 检查是否已存在该Day的记录（避免重复添加）
+                    if f"Day {record['day']}" not in table_content:
+                        # 找到插入位置（按日期排序）
+                        lines = table_content.strip().split('\n')
+                        insert_idx = len(lines)  # 默认插入到末尾
+
+                        for i, line in enumerate(lines):
+                            if line.startswith('|'):
+                                # 提取日期
+                                date_match = re.search(r'\|\s*\*{0,2}(\d{2}-\d{2})\*{0,2}\s*\|', line)
+                                if date_match:
+                                    line_date = date_match.group(1)
+                                    if line_date > record['date']:
+                                        insert_idx = i
+                                        break
+
+                        lines.insert(insert_idx, new_row.rstrip())
+                        table_content = '\n'.join(lines) + '\n'
+
+                updated_content = updated_content[:match.start(1)] + table_header + table_content + match.group(3)
+
         # 5. 保存更新后的文件
         with open(progress_file, 'w', encoding='utf-8') as f:
             f.write(updated_content)

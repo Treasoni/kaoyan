@@ -500,5 +500,303 @@ def parse_baici_format(content):
 
 ---
 
+## 6. 单词表整理和格式化函数（必须步骤）⚠️
+
+> **重要**：当用户提供单词表时，此函数必须**首先执行**！
+
+### 6.1 organize_word_list
+
+整理和格式化原始单词表。
+
+```python
+def organize_word_list(raw_content, output_path, date_str):
+    """整理和格式化原始单词表
+
+    Args:
+        raw_content: 原始单词表内容（可能是从PDF/图片转换，格式混乱）
+        output_path: 输出文件路径（覆盖原始文件）
+        date_str: 日期字符串
+
+    Returns:
+        dict: 整理结果统计
+    """
+    # 1. 提取单词列表
+    words = extract_words_from_raw_content(raw_content)
+
+    # 2. 格式统一化
+    formatted_words = format_words(words)
+
+    # 3. 按词族分类
+    word_families = group_by_word_family(formatted_words)
+
+    # 4. 按考研重点分级
+    classified_words = classify_by_frequency(word_families)
+
+    # 5. 检测僻义预警
+    words_with_alerts = add_polysemy_alerts(classified_words)
+
+    # 6. 生成输出内容
+    output_content = generate_formatted_output(words_with_alerts, date_str)
+
+    # 7. 覆盖原始文件
+    write_file(output_path, output_content)
+
+    return {
+        "total_words": len(words),
+        "high_frequency": len(classified_words["high"]),
+        "medium_frequency": len(classified_words["medium"]),
+        "low_frequency": len(classified_words["low"]),
+        "polysemy_alerts": count_alerts(words_with_alerts),
+        "word_families": len(word_families)
+    }
+
+
+def extract_words_from_raw_content(content):
+    """从原始内容中提取单词"""
+    words = []
+    lines = content.split('\n')
+
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+
+        # 尝试匹配多种格式
+        # 格式1: word [音标] 释义
+        match = re.match(r'^(\w+)\s*\[([^\]]+)\]\s*(.+)$', line)
+        if match:
+            words.append({
+                "word": match.group(1),
+                "pronunciation": match.group(2),
+                "meaning": match.group(3).strip()
+            })
+            continue
+
+        # 格式2: word 释义
+        match = re.match(r'^(\w+)\s+(.+)$', line)
+        if match:
+            words.append({
+                "word": match.group(1),
+                "pronunciation": "",
+                "meaning": match.group(2).strip()
+            })
+
+    return words
+
+
+def format_words(words):
+    """格式统一化"""
+    formatted = []
+    for w in words:
+        # 清理多余符号
+        meaning = w["meaning"]
+        meaning = re.sub(r'\.{3,}', '...', meaning)  # 省略号统一
+        meaning = re.sub(r'\s+', ' ', meaning)  # 多余空格
+
+        formatted.append({
+            "word": w["word"].lower().strip(),
+            "pronunciation": w["pronunciation"].strip(),
+            "meaning": meaning.strip()
+        })
+
+    return formatted
+
+
+def group_by_word_family(words):
+    """按词族分类"""
+    families = {}
+
+    for w in words:
+        root = extract_word_root(w["word"])
+        if root not in families:
+            families[root] = []
+        families[root].append(w)
+
+    return families
+
+
+def extract_word_root(word):
+    """提取词根"""
+    # 常见词缀
+    suffixes = [
+        "ation", "ition", "ment", "ness", "ly", "ful", "less",
+        "able", "ible", "ous", "ive", "al", "ial", "ing", "ed",
+        "er", "or", "ist", "ism", "ty", "ity", "ence", "ance",
+        "ify", "ize", "ise", "en"
+    ]
+
+    # 尝试移除词缀
+    for suffix in sorted(suffixes, key=len, reverse=True):
+        if word.endswith(suffix) and len(word) > len(suffix) + 2:
+            return word[:-len(suffix)]
+
+    return word
+
+
+def classify_by_frequency(word_families):
+    """按考研重点分级"""
+    # 考研高频词库（部分示例）
+    high_freq_words = {
+        "remark", "pollute", "final", "week", "anger", "engine",
+        "fire", "cloth", "destiny", "destroy", "inquire", "desolate"
+    }
+
+    classified = {
+        "high": {},    # ⭐⭐⭐
+        "medium": {},  # ⭐⭐
+        "low": {}      # ⭐
+    }
+
+    for root, words in word_families.items():
+        if root in high_freq_words or any(w["word"] in high_freq_words for w in words):
+            classified["high"][root] = words
+        elif len(words) >= 2:  # 词族有多个词，可能是重点
+            classified["medium"][root] = words
+        else:
+            classified["low"][root] = words
+
+    return classified
+
+
+def add_polysemy_alerts(classified_words):
+    """添加僻义预警"""
+    # Critical级别僻义词库
+    critical_polysemy = {
+        "fine": {"common": "好的", "rare": "n./v. 罚款", "frequency": "60%"},
+        "sustain": {"common": "维持", "rare": "vt. 支撑；认可", "frequency": "45%"},
+        "pool": {"common": "池子", "rare": "v. 共用；汇集", "frequency": "40%"},
+        "bet": {"common": "打赌", "rare": "v. 敢说；确信", "frequency": "35%"},
+        "swell": {"common": "肿胀", "rare": "v. 增加；扩大", "frequency": "30%"}
+    }
+
+    # Warning级别僻义词库
+    warning_polysemy = {
+        "weed": {"common": "杂草", "rare": "v. 除草；清除", "frequency": "25%"},
+        "engineer": {"common": "工程师", "rare": "v. 策划；设计", "frequency": "25%"},
+        "remark": {"common": "评论", "rare": "v. 引人注目", "frequency": "20%"}
+    }
+
+    result = {"high": {}, "medium": {}, "low": {}}
+
+    for level, families in classified_words.items():
+        for root, words in families.items():
+            for w in words:
+                word = w["word"]
+                if word in critical_polysemy:
+                    w["polysemy_alert"] = {
+                        "level": "critical",
+                        **critical_polysemy[word]
+                    }
+                elif word in warning_polysemy:
+                    w["polysemy_alert"] = {
+                        "level": "warning",
+                        **warning_polysemy[word]
+                    }
+
+            result[level][root] = words
+
+    return result
+
+
+def generate_formatted_output(classified_words, date_str):
+    """生成格式化输出内容"""
+    content = f"""# 单词表 - Day {{N}}
+
+**日期**：{date_str}
+**词汇量**：{{count}}词
+**来源**：墨墨导出
+
+---
+
+"""
+
+    # 高频词
+    if classified_words["high"]:
+        content += "## ⭐⭐⭐ 高频词（必考词汇）\n\n"
+        for i, (root, words) in enumerate(classified_words["high"].items(), 1):
+            content += f"### 词族{i}: {root}（{len(words)}词）\n"
+            for w in words:
+                content += f"#### {w['word']}\n"
+                content += f"{w['pronunciation']} {w['meaning']}\n"
+                if w.get('polysemy_alert'):
+                    alert = w['polysemy_alert']
+                    icon = "🔴" if alert['level'] == "critical" else "🟡"
+                    content += f"- {icon} 僻义预警：{alert['rare']}（考研{alert['frequency']}考此义）\n"
+                content += "\n"
+            content += "---\n\n"
+
+    # 中频词
+    if classified_words["medium"]:
+        content += "## ⭐⭐ 中频词（常考词汇）\n\n"
+        for i, (root, words) in enumerate(classified_words["medium"].items(), 1):
+            content += f"### 词族{i}: {root}（{len(words)}词）\n"
+            for w in words:
+                content += f"#### {w['word']}\n"
+                content += f"{w['pronunciation']} {w['meaning']}\n\n"
+            content += "---\n\n"
+
+    # 低频词
+    if classified_words["low"]:
+        content += "## ⭐ 低频词（生僻词汇）\n\n"
+        for i, (root, words) in enumerate(classified_words["low"].items(), 1):
+            content += f"### 词族{i}: {root}（{len(words)}词）\n"
+            for w in words:
+                content += f"#### {w['word']}\n"
+                content += f"{w['pronunciation']} {w['meaning']}\n\n"
+            content += "---\n\n"
+
+    # 统计信息
+    total = sum(len(w) for f in classified_words.values() for w in f.values())
+    high_count = sum(len(w) for w in classified_words["high"].values())
+    medium_count = sum(len(w) for w in classified_words["medium"].values())
+    low_count = sum(len(w) for w in classified_words["low"].values())
+
+    content += f"""## 📊 统计信息
+
+| 分类 | 数量 |
+|------|------|
+| 高频词 | {high_count} |
+| 中频词 | {medium_count} |
+| 低频词 | {low_count} |
+
+**下次复习日期**：{calculate_next_review_date(date_str)}
+"""
+
+    return content
+
+
+def calculate_next_review_date(date_str):
+    """计算下次复习日期（2天后）"""
+    from datetime import datetime, timedelta
+    date = datetime.strptime(date_str, "%Y-%m-%d")
+    next_date = date + timedelta(days=2)
+    return next_date.strftime("%Y-%m-%d")
+```
+
+### 6.2 执行流程
+
+```
+[用户提供单词表]
+      ↓
+[步骤0: organize_word_list] ← 必须首先执行！
+      ↓
+[覆盖原始单词表文件]
+      ↓
+[步骤1: detect_polysemy]
+      ↓
+[步骤2: generate_context_article + 生成四类笔记]
+```
+
+### 6.3 验证标准
+
+1. ✅ 必须在生成四类笔记**之前**执行单词表整理
+2. ✅ 整理后的单词表必须覆盖原始文件
+3. ✅ 必须按词族分类
+4. ✅ 必须按考研重点分级（⭐⭐⭐ / ⭐⭐ / ⭐）
+5. ✅ 必须检测并标记僻义预警（🔴 Critical / 🟡 Warning）
+
+---
+
 *创建日期: 2026-03-10*
-*版本: 1.0.0*
+*版本: 1.1.0*
+*最后更新: 2026-03-18（添加单词表整理函数）*

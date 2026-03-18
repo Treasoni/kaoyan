@@ -3,9 +3,10 @@
   "title": "Generate English vocabulary learning system for...",
   "titleGenerationStatus": "success",
   "createdAt": 1773842142890,
-  "updatedAt": 1773848683680,
-  "lastResponseAt": 1773848683680,
-  "sessionId": null,
+  "updatedAt": 1773850462024,
+  "lastResponseAt": 1773850462024,
+  "sessionId": "e91cd103-5339-4a59-90a2-e6b863562bf4",
+  "sdkSessionId": "e91cd103-5339-4a59-90a2-e6b863562bf4",
   "currentNote": "考研英语/英语单词/2026-3-18.md",
   "usage": {
     "model": "glm-5",
