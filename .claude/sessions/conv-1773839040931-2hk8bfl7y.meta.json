@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773839040931-2hk8bfl7y",
+  "title": "Filter digital electronics content based on exa...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773839040931,
+  "updatedAt": 1773839270235,
+  "lastResponseAt": 1773839270235,
+  "sessionId": "220485c4-c126-4fed-9c6c-566d970c7038",
+  "sdkSessionId": "220485c4-c126-4fed-9c6c-566d970c7038",
+  "currentNote": "考研专业课/数字电子技术/1-数字与码制/01-数制与转换.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
