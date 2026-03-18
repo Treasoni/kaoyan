@@ -3,9 +3,10 @@
   "title": "Update Study Progress and Review Tasks",
   "titleGenerationStatus": "success",
   "createdAt": 1773842077285,
-  "updatedAt": 1773848462190,
-  "lastResponseAt": 1773848462190,
-  "sessionId": null,
+  "updatedAt": 1773848935500,
+  "lastResponseAt": 1773848935500,
+  "sessionId": "ab1ce1ce-4be8-4c5e-82d7-c8965319680c",
+  "sdkSessionId": "ab1ce1ce-4be8-4c5e-82d7-c8965319680c",
   "currentNote": "考研计划/每日计划/2026-03-18-每日计划.md",
   "usage": {
     "model": "glm-5",
