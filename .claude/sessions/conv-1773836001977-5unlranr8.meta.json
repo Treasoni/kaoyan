@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773836001977-5unlranr8",
+  "title": "Check learning content errors",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773836001977,
+  "updatedAt": 1773837617364,
+  "lastResponseAt": 1773837586134,
+  "sessionId": "0b7ca150-de3d-4fda-bf8e-25505762d81f",
+  "sdkSessionId": "0b7ca150-de3d-4fda-bf8e-25505762d81f",
+  "currentNote": "考研专业课/数字电子技术/1-数字与码制/01-数制与转换.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
