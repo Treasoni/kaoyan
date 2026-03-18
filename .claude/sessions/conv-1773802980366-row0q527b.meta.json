@@ -3,6 +3,18 @@
   "title": "Fix multivariate product function derivative pr...",
   "titleGenerationStatus": "success",
   "createdAt": 1773802980366,
-  "updatedAt": 1773802982992,
-  "sessionId": null
+  "updatedAt": 1773803110937,
+  "lastResponseAt": 1773803110937,
+  "sessionId": "ab322a1a-c792-4c28-8843-292fb2917bc9",
+  "sdkSessionId": "ab322a1a-c792-4c28-8843-292fb2917bc9",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
