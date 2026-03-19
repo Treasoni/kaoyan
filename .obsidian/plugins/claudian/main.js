@@ -13111,6 +13111,19 @@ var THINKING_BUDGETS = [
   { value: "high", label: "High", tokens: 16e3 },
   { value: "xhigh", label: "Ultra", tokens: 32e3 }
 ];
+var EFFORT_LEVELS = [
+  { value: "low", label: "Low" },
+  { value: "medium", label: "Med" },
+  { value: "high", label: "High" },
+  { value: "max", label: "Max" }
+];
+var DEFAULT_EFFORT_LEVEL = {
+  "haiku": "high",
+  "sonnet": "high",
+  "sonnet[1m]": "high",
+  "opus": "high",
+  "opus[1m]": "high"
+};
 var DEFAULT_THINKING_BUDGET = {
   "haiku": "off",
   "sonnet": "low",
@@ -13118,6 +13131,11 @@ var DEFAULT_THINKING_BUDGET = {
   "opus": "medium",
   "opus[1m]": "medium"
 };
+var DEFAULT_MODEL_VALUES = new Set(DEFAULT_CLAUDE_MODELS.map((m2) => m2.value));
+function isAdaptiveThinkingModel(model) {
+  if (DEFAULT_MODEL_VALUES.has(model)) return true;
+  return /claude-(haiku|sonnet|opus)-/.test(model);
+}
 var CONTEXT_WINDOW_STANDARD = 2e5;
 var CONTEXT_WINDOW_1M = 1e6;
 function filterVisibleModelOptions(models, enableOpus1M, enableSonnet1M) {
@@ -13236,6 +13254,7 @@ var DEFAULT_SETTINGS = {
   // Model & thinking
   model: "haiku",
   thinkingBudget: "off",
+  effortLevel: "high",
   enableAutoTitleGeneration: true,
   titleGenerationModel: "",
   // Empty = auto (ANTHROPIC_DEFAULT_HAIKU_MODEL or claude-haiku-4-5)
@@ -13823,6 +13842,19 @@ var NODE_EXECUTABLE = isWindows ? "node.exe" : "node";
 function getHomeDir() {
   return process.env.HOME || process.env.USERPROFILE || "";
 }
+function getAppProvidedCliPaths() {
+  if (process.platform === "darwin") {
+    const appBundleMatch = process.execPath.match(/^(.+?\.app)\//);
+    if (appBundleMatch) {
+      return [path2.join(appBundleMatch[1], "Contents", "MacOS")];
+    }
+    return [path2.dirname(process.execPath)];
+  }
+  if (process.platform === "win32") {
+    return [path2.dirname(process.execPath)];
+  }
+  return [];
+}
 function getExtraBinaryPaths() {
   const home = getHomeDir();
   if (isWindows) {
@@ -13887,6 +13919,7 @@ function getExtraBinaryPaths() {
     if (home) {
       paths.push(path2.join(home, ".local", "bin"));
     }
+    paths.push(...getAppProvidedCliPaths());
     return paths;
   } else {
     const paths = [
@@ -13930,6 +13963,7 @@ function getExtraBinaryPaths() {
         }
       }
     }
+    paths.push(...getAppProvidedCliPaths());
     return paths;
   }
 }
@@ -37882,6 +37916,7 @@ var CLAUDIAN_ONLY_FIELDS = /* @__PURE__ */ new Set([
   // Model & thinking
   "model",
   "thinkingBudget",
+  "effortLevel",
   "enableAutoTitleGeneration",
   "titleGenerationModel",
   // Content settings
@@ -50283,6 +50318,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
     if (currentConfig.settingSources !== newConfig.settingSources) return true;
     if (currentConfig.claudeCliPath !== newConfig.claudeCliPath) return true;
     if (currentConfig.enableChrome !== newConfig.enableChrome) return true;
+    if (currentConfig.effortLevel !== newConfig.effortLevel) return true;
     if (_QueryOptionsBuilder.pathsChanged(currentConfig.allowedExportPaths, newConfig.allowedExportPaths)) {
       return true;
     }
@@ -50311,6 +50347,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
     return {
       model: ctx.settings.model,
       thinkingTokens: thinkingTokens && thinkingTokens > 0 ? thinkingTokens : null,
+      effortLevel: isAdaptiveThinkingModel(ctx.settings.model) ? ctx.settings.effortLevel : null,
       permissionMode: ctx.settings.permissionMode,
       systemPromptKey: computeSystemPromptKey(systemPromptSettings),
       disallowedToolsKey,
@@ -50356,7 +50393,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
       ...DISABLED_BUILTIN_SUBAGENTS
     ];
     _QueryOptionsBuilder.applyPermissionMode(options, permissionMode, ctx.canUseTool);
-    _QueryOptionsBuilder.applyThinkingBudget(options, ctx.settings.thinkingBudget);
+    _QueryOptionsBuilder.applyThinking(options, ctx.settings, ctx.settings.model);
     options.hooks = ctx.hooks;
     options.enableFileCheckpointing = true;
     if (ctx.resume) {
@@ -50376,7 +50413,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
   }
   /** Builds SDK options for a cold-start query. */
   static buildColdStartQueryOptions(ctx) {
-    var _a3;
+    var _a3, _b;
     const permissionMode = ctx.settings.permissionMode;
     const selectedModel = (_a3 = ctx.modelOverride) != null ? _a3 : ctx.settings.model;
     const systemPrompt = buildSystemPrompt({
@@ -50418,7 +50455,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
     ];
     _QueryOptionsBuilder.applyPermissionMode(options, permissionMode, ctx.canUseTool);
     options.hooks = ctx.hooks;
-    _QueryOptionsBuilder.applyThinkingBudget(options, ctx.settings.thinkingBudget);
+    _QueryOptionsBuilder.applyThinking(options, ctx.settings, (_b = ctx.modelOverride) != null ? _b : ctx.settings.model);
     if (ctx.allowedTools !== void 0 && ctx.allowedTools.length > 0) {
       options.tools = ctx.allowedTools;
     }
@@ -50453,10 +50490,15 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
       options.extraArgs = { ...options.extraArgs, chrome: null };
     }
   }
-  static applyThinkingBudget(options, budgetSetting) {
-    const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === budgetSetting);
-    if (budgetConfig && budgetConfig.tokens > 0) {
-      options.maxThinkingTokens = budgetConfig.tokens;
+  static applyThinking(options, settings11, model) {
+    if (isAdaptiveThinkingModel(model)) {
+      options.thinking = { type: "adaptive" };
+      options.effort = settings11.effortLevel;
+    } else {
+      const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === settings11.thinkingBudget);
+      if (budgetConfig && budgetConfig.tokens > 0) {
+        options.maxThinkingTokens = budgetConfig.tokens;
+      }
     }
   }
   static pathsChanged(a2, b2) {
@@ -51289,9 +51331,6 @@ var ClaudianService = class {
     }
     const selectedModel = (queryOptions == null ? void 0 : queryOptions.model) || this.plugin.settings.model;
     const permissionMode = this.plugin.settings.permissionMode;
-    const budgetSetting = this.plugin.settings.thinkingBudget;
-    const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === budgetSetting);
-    const thinkingTokens = (_a3 = budgetConfig == null ? void 0 : budgetConfig.tokens) != null ? _a3 : null;
     if (this.currentConfig && selectedModel !== this.currentConfig.model) {
       try {
         await this.persistentQuery.setModel(selectedModel);
@@ -51300,15 +51339,19 @@ var ClaudianService = class {
         new import_obsidian5.Notice("Failed to update model");
       }
     }
-    const currentThinking = (_c = (_b = this.currentConfig) == null ? void 0 : _b.thinkingTokens) != null ? _c : null;
-    if (thinkingTokens !== currentThinking) {
-      try {
-        await this.persistentQuery.setMaxThinkingTokens(thinkingTokens);
-        if (this.currentConfig) {
-          this.currentConfig.thinkingTokens = thinkingTokens;
+    if (!isAdaptiveThinkingModel(selectedModel)) {
+      const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === this.plugin.settings.thinkingBudget);
+      const thinkingTokens = (_a3 = budgetConfig == null ? void 0 : budgetConfig.tokens) != null ? _a3 : null;
+      const currentThinking = (_c = (_b = this.currentConfig) == null ? void 0 : _b.thinkingTokens) != null ? _c : null;
+      if (thinkingTokens !== currentThinking) {
+        try {
+          await this.persistentQuery.setMaxThinkingTokens(thinkingTokens);
+          if (this.currentConfig) {
+            this.currentConfig.thinkingTokens = thinkingTokens;
+          }
+        } catch (e2) {
+          new import_obsidian5.Notice("Failed to update thinking budget");
         }
-      } catch (e2) {
-        new import_obsidian5.Notice("Failed to update thinking budget");
       }
     }
     if (this.currentConfig && permissionMode !== this.currentConfig.permissionMode) {
@@ -62614,10 +62657,14 @@ var InstructionRefineService = class {
     if (this.sessionId) {
       options.resume = this.sessionId;
     }
-    const budgetSetting = this.plugin.settings.thinkingBudget;
-    const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === budgetSetting);
-    if (budgetConfig && budgetConfig.tokens > 0) {
-      options.maxThinkingTokens = budgetConfig.tokens;
+    if (isAdaptiveThinkingModel(this.plugin.settings.model)) {
+      options.thinking = { type: "adaptive" };
+      options.effort = this.plugin.settings.effortLevel;
+    } else {
+      const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === this.plugin.settings.thinkingBudget);
+      if (budgetConfig && budgetConfig.tokens > 0) {
+        options.maxThinkingTokens = budgetConfig.tokens;
+      }
     }
     try {
       const response = Yh({ prompt, options });
@@ -65828,26 +65875,55 @@ var ModelSelector = class {
 };
 var ThinkingBudgetSelector = class {
   constructor(parentEl, callbacks) {
-    this.gearsEl = null;
+    this.effortEl = null;
+    this.effortGearsEl = null;
+    this.budgetEl = null;
+    this.budgetGearsEl = null;
     this.callbacks = callbacks;
     this.container = parentEl.createDiv({ cls: "claudian-thinking-selector" });
     this.render();
   }
   render() {
     this.container.empty();
-    const labelEl = this.container.createSpan({ cls: "claudian-thinking-label-text" });
-    labelEl.setText("Thinking:");
-    this.gearsEl = this.container.createDiv({ cls: "claudian-thinking-gears" });
-    this.renderGears();
+    this.effortEl = this.container.createDiv({ cls: "claudian-thinking-effort" });
+    const effortLabel = this.effortEl.createSpan({ cls: "claudian-thinking-label-text" });
+    effortLabel.setText("Effort:");
+    this.effortGearsEl = this.effortEl.createDiv({ cls: "claudian-thinking-gears" });
+    this.budgetEl = this.container.createDiv({ cls: "claudian-thinking-budget" });
+    const budgetLabel = this.budgetEl.createSpan({ cls: "claudian-thinking-label-text" });
+    budgetLabel.setText("Thinking:");
+    this.budgetGearsEl = this.budgetEl.createDiv({ cls: "claudian-thinking-gears" });
+    this.updateDisplay();
   }
-  renderGears() {
-    if (!this.gearsEl) return;
-    this.gearsEl.empty();
+  renderEffortGears() {
+    if (!this.effortGearsEl) return;
+    this.effortGearsEl.empty();
+    const currentEffort = this.callbacks.getSettings().effortLevel;
+    const currentInfo = EFFORT_LEVELS.find((e2) => e2.value === currentEffort);
+    const currentEl = this.effortGearsEl.createDiv({ cls: "claudian-thinking-current" });
+    currentEl.setText((currentInfo == null ? void 0 : currentInfo.label) || "High");
+    const optionsEl = this.effortGearsEl.createDiv({ cls: "claudian-thinking-options" });
+    for (const effort of [...EFFORT_LEVELS].reverse()) {
+      const gearEl = optionsEl.createDiv({ cls: "claudian-thinking-gear" });
+      gearEl.setText(effort.label);
+      if (effort.value === currentEffort) {
+        gearEl.addClass("selected");
+      }
+      gearEl.addEventListener("click", async (e2) => {
+        e2.stopPropagation();
+        await this.callbacks.onEffortLevelChange(effort.value);
+        this.updateDisplay();
+      });
+    }
+  }
+  renderBudgetGears() {
+    if (!this.budgetGearsEl) return;
+    this.budgetGearsEl.empty();
     const currentBudget = this.callbacks.getSettings().thinkingBudget;
     const currentBudgetInfo = THINKING_BUDGETS.find((b2) => b2.value === currentBudget);
-    const currentEl = this.gearsEl.createDiv({ cls: "claudian-thinking-current" });
+    const currentEl = this.budgetGearsEl.createDiv({ cls: "claudian-thinking-current" });
     currentEl.setText((currentBudgetInfo == null ? void 0 : currentBudgetInfo.label) || "Off");
-    const optionsEl = this.gearsEl.createDiv({ cls: "claudian-thinking-options" });
+    const optionsEl = this.budgetGearsEl.createDiv({ cls: "claudian-thinking-options" });
     for (const budget of [...THINKING_BUDGETS].reverse()) {
       const gearEl = optionsEl.createDiv({ cls: "claudian-thinking-gear" });
       gearEl.setText(budget.label);
@@ -65863,7 +65939,19 @@ var ThinkingBudgetSelector = class {
     }
   }
   updateDisplay() {
-    this.renderGears();
+    const model = this.callbacks.getSettings().model;
+    const adaptive = isAdaptiveThinkingModel(model);
+    if (this.effortEl) {
+      this.effortEl.style.display = adaptive ? "" : "none";
+    }
+    if (this.budgetEl) {
+      this.budgetEl.style.display = adaptive ? "none" : "";
+    }
+    if (adaptive) {
+      this.renderEffortGears();
+    } else {
+      this.renderBudgetGears();
+    }
   }
 };
 var PermissionToggle = class {
@@ -67478,25 +67566,29 @@ function initializeInputToolbar(tab, plugin) {
     getSettings: () => ({
       model: plugin.settings.model,
       thinkingBudget: plugin.settings.thinkingBudget,
+      effortLevel: plugin.settings.effortLevel,
       permissionMode: plugin.settings.permissionMode,
       enableOpus1M: plugin.settings.enableOpus1M,
       enableSonnet1M: plugin.settings.enableSonnet1M
     }),
     getEnvironmentVariables: () => plugin.getActiveEnvironmentVariables(),
     onModelChange: async (model) => {
-      var _a4, _b, _c;
+      var _a4, _b, _c, _d;
       plugin.settings.model = model;
       const isDefaultModel = DEFAULT_CLAUDE_MODELS.find((m2) => m2.value === model);
       if (isDefaultModel) {
         plugin.settings.thinkingBudget = DEFAULT_THINKING_BUDGET[model];
+        if (isAdaptiveThinkingModel(model)) {
+          plugin.settings.effortLevel = (_a4 = DEFAULT_EFFORT_LEVEL[model]) != null ? _a4 : "high";
+        }
         plugin.settings.lastClaudeModel = model;
       } else {
         plugin.settings.lastCustomModel = model;
       }
       await plugin.saveSettings();
-      (_a4 = tab.ui.thinkingBudgetSelector) == null ? void 0 : _a4.updateDisplay();
-      (_b = tab.ui.modelSelector) == null ? void 0 : _b.updateDisplay();
-      (_c = tab.ui.modelSelector) == null ? void 0 : _c.renderOptions();
+      (_b = tab.ui.thinkingBudgetSelector) == null ? void 0 : _b.updateDisplay();
+      (_c = tab.ui.modelSelector) == null ? void 0 : _c.updateDisplay();
+      (_d = tab.ui.modelSelector) == null ? void 0 : _d.renderOptions();
       const currentUsage = tab.state.usage;
       if (currentUsage) {
         const newContextWindow = getContextWindowSize(model, plugin.settings.customContextLimits);
@@ -67511,6 +67603,10 @@ function initializeInputToolbar(tab, plugin) {
     },
     onThinkingBudgetChange: async (budget) => {
       plugin.settings.thinkingBudget = budget;
+      await plugin.saveSettings();
+    },
+    onEffortLevelChange: async (effort) => {
+      plugin.settings.effortLevel = effort;
       await plugin.saveSettings();
     },
     onPermissionModeChange: async (mode) => {
@@ -69459,10 +69555,14 @@ var InlineEditService = class {
     if (this.sessionId) {
       options.resume = this.sessionId;
     }
-    const budgetSetting = this.plugin.settings.thinkingBudget;
-    const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === budgetSetting);
-    if (budgetConfig && budgetConfig.tokens > 0) {
-      options.maxThinkingTokens = budgetConfig.tokens;
+    if (isAdaptiveThinkingModel(this.plugin.settings.model)) {
+      options.thinking = { type: "adaptive" };
+      options.effort = this.plugin.settings.effortLevel;
+    } else {
+      const budgetConfig = THINKING_BUDGETS.find((b2) => b2.value === this.plugin.settings.thinkingBudget);
+      if (budgetConfig && budgetConfig.tokens > 0) {
+        options.maxThinkingTokens = budgetConfig.tokens;
+      }
     }
     try {
       const response = Yh({ prompt, options });
