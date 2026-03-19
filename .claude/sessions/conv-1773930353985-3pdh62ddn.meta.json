@@ -3,8 +3,8 @@
   "title": "Generate English vocabulary and test materials",
   "titleGenerationStatus": "success",
   "createdAt": 1773930353985,
-  "updatedAt": 1773931351292,
-  "lastResponseAt": 1773931351291,
+  "updatedAt": 1773934935372,
+  "lastResponseAt": 1773934935372,
   "sessionId": null,
   "currentNote": "考研英语/英语单词/2026-3-19.md",
   "enabledMcpServers": [
@@ -12,6 +12,15 @@
     "web-search-prime",
     "web-reader"
   ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  },
   "subagentData": {
     "call_d259f84b57bb423c8be87320": {
       "id": "call_d259f84b57bb423c8be87320",

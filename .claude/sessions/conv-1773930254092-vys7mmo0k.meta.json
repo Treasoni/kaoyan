@@ -3,9 +3,10 @@
   "title": "Update study progress and time tracking</arg_va...",
   "titleGenerationStatus": "success",
   "createdAt": 1773930254092,
-  "updatedAt": 1773934216650,
-  "lastResponseAt": 1773934216650,
-  "sessionId": null,
+  "updatedAt": 1773934514818,
+  "lastResponseAt": 1773934514818,
+  "sessionId": "54843185-e422-47b7-a975-fb61aa3232a9",
+  "sdkSessionId": "54843185-e422-47b7-a975-fb61aa3232a9",
   "currentNote": "考研专业课/数字电子技术/1-数字与码制/03-逻辑代数基础.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"

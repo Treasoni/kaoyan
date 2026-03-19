@@ -587,20 +587,25 @@ def estimate_vocab_count(day_num):
 
 def update_english_progress_file(english_tasks):
     """
-    更新英语学习进度文件（v3.7新增）
+    更新英语学习进度文件（v3.11.0 修复版）
 
     功能：
         1. 读取当前进度文件
         2. 在复习历史记录中添加新记录
-        3. 在今日完成情况中添加新记录
-        4. 在已完成复习列表中添加新记录
+        3. 更新待进行复习安排（标记已完成 + 添加新计划）
+        4. 更新今日完成情况
         5. 保存更新后的文件
+
+    v3.11.0 修复：
+        - 修复正则表达式无法匹配实际文件结构的问题
+        - 新增：将已完成的复习任务在"待进行复习安排"中标记为"已完成"
+        - 新增：更新待进行复习安排时同时处理新学和复习任务
 
     参数:
         english_tasks: 英语任务列表
     """
     import re
-    from datetime import datetime
+    from datetime import datetime, timedelta
 
     progress_file = "考研英语/📊 学习进度.md"
 
@@ -614,9 +619,9 @@ def update_english_progress_file(english_tasks):
         today_full = datetime.now().strftime("%Y-%m-%d")  # 格式：2026-03-15
 
         # 3. 生成需要添加的内容
-        review_records = []
-        completion_records = []
-        completed_list = []
+        review_records = []  # 复习历史记录
+        completion_records = []  # 今日完成情况
+        pending_completed_days = []  # 待标记为已完成的 Day 列表
 
         for task in english_tasks:
             day = task["day"]
@@ -625,116 +630,126 @@ def update_english_progress_file(english_tasks):
 
             # 生成复习历史记录
             if review_count == "新学":
-                review_records.append(f"| **{today}** | **Day {day}** | **新学**  | **~{vocab_count}词** | -      | -      | ✅ **已完成**   | **自动记录** |")
+                review_records.append(f"| **{today}** | **Day {day}** | **新学**  | **~{vocab_count}词** | -       | -      | ✅ **已完成**   | ⭐ **新增** |")
             else:
-                review_records.append(f"| **{today}** | **Day {day}** | **{review_count}** | **~{vocab_count}词** | **1天** | **1天** | ✅ **已完成**   | **自动记录** |")
+                review_records.append(f"| **{today}** | **Day {day}** | **{review_count}** | **~{vocab_count}词** | **1天**  | **1天** | ✅ **已完成**   | -         |")
 
-            # 生成已完成复习记录
-            completed_list.append(f"- [x] {today_full}: Day {day} 词汇{review_count}（~{vocab_count}词）✅ 已完成（自动记录）")
-
-            # 生成今日完成情况记录（v3.9.0 修复）
+            # 生成今日完成情况记录
             if review_count == "新学":
-                completion_records.append(f"> - ✅ Day {day} 新学（~{vocab_count}词）（自动记录）")
+                completion_records.append(f"> - ✅ Day {day} 新学（~{vocab_count}词）⭐ 新增")
             else:
-                completion_records.append(f"> - ✅ Day {day} {review_count}（~{vocab_count}词）（自动记录）")
+                completion_records.append(f"> - ✅ Day {day} {review_count}（~{vocab_count}词）")
+
+            # 记录需要标记为已完成的 Day（用于更新待进行复习安排）
+            pending_completed_days.append(day)
 
         # 4. 更新文件内容
         updated_content = content
 
-        # 4.1 在复习历史记录表格末尾添加新记录
-        # 查找表格结束位置
-        history_table_pattern = r'(### 复习历史记录（已修正）.*?)(\n### 待进行复习安排)'
-        match = re.search(history_table_pattern, updated_content, re.DOTALL)
-        if match:
-            table_end = match.group(1).rstrip()
+        # 4.1 【修复】在复习历史记录表格末尾添加新记录
+        # 查找表格最后一行（在"### 待进行复习安排"之前）
+        # 修复：使用更精确的正则表达式
+        lines = updated_content.split('\n')
+        history_start = -1
+        pending_start = -1
+
+        for i, line in enumerate(lines):
+            if '### 复习历史记录（已修正）' in line:
+                history_start = i
+            elif '### 待进行复习安排' in line and history_start > 0:
+                pending_start = i
+                break
+
+        if history_start > 0 and pending_start > 0:
+            # 找到历史记录表格的最后一行数据（以 | 开头）
+            last_table_row = pending_start - 1
+            while last_table_row > history_start and not lines[last_table_row].strip().startswith('|'):
+                last_table_row -= 1
+
+            # 在最后一行后插入新记录
             for record in review_records:
-                table_end += f"\n{record}"
-            updated_content = updated_content[:match.start(1)] + table_end + "\n\n" + match.group(2)
+                lines.insert(last_table_row + 1, record)
+                last_table_row += 1
 
-        # 4.2 在今日完成情况中添加新记录
-        completion_section = f"> [!info] 今日完成情况 ({today_full})"
-        if completion_section in updated_content:
+            updated_content = '\n'.join(lines)
+
+        # 4.2 【修复】更新待进行复习安排 - 标记已完成 + 添加新计划
+        lines = updated_content.split('\n')
+        pending_table_start = -1
+        today_section_start = -1
+
+        for i, line in enumerate(lines):
+            if '### 待进行复习安排' in line:
+                pending_table_start = i
+            elif '> [!info] 今日完成情况' in line:
+                today_section_start = i
+                break
+
+        if pending_table_start > 0 and today_section_start > 0:
+            # 遍历待进行复习安排表格，标记已完成的任务
+            for i in range(pending_table_start, today_section_start):
+                line = lines[i]
+                if line.strip().startswith('|') and 'Day' in line:
+                    # 检查是否包含已完成的 Day
+                    for day in pending_completed_days:
+                        # 匹配格式：| **03-19** | **Day 019** | **第1次** |
+                        if f"Day {day}" in line or f"Day **{day}" in line:
+                            # 检查是否已经标记为已完成
+                            if '✅ **已完成**' not in line and '⏳ 待进行' in line:
+                                # 将状态更新为已完成
+                                line = line.replace('⏳ 待进行', '✅ **已完成**')
+                                # 高亮日期和 Day
+                                line = re.sub(r'\|\s*(\d{2}-\d{2})\s*\|', r'| **\1** |', line)
+                                line = re.sub(r'\|\s*Day\s*(\d+)\s*\|', r'| **Day \1** |', line)
+                                lines[i] = line
+                            break
+
+            # 添加新学任务的次日复习计划
+            tomorrow = (datetime.now() + timedelta(days=1)).strftime("%m-%d")
+            for task in english_tasks:
+                if task["review_count"] == "新学":
+                    day = task["day"]
+                    vocab_count = task["vocab_count"]
+                    new_row = f"| **{tomorrow}** | Day {day} | 第1次 | ~{vocab_count}词 | 1天 | ⭐ **明日** |"
+
+                    # 检查是否已存在
+                    exists = any(f"Day {day}" in line for line in lines[pending_table_start:today_section_start])
+                    if not exists:
+                        # 找到合适的插入位置（按日期排序）
+                        insert_idx = today_section_start - 1
+                        while insert_idx > pending_table_start:
+                            if lines[insert_idx].strip().startswith('|'):
+                                # 提取当前行的日期
+                                date_match = re.search(r'\|\s*\*{0,2}(\d{2}-\d{2})\*{0,2}\s*\|', lines[insert_idx])
+                                if date_match and date_match.group(1) > tomorrow:
+                                    break
+                            insert_idx -= 1
+                        lines.insert(insert_idx + 1, new_row)
+
+            updated_content = '\n'.join(lines)
+
+        # 4.3 【修复】更新今日完成情况
+        lines = updated_content.split('\n')
+        today_section_idx = -1
+
+        for i, line in enumerate(lines):
+            if f'> [!info] 今日完成情况 ({today_full})' in line:
+                today_section_idx = i
+                break
+
+        if today_section_idx > 0:
             # 找到今日完成情况块的结束位置
-            completion_start = updated_content.find(completion_section)
-            completion_end = updated_content.find("\n\n###", completion_start)
+            end_idx = today_section_idx + 1
+            while end_idx < len(lines) and (lines[end_idx].startswith('>') or lines[end_idx].strip() == ''):
+                end_idx += 1
 
-            if completion_end > 0:
-                completion_block = updated_content[completion_start:completion_end]
+            # 替换整个今日完成情况块
+            new_block = [f'> [!info] 今日完成情况 ({today_full})']
+            new_block.extend(completion_records)
+            new_block.append(f'> - **词汇累计**：需从文件中读取')  # 占位符
 
-                # 在最后一条记录后添加新记录
-                for record in completion_records:
-                    # 提取记录中的任务描述
-                    task_match = re.search(r'Day\s*\d+.*?复习|新学', record)
-                    if task_match:
-                        task_desc = task_match.group(0)
-                        new_record = f"> - ✅ {task_desc}（自动记录）"
-                        completion_block = completion_block.rstrip() + f"\n{new_record}"
-
-                updated_content = updated_content[:completion_start] + completion_block + updated_content[completion_end:]
-
-        # 4.3 在已完成复习列表中添加新记录
-        # 查找"### ⏳ 待进行复习（按日期排序）"部分之前的已完成部分
-        completed_section_pattern = r'(### ✅ 已完成复习（Day \d+-\d+）)(.*?)(### ⏳ 待进行复习)'
-        match = re.search(completed_section_pattern, updated_content, re.DOTALL)
-        if match:
-            completed_section = match.group(2)
-            for record in completed_list:
-                completed_section = completed_section.rstrip() + f"\n{record}"
-            updated_content = updated_content[:match.start(2)] + completed_section + "\n\n" + match.group(3)
-
-        # 4.4 【v3.10.0 新增】在"待进行复习安排"中添加次日复习计划
-        # 对于"新学"任务，需要添加次日的第1次复习计划
-        tomorrow = (datetime.now() + timedelta(days=1)).strftime("%m-%d")
-        tomorrow_full = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
-
-        pending_review_records = []
-        for task in english_tasks:
-            day = task["day"]
-            review_count = task["review_count"]
-            vocab_count = task["vocab_count"]
-
-            # 只对"新学"任务添加次日复习计划
-            if review_count == "新学":
-                pending_review_records.append({
-                    "day": day,
-                    "review_type": "第1次",
-                    "vocab_count": vocab_count,
-                    "date": tomorrow
-                })
-
-        # 在"待进行复习安排"表格中插入新记录
-        if pending_review_records:
-            pending_section_pattern = r'(### 待进行复习安排\s*\n\s*\|[^\n]+\n\s*\|[^\n]+\n)(.*?)(\n> \[!info\] 今日完成情况)'
-            match = re.search(pending_section_pattern, updated_content, re.DOTALL)
-
-            if match:
-                table_header = match.group(1)
-                table_content = match.group(2)
-
-                # 找到明日日期的行，在其前面插入新记录
-                for record in pending_review_records:
-                    new_row = f"| **{record['date']}** | **Day {record['day']}** | **{record['review_type']}** | **~{record['vocab_count']}词** | **1天** | ⭐ **明日新增** |\n"
-
-                    # 检查是否已存在该Day的记录（避免重复添加）
-                    if f"Day {record['day']}" not in table_content:
-                        # 找到插入位置（按日期排序）
-                        lines = table_content.strip().split('\n')
-                        insert_idx = len(lines)  # 默认插入到末尾
-
-                        for i, line in enumerate(lines):
-                            if line.startswith('|'):
-                                # 提取日期
-                                date_match = re.search(r'\|\s*\*{0,2}(\d{2}-\d{2})\*{0,2}\s*\|', line)
-                                if date_match:
-                                    line_date = date_match.group(1)
-                                    if line_date > record['date']:
-                                        insert_idx = i
-                                        break
-
-                        lines.insert(insert_idx, new_row.rstrip())
-                        table_content = '\n'.join(lines) + '\n'
-
-                updated_content = updated_content[:match.start(1)] + table_header + table_content + match.group(3)
+            lines = lines[:today_section_idx] + new_block + lines[end_idx:]
+            updated_content = '\n'.join(lines)
 
         # 5. 保存更新后的文件
         with open(progress_file, 'w', encoding='utf-8') as f:
