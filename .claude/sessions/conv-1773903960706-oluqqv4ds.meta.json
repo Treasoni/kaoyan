@@ -3,19 +3,19 @@
   "title": "Update exam preparation project configuration",
   "titleGenerationStatus": "success",
   "createdAt": 1773903960706,
-  "updatedAt": 1773904857236,
-  "lastResponseAt": 1773904857235,
+  "updatedAt": 1773904986361,
+  "lastResponseAt": 1773904986361,
   "sessionId": "45901be1-1505-4a23-a835-18321254ff7d",
   "sdkSessionId": "45901be1-1505-4a23-a835-18321254ff7d",
   "currentNote": "README.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 5555,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 29760,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 35315,
-    "percentage": 18
+    "contextTokens": 0,
+    "percentage": 0
   },
   "subagentData": {
     "call_c7855f01a122409a8e946a6f": {
