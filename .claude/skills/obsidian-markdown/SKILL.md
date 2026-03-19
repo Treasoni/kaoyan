@@ -118,6 +118,34 @@ This entire block is hidden in reading view.
 ==Highlighted text==                   Highlight syntax
 ```
 
+## Tables
+
+> ⚠️ **重要规则**：表格前必须有空行才能正确渲染！
+
+```markdown
+# ❌ 错误 - 表格不会渲染
+**表格标题**：
+| 列1 | 列2 |
+|-----|-----|
+| A   | B   |
+
+# ✅ 正确 - 表格会正确渲染
+**表格标题**：
+
+| 列1 | 列2 |
+|-----|-----|
+| A   | B   |
+```
+
+完整表格语法：
+
+```markdown
+| 左对齐 | 居中 | 右对齐 |
+|:-------|:----:|-------:|
+| 内容   | 内容 | 内容   |
+| 更多   | 更多 | 更多   |
+```
+
 ## Math (LaTeX)
 
 ```markdown
