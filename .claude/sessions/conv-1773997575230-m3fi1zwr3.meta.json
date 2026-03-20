@@ -3,6 +3,18 @@
   "title": "Fix LaTeX table formatting for absolute value d...",
   "titleGenerationStatus": "success",
   "createdAt": 1773997575230,
-  "updatedAt": 1773997579963,
-  "sessionId": null
+  "updatedAt": 1773997729783,
+  "lastResponseAt": 1773997729783,
+  "sessionId": "9fcd5d01-7a0d-4200-99b7-76df4c66cfec",
+  "sdkSessionId": "9fcd5d01-7a0d-4200-99b7-76df4c66cfec",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的概念/📝章节总结.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
