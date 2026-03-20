@@ -3,7 +3,7 @@
   "title": "Update study progress and time tracking</arg_va...",
   "titleGenerationStatus": "success",
   "createdAt": 1773930254092,
-  "updatedAt": 1773936576586,
+  "updatedAt": 1773975310692,
   "lastResponseAt": 1773934514818,
   "sessionId": null,
   "sdkSessionId": "54843185-e422-47b7-a975-fb61aa3232a9",
@@ -12,7 +12,7 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-5",
+    "model": "GLM-5-Turbo",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
