@@ -1,0 +1,1878 @@
+# 3 >>
+
+# 逻辑门电路
+
+# 引言
+
+在第1章我们介绍了与、或、非三种基本逻辑运算，并介绍了逻辑变量与逻辑函数的关系。对于逻辑门只给出了逻辑符号，没有涉及内部的结构和原理。
+
+本章讨论的门电路是数字电路的基本逻辑单元。它们包括CMOS门电路、双极结型三极管（Bipolar Junction Transistor，BJT）构成的TTL门电路，以及其他门电路。门电路中的MOS管或BJT管工作在开关状态。对于CMOS或TTL门电路，首先介绍晶体管的开关特性，然后介绍由它们构成的基本逻辑门的电路结构和工作原理，着重阐述了其逻辑功能和外部输入特性、输出特性，以及其他电气特性，以便正确使用这些门电路。
+
+# 3.1 逻辑门电路简介
+
+# 3.1.1 各种逻辑门电路系列简介
+
+实现基本逻辑运算和常用逻辑运算的单元电路称为门电路。逻辑门电路是组成各种数字电路的基本单元电路。将构成门电路的元器件制作在一块半导体芯片上，再封装起来，便构成了集成门电路。按照制造门电路晶体管的不同，分为MOS型、双极型和混合型。MOS型集成逻辑门有CMOS、NMOS、PMOS，双极型集成逻辑门主要有TTL和ECL，混合型集成逻辑门有BiCMOS。
+
+CMOS 逻辑门电路是目前使用最广泛、占主导地位的集成电路。早期的 CMOS 与 TTL 逻辑门相比, CMOS 速度慢、功耗低, 而 TTL 主要是速度快, 但功耗大。后来随着制造工艺的不断改进, CMOS 电路的集成度、工作速度、功耗和抗干扰能力远优于 TTL。因此, 几乎所有的 CPU、存储器、PLD 器件和专用集成电路 (ASIC) 都采用 CMOS 工艺制造, 且费用较低。因此, 出现种类繁多的 CMOS 逻辑系列。图 3.1.1 所示为 CMOS 发展过程中部分典型逻辑门系列, 以及相对前一个系列在速度和功耗等方面的改进。
+
+早期生产的CMOS门电路为4000系列，其工作速度较慢，与TTL不兼容，但功耗低、工作电
+
+压范围宽、抗干扰能力强。随后出现了高速CMOS器件HC/HCT系列。与4000系列相比，其工作速度快、带负载能力强。HCT系列与TTL兼容，可与TTL器件互换使用。另一种CMOS系列是AHC/AHCT系列，其工作速度达到HC/HCT系列两倍之多。
+
+![](images/9ea6cd08d8a48ed927dfb89e20829c90ad9696d37727be84c97ed6a1db9315e6.jpg)  
+图3.1.1 部分典型CMOS逻辑系列简介图
+
+近年来，随着便携式设备（如笔记本电脑、数码相机、手机等）的发展，要求使用体积小、重量轻、功耗低的半导体器件，因此先后推出了低电压CMOS器件LVC（Low-Voltage CMOS Logic）系列，速度和性能比LVC更好的ALVC（Advanced Low-Voltage CMOS Logic）系列，超低电压CMOS器件AUC（Advanced Ultra-Low-Voltage CMOS Logic）系列，以及低功耗CMOS器件AUP（Advanced Ultra-Low-Power CMOS Logic）系列，并且半导体制造工艺的进步使它们的成本更低、速度更快。不同的CMOS系列器件对电源电压要求不一样，表3-1列出几种CMOS集成电路的电源电压范围和所允许的最大电源电压。
+
+表 3.1.1 几种 CMOS 电路的电源电压值①  
+
+<table><tr><td>类型 参数</td><td>4000</td><td>74HC</td><td>74HCT</td><td>74LVC</td><td>74ALVC</td><td>74AUC</td></tr><tr><td>电源电压范围/V</td><td>3~18</td><td>2~6</td><td>4.5~5.5</td><td>1.65~3.6</td><td>1.65~3.6</td><td>0.8~2.7</td></tr><tr><td>电源最大电压额定值/V</td><td>20</td><td>7</td><td>7</td><td>6.5</td><td>4.5</td><td>3.6</td></tr></table>
+
+中小规模集成电路芯片的名称以54或74开始，后加不同系列缩写字母及数字表示，如54/74HC00。中间字母表示不同系列，如HC系列。最后的数字表示不同逻辑功能芯片的编号，如00表示4个2输入与非门，即一个芯片中封装了4个与非门，如图3.1.2所示。图3.1.2(a)所示为双列直插(Dual-InlinePackage,DIP)封装的芯片，图3.1.2(b)所示为74HC00引脚排列图。54和74系列的区别是54系列适用的温度范围更宽，测试和筛选标准更严格。
+
+CMOS是数字逻辑电路的主流工艺技术，但CMOS技术却不适合用在射频和模拟电路中。因此BiMOS成为射频系统中用得最多的工艺技术。BiCMOS集成电路是将BJT的高速性和高驱动能力，以及CMOS的高密度、低功耗和低成本等优点结合起来，并且既可用于数字集成电路，也可用于模拟集成电路。BiMOS技术主要用于高性能集成电路的生产。BiCMOS门电路有BCT
+
+![](images/f74e60a882a68339a325305631d4a991198d971b8fbd8ae99d33306118708d0a.jpg)  
+(a)
+
+(b)   
+图3.1.2 2输入与非门74HC00  
+![](images/6e273f5cc4affdd6e9070716c583e570a434e8cebf90b2d6f50b7d575d9bb009.jpg)  
+（a）双列直插封装 （b）引脚排列图
+
+(BiCMOS Bus-Interface Technology) 和 ABT(Advanced BiCMOS Technology) 系列, 低电压供电的 LVT (Low-Voltage BiCMOS Technology) 系列和速度性能更好的 ADVT (Advanced Low-Voltage BiCMOS Technology) 系列等。
+
+TTL是应用最早，技术比较成熟的集成电路，曾被广泛应用。大规模集成电路的发展，要求每个逻辑单元电路的结构简单，并且功耗低。TTL电路不满足这个条件，因此逐渐被CMOS电路所取代，退出其主导地位。由于TTL技术在整个数字集成电路设计领域中的历史地位和影响，目前主要应用于教育或是简单的中小规模数字电路。
+
+最早的TTL门电路是74系列。后来为改善工作速度和功耗，使用肖特基三极管，生产出74S系列。之后推出74LS系列，其速度与74系列相当，但功耗却降低到74系列的 $1 / 5$ 。74LS系列曾广泛应用于中、小规模集成电路。随着集成电路的发展，生产出进一步改进的74AS和74ALS系列。74AS系列与74S系列相比，功耗相当，但速度却提高了两倍。74ALS系列将74LS系列的速度和功耗又进一步改善。而74F系列的速度和功耗介于74AS和74ALS之间，应用于速度要求较高的TTL逻辑门电路。
+
+射极耦合逻辑门（Emitter-Coupled Logic，ECL）也是一种双极型数字集成电路，其基本器件是差分对管。在饱和型的TTL电路中，三极管作为开关在饱和区和截止区切换，其退出饱和区需要的时间较长。而ECL电路中三极管导通时未进入饱和状态，因此工作速度极高。但ECL器件功耗比较高，不适合制成大规模集成电路，因此不像CMOS或TTL系列被广泛使用。ECL电路主要用于高速或超高速数字系统或设备中。
+
+# 3.1.2 开关电路
+
+在二值数字逻辑中，逻辑变量的取值不是0就是1。在数字电路中，与其对应的是电子器件的“闭合”和“断开”两种状态。图3.1.3所示为开关电路示意图。当开关S断开时，输出电压 $v_{0} = V_{\mathrm{CC}}$ ，输出逻辑1，如图3.1.3(a)所示。反之，当开关S接通时，输出电压 $v_{0} = 0$ ，输出逻辑0，如图3.1.3(b)所示。
+
+![](images/2fc9abe4ffe0a8a7ef2ee9ff50d398fe9c95c45b69f5925c27299c9279ba978c.jpg)  
+(a)
+
+(b)   
+图3.1.3 开关电路示意图  
+![](images/4b2d2e5fc0574d7cc6c5010dcab9c2b19a500e2cd9dadee1d1e958fe249a6693.jpg)  
+(a) 输出逻辑 1 (b) 输出逻辑 0
+
+早期的开关由继电器构成，后来使用BJT或MOS管作为开关。BJT或MOS管相当于一个受控开关，当其工作在截止状态时，相当于开关断开，输出高电平；当其工作在饱和状态时，相当于开关闭合，输出低电平。
+
+# 复习思考题
+
+3.1.1 CMOS逻辑门电路有哪些优点？  
+3.1.274HC与74HCT系列的区别是什么？  
+3.1.3 现在的CPU、PLD和ASIC芯片主要采用什么工艺制造？  
+3.1.4 BiCMOS电路的特点是什么？
+
+# 3.2 基本CMOS逻辑门电路
+
+# 3.2.1 MOS管及其开关特性
+
+CMOS逻辑门电路是以MOS管作为开关器件的。按照导电载流子的不同，MOS管分为N沟道MOS(NMOS)管和P沟道MOS(PMOS)管。按照导电沟道形成机理的不同分为增强型和耗尽型。
+
+# 1. N沟道增强型MOS管的结构和工作原理
+
+N沟道增强型MOS管的结构示意图及符号如图3.2.1所示。它是在P型衬底上，用扩散法制作两个高掺杂浓度的N区。然后在P型硅表面生长一层很薄的二氧化硅绝缘层，并在二氧化硅表面及两个N型区各安置一个电极，形成栅极g、源极s和漏极d。由于栅极被绝缘，其电阻高达 $10^{12}\sim 10^{15}\Omega$ 。通常将衬底与源极相连，或接地电位，以防止有电流从衬底流入源极和导电
+
+沟道。
+
+![](images/8154a9ff4039f9a80fd7f9d57cd44ecf67d8dee1d034fe92934ff58a3548a4b4.jpg)  
+(a)
+
+![](images/ff0cb5fa320b756f7952b60f90248bee828c2b05777e00c6b97e8e01332573c5.jpg)  
+(b)
+
+7(c)  
+图3.2.1 N沟道增强型MOS管  
+![](images/34cfef9583a4d067ff87fe27d86ca16f96c8ed0f0e00eabf38a24688b63e7b85.jpg)  
+（a）结构示意图 （b）标准符号 （c）简化符号
+
+如果栅极和源极之间所加电压 $v_{\mathrm{GS}} = 0$ ，则源区、衬底和漏区形成的两个PN结背靠背串联，d、s间不导通， $i_{\mathrm{D}} = 0$ 。
+
+当栅源之间加正向电压 $v_{\mathrm{GS}}$ ，且 $v_{\mathrm{GS}} \geqslant V_{\mathrm{T}}(V_{\mathrm{T}}$ 为开启电压）时，栅极和衬底之间形成足够强的电场，吸引衬底中的少数载流子（电子），使其聚集在栅极下的衬底表面，形成N型反型层，该反型层就构成了d、s间的导电沟道。若此时漏极和源极之间加电压 $v_{\mathrm{DS}}$ ，将有漏极电流 $i_{\mathrm{D}}$ 产生，如图3.2.2所示。这种在 $v_{\mathrm{GS}} = 0$ 时不存在导电沟道， $v_{\mathrm{GS}}$ 必须增强到足够大时才形成导电沟道的场效应管，称为N沟道增强型MOS管。
+
+![](images/72714c60dade4336c930311cdba669f2e259bf36836242afd5d4a99c909a8a00.jpg)  
+图3.2.2 外加电压使MOS管形成导电沟道
+
+![](images/9379ecb0f7ed018e5aaafc26f83fe8c9ebc507a88afe83fabfb41f136d5c9715.jpg)  
+图3.2.3 共源极连接
+
+# 2. N沟道增强型MOS管的输出特性和转移特性
+
+MOS管可视为二端口网络，如图3.2.3所示，栅-源为输入端口，漏-源为输出端口，源极为公共端，故称共源极连接。当端口电压不同时，回路电流也将发生变化。因此用 $I - V$ 特性曲线反映电压与电流的关系。MOS管的 $I - V$ 特性包括输出特性和转移特性，分别如图3.2.4（a）、（b）所示。
+
+输出特性曲线是指栅源电压 $v_{\mathrm{GS}}$ 一定的情况下，漏极电流 $i_{\mathrm{D}}$ 与漏源电压 $v_{\mathrm{DS}}$ 之间的关系。输
+
+![](images/1d12dac0236ceb371079273850ed6e89645fe4940dda485934e67340f2d97d28.jpg)  
+(a)
+
+(b)   
+图3.2.4 N沟道增强型MOS管的特性曲线  
+![](images/9fb26527b1f9ef087b8e956b4b32606df492da5429650e327b70c3355b32fd8f.jpg)  
+（a）输出特性曲线 （b）转移特性曲线
+
+出特性曲线分为三个工作区：截止区、饱和区和可变电阻区。
+
+当 $v_{\mathrm{GS}} < V_{\mathrm{T}}$ 时，导电沟道尚未形成， $i_{\mathrm{D}} = 0$ ，漏-源间电阻很大，可达 $10^{3}\Omega$ 以上，相当于断开，MOS管处于截止工作状态，特性曲线的该区域称为截止区。
+
+当 $v_{\mathrm{GS}} \geqslant V_{\mathrm{T}}$ 时，产生导电沟道，外加 $r_{\mathrm{DS}}$ 较小时， $i_{0}$ 随 $r_{\mathrm{DS}}$ 立线性增长。此时MOS管可以看成一个受 $r_{\mathrm{GS}}$ 控制的可变电阻 $r_{\mathrm{ds}}$ ， $r_{\mathrm{GS}}$ 越大，输出特性曲线越倾斜，等效电阻越小。因此，该区域称为可变电阻区。 $r_{\mathrm{ds}}$ 由下式确定：
+
+$$
+r _ {\mathrm {d s}} = \frac {\mathrm {d} v _ {\mathrm {p s}}}{\mathrm {d} v _ {\mathrm {p}}} \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \circ \tag {3.2.1}
+$$
+
+式中 $K_{\mathrm{w}} = \frac{k_{\mathrm{w}}^{\prime 2}}{2} \cdot \frac{W}{L}$ 称为电导常数， $k_{\mathrm{w}}$ 对于特定制造工艺是常数， $W / L$ 为MOS管沟道的宽长比。
+
+由式（3.2.1）可知为使 $r_{\mathrm{ds}}$ 尽可能小，应当使 $v_{\mathrm{GS}}$ 尽可能大。
+
+当 $v_{\mathrm{DS}}$ 继续增加时，定数值使 $v_{\mathrm{DS}} = v_{\mathrm{GS}} - V_{\mathrm{T}}$ 时，沟道在靠近漏极处开始消失，称为预夹断。随着 $v_{\mathrm{DS}}$ 继续增加， $i_{\mathrm{R}}$ 几乎不再增加，此时的区域称为饱和区。因此，当 $v_{\mathrm{DS}} < v_{\mathrm{GS}} - V_{\mathrm{T}}$ 时，N沟道MOS管工作于可变电阻区。当 $v_{\mathrm{DS}} \geqslant v_{\mathrm{GS}} - V_{\mathrm{T}}$ 时，MOS管工作于饱和区。
+
+转移特性是指在漏源电压 $v_{\mathrm{DS}}$ 一定的条件下，栅源电压 $v_{\mathrm{GS}}$ 对漏极电流 $i_{\mathrm{D}}$ 的控制作用。当MOS管工作在饱和区时，由于 $v_{\mathrm{DS}}$ 对 $i_{\mathrm{D}}$ 的影响很小，所以不同的 $v_{\mathrm{DS}}$ 所对应的转移特性曲线基本
+
+重合，可以用一条曲线来表示。这条曲线与横坐标的交点即为开启电压 $V_{\mathrm{T}}$
+
+# 3.其他类型的MOS管
+
+# （1）P沟道增强型MOS管
+
+与N沟道MOS管相反，P沟道MOS管是在N型衬底上制作两个高浓度的P区，导电沟道为P型，载流子为空穴。其符号如图3.2.5所示。通常将衬底与源极相连，或接电源。
+
+![](images/b9fb58d53107d3a7306eb9971ebe768a30f4fa03148cde18bbf05eb9143d34df.jpg)  
+(a)
+
+![](images/ca760a648c1959b72fe891cd16b22a135f3d2bd0f2480fd5e9be4c6033d2fa72.jpg)  
+(b)   
+图3.2.5 P沟道增强型MOS管符号（a）标准符号 （b）简化符号
+
+为吸引空穴形成导电沟道，栅极接电源负极，与衬底相连的源极接电源的正极，即 $v_{\mathrm{DS}}$ 为负值，因此开启电压 $V_{\mathrm{T}}$ 也为负值。而 $i_{\mathrm{D}}$ 的实际方向为流出漏极，与通常的假定方向正好相反。图3.2.6所示为P沟道增强型MOS管的输出特性和转移特性曲线。
+
+![](images/20fe0f71f30f8837932b3e2964fbeeed723deb96c21644839efe94afd89cc8fc.jpg)  
+(a)
+
+![](images/b153d64a4a107538c5e01ab1488a66fec1aa47fe37b3c73065ac4cf74cad4e58.jpg)  
+(b)   
+图3.2.6P沟道增强型MOS管的特性曲线（a）输出特性曲线 （b）转移特性曲线
+
+# （2）N沟道耗尽型MOS管
+
+N沟道耗尽型MOS管的结构与增强型基本相同，最大的区别是在生产过程中，在 $\mathrm{SiO_2}$ 绝缘层中掺入大量正离子，其结构示意图与符号如图3.2.7所示。 $v_{\mathrm{GS}} = 0$ 时，由于正离子的作用，将电子吸引到栅极下面的衬底表面形成N型沟道。当 $v_{\mathrm{GS}} > 0$ 时，沟道变宽。在 $v_{\mathrm{DS}}$ 作用下， $i_{\mathrm{D}}$ 的数值更大。 $v_{\mathrm{GS}}$ 为负，沟道变窄， $i_{\mathrm{D}}$ 减小；当 $v_{\mathrm{GS}}$ 达到某一负值 $V_{\mathrm{P}}$ 时，沟道完全被夹断，即使加 $v_{\mathrm{DS}}$ ，也不会有漏极电流 $i_{\mathrm{D}}$ ，MOS管截止， $V_{\mathrm{P}}$ 称为夹断电压。
+
+![](images/d91de7ff8b8eb445f23dedec09c35b9aeb3042ab205098f1ba5bf47974018e64.jpg)  
+(a)
+
+![](images/f600dbb9fc27250b50979c2133afb1f0f28de336053c77e423b70295f0063b7a.jpg)  
+(b)
+
+(c)   
+图3.2.7 N沟道耗尽型MOS管  
+![](images/e17c895cc9133cab8bbdf0bae81e3b98af72c5ef3572bffbfff8225bdb86a0b4.jpg)  
+（a）结构示意图 （b）标准符号 （c）简化符号
+
+# （3）P沟道耗尽型MOS管
+
+P沟道耗尽型MOS管的结构与增强型基本相同，但在 $\mathrm{SiO_2}$ 绝缘层中掺入大量负离子，形成P型导电沟道，其夹断电压 $V_{\mathrm{p}}$ 为正值。 $\nu_{\mathrm{GS}}$ 可以是负值、零或正值。 $\nu_{\mathrm{GS}}$ 为负值时 $i_{\mathrm{D}}$ 增加， $v_{\mathrm{GS}}$ 为正值时 $i_{\mathrm{D}}$ 减小。当 $\nu_{\mathrm{GS}}$ 达到 $V_{\mathrm{p}}$ 时，沟道完全被夹断，MOS管截止。P沟道耗尽型MOS管的符号如
+
+图3.2.8所示。
+
+# 4.MOS管开关电路
+
+用N沟道增强型MOS管替代图3.1.3所示的开关S构成的电路如图3.2.9所示。MOS管的作用对应于有触点开关S的“断开”和“闭合”，但在速度和可靠性方面比机械开关优越得多。
+
+![](images/55900407e852450926cba48dec477d7cdbc490795efcb8cd814200d274e7070e.jpg)  
+(a)
+
+(b)   
+图3.2.8 P沟道耗尽型MOS管符号  
+![](images/27cdfa20e859e0c73bf7f49aba6947892ce3c0573503c39d5c588265824b9702.jpg)  
+（a）标准符号 （b）简化符号
+
+![](images/6edb0b419b5a6fe1b97395da496d7274598f807eb53bde585cfc01765d23870b.jpg)  
+图3.2.9 MOS管开关电路
+
+当 $v_{\mathrm{I}} < V_{\mathrm{T}}$ 时，MOS管处于截止状态，输出电压 $v_{0} = V_{\mathrm{DD2}}$ 此向器件不消耗功率。
+
+当 $v_{\mathrm{f}} > V_{\mathrm{T}}$ ，并且足够大时，使得MOS管工作在可变电阻区。 $\mathrm{d}_{\mathrm{s}}$ 、s之间的导通电阻 $R_{\mathrm{on}}$ 可由式（3.2.1）确定。 $v_{\mathrm{GS}}$ 的取值足够大时， $R_{\mathrm{on}}$ 很小，使得 $R_{\mathrm{g}}$ 远远大于 $R_{\mathrm{m}}$ ，电路输出为低电平。
+
+由此可见，MOS管相当于一个由 $\mathrm{e}_{\mathrm{DS}}$ 控制的无触点开关。当输入为低电平时，MOS管截止，相当于开关“断开”，输出为高电平，其等效电路如图3.2.10（a）所示；当输入为高电平时，MOS管工作在可变电阻区，相当于开关“闭合”，输出为低电平，其等效电路如图3.2.10(b)所示。MOS管导通时的等效电阻 $R_{\mathrm{on}}$ 约在 $1\mathrm{k}\Omega$ 以内。当 $v_{\mathrm{I}}$ 足够大时，可以使 $R_{\mathrm{on}}$ 为 $25\sim$ $200\Omega$
+
+![](images/0f08ee37ec51944250ff45e8edd1538b74c427e1974f2dfba5e7c75eb9088b02.jpg)  
+(a)
+
+(b)   
+图3.2.10 MOS管的开关等效电路  
+![](images/2dbf2469db0da394298ee4713f3fb7e9a550d9518e3ee87aef7c18abc3184c7a.jpg)  
+（a）截止时的等效电路 （b）导通时的等效电路
+
+# 5.MOS管开关电路的动态特性
+
+在图3.2.9所示MOS管开关电路的输入端，加一个理想的脉冲波形，如图3.2.11（a）所示。由于MOS管中栅极与衬底间电容 $C_{\mathrm{gb}}$ （即数据手册中的输入电容 $C_1$ ）、漏极与衬底间电容 $C_{\mathrm{db}}$ 、栅极与漏极电容 $C_{\mathrm{gd}}$ 以及导通电阻等的存在，使其在导通和闭合两种状态之间转换时，不可避免地受到电容充、放电过程的影响。输出电压 $v_{0}$ 的波形已不是与输入一样的理想脉冲，如图3.2.11(b)所示。上升沿和下降沿的变化都变得缓慢了，而且输出 $v_{0}$ 的变化滞后于输入 $v_{1}$ 的变化， $t_{\mathrm{pLH}}$ 为输出 $v_{0}$ 由高电平跳变为低电平的传输延迟时间， $t_{\mathrm{pLH}}$ 为输出 $v_{0}$ 由低电平跳变为高电平的传输
+
+延迟时间。
+
+(b)   
+图3.2.11 MOS管开关电路电压波形  
+![](images/2f9d1d61877eb37db19743500c3e1c781d8ab052233fb9e4a87a3704bf15fae8.jpg)  
+（a）输入电压波形 （b）输出电压波形
+
+![](images/dc332f08bdcd5d6e99701520986acb77094ef50ca7fa8bdf4c00db8d26e4a187.jpg)  
+图3.2-12 CMOS反相器
+
+图3.2.9所示电路中 $R_{\mathrm{d}}$ 的作用是：当输入为高电平时，流过导通NMOS管的电流很大， $R_{\mathrm{d}}$ 起限流作用，但此时消耗在其上的功率也很大。为了克服这个缺点，用另一个PMOS管替代电阻 $R_{\mathrm{d}}$ ，就构成了CMOS反相器。
+
+# 3.2.2 CMOS反相器
+
+由N沟道和P沟道增强型MOS管组成的电路称为互补MOS或CMOS电路。CMOS反相器是构成CMOS逻辑电路的基本单元电路之一，另一个基本单元电路——传输门将在3.2.4节介绍。下面讨论CMOS反相器的工作原理。
+
+CMOS反相器电路如图3.2.12所示，由两只增强型MOS管组成，其中 $\mathrm{T}_{\mathrm{N}}$ 为N沟道MOS管， $\mathrm{T}_{\mathrm{P}}$ 为P沟道MOS管。两只MOS管的栅极连在一起作为输入端；它们的漏极连在一起作为输出端。按照图中标明的电压与电流方向， $v_{1} = v_{\mathrm{GSN}},v_{0} = v_{\mathrm{DSN}}$ ，并设 $i_{\mathrm{DN}} = i_{\mathrm{DP}} = i_{\mathrm{D}}$ 。为了电路能正常工作，要求电源电压 $V_{\mathrm{NO}}$ 大于两只MOS管的开启电压的绝对值之和，即 $V_{\mathrm{NO}} > (V_{\mathrm{TN}} + |V_{\mathrm{TP}}|)$ 。为方便叙述，将N沟道和P沟道增强型MOS管的开启电压分别用 $V_{\mathrm{TN}}$ 和 $V_{\mathrm{TP}}$ 表示。
+
+# 1. 工作原理
+
+首先，我们考虑两种极限情况：当 $v_{1}$ 处于逻辑0时，相应的电压近似为 $0\mathrm{V}$ ；而当 $v_{1}$ 处于逻辑1时，相应的电压近似为 $V_{\mathrm{DD}}$ 。
+
+当输入为高电平 $v_{\mathrm{I}} = V_{\mathrm{DD}}$ 时，根据图3.2.12所示电路图可知， $v_{\mathrm{GSN}} = V_{\mathrm{BD}} > V_{\mathrm{TN}}$ ， $\mathrm{T_N}$ 管导通，并且导通电阻很低，通常为几百欧；而 $v_{\mathrm{SGP}} = 0 < |V_{\mathrm{TP}}|$ ， $\mathrm{T_P}$ 管截止，等效电阻很高，可达兆欧级以上。因此，反相器输出为低电平，输出电压 $v_{\mathrm{O}} = V_{\mathrm{OL}} = 0$ ，而通过两管的电流接近于零。这就是说，电路的功耗极低。
+
+当输入为低电平 $v_{\mathrm{I}} = 0$ ，即 $v_{\mathrm{GSN}} = 0 < V_{\mathrm{TN}}, T_{\mathrm{N}}$ 管截止；而 $v_{\mathrm{SCP}} = V_{\mathrm{DD}} > |V_{\mathrm{TP}}|, T_{\mathrm{P}}$ 管导通。反相器输出为高电平，输出电压 $v_{\mathrm{O}} = V_{\mathrm{OH}} \approx V_{\mathrm{DD}}$ 。
+
+由此可知，当输入 $v_{\mathrm{i}} = V_{\mathrm{DD}}$ 时，输出 $v_{\mathrm{o}} \approx 0$ ；而输入 $v_{\mathrm{i}} = 0$ ，输出 $v_{\mathrm{o}} \approx V_{\mathrm{DD}}$ 。输出与输入之间为逻辑非的关系，也称非门为反相器（Inverter）。CMOS 反相器近似于一个理想的逻辑单元，其输出电压接近于零或 $+V_{\mathrm{DD}}$ 。
+
+通过上述分析可以看出CMOS反相器具有以下几个重要特点
+
+第一，当反相器处于稳态时，无论输入 $v_{\mathrm{i}}$ 是高电平还是低电平， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 中总是处于一个导通而另一个截止的状态。截止管的等效电阻很大，流过 $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 的静态电流非常小。因此CMOS反相器的静态功耗非常低，几乎为零。这是CMOS电路最显著的优点。
+
+第二，MOS管导通电阻很低，而截止电阻很高。当反相器输出端接电容性负载，其输出端由低电平变为高电平时， $\mathrm{T}_{\mathrm{p}}$ 导通，电源通过其导通电阻给负载电容提供快速充电回路。反相器输出电平由高变低时， $\mathrm{T}_{\mathrm{N}}$ 导通，负载电容通过其较小的导通电阻快速放电。与图3.2.9所示的电路相比较，CMOS反相器的开关速度更快，具有更强的带负载能力。
+
+第三，MOS管栅极是绝缘的， $I_{\mathrm{CE}} = 0$ ，反相器的输入电阻非常高。因此，理论上，反相器可以驱动任意数目的同类门而不会对输出电平造成影响。但是，负载时输入端具有杂散电容，负载门数目的增加将使反相器的负载电容增加，从而影响反相器的开关速度。
+
+# 2. 电压传输特性和电流传输特性
+
+CMOS反相器的电压传输特性是指其输出电压 $v_{0}$ 随输入电压 $v_{1}$ 变化的关系曲线，如图3.2.13(a)所示。电流传输特性是指漏极电流 $i_{\mathrm{D}}$ 随输入电压 $v_{1}$ 变化的曲线，如图3.2.13(b)所示。根据 $\mathrm{T_N}$ 和 $\mathrm{T_P}$ 两管工作情况的不同，可将传输特性曲线分为五段。
+
+![](images/11f248ba76f89fa9c0903de7d155db88f4fe554b53b20666a9fec16ae605909c.jpg)
+
+图3.2.13 CMOS反相器的传输特性  
+![](images/dd5d19c4128ea053aeaf975e4473876f8c259db1d2e151a31f8ffe3bb37642e0.jpg)  
+（a）电压传输特性 （b）电流传输特性
+
+在传输特性曲线的 $AB$ 或 $EF$ 段，根据前述CMOS反相器工作原理的两种极限情况分析可知，不论输出为高电平或低电平，总有一只MOS管工作在截止区，因此，流过两管的电流接近零值。
+
+在 $BC$ 或 $DE$ 段， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{p}}$ 两管中，总有一个工作在饱和区，另一个工作在可变电阻区，此时输出电流比较大，传输特性变化比较快，两管在 $\nu_{1} = V_{\mathrm{DD}} / 2$ 处转换状态。因此，将状态转换处的电压定义为CMOS反相器的阈值电压 $V_{\mathrm{TH}}^{[1]}$ ， $V_{\mathrm{TH}} = V_{\mathrm{DD}} / 2$ 。
+
+在 $CD$ 段，由于 $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 两管均工作在饱和区，此时 $v_{1} = V_{\mathrm{DD}} / 2$ ，电流 $i_{\mathrm{D}}$ 达到最大值。
+
+从 $B$ 到 $E$ 之间，即 $V_{\mathrm{TR}} < v_{\mathrm{i}} < V_{\mathrm{DB}} - \left|V_{\mathrm{TP}}\right|$ 时， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 处于同时导通的过渡区域，传输特性变化急剧，产生一个较大的电流尖峰。因而导致有较大的功耗。使用时应避免使两管长时间工作在此区域，以防止功耗过大而损坏。
+
+# 3. 输入逻辑电平
+
+由图3.2.13(a)可见，当输入电压从 $0\mathrm{V}$ 开始逐渐增加时，输出高电平维持一段时间没有改变。同样，当输入电压由 $V_{\mathrm{DD}}$ 开始降低时，输出低电平也维持一段时间没有改变。因此，在反相器的输出逻辑状态没有发生明显改变时，输入高、低电平值允许有一个波动范围，如图3.2.14（a）所示。对于不同系列的集成电路，输入高、低电平所对应的电压范围也不同。因此，各种集成门电路都规定了输入低电平的上限值 $V_{\mathrm{IL(max)}}$ 和输入高电平的下限值 $V_{\mathrm{IH(min)}}$ 。以74LVC系列CMOS逻辑电路为例，在 $3.3\mathrm{V}$ 工作电源条件下， $V_{\mathrm{IL(max)}} = 0.8\mathrm{V}, V_{\mathrm{IH(min)}} = 2.0\mathrm{V}$ ，即输入电压在 $0\sim 0.8\mathrm{V}$ 电压范围内，输出高电平；输入电压在 $2.0\sim 3.3\mathrm{V}$ 范围内，输出低电平。
+
+![](images/dd1ec77d1fa13e84dec8b8692a404ddfe180507b3c15502c30affba89cf3387b.jpg)  
+(a)
+
+(b)   
+图3.2.14 门电路输入和输出逻辑电平范围  
+![](images/bee17587bca696dec8393969c0038458b442feb91eb2ca604cf446ea78d75581.jpg)  
+（a）输入高、低电平 （b）输出高、低电平
+
+# 4. 输出逻辑电平
+
+对于图3.2.12所示的CMOS反相器，输出高、低电平值也允许有一个波动范围，如图3.2.14(b)所示。当输入为高电平时，则 $v_{\mathrm{GSN}} = v_{\mathrm{I}} = V_{\mathrm{IH}}, T_{\mathrm{N}}$ 管导通， $T_{\mathrm{P}}$ 管截止，输出为低电平，即 $v_{\mathrm{O}} = V_{\mathrm{OL}}$ ，等效电路如图3.2.15(a)所示。图中 $R_{\mathrm{L}}$ 为CMOS反相器所带负载的等效电阻。此时负载电流 $I_{\mathrm{OH}}$ 从负载流向 $T_{\mathrm{S}}$ 管，称为灌电流负载。
+
+当 $v_{\mathrm{I}}$ 足够大时， $\mathrm{T_N}$ 管工作在输出特性曲线的可变电阻区（ $v_{\mathrm{DS}} < v_{\mathrm{GS}} - V_{\mathrm{T}}$ ），如图3.2.4（a）所示。此时 $\mathrm{T_N}$ 管的导通电阻 $R_{\mathrm{on(N)}}$ 与 $v_{\mathrm{GSN}}$ 的关系可由式(3.2.1）确定。
+
+需要特别注意，由于 $V_{\mathrm{OL}} = R_{\mathrm{on(N)}}I_{\mathrm{OL}}$ ，所以 $V_{\mathrm{OL}}$ 的值与 $\mathrm{T_N}$ 管导通电阻 $R_{\mathrm{on(N)}}$ 和负载电流 $I_{\mathrm{OL}}$ 两个因素有关。若 $R_{\mathrm{on(N)}}$ 不变， $V_{\mathrm{OL}}$ 随着 $I_{\mathrm{OL}}$ 增加（由负载 $R_{\mathrm{L}}$ 引起）而升高。若 $I_{\mathrm{OL}}$ 不变，由式(3.2.1)可知，当 $v_{1}$ 的高电平值越低， $v_{\mathrm{GS}}$ 越小，则 $R_{\mathrm{on(N)}}$ 越大，导致 $V_{\mathrm{OL}}$ 也越高。因此，集成电路数据手册给出了在不同 $I_{\mathrm{OL}}$ 条件下，输出低电平的值 $V_{\mathrm{OL}}$ 。例如低电压CMOS系列与非门74LVCO0N在 $3.3\mathrm{V}$ 工作电源条件下，当 $I_{\mathrm{OL}} = 100~\mu \mathrm{A}$ 时， $V_{\mathrm{OL(max)}} = 0.1\mathrm{V}$ 。这里 $V_{\mathrm{OL(max)}}$ 的下标max的含义是，由于器件参数的分散性，即使在相同条件下，相同型号器件的输出低电平的值略有区别，但它们的 $V_{\mathrm{OL}}$ 值不超过 $V_{\mathrm{OL(max)}}$ □
+
+同理，当输入为低电平时， $\mathrm{T}_{\mathrm{S}}$ 管截止， $\mathrm{T}_{\mathrm{P}}$ 管导通，输出为高电平，即 $v_{0} = V_{\mathrm{OH}}$ 等效电路如图3.2.15(b)所示。 $R_{\mathrm{L}}$ 为CMOS反相器所带负载的等效电阻； $R_{\mathrm{on(P)}}$ 为 $\mathrm{T}_{\mathrm{P}}$ 管的导通电阻。此时负载电流 $I_{\mathrm{OH}}$ 从 $\mathrm{T}_{\mathrm{P}}$ 管流向负载，称为拉电流负载。
+
+$V_{\mathrm{OH}}$ 的值与 $\mathrm{T}_{\mathrm{P}}$ 管导通电阻 $R_{\mathrm{on(P)}}$ 和负载电流 $I_{\mathrm{OD}}$ 两个因素有关。由于 $V_{\mathrm{OH}} = V_{\mathrm{DD}} - R_{\mathrm{on(P)}} I_{\mathrm{OH}}$ ，随着 $I_{\mathrm{OH}}$ 的增加（由 $R_{1}$ 引起）， $V_{\mathrm{OH}}$ 将降低。集成电路数据手册给出了不同 $I_{\mathrm{OH}}$ 条件下，输出高电平的值 $V_{\mathrm{OH}}$ 。74LVC00 器件在 $3.3\mathrm{V}$ 工作电源条件下，当 $I_{\mathrm{OH}} = -100~\mu \mathrm{A}$ （规定电流从器件流出为负）时， $V_{\mathrm{OH(min)}} = 3.1\mathrm{V}$ ；当 $I_{\mathrm{OH}} = -12\mathrm{mA}$ 时， $V_{\mathrm{OH(min)}} = 2.7\mathrm{V}$ 。这里 $V_{\mathrm{OH(min)}}$ 是指相同条件下，相同型号器件的输出高电平的值也略有区别，但它们的 $V_{\mathrm{OH}}$ 值不低于 $V_{\mathrm{OH(min)}}$ 。
+
+![](images/863f0d0c4b9dc32002d6c519a53de6370b7689c00fcd19569f1aeb88c3689ece.jpg)  
+(a)
+
+(b)   
+图3.2.15 CMOS反相器的输出特性  
+![](images/c091740c6078ed8a55a146e759935944a93b26a6fb929d40b672cdaa1dd3a8e4.jpg)  
+(a) 输出低电平等效电路 (b) 输出高电平等效电路
+
+# 5. 工作速度
+
+CMOS反相器或CMOS电路用于驱动其他MOS器件时，其负载的阻抗是电容性的，如图3.2.16(a)所示。当 $v_{\mathrm{I}} = 0$ 时， $\mathrm{T}_{\mathrm{N}}$ 截止， $\mathrm{T}_{\mathrm{P}}$ 导通，由 $V_{\mathrm{DD}}$ 通过 $\mathrm{T}_{\mathrm{P}}$ 向负载电容 $C_\mathrm{L}$ 充电，如图3.2.16(b)所示。此时， $\left|V_{\mathrm{GSP}}\right| = V_{\mathrm{DD}}$ ，根据式(3.2.1)可知， $\mathrm{T}_{\mathrm{P}}$ 的导通电阻较小，充电回路的时间常数较小。类似地，当 $v_{\mathrm{I}} = V_{\mathrm{DD}}$ 时， $\mathrm{T}_{\mathrm{N}}$ 导通， $\mathrm{T}_{\mathrm{P}}$ 截止，电容 $C_\mathrm{L}$ 的放电回路如图3.2.16(c)所示。由于电路具有互补对称的性质， $\mathrm{T}_{\mathrm{N}}$ 与 $\mathrm{T}_{\mathrm{P}}$ 的导通电阻相等，因此，传输延迟时间 $t_{\mathrm{pLH}}$ 和 $t_{\mathrm{pHL}}$ 是基本相等的。
+
+![](images/eff4ac49dbd2b3d4c3013138ddb3651decb07b40f040b47210a4d69a0a71fb8a.jpg)  
+(a)
+
+![](images/695dff18898b38f147e28173f0e307712b9c65bfcf9ae778fb3b6ae41631e136.jpg)  
+(b)
+
+(c)   
+图3.2.16 CMOS反相器在电容负载下的工作情况  
+![](images/8fbdd207442140cb5302c95f9321bc5470ae573e180adb6ffc918e96316ed32a.jpg)  
+（a）电路图 （b）负载电容充电 （c）负载电容放电
+
+# 3.2.3 其他基本CMOS逻辑门电路
+
+CMOS系列基本逻辑门电路中，除上述介绍的非门（反相器）外，还有与门、或门、与非门、或非门、异或门等电路。下面重点介绍与非门和或非门。
+
+# 1. 与非门电路
+
+图3.2.17是2输入端CMOS与非门电路，其中包括两个串联的N沟道增强型MOS管和两个并联的P沟道增强型MOS管。每个输入端连到一个N沟道和一个P沟道MOS管的栅极。电路输出与输入信号逻辑关系及各个MOS管的工作状态如表3.2.1所示。当输入端 $A$ 、 $B$ 有一个为低电平时，就会使与它相连的NMOS管截止，PMOS管导通，输出为高电平；仅当 $A$ 、 $B$ 全为高电平时，才会使两个串联的NMOS管都导通，使两个并联的PMOS管都截止，输出为低电平。
+
+因此，这种电路具有与非的逻辑功能，即
+
+$$
+L = \overline {{A \cdot B}}
+$$
+
+$n$ 个输入端的与非门必须有 $n$ 个NMOS管串联和 $n$ 个PMOS管并联。
+
+![](images/293871a9240354f903328d4e445f57bb69fccac50e0cab9dda4d11761067b32e.jpg)  
+图3.2.17 CMOS与非门
+
+表 3.2.1 与非门输入输出关系及各 MOS 管工作状态  
+
+<table><tr><td>A</td><td>B</td><td>\( {\mathrm{T}}_{\mathrm{N}1} \)</td><td>\( {\mathrm{T}}_{\mathrm{P}1} \)</td><td>\( {\mathrm{T}}_{\mathrm{N}2} \)</td><td>\( {\mathrm{T}}_{\mathrm{P}2} \)</td><td>L</td></tr><tr><td>0</td><td>0</td><td>截止</td><td>导通</td><td>截止</td><td>导通</td><td>1</td></tr><tr><td>0</td><td>1</td><td>截止</td><td>导通</td><td>导通</td><td>截止</td><td>1</td></tr><tr><td>1</td><td>0</td><td>导通</td><td>截止</td><td>截止</td><td>导通</td><td>1</td></tr><tr><td>1</td><td>1</td><td>导通</td><td>截止</td><td>导通</td><td>截止</td><td>0</td></tr></table>
+
+# 2. 或非门电路
+
+图3.2.18是2输入端CMOS或非门电路，其中包括两个并联的N沟道增强型MOS管和两个串联的P沟道增强型MOS管。
+
+电路输出与输入信号逻辑关系及各个MOS管的工作状态如表3.2.2所示。当输入端 $A,B$ 只要有一个为高电平时，就会使与它相连的NMOS管导通，而PMOS管截止，输出为低电平；仅当 $A,B$ 全为低电平时，两个并联NMOS管都截止，两个串联的PMOS管都导通，输出为高电平。
+
+因此，这种电路具有或非的逻辑功能，其逻辑表达式为
+
+$$
+L = \overline {{A + B}}
+$$
+
+显然， $n$ 个输入端的或非门必须有 $n$ 个NMOS管并联和 $n$ 个PMOS管串联。
+
+从以上 CMOS 与非门和或非门电路可知，输入端的数目越多，则串联的管子也越多。若串联的管子全部导通时，其总的总通电阻会增加，以致影响输出电平，使与非门的低电平升高，使或非门的高电平降低。因此 CMOS 逻辑门电路的输入端不宜过多。
+
+![](images/2afc474851870744560034e27ae9c9d3ba028fa9bfa1c9a5f8c9bf989684d252.jpg)  
+图3.2.18 CMOS或非门
+
+表 3.2.2 或非门输入输出关系及各 MOS 管工作状态  
+
+<table><tr><td>A</td><td>B</td><td>\( {\mathrm{T}}_{\mathrm{N}1} \)</td><td>\( {\mathrm{T}}_{\mathrm{P}1} \)</td><td>\( {\mathrm{T}}_{\mathrm{N}2} \)</td><td>\( {\mathrm{T}}_{\mathrm{P}2} \)</td><td>L</td></tr><tr><td>0</td><td>0</td><td>截止</td><td>导通</td><td>截止</td><td>导通</td><td>1</td></tr><tr><td>0</td><td>1</td><td>截止</td><td>导通</td><td>导通</td><td>截止</td><td>0</td></tr><tr><td>1</td><td>0</td><td>导通</td><td>截止</td><td>截止</td><td>导通</td><td>0</td></tr><tr><td>1</td><td>1</td><td>导通</td><td>截止</td><td>导通</td><td>截止</td><td>0</td></tr></table>
+
+例3.2.1 试分析图3.2.19所示的CMOS逻辑门电路，写出其逻辑表达式，说明其逻辑功能。
+
+解：从电路结构可以看出，虚线左边是或非门结构。虚线右边的两个NMOS管串联相与，然后与另一个NMOS管并联相或，并且三个PMOS管也有相应的连接，所以是与或非门结构。或非门的输出 $X = \overline{A + B}$ 。而与或非门的输出 $L$ 为
+
+$$
+L = \overline {{A \cdot B + X}} = \overline {{A \cdot B + A + B}} = \overline {{A \cdot B + A \cdot B}} = \overline {{A \odot B}} = A \oplus B
+$$
+
+电路实现异或逻辑功能。如果在异或门的后面增加一级反相器就构成异或非门，此时其表达式为 $\overline{L} = A\cdot B + \overline{A}\cdot \overline{B}$ ，可以实现同或逻辑功能。
+
+![](images/b86aea01b8bc1ac2f460e9658de794e5acc2f8c9ea937629c5cd1c0615cfb345.jpg)  
+图3.2.19 例3.2.1的CMOS逻辑电路
+
+# 3.2.4 CMOS传输门
+
+传输门(Transmission Gate, TG)的应用比较广泛，不仅可以作为基本单元电路构成各种逻辑电路，用于数字信号的传输，而且可以在取样-保持电路、斩波电路、模数和数模转换等电路中传输模拟信号，因而又称为模拟开关。
+
+# 1. 传输门的结构及工作原理
+
+CMOS传输门由一个P沟道和一个N沟道增强型MOS管并联而成，如图3.2.20(a)所示。图3.2.20(b)是它的逻辑符号。 $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 是结构完全对称的，衬底的引线与普通MOS管不同。所以栅极的引出端画在符号横线的中间。它们的漏极和源极可以互换，因而传输门的输入和输出端可以互换使用，即为双向器件。设它们的开启电压 $V_{\mathrm{TN}} = |V_{\mathrm{TP}}| = V_{\mathrm{T}}, C$ 和 $\overline{C}$ 是一对互补的控制信号。关于衬底连接的原则：NMOS管的衬底连接到电路中最低电位点，而PMOS管的衬底连接到电路中最高电位点，这是为了防止电流从漏极直接流入衬底，使衬底与漏源极之间形成的
+
+PN结反向偏置。因此，将N沟道MOS管的衬底连接到地电位，P沟道的衬底接 $+V_{\mathrm{DD}}$ 电压。
+
+![](images/9893818e0ef3249630cc1117a026f1aad4c95b755962c7035c72e44ab5bba15c.jpg)  
+(a)
+
+(b)   
+图3.2.20 CMOS传输门  
+![](images/875bc7669f8e6fb7896ed52b04a8a2e6d1de27e63bb5faf2e3faeb57ff54f431.jpg)  
+（a）电路结构 （b）逻辑符号
+
+传输门的工作情况如下：当 $C$ 端接 $0\mathrm{V},\overline{C}$ 端接 $+V_{\mathrm{DD}}$ 时，输入信号 $\nu_{1}$ 的取值在 $0\sim +V_{\mathrm{DD}}$ 范围内， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 同时截止，输入和输出之间呈高阻态，传输门是断开的。
+
+当 $C$ 端接 $+V_{\mathrm{DD}}$ ， $C$ 端接0V时， $\nu_{1}$ 在 $0\mathrm{V}\sim +\left(V_{\mathrm{DD}} - V_{\mathrm{E}}\right)$ 的范围内， $\mathrm{T}_{\mathrm{N}}$ 导通。 $\nu_{1}$ 在 $+V_{\mathrm{I}}\sim +V_{\mathrm{DD}}$ 的范围内， $\mathrm{T}_{\mathrm{P}}$ 将导通。由此可知，当 $\nu_{1}$ 在 $0\mathrm{V}\sim +V_{\mathrm{DD}}$ 之间变化时， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 至少有一个导通，使 $\nu_{1}$ 与 $v_{0}$ 之间的导通电阻很小，传输门导通。
+
+进一步分析还可看到，当输入电压变化时，使两管的栅源电压 $v_{\mathrm{GS}}$ 均发生变化。而MOS管漏源间的等效电阻是 $v_{\mathrm{GS}}$ 的函数，如式（3.21）所示。因此，两管漏源间的等效电阻随输入电压的变化而变化。一管导通的程度越深；另一管的导通程度则相应地减小。也就是当一管的等效电阻减小，则另一管的等效电阻就增加。由于具有互补作用的两管并联在一起，使传输门导通电阻的变化相对各单管等效电阻的变化小得多，这是传输门的优点。
+
+# 2. 模拟开关
+
+当CMOS传输门用作模拟开关时，若输入信号的变化范围为 $-V_{\mathrm{SS}}$ 到 $+V_{\mathrm{DD}}$ ，则 $\mathrm{T_N}$ 和 $\mathrm{T_P}$ 的衬底分别接 $-V_{\mathrm{SS}}$ 和 $+V_{\mathrm{DD}}$ 。互补控制端 $C$ 和 $\overline{C}$ 的控制电压分别为 $+V_{\mathrm{DD}}$ 和 $-V_{\mathrm{SS}}$ ，传输门导通。 $C$ 和 $\overline{C}$ 的控制电压分别为 $-V_{\mathrm{SS}}$ 和 $+V_{\mathrm{DD}}$ ，传输门断开。
+
+模拟开关的导通电阻与输出端的负载构成分压器，输出电压是两者对输入电压分压产生的。因此，导通电阻的稳定可以使输出电压随输入电压的变化呈线性关系。但模拟开关的导通电阻不是恒定的，因此，推出了多种改进的电路，其目的是为了使导通电阻尽可能小，并且在输入信号的变化范围内使导通电阻尽可能保持不变。有些精密CMOS模拟开关的导通电阻已达到几欧。
+
+一般的模拟开关导通电阻值在数百欧以下，当它与输入阻抗为兆欧级的运放或输入电阻达 $10^{10}\Omega$ 以上的MOS电路串接时，可以忽略不计。
+
+# 3. 传输门在数字电路的应用
+
+CMOS传输门除了作为传输模拟信号的开关外，由于它的传输延迟时间短、结构简单，也作
+
+为基本单元电路，用于构成各种逻辑电路，如数据选择/分配器、触发器等。
+
+由CMOS传输门构成的异或门电路如图3.2.21所示，输入信号 $B$ 作为传输门的控制信号。当 $B = 0$ 时， $\mathrm{TG}_1$ 截止， $\mathrm{TG}_2$ 导通， $L = A$ ；当 $B = 1$ 时， $\mathrm{TG}_1$ 导通， $\mathrm{TG}_2$ 截止， $L = \overline{A}$ 。 $L$ 与 $A, B$ 是异或逻辑关系，即 $L = A\overline{B} + \overline{AB} = A \oplus B$
+
+由CMOS传输门构成的2选1数据选择器如图3.2.22所示。当控制端 $C = 0$ 时，输入端 $A$ 的信号被传到输出端， $L = A$ 。而当 $C = 1$ 时， $L = B$
+
+![](images/3ed2a2a7ab45d58332950d7b35a213d910fe2f394d19eee725d2fb50ae3e3bad.jpg)  
+图3.2.21 传输门构成的异或门
+
+![](images/6e42d9bd96a9797754a1fa62677ced0ef78c11db6380611679f66feb2d6874fd.jpg)  
+图3.2.22 传输门构成的数据选择器
+
+# 复习思考题
+
+3.2.1 在数字电路中MOS管工作在输出特性的什么区域，如何保证其工作在这些区域？  
+3.2.2 开启电压 $V_{\mathrm{T}}$ 的含义是什么？  
+3.2.3 N沟道增强型MOS管的导通电阻 $R_{\mathrm{on}}$ 与 $\nu_{GS}$ 有怎样的关系？  
+3.2.4 CMOS反相器的静态功耗是指什么？为什么其静态功耗几乎等于零？  
+3.2.5 CMOS反相器在什么时候电流 $i_{\mathrm{D}}$ 达到最大值？  
+3.2.6 CMOS电路的输出低电平 $V_{\mathrm{OL}}$ 与负载电流 $I_{\mathrm{OL}}$ 有怎样的关系？输出高电平 $V_{\mathrm{ON}}$ 与负载电流 $I_{\mathrm{ON}}$ 又有怎样的关系？  
+3.2.7 增加NMOS与非门输入端会增加串联的NMOS管数目，对电路输出电平有什么影响？增加或非门的输入端呢？  
+3.2.8为什么CMOS传输门又称为模拟开关？传输门在数字电路和模拟电路中的连接方式有什么不同？
+
+# 3.3 CMOS逻辑门电路的不同输出结构及参数
+
+实际CMOS逻辑门电路的输入和输出端都有保护电路和缓冲电路。另外，使用时如果需要将两个CMOS逻辑门的输出端连在一起，则需要选择漏极开路的逻辑门。如果希望对CMOS逻辑门电路的输出加以控制，则选择三态输出逻辑门电路。
+
+# 3.3.1 CMOS逻辑门的保护和缓冲电路
+
+CMOS门电路的输入端是MOS管的栅极，在栅极与沟道之间是很薄的 $\mathrm{SiO}_2$ 层，小于
+
+$0.1\mu \mathrm{m}$ ，极易被击穿。而输入电阻高达 $10^{12}\Omega$ 以上，输入电容为几皮法。电路在使用前输入端是悬空的，只要外界有很小的静电源，都会在输入端积累电荷而将栅极击穿。因此，CMOS电路都增加了保护电路。
+
+当逻辑门电路的输入端数目不同，或所带负载门的数目不同时，其输入、输出特性也不同，会给电路设计工作带来麻烦，同时要求输出端具有一定的驱动能力。因此，CMOS逻辑门通常用反相器作输入或输出缓冲电路。由于这些缓冲电路具有统一的参数，使得集成逻辑门电路的输入和输出特性不再因内部逻辑不同而发生变化，从而使电路的性能得到改善。
+
+实际CMOS逻辑门通常有输入、输出保护电路和缓冲电路。以74HC/HCT系列为例，其电路结构如图3.3.1所示。图中的基本逻辑功能电路可以是前面介绍的反相器、与非门、或非门或者它们的组合电路。
+
+![](images/5f9a6234053a67aad5d907f0de9b4f16faf56b56f6fa3dbf1cd75d424d17fb4d.jpg)  
+图3.3.1 实际集成CMOS门电路结构图
+
+# 1. 输入保护电路
+
+图3.3.2所示为输入保护电路和输入缓冲电路。图中 $C_{\mathrm{N}}$ 和 $C_{\mathrm{P}}$ 分别表示 $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 的栅极等
+
+效电容， $\mathrm{D}_1$ 和 $\mathrm{D}_2$ 是正向导通压降为 $V_{\mathrm{DF}} = 0.5\sim 0.7\mathrm{V}$ 的二极管， $\mathrm{D}_2$ 是分布式二极管结构，用虚线和两个二极管表示。这种分布式二极管结构可以通过较大的电流，使得输入引脚上的静电荷得以释放，从而保护了MOS管的栅极绝缘层。二极管的反向击穿电压约为 $30\mathrm{V}$ ，小于栅极 $\mathrm{SiO}_2$ 层的击穿电压。
+
+输入电压在正常范围内 $(0\leqslant v_{\mathrm{I}}\leqslant V_{\mathrm{DD}})$ ，保护电路不起作用。当 $v_{\mathrm{I}} > (V_{\mathrm{DD}} + V_{\mathrm{DF}})$ 或 $v_{\mathrm{I}} <   - V_{\mathrm{DF}}$ 时，MOS管的栅极电位被限制在 $-V_{\mathrm{DF}}$ 到 $(V_{\mathrm{DD}} + V_{\mathrm{DF}})$ 之间，使栅极的 $\mathrm{SiO_2}$ 层不会被击穿。如果输入电平发生突变时的过冲电压超
+
+出上述输入电压范围，可能使二极管 $\mathrm{D}_1$ 或 $\mathrm{D}_2$ 首先被击穿。当过冲时间较短时，二极管仍能恢复
+
+![](images/70387b91cb579ef2735de7fec675b5242d8668335171a29b7f34b4a54260cebf.jpg)  
+图3.3.2 输入保护电路及缓冲电路
+
+工作；当过冲时间较长或过冲电压很大时，可能损坏二极管，进而使MOS管栅极被击穿。
+
+另外，电阻 $R_{\mathrm{s}}$ 和MOS管的栅极电容组成积分网络，使输入信号的过冲电压延迟一段时间才作用到栅极上，而且幅度有所衰减。为减小这种延迟对电路动态性能的影响， $R_{\mathrm{s}}$ 值不宜过大，通
+
+常 $R_{\mathrm{s}}$ 为 $2\mathrm{k}\Omega$ 左右。
+
+逻辑门电路输出端也接入静电保护二极管，确保输出不超出正常的工作范围。
+
+# 2. 反相缓冲电路
+
+图3.3.3所示为带缓冲级的CMOS与非门电路的逻辑符号。由于输入、输出端加了反相器作为缓冲电路，所以电路输出与输入的逻辑关系也发生了变化。图中的基本逻辑电路是或非门，增加了缓冲器后的逻辑关系为与非功能，即
+
+$$
+L = \overline {{A + B}} = \overline {{A \cdot B}}
+$$
+
+![](images/2245144459c8057b3020348a69e336c3a335239e91cd2685fd2c68a76d6252da.jpg)  
+图3.3.3 投影中级的CMOS 与部门的逻辑图
+
+# 3.3.2 CMOS漏极开路门和三态输出门电路
+
+前面讨论了具有输入、输出缓冲电路的CMOS集成电路。如果从输出端看，还有另外两种输出结构的CMOS门电路，漏极开路门(OpenDrain,OD)和三态输出门（TristateLogic,TSL）。下面分别加以讨论。
+
+# 1. CMOS 漏极开路门
+
+（1）漏极开路门的结构及工作原理
+
+通常CMOS门电路都有反相器作输出缓冲电路。而在工程实践中，有时需要将两个门的输出端并联以实现与逻辑的功能称为线与，或者用于驱动大电流负载，或者实现逻辑电平变换。现在来考察一种情况，如果将两个CMOS与非门 $\mathrm{G}_1$ 和 $\mathrm{G}_2$ 的输出端连接在一起，如图3.3.4所示，并设 $G_{1}$ 的输出处于高电平， $\mathrm{T}_{\mathrm{N}}$ 截止， $\mathrm{T}_{\mathrm{P1}}$ 导通；而 $\mathbf{G}_2$ 的输出为低电平， $\mathrm{T}_{\mathrm{N2}}$ 导通， $\mathrm{T}_{\mathrm{P2}}$ 截止。这样，从 $\mathrm{G}_1$ 的输出 $\mathrm{T}_{\mathrm{D}}$ 到 $\mathrm{G}_2$ 的 $\mathrm{T}_{\mathrm{N2}}$ 将形成一低阻通路，从而产生很大的电流，有可能导致器件的损毁，并且无法确定输出是高电平还是低电平。这一问题可以采用OD门来解决。
+
+所谓漏极开路是指CMOS门电路的输出电路只有NMOS管，并且它的漏极是开路的。漏极开路的与非门电路及逻辑符号如图3.3.5(a)和3.3.5(b)所示，其中图标“@”表示漏极开路之意。
+
+使用OD门时必须在漏极和电源 $V_{\mathrm{DD}}$ 之间，外接一个上拉电阻 $R_{\mathrm{p}}$ ①。图3.3.6所示为两个OD与非门实现线与。将两个门电路输出端接在一起，通过上拉电阻接电源。由图3.3.6(a)可见，当两个与非门的输出全为1时，输出为1；只要其中一个为0时，输出为0。所以该电路的输出符合与逻辑功能，即 $L = \overline{AB} \cdot \overline{CD}$ 。图3.3.6(b)所示为两个OD与非门线与的逻辑图。
+
+![](images/2cfdc28be1bc71a6ecdc78f941fda9df8394a274003552373344ee52542d3a8d.jpg)  
+图3.3.4普通CMOS与非门输出端相
+
+图3.3.5 漏极开路（OD）与非门  
+![](images/f5dcebec6b30e45f7905cfdf0aff258635493384e98661acc325dee761f68238.jpg)  
+（a）电路结构 （b）逻辑符号
+
+# （2）上拉电阻对OD门动态性能的影响
+
+当其他门电路作为OD门的负载时，OD门称为驱动门，其后所接的门电路称为负载门。由于驱动门的输出电容、负载门的输入电容以及接线电容的存在，上拉电阻 $R_{\mathrm{p}}$ 的大小必将影响OD门的开关速度， $R_{\mathrm{p}}$ 的值越小，负载电容的充电时间常数也越小，因而开关速度越快。但上拉电阻不能任意地减小，它必须保证OD门输出端的电流不能超过允许的最大值 $I_{\mathrm{OL(max)}}$ 。对于74HC/HCT系列CMOS门电路， $I_{\mathrm{OL(max)}} = 4\mathrm{mA}$ ，因此 $R_{\mathrm{p}}$ 必须大于 $V_{\mathrm{DD}} / I_{\mathrm{OL(max)}} = 5\mathrm{V} / 4\mathrm{mA} = 1.25\mathrm{k}\Omega$ 。与普通CMOS电路相比， $R_{\mathrm{p}}$ 的值比PMOS管导通电阻大，因而，OD门从低电平到高电平的转换速度比普通CMOS门慢。
+
+图3.3.7所示为OD门驱动电容性负载的工作情况，取上拉电阻 $R_{\mathrm{p}}$ 为 $1.5\mathrm{k}\Omega$ 。由于输出状态发生变化时，电容的充、放电作用会对输出波形产生影响，所以主要考虑负载电容 $C_{\mathrm{L}}$ ，并假设
+
+![](images/ce34d1bd03bf6e8336aba2fcbd7d0fdedf84597d0880fb756a64c37ffa1001f5.jpg)  
+(a)
+
+(b)   
+图3.3.6 漏极开路（OD）与非门的线与  
+![](images/c60fbf75a4a29e2359f046d6860afd98b2286980326c7975181da4c2958ac837.jpg)  
+(a)线与连接图 (b)逻辑图
+
+![](images/15dd6632ce918d5cdcc11c865eae0a19d515dfad63dd1e63f6ca01ead735518b.jpg)  
+(a)
+
+![](images/e332124f16710e7cbc6d1ae632ac24dbcfebd13ccaa0f19e13165d8afb9ab279.jpg)  
+(b)
+
+(c)   
+图3.3.7 OD门驱动电容性负载  
+![](images/2dd697367c6c8c754131b139c672bb5737081e15ebc5da7aa4ebd360153104b3.jpg)  
+(a) 逻辑图 (b) 输出为低电平时的等效电路 (c) 输出为高电平时的等效电路
+
+$C_{\mathrm{L}}$ 为 $100~\mathrm{pF}$ ，下面分两种情况进行讨论
+
+当OD门输出由高电平变为低电平时，其等效电路如图3.3.7(b)所示，如果NMOS管导通时的等效电阻 $R_{\mathrm{on(S)}}$ 为 $100\Omega$ ，因此充了电的电容主要通过NMOS管放电，放电时间常数 $\tau_{\mathrm{HL}} = 100\Omega \times 100\mathrm{pF} = 10\mathrm{ns}_{\circ}$
+
+当输出由低电平跳变为高电平时，其等效电路如图3.3.7（c）所示，此时电源通过 $R_{\mathrm{p}}$ 向 $C_L$ 充电，充电时间常数 $\tau_{\mathrm{LH}} = 1.5\mathrm{k}\Omega \times 100\mathrm{pF} = 150~\mathrm{ns}$ ，导致输出波形的上升沿时间很长。因此，当工作速度较快时，应尽量避免用OD门驱动大的电容性负载。
+
+（3）上拉电阻的计算
+
+选择上拉电阻 $R_{\mathrm{p}}$ 的值时要考虑多种因素。一方面，从上面分析可知，如果负载具有电容性， $R_{\mathrm{p}}$ 的值越小，电容的充电时间常数也越小，因而开关速度越快，但功耗也越大。另一方面，多个OD门的输出端线与在一起，当只有一个门导通，输出为低电平，其他门均截止时，负载电流将全部流向导通的OD门，这是一种最不利的情况，此时上拉电阻 $R_{\mathrm{p}}$ 具有限制电流的作用，其取值不能太小。应保证 $I_{\mathrm{OL}}$ 不超过额定值 $I_{\mathrm{OL(max)}}$ 。下面分两种情况计算 $R_{\mathrm{p}}$ 的最小值 $R_{\mathrm{p(min)}}$ 及最大值 $R_{\mathrm{p(max)}}$ 。
+
+① 当输出为低电平，并联的OD门中只有一个导通，参看图3.3.8（a）。
+
+为保证导通OD门的输出电流 $I_{\mathrm{OL}} \leqslant I_{\mathrm{OL(max)}}$ ，对于所有截止的OD门，忽略流过截止NMOS管的漏电流 $I_{\mathrm{OZ}}$ 。于是， $I_{\mathrm{OL}} = I_{\mathrm{Rp}} + I_{\mathrm{IL(max)}} \leqslant I_{\mathrm{OL(max)}}$ ，并且 $V_{\mathrm{OL}} = V_{\mathrm{OL(max)}}$ 求得 $R_{\mathrm{p}}$ 上的压降为 $V_{\mathrm{DD}} - V_{\mathrm{OL(max)}}$ ，则流过 $R_{\mathrm{p}}$ 的电流为 $(V_{\mathrm{DD}} - V_{\mathrm{OL(max)}}) / R_{\mathrm{p}} = I_{\mathrm{OL(max)}} - I_{\mathrm{IL(max)}}$ 此时 $R_{\mathrm{p}}$ 应满足方程
+
+$$
+R _ {\mathrm {p}} \geq \frac {V _ {\mathrm {D D}} - V _ {\mathrm {O L} (\max)}}{I _ {\mathrm {O L} (\max)} - I _ {\mathrm {I L} (\text {t o t a l})}}
+$$
+
+因此 $R_{\mathrm{p}}$ 的最小值 $R_{\mathrm{p(min)}}$ 可按下式来确定：
+
+$$
+R _ {\mathrm {p (m i n)}} = \frac {V _ {\mathrm {D D}} - V _ {\mathrm {O L (m a x)}}}{I _ {\mathrm {O L (m a x)}} - I _ {\mathrm {H F (m a x)}}} = \text {通 信} \tag {3.3.1}
+$$
+
+式中： $V_{\mathrm{DD}}$ —直流电源电压；
+
+$V_{\mathrm{OL(max)}}$ ——驱动门 $V_{\mathrm{OL}}$ 最大值；
+
+$I_{\mathrm{OL(max)}}$ ——驱动门 $I_{\mathrm{OL}}$ 最大值；
+
+$I_{\mathrm{IL(max)}}$ ——负载门低电平输入电流 $I_{\mathrm{L}}$ 意和， $I_{\mathrm{IL(max)}} = nI_{\mathrm{IL}}$ 。这里需要注意 $n$ 的取值，对于负载为CMOS门电路或者TTL或非门， $n$ 为所取的输入端数目；对于TTL与非门负载， $n$ 为负载门的个数，而不是输入端的数目，这是由于TTL与非门输入端的结构所致，有关TTL与非门的内容参见3.5.3节。
+
+② 当所有OP门输出均为高电平时，参看图3.3.8（b）。
+
+为使得输出的电平不低于规定的 $V_{\mathrm{OH}}$ 的最小值，即 $V_{\mathrm{OH}} \geqslant V_{\mathrm{OH(min)}}$ ，则 $R_{\mathrm{p}}$ 的选择不能过大。流过 $R_{\mathrm{p}}$ 的电流 $I_{\mathrm{Rp}} = (V_{\mathrm{DD}} - V_{\mathrm{OH}}) / R_{\mathrm{p}}$ ，应满足 $I_{\mathrm{Rp}} = I_{\mathrm{OZ(total)}} + I_{\mathrm{HI(total)}}$ 。则 $V_{\mathrm{OH}} = V_{\mathrm{DD}} - R_{\mathrm{p}}(I_{\mathrm{OZ(total)}} + I_{\mathrm{HI(total)}}) \geqslant V_{\mathrm{OH(min)}}$ 。
+
+因此， $R_{\mathrm{p}}$ 的最大值 $R_{\mathrm{p(max)}}$ 可按下式来确定：
+
+$$
+R _ {\mathrm {p (m a x)}} = \frac {V _ {\mathrm {D D}} - V _ {\mathrm {O H (m i n)}}}{I _ {\mathrm {O Z (t o t a l)}} + I _ {\mathrm {H H (t o t a l)}}} \tag {3.3.2}
+$$
+
+式中： $V_{\mathrm{OH(min)}}$ ——驱动门 $V_{\mathrm{OH}}$ 最小值；
+
+$I_{\mathrm{OZ(total)}}$ ——全部驱动门输出高电平时的漏电流总和；
+
+$I_{\mathrm{III(totall)}}$ —负载门高电平输入电流 $I_{\mathrm{III}}$ 总和。 $I_{\mathrm{III(totall)}} = nI_{\mathrm{III}},n$ 为负载门并联的输入端数目。
+
+实际上， $R_{\mathrm{p}}$ 的值选在 $R_{\mathrm{p(min)}}$ 和 $R_{\mathrm{p(max)}}$ 之间，若要求电路速度快，选用 $R_{\mathrm{p}}$ 的值接近 $R_{\mathrm{p(min)}}$ 的标准值。若要求电路功耗小，选用 $R_{\mathrm{p}}$ 的值接近 $R_{\mathrm{p(max)}}$ 的标准值。
+
+式(3.3.1)和式(3.3.2)中已考虑电流的方向，因此，所有电流参数均取正值。
+
+![](images/43ba63c42bc7be2a4288e702ccf157bccfeac304d23bb98ca7b91df6db07d324.jpg)  
+(a)
+
+(b)   
+图3.3.8 计算OD门上拉电阻 $R_{\mathrm{p}}$ 的工作情况  
+![](images/6b197cb46722282dce2d16c5fb87141c9c411092dd4068f1223671b7aa49884a.jpg)  
+(a) $R_{\mathrm{p(min)}}$ 的工作情况 (b) $R_{\mathrm{p(max)}}$ 的工作情况
+
+例3.3.1设74HC03中的3个漏极开路与非门作线与连接，驱动74HC04中的1个反相器和74HC10中的1个三输入与非门，电路如图3.37-8所示，试确定一合适大小的上拉电阻 $R_{\mathrm{p}}$ 。已知 $V_{\mathrm{DD}} = 5\mathrm{V}$ ，OD门输出低电平 $V_{\mathrm{OL(max)}} = 0.33\mathrm{V}$ 时的输出电流 $I_{\mathrm{OL(max)}} = 4\mathrm{mA}$ ，输出高电平 $V_{\mathrm{OH(min)}} = 4.4\mathrm{V}$ 时的漏电流 $I_{\mathrm{DZ}} = 5\mu \mathrm{A}_{\circ}$ 负载高电平和低电平输入电流最大值 $I_{\mathrm{Hf(max)}} = I_{\mathrm{IL(max)}} = 1\mu \mathrm{A}_{\circ}$
+
+解：（1）当线与的OD门输出为低电平时，式(3.3.1)中
+
+得 $I_{\mathrm{AL(max)}} = nI_{\mathrm{IL(max)}} = 4\times 1\mu \mathrm{A} = 0.004\mathrm{mA}$ $R_{\mathrm{m(n)}} = \frac{V_{\mathrm{DD}} - V_{\mathrm{OL(max)}}}{I_{\mathrm{OL(max)}} - I_{\mathrm{IL(max)}}} = \frac{5\mathrm{~V} - 0.33\mathrm{~V}}{4\mathrm{~mA} - 0.004\mathrm{mA}} = 1.17\mathrm{k}\Omega$
+
+（2）当线与的OD门输出为高电平时，式(3.3.2)中
+
+$$
+I _ {0 Z (\text {t o t a l})} = 3 \times 5 \mu \mathrm {A} = 0. 0 1 5 \mathrm {m A}
+$$
+
+$$
+I _ {\mathrm {H H (t o t a l)}} = 4 \times 1 \mu \mathrm {A} = 0. 0 0 4 \mathrm {m A}
+$$
+
+得 $R_{\mathrm{p(max)}} = \frac{V_{\mathrm{DD}} - V_{\mathrm{OH(min)}}}{I_{\mathrm{OZ(total)}} + I_{\mathrm{IH(thatal)}}} = \frac{5\mathrm{~V} - 4.4\mathrm{~V}}{0.015\mathrm{~mA} + 0.004\mathrm{~mA}}\approx 31.58\mathrm{k}\Omega$
+
+根据上述计算， $R_{\mathrm{p}}$ 的值可在 $1.17\mathrm{k}\Omega$ 至 $31.58\mathrm{k}\Omega$ 之间选取。为使电路有较快的开关速度，可选用一标准值为 $2\mathrm{k}\Omega$ 的电阻。
+
+除了可以实现线与的逻辑功能外，OD门也用来驱动发光二极管。发光二极管发光时需要的电流较大。图3.3.9(a)所示为用74HC05中的1个漏极开路反相器驱动发光二极管。发光二极管发光时要求有几毫安的电流通过，74HC/HCT系列CMOS门电路的最大灌电流或拉电流为 $4\mathrm{mA}$ 。当输入为高电平时，输出为低电平，此时发光二极管发光，否则输出为高电平时二极管熄灭。若驱动指示灯（ $12\mathrm{V},20\mathrm{mA}$ ），74HC/HCT系列门电路不能满足要求，可以选用74AC05或74ACT05，其灌电流为 $24\mathrm{mA}$
+
+OD门电路的另一个功能是实现逻辑电平变换，例如，可将 $3.3\mathrm{V}$ 高电平转换为 $5\mathrm{V}$ 高电平，如图3.3.9(b)所示。
+
+![](images/7e00b747071e3e9f22627ac90b0a8efdb8976940ad0f31cfda9ef082545fd29d.jpg)  
+(a)
+
+(b)   
+图3.3.9 OD门电路的应用  
+![](images/86e571813e92e7b1fc1182436a5a60e48aab49f81f81f9393e32d98bf872e4f6.jpg)  
+（a）驱动发光二极管 （b）逻辑电平变换
+
+# 2. 三态输出门电路
+
+利用OD门虽然可以实现线与的功能，但外接电阻 $R_{\mathrm{p}}$ 的选择要受到一定的限制，因此影响了工作速度。同时它省去了PMOS有源负载，使得带负载能力下降。为保持互补输出级的优点，又可以与总线连接，人们又开发了一种三态输出门电路，它的输出除了具有一般门电路的两种状态，即输出高、低电平外，还具有高输出阻抗的第三状态，称为高阻态，又称为禁止态。
+
+图3.3.10(a)所示为高电平使能的三态输出缓冲电路，其中 $A$ 是输入端， $L$ 为输出端， $EN$ （Enable）是控制信号输入端，也称为使能端。图3.3.10(b)是它的逻辑符号。
+
+![](images/9def391a1e88c4a5fa655b713ca85ab43498544511673b0fac439e3488c9f942.jpg)  
+(a)
+
+(b)   
+图3.3.10 高电平使能三态输出门电路  
+![](images/1a711fc2f4b59b4457ac8af6f1811f568cf7a9b1db008ff9bcfa97b63a31d308.jpg)  
+（a）电路结构 （b）逻辑符号
+
+当使能端 $EN = 1$ 时，如果 $A = 0$ ，则 $B = 1, C = 1$ ，使得 $T_{N}$ 导通，同时 $T_{P}$ 截止，输出端 $L = 0$ ；如果 $A = 1$ ，则 $B = 0, C = 0$ ，使得 $T_{N}$ 截止， $T_{P}$ 导通，输出端 $L = 1$ 。
+
+当使能端 $EN = 0$ 时，不论 $A$ 的取值为何，都使得 $B = 1, C = 0$ ，则 $T_{N}$ 和 $T_{P}$ 均截止，电路的输出端既不是低电平，又不是高电平，而是开路，这就是第三种高阻工作状态。
+
+由以上分析可知，当 $EN$ 为有效的高电平时，电路处于正常逻辑工作状态， $L = A$ 。而当 $EN$ 为低电平时，电路处于高阻状态。三态输出门电路的真值表如表3.3.1所示，其中 $x$ 表示 $A$ 可以是
+
+0或1。
+
+三态输出门电路主要用于总线传输，如计算机或微处理器系统，其连接形式如图3.3.11所示。任何时刻只有一个门电路的使能端 $EN$ 为1，该门电路的信号被传到总线上，而其他三态输出电路处于高阻状态。这样就可以按一定顺序将各个门电路的输出信号分时送到总线上。
+
+表 3.3.1 三态输出门的真值表  
+
+<table><tr><td>使能 EN</td><td>输入 A</td><td>输出 L</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr><tr><td>0</td><td>×</td><td>高阻</td></tr></table>
+
+![](images/02625566476157549cdf3184ef0910f3a30c33082aaadf82c734bbb4db6285fd.jpg)  
+图3.3.11 三态输出电路构成总线传输结构
+
+在实际应用中，除上述介绍的三态输出电路外，还有其他不同形式的电路结构（见习题3.3.7所示）。使能端可以是高电平或低电平有效，输出与输入可以是同相或反相，其目的都是为用户提供一个合适的动态特性。例如，接到总线上的三态输出电路，在任何时刻只有一个使能端为有效信号，这就要求某个与总线进行数据传输的三态门必须关断以后，另一个三态门才允许与总线进行数据传输。即从高阻态到高电平（或低电平)输出的转换时间，略大于从高电平（或低电平)到高阻态的转换时间。这样，控制系统给出的使能信号，使前一个电路进入高阻状态以后，后一个电路的输出信号才送到总线上，以避免两个不同的信号在总线上引起冲突。
+
+# 3.3.3 CMOS逻辑门电路的重要技术参数
+
+生产逻辑门电路的厂家，通常都会为用户提供逻辑器件的数据手册。对于不同系列的CMOS电路，只要型号最后的数字相同，它们的逻辑功能就一样，但是电气性能参数有所不同。手册中一般都要给出门电路的电压传输特性 $v_{\mathrm{t}} - v_{0}$ ，输入和输出的高、低电压，噪声容限，传输延迟时间，功耗等。除传输特性外，其他各项技术参数分别介绍如下：
+
+# 1. 输入和输出的高、低电平
+
+前已讨论，数字电路中的高、低电压常用高、低电平来描述，并规定在正逻辑体制中，用逻辑1和0分别表示高、低电平。当逻辑电路的输入信号在一定范围内变化时，输出电压并不会改变，因此逻辑1或0对应一定的电压范围。不同系列的集成电路，输入和输出为逻辑1或0所对应的电压范围也不同。生产厂家的数据手册中一般都给出四种逻辑电平参数：输入低电平的上限值 $V_{\mathrm{IH(max)}}$ 、输入高电平的下限值 $V_{\mathrm{IH(min)}}$ 、输出低电平的上限值 $V_{\mathrm{OL(max)}}$ 和输出高电平的下限
+
+值 $V_{\mathrm{OH(min)}}$ 。
+
+表3.3.2列出了几种CMOS集成电路在典型工作电压时的输入高、低电压值以及在规定输出电流 $I_{0}$ 条件下的输出电压值。这里以带CMOS负载的 $74\times \times 04$ 非门参数为例。4000、74HC和74HCT系列工作电压为 $5\mathrm{V}$ ，低电压74LVC系列典型工作电压为 $3.3\mathrm{V}$ ，超低电压74AUC系列典型工作电压为 $1.8\mathrm{V}$ 。
+
+表 3.3.2 几种 CMOS 系列非门的输入和输出电压值及输入噪声容限  
+
+<table><tr><td>类型 参数/单位</td><td>4000 \( \left( {{V}_{\mathrm{{DD}}} = 5\mathrm{\;V}}\right. \) \( \left( {{I}_{0} = 1\mathrm{\;{mA}}}\right) \)</td><td>74HC \( \left( {{V}_{\mathrm{{DD}}} = 5\mathrm{\;V}}\right. \) \( \left( {{I}_{0} = {0.02}\mathrm{\;{mA}}}\right) \)</td><td>74HCT \( \left( {{V}_{\mathrm{{DD}}} = 5\mathrm{\;V}}\right. \) \( \left( {{I}_{0} = {0.02}\mathrm{\;{mA}}}\right) \)</td><td>74LVC \( \left( {{V}_{\mathrm{{DD}}} = {3.3}\mathrm{\;V}}\right. \) \( \left( {{I}_{0} = {0.1}\mathrm{\;{mA}}}\right) \)</td><td>74AUC \( \left( {{V}_{\mathrm{{DD}}} = {1.8}\mathrm{\;V}}\right. \) \( \left( {{I}_{0} = {0.1}\mathrm{\;{mA}}}\right) \)</td></tr><tr><td>\( {V}_{\mathrm{{IL}}\left( \max \right) }/\mathrm{V} \)</td><td>1.0</td><td>1.5</td><td>0.8</td><td>0.8</td><td>0.6</td></tr><tr><td>\( {V}_{\mathrm{{OL}}\left( \max \right) }/\mathrm{V} \)</td><td>0.05</td><td>0.1</td><td>0.1</td><td>0.2</td><td>0.2</td></tr><tr><td>\( {V}_{\mathrm{{IH}}\left( \min \right) }/\mathrm{V} \)</td><td>4.0</td><td>3.5</td><td>2.0</td><td>2.0</td><td>1.2</td></tr><tr><td>\( {V}_{\mathrm{{OH}}\left( \min \right) }/\mathrm{V} \)</td><td>4.95</td><td>4.9</td><td>4.9</td><td>3.1</td><td>1.7</td></tr><tr><td>高电平噪声容限 \( \left( {{V}_{\mathrm{{HF}}}/\mathrm{V}}\right) \)</td><td>0.95</td><td>1.4</td><td>2.8</td><td>1.1</td><td>0.5</td></tr><tr><td>低电平噪声容限 \( \left( {{V}_{\mathrm{{NL}}}/\mathrm{V}}\right) \)</td><td>0.95</td><td>1.4</td><td>0.7</td><td>0.6</td><td>0.4</td></tr></table>
+
+# 2. 噪声容限
+
+噪声容限表示门电路的抗干扰能力。二值数字逻辑电路的优点在于它的输入信号允许一定
+
+的容差。在数字系统中，各逻辑电路之间的连线可能会受到各种噪声的干扰，如信号传输引起的噪声，信号的高低电平转换引起的噪声，或者邻近开关信号所引起的随机脉冲的噪声。这些噪声会叠加在工作信号上，只要其幅度不超过逻辑电平允许的最小值或最大值，则输出逻辑状态不会受影响。通常将这个最大噪声幅度称为噪声容限。电路的噪声容限越大，其抗干扰能力越强。
+
+图3.3.12所示为噪声容限定义的示意图。前一级驱动门电路的输出，就是后一级负载门电路的输入。则输入高电平的噪声容限
+
+$$
+V _ {\mathrm {N H}} = V _ {\mathrm {O H (m i n)}} - V _ {\mathrm {H H (m i n)}} \tag {3.3.3}
+$$
+
+![](images/ee428f8019c3e076a8f51ba32a6eca1e8a80117c39a320ad5af9b1678bfc2753.jpg)  
+图3.3.12 输入噪声容限示意图
+
+$V_{\mathrm{NH}}$ 反映了驱动门输出高电平时，容许叠加在其上的负向噪声电压的最大值。类似地，输入低电平的噪声容陷
+
+$$
+V _ {\mathrm {N L}} = V _ {\mathrm {I L (m a x)}} - V _ {\mathrm {O L (m a x)}} \tag {3.3.4}
+$$
+
+$V_{\mathrm{N}}$ 反映了驱动门输出低电平时，容许叠加在其上的正向噪声电压的最大值。根据74HC系列CMOS集成电路在 $5\mathrm{V}$ 典型工作电压时的参数 $(I_0 = 0.02\mathrm{mA})$ ，求得其输入高、低电平的噪声容限分别为：
+
+高电平的噪声容限 $V_{\mathrm{NH}} = V_{\mathrm{OH(min)}} - V_{\mathrm{IH(min)}} = 4.9\mathrm{~V} - 3.5\mathrm{~V} = 1.4\mathrm{~V}$
+
+低电平的噪声容限 $V_{\mathrm{NL}} = V_{\mathrm{IL(max)}} - V_{\mathrm{OL(max)}} = 1.5\mathrm{~V} - 0.1\mathrm{~V} = 1.4\mathrm{~V}$
+
+其他CMOS系列的高、低电平的噪声容限列于表3.3.2。
+
+# 3. 传输延迟时间
+
+传输延迟时间是表征门电路开关速度的参数，它说明门电路在输入脉冲波形的作用下，其输出波形相对于输入波形延迟了多长时间，其数值与电源电压 $V_{\mathrm{PD}}$ 及负载电容的大小有关。
+
+当非门电路的输入端加入一脉冲波形，其相应的输出波形如图3.3.13所示。通常输出波形下降沿、上升沿的中点与输入波形对应沿中点之间的时间间隔，分别用 $t_{\mathrm{pH}}$ 和 $t_{\mathrm{pHL}}$ 表示，由于CMOS门电路输出级的互补对称性，其 $t_{\mathrm{pLH}}$ 和 $t_{\mathrm{pHL}}$ 相等。
+
+有时也采用平均传输延迟时间这一参数，即 $t_{\mathrm{pd}} = (t_{\mathrm{pLH}} + t_{\mathrm{pHL}}) / 2$ 。例如，CMOS与非门74HC00在5V典型工作电压时 $t_{\mathrm{pLH}} = t_{\mathrm{pHL}} = 7 \mathrm{~ns}, t_{\mathrm{pd}} = (7 + 7) \mathrm{ns} / 2 = 7 \mathrm{~ns}$ 。在图3.3.13中还标出了上升时间 $t_f$ 和下降时间 $t_f$ 。
+
+![](images/e1f671ede2fc56efe21d3935d95de264a49f8cf1534da35fc64c451771fe509b.jpg)  
+图3.3.13 门电路传输延迟波形图
+
+![](images/2f39d1bd78791aaf3ce9a3fd9dc3b915463bcf12670e5520ea66b76dd26d27ca.jpg)  
+图3.3.14几种CMOS系列传输延迟时间与电源电压关系
+
+图3.3.14所示为几种CMOS集成电路的传输延迟时间 $t_{\mathrm{pd}}$ 与电源电压 $V_{\mathrm{DD}}$ 的关系曲线。由图可见，当电源电压增加时，传输延迟时间减少，可提高工作速度。74AHC系列的速度达到了74HC系列的两倍，而低电压74LVC、74ALVC和超低电压74AUC系列的电源电压更低，传输延迟时间更短，工作速度更快。
+
+# 4. 功耗
+
+功耗是门电路重要参数之一。功耗有静态和动态之分。所谓静态功耗是指电路输出没有状态转换时的功耗。静态时，CMOS电路的电流非常小，使得静态功耗非常低，所以CMOS电路广
+
+泛应用于要求功耗较低或电池供电的设备，如便携计算机、手机和掌上电脑等。这些设备在没有输入信号时，功耗非常低。
+
+CMOS电路在输出发生状态转换时的功耗称为动态功耗。它主要由两部分组成。一部分是电路输出状态转换瞬间MOS管的导通功耗。由图3.2.13所示的CMOS反相器电压和电流传输特性可知，当输出电压由高到低或由低到高变化过程中，在短时间内，NMOS管和PMOS管均导通，从而导致有较大的电流从电源 $V_{\mathrm{DD}}$ 经导通的NMOS管和PMOS管流入地。这部分功耗可由下式表示：
+
+$$
+P _ {\mathrm {T}} = C _ {\mathrm {P D}} V _ {\mathrm {D N}} ^ {2} f
+$$
+
+式中 $f$ 为输出信号的转换频率； $V_{\mathrm{DD}}$ 为供电电源； $C_{\mathrm{PD}}$ 称为功耗电容（Power Dissipation Capacitance），与电源电压和工作频率有关，可以在数据手册中查到。74HC04非门的 $C_{\mathrm{PD}}$ 为21pF（ $V_{\mathrm{DD}} = 5\mathrm{V}$ ），74LVC04为8pF（ $V_{\mathrm{DD}} = 3.3\mathrm{V}$ ）。
+
+动态功耗的另一部分是因为CMOS管的负载通常是电容性的，当输出由高电平到低电平，或者由低电平到高电平转换时，会对电容进行充、放电，这一过程将增加电路的损耗。这部分动态功耗为
+
+$$
+P _ {\mathrm {t}} = C _ {\mathrm {t}} V _ {\mathrm {o n}} ^ {2} f
+$$
+
+式中 $C_{\mathrm{L}}$ 为负载电容。由此得到CMOS电路总的动态功耗为
+
+$$
+P _ {\mathrm {D}} = \left(C _ {\mathrm {p d}} + C _ {\mathrm {L}}\right) V _ {\mathrm {D N}} ^ {2} f \tag {3.3.5}
+$$
+
+从式(3.3.5)可见，CMOS动态功耗正比于转换频率和电源电压的平方。当工作频率增加时，CMOS门的动态功耗会线性增加。一个典型的CMOS门电路的静态功耗为 $0.01\mathrm{mW}$ 。当工作频率达到 $1\mathrm{MHz}$ 时，功耗增加到 $0.5\mathrm{mW}$ 。当频率为 $10\mathrm{MHz}$ 时，功耗为 $5\mathrm{mW}$ 。可见，其功耗主要取决于动态功耗。在设计CMOS电路时，为降低功耗，可选用低电源电压器件，如 $3.3\mathrm{V}$ 的74LVC系列、 $1.8\mathrm{V}$ 的74AUC系列或超低功耗74AUP系列。
+
+# 5. 延时-功耗积
+
+从上述对传输延迟时间和功耗的讨论可知，若增加电源电压，电路的工作速度变快，但功耗也随之增加。理想的数字电路或系统，既要速度高，又要功耗低。在工程实践中要实现这种理想情况是较难的。高速数字电路往往要以较大的功耗为代价。一种衡量这种性能的综合性指标叫做延时-功耗积，用符号 $DP$ 表示，单位为1（焦[耳]），即
+
+$$
+D P = t _ {\mathrm {p d}} P _ {\mathrm {D}}
+$$
+
+式中 $t_{\mathrm{ph}} = (t_{\mathrm{pHL}} + t_{\mathrm{pHL}}) / 2$ ; $P_{\mathrm{D}}$ 为门电路的功耗，由式(3.3.5)进行计算。一个逻辑门器件的 $DP$ 值越小，表明它的特性越接近理想情况。表3.3.3所示为不同系列CMOS非门在典型工作电压下，负载电容为 $15~\mathrm{pF}$ ，工作频率为 $10\mathrm{MHz}$ 时 $DP$ 值，其中功耗电容 $C_{\mathrm{PD}}$ 和传输延迟时间 $t_\mathrm{pd}$ 可在数据手册中查到。由此可见，74AHC系列的性能优于74HC系列，而74LVC系列和74AUC系列比前两者性能更好。
+
+表 3.3.3 几种 CMOS 系列非门的 ${DP}$ 性能比较  
+
+<table><tr><td>系列 参数/单位</td><td>74HC04 \( \left( {{V}_{\mathrm{{DD}}} = 5\mathrm{\;V}}\right) \)</td><td>74AHC04 \( \left( {{V}_{\mathrm{{DD}}} = 5\mathrm{\;V}}\right) \)</td><td>74LVC04 \( \left( {{V}_{\mathrm{{DD}}} = {3.3}\mathrm{\;V}}\right) \)</td><td>74AUC04 \( \left( {{V}_{\mathrm{{DD}}} = {1.8}\mathrm{\;V}}\right) \)</td></tr><tr><td>功耗电容 \( {C}_{\mathrm{{PD}}}/\mathrm{{pF}} \)</td><td>21</td><td>12</td><td>8</td><td>17</td></tr><tr><td>传输延迟时间 \( {t}_{\mathrm{{pd}}}/\mathrm{{ns}}\left( {{C}_{\mathrm{L}} = {15}\mathrm{{pF}}}\right) \)</td><td>6</td><td>3.8</td><td>2.5</td><td>0.8</td></tr><tr><td>功耗 \( {P}_{\mathrm{D}}/\mathrm{{mW}}\left( {{10}\mathrm{{MHz}}}\right) \)</td><td>9</td><td>6.8</td><td>2.5</td><td>1</td></tr><tr><td>延时功耗积 \( {DP}/\mathrm{{pJ}} \)</td><td>54</td><td>25.84</td><td>6.25</td><td>0.8</td></tr></table>
+
+# 6. 扇入与扇出数
+
+门电路的扇入数取决于它的输入端的个数，例如一个3输入端的与非门，其扇入数 $N_{1} = 3$
+
+门电路的扇出数是指其在正常工作情况下，所能带同类门电路的最大数目。扇出数的计算则稍复杂些，要考虑两种情况，一种是拉电流负载，另一种是灌电流负载。
+
+# （1）拉电流工作情况
+
+图3.3.15(a)所示为拉电流负载的情况。当驱动门的输出端为高电平时，将有电流 $I_{\mathrm{in}}$ 从驱动门拉出而流入负载门，负载门的输入电流为 $I_{\mathrm{in}}$ 。当负载门的个数增加时，总的拉电流将增加，会引起输出高电平的降低。但不得低于输出高电平的下限值，这就限制了负载门的个数。这样，输出为高电平时的扇出数可表示为
+
+$$
+\stackrel {\circ} {N} _ {\mathrm {O H}} = \frac {I _ {\mathrm {O H}} (\text {驱 动 门})}{I _ {\mathrm {I I I}} (\text {负 载 门})} \tag {3.3.6}
+$$
+
+# （2）灌电流工作情况
+
+图3.3.15(b)所示为灌电流负载的情况。当驱动门的输出端为低电平时，电流 $I_{\mathrm{OL}}$ 流入驱动门，它是负载门输入端电流 $I_{\mathrm{IL}}$ 之和。当负载门的个数增加时，总的灌电流 $I_{\mathrm{OL}}$ 将增加，同时也将引起输出低电平 $V_{\mathrm{OL}}$ 的升高。在保证不超过输出低电平的上限值时，驱动门所能驱动同类门的个数由下式决定：
+
+$$
+N _ {\mathrm {O L}} = \frac {I _ {\mathrm {O L}} (\text {驱 动 门})}{I _ {\mathrm {L L}} (\text {负 载 门})} \tag {3.3.7}
+$$
+
+以上 $N_{\mathrm{OH}}$ 和 $N_{\mathrm{OL}}$ 的计算公式没有考虑电容性负载。
+
+一般逻辑器件的数据手册中，并不给出扇出数，而需计算或用实验的方法求得，并注意在设计时留有余地，以保证数字电路或系统能正常地运行。在实际的工程设计中，如果 $N_{\mathrm{OL}} \neq N_{\mathrm{OH}}$ ，则取二者的最小值。
+
+为便于比较，表3.3.4给出了几种CMOS系列2输入与非门的输入和输出电压及电流参数的典型值。大多数CMOS器件有两类负载规格参数。一类对应于“CMOS负载”，即输出端与其他CMOS门相连，此时输出端只有很小的电流，因此，高电平输出值接近 $V_{\mathrm{DD}}$ ，而低电平输出值接近 $0\mathrm{V}$ 。另一类对应“TTL负载”，即输出端与电阻性负载(TTL输入或其他器件)相连，此时输出
+
+![](images/8b6b944d68d564d89dbe8e4615c65729fd3b610b2dc7c5d521eff50eca09174d.jpg)  
+(a)
+
+(b)   
+图3.3.15 扇出数的计算  
+![](images/4f24573eb5138635b86c328662231acd37143aa1a8fdeed3c81c4e98c3c097f1.jpg)  
+（a）拉电流负载 （b）灌电流负载
+
+端有较大的电流。
+
+表 3.3.4 几种 CMOS 系列 2 输入与非门的电压与电流参数  
+
+<table><tr><td colspan="2">系列 参数/单位</td><td>74HC00</td><td>74HCT00</td><td>74AHC00</td><td>74AHCT00</td><td>74LVC00</td><td>74ALVC00</td><td>74AUC00</td></tr><tr><td colspan="2">\( {I}_{\mathrm{{IH}}\left( \max \right) }/\mu \mathrm{A} \)</td><td>1</td><td>1</td><td>1</td><td>1</td><td>5</td><td>5</td><td>5</td></tr><tr><td colspan="2">\( {I}_{\mathrm{{IL}}\left( \max \right) }/\mu \mathrm{A} \)</td><td>-1</td><td>-1</td><td>-1</td><td>-1</td><td>-5</td><td>-5</td><td>-5</td></tr><tr><td rowspan="2">\( {I}_{\mathrm{{OH}}\left( \max \right) }/\mathrm{{mA}} \)</td><td>CMOS 负载</td><td>-0.02</td><td>-0.02</td><td>-0.05</td><td>-0.05</td><td>-0.1</td><td>-0.1</td><td>-0.1</td></tr><tr><td>TTL 负载</td><td>-4</td><td>-4</td><td>-8</td><td>-8</td><td>-24</td><td>-24</td><td>-9</td></tr><tr><td rowspan="2">\( {I}_{\mathrm{{OL}}\left( \max \right) }/\mathrm{{mA}} \)</td><td>CMOS 负载</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.05</td><td>0.1</td><td>0.1</td><td>0.1</td></tr><tr><td>TTL 负载</td><td>4</td><td>4</td><td>8</td><td>8</td><td>24</td><td>24</td><td>9</td></tr><tr><td colspan="2">\( {V}_{\mathrm{{IH}}\left( \max \right) }/\mathrm{V} \)</td><td>3.5</td><td>2</td><td>3.5</td><td>2</td><td>2</td><td>2</td><td>1.7</td></tr><tr><td colspan="2">\( {V}_{\text{IL(max)}}/{V}_{ - } \)</td><td>1.5</td><td>0.8</td><td>1.5</td><td>0.8</td><td>0.8</td><td>0.8</td><td>0.7</td></tr><tr><td rowspan="2">\( {V}_{\mathrm{{OH}}\left( \min \right) }/\mathrm{V} \)</td><td>CMOS 负载</td><td>4.9</td><td>4.9</td><td>4.9</td><td>4.9</td><td>2.8</td><td>2.8</td><td>2.2</td></tr><tr><td>TTL 负载</td><td>4.4</td><td>4.4</td><td>4.4</td><td>4.4</td><td>2.2</td><td>2</td><td>1.8</td></tr><tr><td rowspan="2">\( {V}_{\mathrm{{OL}}\left( \max \right) }/\mathrm{V} \)</td><td>CMOS 负载</td><td>0.1</td><td>0.1</td><td>0.1</td><td>0.1</td><td>0.2</td><td>0.2</td><td>0.2</td></tr><tr><td>TTL 负载</td><td>0.33</td><td>0.33</td><td>0.44</td><td>0.44</td><td>0.55</td><td>0.55</td><td>0.6</td></tr></table>
+
+注：表中的参数参考 Texas Instruments 公司在互联网站上提供的集成电路产品数据，以及文献[1]。74HC/HCT 和 74AHC/ AHCT 是 $V_{\mathrm{DD}} = 5 \mathrm{~V}$ 时的参数，74LVC/ALVC 是 $V_{\mathrm{DD}} = 3 \mathrm{~V}$ 时的参数，74AUC 是 $V_{\mathrm{DD}} = 2.7 \mathrm{~V}$ 时的参数。更详细的参数，可查阅有关器件的数据手册。
+
+例如，根据表3.3.4可知HC系列CMOS门电路参数：当高电平输出为 $4.9\mathrm{V}$ 时，输出电流 $I_{\mathrm{OH}} = -20~\mu \mathrm{A}$ ；低电平输出 $0.1\mathrm{V}$ 时， $I_{\mathrm{OL}} = 20~\mu \mathrm{A}$ ，输入电流 $I_{\mathrm{IH}} = 1\mu \mathrm{A},I_{\mathrm{IL}} = -1\mu \mathrm{A}$ 。数据前的负号表示电流从器件流出，否则电流流入器件，计算时只取绝对值。所以根据式（3.3.6）和式
+
+（3.3.7）计算出 $N_{\mathrm{OH}} = N_{\mathrm{OL}} = 20~\mu \mathrm{A} / 1~\mu \mathrm{A} = 20$ ，即最多可接同类电路的输入端数为20个。
+
+如果允许其高电平输出降至 $4.4\mathrm{V}$ ，并且低电平为 $0.33\mathrm{V}$ ，则 $I_{\mathrm{OH}}$ 和 $I_{\mathrm{OL}}$ 分别为 $-4\mathrm{mA}$ 和 $4\mathrm{mA}$ ，此时计算出的扇出数为4000，实际不可能达到这么大的数。
+
+需要注意的是，以上讨论的是CMOS电路静态扇出数，即直流扇出数。当门电路的工作频率比较低时，可以采用直流扇出数计算带负载能力。
+
+如果考虑电容性负载，假设每个负载门输入端的电容均为 $15\mathrm{pF}$ ，20个负载门的等效电容为 $300\mathrm{pF}$ ，而4000个负载门的等效电容为 $60000\mathrm{pF}$ 。当驱动门的负载电容比较大时，电容的充放电电流不能忽略。
+
+当CMOS门驱动同类门，并且输出状态产生由高到低或由低到高变化时，由图3.2.13(b)所示的CMOS反相器电流传输特性可知，负载门的电流很大。驱动门的输出电流会对负载门输入端的杂散电容进行充放电。驱动门为高电平时，会向负载门的输入电容充电，而驱动门为低电平时，充电的电容会通过驱动门输出电阻放电。此时驱动门对负载门输入端杂散电容的充放电能力可以定义为交流扇出数。
+
+交流扇出数很难像直流扇出数那样简单地计算出来。它不仅与负载电容的大小有关，还与门电路的工作频率有关。增加负载门数量将导致总电容值的增加，致使充放电时间增加，并使输出电压的上升时间和下降时间大于规定的数值，从而影响门电路的开关速度。因此，工作频率增加时，为保证电路正常工作，应减少扇出数。
+
+如果驱动门的负载大于其扇出能力，当输出低电平时，低电平的数值高于 $V_{\mathrm{OL(max)}}$ ；当输出高电平时，高电平的值低于 $V_{\mathrm{OH(min)}}$ ，电路不能正常工作。
+
+这里考虑每个负载门只有一个输入端与驱动门相接，如果每个负载门有两个以上的输入端接入驱动门，则扇出数实为输入端数目。
+
+另外，不同门电路的参数可能与表3.3.4给出的典型值不同，因此当分析实际问题时，必须查阅生产厂商提供的数据表。
+
+CMOS器件有许多不同系列产品，各系列产品的参数也有很多。对于设计者，比较重要的参数是速度和功耗。
+
+# 复习思考题
+
+3.3.1 为什么要在 CMOS 逻辑门电路输入、输出端加保护和缓冲电路？  
+3.3.2 CMOS逻辑门的输入端分别通过 $1\mathrm{k}\Omega$ 和 $100\mathrm{k}\Omega$ 的电阻接地时，其输入电压都是多少？  
+3.3.3 普通的两个CMOS逻辑门电路的输出端能否连接在一起，为什么？  
+3.3.4 漏极开路门和三态门的特点是什么，它们各用在什么场合？  
+3.3.5 如何确定漏极开路门的上拉电阻？它对开关速度有无影响？  
+3.3.6 当增加电源电压时，CMOS电路的传输延迟时间和功耗如何变化？当增加工作频率时，功耗如何变化？  
+3.3.7 CMOS电路的功耗电容 $C_{\mathrm{PD}}$ 的物理意义是什么？
+
+# 3.4 类NMOS和BiCMOS逻辑门电路
+
+# 3.4.1 类NMOS门电路
+
+MOS数字集成电路的发展经历了由PMOS、NMOS到CMOS的过程，其中PMOS电路问世最早。PMOS管是以空穴为导电载流子，而NMOS管以电子为导电载流子，由于空穴的迁移率比电子低，因此，NMOS电路的工作速度比PMOS电路快，而且PMOS使用负电源，与TTL电路不匹配，所以PMOS电路被NMOS电路取代。
+
+NMOS电路的工作速度快，几何尺寸小，而且生产工艺水平也不断提高和完善，所以某些特殊应用中采用NMOS电路更好。后来发展的CMOS电路有静态功耗低、抗干扰能力强等诸多优点而成为主流器件。但是CMOS门电路每增加一个输入端就要增加一个NMOS管和一个PMOS管，而且空穴的迁移率比电子的迁移率低，为获得同样的导通电阻和电流，PMOS管所需的芯片面积更大。为减少电路中PMOS管的数目，在对性能要求不太高，并且希望芯片面积尽可能小的
+
+情况下，仍然采用NMOS电路
+
+NMOS逻辑门电路全部由N沟道MOS管构成。NMOS反相器是NMOS逻辑门电路的基本电路形式，它的工作管为增强型MOS管，而负载管可以是增强型也可以是耗尽型MOS管。早期的NMOS电路采用增强型负载管，如图3.4.1（a）所示。由于增强型负载的NMOS电路开关速度比耗尽型的慢，在后来的NMOS电路中，采用耗尽型负载管，如图3.4.1（b）所示。生产耗尽型负载管需要增加一道离子注入工艺，并且衬底效应使其 $I - V$ 特性偏离了恒流特性 $(v_{\mathrm{cs}} = 0$ ，耗尽型MOS管
+
+![](images/6df97f020714c7454a26d082dafc255b98d7a960293d51166cd80b8e065c8662.jpg)  
+(a)
+
+(b)   
+图3.4.1 NMOS反相器  
+![](images/c33b45aebe955b91c40128049be0a7db2956d34a31fb660af219255273bfa6af.jpg)  
+（a）增强型负载 （b）耗尽型负载
+
+为恒流源负载)使电路性能不够理想。但某些特殊应用中仍然使用耗尽型负载管的NMOS电路。类NMOS(Pseudo NMOS）电路采用PMOS增强型负载管，栅极接地使负载管处于常通状态。相对耗尽型负载的NMOS电路，类NMOS电路有许多性能上的改进，噪声容限变大。类NMOS电路的另一个优点是与CMOS电路相匹配。
+
+# 1. 类NMOS反相器
+
+类NMOS反相器电路结构如图3.4.2所示，其中工作管为NMOS管，负载管为PMOS管。PMOS管的栅极接地，所以始终处于导通状态。
+
+当输入 $v_{\mathrm{I}} = 0$ 时，NMOS管截止，PMOS管处于可变电阻区， $v_{\mathrm{DS2}} \approx 0$ ，输出 $v_{\mathrm{o}} \approx +V_{\mathrm{DD}}$ ，此时电路的电流几乎为0，静态功耗为0。
+
+当输入 $v_{1} = +V_{\mathrm{DD}}$ 时，NMOS管和PMOS管都导通，NMOS管工作在可变电阻区，PMOS管工作在饱和区，输出 $v_{0}$ 应为低电平，其电压值由NMOS管和PMOS管的导通电阻值分压比决定。通常在制造工艺上使NMOS管的导通电阻远小于PMOS管的导通电阻，使输出为低电平。此时的静态功耗不为0。因此，类NMOS反相器多用于输出通常为高电平的电路。
+
+# 2. 类NMOS与非门和或非门
+
+图3.4.3为类NMOS与非门电路，其中 $\mathrm{T}_{\mathrm{N1}}$ 和 $\mathrm{T}_{\mathrm{N2}}$ 为工作管，两者串联； $\mathrm{T}_{\mathrm{P}}$ 为负载管。当输入 $A,B$ 中任一个为低电平时，与它对应的
+
+![](images/e7073f739db4116310d637015a3639b0ccf9bc0cf0b219f6bbf7fd9849cbfd79.jpg)  
+图3.4.2 类NMOS反相器
+
+NMOS管截止，输出为高电平；仅当 $A, B$ 全为高电平时，所有工作管都导通，输出才为低电平。可见电路具有与非功能，即
+
+$$
+L = \overline {{A \cdot B}}
+$$
+
+图3.4.4为类NMOS或非门电路，其中工作管 $\mathrm{T}_{\mathrm{N1}}$ 和 $\mathrm{T}_{\mathrm{N2}}$ 并联， $\mathrm{T}_{\mathrm{N}}$ 为负载管。当输入 $A,B$ 中任一个为高电平时，与它对应的NMOS管导通，输出为低电平；仅当 $A,B$ 全为低电平时，所有工作管都截止，输出才为高电平。电路具有或非功能，即
+
+$L = A + B$
+
+值得注意的是，当增加与非门输入端数目时，串联的管子也随之增加。当输入全为高电平时，各管的导通电阻串联，使低电平输出电压升高，以致破坏正常逻辑功能。而或非门的工作管是并联的，增加NMOS管的数目不会影响低电平输出电压的稳定，因而类NMOS电路多以或非门为基础，构成各种功能的逻辑电路。
+
+与CMOS电路相比，类NMOS电路减少了PMOS管数目，输入端数目越多，减少的PMOS管数目也越多。
+
+![](images/b5946eb03e7dc1f9611d77027edb7014d3274e8201be91a430c0cd8b54c1a0b9.jpg)  
+图3.4.3 类NMOS与非门电路
+
+![](images/c50f77d2fa133852b2d6b70307590262b8d277d11dd17fbc063379caf466a4e3.jpg)  
+图3.4.4 类NMOS或非门电路
+
+# 3.4.2 BiCMOS门电路
+
+BiCMOS电路的特点在于采用了双极型BJT管作为CMOS电路的输出级。因此这种电路结合了MOS管高集成度、低功耗和双极型管速度快、驱动力强的优势，受到用户的重视。
+
+基本的BiCMOS反相器电路结构如图3.4.5所示。其中，MOS管用符号M表示，BJT用T表示。 $\mathrm{M_P},\mathrm{M_N},\mathrm{M_I}$ 和 $\mathbf{M}_2$ 组成输入级， $\mathrm{T}_{1}$ 和 $\mathrm{T}_{2}$ 构成推拉式输出级。输入信号 $v_{\mathrm{I}}$ 同时作用于 $\mathrm{M_P}$ 和 $\mathrm{M_N}$ 的栅极。输入信号 $v_{\mathrm{I}}$ 为高电平时， $\mathrm{M_N},\mathrm{M_I}$ 和 $\mathrm{T}_{2}$ 导通， $\mathrm{M_P},\mathrm{M}_2$ 和 $\mathrm{T}_{1}$ 截止，输出 $v_{\mathrm{G}}$ 为低电平；而当 $v_{\mathrm{I}}$ 为低电平时，情况则相反， $\mathrm{M_P},\mathrm{M}_2$ 和 $\mathrm{T}_{1}$ 导通， $\mathrm{M_N},\mathrm{M_I}$ 和 $\mathrm{T}_{2}$ 截止，输出 $v_{\mathrm{G}}$ 为高电平。当输出端接有比较大的容性负载时，双极型三极管输出级能为其提供足够大的充电电流。同理，已充电的电容负载也能迅速地通过 $\mathrm{T}_{2}$ 放电。
+
+电路中 $\mathbf{M}_1$ 和 $\mathbf{M}_2$ 的作用是加快 $\mathrm{T}_{1}$ 和 $\mathrm{T}_{2}$ 由饱和导通翻转到截止的过程，使 $\mathrm{T}_{1}$ 和 $\mathrm{T}_{2}$ 的基区存储电荷通过 $\mathbf{M}_1$ 和 $\mathbf{M}_{\infty}$ 释放。当 $v_{1}$ 为高电平时， $\mathbf{M}_1$ 导通， $\mathrm{T}_{1}$ 基区的存储电荷迅速消散。同理，当 $v_{1}$ 为低电平时，电源电压 $V_{\mathrm{DD}}$ 通过 $\mathbf{M}_2$ 以激励储电荷通过 $\mathbf{M}_2$ 而消散。从而，门电路的开关速度可得到改善
+
+根据前述的CMOS门电路的结构和工作原理，同样可以用BiCMOS技术实现与非门和或非门，具体电路见题3.4.3和题3.4.4。
+
+![](images/405ef1720a214e66c7c60c77c0d6069ab80af3d2a95e7bd9c450029be6e17aba.jpg)  
+图3.4.5 基本的BiCMOS反相器电路
+
+# 复习思考题
+
+3.4.1 为什么类NMO门电路多以或非门作为基本门电路？  
+3.4.2 为什么BICMOS电路的开关速度比较快？
+
+# 3.5 TTL逻辑门电路
+
+# 3.5.1BJT的开关特性
+
+# 1.BJT的开关作用
+
+由BJT构成的开关电路如图3.5.1(a)所示，图中BJT为NPN型硅管。当输入为低电平时，例如 $v_{\mathrm{I}} = V_{\mathrm{IL}} = 0\mathrm{V}$ 时，BJT的发射结为零偏（ $v_{\mathrm{BE}} = 0$ ，集电结为反向偏置（ $r_{\mathrm{BC}} < 0$ )，只有很小的漏电流流过PN结，故 $i_{\mathrm{B}} = 0,i_{\mathrm{C}} = 0,v_{\mathrm{O}} = V_{\mathrm{CE}}\approx V_{\mathrm{CE}}$ ，对应于图3.5.1(b)中的 $A$ 点。这时集电极回路中
+
+的 $\mathrm{e},\mathrm{e}$ 极之间近似于开路，相当于开关断开一样，输出为高电平。BJT的这种工作状态称为截止①。
+
+当输入为高电平时，例如 $v_{\mathrm{i}} = V_{\mathrm{IH}} = V_{\mathrm{CC}}$ 时，调节 $R_{\mathrm{b}}$ ，使 $i_{\mathrm{B}} = V_{\mathrm{CC}} / (\beta R_{\mathrm{e}})$ ，则BJT工作在图3.5.1(b)中的 $B$ 点，集电极电流 $i_{\mathrm{c}}$ 已接近最大值 $V_{\mathrm{CC}} / R_{\mathrm{c}}$ ，称为集电极饱和电流 $I_{\mathrm{CS}} \approx V_{\mathrm{CC}} / R_{\mathrm{c}}$ ，对应的基极电流称为基极临界饱和电流 $I_{\mathrm{BS}} \approx V_{\mathrm{CC}} / (\beta R_{\mathrm{e}})$ 。如果再增加 $i_{\mathrm{B}}$ ，则饱和程度加深，但 $i_{\mathrm{C}}$ 基本上保持在 $I_{\mathrm{CS}}$ 不再增加，集电极、发射极之间的电压 $v_{\mathrm{CE}}$ 约为 $0.2 \sim 0.3 \mathrm{~V}$ ，该电压称为BJT的饱和压降 $V_{\mathrm{CES}}$ ，它也基本上不随 $i_{\mathrm{B}}$ 增加而改变。由于 $V_{\mathrm{CES}}$ 很小，集电极回路中的c、e极之间近似于短路，相当于开关闭合一样，输出为低电平。
+
+![](images/19afd81fe93d075e5641bf7872db8ad51072877b70acefac0a357c9e4d3271ef.jpg)  
+(a)
+
+![](images/398ed818d5a287691adbca0dece448c0055d68384f323b7f7ec6d22515be5604.jpg)  
+(b)   
+图2-1a）BJT管开关电路及输出特性a）BJT管开关电路 b）BJT管输出特性
+
+# 2.BJT的开关特性
+
+BJT的开关过程是其在饱和与截止两种状态之间的相互转换，也是内部电荷“建立”和“消散”的过程。因此，需要一定的时间才能完成。
+
+当图3.5.1(a)所示开关电路的输入端加入一个数字脉冲信号，输入信号的上升沿使BJT从截止到饱和变化，需要时间建立基区电荷以形成饱和电流。输入信号的下降沿使BJT从饱和到截止变化，需要时间消散基区存储的电荷。因此，输出电压 $v_{0}$ 的变化滞后于输入电压 $v_{1}$ 的变化。
+
+# 3.5.2 TTL反相器的基本电路
+
+由于基本BJT反相器的动态性能不理想，为改善其动态性能，增加若干元器件构成TTL反相器的基本电路，如图3.5.2所示。该电路由三部分组成， $\mathrm{T}_{1}$ 组成电路的输入级， $\mathrm{T}_3$ 、 $\mathrm{T_4}$ 和二极管D组成输出级，以及由 $\mathrm{T}_2$ 组成的中间级作为输出级的驱动电路，将 $\mathrm{T}_{2}$ 的单端输入信号 $v_{\mathrm{I2}}$ 转换为互补的双端输出信号 $v_{\mathrm{I3}}$ 和 $v_{\mathrm{I4}}$ ，以驱动 $\mathrm{T}_{3}$ 和 $\mathrm{T_4}$
+
+当输入 $v_{\mathrm{I}} = V_{\mathrm{IL}} = 0.2 \mathrm{~V}$ 时， $T_{1}$ 的发射结导通，其基极电压为 $v_{\mathrm{RI}} = V_{\mathrm{IL}} + V_{\mathrm{BE1}} = 0.9 \mathrm{~V}$ ，该电压作用于 $T_{1}$ 的集电结和 $T_{2}$ 、 $T_{3}$ 的发射结上，所以 $T_{2}$ 、 $T_{3}$ 都截止，而 $T_{4}$ 和 $D$ 导通，输出为高电平。由于 $T_{2}$ 管截止， $R_{\mathrm{e2}}$ 上的压降忽略不计，则 $v_{\mathrm{O}} = V_{\mathrm{OH}} \approx V_{\mathrm{CC}} - V_{\mathrm{BG4}} - V_{\mathrm{D}} = 3.6 \mathrm{~V}$
+
+当输入 $v_{\mathrm{I}} = V_{\mathrm{IH}} = 3.6\mathrm{V}$ 时， $V_{\mathrm{CC}}$ 通过 $R_{\mathrm{bi}}$ 和 $\mathrm{T}_{1}$ 的集电结向 $\mathrm{T}_2,\mathrm{T}_3$ 提供基极电流，使 $\mathrm{T}_2,\mathrm{T}_3$ 饱和导通，此时 $v_{\mathrm{BI}} =$ $V_{\mathrm{BCE1}} + V_{\mathrm{BE2}} + V_{\mathrm{BE3}} = 2.1\mathrm{~V~}$ ，使 $\mathrm{T}_{1}$ 的发射结反向偏置，而集电结正向偏置。所以 $\mathrm{T}_{1}$ 处于发射结和集电结倒置的放大状态。由于 $\mathrm{T_2}$ 和 $\mathrm{T}_3$ 饱和，使 $v_{\mathrm{C2}} = V_{\mathrm{CES2}} + V_{\mathrm{BE3}} = 0.9\mathrm{~V~}$ 。该电压作用于 $\mathrm{T_4}$ 的发射结和二极管D两个PN结上，显然 $\mathrm{T}_{4}$ 和D均截止。 $\mathrm{T_4}$ 和D截止，且 $\mathrm{T}_{3}$ 饱和导通，使输出为低电平， $v_{0} = v_{\mathrm{C3}} = V_{\mathrm{CES3}} = 0.2\mathrm{~V~}$
+
+![](images/868e7aed5f06c267d0c9ac27a089b433b9dff1b4ce9015698eacbf6d1e47879f.jpg)  
+图3.5.2 T11反相器的基本电路
+
+上述电路实现了反相器的逻辑关系
+
+输入级的作用是用来提高工作速度。当电路的输入电压由高到低变化时， $\mathrm{T}_{1}$ 由倒置的放大状态转换为放大状态，使 $\mathrm{T}_{2}$ 的基极电流增加，加快抽走多余的存储电荷而达到截止。 $\mathrm{T}_{2}$ 的迅速截止，一方面使 $\mathrm{T}_{4}$ 的导通加快，另一方面使 $\mathrm{T}_{3}$ 的截止加快，从而加快了状态转换。
+
+采用推拉式输出级①以提高开关速度和带负载能力。输出级的两个管子总是一个导通而另一个截止，因此降低了静态功耗。当输出为低电平时， $\mathrm{T}_{4}$ 截止， $\mathrm{T}_{3}$ 饱和导通，其饱和电流全部用来驱动负载。当输出为高电平时， $\mathrm{T}_{1}$ 截止，由 $\mathrm{T}_{4}$ 组成电压跟随器的输出电阻很小，因此带负载能力也较强。当输出端接有电容性负载时， $\mathrm{T}_{3}$ 或 $\mathrm{T}_{4}$ 饱和导通电阻很低，对电容充、放电时间常数很小，使输出电压波形的上升沿和下降沿都很好。
+
+# 3.5.3 改进型TTL门电路——抗饱和TTL门电路
+
+上述TTL反相器中BJT导通时工作在深度饱和状态是产生传输延迟时间的主要原因，为此推出了许多改进电路。改进电路的目的是提高工作速度和降低功耗，但两者对电路的要求是矛盾的，常用延时功耗积 $DP$ 进行综合评价。改进效果比较明显的是抗饱和TTL电路。这种电路采用肖特基势垒二极管(Schottky-Barrier-Diode,SBD)的钳位作用来限制BJT导通时的饱和深度。
+
+最早的肖特基(74S)系列使用肖特基三极管和二极管，将电路的 $DP$ 值降到原来的1/2。低功耗肖特基(74LS)系列的 $DP$ 值为74S系列的1/3。后来对集成电路工艺进一步改进，生产出改进的74AS和74ALS系列。74AS系列的速度是74S系列的2倍。74ALS系列又进一步改善了速度和功耗。快速TTL系列(74F)使用新工艺减小了器件尺寸和结电容，进一步降低了传输延迟时间。
+
+# 1. 肖特基势垒二极管工作原理
+
+肖特基势垒二极管是一种利用金属和半导体相接触，在交界面形成势垒的二极管。利用金属铝和N型硅半导体相接触形成的势垒二极管的工作特点如下：
+
+（1）它和PN结一样，同样具有单向导电性，这种铝-硅势垒二极管（Al-SiSBD）导通电流的方向是从铝到硅。  
+（2）Al-SiSBD的导通阈值电压较低，约为 $0.4\sim 0.5\mathrm{V}$ ，比普通硅PN结约低 $0.2\sim 0.3\mathrm{V}$   
+（3）势垒二极管是多数载流子参与导电，没有少数载流子的积累，因而从正向导通到反向截止，没有内部电荷的建立和消散过程，使转换速度加快。
+
+BJT工作在饱和时，发射结和集电结都处在正向偏置，集电结正向偏置电压越大，则表明饱
+
+和程度越深。为了限制BJT的饱和深度，在BJT的基极和集电极并联上一个导通阈值电压较低的肖特基二极管，如图3.5.3(a)所示。通常把它们看成一个器件，并用图3.5.3(b)所示符号表示。当BJT集电结的正向偏压达到SBD的导通阈值电压时，这个二极管首先导通，使集电结正向偏压钳制在 $0.4\mathrm{V}$ 左右，如果流向基极的电流增大，企图使集电结正向偏压加大时，则一部分电流就会通过肖特基二极管直接流向集电极，而不会使BJT基极电流
+
+![](images/97b4bf4feed0bf09d83fbc92c08a4b51d1b35c3fddbc647097b0738ed7d08f14.jpg)  
+图3.5.3 带有肖特基二极管极位码的BJT（a）电路结构形式 （b）符号
+
+过大，因此，肖特基二极管起到了抵抗BT过饱和的作用，因而这种电路就称为抗饱和电路，它能使电路的开关时间大为缩短。
+
+# 2.低功耗肖特基TTL反相器
+
+以低功耗肖特基TTL反相器74LS04为例，该芯片中有6个反相器，图3.5.4为其中的一个反相器，与基本的TTL反相器电路相比，作了若干改进。首先是除 $\mathrm{T}_{\mathrm{g}}$ 外，其余的BJT均采用SBD钳位，以达到抑制抗饱和效果。其次输入级用SBD代替BJT管，由于SBD没有电荷存储效应，有利于提高工作速度。
+
+肖特基TTL门电路还从以下三点对基本TTL电路（图3.2.7）的性能作了改进：
+
+（1）基本TTL电路中的二极管D和 $\mathrm{T}_{\mathrm{k}}$ 由 $\mathrm{T}_{\mathrm{k}}$ 和 $\mathrm{T}_{\mathrm{e}}$ 所组成的复合管所代替，当输出由低电平向高电平过渡时，由于复合管电路的电流增益很大，输出电阻很小，从而减小了电路对负载电容的充电时间。  
+（2）电路输入端所加的 $\mathrm{SBDD}_2$ ，用来减小门电路之间的连线而引起的杂散信号，并防止输入信号反向过冲使 $\mathrm{T}_{1}$ 电流过大而损坏。  
+(3）由 $\mathrm{T}_{2}$ 与 $R_{4}, R_{5}$ 组成的有源电路代替了基本TTL电路中的 $R_{\mathrm{e2}}(1\mathrm{k}\Omega)$ 。当反相器输入端由低电平转向高电平时， $\mathrm{T}_{1}$ 由截止变为导通，由于 $\mathrm{T}_{2}$ 的基极回路串接了电阻 $R_{4}, T_{2}$ 的导通滞后于 $\mathrm{T}_{3}$ ，使 $\mathrm{T}_{1}$ 以较大的电流驱动 $\mathrm{T}_{3}$ ，从而加快了 $\mathrm{T}_{3}$ 的导通过程。随后， $\mathrm{T}_{2}$ 开始导通，将对 $\mathrm{T}_{3}$ 的基极电流产生分流作用，减轻了 $\mathrm{T}_{3}$ 饱和程度，当电路再次翻转时， $\mathrm{T}_{3}$ 能很快地截止。因而，有源电阻缩短了门电路的转换时间，使其电压传输特性得到改善。
+
+![](images/fb50639ad1318c35bee970c5c162dcea29d427549e76cd5bd2fd440777af20ab.jpg)  
+图3.5.4 74LS04中的一个反相器电路
+
+# 3.其他TTL门电路
+
+TTL系列逻辑门电路中，除上述介绍的反相器外，还有与非门、或非门等。74LS系列2输入与非门74LS00和2输入或非门74LS02电路分别如图3.5.5和图3.5.6所示。
+
+![](images/1d4d97c9b08e2eef9d713086ecfb217ab227458e9968c0a4e693085853fd2db3.jpg)  
+图3.5.5 74LS00中的一个与非门电路
+
+与CMOS逻辑门电路类似，TTL门电路也有另外两种不同输出结构形式的电路，集电极开路（OpenCollector,OC)门和三态输出门。OC门是将TTL门电路输出级的集电极开路，只有外接上拉电阻电路才能正常工作。外接电阻的计算与OD门类似。TTL三态门也是在普通门电路的基础上，增加控制电路构成的，电路的输出状态有高电平、低电平和高阻三种状态。OC门和三态门的TTL具体电路这里不再赘述。
+
+![](images/8351b3fd15e968db60a17524a3d0a8bb48643fed0957912a37a9a8299ec8d688.jpg)  
+图3.5.6 74LS02中的一个或非门电路
+
+# 3.5.4TTL系列门电路特性参数比较
+
+目前TTL系列的使用在逐渐减少。TTL系列电路的供电电源都是 $+5\mathrm{V}$ ，并且都是兼容的。但每个系列的速度、功耗等参数各有特点。表3.5.1列出了几种TTL系列2输入与非门电路输入和输出的高、低电平及电流，传输延迟时间 $\dot{P}_{\mathrm{td}}$ 和功耗 $P_{\mathrm{D}}$ 等特性参数，以资比较。
+
+表 3.5.1 几种 TTL 系列门电路的特性参数比较  
+
+<table><tr><td>参数\系列</td><td>74S</td><td>74LS</td><td>74AS</td><td>74ALS</td><td>74F</td></tr><tr><td>VIL(min)/A</td><td>0.8</td><td>0.8</td><td>0.8</td><td>0.8</td><td>0.8</td></tr><tr><td>VOL(min)</td><td>0.5</td><td>0.5</td><td>0.5</td><td>0.5</td><td>0.5</td></tr><tr><td>VOL(min)/V</td><td>2.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td>2.0</td></tr><tr><td>VOL(min)/V</td><td>2.7</td><td>2.7</td><td>2.7</td><td>2.7</td><td>2.7</td></tr><tr><td>IIL(min)/mA</td><td>-2.0</td><td>-0.4</td><td>-0.5</td><td>-0.1</td><td>-0.6</td></tr><tr><td>IOL(min)/mA</td><td>20</td><td>8</td><td>20</td><td>8</td><td>20</td></tr><tr><td>IIL(min)/μA</td><td>50</td><td>20</td><td>20</td><td>20</td><td>20</td></tr><tr><td>IOL(min)/mA</td><td>-1.0</td><td>-0.4</td><td>-2.0</td><td>-0.4</td><td>-1.0</td></tr><tr><td>传输延迟时间tpd/ns</td><td>3</td><td>9.5</td><td>1.7</td><td>4</td><td>3</td></tr><tr><td>每门功耗PD/mW</td><td>19</td><td>2</td><td>8</td><td>1.2</td><td>4</td></tr><tr><td>延时-功耗积DP/pJ</td><td>57</td><td>19</td><td>13.6</td><td>4.8</td><td>12</td></tr></table>
+
+# 复习思考题
+
+3.5.1 在数字电路中，BJT管作为开关使用时，工作在其输出特性曲线的什么区？
+
+3.5.2 基本BJT反相器的动态性能存在什么问题？与BJT反相器相比，为什么TTL反相器可以提高电路的开关速度？
+
+3.5.3 抗饱和TTL电路为什么可以提高开关速度？
+
+# 3.6 ECL逻辑门电路
+
+由于TTL门电路中BJT工作在饱和状态，开关速度受到了限制。上一章介绍的肖特基TTL电路是一种抗饱和电路。还有一种结构方式完全不同的电路，将BJT从饱和型变为非饱和型，从根本上提高速度。射极耦合逻辑门ECL就是这种非饱和型高速数字集成电路，它的平均传输延迟时间可低于 $1\mathrm{ns}$ ，是目前双极型电路中速度最高的，主要用于高速或超高速数字系统中。与其他系列逻辑门相比，其输出电压在高电平和低电平之间的摆幅非常小，可低于 $0.8\mathrm{V}$ 。
+
+ECL逻辑电路有10K和100K两种系列。ECL10K系列的传输延迟时间为2ns，每门功耗为 $25\mathrm{mW}$ ，延时功耗积 $DP$ 为 $50~\mathrm{pJ}$ 。ECL100K系列的传输延迟时间为 $0.75\mathrm{ns}$ ，每门功耗为 $40\mathrm{mW}$ ，延时功耗积 $DP$ 为 $30~\mathrm{pJ}$ 。
+
+# 1. ECL门电路的结构及工作原理
+
+图3.6.1所示为2输入EOL或/或非门电路及逻辑符号。电路由三部分组成：差分输入、基准电压及射极输出电路，通常 $V_{\mathrm{CC1}} = V_{\mathrm{CC2}} = 0$ ， $V_{\mathrm{EE}} = -5.2 \mathrm{~V}$ ， $V_{\mathrm{T}}$ 为牵引电源，可以取-5.2V或-2V等数值。MCT102为10K系列2输入或非门，在测试温度 $+25^{\circ}\mathrm{C}$ 时，输入和输出高、低电平电压范围分别为 $V_{\mathrm{IH}} = (-1.105 \sim -0.81) \mathrm{V}$ ， $V_{\mathrm{IL}} = (-1.85 \sim -1.475) \mathrm{V}$ ， $V_{\mathrm{OH}} = (-0.96 \sim -0.81) \mathrm{V}$ ， $V_{\mathrm{OL}} = (-1.85 \sim -1.65) \mathrm{V}$ 。下面分析当输入信号的高、低电平分别为 $V_{\mathrm{IH}} = -0.9 \mathrm{~V}$ ， $V_{\mathrm{IL}} = -1.75 \mathrm{~V}$ 时，电路的工作情况。
+
+$\mathrm{T}_{1}$ 、 $\mathrm{T}_{2}$ 组成多端输入，并与 $\mathrm{T}_{3}$ 管组成射极耦合差分电路。 $\mathrm{T}_{4}$ 组成一个简单的电压跟随器，它为 $\mathrm{T}_{3}$ 提供一个参考电压 $V_{\mathrm{REF}}$ 。由于ECL中PN结的正向导通压降为 $0.8\mathrm{V}$ ，可以计算出 $\mathrm{T}_{4}$ 的基极电压 $V_{\mathrm{B4}} = -0.55\mathrm{V}, V_{\mathrm{REF}} = -1.35\mathrm{V}$ 。为了补偿温度漂移，在 $\mathrm{T}_{4}$ 的基极回路接入了两个二极管。 $\mathrm{T}_{5}$ 和 $\mathrm{T}_{6}$ 各组成电压跟随器， $R_{\mathrm{L1}}$ 和 $R_{\mathrm{L2}}$ 为外接负载或下一级门电路的输入电阻。射极输出器的作用是移动电平值，使得输出端的高、低电平与输入端的高、低电平电压匹配，并提高了带负载能力。
+
+（1）输入端 $A,B$ 都接低电平（-1.75V）
+
+由于 $\mathrm{T}_{3}$ 的基极电位比 $\mathrm{T}_{1}$ 的高，因此 $\mathrm{T}_{3}$ 优先导通，使发射极的电位 $v_{\mathrm{E}} = V_{\mathrm{REF}} - V_{\mathrm{REF}} = -2.15\mathrm{V}$ 。
+
+![](images/ac5a203f76d73bb201250d65568ba90526dcc3c08919e7e858e51d029ce0cfa2.jpg)  
+图3.6.1 ECL或/或非门电路结构及逻辑符号
+
+这时 $\mathrm{T}_{1},\mathrm{T}_{2}$ 管发射结压降只有 $0.4\mathrm{V}$ ，因此 $\mathrm{T}_{1},\mathrm{T}_{2}$ 同时截止。若忽略 $\mathrm{T}_{5}$ 基极电流在 $R_{c1}$ 上的压降，则 $v_{C1} = 0\mathrm{V},v_{O1} = -V_{BES} = -0.8\mathrm{V}$ ，即 $L_{1}$ 输出为EGL逻辑高电平。
+
+$\mathrm{T}_{3}$ 导通，流过 $R_{e}$ 的电流由 $\mathrm{T}_{3}$ 提供， $i_{\mathrm{P}} = (V_{\mathrm{E}} - V_{\mathrm{EE}}) / R_{e} \approx 3.9 \mathrm{~mA}$ 。忽略 $\mathrm{T}_{6}$ 基极电流，可以求得 $\mathrm{T}_{3}$ 集电极电位 $v_{C3} = -i_{E}R_{e3} = -0.96\mathrm{V}, v_{D2} = v_{C3} - V_{BDE} = -1.76\mathrm{V}$ ，即 $L_{2}$ 为逻辑低电平。
+
+另外，导通的 $\mathrm{T}_{3}$ 管集电结反偏，所以 $\mathrm{T}_{3}$ 处于放大状态，而不是饱和状态。
+
+（2）输入端 $A,B$ 中有一个接高电平（设 $A$ 接高电平-0.9V）
+
+由于 $v_{\mathrm{A}} > V_{\mathrm{REF}}$ ，所以 $\mathrm{T}_{1}$ 优先导通，使 $v_{\mathrm{E}} = v_{\mathrm{A}} - V_{\mathrm{REF}} = -1.7\mathrm{V}$ ，此时加到 $\mathrm{T}_{3}$ 管发射结压降只有 $0.35\mathrm{V}$ ，故 $\mathrm{T}_{3}$ 截止。忽略 $R_{c3}$ 上的压降， $v_{\mathrm{O2}} = -0.8\mathrm{V},L_{2}$ 为高电平输出。 $\mathrm{T}_{1}$ 导通使 $R_{e}$ 的电流为 $i_{\mathrm{E}} = (v_{\mathrm{E}} - V_{\mathrm{ref}}) / R_{\mathrm{E}} = 4.5\mathrm{mA}$ ，该电流在 $R_{c1}$ 上产生压降，使 $\mathrm{T}_{1}$ 集电极电位 $v_{\mathrm{Cl}} = -i_{\mathrm{E}}R_{c1}\approx -1\mathrm{V}$ $v_{\mathrm{OH}} = -1.78\mathrm{V},L_{1}$ 为低电平输出。同样， $\mathrm{T}_{1}$ 的集电结近似为零偏，也未工作在饱和状态。
+
+上述分析可见， $v_{\mathrm{C1}}$ 和 $v_{\mathrm{C2}}$ 输出的高、低电平与输入信号的高、低电平不匹配，无法驱动下一级门电路。因此， $T_{5}$ 和 $T_{6}$ 组成的射极输出器将其转换成所需的电平值。
+
+由于 $\mathrm{T}_{1}$ 和 $\mathrm{T}_{2}$ 管是并联在一起的，只要 $A, B$ 中有一个接高电平，都会使 $L_{1}$ 为低电平，而 $L_{2}$ 为高电平。因此
+
+$$
+L _ {1} = \overline {{A + B}} \quad \text {或 非 输 出}
+$$
+
+$$
+L _ {2} = A + B \quad \text {或 输 出}
+$$
+
+即ECL门的基本逻辑功能是同时具备或/或非输出，称之为互补逻辑输出，逻辑符号如图3.6.1所示。
+
+不论是哪个BJT导通，所形成的发射极电流 $i_{\mathrm{E}}$ 都是很接近的，输入信号就像开关一样，控制 $T_{1}$ ， $T_{2}$ 或 $T_{3}$ 给 $R_{\mathrm{e}}$ 提供 $i_{\mathrm{E}}$ 这个电流，所以ECL电路又称为电流开关型逻辑(Current-Mode Logic,
+
+CML)。
+
+以上所述的是具有 $A, B$ 两个输入端的或非电路，只要增加相同类型的BJT与 $\mathrm{T}_{1}$ 并联，就能增加门电路的输入端。
+
+# 2. ECL门的工作特点
+
+（1）电路的输入级采用差分输入的形式，因此具有抑制漂移的能力。  
+（2）BJT工作在截止区或放大区，集电极电位总高于基极电位，这就避免了BJT因工作在饱和状态而产生的存储电荷问题。  
+(3）不论是哪个BJT导通，所形成的发射极电流 $i_{\mathrm{p}}$ 都几乎相等，因此电路在进行状态转换时，电源的电流保持常数。而CMOS或TTL电路进行状态转换时，从电源到地之间电路的电流产生一个尖峰，这个电流是产生噪声的重要根源。因此，ECL电路内部开关噪声低。  
+（4）逻辑电平的电压摆幅小。电压摆幅是指输出（或输入）电压最大值与最小值之差。电压摆幅小致使集电极输出电压的变化小，这不仅有利于电路的转换，而且可采用很小的集电极电阻 $R_{\mathrm{c}}$ 。同时， $T_{\mathrm{s}}$ 和 $T_{\mathrm{g}}$ 组成的电压跟随器进一步减小了输出电阻。因此TTL门的输出电阻很低，使输出回路的时间常数比一般饱和型电路小，因而开关速度快，常用于高速系统中。  
+（5）互补输出为简化逻辑设计带来方便
+
+它的主要缺点是制造工艺要求高，功耗大。其逻辑规模小，噪声容限只有 $0.2\mathrm{V}$ 左右，因而抗外界干扰能力较弱。而且由于输出电压为负值，容易与其他门电路接口，需用专门的电平移动电路。
+
+双极型逻辑门电路除了TTL和ECL之外，尚有集成注入逻辑门电路（Integrated-Injection Logic, IIL或 $\mathrm{I}^2\mathrm{L}$ ）。由于IIL电路简单，易于在硅片上实现高集成度的器件，因而在大规模和超大规模集成电路中得到应用，但很少用来制作中、小规模电路。由于它的高、低电平电压差值很小，抗干扰能力较差，因而这种门电路的推广受到限制。
+
+# 复习思考题
+
+3.6.1 与TTL系列相比，ECL系列门电路的主要优点是什么？  
+3.6.2列举出ECL系列门电路的两个主要缺点
+
+# 3.7 逻辑描述中的几个问题
+
+# 3.7.1 正负逻辑问题
+
+# 1. 正负逻辑的规定
+
+在数字电路中，可以采用两种不同的逻辑体制表示电路输入和输出的高、低电平。在前面讨
+
+论时，将高电平用逻辑1表示，低电平用逻辑0表示，这种表示方法称为正逻辑体制。如果将高电平用逻辑0表示，低电平用逻辑1表示，则这种表示方法称为负逻辑体制。
+
+对于同一电路的输入与输出关系的描述，可以采用正逻辑，也可以采用负逻辑。正逻辑和负逻辑两种体制不牵涉到逻辑电路本身的结构问题，但根据所选正负逻辑的不同，即使同一电路也具有不同的逻辑功能。例如某个逻辑门电路的输入和输出电平如表3.7.1所示，其中H和L分别表示高、低电平。如果采用正逻辑体制，令H为1，L为0，得到如表3.7.2所示的真值表，它表示与非逻辑关系 $L = \overline{A \cdot B}$ 。如果采用负逻辑体制，令H为0，L为1，得到如表3.7.3所示的真值表，它表示或非逻辑关系 $L = \overline{A + B}$ 。因此，正逻辑的与非门等效于负逻辑的或非门。正逻辑和负逻辑只是看问题的角度或分析问题的方法不同而已，问题的实质是不变的，即电路输入与输出的电平关系始终是不变的。本书如无特殊说明，一律采用正逻辑，即规定高电平为逻辑1，低电平为逻辑0。
+
+表 3.7.1 某电路输入与输出电平表  
+
+<table><tr><td>A</td><td>B</td><td>C</td></tr><tr><td>L</td><td>L</td><td>H</td></tr><tr><td>L</td><td>H</td><td>H</td></tr><tr><td>H</td><td>L</td><td>H</td></tr><tr><td>H</td><td>H</td><td>L</td></tr></table>
+
+表 3.7.2 正与非门真值表  
+
+<table><tr><td>A</td><td>B</td><td>L</td></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>电子</td><td>1</td><td>0</td></tr></table>
+
+表 3.7.3 负或非门真值表  
+
+<table><tr><td>A</td><td>B</td><td>L</td></tr><tr><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td></tr></table>
+
+# 2. 正负逻辑的等效变换
+
+工程实践中，电路描述一般采用正逻辑体制，负逻辑体制用的比较少。上述分析可知，正逻辑的与非对应负逻辑的或非；同理，正逻辑的或非与负逻辑的与非相对应。因此，如果需要，可以按下列方式进行两种逻辑体制的互换：
+
+$$
+\begin{array}{l} \text {与 非} \Leftrightarrow \text {或 非} \\ \text {与} \Leftrightarrow \text {或} \\ \text {非} \Leftrightarrow \text {非} \\ \end{array}
+$$
+
+# 3.7.2 基本逻辑门的等效符号及其应用
+
+# 1. 基本逻辑门的等效符号
+
+利用摩根定理对基本逻辑运算进行变换，可以得到不同形式的表达式。例如与非逻辑运算的表达式可以写成
+
+$$
+L = \overline {{A B}} = \overline {{A}} + \overline {{B}}
+$$
+
+由此，可以得到与非门的等效符号如图3.7.1所示。输入端的小圆圈表示先对信号作非运算，然后进行或运算。
+
+![](images/1b81b8e7c5ca2bf803f7fa84fe54356ce0a23280ab0c1aa5ca20aae2fc3a1fad.jpg)  
+图3.7.1 与非门及其等效符号
+
+对于或非运算的逻辑表达式，可以写成
+
+$$
+L = \bar {A} + B = \bar {A} \cdot \bar {B}
+$$
+
+所以得到其等效符号如图3.7.2所示
+
+![](images/ddcf34f3281340dbae7e19914a38d5171735635b5d4c5de8fe58b97fd8e11165.jpg)  
+图3.7.2 或非门及其等效符号
+
+同理，利用摩根定理对与门和或门的逻辑表达式进行变换，可以得到它们的等效符号分别如图3.7.3和图3.7.4所示。
+
+![](images/88474be1e49d17f8138a97063c1c7ecd9aae699bc8188dd0bc9d434bcc4d08c7.jpg)  
+图3.7.3 与门及其等效符号
+
+![](images/490dd6aba131e289847d770d068e2c991d05d4ff7401a5714c4dd3ec876f875f.jpg)  
+图3.7.4或门及其等效符号
+
+上述各图所示的逻辑符号及其等效符号，是在同一逻辑体制下，用两种不同的方式描述同一逻辑运算。因此，不能将等效符号看成是负逻辑体制或者负逻辑表示方法。本书采用正逻辑体制，所以对于输入和输出均是高电平为1，低电平为0。可以用真值表验证各逻辑符号及其等效符号是等价的。
+
+# 2. 逻辑门等效符号的应用
+
+与门是由与非门和非门级联构成的，或门是由或非门和非门构成的。与非门和或非门比与门和或门电路结构简单，速度快。通常采用与非门或者或非门实现电路。利用逻辑门等效符号对逻辑电路进行变换，在不改变电路逻辑功能的前提下，可以简化电路，减少实现电路的门的种类，提高工作速度。
+
+图3.7.5(a)所示电路由两级组成，第一级是两个与门，第二级是一个或门。
+
+利用摩根定理 $\overline{X} = X$ ，在图3.7.5(a)中间连线的两端各加一个圆圈，相当于进行两次非运算，但并没有改变电路的功能，得到图3.7.5(b)所示电路。然后将图3.7.5(b)所示电路第二级与非门的等效符号用与非门符号代替，就可以得到图3.7.5(c)所示电路。该电路的工作速度比图
+
+3.7.5(a) 所示电路快。
+
+![](images/670fd8b99b826d9e49efeab1d31bea61e8e71b95d75adc15df9ea84612267d54.jpg)  
+(a)
+
+![](images/1a318c9438369f36a53437f164923d26b8c42c96eeb5ac287e86857d817aa409.jpg)  
+(b)
+
+(c)   
+图3.7.5 或门及其等效符号  
+![](images/72c96ab0e5fce2ed480dfac2ba05e1f93916fe3138bf65634a8faac4fc5abf6e.jpg)  
+（a）逻辑电路 （b）逻辑电路的等效变换 （c）用与非门替代等效符号
+
+# 3. 逻辑门等效符号强调低电平有效
+
+在3.3.2节介绍三态门时，就涉及有效电平的概念。三态门的使能控制信号可以是高电平有效，也可以是低电平有效。对于高电平使能的三态门，当使能端信号为1时，电路处于正常逻辑工作状态；对于低电平使能的三态门，当使能端信号为0时，电路正常工作。有效电平的概念不止限于使能端信号。在实际电路，特别是大规模集成芯片中，任何输入或者输出信号都有可能是高电平有效，或者是低电平有效。所谓低电平有效，是指当信号为低电平时，电路完成规定的操作；而高电平有效，是指信号为高电平时，电路完成规定的操作。
+
+图3.7.6所示是一个可以控制数据传输的电路。其中集成芯片IC的使能端EN要求低电平有效，电路的两个控制信号分别是请求信号 $RE$ 和允许信号 $\overline{AL}$ 。图中， $G_{2}$ 门是输入、输出均为低有效的与门。根据图3.7.4可知， $G_{2}$ 门实际是或门的等效符号。这里之所以采用等效符号是为了强调低电平有效，以便于理解实际电路中，请求信号 $RE$ 、允许信号 $\overline{AL}$ 以及IC芯片的使能信号 $\overline{EN}$ 之间的逻辑关系。当请求信号 $RE$ 为高电平信号，允许信号 $\overline{AL}$ 为低电平信号时， $G_{2}$ 门的两个输入端均为有效信号，即低电平，则产生一个有效的输出信号，即 $\overline{L}$ 为低电平，使 $\overline{EN}$ 为低电平，允许IC传输数据。
+
+信号名称 $EN$ 、 $\overline{AL}$ 和 $\overline{L}$ 上面的横线表示该信号是低电平有效，在进行逻辑运算时，应该作为一个整体符号。如果在运算过程中，变量上面的“-”号参与运算，则在画逻辑电路图、或者验证真值表时，应将其还原为低有效符号。
+
+需要注意的是，如果一根连线的两端都有圆圈，并且都包含有非运算的含义，可以用“圈圈相消”进行电路化简，如图3.7.5所示。但在图3.7.6中， $G_{2}$ 门的输出与使能端之间的连线两端也有圆圈，这两个圆圈不能抵消，因为集成芯片IC使能端的圆圈的功能在芯片内部，不能被化简掉。
+
+如果要求请求信号 $RE$ 和允许信号 $AL$ 均为高电平有效，而芯片IC的使能端 $\overline{EN}$ 仍为低有效，可以采用如图3.7.7(a)所示的控制电路。 $G_{2}$ 门可以看成是输入为高电平有效，输出为低电平有效的与门。
+
+![](images/d9bfedee7549cb3fe40f62817df0aba27df8c964b56901b31bec5899ca2712c3.jpg)  
+图3.7.6 数据传输控制电路
+
+![](images/176606fa5a965afa613e8cfbf86e96ba27dd675d230d50a28bfdec3034f8ddb3.jpg)
+
+![](images/bc91df5d91d4d546b6ba3109a6bf8929b325d7bd893fb72e8d33405af5d42fbd.jpg)
+
+图3.7.7 几种不同的控制电路  
+![](images/c881125f1181ea7b4cee79e6eae23fa03ba4640d757da8f432c07ceffc915c14.jpg)  
+（a）与非门实现 （b）或非门实现 （c）与门实现
+
+如果要求请求信号 $\overline{RE}$ 和允许信号 $\overline{AL}$ 均为低电平有效，而芯片IC的使能端 $EN$ 为高有效，则采用如图3.7.7(b)所示的控制电路。 $G_{2}$ 门可以看成是输入为低电平有效，输出为高电平有效的与门。根据图3.7.2可知， $G_{2}$ 门是或非门的等效符号。
+
+同理，如果要求请求信号 $RE$ 和允许信号 $\overline{AL}$ 均为高电平有效，芯片IC的使能信号也为高电平有效，则采用如图3.7.7(c)所示的控制电路。 $G_{2}$ 门为输入、输出均是高电平有效的与门。
+
+# 复习思考题
+
+3.7.1 列出正逻辑体系或非门和负逻辑体系与非门的真值表，并说明两者的等效关系。  
+3.7.2 为什么说逻辑符号及其等效符号不是正负逻辑关系？  
+3.7.3 对于小圆圈画在输入端或者画在输出端的非门，其逻辑运算结果是否相同，所表达的含义是否相同？
+
+# 3.8 逻辑门电路使用中的几个实际问题
+
+以上重点讨论了CMOS系列门电路，同时还介绍其他几种逻辑门电路。在实际应用中，可以根据电源电压、传输延迟时间、功耗、噪声容限、带负载能力等要求来选择相应的门电路。有时需要混合使用不同系列的逻辑门电路，此时将遇到不同逻辑门电路之间的接口问题。另外，门电路与负载之间的匹配也是需要考虑的问题之一。下面对几个实际问题进行讨论。
+
+# 3.8.1 各系列逻辑门电路之间的接口问题
+
+CMOS电路的动态功耗为 $P_{\mathrm{D}} = (C_{\mathrm{PD}} + C_{\mathrm{L}})V_{\mathrm{D1}}^{2}f_{\circ}$ 为了减小功耗，采用低电源电压器件。同时电路的集成度不断提高使晶体管尺寸越来越小，CMOS的栅极与源极、栅极与漏极间的绝缘层也越来越薄，不足以承受5V电源电压。JEDEC（Joint Electron Device Engineering Council）固态技术协会选择3.3V、2.5V、1.8V、1.5V和1.2V等一系列低电压作为各种低电压逻辑器件的供电电源。并规定了这些供电电源下输入和输出高、低逻辑电平的电压值。
+
+图3.8.1给出了各个系列在给定电源电压下四个逻辑电平参数：输入低电平的上限值 $V_{\mathrm{IL(max)}}$ 、输入高电平的下限值 $V_{\mathrm{IH(min)}}$ 、输出低电平（ $I_{\mathrm{OL}} = 4 \mathrm{~mA}$ ）的上限值 $V_{\mathrm{OL(min)}}$ 、输出高电平（ $I_{\mathrm{OH}} = 4 \mathrm{~mA}$ ）的下限值 $V_{\mathrm{OH(min)}}$ ，便于进行逻辑电平的快速比较。为简单起见，图中省略了下标min和max。
+
+![](images/b4096eceae584fafa127760cebd0f7b740df46d98a2a46b36773f9893dab0e4f.jpg)  
+5V CMOS系列
+
+![](images/66fef82e3ae6277c0ae0471d2d0b1d38d5ff3e5d96cf7d84f0b05bc624d28cbe.jpg)  
+-5V TTL系列
+
+![](images/64fd7d29e84e762c83d66fbe6c7b9c40167fe283b287a13edbf446fec73f75a8.jpg)  
+3.3V LVTTL系列
+
+![](images/88d731642fc0b77e5d1acdbee2d20e690930fecdc5eb212eafdf1b19718d664e.jpg)  
+2.5VCMOS系列
+
+![](images/6aae68a632aae957ab620c0d46895a11b5ab0d72e2c49229c938453fdf2b16e4.jpg)  
+1.8VCMOS系列
+
+图3.8.1 几种逻辑电平比较  
+![](images/883d614480b9220ec941ccf4ded1f15414741572f54d29ef97f61ad162d0bdb0.jpg)  
+(HC、AHC等系列)  
+(TTL、HCT、AHCT等系列)  
+(LVC、AUP、BiCMOS等系列)  
+(LVC, AUC, A/C, AUP等系列)  
+（与2.5VCMOS系列相同）  
+（与2.5VCMOS系列相同）
+
+1.5VCMOS系列
+
+在图3.8.1中， $3.3\mathrm{V}$ LVTTL是指 $3.3\mathrm{V}$ CMOS低电压器件所带TTL负载时的电压值。逻辑门的负载不同时，其输出高、低电平的下限值和上限值也不同，当其输出电流 $I_{0}$ 低于 $100~\mu \mathrm{A}$ 称为带CMOS负载，此时 $V_{\mathrm{OH}} = 3.1\mathrm{V},V_{\mathrm{OL}} = 0.2\mathrm{V}$ 。当 $I_{0}$ 比较大时称为带TTL负载。图中所示为 $I_0 = 4\mathrm{mA}$ 时的 $V_{\mathrm{OH}} = 2.4\mathrm{V},V_{\mathrm{OL}} = 0.4\mathrm{V}$ □
+
+图3.8.1给出的是典型的逻辑电平值，不同系列电路的具体参数可能与典型值不同，分析具体的实际问题时，必须查阅生产厂商提供的数据表。
+
+现在的很多数字电路或数字系统中，同时采用不同供电电压的逻辑器件，主要是为了降低成本，兼顾新老器件或设备的应用。不同系列逻辑器件的混合使用，需要考虑它们的匹配问题。
+
+当一个系统中使用两种不同系列逻辑门电路时，由于它们的电压和电流参数各不相同，首先要考虑门电路的输入或输出电平是否超过数据手册规定的极值，即
+
+$$
+V _ {1 (\min)} \leqslant V _ {1} \leqslant V _ {1 (\max)} \tag {3.8.1}
+$$
+
+$$
+V _ {0 (\min)} \leqslant V _ {0} \leqslant V _ {0 (\max)} \tag {3.8.2}
+$$
+
+如果不满足上述两个条件，有可能损坏芯片。
+
+第二是逻辑电平兼容性问题，驱动器件的输出电压必须满足负载器件所要求的高电平或者低电平输入电压的范围。即
+
+$$
+V _ {\mathrm {O H} (\min)} \geqslant V _ {\mathrm {I H} (\min)} \tag {3.8.3}
+$$
+
+$$
+V _ {\mathrm {O L} (\max)} \leqslant V _ {\mathrm {I L} (\max)} \tag {3.8.4}
+$$
+
+第三是逻辑门电路的扇出问题，即驱动器件必须能对负载器件提供足够的灌电流或者拉电流。
+
+灌电流情况下应满足 $I_{\mathrm{OL(max)}} \geqslant |I_{\mathrm{IL(total)}}|$ (3.8.5)
+
+拉电流情况下应满足 $\left| I_{\mathrm{OH(max)}} \right| \geqslant I_{\mathrm{IH(total)}}$ (3.8.6)
+
+其余如噪声容限、输入和输出电容以及开关速度等参数在某些设计中也必须予以考虑。下面分别就不同供电电压的逻辑电路之间的接口问题和 $5\mathrm{V}$ 供电电压的EMOS电路与TTL电路之间的接口问题进行讨论。
+
+# 1.5VCMOS电路与3.3VCMOS电路的接口
+
+两种供电电源的CMOS电路相连时，首先要考虑它们输入输出电平是否满足式(3.8.1)和式(3.8.2)的要求。
+
+（1）输入电压的极值 $V_{\mathrm{l(max)}}$ 和 $V_{\mathrm{l(min)}}$
+
+有些逻辑门电路允许输入 $V_{1}$ 超过电源电压 $V_{\mathrm{DD}}$ ，而有些不允许。
+
+例如：74HC系列门电路的最大输入 $V_{\mathrm{f(max)}} = V_{\mathrm{DD}} + 0.5 \mathrm{~V}$ ，即输入 $V_{1}$ 不能超过电源电压 $V_{\mathrm{DD}}$ 。图3.8.2所示为74HC系列的输入保护电路。正常工作时，不论输入为高电平还是低电平，二极管 $\mathrm{D}_{1}$ 和 $\mathrm{D}_2$ 均截止，电路输入端电阻很高。当输入电压超过 $V_{\mathrm{DD}}$ 时， $\mathrm{D}_{1}$ 导通，有很大的电流流过 $\mathrm{D}_1$ ，并且使得该支路的等效电阻很小，电路不能正常工作。
+
+![](images/a70f32c2df74177048d33a9b362418ddbf5bea4afef83eb42f2555ba1abf5efe.jpg)  
+图3.8.2 74HC系列的输入电路
+
+![](images/1e25b2bfeff80010e5c03ce995c21048b8b8a185067e9d4a19a7df245fdaa59e.jpg)  
+图3.8.3 74AHC系列的输入电路
+
+74AHC系列 $V_{\mathrm{I(max)}} = 7\mathrm{V}$ 。当该系列采用3.3V电源电压时，允许输入电压 $V_{\mathrm{I}} > 3.3\mathrm{V}$ ，只要小于7V即可。74AHC系列输入保护电路如图3.8.3所示。该电路去掉了输入到电源之间的
+
+二极管，因此允许 $V_{\mathrm{I}}$ 高于 $V_{\mathrm{DD}}$ ，同时要求电路的MOS管能够承受足够高的电压。
+
+输入电压的极小值 $V_{\mathrm{I(min)}}$ 通常为 $0\mathrm{V}$ 。如果考虑输入保护二极管的作用时， $V_{\mathrm{I(min)}} = -0.5\mathrm{V}$
+
+（2）输出电压的极值 $V_{0(\max)}$ 和 $V_{0(\min)}$
+
+有些逻辑门电路允许输出 $V_{0}$ 超过电源电压 $V_{\mathrm{DD}}$ ，而有些则不允许。特别是三态输出的5V和3.3V两种逻辑电路接到同一个数据总线时，如果5V逻辑电路输出高电平，而3.3V逻辑电路处于高阻态。5V高电平输出信号通过总线也连接到3.3V逻辑电路的输出端，此时需要考虑输出端允许的极限值。
+
+例如：74HC和74AHC系列电路的最大输出 $V_{\mathrm{O(max)}} = V_{\mathrm{DD}} + 0.5\mathrm{V}$ ，即输出 $V_{\mathrm{D}}$ 不能超过电源电压 $V_{\mathrm{DD}}$ 。图3.8.4所示为74HC/74AHC系列的三态输出电路，电路供电电源为 $3.3\mathrm{V}$ 。正常输出高阻态时， $\mathrm{T}_{\mathrm{N}}$ 和 $\mathrm{T}_{\mathrm{P}}$ 管均截止。当 $5\mathrm{V}$ 电压加到输出端时，使二极管 $\mathrm{D}_{1}$ 正偏导通， $\mathrm{T}_{\mathrm{P}}$ 的漏极与源极之间形成一个低阻通路，并且产生很大的电流，因此不允许输出端电压超过 $V_{\mathrm{O(max)}} = V_{\mathrm{DD}} + 0.5\mathrm{V}$ 。
+
+![](images/595f1338d97d7ec3d0002f7504e8b08312fa9c966abedf426926d037a327c6f6.jpg)  
+图3.8.4 74HC和74AHC系列的三态输出电路
+
+![](images/0bf178ee461a039cf013435e11a2a252b66f13f95a81ea82f30b7b243150cc90.jpg)  
+图3.8.5 74LVC系列的三态输出电路
+
+对于74LVCC/AUC/AUP等系列的输出端为高阻或电路电源关闭的情况下， $V_{\mathrm{O(max)}} = 6.5 \mathrm{~V}$ 。即 $V_{\mathrm{DD}} = 5.3 \mathrm{~V}$ 时，其输出电压 $V_{0}$ 可以高于 $3.3 \mathrm{~V}$ ，只要小于 $6.5 \mathrm{~V}$ 即可。图3.8.5所示为带保护电路的74LVC系列的三态输出电路。当输出端电压高于 $V_{\mathrm{DD}} + 0.5 \mathrm{~V}$ 时，比较器使 $S_{1}$ 开路， $S_{2}$ 闭合，电流通路消失，其输出仍然保持高阻态，就能与 $5 \mathrm{~V}$ 器件相接。
+
+输出电压的极小值 $V_{\mathrm{O(min)}}$ 通常为 $0\mathrm{V}$ ，如果考虑输入保护二极管的作用时， $V_{\mathrm{O(min)}} = -0.5\mathrm{V}$
+
+（3）逻辑电平兼容性及输入输出电流匹配问题
+
+根据图3.8.1所示的电压数据可见，5VCMOS系列驱动 $3.3\mathrm{V}$ CMOS系列时， $V_{\mathrm{OH(min)}} = 4.4\mathrm{V}$ $V_{\mathrm{DH(min)}} = 2.0\mathrm{V},V_{\mathrm{OL(max)}} = 0.5\mathrm{V},V_{\mathrm{IL(max)}} = 0.8\mathrm{V}$ ，满足式(3.8.3）和式(3.8.4）对逻辑电平的要求。
+
+根据表3.3.4给出的电流参数可知，5VCMOS系列的高电平最大输出电流 $I_{\mathrm{OH(max)}}$ 和低电平最大输出电流 $I_{\mathrm{OL(max)}}$ 都在 $20~\mu \mathrm{A}$ 以上，3.3V74LVC/ALVC系列的高、低电平最大输入电流 $I_{\mathrm{IH(max)}}$ 和 $I_{\mathrm{IL(max)}}$ 均为 $5\mu \mathrm{A}$ ，只要负载数目适当，即可满足式(3.8.5)和式(3.8.6)对输入输出电流的要求。因此，5VCMOS系列可以直接驱动3.3VCMOS系列。
+
+![](images/86f29d0bc8a3bae5f24df7dc480a9188c8de6709bfc4c03ced4e33d3f8043165.jpg)  
+图3.8.6 用上拉电阻提高3.3VCMOS电路的输出高电平
+
+![](images/61ef569d6643c2ea4d40132f0a6ed5567a1d0221a8db4b9096350cf1d8a7a464.jpg)  
+图3.8.7 电平转换器用做接口
+
+当用 $3.3\mathrm{V}$ CMOS系列驱动5VCMOS系列时，根据图3.8.1所示的电压数据 $V_{\mathrm{(OH,max)}} = 0.4\mathrm{V}, V_{\mathrm{IL(max)}} = 1.5\mathrm{V}$ ，满足式(3.8.4)的要求。但是 $V_{\mathrm{OH(min)}} = 2.4\mathrm{V}$ ，低于5VCMOS系列的 $V_{\mathrm{IH(min)}} = 3.5\mathrm{V}$ ，不满足式(3.8.3)的要求。为了解决这一矛盾，最简单的方法是在3.3VCMOS电路的输出端与 $+5\mathrm{V}$ 电源之间接一个上拉电阻 $R_{\mathrm{p}}$ ，如图3.8.6所示。上拉电阻的值取决于负载器件的数目以及驱动门和负载门的电流参数，可以用OD门外接上拉电阻的计算方法进行计算。但必须注意，此时 $V_{\mathrm{OH(min)}} < V_{\mathrm{IH(min)}}$ 。为保证负载门输入高电平的要求，应将式(3.3.2)中的 $V_{\mathrm{OH(min)}}$ 换成 $V_{\mathrm{IH(min)}}$ 进行计算。当驱动门电路输出为高电平时，如图3.8.5所示的输出结构， $\mathrm{T_N}$ 和 $\mathrm{T}_{\mathrm{P1}}, \mathrm{T}_{\mathrm{P2}}$ 管均截止，因此有
+
+$$
+V _ {\mathrm {O H}} = V _ {\mathrm {p H}} - \stackrel {\circ} {R} _ {\mathrm {p}} ^ {\circ} \left(I _ {\mathrm {O Z}} + I _ {\mathrm {H H (t o t a l)}}\right) \tag {3.8.7}
+$$
+
+$I_{\mathrm{OZ}}$ 为 $3.3\mathrm{V}$ CMOS门电路输出级 $\mathrm{T}_{\mathrm{i}}$ 管均截止时的漏电流， $I_{\mathrm{III(total)}}$ 为流入全部5VCMOS负载电路的电流，这两个电流的数值都很小，如果 $R_{\mathrm{p}}$ 取值不太大，驱动门输出将被提高至接近 $V_{\mathrm{DD}}$ 。
+
+除了用上拉电阻的方法外，还可以采用OD门或专门的逻辑电平转换器。
+
+# 2. 低电压CMOS电路之间的接口
+
+3.3 V CMOS 系列驱动 2.5 V CMOS 系列时，从图 3.8.1 可见， $V_{\mathrm{OH(min)}} = 2.4 \mathrm{~V}, V_{\mathrm{IH(min)}} = 1.7 \mathrm{~V}, V_{\mathrm{OL(max)}} = 0.4 \mathrm{~V}, V_{\mathrm{IL(max)}} = 0.7 \mathrm{~V}$ ，满足式(3.8.3)和式(3.8.4)对逻辑电平的要求。如果 $2.5 \mathrm{~V}$ CMOS 系列允许输入最大值 $V_{\mathrm{I(max)}}$ 为 $3.3 \mathrm{~V}$ ，可以由 $3.3 \mathrm{~V}$ CMOS 系列直接驱动 $2.5 \mathrm{~V}$ CMOS 系列。当用 $2.5 \mathrm{~V}$ CMOS 系列驱动 $3.3 \mathrm{~V}$ CMOS 系列时， $V_{\mathrm{OH(min)}} = 2 \mathrm{~V}, V_{\mathrm{IH(min)}} = 2 \mathrm{~V}$ ，此时高电平噪声容限为 0，这在实际应用中是不允许的。
+
+为满足不同系列逻辑电路之间的接口需求，特别是 $2.5\mathrm{V}$ 以下逻辑电路之间的接口，通常使用专门的逻辑电平转换器，如图3.8.7所示。电平转换器有两个独立的电源 $V_{\mathrm{BDA}}$ 和 $V_{\mathrm{DDR}}$ ，分别与两种系列逻辑电路的电源相接。例如74LVC1T45是小逻辑封装(参看3.8.4节)的1位双向逻辑电平转换器，并具有驱动总线的三态输出结构，可以实现 $5\mathrm{V},3.3\mathrm{V},2.5\mathrm{V},1.8\mathrm{V}$ 或 $1.5\mathrm{V}$ 逻辑电平之间的相互转换，电路如图3.8.8所示。当控制端DIR接 $V_{\mathrm{BDA}}$ 时，则 $A$ 端信号传到 $B$ 端，DIR接地时，则 $B$ 端信号传到 $A$ 端。
+
+表 3.8.1 74ALVC164245 的功能表  
+
+<table><tr><td colspan="2">输入</td><td rowspan="2">操作</td></tr><tr><td>OE</td><td>DIR</td></tr><tr><td>L</td><td>L</td><td>数据B传送到A</td></tr><tr><td>L</td><td>H</td><td>数据A传送到B</td></tr><tr><td>H</td><td>x</td><td>隔离</td></tr></table>
+
+![](images/e413b4b2256047d8b343150f82f3b906b7df33cb0bd41485f1f0e079980f2d62.jpg)  
+图3.8.8 74LVC1T45电平转换器内部电路图
+
+![](images/da878e7da4b1d12625ccd2845c0ce0a2f78dfb62aca859cfae37685db5e840cb.jpg)  
+图3.8.9 $\frac{1}{2}$ 74ALVC164245电平转换器内部电路图
+
+如果同时需要多位逻辑电平转换器，可使用宽总线封装的芯片。74ALVC164245是16位双向逻辑电平转换器，具有驱动总线的三态输出结构。集成芯片内部是将16位电平转换器分成2组，每组有8位，组与组之间相互独立。每组结构如图3.8.9所示。74ALVC164245的功能表如表3.8.4所示，控制端DIR和OE接 $V_{\mathrm{DDA}}$ 一边的电源或地，以控制信号的传输方向。使用时可根据需要连接成16位或两组8位，两个独立的电源 $V_{\mathrm{DDA}}$ 和 $V_{\mathrm{DDB}}$ 可接 $1.4\sim 3.6\mathrm{V}$ 的电压，实现 $3.3\mathrm{V},2.5\mathrm{V},1.8\mathrm{V}$ 或 $1.5\mathrm{V}$ 逻辑电平之间的相互转换。电源电压为 $3.3\mathrm{V}$ 时，输出电流可达到 $12\mathrm{mA}$ ，电源电压为 $2.5\mathrm{V}$ 时输出电流可以达到 $8\mathrm{mA}$
+
+# 3.5VCMOS电路与TTL电路的接口
+
+# （1）5VCMOS电路驱动TTL电路
+
+由图3.8.1可知5VCMOS电路参数 $V_{\mathrm{OH(min)}} = 4.4\mathrm{V}, V_{\mathrm{OL(max)}} = 0.5\mathrm{V}$ 。TTL电路参数 $V_{\mathrm{IH(min)}} = 2.0\mathrm{V}, V_{\mathrm{IL(max)}} = 0.8\mathrm{V}$ 。两者的逻辑电平参数满足式(3.8.3)和式(3.8.4)的要求。从表3.3.4和表3.5.1给出的电流参数可知，74HC/HCT系列的 $I_{\mathrm{OH(max)}}$ 和 $I_{\mathrm{OL(max)}}$ 均为 $4\mathrm{mA}$ ，74AHC/AHCT系列的 $I_{\mathrm{OH(max)}}$ 和 $I_{\mathrm{OL(max)}}$ 均为 $8\mathrm{mA}$ ，TTL系列的输入电流 $I_{\mathrm{IH(max)}}$ 低于 $50~\mu \mathrm{A}$ ， $I_{\mathrm{IL(max)}}$ 低于 $2\mathrm{mA}$ 。只要负载数目适当，即可满足式(3.8.5)和式(3.8.6)对灌电流和拉电流的要求。因此，5V CMOS
+
+系列可以直接驱动TTL电路
+
+# （2）TTL电路驱动5VCMOS电路
+
+根据表3.3.4和表3.5.1给出的电压参数可知，TTL系列的 $V_{\mathrm{OH(min)}} = 2.7\mathrm{V}, V_{\mathrm{OL(max)}} = 0.5\mathrm{V}$ 74HC和74AHC系列的 $V_{\mathrm{IH(min)}} = 3.5\mathrm{V}, V_{\mathrm{IL(max)}} = 1.5\mathrm{V}$ ，低电平的输出与输入电平兼容，但高电平不满足式(3.8.3)的要求。可以在TTL输出端与 $+5\mathrm{V}$ 电源之间接一个上拉电阻（参考图3.8.6所示电路），或采用OC门输出结构的电路。
+
+74HCT和74AHCT系列是为了便于与TTL直接接口而设计的CMOS系列，其 $\mathrm{V}_{\mathrm{H(min)}}$ 值降为 $2\textrm{V}$ 。根据表3.3.4和表3.5.1给出的电压和电流参数可以验证，将TTL系列电路与74HCT和AHCT系列连接时，满足式(3.8.3）～式(3.8.6)对逻辑电平兼容性和输入输出电流匹配的要求。因此，TTL系列可以直接驱动74HCT和74AHCT系列CMOS电路。
+
+# 4.3.3VCMOS电路与TTL电路的接口
+
+从图3.8.1可见，TTL电路与3.3VCMOS电路电平是兼容的，满足式(3.8.3)和式（3.8.4）的要求。根据表3.3.4和表3.5.1给出的电流参数可知，74LVC电路驱动TTL电路时， $I_{\mathrm{OH(max)}} = I_{\mathrm{0L(max)}} = 24 \mathrm{mA}$ ，TTL系列的 $I_{\mathrm{III(max)}}$ 和 $I_{\mathrm{IL(max)}}$ 低于 $0.6 \mathrm{~mA}$ ，电流相匹配，满足式（3.8.5）和式（3.8.6）的要求。74LVC电路可以直接驱动TTL电路。
+
+当TTL电路驱动74LVC电路时，同样验证电流相匹配，并且74LVC电路最大输入 $V_{\mathrm{f(max)}} = 6.5\mathrm{V}$ ，TTL电路可以直接驱动74LVC电路。
+
+其他3.3VCMOS电路与TTL电路接口时，同样需要验证输入输出电压的最大值，考虑电平兼容性及电流的匹配问题。
+
+# 3.8.2 逻辑门电路驱动其他负载时的接口
+
+# 1.驱动显示器件
+
+在数字电路中，往往需要用发光二极管来显示信息，如电源接通或者断开的指示、七段数码显示或图形符号显示等。
+
+图3.8.10所示为反相器驱动一发光二极管LED电路。电路中串接了一限流电阻 $R$ 以保护LED。限流电阻的大小可分别按下面两种情况来计算。
+
+对于图3.8.10（a）所示电路，当门电路的输出为高电平时，LED发光，则
+
+$$
+R = \frac {V _ {\mathrm {O H}} - V _ {\mathrm {F}}}{I _ {\mathrm {D}}} \tag {3.8.8}
+$$
+
+![](images/36067aa10ef44e09c1af76d49ae83589ae9cf1853fc99404f8ef2cbc6721478b.jpg)  
+(a)
+
+![](images/861bc1c5f4cb1b27c1c1aaa0605553c784c606846e4a477fe78f23526bb8f5f7.jpg)  
+(b)   
+图3.8.10 反相器驱动LED电路
+
+反之，图3.8.10（b）所示电路，当门电路的输出为低电平时LED发光，故有
+
+$$
+R = \frac {V _ {\mathrm {C C}} - V _ {\mathrm {F}} - V _ {\mathrm {O L}}}{I _ {\mathrm {D}}} \tag {3.8.9}
+$$
+
+以上两式中， $I_{\mathrm{D}}$ 为LED的电流， $V_{\mathrm{F}}$ 为LED的正向压降， $V_{\mathrm{OH}}$ 和 $V_{\mathrm{OL}}$ 为门电路的输出高、低电平
+
+电压值。
+
+例3.8.1试用74HC04六个CMOS反相器中的一个作为接口电路，当门电路的输入为高电平时，使LED导通发光。已知LED正常发光需要几毫安的电流，并且导通时的压降 $V_{\mathrm{F}}$ 为 $1.6\mathrm{V}$
+
+解：根据表3.3.4中74HC系列的数据，当 $V_{\mathrm{CC}} = 5\mathrm{V}$ 时， $V_{\mathrm{OL}} = 0.33\mathrm{V},I_{\mathrm{OL(max)}} = 4\mathrm{mA}$ ，因此 $I_{\mathrm{D}}$ 取值不能超过 $4\mathrm{mA}_{\circ}$ 根据式(3.8.9）计算限流电阻的最小值为
+
+$$
+R = \frac {(5 - 1 . 6 - 0 . 3 3) \mathrm {V}}{4 \mathrm {m A}} = 7 6 8 \Omega
+$$
+
+相应的电路如图3.8.10（b）所示。
+
+# 2.驱动机电性负载
+
+在工程实践中，往往会遇到用各种数字电路来控制机电性系统的功能，如控制电动机的转角和转速，继电器的接通与断开，流体系统中阀门的开通和关闭，自动生产线中的机械手多参数控制等。这些机电系统所需的工作电压和工作电流比较大，即使微型继电器的驱动电流也会在 $10\mathrm{mA}$ 以上。要使这些机电系统正常工作，必须扩大驱动电路的输出电流以提高带负载能力，而且必要时要实现电平转移。
+
+如果负载所需的电流不特别大，例如微型继电器，可以将两个反相器并联后的拉电流作为驱动电流，如图3.8.11所示。二极管D用来钳位电感产生的反电动势。即使封装在同一芯片内的两个反相器的参数也有差别，因此，并联后总的最大负载电流略小于单个门最大负载电流的两倍。
+
+如果负载所需的电流比较大，达到几千瓦安，则需要在数字电路的输出端与负载之间接入一个功率驱动器，称之为外围驱动器。功率驱动器有多种类型，但电路结构一般都具有以下两个特点：一是采用集电极开路输出结构，其输出高电平几乎等于外加电压，通过调节外加电压来满足不同负载对高电平电压的要求；二是驱动电路的输出晶体管具有较强的带负载能力，能提供较大的电流。具体外围驱动器的电路结构可查阅有关数据手册。
+
+图3.8.12所示为达林顿晶体管阵列ULN2003A作为驱动机电性负载的功率驱动器。ULN2003A集成芯片中有7组OC反相器和二极管D组成的电路，这里只用了1组。若需更大的电流也必须将2组并联使用。ULN2003A的输入与TTL或5VCMOS集成电路兼容，输出端可直接用于驱动机电系统，其最大驱动电流为 $500\mathrm{mA}$ ，最高驱动电压为 $50\mathrm{V}$ 。
+
+![](images/bbb4c772f33b0043db648fdb2b92f545fec9db4e39b9ec762f87e60f69892e98.jpg)  
+图3.8.11 用并联逻辑门提高驱动能力
+
+![](images/b0e19993b817709c5953ef2ee2f1471e5bc1f3a989ac268525e0bb96953edaaf.jpg)  
+图3.8.12 用功率驱动器提高驱动能力
+
+# 3.8.3 抗干扰措施
+
+利用逻辑门电路（CMOS或TTL）作具体的电路设计时，还应当注意下列几个实际问题。
+
+# 1. 多余输入端的处理措施
+
+集成逻辑门电路在使用时，一般不让多余的输入端悬空，以防引入干扰信号。对多余输入端的处理以不改变电路工作状态及稳定可靠为原则，如图3.8.13所示。一是将它与其他输入端并接在一起。二是根据逻辑要求，与门或者与非门的多余输入端通过 $1\sim 3\mathrm{k}\Omega$ 电阻接正电源，对CMOS电路可以直接接电源。或门或者或非门的多余输入端接地。对于高速电路的设计，输入端并接会增加等效的电容性负载，而使信号的传输速度下降，最好采用图3.8.13所示的后两种方法。
+
+特别是CMOS电路的多余输入端绝对不能悬空。由于它的输入电阻很大，容易受到静电或工作区域工频电磁场引入电荷的影响，从而破坏电路的正常工作状态。
+
+![](images/d8da53a8e3a3907f76f1b1fe7eb11e2d7023af477495716ab2d51897c5526a5c.jpg)  
+图3.8.13 多余输入端的处理电路
+
+# 2. 去耦合滤波电容
+
+数字电路或数字系统往往由多种逻辑电路构成。它们由一公共的直流电源供电。这种电源是非理想的，一般由整流稳压电路供电，具有一定的内阻抗。当数字电路在高、低状态之间交替变换时，会产生较大的脉冲电流或尖峰电流。当它们流经公共的内阻抗时，必将产生相互影响，甚至使逻辑功能发生错乱。一种常用的处理方法是采用去耦合滤波电容，用 $10\sim 100~\mu \mathrm{F}$ 的大电容器接在直流电源与地之间，滤除干扰信号。除此以外，对于每一集成芯片的电源与地之间接一个 $0.1\mu \mathrm{F}$ 的电容器以滤除开关噪声。
+
+# 3.接地和安装工艺
+
+正确的接地技术对于降低电路噪声是很重要的。方法是将电源地与信号地分开，先将信号地汇集在一点，然后将二者用最短的导线连在一起，以避免含有多种脉冲波形（含尖峰电流）的大电流引到某数字器件的输入端而破坏系统正常的逻辑功能。此外，当系统中同时有模拟和数字两种器件时，同样需将二者的地分别连在一起，然后再选用一个合适共同点接地，以避免二者之间的影响。必要时，也可设计模拟和数字两块电路板，各备直流电源，然后将二者的地恰当地连接在一起。在印制电路板的设计或安装中，要注意连线尽可能短，以减少接线电容产生寄生反馈而引起的寄生振荡。这方面更详细的介绍，可参阅有关文献。某些典型电路应用设计也可参考集成数字电路的数据手册。
+
+# 3.8.4 CMOS通用逻辑电路中的小尺寸逻辑和宽总线系列
+
+CMOS逻辑集成器件从20世纪60年代至今，特别是近20年来，由于制造工艺的不断改进，在提高集成度、缩短传输延迟时间和减小单元电路功耗等方面取得了很大的进步，生产出种类繁多的标准化、系列化的CMOS通用集成电路产品。每一种新的通用集成逻辑器件系列的生产，都是运用新技术对逻辑电路性能进行改进的结果。正如前面介绍的4000系列、HC/HCT系列、AHC/AHCT系列，以及低电压LVC系列、AUC系列和AUP系列等。
+
+根据逻辑功能的特点，可将数字集成芯片分为通用型和专用型两类。中、小规模数字集成芯片都属于通用型集成芯片，它们的通用性很强。由多个不同的通用集成芯片连接起来可以构成各种数字电路或数字系统。通用型集成芯片的逻辑功能是固定的，不能为设计某一特定逻辑电路而改变。芯片内包含的逻辑门数量较少，构成大型逻辑电路时所用芯片种类和数量多、体积大、可靠性差。如果将所设计的数字系统制作在一块半导体芯片上，就构成了具有专门用途的集成芯片，即专用集成电路（ASIC）。ASIC芯片减小了电路的体积、重量和功耗，提高了可靠性。但设计和生产ASIC电路的成本高、周期较长，并且用户不能修改。为此，半导体厂家生产出可编程逻辑器件。
+
+可编程逻辑器件是通用逻辑器件，其逻辑功能可以由用户自己设定。用户通过软件编程可以实现所有通用集成单元电路的功能，也可以满足一般的数字系统设计需要。可编程逻辑器件的应用使得传统通用逻辑芯片失去了市场。
+
+作为大规模可编程逻辑器件的补充或接口电路，小尺寸逻辑（Little Logic）系列应运而生。相比传统通用逻辑芯片，小尺寸逻辑芯片的体积更小。小尺寸逻辑芯片不是用来构成电路或系统，而是用来修改或完善大规模集成芯片之间连线或外围电路的连线。另外，微处理器和计算机的进一步发展，要求性能更优越的总线驱动器件，出现了宽总线（Widebus）系列。实际应用中，各种高速服务器、通信和网络设备也需要不同规格的小尺寸逻辑或宽总线逻辑器件，以满足它们的灵活性要求。因此，小尺寸逻辑和宽总线电路成为通用型逻辑器件的主流器件，但比传统的通用集成电路系列的品种少得多。
+
+# 1. 小尺寸逻辑电路
+
+小尺寸逻辑器件是将1个、2个或3个等少数几个门封装在一个芯片中构成小封装的超小规模集成电路。通常作为大规模集成电路的补充电路，用以完善电路的设计，或作为大规模集成芯片之间的接口电路。
+
+以2输入与非门为例，传统的通用集成电路是将4个门封装在一个芯片中，如图3.8.14所示。小尺寸逻辑电路是将其分解成1个或2个门分别封装，面积分别减少了 $97.3\%$ 和 $95.7\%$ ，如图3.8.15所示。集成芯片的封装技术有许多种类，TSSOP（Thin Shrink Small Outline Package）和Micro QFN（Quad Flat Non-leaded Package）都是表面贴装型封装技术。TSSOP采用表面安装技术，在芯片周围做引脚直接附在PCB板的表面。Micro QFN封装配置有接触电极，无引脚，贴装面积很小。Nano Star使用管芯作为封装，是当前最小的封装。
+
+采用小尺寸逻辑电路可以减小体积，提高工作速度。例如，某电路需要插入一个2输入与非门，当使用传统的通用集成芯片时，就会有3个与非门闲置不用造成浪费。即使需要多个门，如果需要分布在较远的位置，会造成布线困难。小尺寸逻辑芯片不仅大大减少了面积，而且可以降低布线对电路工作性能的影响。
+
+![](images/1da3b5815350d5baf2c1f7e503bf894dcb9463d48809758df425e850cbdd216e.jpg)  
+图3.8.14 传统封装的2输入与非门
+
+![](images/699f1fe0164f3349618468f4ed7ca362442e8ddfae2c418669be2fdd3afa6ab8.jpg)
+
+![](images/82571e4ca04c16d97b09312707e48b0cc415172b515c096646bc0fc90ad817fa.jpg)  
+图3.8.15 小尺寸逻辑封装的2输入与非门
+
+小尺寸逻辑器件有5脚封装、6脚封装和8脚封装的系列芯片等等。图3.8.15所示为2输入与非门的单门和双门封装。单门、双门和三门系列分别以1G、2G和3G表示。逻辑电平转换电路的小尺寸逻辑器件以1T或2T分别表示以1位或2位传输。CMOS通用集成电路AHC/AHCT系列、LVC系列、AUC系列和AUP系列都有小尺寸逻辑产品。对于2输入与非门，传统AUC系列的型号为74AUC00，小尺寸逻辑单门封装的型号为74AUC1G00，双门封装的型号为74AUC2G00。74LVC1T45是小尺寸逻辑封装的1位逻辑电平转换器。
+
+例3.8.2在小逻辑电路中，有一种广泛应用的可配置多功能门(ConfigurableMultiple-FunctionGate)电路74A1P1697，如图3.8.16所示（输入端的3个非门具有施密特特性，施密特电路在第9章介绍，这里可将其视为普通非门进行逻辑功能分析）。通过简单的外部连线就可以实现表3.8.2所示的多种功能，试写出不同输入组合时的输出 $L$ 的表达式。
+
+解：根据电路结构得出其输出与输入的表达式为
+
+$$
+L = I _ {1} I _ {3} + I _ {2} \overline {{I}} _ {3} \tag {3.8.10}
+$$
+
+将每一组输入代入式（3.8.10），化简得：
+
+（1） $L = AC + BC, 2$ 选1数据选择器， $C$ 为控制端， $A, B$ 为数据输入。数据选择器将在第4章介绍。  
+（2） $L = AB$ ，与运算。  
+(3) $L = A + \overline{C},A$ 与 $\overline{C}$ 进行或运算。  
+（4） $L = A + \overline{C} = \overline{A} C,\overline{A}$ 与 $c$ 进行与非运算。  
+(5) $L = B\overline{C},B$ 与 $\overline{C}$ 进行与运算。
+
+(6) $L = \overline{B} + C, \overline{B}$ 与 $C$ 进行或非运算。  
+（7） $L = A + B$ ，或逻辑。  
+（8） $L = \overline{C}$ ，非运算。  
+（9） $L = A$ ，缓冲器
+
+![](images/41a3c5049bbf34c63d1469f12a7e232915ae1ebea2a023beb590583f05d891a3.jpg)  
+图3.8.16 例3.8.2的小尺寸逻辑74AUP1G97内部电路
+
+表 3.8.2 74AUP1G97 实现的逻辑功能  
+
+<table><tr><td rowspan="2">序号</td><td colspan="3">输入连接方式</td><td rowspan="2">功 能</td></tr><tr><td>\( {I}_{1} \)</td><td>\( {I}_{2} \)</td><td>\( {I}_{3} \)</td></tr><tr><td>1</td><td>\( A \)</td><td>\( B \)</td><td>\( C \)</td><td>2 选 1 数据选择器</td></tr><tr><td>2</td><td>\( A \)</td><td>\( B \)</td><td>\( B \)</td><td>2 输入与门</td></tr><tr><td>3</td><td>\( A \)</td><td>\( + {V}_{\mathrm{{DD}}} \)</td><td>\( C \)</td><td>带一个反相输入的 2 输入或门</td></tr><tr><td>4</td><td>\( A \)</td><td>\( + {V}_{\mathrm{{DD}}} \)</td><td>\( C \)</td><td>带一个反相输入的 2 输入与非门</td></tr><tr><td>5</td><td>地</td><td>\( B \)</td><td>\( C \)</td><td>带一个反相输入的 2 输入与门</td></tr><tr><td>6</td><td>地</td><td>\( B \)</td><td>\( C \)</td><td>带一个反相输入的 2 输入或非门</td></tr><tr><td>7</td><td>\( A \)</td><td>\( B \)</td><td>\( A \)</td><td>2 输入或门</td></tr><tr><td>8</td><td>地</td><td>\( + {V}_{\mathrm{{DD}}} \)</td><td>\( C \)</td><td>反相器</td></tr><tr><td>9</td><td>\( A \)</td><td>地</td><td>\( + {V}_{\mathrm{{DD}}} \)</td><td>同相缓冲器</td></tr></table>
+
+# 2. 宽总线电路
+
+随着计算机、网络、信息传输设备和其他电子系统的发展，要求提高电路的集成度，增加数据传输速度，降低功耗，宽总线电路应运而生。它不仅包含CMOS，而且包含TTL和BiCMOS系列的多种产品，其中包括单向和双向总线驱动、多路选择器/分配器、锁存器或触发器等。
+
+宽总线是指将多个相同的单元电路封装在一起，以减少体积、改善电路性能，满足数据总线传输的需求。宽总线驱动器即是将多个三态输出缓冲器（或反相器）集成在一个芯片中。随着总线位数的加宽，出现了8位、16位、32位等集成电路芯片。例如16位总线驱动器74AUC16240集成芯片内部有16个三态输出缓冲器，分成4组。每组由4个高电平使能的三态缓冲器和一个输入低有效的使能控制门构成。组与组之间相互独立，如图3.8.17所示。74AUC16240的功能
+
+表如表3.8.3所示。使用时可根据需要连接成16位、两组8位或其他形式，作为总线的数据接收或传输、存储器地址驱动、时钟驱动等。有些总线驱动电路还带有逻辑电平转换功能，可以作为两种工作电源的接口电路。
+
+表 3.8.3 74AUC16240 的功能表  
+
+<table><tr><td>使能OE</td><td>输入A</td><td>输出Y</td></tr><tr><td>L</td><td>H</td><td>L</td></tr><tr><td>L</td><td>L</td><td>H</td></tr><tr><td>H</td><td>×</td><td>高阻</td></tr></table>
+
+![](images/fc623ab28369b48609694d9c137854051c4c050a240a89f38702a3d9389a7f79.jpg)
+
+![](images/6d5069d57c0f0fa49d4ea4250d9e42819cafe9a1965e481c3acf83a25e433d7b.jpg)
+
+![](images/315a2532cb8cf25a97927fe40ad77b093d607083d86abdf0a4fd0cbc56acb048.jpg)
+
+![](images/b759a64f346f5fdfb94fc449bb870480068179f65b6d3cc02301d8f3dabf340e.jpg)  
+图3.8.17 宽总线74AUC16240逻辑图
+
+# 复习思考题
+
+3.8.1 不同系列逻辑电路相互连接时，需要满足什么条件？  
+3.8.2 当 $3.3\mathrm{V}$ 和 $5\mathrm{V}$ 两种CMOS门电路连到同一数据总线时，需要注意什么问题？  
+3.8.3 3.3VCMOS电路驱动5VCMOS电路时，如何解决高电平参数不兼容问题？  
+3.8.4 当负载所需的电流比较大时，如何增加驱动电流？
+
+3.8.5 为什么CMOS电路的多余输入端绝对不能悬空？  
+3.8.6 什么是通用型集成电路？什么是专用型集成电路？  
+3.8.7 小尺寸逻辑和宽总线电路的特点各是什么？
+
+# 3.9 用 Verilog HDL 描述 CMOS 门电路
+
+用Verilog语言对MOS管构成的数字开关逻辑电路建模，常称为开关级建模，这是Verilog语言提供的最低层次的描述。由于QuartusII软件不支持Verilog语言内置的开关级元件，所以本节介绍的开关级电路模型需用其他的通用仿真器（如ModelSim、ActiveHDL、VerilogXL等）仿真。
+
+# 3.9.1 CMOS门电路的Verilog建模
+
+为了对数字开关逻辑电路建模，Verilog提供了10多个内置的基本开关元件。关键词nmos、pmos分别定义了最基本的NMOS管和PMOS管模型，调用时按照下列格式说明它的三个端口信号。
+
+nmosN1（漏极，源极，控制栅极）；
+
+pmosP1（漏极，源极，控制栅极）；
+
+对NMOS元件，如果控制栅极信号为1，则NMOS开关导通，信号能够从管子的源极传输到漏极，如果控制栅极信号为0，则输出呈现高阻值 $\mathbf{z}$ 。类似地，如果控制栅极信号为0时，PMOS开关导通，否则，PMOS开关的输出呈现高阻值 $\mathbf{z}$ 。由于nmos、pmos是基本元件，故调用名N1、P1可以省略。
+
+关键词rmos、rpmos分别是NMOS管和PMOS管另一种模型，前面的字母r说明MOS管的输入端和输出端之间存在着电阻，当信号从MOS管的输入传输至输出时，信号的幅度会衰减，它们的用法与nmos、pmos元件相同。
+
+Vetilog语言中用关键词supply1、supply0分别定义了电源线和地线。supply1与电路图中的 $V_{\mathrm{DE}}$ 等效，在整个仿真期间将线网置逻辑1；supply0与电路图中的地线或 $V_{\mathrm{SS}}$ 等效，在整个仿真期间将线网置逻辑0。它们的用法如下：
+
+supply1 Vdd;
+
+supply0 GND;
+
+例3.9.1 根据图3.2.17所示电路，用Verilog中开关级建模方法对CMOS与非门电路进行描述。
+
+解：在2输入CMOS与非门中，两个PMOS管并联，且源极都与电源Vdd连接，漏极都与输出L相连，两个管子的栅极分别与输入A、B相连；两个NMOS管串联，有一个公共节点W1，第一个NMOS管的漏极与输出L相连，第二个NMOS管的源极与地线GND相连，两个NMOS管的栅极分别与输入A、B相连。电路的描述代码如下：
+
+```verilog
+input A,B; //输入端口声明  
+output L; //输出端口声明  
+supply1 Vdd;  
+supply0 GND;  
+wire W1; //将两个NMOS管之间的连接点定义为W1  
+pmos(L,Vdd,A); //PMOS管的源极与Vdd相连  
+pmos(L,Vdd,B); //两个PMOS管并行连接  
+nmos(L,W1,A); //两个NMOS管串行连接  
+nmos(W1,GND,B); //NMOS管的源极与地相连  
+endmodule
+```
+
+# 3.9.2 CMOS传输门电路的Verilog建模
+
+Verilog语言中用关键词cmos定义了基本传输门元件模型，它有一个输出端、一个输入端和两个控制端，如图3.2.20(a)所示，习惯上也称之为cmos开关。其用法如下：
+
+cmos C1（输出信号，输入信号， $\mathrm{T}_{\mathrm{N}}$ 管控制信号， $\mathrm{T}_{\mathrm{P}}$ 管控制信号）；
+
+通常 $\mathrm{T_N}$ 管控制信号和 $\mathrm{T_P}$ 管控制信号彼此是互补的，当 $\mathrm{T_N}$ 管控制信号为1， $\mathrm{T_P}$ 管控制信号为0时，CMOS开关导通；如果 $\mathrm{T_N}$ 管控制信号为0， $\mathrm{T_P}$ 管控制信号为1时，CMOS开关的输出呈现出高阻抗值 $z$ 。CMOS开关的电源和地通常与MOS管的衬底相连，故调用cmos元件时，不需要考虑电源与地的连接问题。调用名C1可以省略。
+
+关键词rcmos定义了传输门元件另一种模型，字母r说明传输门元件的输入端和输出端之间存在着电阻，当信号通过时会形成幅度衰减。注意，Verilog语言中定义的两种传输门元件是单向传输信号的，与前面介绍的实际传输门元件存在一定差异。
+
+例3.9.2 根据图3.2.21所示电路，用Verilog中开关级建模方法对由CMOS传输门构成的异或门电路进行描述。
+
+解：程序两次调用在开关级自定义的下层模块 inverter，其调用名为 V1、V2（注意，调用下层模块时，调用名不能省略），完成反相的功能。还调用了两个 cmos 开关元件，它们是 Verilog 内置的基本元件，故调用名可以被省略。
+
+//CMOS传输门构成的异或门（参考图3.2.21）
+
+```txt
+module mymux2tol1(A,B,L); //IEEE 1364—1995 Syntax  
+input A,B; //输入端口声明  
+output L; //输出端口声明  
+wire Anot,Bnot; //声明模块内部的连接线  
+inverterv1(Anot,A); //实例化，调用底层模块 invert  
+inverterv2(Bnot,B);
+```
+
+```txt
+cmos（L，Anot,B，Bnot）://实例化，调用内部开关元件cmos（L,A，Bnot,B）；//（output，input，ncontrol，pcontrol）endmodule 
+```
+
+//CMOS反相器（参考图3.2.12）  
+```verilog
+module inverter(Vo,Vi); //IEEE 1364-1995 Syntax  
+input Vi; //输入端口声明  
+output Vo; //输出端口声明  
+supply1 Vdd;  
+supply0 GND;  
+pmos (Vo,Vdd,Vi); //实例化，调用内部开关元件  
+nmos (Vo,GND,Vi); //（漏极，源极，控制栅极）  
+endmodule
+```
+
+# 小结
+
+- 逻辑门电路是组成各种数字电路的基本单元电路。按照构成门电路元器件的不同，分为MOS型、双极型和混合型。MOS型集成逻辑门有CMOS、NMOS、PMOS，双极型集成逻辑门主要有TTL、ECL，混合型有BiCMOS等。不论哪一种逻辑门电路，作为开关器件的MOS管或BJT管起关键作用。影响它们开关速度的主要因素是器件内部各电极之间的结电容。  
+- CMOS 逻辑门是目前使用最广泛的集成电路，工艺技术的改进使其向着低电压、超低电压和低功耗器件的方向发展。CMOS 电路的优点是集成度高，功耗低，扇出数大，噪声容限大，开关速度快。  
+- CMOS电路的输入和输出具有保护电路和缓冲电路，因此，同一系列不同逻辑功能的电路，具有相同的特性和统一的参数。不同系列的逻辑电路，只要型号最后的数字相同，它们的逻辑功能就一样，但是电气性能参数有所不同。使用时要注意查阅具体的参数。从输出端的结构看，CMOS电路有普通缓冲器输出、漏极开路输出或三态输出电路。  
+- 类NMOS逻辑门电路结构简单，几何尺寸小，易于集成化，在某些特殊应用中更具优势。BiCMOS电路结合了MOS电路和TTL电路的优势，其开关速度较快，功耗亦较低。  
+- CMOS 系列已取代 TTL 系列成为数字电路和系统的首选。在某些特殊场合及 BiCMOS 电路中，可能会用到 TTL 门电路。TTL 门电路由若干 BJT 和电阻组成。输出级采用推拉式结构可以提高开关速度，增强带负载能力。利用肖特基二极管构成抗饱和 TTL 电路，可以提高开关速度。  
+- ECL逻辑门电路是以差分放大电路为基础的，电路中的BJT不工作在饱和区，因而开关速度较快。其缺点是功耗较大，噪声容限低。
+
+- 在逻辑体制中有正、负逻辑的规定，本书主要采用正逻辑体制。逻辑门的等效符号常用于简化电路的分析和设计。  
+- 在逻辑门电路的实际应用中，有可能遇到不同系列门电路之间、门电路与负载之间的接口技术问题，以及抗干扰工艺问题。数字电路设计工作者应能正确分析与解决这些问题。  
+- 用 Verilog 可以对 MOS 管构成逻辑门电路描述,即开关级建模。
+
+# 习题
+
+# 3.1 逻辑门电路简介
+
+3.1.1 按照制造门电路晶体管的不同，集成门电路分为哪几种类型？各种类型的代表是什么？  
+3.1.2 为什么要发展低电压和超低电压CMOS器件？  
+3.1.3 数字逻辑变量可以取什么值？晶体管在数字电路中工作在什么状态？
+
+# 3.2 基本CMOS逻辑门电路
+
+3.2.1 已知图题3.2.1所示各MOS管的 $|V_{\mathrm{F}}| = 0.5\mathrm{~V}$ ，忽略电阻上的压降，试分别确定它们的工作状态（导通或截止）。
+
+![](images/91a882e659ff83523826e14e29dda89448ddbb535cff6db75678396a00b1686c.jpg)  
+(a)
+
+![](images/ceb65f6d64b69e987dc1f56b08c5ba940d5080eae65fcdf1bcf635d0372d9bc2.jpg)  
+(b)
+
+![](images/82b945eac9cbf4821339e456825bcf1f05458e4ff448ed8323f043c25793e7ea.jpg)  
+(c)
+
+![](images/46c0fdd6b975688e430a67b6ba7eab2775665aeaa7d3e214949964fadf175901.jpg)  
+(d)   
+图题3.2.1
+
+3.2.2 一个反相器的输入和输出波形如图题3.2.2所示，试确定：
+
+![](images/f5e6fa1e7e7ffdbfc280a4fccf38f359e08732f2471ee55302859f954a9acd5b.jpg)  
+图题3.2.2
+
+（1）输入信号的周期和频率；（2）输入信号的上升时间 $t_i$ 和下降时间 $t_i$ ；（3）输出由高电平变为低电平的
+
+传输延迟时间 $t_{\mathrm{pH}}$ 和由低电平变为高电平的传输延迟时间 $t_{\mathrm{pLH}}$
+
+3.2.3 为什么说74LVC系列CMOS与非门在 $+3.3\mathrm{V}$ 电源工作时，输入端在以下四种接法下都属于逻辑0（74LVC系列输入、输出电压值参考表3.3.2）：
+
+（1）输入端接地；(2) 输入端接低于 $0.8\mathrm{V}$ 的电源；(3) 输入端接同类与非门的输出低电平 $0.2\mathrm{V}$ ；(4) 输入端到地之间接 $10\mathrm{k}\Omega$ 的电阻。
+
+3.2.4 试分析图题3.2.4所示电路，写出 $L$ 的逻辑表达式。  
+3.2.5 试分析图题3.2.5所示的电路，写出 $L$ 的逻辑表达式，说明它实现什么逻辑功能。
+
+![](images/5cf2796cf96434a3c7ac11d2c073f5925b4318dff50b566630c378acfc54dbe2.jpg)  
+图题3.2.4
+
+![](images/d8264bf5ba671e66b8623d59bdd117ef159b292722799d7e0ec7badb24d77ff0.jpg)  
+图题3.2.5
+
+3.2.6 试画出实现下列逻辑功能的CMOS电路图
+
+(1) $L = \overline{AB + CD}$ (2) $L = (A + B)(C + D)$
+
+3.2.7 CMOS电路如图1-4007中包含两个互补对和一个反相器，如图题3.2.2.7所示，试分别连接：（1）三个反相器；（2）3输入端或非门；（3）3输入端与非门；（4）或与非门 $[L = \overline{C(A + B)}]$ ；（5）传输门（一个非门控制两个传输门分时传送）。
+
+![](images/4912d7cdb0329efacf0225f15dbdb0ada51e3b4446e3ad999958d977df387cef.jpg)
+
+![](images/1dfc41ecedc9c3ec4369f2433faebcaa99aa266bfd0735cd0e9df126af11a40d.jpg)
+
+![](images/c7743154fa867c8003078c985e54db2cb4f448b44d8b25f11cc3fe1668f34df2.jpg)  
+图题3.2.7
+
+3.2.8 试分析图题3.2.8所示CMOS门电路，写出 $L$ 的逻辑表达式，说明它实现什么逻辑功能。  
+3.2.9 试用两个传输门和两个反相器实现同或逻辑功能，并画出逻辑电路。  
+3.2.10 由CMOS传输门构成的电路如图题3.2.10所示，CS为控制端，A、B为输入，L为输出，试列出其真
+
+值表，说明该电路的逻辑功能。
+
+![](images/b7dec338fd9e39834bfaffeda5ef634098eaca9447191e11c6031dc957cd7840.jpg)  
+图题3.2.8
+
+![](images/8ca1f12b088acf9585e9da549202248819780b16fd6ebd55588e068a30b36ea7.jpg)  
+图题3.2.10
+
+# 3.3 CMOS逻辑门电路的不同输出结构及参数
+
+3.3.1在漏极开路门电路中，输出上拉电阻值的大小对逻辑门有什么影响？  
+3.3.2 试判断下列哪些 CMOS 门可以将输出端并接使用：（1）逻辑的互补输出；（2）漏极开路输出；（3）三态输出。  
+3.3.3 试用普通反相器和OD输出反相器实现下列表达式，并画出逻辑电路图。
+
+（1） $L = A\overline{BC};(2)L = AB\overline{C}\overline{D}$
+
+3.3.4 用74HC03中2个漏极开路与非门及74HC00中的4个与非门构成的电路如图题3.3.4所示。试确定上拉电阻 $R_{\mathrm{p}}$ 的取值范围。已知 $V_{\mathrm{DD}} = 5\mathrm{V}$ ，OD门输出低电平 $V_{\mathrm{OL(max)}} = 0.33\mathrm{V}$ 时的输出电流 $I_{\mathrm{DL(max)}} = 4\mathrm{mA}$ ，输出高电平 $V_{\mathrm{OH(min)}} = 4.4\mathrm{V}$ 时的漏电流 $I_{\mathrm{DP}} = 5\mu \mathrm{A}$ 。负载门高电平和低电平输入电流最大值 $I_{\mathrm{HR(max)}} = I_{\mathrm{IL(max)}} = 1\mu \mathrm{A}$ 。  
+3.3.5 用74HC03中一个漏极开路与非门和74LS00中一个TTL与非门实现图题3.3.5所示的电路，试写出输出与输入的逻辑关系式，并计算 $R_{\mathrm{p(min)}}$ 和 $R_{\mathrm{p(max)}}$ 。已知驱动门输出低电平 $V_{\mathrm{OL(max)}} = 0.33\mathrm{V}$ 时的最大电流 $I_{\mathrm{OL(max)}} = 4\mathrm{mA}$ ，输出高电平 $V_{\mathrm{OH(min)}} = 4.4\mathrm{V}$ 时的漏电流 $I_{\mathrm{OZ}} = 5\mu \mathrm{A}$ 。负载门高电平和低电平输入电流分别为 $I_{\mathrm{IH}} = 0.02\mathrm{mA}, I_{\mathrm{IL}} = 0.4\mathrm{mA}$ 。
+
+![](images/860194b24bea5b68d22fec9a89e68dec1fdf49cff18eb231f13a70cff1d0dcb1.jpg)  
+图题3.3.4
+
+![](images/255c6d56143aa05ba569800ef151b021471863b34e429fde51498acff7ad8a02.jpg)  
+图题3.3.5
+
+3.3.6 由OD异或门和OD与非门构成的电路及输入电压波形如图题3.3.6所示。
+
+（1）试写出输出与输入的逻辑关系式，画出输出电压波形。  
+（2）已知输出低电平 $V_{\mathrm{DD(max)}} = 0.33 \mathrm{~V}$ 时的最大输出电流 $I_{\mathrm{DD(max)}} = 4 \mathrm{~mA}$ ，输出高电平 $V_{\mathrm{DHT(min)}} = 4.4 \mathrm{~V}$ 时的漏电流 $I_{\mathrm{DD}} = 5 \mu \mathrm{A}$ ，计算 $R_{\mathrm{D(Tmin)}}$ 和 $R_{\mathrm{D(Tmax)}}$
+
+![](images/1d60c27e76a04afdde7da43eb6adde77a02b656bbf13ebb2ed4960f9faf7c155.jpg)  
+(a)
+
+![](images/5aafad230d7525ad96f1c1fc3812265f66d5b6b23e6ec77e01cd30b2af2625b9.jpg)  
+(b)   
+图题3.3.6
+
+3.3.7 试分析图题3.3.7所示的CMOS电路，说明它们的逻辑功能。
+
+![](images/2ab012eacd4066db3e270b9284ca9270d58e1f85269a1d9c461f91dd8b7b0ea2.jpg)  
+(a)
+
+![](images/72a07dd2d60a6b58ad3f28da7d2171c91750945b1981e006bbd3657b3e071d6c.jpg)  
+(b)
+
+![](images/37ee77f07219234a23c2fe77db45a2281747c90c05286617d39451b3eccf5183.jpg)  
+(c)
+
+![](images/2622168585a9a8bf0c54c5642967f2cfa1927e7d7c7e64b074e9c8d5f79fd364.jpg)  
+(d)   
+图题3.3.7
+
+3.3.8 图题 3.3.8 表示三态门用于总线传输的示意图, 图中 $n$ 个三态门的输出连接到数据传输总线, $D_{1}$ 、 $D_{2}$ 、…、 $D_{n}$ 为数据输入端, $EN_{1}, EN_{2}, \dots, EN_{n}$ 为使能信号输入端。试问: (1) 如何控制 EN 信号, 以便数据 $D_{1}$ 、 $D_{2}$ 、…、 $D_{n}$ 能通过该总线进行正常传输? (2) EN 信号能否有两个或两个以上同时有效? 如果 EN 出现两个或两个以上有效, 可能发生什么情况? (3) 如果所有 EN 信号均无效, 总线处在什么状态? (4) 如果三态门的开通比断开要快, 可能发生什么情况?
+
+3.3.9三态门与总线的连接方式如图题3.3.9所示，试分析电路的逻辑功能。
+
+![](images/318008f098f6313a86a58c6b1ed5a2eef82427d7b5d8ebc9434bf04e566a2f37.jpg)  
+图题3.3.8
+
+![](images/6278b4dc8ace2f3babff56853feda3ace2c470651866f9f45eb0b5af1ab7060a.jpg)  
+图题3.3.9
+
+3.3.10 根据表题3.3.10所列的三种逻辑门电路的技术参数，试选择一种最适合工作在高噪声环境下的门电路。
+
+表题3.3.10 逻辑门电路的技术参数表  
+
+<table><tr><td></td><td>\( {V}_{\mathrm{{OH}}\left( \min \right) }/\mathrm{V} \)</td><td>\( {\dot{V}}_{\mathrm{{OL}}\left( \max \right) }/\mathrm{V} \)</td><td>\( {V}_{\mathrm{{IR}}\left( \min \right) }/\mathrm{V} \)</td><td>\( {V}_{\mathrm{{IL}}\left( \max \right) }/\mathrm{V} \)</td></tr><tr><td>逻辑门 \( \mathrm{A} \)</td><td>2.4</td><td>0.4</td><td>2</td><td>0.8</td></tr><tr><td>逻辑门 \( \mathrm{B} \)</td><td>1.5</td><td>0.2</td><td>2.5</td><td>0.6</td></tr><tr><td>逻辑门 \( \mathrm{C} \)</td><td>4. 2</td><td>0.2</td><td>3.2</td><td>0.8</td></tr></table>
+
+3.3.11 $\mathrm{COS}$ 反相器的负载电容 $C_{\mathrm{L}} = 100\mathrm{pF}$ ，功耗电容 $C_{\mathrm{FP}} = 15\mathrm{pF}$ ，电源电压 $V_{\mathrm{H0}} = 3.3\mathrm{~V}$ ，输入矩形波的频率为 $1\mathrm{MHz}$ ，试计算反相器的动态功耗。  
+3.3.12当74HC系列CMOS电路的电源电压由5V降至3.3V，其功耗下降了百分之多少？  
+3.3.13 根据表题 3.3.13 所列的三种逻辑门电路的技术参数，计算出它们的延时-功耗积，并指出哪一种逻辑门的性能最好。
+
+表题3.3.13 逻辑门电路的技术参数表  
+
+<table><tr><td></td><td>\( {t}_{\mathrm{{pLH}}}/\mathrm{{ns}} \)</td><td>\( {t}_{\mathrm{{pHL}}}/\mathrm{{ns}} \)</td><td>\( {P}_{\mathrm{B}}/\mathrm{{mW}} \)</td></tr><tr><td>逻辑门 \( \mathrm{A} \)</td><td>1</td><td>1.2</td><td>16</td></tr><tr><td>逻辑门 \( \mathrm{B} \)</td><td>5</td><td>6</td><td>8</td></tr><tr><td>逻辑门 \( \mathrm{C} \)</td><td>10</td><td>10</td><td>1</td></tr></table>
+
+3.3.14 根据表3.3.4和表3.5.1所示的电流值，求下列情况下逻辑门的扇出数：（1）74LVC门驱动同类门（2）74AHCT门驱动74ALS门。
+
+# 3.4 类NMOS和BiCMOS逻辑门电路
+
+3.4.1 写出图题3.4.1所示电路的逻辑表达式  
+3.4.2 写出图题3.4.2所示电路的逻辑表达式
+
+![](images/46023b2bab25b747f6d27c7d9107ef3a3f025decd20ab943e3b79898330babb6.jpg)  
+图题3.4.1
+
+![](images/e2230d08220814c2eab7667019658f6e16ec1ac7ce5f64360ef8f92792cd04f6.jpg)  
+图题3.4.2
+
+3.4.3 图题3.4.3所示为2输入端BICMOS与非门电路，试分析该电路是怎样实现与非逻辑关系（ $L = \overline{A\cdot B}$ ）的。
+
+3.4.4 分析图题3.4.4所示电路的工作原理，写出 $L$ 的逻辑表达式。
+
+![](images/eeee0875d430643398ca5e64082337a0a5eaabb883c37e33dacfbfc88e19f301.jpg)  
+图题3.4.3
+
+![](images/d0975850490683c8d1a51d5f530f71e58a6f79d3ddbaa040fdda08b71539a5ca.jpg)  
+图题3.4.4
+
+# 3.5 TTL逻辑门电路
+
+3.5.1 由BJT构成的反相器如图题3.5.1所示， $V_{\mathrm{CC}} = +5 \mathrm{~V}, V_{\mathrm{BE}} = 0.7 \mathrm{~V}, \beta = 100$ 。当输入 $v_{1}$ 为 $5 \mathrm{~V}$ 时，输出为 $0.2 \mathrm{~V}$ ，试计算 $R_{\mathrm{b}} / R_{\mathrm{v}}$ 的最大比值。
+
+3.5.2 为什么说TTL与非门的输入端在以下四种接法下，都属于逻辑1：
+
+（1）输入端悬空；（2）输入端接高于 $2\mathrm{V}$ 的电源；（3）输入端接同类与非门的输出高电平 $3.6\mathrm{V}$ ；（4）输入端到地之间接 $10\mathrm{k}\Omega$ 的电阻。  
+3.5.3 设有一个74LS04反相器驱动两个74ALS04反相器和4个74LS04反相器。（1）驱动门是否超载？（2）若超载，试提出改进方案；若未超载，则还可增加几个74LS04门？（器件参数参考表3.5.1）。  
+3.5.4 图题3.5.4所示为集电极开路门驱动4个TTL逻辑门。已知OC门输出管截止时的漏电流 $I_{\mathrm{LO}} = 0.1 \mathrm{~mA}$ ，输出低电平 $V_{\mathrm{OL(max)}} = 0.5 \mathrm{~V}$ 时的输出电流 $I_{\mathrm{OL(max)}} = 8 \mathrm{~mA}$ ，负载门的电流参数为： $I_{\mathrm{IL}} = 0.5 \mu \mathrm{A}$ ， $I_{\mathrm{IH}} = 0.02 \mu \mathrm{A}$ ，要求输出高电平 $V_{\mathrm{OH}} \geqslant 3 \mathrm{~V}$ ，试计算上拉电阻 $R_{\mathrm{L}}$ 的值。
+
+![](images/a4dfd5f981533256cd422783c15f583b69c8d158670b1af2f4dc43e1ad4cd488.jpg)  
+图题3.5.1
+
+![](images/edc2c3fb54347c6b7d848383d977f874fd11f55d8175980722cc66fa89642513.jpg)  
+图题3.5.4
+
+3.5.5将题3.5.4中的负载门全部改成2输入或非门，其他参数不变，重新计算上拉电阻 $R_{\mathrm{p}}$ 的值。  
+3.6 ECL逻辑门电路  
+3.6.1 某ECL门电路在 $25^{\circ}C$ 时的参数为： $V_{\mathrm{IL(max)}} = -1.475\mathrm{~V}, V_{\mathrm{IH(min)}} = -1.105\mathrm{~V}, V_{\mathrm{OE(max)}} = -1.630\mathrm{~V},$ $V_{\mathrm{OH(min)}} = -0.980\mathrm{~V}$ ，计算其噪声容限。  
+3.7 逻辑描述中的几个问题  
+3.7.1 试对图题3.7.1所示电路的逻辑门进行变换，使其可以用单一的或非门实现。  
+3.7.2 电路如图题3.7.2所示，试用与非门实现
+
+![](images/aac4e3368d2461c2abb503fd709ee4788381478cbfb47ac4131e21052a53cad4.jpg)  
+图题3.7.1
+
+![](images/35d62e7f249a695cdbb4f6875a68a0952284209ef9e96b4417b5b7652fb39f76.jpg)  
+图题3.7.2
+
+3.8 逻辑门电路使用中的几个实际问题
+
+3.8.1当供电电源不同的两种门电路相互连接时，要考虑哪些电压和电流参数？这些参数应满足怎样的
+
+关系？
+
+3.8.2 若只考虑逻辑电平的兼容性，根据表3.3.4所示的参数值，当用5V供电的74AHCO0驱动3V供电的74LVC00时，是否需要接口？计算其扇出数。当用74LVC00驱动74AHCO0时，是否需要接口？
+
+3.8.3根据图3.8.1所示的逻辑电平值，计算 $3.3\mathrm{V}$ CMOS系列驱动5V TTL系列的高、低电平噪声容限（假设3.3VCMOS系列能承受5V电压）。
+
+3.8.4 根据图3.8.1所示的逻辑电平值，分别计算3.3VCMOS系列驱动2.5VCMOS系列或2.5VCMOS系列驱动3.3VCMOS系列的高、低电平噪声容限（假设2.5VCMOS系列输入输出均能承受3.3V电压）。
+
+3.8.5根据图3.8.1所示的逻辑电平值，分别计算 $3.3\mathrm{V}$ 或 $2.5\mathrm{V}$ CMOS系列驱动 $1.8\mathrm{VCMOS}$ 系列的高、低电平噪声容限（假设 $1.8\mathrm{VCMOS}$ 输入系列可承受 $3.3\mathrm{V}$ 电压）。
+
+3.8.6 复习一下 CMOS 门的输出电路。若 CMOS 的输出级超载时，电路会出现什么现象？用什么仪器进行判断？
+
+3.8.7根据表3.3.4和表3.5.1所示参数，判断用74LS系列TTL电路去驱动74HC系列CMOS电路时，试简述其设计思路，判断是否需要接口电路，计算其扇出数，并对接口电路就开关速度和功耗两方面作出评价（设用一个74LS逻辑门作为驱动器件，并且它输出高电平时的漏电流为 $0.2\mathrm{mA}$ ）。
+
+3.8.8 当用74ALS系列TTL去驱动74HC系列CMOS时，重复
+
+3.8.9 图题3.8.9所示为集电极开路门74LS03驱动5个CMOS逻辑门。已知OC门输出管截止时的漏电流 $I_{\mathrm{OL}} = 0.2 \mu \mathrm{A}$ ；负载门的参数为： $V_{\mathrm{H(on - in)}} = 4 \mathrm{~V}, V_{\mathrm{L(H - max)}} = 1 \mathrm{~V}, I_{\mathrm{IH}} = I_{\mathrm{IH}} = 1 \mu \mathrm{A}$ 。试计算上拉电阻的值。
+
+3.8.10 根据表3.3.4和表3.5.1所示参数图74HC系列CMOS去驱动74LS系列TTL门电路时，试简述其设计思路，指出是否需要加接口电路，并就开关速度和功耗两方面对接口电路进行评价。
+
+![](images/7c907b48434237e742faf82ffc693d283b9084432180ae2082195c0950b86325.jpg)  
+图题3.8.9
+
+3.8.11 当用74HC系列MOS驱动ALS系列TTL时，重复题3.8.10。
+
+3.8.12 设计一个二次绕管(LED)驱动电路，设LED的参数为 $V_{\mathrm{f}} = 2.5\mathrm{~V},I_{\mathrm{D}} = 4.5\mathrm{~m}$ ，则 $I_{\mathrm{D}} = V_{\mathrm{f}} = 5\mathrm{~V}$ ，当LED发光时，电路的输出为低电平，选用集成门电路的视图，并画出电路图。
+
+3.8.13 由CMOS门构成的电路如图题3.8.13所示，试对多余输入端进行处理，并写出 $L$ 的逻辑表达式。
+
+3.8.14 由TTL门构成的电路如图题3.8.13时，重复题3.8.13。
+
+![](images/d75bb28ae8acd3dc4c0965cdf81af496747b5bbeebe78f646256b45b7a921e24.jpg)  
+(a)
+
+![](images/8392d92f23c0b12cfcbdc74071a53afd934745fb4df2993f429b59c8d035a502.jpg)  
+(b)   
+图题3.8.13
+
+3.8.15 可配置多功能门电路74LVC1G57的内部结构如图题3.8.15所示（输入端的3个非门具有施密特特性，施密特电路在第9章介绍，这里可将其视为普通非门进行逻辑功能分析）。根据需要将 $I_{1}, I_{2}, I_{3}$ 接输入变
+
+量、地或 $+V_{\mathrm{CC}}$ 就可以实现不同逻辑功能，试确定输入端的连接方式以便分别实现：（1） $L = AB$ ；（2） $L = \overline{A + B}$ （3） $L = AB + \overline{A} B$
+
+![](images/b6ba87e176167fcf9b1179fa66e48c33b81bb21796fbd30c678fd6abe8a1667a.jpg)  
+图题3.8.15
+
+# 3.9 用VerilogHDL描述CMOS门电路
+
+3.9.1 试用 Verilog 提供的基本开关元件对图 3.2.18 所示的或非门电路进行描述。  
+3.9.2 试用 Verilog 提供的基本开关元件对图 3.2.19 所示的异或门电路进行描述
