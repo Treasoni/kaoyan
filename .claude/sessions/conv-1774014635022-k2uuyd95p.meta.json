@@ -3,9 +3,10 @@
   "title": "Activate kaoyan-english vocabulary learning skill",
   "titleGenerationStatus": "success",
   "createdAt": 1774014635022,
-  "updatedAt": 1774015388384,
-  "lastResponseAt": 1774015388383,
-  "sessionId": null,
+  "updatedAt": 1774023325635,
+  "lastResponseAt": 1774023321082,
+  "sessionId": "e6aca62c-6c6a-49d1-8558-4d680f91719e",
+  "sdkSessionId": "e6aca62c-6c6a-49d1-8558-4d680f91719e",
   "currentNote": "考研英语/英语单词/2026-3-20.md",
   "enabledMcpServers": [
     "web-reader",
