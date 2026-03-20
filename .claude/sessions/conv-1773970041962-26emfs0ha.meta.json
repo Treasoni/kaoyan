@@ -3,6 +3,18 @@
   "title": "Parse highlighted words from article",
   "titleGenerationStatus": "success",
   "createdAt": 1773970041962,
-  "updatedAt": 1773970046242,
-  "sessionId": null
+  "updatedAt": 1773970135993,
+  "lastResponseAt": 1773970135993,
+  "sessionId": "cb4e4a49-93a6-4857-9d02-7091740191ce",
+  "sdkSessionId": "cb4e4a49-93a6-4857-9d02-7091740191ce",
+  "currentNote": "考研英语/📰 真题语境文章/Day-020-2026-03-19.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
