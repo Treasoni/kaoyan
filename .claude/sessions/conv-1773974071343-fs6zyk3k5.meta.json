@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773974071343-fs6zyk3k5",
+  "title": "Explain Taylor expansion uniqueness",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773974071343,
+  "updatedAt": 1773975034414,
+  "lastResponseAt": 1773975034414,
+  "sessionId": "a2694bb5-94fc-467a-b1e8-2833df2676fd",
+  "sdkSessionId": "a2694bb5-94fc-467a-b1e8-2833df2676fd",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/10-高阶导数/泰勒展开式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
