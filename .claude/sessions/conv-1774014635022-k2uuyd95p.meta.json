@@ -3,6 +3,23 @@
   "title": "Activate kaoyan-english vocabulary learning skill",
   "titleGenerationStatus": "success",
   "createdAt": 1774014635022,
-  "updatedAt": 1774014638560,
-  "sessionId": null
+  "updatedAt": 1774014738948,
+  "lastResponseAt": 1774014738948,
+  "sessionId": null,
+  "currentNote": "考研英语/英语单词/2026-3-20.md",
+  "enabledMcpServers": [
+    "web-reader",
+    "web-search-prime",
+    "zai-mcp-server",
+    "time"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
