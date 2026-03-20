@@ -3,6 +3,18 @@
   "title": "Analyze derivative limit with differential",
   "titleGenerationStatus": "success",
   "createdAt": 1774006983663,
-  "updatedAt": 1774007016648,
-  "sessionId": null
+  "updatedAt": 1774008934966,
+  "lastResponseAt": 1774008934966,
+  "sessionId": "8f36dad1-f35f-4754-b450-3b4bc5dee002",
+  "sdkSessionId": "8f36dad1-f35f-4754-b450-3b4bc5dee002",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
