@@ -3,6 +3,18 @@
   "title": "Prove differentiability and compute derivative ...",
   "titleGenerationStatus": "success",
   "createdAt": 1774000744689,
-  "updatedAt": 1774000748869,
-  "sessionId": null
+  "updatedAt": 1774004296381,
+  "lastResponseAt": 1774000984121,
+  "sessionId": "205bf659-a1dd-470f-8a98-de225f069919",
+  "sdkSessionId": "205bf659-a1dd-470f-8a98-de225f069919",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
