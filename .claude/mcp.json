@@ -63,9 +63,10 @@
         "browsermcp:",
         "{",
         "command:",
-        "npx,",
+        "/opt/homebrew/bin/npx,",
         "args:",
-        "[@browsermcp/mcp@latest]",
+        "[-y,",
+        "@browsermcp/mcp@latest]",
         "}",
         "}",
         "}"
