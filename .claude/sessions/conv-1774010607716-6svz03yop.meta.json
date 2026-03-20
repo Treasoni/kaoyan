@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774010607716-6svz03yop",
+  "title": "Prove Boolean algebra absorption law A+BC=(A+B)...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774010607717,
+  "updatedAt": 1774010746324,
+  "lastResponseAt": 1774010746324,
+  "sessionId": "adc3df03-1fe4-4cde-a53e-fce2d867213a",
+  "sdkSessionId": "adc3df03-1fe4-4cde-a53e-fce2d867213a",
+  "currentNote": "考研专业课/数字电子技术/1-数字与码制/03-逻辑代数基础.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
