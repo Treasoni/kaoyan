@@ -3,8 +3,17 @@
   "title": "Generate mindmap for calculus derivatives module",
   "titleGenerationStatus": "success",
   "createdAt": 1773976015984,
-  "updatedAt": 1773976135814,
-  "lastResponseAt": 1773976024331,
+  "updatedAt": 1773976584182,
+  "lastResponseAt": 1773976584182,
   "sessionId": null,
-  "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/📝 章节总结.md"
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/📝 章节总结.md",
+  "usage": {
+    "model": "GLM-5-Turbo",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
