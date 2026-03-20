@@ -1,0 +1,20 @@
+{
+  "id": "conv-1773972635640-3jv5c43zy",
+  "title": "Explain how to calculate binomial coefficients ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1773972635641,
+  "updatedAt": 1773972874676,
+  "lastResponseAt": 1773972874676,
+  "sessionId": "ea507df4-085a-4e01-92c0-2e2a4923c237",
+  "sdkSessionId": "ea507df4-085a-4e01-92c0-2e2a4923c237",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/10-高阶导数/莱布尼茨公式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
