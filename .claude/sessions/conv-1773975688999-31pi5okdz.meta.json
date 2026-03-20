@@ -3,18 +3,18 @@
   "title": "Summarize 一元微分学计算 chapter notes",
   "titleGenerationStatus": "success",
   "createdAt": 1773975689000,
-  "updatedAt": 1773975861621,
-  "lastResponseAt": 1773975861621,
+  "updatedAt": 1773976103641,
+  "lastResponseAt": 1773976103641,
   "sessionId": "1e091ce2-8d08-4d35-98db-cbf2cc7fa99e",
   "sdkSessionId": "1e091ce2-8d08-4d35-98db-cbf2cc7fa99e",
   "currentNote": "考研数学/高数-一元微分学/一元微分学的计算/10-高阶导数/泰勒展开式.md",
   "usage": {
     "model": "GLM-5-Turbo",
-    "inputTokens": 3165,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 58816,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 61981,
-    "percentage": 31
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
