@@ -1,0 +1,24 @@
+{
+  "id": "conv-1774101175740-q0cgu9ndz",
+  "title": "Generate daily study plan for English",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774101175740,
+  "updatedAt": 1774101457650,
+  "lastResponseAt": 1774101457650,
+  "sessionId": "ecac2667-4b82-4001-9ae4-567ddfad66de",
+  "sdkSessionId": "ecac2667-4b82-4001-9ae4-567ddfad66de",
+  "currentNote": "考研计划/每日计划/2026-03-21-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem",
+    "time"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
