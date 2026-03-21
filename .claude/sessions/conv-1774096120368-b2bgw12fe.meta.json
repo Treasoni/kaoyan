@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774096120368-b2bgw12fe",
+  "title": "Explain absorption law proof in Boolean algebra",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774096120369,
+  "updatedAt": 1774096141635,
+  "lastResponseAt": 1774096141635,
+  "sessionId": "0cfef7cf-9873-4f7f-ae5c-1300aac6b833",
+  "sdkSessionId": "0cfef7cf-9873-4f7f-ae5c-1300aac6b833",
+  "currentNote": "考研专业课/数字电子技术/2-逻辑代数与硬件描述语言基础/01-逻辑代数基本定律与规则.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 29396,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 29396,
+    "percentage": 15
+  }
+}
