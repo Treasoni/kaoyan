@@ -3,8 +3,8 @@
   "title": "Sync learning progress to MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1774109637853,
-  "updatedAt": 1774109835168,
-  "lastResponseAt": 1774109835168,
+  "updatedAt": 1774110624400,
+  "lastResponseAt": 1774110624400,
   "sessionId": "b0a69e87-4017-476e-b12b-9647d89581a2",
   "sdkSessionId": "b0a69e87-4017-476e-b12b-9647d89581a2",
   "currentNote": "考研英语/英语单词/2026-3-21.md",
@@ -12,12 +12,12 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-5",
-    "inputTokens": 3,
+    "model": "glm-4.7",
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 53504,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 53507,
-    "percentage": 27
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
