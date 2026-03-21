@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774056167011-chzmomu99",
+  "title": "Fix markdown table formatting with LaTeX pipe c...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774056167011,
+  "updatedAt": 1774056222355,
+  "lastResponseAt": 1774056222355,
+  "sessionId": "6eefe014-ccd1-407e-b34f-8f3c0f131ebb",
+  "sdkSessionId": "6eefe014-ccd1-407e-b34f-8f3c0f131ebb",
+  "currentNote": "考研英语/📊 词汇统计/Statistics-Day-021-2026-03-20.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

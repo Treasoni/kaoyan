@@ -59,8 +59,8 @@ tags: [统计, 考研英语, Day-021, 词族, 僻义]
 | 单词 | 核心含义 | 考研考点 |
 |------|---------|---------|
 | resolution | 决心/解决/分辨率 | 分辨率（科技类）；conflict resolution |
-| resign | 辞职/顺从 | **僻义**：resign oneself to 顺从 |
-| resident | 居民/住院医生 | **僻义**：住院医生 |
+| resign | 辞职/顺从 | 僻义：resign oneself to 顺从 |
+| resident | 居民/住院医生 | 僻义：住院医生 |
 | represent | 代表 | represent sb's interests |
 | reproduce | 复制/繁殖 | reproduce results 复现结果 |
 
@@ -91,7 +91,7 @@ tags: [统计, 考研英语, Day-021, 词族, 僻义]
 **重点单词**：
 | 单词 | 核心含义 | 考研考点 |
 |------|---------|---------|
-| spectrum | 光谱/范围 | **僻义**：political spectrum 政治光谱 |
+| spectrum | 光谱/范围 | 僻义：political spectrum 政治光谱 |
 | spectator | 观众 | spectator sport 观赏性运动 |
 | spectacle | 景象/奇观 | make a spectacle of oneself 出洋相 |
 | specimen | 标本/样本 | biological specimen |
@@ -105,16 +105,16 @@ tags: [统计, 考研英语, Day-021, 词族, 僻义]
 > [!warning] 重点提醒
 > 以下单词在考研中常考僻义，需特别注意！
 
-| 单词 | 常见义 | **僻义（考研重点）** | 例句 |
+| 单词 | 常见义 | 僻义（考研重点） | 例句 |
 |------|--------|---------------------|------|
-| **spectrum** | 光谱 | 范围 | the political spectrum of opinions |
-| **resolution** | 决心 | 分辨率；解决 | high resolution images |
-| **resign** | 辞职 | 顺从（resign oneself to）| He resigned himself to fate. |
-| **resident** | 居民 | 住院医生 | a resident physician |
-| **reservoir** | 水库 | 储备；病原体宿主 | a reservoir of talent |
-| **dictate** | 口述 | 支配；决定 | market forces dictate prices |
-| **commute** | 通勤 | 减刑 | commute a death sentence to life imprisonment |
-| **blunt** | 钝的 | 直言不讳的 | To be blunt, I disagree. |
+| spectrum | 光谱 | 范围 | the political spectrum of opinions |
+| resolution | 决心 | 分辨率；解决 | high resolution images |
+| resign | 辞职 | 顺从（resign oneself to）| He resigned himself to fate. |
+| resident | 居民 | 住院医生 | a resident physician |
+| reservoir | 水库 | 储备；病原体宿主 | a reservoir of talent |
+| dictate | 口述 | 支配；决定 | market forces dictate prices |
+| commute | 通勤 | 减刑 | commute a death sentence to life imprisonment |
+| blunt | 钝的 | 直言不讳的 | To be blunt, I disagree. |
 
 ---
 
@@ -127,46 +127,46 @@ tags: [统计, 考研英语, Day-021, 词族, 僻义]
 
 | 单词 | 用法 | 例句 |
 |------|------|------|
-| **envisage** | 设想 | I envisage a future where... |
-| **represent** | 代表 | This represents a significant change. |
-| **resolve** | 解决 | We must resolve this conflict. |
-| **blunt** | 直言不讳的 | To be blunt, the plan is flawed. |
+| envisage | 设想 | I envisage a future where... |
+| represent | 代表 | This represents a significant change. |
+| resolve | 解决 | We must resolve this conflict. |
+| blunt | 直言不讳的 | To be blunt, the plan is flawed. |
 
 ### 表达"变化/趋势"
 
 | 单词 | 用法 | 例句 |
 |------|------|------|
-| **fluctuate** | 波动 | Prices fluctuate seasonally. |
-| **commence** | 开始 | The project commenced last month. |
-| **blossom** | 发展 | The industry has blossomed. |
-| **migrate** | 迁移 | People migrate to cities for jobs. |
+| fluctuate | 波动 | Prices fluctuate seasonally. |
+| commence | 开始 | The project commenced last month. |
+| blossom | 发展 | The industry has blossomed. |
+| migrate | 迁移 | People migrate to cities for jobs. |
 
 ### 表达"程度/范围"
 
 | 单词 | 用法 | 例句 |
 |------|------|------|
-| **equivalent** | 相等的 | This is equivalent to saying... |
-| **notable** | 值得注意的 | It is notable that... |
-| **commonplace** | 普遍的 | Smartphones are now commonplace. |
-| **spectrum** | 范围 | across the political spectrum |
+| equivalent | 相等的 | This is equivalent to saying... |
+| notable | 值得注意的 | It is notable that... |
+| commonplace | 普遍的 | Smartphones are now commonplace. |
+| spectrum | 范围 | across the political spectrum |
 
 ### 表达"评价/情感"
 
 | 单词 | 用法 | 例句 |
 |------|------|------|
-| **notorious** | 臭名昭著的 | The company is notorious for... |
-| **dignity** | 尊严 | maintain one's dignity |
-| **envy** | 羡慕 | the envy of the world |
-| **sorrow** | 悲伤 | express deep sorrow for... |
+| notorious | 臭名昭著的 | The company is notorious for... |
+| dignity | 尊严 | maintain one's dignity |
+| envy | 羡慕 | the envy of the world |
+| sorrow | 悲伤 | express deep sorrow for... |
 
 ### 表达"影响/作用"
 
 | 单词 | 用法 | 例句 |
 |------|------|------|
-| **dictate** | 决定/支配 | Economic factors dictate... |
-| **spark** | 引发 | spark a debate/controversy |
-| **flood** | 大量涌入 | Applications flooded in. |
-| **reproduce** | 复制 | reproduce the results |
+| dictate | 决定/支配 | Economic factors dictate... |
+| spark | 引发 | spark a debate/controversy |
+| flood | 大量涌入 | Applications flooded in. |
+| reproduce | 复制 | reproduce the results |
 
 ---
 
