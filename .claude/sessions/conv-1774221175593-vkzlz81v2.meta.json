@@ -1,0 +1,22 @@
+{
+  "id": "conv-1774221175593-vkzlz81v2",
+  "title": "Generate today's study plan with 6 tasks",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774221175593,
+  "updatedAt": 1774221214768,
+  "lastResponseAt": 1774221214768,
+  "sessionId": "6cb57baa-0959-4152-bdd5-7e84a0edb432",
+  "sdkSessionId": "6cb57baa-0959-4152-bdd5-7e84a0edb432",
+  "enabledMcpServers": [
+    "time"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 72,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 72576,
+    "contextWindow": 200000,
+    "contextTokens": 72648,
+    "percentage": 36
+  }
+}
