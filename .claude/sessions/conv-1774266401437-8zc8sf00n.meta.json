@@ -3,6 +3,18 @@
   "title": "Fix skills not being invoked automatically",
   "titleGenerationStatus": "success",
   "createdAt": 1774266401438,
-  "updatedAt": 1774266405290,
-  "sessionId": null
+  "updatedAt": 1774266829418,
+  "lastResponseAt": 1774266829418,
+  "sessionId": "52a6a191-88f9-4465-b63a-31a41d03b2fe",
+  "sdkSessionId": "52a6a191-88f9-4465-b63a-31a41d03b2fe",
+  "currentNote": "CLAUDE.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
