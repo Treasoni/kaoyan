@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774267099654-7s9jeog1s",
+  "title": "Check math study plan chapter alignment issue",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774267099654,
+  "updatedAt": 1774267209989,
+  "lastResponseAt": 1774267209989,
+  "sessionId": "b96ee1b5-dc14-4094-a51a-a4b58bf133ba",
+  "sdkSessionId": "b96ee1b5-dc14-4094-a51a-a4b58bf133ba",
+  "currentNote": "考研计划/每日计划/2026-03-23-每日计划.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
