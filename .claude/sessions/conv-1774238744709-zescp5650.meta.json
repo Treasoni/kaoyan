@@ -1,0 +1,26 @@
+{
+  "id": "conv-1774238744709-zescp5650",
+  "title": "Route kaoyan-english vocabulary learning request",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774238744709,
+  "updatedAt": 1774238772635,
+  "lastResponseAt": 1774238772635,
+  "sessionId": "cb747f30-11ba-4bab-bd8a-e3f55be2ee56",
+  "sdkSessionId": "cb747f30-11ba-4bab-bd8a-e3f55be2ee56",
+  "currentNote": "考研英语/英语单词/2026-3-23.md",
+  "enabledMcpServers": [
+    "web-reader",
+    "web-search-prime",
+    "zai-mcp-server",
+    "time"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
