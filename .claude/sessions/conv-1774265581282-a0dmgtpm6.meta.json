@@ -3,6 +3,18 @@
   "title": "Solve parametric equation second derivative wit...",
   "titleGenerationStatus": "success",
   "createdAt": 1774265581282,
-  "updatedAt": 1774265586487,
-  "sessionId": null
+  "updatedAt": 1774265741519,
+  "lastResponseAt": 1774265741519,
+  "sessionId": "5b97e5b6-89a4-4dbd-b899-fcccdb632906",
+  "sdkSessionId": "5b97e5b6-89a4-4dbd-b899-fcccdb632906",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
