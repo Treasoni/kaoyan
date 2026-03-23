@@ -39,7 +39,7 @@
       "Remove-Partition"
     ]
   },
-  "permissionMode": "yolo",
+  "permissionMode": "plan",
   "model": "glm-5",
   "thinkingBudget": "low",
   "effortLevel": "high",

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774234650298-t40dy6bsc",
+  "title": "Add oblique asymptote notes to math study",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774234650298,
+  "updatedAt": 1774234736353,
+  "lastResponseAt": 1774234736353,
+  "sessionId": "80733233-86b2-4f7b-9b6d-56c8abbc0540",
+  "sdkSessionId": "80733233-86b2-4f7b-9b6d-56c8abbc0540",
+  "currentNote": "考研数学/高数-一元微分学/一元微分学的应用一/4-渐近线/斜渐近线.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
