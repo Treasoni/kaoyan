@@ -469,6 +469,8 @@ def record_task_completion(user_id, completed_tasks, planned_tasks):
         english_tasks = extract_english_tasks(completed_tasks)
         if english_tasks:
             update_english_progress_file(english_tasks)
+            # v3.12新增：追加到独立的学习日志文件
+            append_english_learning_log(english_tasks, completed_tasks)
 
         # 3. v3.8.0新增：生成完成记录文件（包含所有用户报告的任务）
         today = datetime.now().strftime("%Y-%m-%d")
@@ -767,6 +769,55 @@ def log_info(message):
     """记录信息日志（v3.7新增）"""
     # 在实际实现中可以使用logger
     pass
+
+
+def append_english_learning_log(log_entry):
+    """
+    追加英语学习日志到独立文件（v3.12新增）
+
+    学习日志已从 📊 学习进度.md 移至独立的 📅 学习日志.md 文件。
+    此函数将新的日志条目追加到日志文件开头（最新的日志在前）。
+
+    参数:
+        log_entry: 日志条目内容（Markdown格式字符串）
+    """
+    log_file = "考研英语/📅 学习日志.md"
+
+    try:
+        # 1. 读取现有日志文件
+        with open(log_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        lines = content.split('\n')
+
+        # 2. 找到第一个日志条目的位置（跳过frontmatter和标题）
+        insert_idx = None
+        for i, range(len(lines)):
+            # 查找第一个 ### 日期标题
+            if lines[i].startswith('### 2026'):
+                insert_idx = i
+                break
+
+        if insert_idx is None:
+            # 如果没有找到日志条目，可能是新文件，追加到文件末尾
+            with open(log_file, 'a', encoding='utf-8') as f:
+                f.write('\n' + log_entry + '\n')
+            return
+
+        # 3. 在第一个日志条目之前插入新条目
+        lines.insert(insert_idx, log_entry)
+        updated_content = '\n'.join(lines)
+
+        # 4. 保存更新后的文件
+        with open(log_file, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+
+        log_info(f"✅ 已追加英语学习日志")
+
+    except FileNotFoundError:
+        log_warning(f"英语学习日志文件不存在：{log_file}")
+    except Exception as e:
+        log_warning(f"追加英语学习日志失败：{e}")
 
 
 def load_weekly_data_for_review(user_id):
