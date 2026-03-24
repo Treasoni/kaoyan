@@ -27,11 +27,13 @@
       "Edit(.claude/skills/kaoyan-english-quiz/skill.md)",
       "Edit(.claude/skills/kaoyan-english-review/skill.md)",
       "Edit(.claude/skills/kaoyan-english-writing/skill.md)",
-      "Bash(rm -f \"/Users/zhqznc/.claude/plans/streamed-moseying-dusk.md\")"
+      "Bash(rm -f \"/Users/zhqznc/.claude/plans/streamed-moseying-dusk.md\")",
+      "Bash(ls -la /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-plan/scripts/*.py)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
-      "/Users/zhqznc/Documents/考研复习/.claude/skills"
+      "/Users/zhqznc/Documents/考研复习/.claude/skills",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-plan"
     ]
   }
 }
