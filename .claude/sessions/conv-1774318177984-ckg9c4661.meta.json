@@ -3,18 +3,18 @@
   "title": "Separate study logs into a new file",
   "titleGenerationStatus": "success",
   "createdAt": 1774318177985,
-  "updatedAt": 1774334745741,
-  "lastResponseAt": 1774334745741,
+  "updatedAt": 1774335036648,
+  "lastResponseAt": 1774335036648,
   "sessionId": "c13a37cb-4fd3-437b-a608-781f35ec86d0",
   "sdkSessionId": "c13a37cb-4fd3-437b-a608-781f35ec86d0",
   "currentNote": "考研英语/📊 学习进度.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 484,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 101120,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 101604,
+    "percentage": 51
   }
 }
