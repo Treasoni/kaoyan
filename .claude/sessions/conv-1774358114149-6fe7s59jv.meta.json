@@ -1,0 +1,19 @@
+{
+  "id": "conv-1774358114149-6fe7s59jv",
+  "title": "Greet user for exam prep project",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774358114150,
+  "updatedAt": 1774358120289,
+  "lastResponseAt": 1774358120289,
+  "sessionId": "3e3aa947-a352-4165-9824-4573e391227d",
+  "sdkSessionId": "3e3aa947-a352-4165-9824-4573e391227d",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

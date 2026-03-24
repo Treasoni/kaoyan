@@ -5,7 +5,7 @@
   "createdAt": 1774356104526,
   "updatedAt": 1774357316173,
   "lastResponseAt": 1774356457244,
-  "sessionId": "9361803f-5961-4790-9743-fc1071f8ed48",
+  "sessionId": null,
   "sdkSessionId": "9361803f-5961-4790-9743-fc1071f8ed48",
   "usage": {
     "model": "glm-5",
