@@ -37,6 +37,15 @@ scripts/
 ### Python导入
 
 ```python
+import sys
+import os
+
+# 确保能正确导入 scripts 模块
+current_dir = os.path.dirname(os.path.abspath(__file__))
+scripts_dir = os.path.join(current_dir, "scripts")
+if scripts_dir not in sys.path:
+    sys.path.append(scripts_dir)
+
 from scripts import (
     # 真题语境
     generate_context_article,

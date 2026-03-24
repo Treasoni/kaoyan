@@ -24,8 +24,17 @@
 ### 快速导入
 
 ```python
+import sys
+import os
+
+# 确保能正确导入 scripts 模块
+current_dir = os.path.dirname(os.path.abspath(__file__))
+scripts_dir = os.path.join(current_dir, "scripts")
+if scripts_dir not in sys.path:
+    sys.path.append(scripts_dir)
+
 # 从技能根目录导入所有公共函数
-from .scripts import (
+from scripts import (
     # MemOS 集成
     load_user_context_from_memory,
     save_word_card_to_memory,
@@ -67,7 +76,7 @@ from .scripts import (
 #### 1. MemOS 集成
 
 ```python
-from .scripts import load_user_context_from_memory, save_word_card_to_memory
+from scripts import load_user_context_from_memory, save_word_card_to_memory
 
 # 加载用户上下文
 user_input = {"user_id": "user123"}
@@ -81,7 +90,7 @@ save_word_card_to_memory(word_card, "user123")
 #### 2. 欠账检查
 
 ```python
-from .scripts import check_vocabulary_debt_with_memory, DEBT_LIMIT
+from scripts import check_vocabulary_debt_with_memory, DEBT_LIMIT
 
 # 检查欠账状态
 result = check_vocabulary_debt_with_memory(context)
@@ -92,7 +101,7 @@ if result["type"] == "vocabulary_emergency":
 #### 3. 阶段目标
 
 ```python
-from .scripts import get_phase_vocabulary_target
+from scripts import get_phase_vocabulary_target
 
 # 获取当前阶段目标（距离考试60天）
 target = get_phase_vocabulary_target(60)
@@ -104,7 +113,7 @@ print(f"学习重点: {target['focus']}")
 #### 4. Day 编号计算
 
 ```python
-from .scripts import calculate_day_number, generate_day_filenames
+from scripts import calculate_day_number, generate_day_filenames
 
 # 计算今天的 Day 编号
 day_num = calculate_day_number()
@@ -123,7 +132,7 @@ filenames = generate_day_filenames("2026-03-16", 17)
 #### 5. 统一错误记录
 
 ```python
-from .scripts import create_mistake_record, save_unified_english_mistake
+from scripts import create_mistake_record, save_unified_english_mistake
 
 # 创建错误记录
 mistake = create_mistake_record(

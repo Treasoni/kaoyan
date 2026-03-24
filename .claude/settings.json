@@ -31,7 +31,11 @@
       "Bash(ls -la /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-plan/scripts/*.py)",
       "Read(//Users/zhqznc/Documents/考研复习/**)",
       "Bash(wc -l /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-core/code.md /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-core/code.md.backup /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-core/scripts/*.py)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(find /Users/zhqznc/Documents/考研复习/.claude/skills -name code.md -exec wc -l {})",
+      "Bash(2)",
+      "Bash(grep -l 'current_dir = os.path.dirname' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)",
+      "Bash(grep -l 'from \\\\.scripts import' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
@@ -41,7 +45,14 @@
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics-core",
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-core",
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-core",
-      "/Users/zhqznc/Documents/考研复习/考研数学/高数-一元微分学"
+      "/Users/zhqznc/Documents/考研复习/考研数学/高数-一元微分学",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics-core/scripts",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-review",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-structure",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-notes",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-notes/scripts",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics/scripts",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics"
     ]
   }
 }
