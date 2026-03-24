@@ -733,10 +733,10 @@ def generate_day_filenames(target_date=None, day_number=None):
     Examples:
         >>> generate_day_filenames("2026-03-16", 17)
         {
-            "context_article": "Day-017-2026-03-16.md",
+            "context_article": "Context-Day-017-2026-03-16.md",
             "quiz": "Quiz-Day-017-2026-03-16.md",
             "statistics": "Statistics-Day-017-2026-03-16.md",
-            "writing": "Day-017-2026-03-16.md"
+            "writing": "Writing-Day-017-2026-03-16.md"
         }
     """
     if day_number is None:
@@ -748,10 +748,10 @@ def generate_day_filenames(target_date=None, day_number=None):
     day_str = format_day_number(day_number)
 
     return {
-        "context_article": f"Day-{day_str}-{target_date}.md",
+        "context_article": f"Context-Day-{day_str}-{target_date}.md",
         "quiz": f"Quiz-Day-{day_str}-{target_date}.md",
         "statistics": f"Statistics-Day-{day_str}-{target_date}.md",
-        "writing": f"Day-{day_str}-{target_date}.md"
+        "writing": f"Writing-Day-{day_str}-{target_date}.md"
     }
 ```
 
@@ -774,15 +774,15 @@ print(f"Validated Day number: {validated_day}")
 filenames = generate_day_filenames("2026-03-16", 17)
 print(filenames)
 # {
-#     "context_article": "Day-017-2026-03-16.md",
+#     "context_article": "Context-Day-017-2026-03-16.md",
 #     "quiz": "Quiz-Day-017-2026-03-16.md",
 #     "statistics": "Statistics-Day-017-2026-03-16.md",
-#     "writing": "Day-017-2026-03-16.md"
+#     "writing": "Writing-Day-017-2026-03-16.md"
 # }
 ```
 
 ---
 
 *创建日期: 2026-03-10*
-*版本: 1.0.0*
-*最后更新: 2026-03-16（添加Day编号计算模块）*
+*版本: 1.1.0*
+*最后更新: 2026-03-24（统一文件命名规范：Context-Day/Writing-Day）*
