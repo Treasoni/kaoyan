@@ -3,11 +3,10 @@
   "title": "Sync learning progress to MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1774109637853,
-  "updatedAt": 1774110624400,
+  "updatedAt": 1774318391445,
   "lastResponseAt": 1774110624400,
   "sessionId": "b0a69e87-4017-476e-b12b-9647d89581a2",
   "sdkSessionId": "b0a69e87-4017-476e-b12b-9647d89581a2",
-  "currentNote": "考研英语/英语单词/2026-3-21.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
