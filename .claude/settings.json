@@ -35,7 +35,8 @@
       "Bash(find /Users/zhqznc/Documents/考研复习/.claude/skills -name code.md -exec wc -l {})",
       "Bash(2)",
       "Bash(grep -l 'current_dir = os.path.dirname' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)",
-      "Bash(grep -l 'from \\\\.scripts import' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)"
+      "Bash(grep -l 'from \\\\.scripts import' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)",
+      "mcp__browser__browser_navigate"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
