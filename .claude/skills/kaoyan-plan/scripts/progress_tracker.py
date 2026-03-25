@@ -184,8 +184,8 @@ def generate_completion_record_file(user_id: str, completed_tasks: List[Dict[str
     record_content += f"- 📋 **计划内完成**：{len([t for t in completed_tasks if not t.get('extra')])}个\n"
     record_content += f"- ⭐ **计划外完成**：{len([t for t in completed_tasks if t.get('extra')])}个\n"
 
-    # 6. 保存文件
-    record_file = f"考研计划/每日计划/{date}-完成记录.md"
+    # 6. 保存文件（v3.12 修改：保存到完成记录子文件夹）
+    record_file = f"考研计划/每日计划/完成记录/{date}-完成记录.md"
     os.makedirs(os.path.dirname(record_file), exist_ok=True)
 
     with open(record_file, 'w', encoding='utf-8') as f:
@@ -528,10 +528,15 @@ def update_english_progress_file(english_tasks: List[Dict[str, Any]]) -> None:
 def append_english_learning_log(english_tasks: List[Dict[str, Any]],
                                all_tasks: List[Dict[str, Any]] = None) -> None:
     """
-    追加英语学习日志到独立文件（v3.12 新增）
+    追加英语学习日志到独立文件（v3.13 修复版）
 
     学习日志已从 📊 学习进度.md 移至独立的 📅 学习日志.md 文件。
     此函数将新的日志条目追加到日志文件开头（最新的日志在前）。
+
+    v3.13 修复：
+        - 修正日志格式与现有文件格式一致
+        - 支持计算学习天数
+        - 生成完整的日志条目（包括学习时长、进度更新等）
 
     参数:
         english_tasks: 英语任务列表
@@ -554,17 +559,59 @@ def append_english_learning_log(english_tasks: List[Dict[str, Any]],
                 insert_idx = i
                 break
 
-        # 3. 生成新的日志条目
+        # 3. 计算学习天数（从第一个日志条目开始计数）
+        day_number = 1
+        for line in lines:
+            if line.startswith('### 2026'):
+                # 提取天数：### 2026-03-24 (第26天)
+                match = re.search(r'第(\d+)天', line)
+                if match:
+                    day_number = max(day_number, int(match.group(1)) + 1)
+
+        # 4. 生成任务摘要（用于标题）
+        task_summary_parts = []
+        for task in english_tasks:
+            day = task["day"]
+            review_count = task["review_count"]
+            if review_count == "新学":
+                task_summary_parts.append(f"Day {day} 新学")
+            else:
+                task_summary_parts.append(f"Day {day} 复习")
+        task_summary = " + ".join(task_summary_parts[:2])  # 最多显示2个
+        if len(task_summary_parts) > 2:
+            task_summary += f" +{len(task_summary_parts)-2}"
+
+        # 5. 估算学习时长（每个任务约30-45分钟）
+        total_minutes = len(english_tasks) * 40
+
+        # 6. 估算词汇累计（从任务中获取）
+        total_vocab = sum(task.get("vocab_count", 50) for task in english_tasks)
+        # 从所有任务中获取最新的 Day 编号
+        max_day = max(int(task["day"]) for task in english_tasks) if english_tasks else 0
+
+        # 7. 生成新的日志条目（与现有格式一致）
         today = datetime.now().strftime("%Y-%m-%d")
-        log_entry = f"### {today}\n\n"
+        log_entry = f"""### {today} (第{day_number}天) - {task_summary} ✅
+- 🎉 **今日英语学习时长**：**{total_minutes}分钟**
+- ✅ **英语学习完成**：
+"""
 
         for task in english_tasks:
             day = task["day"]
             review_count = task["review_count"]
             vocab_count = task["vocab_count"]
-            log_entry += f"- ✅ Day {day} {review_count}（~{vocab_count}词）\n"
+            if review_count == "新学":
+                log_entry += f"  - **Day {day} 新学**（~{vocab_count}词）⭐ 新增\n"
+            else:
+                log_entry += f"  - **Day {day} {review_count}**（~{vocab_count}词）⭐ 符合SM-2算法\n"
 
-        log_entry += "\n"
+        log_entry += f"""- 📌 **进度更新**：
+  - 词汇累计：~{1373 + max_day * 50}-{1393 + max_day * 50}词（Day 001-{max_day:03d}）
+  - 连续学习天数：第{day_number}天
+  - **保持学习节奏！** 🎉
+  - **今日英语任务100%完成！** 🎉
+
+"""
 
         if insert_idx is None:
             # 如果没有找到日志条目，可能是新文件，追加到文件末尾
@@ -572,11 +619,19 @@ def append_english_learning_log(english_tasks: List[Dict[str, Any]],
                 f.write('\n' + log_entry + '\n')
             return
 
-        # 4. 在第一个日志条目之前插入新条目
+        # 8. 在第一个日志条目之前插入新条目
         lines.insert(insert_idx, log_entry)
         updated_content = '\n'.join(lines)
 
-        # 5. 保存更新后的文件
+        # 9. 更新 frontmatter 中的 last_updated
+        today_full = datetime.now().strftime("%Y-%m-%d")
+        updated_content = re.sub(
+            r'last_updated: \d{4}-\d{2}-\d{2}',
+            f'last_updated: {today_full}',
+            updated_content
+        )
+
+        # 10. 保存更新后的文件
         with open(log_file, 'w', encoding='utf-8') as f:
             f.write(updated_content)
 
