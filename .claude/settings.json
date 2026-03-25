@@ -36,7 +36,12 @@
       "Bash(2)",
       "Bash(grep -l 'current_dir = os.path.dirname' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)",
       "Bash(grep -l 'from \\\\.scripts import' /Users/zhqznc/Documents/考研复习/.claude/skills/*/code.md)",
-      "mcp__browser__browser_navigate"
+      "mcp__browser__browser_navigate",
+      "Bash(sed -n '2618p' \"考研数学/高数-一元微分学/错题本.md\" | cat -A)",
+      "Bash(xxd:*)",
+      "Bash(sed -i '' '2618s/.*/> 看到 $\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")",
+      "Bash(sed -n '2618p' \"考研数学/高数-一元微分学/错题本.md\")",
+      "Bash(sed -i '' '2618s/.*/> 看到 $\\\\\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
