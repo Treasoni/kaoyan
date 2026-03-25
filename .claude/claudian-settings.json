@@ -40,7 +40,7 @@
     ]
   },
   "permissionMode": "yolo",
-  "model": "glm-5",
+  "model": "glm-4.7",
   "thinkingBudget": "low",
   "effortLevel": "high",
   "enableAutoTitleGeneration": true,
@@ -72,7 +72,7 @@
   },
   "loadUserClaudeSettings": true,
   "lastClaudeModel": "haiku",
-  "lastCustomModel": "glm-5",
+  "lastCustomModel": "glm-4.7",
   "lastEnvHash": "ANTHROPIC_BASE_URL=https://cloud.hongqiye.com:3300/api|ANTHROPIC_DEFAULT_HAIKU_MODEL=GLM-5-Turbo|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7",
   "maxTabs": 3,
   "tabBarPosition": "input",
