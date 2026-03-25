@@ -4,97 +4,9 @@
       "type": "sse",
       "url": "https://mcp.api-inference.modelscope.net/21e3d616f2cc43/sse"
     },
-    "zai-mcp-server": {
-      "command": "claude",
-      "args": [
-        "mcp",
-        "add",
-        "-s",
-        "user",
-        "zai-mcp-server",
-        "--",
-        "npx",
-        "-y",
-        "@z_ai/mcp-server"
-      ],
-      "env": {
-        "Z_AI_API_KEY": "cr_3df48edde17ed5cb7ee3a9efdd430c8603bbff504dbc951a5ea069f9af684686"
-      }
-    },
-    "web-search-prime": {
-      "command": "claude",
-      "args": [
-        "mcp",
-        "add",
-        "-s",
-        "user",
-        "-t",
-        "http",
-        "web-search-prime",
-        "https://cloud.hongqiye.com:3300/api/mcp/web_search_prime/mcp",
-        "--header",
-        "Authorization:",
-        "Bearer",
-        "cr_3df48edde17ed5cb7ee3a9efdd430c8603bbff504dbc951a5ea069f9af684686"
-      ]
-    },
-    "web-reader": {
-      "command": "claude",
-      "args": [
-        "mcp",
-        "add",
-        "-s",
-        "user",
-        "-t",
-        "http",
-        "web-reader",
-        "https://cloud.hongqiye.com:3300/api/mcp/web_reader/mcp",
-        "--header",
-        "Authorization:",
-        "Bearer",
-        "cr_3df48edde17ed5cb7ee3a9efdd430c8603bbff504dbc951a5ea069f9af684686"
-      ]
-    },
     "time": {
       "type": "sse",
       "url": "https://mcp.api-inference.modelscope.net/b3158d0b497140/sse"
-    },
-    "browsermcp": {
-      "command": "{",
-      "args": [
-        "mcpServers:",
-        "{",
-        "browsermcp:",
-        "{",
-        "command:",
-        "/opt/homebrew/bin/npx,",
-        "args:",
-        "[-y,",
-        "@browsermcp/mcp@latest]",
-        "}",
-        "}",
-        "}"
-      ]
-    },
-    "filesystem": {
-      "command": "{",
-      "args": [
-        "mcpServers:",
-        "{",
-        "filesystem:",
-        "{",
-        "args:",
-        "[",
-        "-y,",
-        "@modelcontextprotocol/server-filesystem,",
-        "/Users/zhqznc/Documents",
-        "],",
-        "command:",
-        "npx",
-        "}",
-        "}",
-        "}"
-      ]
     }
   }
 }
