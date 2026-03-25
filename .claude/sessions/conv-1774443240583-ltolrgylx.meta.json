@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774443240583-ltolrgylx",
+  "title": "整理错题到错题本",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774443240584,
+  "updatedAt": 1774443257756,
+  "lastResponseAt": 1774443257756,
+  "sessionId": "5aa588ab-fe62-4fda-8b99-3d9cd736282d",
+  "sdkSessionId": "5aa588ab-fe62-4fda-8b99-3d9cd736282d",
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
