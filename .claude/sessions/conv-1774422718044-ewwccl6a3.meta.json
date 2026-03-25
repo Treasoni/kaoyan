@@ -3,17 +3,17 @@
   "title": "Add abstract function limit mistake to notebook",
   "titleGenerationStatus": "success",
   "createdAt": 1774422718044,
-  "updatedAt": 1774422962701,
-  "lastResponseAt": 1774422962701,
+  "updatedAt": 1774423738467,
+  "lastResponseAt": 1774423738467,
   "sessionId": "8bc268aa-bab5-4844-a43a-fbb0347cb61b",
   "sdkSessionId": "8bc268aa-bab5-4844-a43a-fbb0347cb61b",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 564,
+    "inputTokens": 843,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 37888,
+    "cacheReadInputTokens": 47360,
     "contextWindow": 200000,
-    "contextTokens": 38452,
-    "percentage": 19
+    "contextTokens": 48203,
+    "percentage": 24
   }
 }
