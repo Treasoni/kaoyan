@@ -29,81 +29,81 @@ polysemy_alert: 2
 ---
 
 ## 🏷 词族分类（按词根归类）
-| 词族 | 单词数 | 包含单词 |
-|------|--------|----------|
-| equip族 | 2 | equipment, equip |
-| direct族 | 3 | direction, director, directory |
-| diploma族 | 2 | diploma, diplomatic |
-| compound族 | 2 | compound, composite |
-| company族 | 2 | company, companion |
-| enthusiasm族 | 2 | enthusiasm, enthusiastic |
-| entry族 | 2 | entry, entrance |
-| whole族 | 2 | whole, wholly |
-| torture族 | 2 | torture, torment |
-| colony族 | 2 | colony, colonial |
-| coherent族 | 2 | coherent, cohesive |
-| before族 | 1 | before |
-| beat族 | 1 | beat |
-| while族 | 1 | while |
-| dip族 | 1 | dip |
-| dimension族 | 1 | dimension |
-| diligent族 | 1 | diligent |
-| conceal族 | 1 | conceal |
-| compulsory族 | 1 | compulsory |
-| compass族 | 1 | compass |
-| compassion族 | 1 | compassion |
-| compartment族 | 1 | compartment |
-| compact族 | 1 | compact |
-| arbitrary族 | 1 | arbitrary |
-| approximate族 | 1 | approximate |
-| appraisal族 | 1 | appraisal |
-| applause族 | 1 | applause |
-| applaud族 | 1 | applaud |
-| apparatus族 | 1 | apparatus |
-| appendix族 | 1 | appendix |
-| appall族 | 1 | appall |
-| wholesome族 | 1 | wholesome |
-| torrent族 | 1 | torrent |
-| torch族 | 1 | torch |
-| block族 | 1 | block |
-| blood族 | 2 | blood, bloody |
-| blind族 | 1 | blind |
-| beast族 | 1 | beast |
-| whoever族 | 1 | whoever |
-| whistle族 | 1 | whistle |
-| whip族 | 1 | whip |
-| whichever族 | 1 | whichever |
-| wherever族 | 1 | wherever |
-| whereby族 | 1 | whereby |
-| whereas族 | 1 | whereas |
-| whenever族 | 1 | whenever |
-| whatever族 | 1 | whatever |
-| whale族 | 1 | whale |
-| entrepreneur族 | 1 | entrepreneur |
-| entity族 | 1 | entity |
-| entitle族 | 1 | entitle |
-| entire族 | 1 | entire |
-| combination族 | 1 | combination |
-| colonel族 | 1 | colonel |
-| collar族 | 1 | collar |
-| coke族 | 1 | coke |
-| coin族 | 1 | coin |
-| bizarre族 | 1 | bizarre |
-| bitter族 | 1 | bitter |
-| dioxide族 | 1 | dioxide |
-| dinosaur族 | 1 | dinosaur |
-| dine族 | 1 | dine |
-| compute族 | 1 | compute |
-| concession族 | 1 | concession |
-| concert族 | 1 | concert |
-| concede族 | 1 | concede |
-| arch族 | 1 | arch |
-| tomb族 | 1 | tomb |
-| tongue族 | 1 | tongue |
-| top族 | 1 | top |
-| tool族 | 1 | tool |
-| biology族 | 1 | biology |
-| bit族 | 1 | bit |
+| 词族            | 单词数 | 包含单词                           |
+| ------------- | --- | ------------------------------ |
+| equip族        | 2   | equipment, equip               |
+| direct族       | 3   | direction, director, directory |
+| diploma族      | 2   | diploma, diplomatic            |
+| compound族     | 2   | compound, composite            |
+| company族      | 2   | company, companion             |
+| enthusiasm族   | 2   | enthusiasm, enthusiastic       |
+| entry族        | 2   | entry, entrance                |
+| whole族        | 2   | whole, wholly                  |
+| torture族      | 2   | torture, torment               |
+| colony族       | 2   | colony, colonial               |
+| coherent族     | 2   | coherent, cohesive             |
+| before族       | 1   | before                         |
+| beat族         | 1   | beat                           |
+| while族        | 1   | while                          |
+| dip族          | 1   | dip                            |
+| dimension族    | 1   | dimension                      |
+| diligent族     | 1   | diligent                       |
+| conceal族      | 1   | conceal                        |
+| compulsory族   | 1   | compulsory                     |
+| compass族      | 1   | compass                        |
+| compassion族   | 1   | compassion                     |
+| compartment族  | 1   | compartment                    |
+| compact族      | 1   | compact                        |
+| arbitrary族    | 1   | arbitrary                      |
+| approximate族  | 1   | approximate                    |
+| appraisal族    | 1   | appraisal                      |
+| applause族     | 1   | applause                       |
+| applaud族      | 1   | applaud                        |
+| apparatus族    | 1   | apparatus                      |
+| appendix族     | 1   | appendix                       |
+| appall族       | 1   | appall                         |
+| wholesome族    | 1   | wholesome                      |
+| torrent族      | 1   | torrent                        |
+| torch族        | 1   | torch                          |
+| block族        | 1   | block                          |
+| blood族        | 2   | blood, bloody                  |
+| blind族        | 1   | blind                          |
+| beast族        | 1   | beast                          |
+| whoever族      | 1   | whoever                        |
+| whistle族      | 1   | whistle                        |
+| whip族         | 1   | whip                           |
+| whichever族    | 1   | whichever                      |
+| wherever族     | 1   | wherever                       |
+| whereby族      | 1   | whereby                        |
+| whereas族      | 1   | whereas                        |
+| whenever族     | 1   | whenever                       |
+| whatever族     | 1   | whatever                       |
+| whale族        | 1   | whale                          |
+| entrepreneur族 | 1   | entrepreneur                   |
+| entity族       | 1   | entity                         |
+| entitle族      | 1   | entitle                        |
+| entire族       | 1   | entire                         |
+| combination族  | 1   | combination                    |
+| colonel族      | 1   | colonel                        |
+| collar族       | 1   | collar                         |
+| coke族         | 1   | coke                           |
+| coin族         | 1   | coin                           |
+| bizarre族      | 1   | bizarre                        |
+| bitter族       | 1   | bitter                         |
+| dioxide族      | 1   | dioxide                        |
+| dinosaur族     | 1   | dinosaur                       |
+| dine族         | 1   | dine                           |
+| compute族      | 1   | compute                        |
+| concession族   | 1   | concession                     |
+| concert族      | 1   | concert                        |
+| concede族      | 1   | concede                        |
+| arch族         | 1   | arch                           |
+| tomb族         | 1   | tomb                           |
+| tongue族       | 1   | tongue                         |
+| top族          | 1   | top                            |
+| tool族         | 1   | tool                           |
+| biology族      | 1   | biology                        |
+| bit族          | 1   | bit                            |
 
 ---
 
