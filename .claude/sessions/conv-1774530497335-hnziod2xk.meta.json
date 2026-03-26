@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774530497335-hnziod2xk",
+  "title": "Add exponential infinitesimal equivalence formu...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774530497336,
+  "updatedAt": 1774530609101,
+  "lastResponseAt": 1774530609101,
+  "sessionId": "498a0625-7c98-4f1b-9731-7881a4c19679",
+  "sdkSessionId": "498a0625-7c98-4f1b-9731-7881a4c19679",
+  "currentNote": "考研数学/高数-函数极限与连续/📝 章节总结.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 259,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 42368,
+    "contextWindow": 200000,
+    "contextTokens": 42627,
+    "percentage": 21
+  }
+}
