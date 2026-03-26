@@ -3,18 +3,18 @@
   "title": "Add math mistake to mistake notebook",
   "titleGenerationStatus": "success",
   "createdAt": 1774507505100,
-  "updatedAt": 1774507703096,
-  "lastResponseAt": 1774507703096,
+  "updatedAt": 1774508247447,
+  "lastResponseAt": 1774508247447,
   "sessionId": "dcff9111-3a23-427a-a931-f1b207b34f54",
   "sdkSessionId": "dcff9111-3a23-427a-a931-f1b207b34f54",
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 1690,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 54592,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 56282,
+    "percentage": 28
   }
 }
