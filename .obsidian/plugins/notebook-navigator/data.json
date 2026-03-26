@@ -436,7 +436,13 @@
     ]
   },
   "customVaultName": "",
-  "pinnedNotes": {},
+  "pinnedNotes": {
+    "考研数学/高数-一元微分学/错题本.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    }
+  },
   "fileIcons": {},
   "fileColors": {},
   "fileBackgroundColors": {},
