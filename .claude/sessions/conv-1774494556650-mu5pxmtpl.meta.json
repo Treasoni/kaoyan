@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774494556650-mu5pxmtpl",
+  "title": "整理双动点导数错题加入错题本",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774494556650,
+  "updatedAt": 1774494727629,
+  "lastResponseAt": 1774494727629,
+  "sessionId": "895a47a0-d90a-47d3-9a63-9556688d1bdf",
+  "sdkSessionId": "895a47a0-d90a-47d3-9a63-9556688d1bdf",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
