@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774525343417-vgmzgdapa",
+  "title": "Draw beautiful Karnaugh map visualization",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774525343418,
+  "updatedAt": 1774525493333,
+  "lastResponseAt": 1774525493333,
+  "sessionId": "0dc99867-eada-45bb-b35e-b54798b2e68e",
+  "sdkSessionId": "0dc99867-eada-45bb-b35e-b54798b2e68e",
+  "currentNote": "考研专业课/数字电子技术/2-逻辑代数与硬件描述语言基础/04-卡诺图化简法.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
