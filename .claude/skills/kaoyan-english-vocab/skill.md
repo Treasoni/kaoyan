@@ -1,7 +1,7 @@
 ---
 name: kaoyan-english-vocab
 description: This skill handles vocabulary organization and word lookup for 考研英语 (Chinese graduate entrance English exam). Use it when users want to extract vocabulary from PDF exports (墨墨/百词斩), generate real exam context articles, detect polysemy (rare word meanings), look up word information, or organize vocabulary cards.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # 考研英语词汇整理技能 (Kaoyan English Vocab)
@@ -21,6 +21,20 @@ version: 1.0.0
 - ⚠️ 僻义预警系统（Critical/Warning级别）
 - 优先使用真题语境，非AI生成文章
 - 自动生成结构化词汇卡片
+
+### ⚠️ 默认行为（重要）
+
+**当用户提供单词表文件时，默认执行完整的词汇处理流程：**
+
+1. ✅ **按词族分类**
+2. ✅ **按考频分级**（⭐至⭐⭐⭐）
+3. ✅ **自动生成四类笔记**：
+   - 📊 词汇统计（Statistics-Day-XXX-YYYY-MM-DD.md）
+   - 📰 真题语境文章（Context-Day-XXX-YYYY-MM-DD.md）
+   - 📝 测试记录（Quiz-Day-XXX-YYYY-MM-DD.md）
+   - ✍️ 写作输出（Writing-Day-XXX-YYYY-MM-DD.md）
+
+**禁止询问用户想要什么处理方式，直接执行上述完整流程！**
 
 ---
 
