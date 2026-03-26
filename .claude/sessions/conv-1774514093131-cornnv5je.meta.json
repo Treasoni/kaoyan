@@ -3,6 +3,18 @@
   "title": "整理连续函数介值性与罗尔定理综合应用错题",
   "titleGenerationStatus": "success",
   "createdAt": 1774514093131,
-  "updatedAt": 1774514099392,
-  "sessionId": null
+  "updatedAt": 1774514519577,
+  "lastResponseAt": 1774514519577,
+  "sessionId": "600e66c6-f4ea-4824-83b0-5d80c369cdfa",
+  "sdkSessionId": "600e66c6-f4ea-4824-83b0-5d80c369cdfa",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
