@@ -3,7 +3,7 @@
   "title": "Sync pull learning progress from MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1774450076414,
-  "updatedAt": 1774450259086,
+  "updatedAt": 1774492349693,
   "lastResponseAt": 1774450259086,
   "sessionId": "3c194b6f-7d65-43d5-89b4-29f1975946f7",
   "sdkSessionId": "3c194b6f-7d65-43d5-89b4-29f1975946f7",
@@ -12,7 +12,7 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
