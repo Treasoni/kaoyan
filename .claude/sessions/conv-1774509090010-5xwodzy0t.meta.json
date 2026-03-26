@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774509090010-5xwodzy0t",
+  "title": "Add note about closed interval property conditions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774509090011,
+  "updatedAt": 1774509130552,
+  "lastResponseAt": 1774509130552,
+  "sessionId": "394244cb-64c1-4cf0-99b6-02526851e9f4",
+  "sdkSessionId": "394244cb-64c1-4cf0-99b6-02526851e9f4",
+  "currentNote": "考研数学/高数-一元微分学/一元函数微分的应用2/1-中值定理/1-涉及函数的中值定理/介值定理.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
