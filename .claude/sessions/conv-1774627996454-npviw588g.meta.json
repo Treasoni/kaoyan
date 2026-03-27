@@ -3,18 +3,18 @@
   "title": "Upload learning data to MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1774627996455,
-  "updatedAt": 1774628028283,
-  "lastResponseAt": 1774628028283,
+  "updatedAt": 1774628346147,
+  "lastResponseAt": 1774628346147,
   "sessionId": "d88e77dd-0399-4020-ad0d-f0a36891a325",
   "sdkSessionId": "d88e77dd-0399-4020-ad0d-f0a36891a325",
   "currentNote": "CLAUDE.md",
   "usage": {
-    "model": "glm-4.7",
-    "inputTokens": 5190,
+    "model": "glm-5",
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 36736,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 41926,
-    "percentage": 21
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
