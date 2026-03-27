@@ -57,7 +57,8 @@
       "Edit(/.claude/skills/kaoyan-math-summary/**)",
       "Edit(/.claude/skills/kaoyan-english-quiz/**)",
       "Edit(/.claude/skills/kaoyan-english-writing/**)",
-      "Edit(/.claude/skills/kaoyan-info/**)"
+      "Edit(/.claude/skills/kaoyan-info/**)",
+      "Bash(find /Users/zhqznc/Documents/考研复习/数电资料 -type f -name *.pdf)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
