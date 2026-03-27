@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774615353978-d96r78x60",
+  "title": "Fix broken tags in digital electronics notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774615353979,
+  "updatedAt": 1774615496242,
+  "lastResponseAt": 1774615496242,
+  "sessionId": "3a115905-268a-4954-a8af-cea9bd152034",
+  "sdkSessionId": "3a115905-268a-4954-a8af-cea9bd152034",
+  "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/02-组合逻辑电路设计.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
