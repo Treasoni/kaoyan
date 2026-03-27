@@ -14,7 +14,7 @@
     },
     "excluded_headings": "",
     "file_exclusions": "Untitled",
-    "folder_exclusions": ""
+    "folder_exclusions": "数电资料,考研计划,考研"
   },
   "language": "en",
   "re_import_wait_time": 13,
@@ -25,7 +25,11 @@
     }
   },
   "smart_notices": {
-    "muted": {}
+    "muted": {
+      "embedding_progress": true,
+      "done_import": true,
+      "embedding_complete": true
+    }
   },
   "smart_view_filter": {
     "expanded_view": false,
