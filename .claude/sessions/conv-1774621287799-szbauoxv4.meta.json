@@ -3,8 +3,8 @@
   "title": "Update daily study plan progress",
   "titleGenerationStatus": "success",
   "createdAt": 1774621287800,
-  "updatedAt": 1774621584973,
-  "lastResponseAt": 1774621584973,
+  "updatedAt": 1774622760951,
+  "lastResponseAt": 1774622760951,
   "sessionId": "4aa14c6d-ed12-4267-8637-b3341798e85e",
   "sdkSessionId": "4aa14c6d-ed12-4267-8637-b3341798e85e",
   "currentNote": "考研计划/每日计划/2026-03-27-每日计划.md",
@@ -13,7 +13,7 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
