@@ -3,11 +3,14 @@
   "title": "Record study completion for math English electr...",
   "titleGenerationStatus": "success",
   "createdAt": 1774534613479,
-  "updatedAt": 1774535281710,
-  "lastResponseAt": 1774535281710,
+  "updatedAt": 1774570862445,
+  "lastResponseAt": 1774570862445,
   "sessionId": "48a5035d-73fb-4052-92a0-19664d60580e",
   "sdkSessionId": "48a5035d-73fb-4052-92a0-19664d60580e",
   "currentNote": "考研专业课/数字电子技术/2-逻辑代数与硬件描述语言基础/📊 学习进度.md",
+  "enabledMcpServers": [
+    "time"
+  ],
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
