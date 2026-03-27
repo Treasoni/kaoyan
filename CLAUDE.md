@@ -32,8 +32,32 @@
 用户需求 → 先用 obsidian-cli 定位文件 → 告诉 Claude 去处理它
 ```
 **示例流程**：
-1. 用户��"帮我整理今天的错题"
+1. 用户："帮我整理今天的错题"
 2. Claude：先用 obsidian-cli 找到当日计划文件 → 提取错题 → 调用 `/mistake-book` 整理
+
+### 1.4 obsidian-cli 不可用时的替代方案
+
+当 `obsidian-cli` 无法连接到 Obsidian 主进程时（常见原因：Obsidian 未运行、版本过旧、CLI 插件未启用），**自动切换**到以下替代方案：
+
+| obsidian-cli 命令 | 替代方案 (Glob + Grep + Read) |
+|------------------|------------------------------|
+| `obsidian search "tag:错题"` | `Grep pattern="#错题" output_mode=files_with_matches` |
+| `obsidian list "考研计划/每日计划"` | `Glob pattern="考研计划/每日计划/*.md"` |
+| `obsidian get "path/file.md"` | `Read file_path="path/file.md"` |
+| `obsidian get "path.md" --frontmatter` | `Read file_path="path.md"` (读取后解析 YAML) |
+
+**错误检测**：
+```bash
+# 当返回以下错误时，自动切换到替代方案
+# "Unable to connect to main process"
+# "Your Obsidian installer is out of date"
+```
+
+**恢复 obsidian-cli 的步骤**：
+1. 确保 Obsidian 应用正在运行
+2. 更新 Obsidian 到最新版本：https://obsidian.md/download
+3. 启用 CLI 插件（设置 → 第三方插件 → CLI）
+4. 重启 Obsidian
 
 ---
 
