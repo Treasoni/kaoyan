@@ -66,11 +66,7 @@ Claude：用 Grep 搜索关键词 → 找到匹配文件 → 返回给用户
 # "Your Obsidian installer is out of date"
 ```
 
-**恢复 obsidian-cli 的步骤**：
-1. 确保 Obsidian 应用正在运行
-2. 更新 Obsidian 到最新版本：https://obsidian.md/download
-3. 启用 CLI 插件（设置 → 第三方插件 → CLI）
-4. 重启 Obsidian
+
 
 ---
 
