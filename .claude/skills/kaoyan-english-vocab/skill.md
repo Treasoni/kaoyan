@@ -1,7 +1,7 @@
 ---
 name: kaoyan-english-vocab
 description: This skill handles vocabulary organization and word lookup for 考研英语 (Chinese graduate entrance English exam). Use it when users want to extract vocabulary from PDF exports (墨墨/百词斩), generate real exam context articles, detect polysemy (rare word meanings), look up word information, or organize vocabulary cards.
-version: 1.1.0
+version: 1.2.0
 ---
 
 # 考研英语词汇整理技能 (Kaoyan English Vocab)
@@ -35,6 +35,23 @@ version: 1.1.0
    - ✍️ 写作输出（Writing-Day-XXX-YYYY-MM-DD.md）
 
 **禁止询问用户想要什么处理方式，直接执行上述完整流程！**
+
+---
+
+## 📁 详细模块文档
+
+| 模块 | 文件 | 内容 |
+|------|------|------|
+| 代码实现 | [code.md](code.md) | 核心函数实现 |
+| 输出路径规范 | [docs/output-paths.md](docs/output-paths.md) | 四类笔记存放位置 |
+| 编码规范 | [docs/encoding.md](docs/encoding.md) | 避免乱码 |
+| 表格规范 | [docs/markdown-table.md](docs/markdown-table.md) | Markdown表格格式 |
+| Day编号计算 | [docs/day-number.md](docs/day-number.md) | Day编号规则 |
+| 熟词僻义库 | [data/polysemy-database.md](data/polysemy-database.md) | 僻义预警数据 |
+| 每日词汇模板 | [templates/daily-vocabulary.md](templates/daily-vocabulary.md) | 每日词汇格式 |
+| 真题语境模板 | [templates/context-card.md](templates/context-card.md) | 语境卡片格式 |
+| 词汇卡片模板 | [templates/word-card.md](templates/word-card.md) | 完整卡片格式 |
+| 整理版模板 | [templates/formatted-wordlist.md](templates/formatted-wordlist.md) | 单词表格式 |
 
 ---
 
@@ -96,125 +113,16 @@ version: 1.1.0
 **输入**: 用户提供的原始单词表（可能是从PDF/图片转换，格式混乱）
 
 **处理流程**:
-1. **格式统一化**：
-   - 统一标题格式：`#### 单词名 ⭐⭐⭐`（含考研频率标记）
-   - 清理多余符号：省略号统一为 `...`，去除多余空格
-   - 修复截断的释义
-   - 统一分隔符为 `---`
-
-2. **添加记忆方法（必须！所有单词！）**：
-   - ⚠️ **强制要求**：必须为**每一个单词**添加记忆方法，无例外
-   - 🧠 **词根词缀法**：如 `conscience = con-(加强) + sci(知道) + -ence`
-   - **联想记忆法**：如 `bleak → break → 破碎的希望`
-   - **谐音记忆法**：如 `consult = "看搜" → 看了再搜`
-   - **派生词关联**：如 `faulty → fault(错误) + -y(形容词后缀)`
-   - **同根词关联**：如 `center → century, central`
-   - **简单词联想**：如 `fast → 快速的、牢固的`
-   - 使用 `> 🧠 **记忆方法**` callout 格式
-   - **格式要求**：
-     ```
-     > 🧠 **记忆方法**
-     > - **词根**：xxx（如果适用）
-     > - **联想**：xxx
-     > - **同根词**：xxx
-     > - **谐音**：xxx（如果适用）
-     ```
-   - 根据单词特点选择最合适的记忆策略组合
-
-3. **补充词组搭配**：
-   - 每个单词至少提供2-3个常用搭配
-   - 使用表格格式：`| 词组搭配 | 释义 |`
-
-4. **按词族分类**：
-   - 将同源词归类（如 general 族：general, generalize, gene）
-   - 每个词族使用独立的标题块
-
-5. **按考研重点分类**：
-   - ⭐⭐⭐ 高频词（必考词汇）
-   - ⭐⭐ 中频词（常考词汇）
-   - ⭐ 低频词（生僻词汇）
-
-6. **僻义预警标记**：
-   - 🔴 Critical：考研高频僻义陷阱
-   - 🟡 Warning：中等频率僻义
-   - 使用 `> ⚠️ **僻义预警**` 标注
-
-7. **写作词汇标注**：
-   - 标注可替代的简单词汇（如 `conspicuous` → 替代 `obvious`）
-
+1. **格式统一化**：统一标题格式、清理多余符号、修复截断释义
+2. **添加记忆方法（必须！所有单词！）**：词根词缀法、联想记忆法、谐音记忆法等
+3. **补充词组搭配**：每个单词至少2-3个常用搭配
+4. **按词族分类**：将同源词归类
+5. **按考研重点分类**：⭐⭐⭐ 高频词、⭐⭐ 中频词、⭐ 低频词
+6. **僻义预警标记**：🔴 Critical / 🟡 Warning
+7. **写作词汇标注**：标注可替代的简单词汇
 8. **更新原始文件**：直接覆盖用户的原始单词表文件
 
-**输出格式示例**:
-```markdown
-#### conscience ⭐⭐⭐
-**n.** 良心，良知；愧疚
-
-| 词组搭配 | 释义 |
-|---------|------|
-| a clear conscience | 问心无愧 |
-| a guilty conscience | 内疚 |
-
-> 🧠 **记忆方法**
-> - **词根**：con-(加强) + sci(知道) + -ence → 内心知道对错 → 良心
-> - **同根词**：conscious（有意识的）、science（科学）
-> - **写作词汇**：ethical issue 讨论时常用
-
----
-
-#### center ⭐⭐⭐
-**n.** 中心，中央
-**v.** 以...为中心
-
-| 词组搭配 | 释义 |
-|---------|------|
-| city center | 市中心 |
-| in the center of... | 在...的中心 |
-
-> 🧠 **记忆方法**
-> - **词根**：cent(百) + -er(后缀) → 一百的中间 → 中心
-> - **同根词**：century(百年), central(中心的)
-```
-
-**输出格式**:
-```markdown
-# 单词表 - Day {N}
-
-**日期**：{date}
-**词汇量**：{count}词
-**来源**：墨墨导出
-
----
-
-## ⭐⭐⭐ 高频词（必考词汇）
-
-### 词族1: {word}（{count}词）
-#### {word}
-{音标} {词性} {释义}
-- 🔴 僻义预警：{rare_meaning}（考研{frequency}%考此义）
-- 搭配：{collocations}
-
----
-
-## ⭐⭐ 中频词（常考词汇）
-...
-
----
-
-## ⭐ 低频词（生僻词汇）
-...
-
----
-
-## 📊 统计信息
-| 分类 | 数量 |
-|------|------|
-| 高频词 | {n} |
-| 中频词 | {n} |
-| 低频词 | {n} |
-| 僻义预警 | {n} |
-
-**下次复习日期**：{date + 2days}
-```
+> 📋 详细模板见 [templates/formatted-wordlist.md](templates/formatted-wordlist.md)
 
 ### 功能1: PDF词汇提取 + 语境文章
 
@@ -249,32 +157,6 @@ version: 1.1.0
 
 ---
 
-## 熟词僻义库
-
-### Critical级别（高频陷阱）
-
-| 单词 | 常见义 | **考研僻义** | 出现频率 |
-|------|--------|-------------|----------|
-| address | 地址 | **vt. 处理，解决** | 80% |
-| school | 学校 | **n. 流派，学派** | 70% |
-| novel | 新颖的 | **n. 长篇小说** | 65% |
-| fine | 好的 | **n./v. 罚款** | 60% |
-| reason | 原因 | **v. 推理，推论** | 55% |
-| discipline | 纪律 | **n. 学科** | 50% |
-| consume | 消费 | **vt. 毁灭，烧毁** | 40% |
-| draft | 草稿 | **n. 征兵** | 35% |
-| compound | 复合的 | **v. 加剧，恶化** | 30% |
-
-### Warning级别（中等陷阱）
-
-| 单词 | 常见义 | 考研僻义 | 出现频率 |
-|------|--------|----------|----------|
-| spring | 春天 | **v. 突然出现，涌现** | 40% |
-| table | 桌子 | **v. 搁置，暂缓讨论** | 35% |
-| book | 书 | **v. 预订** | 30% |
-
----
-
 ## 真题语境检索策略
 
 > 📁 详细实现见 [code.md](code.md) 的 `generate_context_article` 函数
@@ -290,116 +172,6 @@ version: 1.1.0
 - ✅ 必须包含用户提供的**所有目标单词**
 - ✅ **译文位置**：紧接在原文之后，词汇解析表之前（便于对照阅读）
 - ✅ 风格模拟考研真题阅读理解
-
-### 文章结构顺序（重要！）
-
-```markdown
-# 标题
-
-> 元信息
-
-## 📖 原文
-{英文原文}
-
-## 📖 参考译文  ← 译文紧接原文，方便对照
-{中文译文}
-
-## 📊 词汇解析表
-{词汇解析}
-
-## 📖 阅读理解练习
-{练习题}
-```
-
-⚠️ **禁止**将译文放在文件末尾（用户难以找到）
-
----
-
-## 词汇卡片格式
-
-### 完整版格式
-
-```markdown
----
-# 基础信息
-word: "address"
-pronunciation: "/əˈdres/"
-part_of_speech: "verb/noun"
-difficulty: "important"
-frequency: 5
-first_seen: "2025-01-15"
-
-# 僻义预警
-polysemy_alert: true
-warning_level: "critical"
-exam_frequency: "80%"
-rare_meanings:
-  - meaning: "处理；解决；着手处理"
-    part_of_speech: "vt."
-    common_collocations: ["address the problem", "address an issue", "address concerns"]
-common_meanings:
-  - meaning: "地址；称呼"
-    part_of_speech: "n./vt."
-
-# 真题语境
-real_exam_contexts:
-  - year: 2022
-    paper: "英语一"
-    section: "完形填空"
-    sentence: "The committee failed to **address** the concerns raised by the public."
-    sentence_translation: "委员会未能处理公众提出的关切。"
-    other_core_words: ["committee", "concern", "raise"]
-
-# 标签与分类
-tags: ["动词", "高频", "僻义critical", "写作必备"]
-exam_years: [2018, 2020, 2022]
----
-
-# address
-
-## 基本信息
-**音标**: /əˈdres/
-**词性**: vt./n.
-**难度**: ⭐⭐⭐⭐⭐
-
-## ⚠️ 僻义预警 [critical]
-
-> [!danger] 陷阱提示
-> 此词在考研中 **80%** 考查僻义"处理"，而非常见义"地址"
-
-**考研常考僻义**: vt. 处理；解决；着手处理
-
-### 真题例句
-> [!example] 2022年真题 完形填空
-> The committee failed to **address** the concerns raised by the public.
-
-> [!example] 2020年真题 阅读理解
-> We must **address** the root causes of inequality.
-
-### 常用搭配
-- address the problem - 解决问题
-- address an issue - 处理议题
-- address concerns - 处理关切
-
-## 常见义（对比）
-n. 地址； vt. 称呼
-
-⚠️ 易错点：在阅读中遇到此词时，首先考虑"处理"义
-
-## 写作应用
-
-### 高级替换
-- **初级**: solve/deal with the problem
-- **高级**: **address** the problem
-
-### 写作例句
-> The government must **address** the problem of inequality.
-> (政府必须处理不平等问题。)
-
-## 词族
-- addressee (n.) - 收件人
-- addresser (n.) - 发言人
-```
 
 ---
 
@@ -440,340 +212,6 @@ n. 地址； vt. 称呼
 
 ---
 
-## Day编号计算规则 ⚠️
-
-**生成新文件前必须计算正确的Day编号！**
-
----
-
-## ⚠️ 四类笔记输出路径规范（重要！）
-
-> **强制要求**：生成四类笔记时，**必须**放到以下对应的文件夹中，**禁止**放到其他位置！
-
-### 输出路径对照表
-
-| 笔记类型 | 文件名格式 | **必须存放的路径** |
-|----------|-----------|-------------------|
-| 📊 词汇统计 | `Statistics-Day-{XXX}-{YYYY-MM-DD}.md` | `考研英语/📊 词汇统计/` |
-| 📰 真题语境文章 | `Context-Day-{XXX}-{YYYY-MM-DD}.md` | `考研英语/📰 真题语境文章/` |
-| 📝 测试记录 | `Quiz-Day-{XXX}-{YYYY-MM-DD}.md` | `考研英语/📝 测试记录/` |
-| ✍️ 写作输出 | `Writing-Day-{XXX}-{YYYY-MM-DD}.md` | `考研英语/✍️ 写作输出/` |
-
-### 完整路径示例
-
-```
-# 正确示例 ✅
-考研英语/📊 词汇统计/Statistics-Day-027-2026-03-27.md
-考研英语/📰 真题语境文章/Context-Day-027-2026-03-27.md
-考研英语/📝 测试记录/Quiz-Day-027-2026-03-27.md
-考研英语/✍️ 写作输出/Writing-Day-027-2026-03-27.md
-
-# 错误示例 ❌（禁止！）
-考研���语/英语单词/Statistics-Day-027-2026-03-27.md
-考研英语/英语单词/Context-Day-027-2026-03-27.md
-```
-
-### 整理版单词表路径
-
-整理版单词表（`{日期}-整理版.md`）存放在 `考研英语/英语单词/` 目录下。
-
-### 关联笔记链接规范
-
-生成文件后，必须更新文件内的关联链接，使用正确的相对路径：
-
-```markdown
-## 🔗 关联笔记
-
-- [[考研英语/英语单词/{日期}-整理版.md|整理版单词表]]
-- [[考研英语/📊 词汇统计/Statistics-Day-{XXX}-{YYYY-MM-DD}.md|词汇统计]]
-- [[考研英语/📰 真题语境文章/Context-Day-{XXX}-{YYYY-MM-DD}.md|真题语境文章]]
-- [[考研英语/📝 测试记录/Quiz-Day-{XXX}-{YYYY-MM-DD}.md|测试记录]]
-- [[考研英语/✍️ 写作输出/Writing-Day-{XXX}-{YYYY-MM-DD}.md|写作输出]]
-```
-
----
-
-## ⚠️ 编码规范（避免乱码）
-
-> **强制要求**：生成包含中文的文件时，必须遵守以下规范，避免出现乱码！
-
-### 规范1: 中文字符完整性
-
-生成文件后，检查以下常见乱码模式并修复：
-
-| 乱码模式 | 正确内容 | 说明 |
-|---------|---------|------|
-| `足��` | `足够` | 字符被截断 |
-| `满��地` | `满意地` | 字符被截断 |
-| `���⭐` | `⭐⭐` | emoji被破坏 |
-
-### 规范2: 文件生成后验证
-
-生成包含中文的文件后，必须执行以下检查：
-
-1. 读取生成的文件内容
-2. 检查是否包含乱码字符（如 `���`、`��` 等）
-3. 如果发现乱码，立即修复
-
-### 规范3: 写入文件时的注意事项
-
-- 确保 Write 工具的 content 参数中的中文字符完整
-- 避免在字符串中间截断中文字符
-- 确保 emoji 字符（⭐、📊、📰、📝、✍️）完整写入
-- 表格内的 emoji 与中文之间保持适当空格
-
-### 计算步骤
-
-1. **检查现有文件**：
-   ```bash
-   find 考研英语/📰 真题语境文章 -name "*.md" | sort | tail -5
-   ```
-
-2. **提取最大Day编号**：
-   - 从文件名格式 `Day-XXX-YYYY-MM-DD.md` 提取 XXX
-   - 例如：`Day-015-2026-03-14.md` → Day编号 = 15
-
-3. **计算新Day编号**：
-   - 新Day编号 = 最大Day编号 + 1
-   - 例如：最大是 Day-015 → 新文件使用 Day-016
-
-4. **文件命名格式**：
-   - 真题文章：`Context-Day-{XXX}-{YYYY-MM-DD}.md`
-   - 测试记录：`Quiz-Day-{XXX}-{YYYY-MM-DD}.md`
-   - 词汇统计：`Statistics-Day-{XXX}-{YYYY-MM-DD}.md`
-   - 写作输出：`Writing-Day-{XXX}-{YYYY-MM-DD}.md`
-
-### 注意事项
-
-- ❌ **禁止**硬编码 "Day-001"
-- ✅ **必须**先检查现有文件再生成新编号
-- ✅ 所有4类文件使用**相同的Day编号**
-
----
-
-## ⚠️ 整理版单词表模板格式规范（重要！）
-
-> **强制要求**：生成整理版单词表时，**必须**严格遵循以下模板格式！
-
-### 模板结构（基于 `2026-3-26.md` 标准）
-
-```markdown
-# 考研英语单词表 - Day {XX}
-
-**日期**: {YYYY-MM-DD}
-**词汇量**: {N}词
-**来源**: 单词整理
-**距离考试**: {N}天
-
----
-
-## ⭐⭐⭐ 高频词（必考词汇）
-
-### 词族1: {词族名}族（{N}词）
-
-#### {单词名} ⭐⭐⭐
-**词性** 释义
-
-| 词组搭配 | 释义 |
-|---------|------|
-| 搭配1 | 释义1 |
-| 搭配2 | 释义2 |
-
-> [!quote] 真题例句（可选）
-> 英文例句
-> 中文译文
-
-> ⚠️ **僻义预警** [warning/critical]
-> - 常见义：xxx
-> - 考研僻义：xxx
-
-> 🧠 **记忆方法**
-> - **词根**：xxx（如果适用）
-> - **联想**：xxx
-> - **同根词**：xxx
-
----
-
-#### {下一个单词} ⭐⭐⭐
-...
-
-### 词族2: {词族名}族（{N}词）
-...
-
----
-
-## ⭐⭐ 中频词（常考词汇）
-
-### 词族N: {词族名}族（{N}词）
-...
-
----
-
-## ⭐ 低频词（生僻词汇）
-
-...
-
----
-
-## 📊 统计信息
-
-| 分类 | 数量 | 说明 |
-|------|------|------|
-| 高频词（⭐⭐⭐） | {N}词 | 必考词汇，重点记忆 |
-| 中频词（⭐⭐） | {N}词 | 常考词汇 |
-| 低频词（⭐） | {N}词 | 生僻词汇 |
-| 僻义预警词 | {N}词 | 需特别注意 |
-
-### 词族统计
-
-| 词族 | 单词数 | 核心词 |
-|------|--------|--------|
-| {词族名}族 | {N} | {核心词} |
-
----
-
-## ⚠️ 僻义预警汇总
-
-### [critical] 高频陷阱
-
-| 单词 | 常见义 | 考研僻义 | 出现频率 |
-|------|--------|----------|----------|
-| xxx | xxx | xxx | 高频 |
-
-### [warning] 中等陷阱
-
-| 单词 | 常见义 | 考研僻义 | 出现频率 |
-|------|--------|----------|----------|
-| xxx | xxx | xxx | 中频 |
-
----
-
-**下次复习日期**: {YYYY-MM-DD}
-
----
-
-> [!tip] 学习建议
-> 1. 优先记忆高频词（⭐⭐⭐）
-> 2. 重点复习僻义预警词
-> 3. 按词族记忆，提高效率
-> 4. 结合真题语境文章巩固
-```
-
-### 关键格式要点
-
-| 要素 | 格式要求 | 示例 |
-|------|----------|------|
-| **标题** | `# 考研英语单词表 - Day XX` | `# 考研英语单词表 - Day 27` |
-| **元信息** | 日期、词汇量、来源、距离考试 | `**日期**: 2026-03-27` |
-| **频率分级** | `## ⭐⭐⭐/⭐⭐/⭐` | `## ⭐⭐⭐ 高频词（必考词汇）` |
-| **词族分组** | `### 词族N: xxx族（X词）` | `### 词族1: late族（4词）` |
-| **单词标题** | `#### 单词名 ⭐⭐⭐` | `#### lately ⭐⭐⭐` |
-| **词性释义** | `**词性** 释义` | `**adv.** 近来；最近` |
-| **词组搭配** | 表格格式 `| 词组搭配 | 释义 |` | 见上方示例 |
-| **记忆方法** | `> 🧠 **记忆方法**` callout | 见上方示例 |
-| **僻义预警** | `> ⚠️ **僻义预警**` | `> ⚠️ **僻义预警** [critical]` |
-| **分隔线** | 每个单词后用 `---` | 保持视觉分隔 |
-| **统计信息** | `## 📊 统计信息` 表格 | 词频分布统计 |
-| **僻义汇总** | `## ⚠️ 僻义预警汇总` | 高频/中等陷阱分类表 |
-
-### 禁止事项
-
-| 禁止 | 原因 |
-|------|------|
-| ❌ 省略记忆方法 | 所有单词必须有记忆方法 |
-| ❌ 省略词族分类 | 必须按词族组织单词 |
-| ❌ 省略统计信息 | 必须有完整的统计表 |
-| ❌ 使用非标准标题格式 | 必须使用 `#### 单词 ⭐⭐⭐` 格式 |
-| ❌ 省略分隔线 | 每个单词后必须用 `---` |
-
----
-
-## 模板
-
-### 模板1: 每日词汇
-
-```markdown
-# 每日词汇 - Day {day_number}
-
-**日期**: {date}
-**来源**: 墨墨背单词导出
-**当前阶段**: {基础期/强化期/冲刺期/极限冲刺期}
-**距离考试**: {days}天
-
----
-
-## 重点词汇
-
-| 单词 | 音标 | 词性 | 释义 | ⚠️僻义 | 💡记忆提示 | 📝常见搭配 |
-|------|------|------|------|--------|----------|------------|
-| exemplify | /ɪɡˈzemplɪfaɪ/ | v. | 举例说明 | | 词根: exempl(例子)+ify动词化 | exemplify the point |
-| address | /əˈdres/ | vt./n. | 处理；地址 | [critical] | 搭配记忆: address the problem | address the issue, address concerns |
-
----
-
-## ⚠️ 僻义预警
-
-### address [critical]
-- 常见义：地址
-- **考研僻义（80%）**: 处理、解决
-- 搭配：address the problem, address an issue
-
----
-
-## 真题语境文章
-
-{article_including_all_target_words}
-
-> ⚠️ **词汇覆盖检查**: 本文已包含所有 {total_count} 个目标单词
-
----
-
-## 📖 文章译文
-
-{chinese_translation}
-
----
-
-## 📖 阅读理解练习
-
-### 模板2: 真题语境卡片
-
-```markdown
----
-context_source: "真题"
-source_year: 2023
-source_paper: "英语一"
-source_type: "阅读理解"
-source_section: "Text 3"
-source_topic: "社会政策"
-difficulty_level: "hard"
-cefr_level: "C1"
-word_count: 22
-core_word_density: "5/22 (23%)"
----
-
-## 真题语境: exemplify
-
-> [!quote] 2023年英语一 阅读理解 Text 3
-> The case of California's energy policy **exemplifies** how well-intentioned regulations can have unintended consequences when market dynamics are overlooked.
-
-### 句式分析
-- **结构**: 让步状语从句 + how引导宾语从句
-- **外刊风格**: 经济学人式论证逻辑（例子→观点→深层分析）
-- **词汇密度**: 5个考研核心词 / 22词 (23%)
-
-### 同句其他核心词
-- well-intentioned: 善意的
-- regulation: 规章制度
-- unintended: 意外的
-- consequence: 后果
-- overlook: 忽视
-
-> ⚠️ **时效提醒**：此语境来自2023年真题，保证时效性和权威性
-```
-
----
-
 ## 工作流程
 
 ```
@@ -801,6 +239,7 @@ core_word_density: "5/22 (23%)"
 ## 熟词僻义检测
 
 > 📁 详细实现见 [code.md](code.md) 的 `detect_polysemy` 函数
+> 📋 数据来源见 [data/polysemy-database.md](data/polysemy-database.md)
 
 ### 检测逻辑
 
@@ -821,7 +260,7 @@ core_word_density: "5/22 (23%)"
 ## 验证标准
 
 1. ✅ 能够从PDF中提取单词列表
-2. ✅ 能够识别并分类重点词汇、僻义词和一般词���
+2. ✅ 能够识别并分类重点词汇、僻义词和一般词汇
 3. ✅ **能够优先使用真题语境而非AI生成文章**
 4. ✅ **能够正确检测和预警熟词僻义**
 5. ✅ 能够快速查询单词信息（含僻义预警）
@@ -862,119 +301,6 @@ core_word_density: "5/22 (23%)"
 
 ---
 
-## Day编号计算规则 ⚠️ (更新于2026-03-16)
-
-**重要**：本技能使用 `kaoyan-english-core` 提供的共享Day编号计算函数。
-
-### 推荐做法
-
-```python
-# 使用共享函数获取验证后的Day编号
-from kaoyan_english_core import get_validated_day_number, generate_day_filenames
-
-# 获取Day编号（双重验证）
-day_number = get_validated_day_number("2026-03-16")  # 返回：17
-
-# 生成文件名
-filenames = generate_day_filenames("2026-03-16", day_number)
-# {
-#     "context_article": "Context-Day-017-2026-03-16.md",
-#     "statistics": "Statistics-Day-017-2026-03-16.md"
-# }
-```
-
-### 核心函数位置
-
-详细实现请参考：`.claude/skills/kaoyan-english-core/code.md` 第8节
-
-### Day编号对应关系
-
-| 日期 | Day编号 |
-|------|---------|
-| 2026-02-28 | Day 001 |
-| 2026-03-01 | Day 002 |
-| 2026-03-15 | Day 016 |
-| 2026-03-16 | Day 017 |
-| 2026-03-17 | Day 018 |
-
----
-
-## Markdown 表格规范 ⚠️
-
-> **重要**：生成词汇统计、语境文章等包含表格的文件时，**必须**遵守以下规范！
-
-### 规范1: 表格前必须有空行
-
-Markdown 表格必须与前面的内容之间有空行，否则表格不会被正确渲染。
-
-```markdown
-# ❌ 错误 - 表格不会渲染
-**重点单词**：
-| 单词 | 核心含义 |
-|------|---------|
-| test | 测试 |
-
-# ✅ 正确 - 表格会正确渲染
-**重点单词**：
-
-| 单词 | 核心含义 |
-|------|---------|
-| test | 测试 |
-```
-
-### 规范2: 表格内禁止使用粗体标记
-
-表格内的 `**粗体**` 标记会干扰管道符 `|` 的解析，导致表格结构错乱。
-
-```markdown
-# ❌ 错误 - 粗体标记会破坏表格
-| 单词 | 常见义 | **僻义（考研重点）** |
-|------|--------|---------------------|
-| **spectrum** | 光谱 | 范围 |
-
-# ✅ 正确 - 使用纯文本
-| 单词 | 常见义 | 僻义（考研重点） |
-|------|--------|------------------|
-| spectrum | 光谱 | 范围 |
-```
-
-### 规范3: 表格内需要强调时的替代方案
-
-如果需要在表格中强调某些内容，使用以下替代方案：
-
-| 替代方案 | 示例 | 说明 |
-|---------|------|------|
-| 前缀符号 | `⚠️ 僻义：xxx` | 使用 emoji 或符号标记 |
-| 括号标注 | `(重点)` | 使用括号添加说明 |
-| 列后注释 | 在表格后用文字说明 | 表格外使用粗体强调 |
-
-### 规范4: 完整表格示例
-
-```markdown
-**重点单词**：
-
-| 单词 | 核心含义 | 考研考点 |
-|------|---------|---------|
-| resolution | 决心/解决/分辨率 | 分辨率（科技类）；conflict resolution |
-| resign | 辞职/顺从 | 僻义：resign oneself to 顺从 |
-| resident | 居民/住院医生 | 僻义：住院医生 |
-| represent | 代表 | represent sb's interests |
-| reproduce | 复制/繁殖 | reproduce results 复现结果 |
-
-**记忆口诀**：re-开头多表示"回"或"再"
-```
-
-### 验证清单
-
-生成包含表格的文件后，检查：
-
-- [ ] 每个表格前都有空行
-- [ ] 表格内没有 `**` 粗体标记
-- [ ] 表头分隔行格式正确（`|---|---|`）
-- [ ] 所有行的列数一致
-
----
-
 *创建日期: 2026-03-10*
-*版本: 1.4.0*
-*最后更新: 2026-03-26（强制要求所有单词添加记忆方法）*
+*版本: 1.2.0*
+*最后更新: 2026-03-27（拆分文档结构）*

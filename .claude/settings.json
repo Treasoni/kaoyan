@@ -41,7 +41,8 @@
       "Bash(xxd:*)",
       "Bash(sed -i '' '2618s/.*/> 看到 $\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")",
       "Bash(sed -n '2618p' \"考研数学/高数-一元微分学/错题本.md\")",
-      "Bash(sed -i '' '2618s/.*/> 看到 $\\\\\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")"
+      "Bash(sed -i '' '2618s/.*/> 看到 $\\\\\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")",
+      "Edit(/.claude/skills/kaoyan-english-vocab/**)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
