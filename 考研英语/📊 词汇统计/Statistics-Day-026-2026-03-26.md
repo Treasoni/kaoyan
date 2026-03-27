@@ -19,15 +19,15 @@
 
 ## 📊 词族统计
 
-| 词族 | 单词数 | 核心词 | 记忆优先级 |
-|------|--------|--------|------------|
-| late族 | 4 | latent | ⭐⭐⭐ |
-| cent族 | 9 | center, central, century | ⭐⭐⭐ |
-| fault族 | 5 | fault, fatal, fatigue | ⭐⭐⭐ |
-| vac族 | 4 | vacant, vacation | ⭐⭐⭐ |
-| cede/ceed族 | 8 | decent, deceive, adhere | ⭐⭐⭐ |
-| gl族 | 4 | glimpse, glitter, glow | ⭐⭐ |
-| ha族 | 6 | haul, hatred, haste | ⭐⭐ |
+| 词族         | 单词数 | 核心词                      | 记忆优先级 |
+| ---------- | --- | ------------------------ | ----- |
+| late族      | 4   | latent                   | ⭐⭐⭐   |
+| cent族      | 9   | center, central, century | ⭐⭐⭐   |
+| fault族     | 5   | fault, fatal, fatigue    | ⭐⭐⭐   |
+| vac族       | 4   | vacant, vacation         | ⭐⭐⭐   |
+| cede/ceed族 | 8   | decent, deceive, adhere  | ⭐⭐⭐   |
+| gl族        | 4   | glimpse, glitter, glow   | ⭐⭐    |
+| ha族        | 6   | haul, hatred, haste      | ⭐⭐    |
 
 ---
 
