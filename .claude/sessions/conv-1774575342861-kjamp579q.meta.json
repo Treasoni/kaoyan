@@ -3,11 +3,10 @@
   "title": "Route kaoyan English vocabulary learning request",
   "titleGenerationStatus": "success",
   "createdAt": 1774575342862,
-  "updatedAt": 1774576118606,
-  "lastResponseAt": 1774576118606,
+  "updatedAt": 1774576516809,
+  "lastResponseAt": 1774576516809,
   "sessionId": "1499e91d-8926-4118-a1fc-2e163a98da67",
   "sdkSessionId": "1499e91d-8926-4118-a1fc-2e163a98da67",
-  "currentNote": "考研英语/英语单词/2026-3-27.md",
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
