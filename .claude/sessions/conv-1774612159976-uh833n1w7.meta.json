@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774612159976-uh833n1w7",
+  "title": "Summarize kaoyan skill architecture overview",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774612159976,
+  "updatedAt": 1774612189040,
+  "lastResponseAt": 1774612189040,
+  "sessionId": "b3e0241b-67d6-427e-a211-b252b92d0136",
+  "sdkSessionId": "b3e0241b-67d6-427e-a211-b252b92d0136",
+  "currentNote": "CLAUDE.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
