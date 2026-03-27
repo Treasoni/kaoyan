@@ -1,0 +1,44 @@
+{
+  "upload_timestamp": "2026-03-27T16:11:31Z",
+  "upload_date": "2026-03-28",
+  "vault_name": "考研复习",
+  "user_profile": {
+    "target_school": "湖南大学",
+    "major": "控制工程与科学专硕",
+    "exam_date": "2026-12-24",
+    "subjects": ["数学二", "英语二", "思想政治理论", "822电子技术基础"]
+  },
+  "learning_progress": {
+    "math": {
+      "current_module": "一元微分学",
+      "completed_modules": ["函数极限与连续"],
+      "progress_summary": "函数极限与连续 100% 完成，正在学习一元微分学"
+    },
+    "english": {
+      "current_day": 27,
+      "vocabulary_learned": "Day 001-027",
+      "total_words": "约2000+"
+    },
+    "electronics": {
+      "digital_progress": "第一章100% + 第二章80% + 第三章12.5%",
+      "analog_progress": "0%（待开始）",
+      "total_study_time": "355分钟"
+    }
+  },
+  "latest_daily_plan": {
+    "date": "2026-03-27",
+    "continuous_days": 29,
+    "total_study_time": "330分钟（~5.5小时）",
+    "completed": {
+      "english": ["Day 026 第1次复习", "Day 027 新学单词(75词)"],
+      "math": ["涉及导数的中值定理（罗尔定理）", "数学复习（一元微分回顾）", "错题练习10道"],
+      "electronics": ["第三章 组合逻辑电路 - 分析方法"]
+    }
+  },
+  "mistake_books": [
+    "考研数学/高数-函数极限与连续/错题本.md",
+    "考研数学/高数-数列极限/错题本.md",
+    "考研数学/高数-一元微分学/错题本.md"
+  ],
+  "sync_version": "1.0"
+}

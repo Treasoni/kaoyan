@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774627874652-3yp4h04y6",
+  "title": "Sync study data to MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774627874652,
+  "updatedAt": 1774627991109,
+  "lastResponseAt": 1774627901207,
+  "sessionId": "ec67a7a1-d467-47da-9c1a-41a12141b187",
+  "sdkSessionId": "ec67a7a1-d467-47da-9c1a-41a12141b187",
+  "currentNote": "CLAUDE.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
