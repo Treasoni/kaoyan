@@ -49,7 +49,15 @@
       "Edit(/.claude/skills/kaoyan-electronics-structure/**)",
       "Bash(wc -l /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics*/SKILL.md /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics*/code.md)",
       "Bash(find .claude/skills -name \"*.md\" -exec wc -l {})",
-      "Edit(/.claude/skills/skill-refactor/**)"
+      "Edit(/.claude/skills/skill-refactor/**)",
+      "Edit(/.claude/skills/mistake-book/**)",
+      "Edit(/.claude/skills/kaoyan-math/**)",
+      "Edit(/.claude/skills/mistake-restructure/**)",
+      "Edit(/.claude/skills/kaoyan-english/**)",
+      "Edit(/.claude/skills/kaoyan-math-summary/**)",
+      "Edit(/.claude/skills/kaoyan-english-quiz/**)",
+      "Edit(/.claude/skills/kaoyan-english-writing/**)",
+      "Edit(/.claude/skills/kaoyan-info/**)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",

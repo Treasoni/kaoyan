@@ -1,7 +1,6 @@
 ---
 name: mistake-restructure
 description: 错题本结构优化技能。自动分析错题关联、按知识点分类索引、生成关联网络图。触发词："重构错题本"、"整理错题结构"、"优化错题索引"。
-version: 1.0.0
 ---
 
 # 错题本重构 (Mistake Restructure)
@@ -12,12 +11,16 @@ version: 1.0.0
 - 用户说"优化错题索引"、"错题分类"
 - 用户要求提高错题复习效率
 
+---
+
 ## 核心功能
 
 1. **知识点分类** - 自动识别错题主题，按知识点分组
 2. **关联网络** - 分析错题间联系，生成 Mermaid 关联图
 3. **双向链接** - 为相关错题添加交叉引用标签
 4. **备份保护** - 重构前自动备份原文件
+
+---
 
 ## 使用方法
 
@@ -40,6 +43,8 @@ python .claude/skills/mistake-restructure/scripts/restructure.py \
 /mistake-restructure 重构 高数-函数极限与连续 的错题本
 ```
 
+---
+
 ## 输出规范
 
 重构后的错题本结构：
@@ -47,9 +52,7 @@ python .claude/skills/mistake-restructure/scripts/restructure.py \
 2. **关联图** - Mermaid 格式的关联网络
 3. **关联标签** - 每道错题末尾的交叉引用
 
-## 配置文件
-
-- `scripts/config.json` - 知识点关键词映射、关联规则
+---
 
 ## 依赖
 
