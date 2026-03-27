@@ -44,7 +44,12 @@
       "Bash(sed -i '' '2618s/.*/> 看到 $\\\\\\\\frac{0}{0}$ 型极限，直接上下求导：/' \"考研数学/高数-一元微分学/错题本.md\")",
       "Edit(/.claude/skills/kaoyan-english-vocab/**)",
       "Bash(wc -l \"/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-vocab/skill.md\" \"/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-vocab/docs\"/*.md \"/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-vocab/templates\"/*.md \"/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-english-vocab/data\"/*.md)",
-      "Edit(/.claude/skills/kaoyan-electronics-sop/**)"
+      "Edit(/.claude/skills/kaoyan-electronics-sop/**)",
+      "Edit(/.claude/skills/kaoyan-electronics-circuit/**)",
+      "Edit(/.claude/skills/kaoyan-electronics-structure/**)",
+      "Bash(wc -l /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics*/SKILL.md /Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics*/code.md)",
+      "Bash(find .claude/skills -name \"*.md\" -exec wc -l {})",
+      "Edit(/.claude/skills/skill-refactor/**)"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
@@ -61,7 +66,8 @@
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-notes",
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-math-notes/scripts",
       "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics/scripts",
-      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics"
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/kaoyan-electronics",
+      "/Users/zhqznc/Documents/考研复习/.claude/skills/skill-refactor"
     ]
   }
 }
