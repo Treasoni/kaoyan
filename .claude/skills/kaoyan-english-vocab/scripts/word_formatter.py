@@ -283,7 +283,7 @@ def add_memory_methods(classified_words: Dict) -> Dict:
             "ly": "副词后缀，表示...地",
         },
         # 常用词组搭配库
-        collocations = {
+        "collocations": {
             "address": ["address the problem", "address an issue", "address concerns"],
             "sustain": ["sustain development", "sustain economic growth", "self-sustaining"],
             "consume": ["be consumed by", "consume time", "consume energy"],
