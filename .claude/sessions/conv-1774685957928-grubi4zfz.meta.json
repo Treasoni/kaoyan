@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774685957928-grubi4zfz",
+  "title": "Analyze Cauchy mean value theorem geometric int...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774685957932,
+  "updatedAt": 1774686042320,
+  "lastResponseAt": 1774686042320,
+  "sessionId": "23928f8f-c3c7-4128-b5ca-0af42e942a3c",
+  "sdkSessionId": "23928f8f-c3c7-4128-b5ca-0af42e942a3c",
+  "currentNote": "考研数学/高数-一元微分学/一元函数微分的应用2/1-中值定理/2-涉及导数的中值定理/柯西中值定理.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
