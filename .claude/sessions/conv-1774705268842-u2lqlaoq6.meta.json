@@ -3,6 +3,18 @@
   "title": "Explain binary priority encoder output derivation",
   "titleGenerationStatus": "success",
   "createdAt": 1774705268842,
-  "updatedAt": 1774705272167,
-  "sessionId": null
+  "updatedAt": 1774705505011,
+  "lastResponseAt": 1774705505011,
+  "sessionId": "cecc2040-c7cb-4338-a956-4712cf8b98e0",
+  "sdkSessionId": "cecc2040-c7cb-4338-a956-4712cf8b98e0",
+  "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/04-编码器.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
