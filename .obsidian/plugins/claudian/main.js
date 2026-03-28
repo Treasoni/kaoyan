@@ -12980,6 +12980,33 @@ __export(main_exports, {
   default: () => ClaudianPlugin
 });
 module.exports = __toCommonJS(main_exports);
+
+// src/utils/electronCompat.ts
+function isAbortSignalLike(target) {
+  if (!target || typeof target !== "object") return false;
+  const t2 = target;
+  return typeof t2.aborted === "boolean" && typeof t2.addEventListener === "function" && typeof t2.removeEventListener === "function";
+}
+function patchSetMaxListenersForElectron() {
+  const events = require("events");
+  if (events.setMaxListeners.__electronPatched) return;
+  const original = events.setMaxListeners;
+  const patched = function patchedSetMaxListeners(...args) {
+    try {
+      return original.apply(this, args);
+    } catch (error48) {
+      const eventTargets = args.slice(1);
+      if (eventTargets.length > 0 && eventTargets.every(isAbortSignalLike)) {
+        return;
+      }
+      throw error48;
+    }
+  };
+  patched.__electronPatched = true;
+  events.setMaxListeners = patched;
+}
+
+// src/main.ts
 var import_obsidian40 = require("obsidian");
 
 // src/core/agents/AgentManager.ts
@@ -60863,24 +60890,29 @@ function hideSelectionHighlight(editorView) {
 // src/features/chat/controllers/SelectionController.ts
 var SELECTION_POLL_INTERVAL = 250;
 var INPUT_HANDOFF_GRACE_MS = 1500;
+var HIGHLIGHT_KEY = "claudian-selection";
 var SelectionController = class {
-  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange) {
+  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange, focusScopeEl) {
     this.storedSelection = null;
     this.inputHandoffGraceUntil = null;
     this.pollInterval = null;
-    this.inputPointerDownHandler = () => {
+    this.focusScopePointerDownHandler = () => {
       if (!this.storedSelection) return;
       this.inputHandoffGraceUntil = Date.now() + INPUT_HANDOFF_GRACE_MS;
     };
     this.app = app;
     this.indicatorEl = indicatorEl;
     this.inputEl = inputEl;
+    this.focusScopeEl = focusScopeEl != null ? focusScopeEl : inputEl;
     this.contextRowEl = contextRowEl;
     this.onVisibilityChange = onVisibilityChange != null ? onVisibilityChange : null;
   }
   start() {
     if (this.pollInterval) return;
-    this.inputEl.addEventListener("pointerdown", this.inputPointerDownHandler);
+    this.inputEl.addEventListener("pointerdown", this.focusScopePointerDownHandler);
+    if (this.focusScopeEl !== this.inputEl) {
+      this.focusScopeEl.addEventListener("pointerdown", this.focusScopePointerDownHandler);
+    }
     this.pollInterval = setInterval(() => this.poll(), SELECTION_POLL_INTERVAL);
   }
   stop() {
@@ -60888,7 +60920,10 @@ var SelectionController = class {
       clearInterval(this.pollInterval);
       this.pollInterval = null;
     }
-    this.inputEl.removeEventListener("pointerdown", this.inputPointerDownHandler);
+    this.inputEl.removeEventListener("pointerdown", this.focusScopePointerDownHandler);
+    if (this.focusScopeEl !== this.inputEl) {
+      this.focusScopeEl.removeEventListener("pointerdown", this.focusScopePointerDownHandler);
+    }
     this.clear();
   }
   dispose() {
@@ -60901,7 +60936,7 @@ var SelectionController = class {
     var _a3;
     const view = this.app.workspace.getActiveViewOfType(import_obsidian16.MarkdownView);
     if (!view) {
-      this.clearWhenMarkdownIsNotActive();
+      this.clearWhenMarkdownContextIsUnavailable();
       return;
     }
     if (view.getMode() === "preview") {
@@ -60911,7 +60946,7 @@ var SelectionController = class {
     const editor = view.editor;
     const editorView = getEditorView(editor);
     if (!editorView) {
-      this.clearWhenMarkdownIsNotActive();
+      this.clearWhenMarkdownContextIsUnavailable();
       return;
     }
     const selectedText = editor.getSelection();
@@ -60942,7 +60977,7 @@ var SelectionController = class {
     var _a3, _b;
     const containerEl = view.containerEl;
     if (!containerEl) {
-      this.clearWhenMarkdownIsNotActive();
+      this.clearWhenMarkdownContextIsUnavailable();
       return;
     }
     const selection = document.getSelection();
@@ -60957,19 +60992,50 @@ var SelectionController = class {
       this.inputHandoffGraceUntil = null;
       const notePath = ((_b = view.file) == null ? void 0 : _b.path) || "unknown";
       const lineCount = selectedText.split(/\r?\n/).length;
-      const unchanged = this.storedSelection && this.storedSelection.editorView === void 0 && this.storedSelection.notePath === notePath && this.storedSelection.selectedText === selectedText && this.storedSelection.lineCount === lineCount;
+      const domRanges = this.cloneDOMRanges(selection);
+      const unchanged = this.storedSelection && this.storedSelection.editorView === void 0 && this.storedSelection.notePath === notePath && this.storedSelection.selectedText === selectedText && this.storedSelection.lineCount === lineCount && this.rangeListsMatch(this.storedSelection.domRanges, domRanges);
       if (!unchanged) {
         this.clearHighlight();
-        this.storedSelection = { notePath, selectedText, lineCount };
+        this.storedSelection = { notePath, selectedText, lineCount, domRanges };
         this.updateIndicator();
       }
     } else {
       this.handleDeselection();
     }
   }
-  handleDeselection() {
+  get cssHighlights() {
+    return typeof CSS !== "undefined" && CSS.highlights ? CSS.highlights : null;
+  }
+  rangesMatch(a2, b2) {
+    return a2.startContainer === b2.startContainer && a2.startOffset === b2.startOffset && a2.endContainer === b2.endContainer && a2.endOffset === b2.endOffset;
+  }
+  rangeListsMatch(left, right) {
+    return left !== void 0 && left.length === right.length && left.every((range, index) => this.rangesMatch(range, right[index]));
+  }
+  selectionMatchesRanges(selection, ranges) {
+    if (!selection || selection.rangeCount !== ranges.length) return false;
+    for (let i2 = 0; i2 < ranges.length; i2++) {
+      if (!this.rangesMatch(selection.getRangeAt(i2), ranges[i2])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  cloneDOMRanges(selection) {
+    if (!selection) return [];
+    const ranges = [];
+    for (let i2 = 0; i2 < selection.rangeCount; i2++) {
+      ranges.push(selection.getRangeAt(i2).cloneRange());
+    }
+    return ranges;
+  }
+  isFocusWithinChatSidebar() {
+    const activeElement = document.activeElement;
+    return activeElement !== null && (activeElement === this.focusScopeEl || this.focusScopeEl.contains(activeElement));
+  }
+  clearWhenMarkdownContextIsUnavailable() {
     if (!this.storedSelection) return;
-    if (document.activeElement === this.inputEl) {
+    if (this.isFocusWithinChatSidebar()) {
       this.inputHandoffGraceUntil = null;
       return;
     }
@@ -60981,9 +61047,15 @@ var SelectionController = class {
     this.storedSelection = null;
     this.updateIndicator();
   }
-  clearWhenMarkdownIsNotActive() {
+  handleDeselection() {
     if (!this.storedSelection) return;
-    if (document.activeElement === this.inputEl) return;
+    if (this.isFocusWithinChatSidebar()) {
+      this.inputHandoffGraceUntil = null;
+      return;
+    }
+    if (this.inputHandoffGraceUntil !== null && Date.now() <= this.inputHandoffGraceUntil) {
+      return;
+    }
     this.inputHandoffGraceUntil = null;
     this.clearHighlight();
     this.storedSelection = null;
@@ -60993,14 +61065,38 @@ var SelectionController = class {
   // Highlight Management
   // ============================================
   showHighlight() {
+    var _a3, _b, _c;
     const sel = this.storedSelection;
-    if (!(sel == null ? void 0 : sel.editorView) || sel.from === void 0 || sel.to === void 0) return;
-    showSelectionHighlight(sel.editorView, sel.from, sel.to);
+    if (!sel) return;
+    if (sel.editorView && sel.from !== void 0 && sel.to !== void 0) {
+      const cmSel = sel.editorView.state.selection.main;
+      const nativeVisible = document.activeElement !== this.inputEl && cmSel.from === sel.from && cmSel.to === sel.to;
+      if (nativeVisible) {
+        hideSelectionHighlight(sel.editorView);
+        return;
+      }
+      showSelectionHighlight(sel.editorView, sel.from, sel.to);
+      return;
+    }
+    if ((_a3 = sel.domRanges) == null ? void 0 : _a3.length) {
+      const nativeSel = document.getSelection();
+      const nativeVisible = document.activeElement !== this.inputEl && this.selectionMatchesRanges(nativeSel, sel.domRanges);
+      if (nativeVisible) {
+        (_b = this.cssHighlights) == null ? void 0 : _b.delete(HIGHLIGHT_KEY);
+        return;
+      }
+      const validRanges = sel.domRanges.filter((r) => r.startContainer.isConnected);
+      if (validRanges.length) {
+        (_c = this.cssHighlights) == null ? void 0 : _c.set(HIGHLIGHT_KEY, new Highlight(...validRanges));
+      }
+    }
   }
   clearHighlight() {
-    var _a3;
-    if (!((_a3 = this.storedSelection) == null ? void 0 : _a3.editorView)) return;
-    hideSelectionHighlight(this.storedSelection.editorView);
+    var _a3, _b;
+    if ((_a3 = this.storedSelection) == null ? void 0 : _a3.editorView) {
+      hideSelectionHighlight(this.storedSelection.editorView);
+    }
+    (_b = this.cssHighlights) == null ? void 0 : _b.delete(HIGHLIGHT_KEY);
   }
   // ============================================
   // Indicator
@@ -62919,7 +63015,8 @@ var InstructionRefineService = class {
       // No tools needed for instruction refinement
       permissionMode: "bypassPermissions",
       allowDangerouslySkipPermissions: true,
-      settingSources: this.plugin.settings.loadUserClaudeSettings ? ["user", "project"] : ["project"]
+      settingSources: this.plugin.settings.loadUserClaudeSettings ? ["user", "project"] : ["project"],
+      spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath)
     };
     if (this.sessionId) {
       options.resume = this.sessionId;
@@ -63905,8 +64002,9 @@ Generate a title for this conversation:`;
       permissionMode: "bypassPermissions",
       allowDangerouslySkipPermissions: true,
       settingSources: this.plugin.settings.loadUserClaudeSettings ? ["user", "project"] : ["project"],
-      persistSession: false
+      persistSession: false,
       // Don't save title generation queries to session history
+      spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath)
     };
     try {
       const response = Yh({ prompt, options });
@@ -67912,7 +68010,8 @@ function initializeTabControllers(tab, plugin, component, mcpManager, forkReques
     dom.selectionIndicatorEl,
     dom.inputEl,
     dom.contextRowEl,
-    () => autoResizeTextarea(dom.inputEl)
+    () => autoResizeTextarea(dom.inputEl),
+    dom.contentEl
   );
   tab.controllers.browserSelectionController = new BrowserSelectionController(
     plugin.app,
@@ -68105,12 +68204,13 @@ function wireTabInputEvents(tab, plugin) {
   };
   dom.inputEl.addEventListener("input", inputHandler);
   dom.eventCleanups.push(() => dom.inputEl.removeEventListener("input", inputHandler));
-  const focusHandler = () => {
+  const focusHandler = (e2) => {
     var _a4;
+    if (e2.relatedTarget && dom.contentEl.contains(e2.relatedTarget)) return;
     (_a4 = controllers.selectionController) == null ? void 0 : _a4.showHighlight();
   };
-  dom.inputEl.addEventListener("focus", focusHandler);
-  dom.eventCleanups.push(() => dom.inputEl.removeEventListener("focus", focusHandler));
+  dom.contentEl.addEventListener("focusin", focusHandler);
+  dom.eventCleanups.push(() => dom.contentEl.removeEventListener("focusin", focusHandler));
   const SCROLL_THRESHOLD = 20;
   const RE_ENABLE_DELAY = 150;
   let reEnableTimeout = null;
@@ -69705,7 +69805,8 @@ var InlineEditService = class {
       settingSources: this.plugin.settings.loadUserClaudeSettings ? ["user", "project"] : ["project"],
       hooks: {
         PreToolUse: this.plugin.settings.allowExternalAccess ? [createReadOnlyHook()] : [createReadOnlyHook(), createVaultRestrictionHook2(vaultPath)]
-      }
+      },
+      spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath)
     };
     if (this.sessionId) {
       options.resume = this.sessionId;
@@ -72841,6 +72942,7 @@ function resolveClaudeCliPath(hostnamePath, legacyPath, envText) {
 }
 
 // src/main.ts
+patchSetMaxListenersForElectron();
 function chooseRicherResult(sdkResult, cachedResult) {
   const sdkText = typeof sdkResult === "string" ? sdkResult.trim() : "";
   const cachedText = typeof cachedResult === "string" ? cachedResult.trim() : "";

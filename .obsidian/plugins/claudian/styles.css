@@ -24,6 +24,7 @@
   height: 100%;
   padding: 0;
   overflow: hidden;
+  font-family: var(--font-text);
 }
 
 
@@ -3069,6 +3070,11 @@ code .claudian-file-link:hover {
   border-radius: 2px;
   padding: 3px 0;
   margin: -3px 0;
+}
+
+/* Preview mode selection highlight via CSS Custom Highlight API */
+::highlight(claudian-selection) {
+  background: var(--text-selection);
 }
 
 /* CM6 widget container - ensure transparent background */
