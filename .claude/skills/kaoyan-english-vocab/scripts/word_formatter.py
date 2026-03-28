@@ -17,6 +17,7 @@
 import re
 from typing import Dict, List, Tuple
 from datetime import datetime, timedelta
+from kaoyan_english_core.scripts.day_calculator import get_validated_day_number
 
 
 def organize_word_list(raw_content: str, output_path: str, date_str: str) -> Dict:
