@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774781826019-x9gfqlik9",
+  "title": "Fix garbled text in chapter notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774781826020,
+  "updatedAt": 1774781837200,
+  "lastResponseAt": 1774781837200,
+  "sessionId": "ff05150e-1937-43c2-9fdd-ef3dbd762631",
+  "sdkSessionId": "ff05150e-1937-43c2-9fdd-ef3dbd762631",
+  "currentNote": "考研数学/高数-一元函数积分学/1-不定积分/原函数存在定理.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
