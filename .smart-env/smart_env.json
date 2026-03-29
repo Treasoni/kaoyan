@@ -25,11 +25,7 @@
     }
   },
   "smart_notices": {
-    "muted": {
-      "embedding_progress": true,
-      "done_import": true,
-      "embedding_complete": true
-    }
+    "muted": {}
   },
   "smart_view_filter": {
     "expanded_view": false,
@@ -54,7 +50,8 @@
         "render_markdown": true,
         "show_full_path": false
       }
-    }
+    },
+    "expanded_view": false
   },
   "context_items": {
     "template_preset": "xml_structured",
