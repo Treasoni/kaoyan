@@ -3,6 +3,18 @@
   "title": "Verify second derivative sign for function maximum",
   "titleGenerationStatus": "success",
   "createdAt": 1774788045765,
-  "updatedAt": 1774788052476,
-  "sessionId": null
+  "updatedAt": 1774789564067,
+  "lastResponseAt": 1774789564067,
+  "sessionId": "83d348b3-134e-479a-aceb-d397452c769c",
+  "sdkSessionId": "83d348b3-134e-479a-aceb-d397452c769c",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
