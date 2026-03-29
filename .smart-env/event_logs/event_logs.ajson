@@ -549,3 +549,4 @@
 "event_logs:connections:opened": {"key":"connections:opened","ct":126,"first_at":1774623767347,"last_at":1774747230196,"class_name":"EventLog"},
 "event_logs:sources:modified": {"key":"sources:modified","ct":438,"first_at":1774627718841,"last_at":1774747552805,"class_name":"EventLog","event_sources":{"obsidian:vault.modify":182,"obsidian:workspace.editor-change":256}},
 "event_logs:sources:created": {"key":"sources:created","ct":16,"first_at":1774628526114,"last_at":1774747552138,"class_name":"EventLog","event_sources":{"obsidian:vault.create":16}},
+"event_logs:sources:modified": {"key":"sources:modified","ct":443,"first_at":1774627718841,"last_at":1774749298049,"class_name":"EventLog","event_sources":{"obsidian:vault.modify":183,"obsidian:workspace.editor-change":260}},
