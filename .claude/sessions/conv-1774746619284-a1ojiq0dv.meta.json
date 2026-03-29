@@ -3,6 +3,18 @@
   "title": "Record study log for March 28th",
   "titleGenerationStatus": "success",
   "createdAt": 1774746619289,
-  "updatedAt": 1774746632011,
-  "sessionId": null
+  "updatedAt": 1774746814708,
+  "lastResponseAt": 1774746814708,
+  "sessionId": "655e4981-a7da-4428-a3ac-fb1dd58a6ee1",
+  "sdkSessionId": "655e4981-a7da-4428-a3ac-fb1dd58a6ee1",
+  "currentNote": "考研计划/每日计划/2026-03-28-每日计划.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
