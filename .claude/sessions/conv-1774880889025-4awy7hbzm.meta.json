@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774880889025-4awy7hbzm",
+  "title": "Generate English vocabulary notes and word lists",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774880889026,
+  "updatedAt": 1774882250656,
+  "lastResponseAt": 1774882248588,
+  "sessionId": "3029d73c-4de7-4537-b444-1d049dc3f7bf",
+  "sdkSessionId": "3029d73c-4de7-4537-b444-1d049dc3f7bf",
+  "currentNote": "考研英语/英语单词/2026-3-30.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

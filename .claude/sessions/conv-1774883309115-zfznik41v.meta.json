@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774883309115-zfznik41v",
+  "title": "Generate March 31 daily study plan with classes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774883309116,
+  "updatedAt": 1774883521657,
+  "lastResponseAt": 1774883521657,
+  "sessionId": "a5ce1bc2-9422-40b1-b3d5-6e17071873a5",
+  "sdkSessionId": "a5ce1bc2-9422-40b1-b3d5-6e17071873a5",
+  "currentNote": "考研英语/英语单词/2026-3-30.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

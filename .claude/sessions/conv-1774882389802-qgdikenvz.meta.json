@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774882389802-qgdikenvz",
+  "title": "Fix display issue in notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774882389802,
+  "updatedAt": 1774883212652,
+  "lastResponseAt": 1774883123489,
+  "sessionId": "fc55c301-7a64-44a8-b196-4b4fcda4b46b",
+  "sdkSessionId": "fc55c301-7a64-44a8-b196-4b4fcda4b46b",
+  "currentNote": "考研计划/每日计划/完成记录/2026-03-30-完成记录.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
