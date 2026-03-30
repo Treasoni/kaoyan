@@ -3,9 +3,10 @@
   "title": "Add Taylor formula proof to mistake book",
   "titleGenerationStatus": "success",
   "createdAt": 1774862885992,
-  "updatedAt": 1774862923926,
-  "lastResponseAt": 1774862923926,
-  "sessionId": null,
+  "updatedAt": 1774863100661,
+  "lastResponseAt": 1774863100661,
+  "sessionId": "467c19de-0862-48ad-8ce7-8c01c7afebbb",
+  "sdkSessionId": "467c19de-0862-48ad-8ce7-8c01c7afebbb",
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",
