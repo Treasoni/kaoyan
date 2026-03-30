@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774838762495-v9l6fmurd",
+  "title": "Verify derivative and antiderivative relationship",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774838762495,
+  "updatedAt": 1774838846260,
+  "lastResponseAt": 1774838846260,
+  "sessionId": "11a7628b-fbb0-49ff-a0e3-424bd1f4f7fd",
+  "sdkSessionId": "11a7628b-fbb0-49ff-a0e3-424bd1f4f7fd",
+  "currentNote": "考研数学/高数-一元函数积分学/1-不定积分/原函数与不定积分.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 161,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 26688,
+    "contextWindow": 200000,
+    "contextTokens": 26849,
+    "percentage": 13
+  }
+}
