@@ -1,0 +1,19 @@
+{
+  "id": "conv-1774862885992-iktat4fff",
+  "title": "Add Taylor formula proof to mistake book",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774862885992,
+  "updatedAt": 1774862923926,
+  "lastResponseAt": 1774862923926,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
