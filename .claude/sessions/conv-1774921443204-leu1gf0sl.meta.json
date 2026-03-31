@@ -3,6 +3,18 @@
   "title": "Fix word parsing skill to keep all vocabulary",
   "titleGenerationStatus": "success",
   "createdAt": 1774921443205,
-  "updatedAt": 1774921447809,
-  "sessionId": null
+  "updatedAt": 1774924883805,
+  "lastResponseAt": 1774924883805,
+  "sessionId": "91a18f53-a752-4e0f-8d49-a067fff801f5",
+  "sdkSessionId": "91a18f53-a752-4e0f-8d49-a067fff801f5",
+  "currentNote": "考研英语/英语单词/full.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }

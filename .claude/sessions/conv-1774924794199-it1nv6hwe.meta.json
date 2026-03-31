@@ -1,0 +1,19 @@
+{
+  "id": "conv-1774924794199-it1nv6hwe",
+  "title": "Greet user with study workflow introduction",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774924794199,
+  "updatedAt": 1774924819653,
+  "lastResponseAt": 1774924809121,
+  "sessionId": null,
+  "currentNote": "考研英语/英语单词/2026-3-30.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
