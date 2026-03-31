@@ -205,6 +205,7 @@ def detect_polysemy(word):
 
 | 检查项 | 要求 |
 |--------|------|
+| ☐ **单词数量一致** | **输入N个单词 → 输出必须是N个单词（禁止过滤任何单词！）** |
 | ☐ 单词表覆盖 | 整理后的单词表已覆盖原始文件 |
 | ☐ 词族分类 | 所有单词按词族归类 |
 | ☐ 频率分级 | ⭐⭐⭐/⭐⭐/⭐ 三级分类完成 |
@@ -213,6 +214,21 @@ def detect_polysemy(word):
 | ☐ 词组搭配 | 每个单词有2-3个搭配 |
 | ☐ 四类笔记 | 输出到正确的目录 |
 | ☐ 文件命名 | 符合 `Day-XXX-YYYY-MM-DD.md` 格式 |
+
+### ⚠️ 单词数量强制验证规则
+
+**禁止任何形式的单词过滤！**
+
+1. **输入输出数量必须相等**：如果输入单词表有100个单词，输出必须是100个单词
+2. **禁止去重**：即使有重复单词也必须保留（用户可能故意重复以加强记忆）
+3. **禁止跳过**：所有单词都必须处理，无论格式是否标准
+4. **验证方法**：
+   ```python
+   # 整理前后必须核对数量
+   input_count = count_words_in_raw_content(raw_content)
+   output_count = count_words_in_output(output_content)
+   assert input_count == output_count, f"单词数量不一致！输入{input_count}个，输出{output_count}个"
+   ```
 
 ---
 

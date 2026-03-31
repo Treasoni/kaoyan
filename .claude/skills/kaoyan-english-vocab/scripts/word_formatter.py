@@ -70,21 +70,31 @@ def extract_words_from_raw_content(content: str) -> List[Dict]:
     """从原始内容中提取单词
 
     支持多种格式：
-    - word [音标] 释义
-    - word 释义
+    - word [音标] 释义（单行）
+    - word 释义（单行）
+    - 多行格式（单词单独一行，释义在后续行）
     - Markdown 格式（含 # 标题等）
+
+    > **重要**：此函数不过滤任何单词！输入N个单词，输出必须也是N个单词。
     """
     words = []
     lines = content.split('\n')
+    i = 0
 
-    for line in lines:
-        line = line.strip()
-        # 跳过空行、标题、分隔线
+    while i < len(lines):
+        line = lines[i].strip()
+        i += 1
+
+        # 跳过空行、标题、分隔线、备注、日期等元信息
         if not line or line.startswith('#') or line.startswith('---'):
+            continue
+        if line in ['备注：', '日期：', '备注:', '日期:']:
+            continue
+        if line in ['词组搭配', '# 词组搭配']:
             continue
 
         # 尝试匹配多种格式
-        # 格式1: word [音标] 释义
+        # 格式1: word [音标] 释义（单行格式）
         match = re.match(r'^(\w+)\s*\[([^\]]+)\]\s*(.+)$', line)
         if match:
             words.append({
@@ -94,7 +104,7 @@ def extract_words_from_raw_content(content: str) -> List[Dict]:
             })
             continue
 
-        # 格式2: word 释义（释义需包含中文）
+        # 格式2: word 释义（释义需包含中文，单行格式）
         match = re.match(r'^(\w+)\s+(.+)$', line)
         if match and re.search(r'[\u4e00-\u9fff]', match.group(2)):
             words.append({
@@ -102,6 +112,41 @@ def extract_words_from_raw_content(content: str) -> List[Dict]:
                 "pronunciation": "",
                 "meaning": match.group(2).strip()
             })
+            continue
+
+        # 格式3: 多行格式（单词单独一行，释义在下一行或下几行）
+        # 检测纯英文单词行（可能是单词）
+        if re.match(r'^[a-zA-Z]+$', line) and len(line) >= 2:
+            word = line.lower()
+            # 向后查找释义行
+            meaning_lines = []
+            j = i
+            while j < len(lines):
+                next_line = lines[j].strip()
+                j += 1
+                # 跳过空行
+                if not next_line:
+                    continue
+                # 遇到"词组搭配"标记，停止释义收集
+                if next_line in ['词组搭配', '# 词组搭配']:
+                    break
+                # 遇到下一个单词（纯英文行），停止并回退
+                if re.match(r'^[a-zA-Z]+$', next_line) and len(next_line) >= 2:
+                    j -= 1  # 回退，让外层循环处理这个单词
+                    break
+                # 遇到标题等，跳过
+                if next_line.startswith('#') or next_line.startswith('---'):
+                    continue
+                # 收集释义行
+                meaning_lines.append(next_line)
+
+            if meaning_lines:
+                words.append({
+                    "word": word,
+                    "pronunciation": "",
+                    "meaning": ' '.join(meaning_lines)
+                })
+                i = j  # 更新索引位置
 
     return words
 
