@@ -1,0 +1,20 @@
+{
+  "id": "conv-1774942410379-0za3bai44",
+  "title": "Create folder and reorganize calculus notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774942410380,
+  "updatedAt": 1774942472728,
+  "lastResponseAt": 1774942472728,
+  "sessionId": "15254026-8f8b-4abf-bc98-e52549383d36",
+  "sdkSessionId": "15254026-8f8b-4abf-bc98-e52549383d36",
+  "currentNote": "考研数学/高数-一元函数积分学/1-不定积分/原函数存在定理.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 497,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 24512,
+    "contextWindow": 200000,
+    "contextTokens": 25009,
+    "percentage": 13
+  }
+}
