@@ -1,11 +1,12 @@
 {
-  "id": "conv-1774882315820-hbcxfcnrf",
-  "title": "Generate English vocabulary notes and word lists",
+  "id": "conv-1774919824674-hniru1i9h",
+  "title": "Generate concise descriptive title",
   "titleGenerationStatus": "success",
-  "createdAt": 1774882315821,
-  "updatedAt": 1774917747382,
-  "lastResponseAt": 1774883360178,
-  "sessionId": null,
+  "createdAt": 1774919824675,
+  "updatedAt": 1774919890498,
+  "lastResponseAt": 1774919890498,
+  "sessionId": "1d34852b-bbae-4deb-acb0-2e05661a1856",
+  "sdkSessionId": "1d34852b-bbae-4deb-acb0-2e05661a1856",
   "currentNote": "考研英语/英语单词/2026-3-30.md",
   "usage": {
     "model": "glm-5",
