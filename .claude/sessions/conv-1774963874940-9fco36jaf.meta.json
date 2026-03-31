@@ -3,11 +3,10 @@
   "title": "Record study completion and update progress",
   "titleGenerationStatus": "success",
   "createdAt": 1774963874941,
-  "updatedAt": 1774964189941,
-  "lastResponseAt": 1774964189941,
+  "updatedAt": 1774966165329,
+  "lastResponseAt": 1774966165329,
   "sessionId": "4317554d-c618-4d60-a480-02f6104c92cb",
   "sdkSessionId": "4317554d-c618-4d60-a480-02f6104c92cb",
-  "currentNote": "考研计划/每日计划/2026-03-31-每日计划.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
