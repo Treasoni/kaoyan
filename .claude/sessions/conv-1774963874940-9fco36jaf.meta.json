@@ -1,0 +1,23 @@
+{
+  "id": "conv-1774963874940-9fco36jaf",
+  "title": "Record study completion and update progress",
+  "titleGenerationStatus": "success",
+  "createdAt": 1774963874941,
+  "updatedAt": 1774964189941,
+  "lastResponseAt": 1774964189941,
+  "sessionId": "4317554d-c618-4d60-a480-02f6104c92cb",
+  "sdkSessionId": "4317554d-c618-4d60-a480-02f6104c92cb",
+  "currentNote": "考研计划/每日计划/2026-03-31-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
