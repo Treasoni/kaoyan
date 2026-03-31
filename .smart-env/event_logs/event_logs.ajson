@@ -62,3 +62,5 @@
 "event_logs:sources:imported": {"key":"sources:imported","ct":4670,"first_at":1774623476498,"last_at":1774920064265,"class_name":"EventLog"},
 "event_logs:sources:created": {"key":"sources:created","ct":97,"first_at":1774628526114,"last_at":1774920128462,"class_name":"EventLog","event_sources":{"obsidian:vault.create":97}},
 "event_logs:sources:imported": {"key":"sources:imported","ct":4671,"first_at":1774623476498,"last_at":1774920187504,"class_name":"EventLog"},
+"event_logs:sources:created": {"key":"sources:created","ct":100,"first_at":1774628526114,"last_at":1774920539617,"class_name":"EventLog","event_sources":{"obsidian:vault.create":100}},
+"event_logs:sources:imported": {"key":"sources:imported","ct":4672,"first_at":1774623476498,"last_at":1774920578585,"class_name":"EventLog"},
