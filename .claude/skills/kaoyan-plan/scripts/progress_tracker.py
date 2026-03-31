@@ -466,16 +466,23 @@ def update_english_progress_file(english_tasks: List[Dict[str, Any]]) -> None:
                                 lines[i] = line
                             break
 
-            # 添加新学任务的次日复习计划
-            tomorrow = (datetime.now() + timedelta(days=1)).strftime("%m-%d")
-            for task in english_tasks:
-                if task["review_count"] == "新学":
-                    day = task["day"]
-                    vocab_count = task["vocab_count"]
-                    new_row = f"| **{tomorrow}** | Day {day} | 第1次 | ~{vocab_count}词 | 1天 | ⭐ **明日** |"
+            # 【v3.15.0 修复】根据完成的复习类型，生成后续复习计划
+            # 新学 -> 第1次复习（明天）
+            # 第1次复习 -> 第2次复习（3天后）
+            # 第2次复习 -> 第3次复习（7天后）
+            today_date = datetime.now()
 
-                    # 检查是否已存在
-                    exists = any(f"Day {day}" in line for line in lines[pending_table_start:today_section_start])
+            for task in english_tasks:
+                day = task["day"]
+                vocab_count = task["vocab_count"]
+                review_type = task["review_count"]
+
+                # 生成后续复习计划
+                new_rows = generate_future_review_plans(day, vocab_count, review_type, today_date)
+
+                for new_row in new_rows:
+                    # 检查是否已存在相同的复习计划
+                    exists = any(f"Day {day}" in line and line in lines[pending_table_start:today_section_start])
                     if not exists:
                         # 找到合适的插入位置（按日期排序）
                         insert_idx = today_section_start - 1
@@ -483,7 +490,7 @@ def update_english_progress_file(english_tasks: List[Dict[str, Any]]) -> None:
                             if lines[insert_idx].strip().startswith('|'):
                                 # 提取当前行的日期
                                 date_match = re.search(r'\|\s*\*{0,2}(\d{2}-\d{2})\*{0,2}\s*\|', lines[insert_idx])
-                                if date_match and date_match.group(1) > tomorrow:
+                                if date_match and date_match.group(1) > new_row.split('|')[1].strip():
                                     break
                             insert_idx -= 1
                         lines.insert(insert_idx + 1, new_row)
