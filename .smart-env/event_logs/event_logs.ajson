@@ -255,3 +255,7 @@
 "event_logs:sources:imported": {"key":"sources:imported","ct":4701,"first_at":1774623476498,"last_at":1774947212884,"class_name":"EventLog"},
 "event_logs:item:embedded": {"key":"item:embedded","ct":19543,"first_at":1774623485066,"last_at":1774947213357,"class_name":"EventLog"},
 "event_logs:connections:opened": {"key":"connections:opened","ct":417,"first_at":1774623767347,"last_at":1774947213067,"class_name":"EventLog"},
+"event_logs:sources:modified": {"key":"sources:modified","ct":1557,"first_at":1774627718841,"last_at":1774948998759,"class_name":"EventLog","event_sources":{"obsidian:vault.modify":575,"obsidian:workspace.editor-change":982}},
+"event_logs:sources:imported": {"key":"sources:imported","ct":4702,"first_at":1774623476498,"last_at":1774949011765,"class_name":"EventLog"},
+"event_logs:item:embedded": {"key":"item:embedded","ct":19551,"first_at":1774623485066,"last_at":1774949014660,"class_name":"EventLog"},
+"event_logs:connections:opened": {"key":"connections:opened","ct":418,"first_at":1774623767347,"last_at":1774949013159,"class_name":"EventLog"},
