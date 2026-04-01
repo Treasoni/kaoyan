@@ -3,6 +3,18 @@
   "title": "Explain precise definition of definite integrals",
   "titleGenerationStatus": "success",
   "createdAt": 1775012626129,
-  "updatedAt": 1775012631092,
-  "sessionId": null
+  "updatedAt": 1775012718503,
+  "lastResponseAt": 1775012718503,
+  "sessionId": "5b15ab94-ac19-4501-8a29-628ab6a33087",
+  "sdkSessionId": "5b15ab94-ac19-4501-8a29-628ab6a33087",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/2-定积分/定积分定义.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
