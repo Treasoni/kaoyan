@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background: #fff; }
+        .controls { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        #graph { width: 100%; height: 500px; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <h3>定积分：n等分右端点逼近 (f(x) = -x² + 4)</h3>
+        <label>细分份数 (n): <span id="n-val">5</span></label><br>
+        <input type="range" id="n-slider" min="1" max="100" value="5" style="width: 80%;">
+        <p>精确面积: <b>5.333</b> | 估算面积: <b id="est-area">4.16</b></p>
+    </div>
+    <div id="graph"></div>
+
+    <script>
+        const slider = document.getElementById('n-slider');
+        const nVal = document.getElementById('n-val');
+        const estArea = document.getElementById('est-area');
+
+        function update() {
+            const n = parseInt(slider.value);
+            nVal.innerText = n;
+            const dx = 2 / n;
+            let sum = 0;
+            
+            const xCurve = [], yCurve = [];
+            for(let x=0; x<=2.1; x+=0.05) { xCurve.push(x); yCurve.push(-x*x + 4); }
+
+            const shapes = [];
+            for(let i=1; i<=n; i++) {
+                let xi = i * dx;
+                let h = -xi*xi + 4;
+                sum += h * dx;
+                shapes.push({
+                    type: 'rect', x0: (i-1)*dx, y0: 0, x1: i*dx, y1: h,
+                    fillcolor: 'rgba(55, 128, 191, 0.5)', line: { color: 'white', width: 1 }
+                });
+            }
+            estArea.innerText = sum.toFixed(3);
+
+            Plotly.newPlot('graph', [{ x: xCurve, y: yCurve, mode: 'lines', name: 'f(x)=-x²+4' }], 
+                { title: '黎曼和逼近示意图', shapes: shapes, xaxis: {range: [0, 2.2]}, yaxis: {range: [0, 4.5]} });
+        }
+        slider.oninput = update;
+        update();
+    </script>
+</body>
+</html>
