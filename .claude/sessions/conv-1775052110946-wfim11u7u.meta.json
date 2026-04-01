@@ -3,8 +3,8 @@
   "title": "Record daily study completion and fatigue update",
   "titleGenerationStatus": "success",
   "createdAt": 1775052110951,
-  "updatedAt": 1775053891731,
-  "lastResponseAt": 1775053891731,
+  "updatedAt": 1775055797919,
+  "lastResponseAt": 1775055797919,
   "sessionId": "6d53caa5-857d-49a0-be63-18d8c724778e",
   "sdkSessionId": "6d53caa5-857d-49a0-be63-18d8c724778e",
   "currentNote": "考研计划/每日计划/2026-04-01-每日计划.md",
@@ -12,12 +12,12 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-4.7",
-    "inputTokens": 701,
+    "model": "glm-5",
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 114176,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 114877,
-    "percentage": 57
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
