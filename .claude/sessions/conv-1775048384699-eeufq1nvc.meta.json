@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775048384699-eeufq1nvc",
+  "title": "Explain integral mean value theorem proof",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775048384699,
+  "updatedAt": 1775048468366,
+  "lastResponseAt": 1775048468365,
+  "sessionId": "6dc1bece-c773-4ac8-abda-974bf0b3e77d",
+  "sdkSessionId": "6dc1bece-c773-4ac8-abda-974bf0b3e77d",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/2-定积分/定积分性质.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
