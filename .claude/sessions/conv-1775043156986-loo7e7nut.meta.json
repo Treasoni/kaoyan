@@ -3,6 +3,18 @@
   "title": "Verify integral inequality property understanding",
   "titleGenerationStatus": "success",
   "createdAt": 1775043156986,
-  "updatedAt": 1775043162069,
-  "sessionId": null
+  "updatedAt": 1775043272371,
+  "lastResponseAt": 1775043272371,
+  "sessionId": "ea09dc65-f099-4f03-879e-ff71efe15e9c",
+  "sdkSessionId": "ea09dc65-f099-4f03-879e-ff71efe15e9c",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/2-定积分/定积分性质.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
