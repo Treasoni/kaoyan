@@ -3,6 +3,18 @@
   "title": "整理考研数学拐点判断错题到错题本",
   "titleGenerationStatus": "success",
   "createdAt": 1775133097609,
-  "updatedAt": 1775133101815,
-  "sessionId": null
+  "updatedAt": 1775133314711,
+  "lastResponseAt": 1775133314711,
+  "sessionId": "121b7e06-6591-46a0-85cf-7ca1086933b5",
+  "sdkSessionId": "121b7e06-6591-46a0-85cf-7ca1086933b5",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
