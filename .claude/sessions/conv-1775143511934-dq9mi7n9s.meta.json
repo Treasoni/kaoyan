@@ -1,0 +1,22 @@
+{
+  "id": "conv-1775143511934-dq9mi7n9s",
+  "title": "Sync pull latest study progress from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775143511934,
+  "updatedAt": 1775144209410,
+  "lastResponseAt": 1775144209410,
+  "sessionId": "0129aca6-9930-4f7a-89eb-fc0a8f8eec97",
+  "sdkSessionId": "0129aca6-9930-4f7a-89eb-fc0a8f8eec97",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
