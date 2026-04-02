@@ -3,11 +3,20 @@
   "title": "Update study completion logs for three subjects",
   "titleGenerationStatus": "success",
   "createdAt": 1775139022366,
-  "updatedAt": 1775139032423,
-  "lastResponseAt": 1775139032423,
+  "updatedAt": 1775140761364,
+  "lastResponseAt": 1775140761364,
   "sessionId": null,
   "currentNote": "考研计划/每日计划/2026-04-02-每日计划.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
-  ]
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
