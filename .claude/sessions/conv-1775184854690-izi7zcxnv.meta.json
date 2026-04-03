@@ -3,6 +3,18 @@
   "title": "Format and organize spreadsheet table",
   "titleGenerationStatus": "success",
   "createdAt": 1775184854691,
-  "updatedAt": 1775184862393,
-  "sessionId": null
+  "updatedAt": 1775184946532,
+  "lastResponseAt": 1775184946532,
+  "sessionId": "73c109ef-1fdf-4274-9f2b-9625bdaa3c0b",
+  "sdkSessionId": "73c109ef-1fdf-4274-9f2b-9625bdaa3c0b",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分概念.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 407,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 28864,
+    "contextWindow": 200000,
+    "contextTokens": 29271,
+    "percentage": 15
+  }
 }
