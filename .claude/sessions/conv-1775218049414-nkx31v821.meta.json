@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775218049414-nkx31v821",
+  "title": "Fix LaTeX pipe rendering in markdown table",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775218049415,
+  "updatedAt": 1775218178696,
+  "lastResponseAt": 1775218178696,
+  "sessionId": "3060ca5c-df7c-45cc-9f6e-22c9d8bb2d0b",
+  "sdkSessionId": "3060ca5c-df7c-45cc-9f6e-22c9d8bb2d0b",
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
