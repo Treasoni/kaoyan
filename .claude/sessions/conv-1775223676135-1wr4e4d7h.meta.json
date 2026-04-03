@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775223676135-1wr4e4d7h",
+  "title": "Organize polar coordinate graphing mistake entry",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775223676135,
+  "updatedAt": 1775225068983,
+  "lastResponseAt": 1775223774952,
+  "sessionId": "5021e4a1-e35c-4663-a0eb-e93374268541",
+  "sdkSessionId": "5021e4a1-e35c-4663-a0eb-e93374268541",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
