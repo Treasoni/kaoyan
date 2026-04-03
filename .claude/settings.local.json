@@ -24,7 +24,9 @@
       "mcp__browser__browser_click",
       "mcp__zai-mcp-server__extract_text_from_screenshot",
       "Bash(tree:*)",
-      "Bash(find . -name \"*.md\" -exec sh -c 'echo \"\"=== {} ===\"\" && grep -E \"\"[\\\\x00-\\\\x08\\\\x0B\\\\x0C\\\\x0E-\\\\x1F\\\\x7F-\\\\x9F]\"\" \"\"{}\"\" 2>/dev/null | wc -l' ;)"
+      "Bash(find . -name \"*.md\" -exec sh -c 'echo \"\"=== {} ===\"\" && grep -E \"\"[\\\\x00-\\\\x08\\\\x0B\\\\x0C\\\\x0E-\\\\x1F\\\\x7F-\\\\x9F]\"\" \"\"{}\"\" 2>/dev/null | wc -l' ;)",
+      "Bash(for:*)",
+      "Bash(do echo:*)"
     ]
   }
 }
