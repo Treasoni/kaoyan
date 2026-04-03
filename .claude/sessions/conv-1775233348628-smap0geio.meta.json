@@ -3,17 +3,17 @@
   "title": "Generate April 4th daily study plan with 6 tasks",
   "titleGenerationStatus": "success",
   "createdAt": 1775233348629,
-  "updatedAt": 1775233524110,
-  "lastResponseAt": 1775233524110,
+  "updatedAt": 1775233814704,
+  "lastResponseAt": 1775233814704,
   "sessionId": "239059bc-f7a1-41f6-83dc-8f906d244035",
   "sdkSessionId": "239059bc-f7a1-41f6-83dc-8f906d244035",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 43,
+    "inputTokens": 41,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 50240,
+    "cacheReadInputTokens": 56512,
     "contextWindow": 200000,
-    "contextTokens": 50283,
-    "percentage": 25
+    "contextTokens": 56553,
+    "percentage": 28
   }
 }
