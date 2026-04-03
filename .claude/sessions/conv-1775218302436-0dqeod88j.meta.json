@@ -3,9 +3,10 @@
   "title": "Fix Markdown table pipe rendering in Obsidian c...",
   "titleGenerationStatus": "success",
   "createdAt": 1775218302436,
-  "updatedAt": 1775218564498,
-  "lastResponseAt": 1775218564498,
-  "sessionId": null,
+  "updatedAt": 1775218619693,
+  "lastResponseAt": 1775218619693,
+  "sessionId": "a9252ff2-9806-4ab6-b9ae-b3cc46fc6fe2",
+  "sdkSessionId": "a9252ff2-9806-4ab6-b9ae-b3cc46fc6fe2",
   "currentNote": "考研数学/高数-数列极限/错题本.md",
   "usage": {
     "model": "glm-5",
