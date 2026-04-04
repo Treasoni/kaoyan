@@ -3,6 +3,17 @@
   "title": "Organize calculus mistake: implicit function ex...",
   "titleGenerationStatus": "success",
   "createdAt": 1775308065431,
-  "updatedAt": 1775308069123,
-  "sessionId": null
+  "updatedAt": 1775308178177,
+  "lastResponseAt": 1775308178177,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 221,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 35200,
+    "contextWindow": 200000,
+    "contextTokens": 35421,
+    "percentage": 18
+  }
 }
