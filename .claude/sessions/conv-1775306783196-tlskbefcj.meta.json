@@ -3,9 +3,10 @@
   "title": "Analyze one-sided derivative signs at closed in...",
   "titleGenerationStatus": "success",
   "createdAt": 1775306783196,
-  "updatedAt": 1775306972545,
-  "lastResponseAt": 1775306972545,
-  "sessionId": null,
+  "updatedAt": 1775307043846,
+  "lastResponseAt": 1775307043846,
+  "sessionId": "764d576a-036b-448a-a21e-3785ea393f63",
+  "sdkSessionId": "764d576a-036b-448a-a21e-3785ea393f63",
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",
