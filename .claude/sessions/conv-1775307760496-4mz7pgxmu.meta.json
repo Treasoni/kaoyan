@@ -3,6 +3,18 @@
   "title": "Fix oblique asymptote calculation error using e...",
   "titleGenerationStatus": "success",
   "createdAt": 1775307760496,
-  "updatedAt": 1775307764008,
-  "sessionId": null
+  "updatedAt": 1775307817765,
+  "lastResponseAt": 1775307817765,
+  "sessionId": "9c00d3a7-bac9-4da7-a736-c04a81ed2dcb",
+  "sdkSessionId": "9c00d3a7-bac9-4da7-a736-c04a81ed2dcb",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
