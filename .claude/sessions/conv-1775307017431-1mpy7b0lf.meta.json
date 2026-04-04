@@ -3,17 +3,17 @@
   "title": "Analyze composite function extrema with second ...",
   "titleGenerationStatus": "success",
   "createdAt": 1775307017431,
-  "updatedAt": 1775307145727,
-  "lastResponseAt": 1775307145727,
+  "updatedAt": 1775307377841,
+  "lastResponseAt": 1775307377841,
   "sessionId": null,
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 666,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 37184,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 37850,
-    "percentage": 19
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
