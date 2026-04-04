@@ -3,18 +3,18 @@
   "title": "Understand p-integral convergence conclusions",
   "titleGenerationStatus": "success",
   "createdAt": 1775294453257,
-  "updatedAt": 1775294741746,
-  "lastResponseAt": 1775294741746,
+  "updatedAt": 1775294991643,
+  "lastResponseAt": 1775294991643,
   "sessionId": "47526830-0aad-46d5-8a03-b68e44632e28",
   "sdkSessionId": "47526830-0aad-46d5-8a03-b68e44632e28",
   "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分判敛.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 10364,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 50624,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 60988,
+    "percentage": 30
   }
 }
