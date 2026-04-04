@@ -3,6 +3,17 @@
   "title": "Analyze one-sided derivative signs at closed in...",
   "titleGenerationStatus": "success",
   "createdAt": 1775306783196,
-  "updatedAt": 1775306786687,
-  "sessionId": null
+  "updatedAt": 1775306972545,
+  "lastResponseAt": 1775306972545,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
