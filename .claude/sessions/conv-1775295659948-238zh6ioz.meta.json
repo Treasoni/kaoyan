@@ -3,6 +3,18 @@
   "title": "Fix Mermaid diagram parse error on line 15",
   "titleGenerationStatus": "success",
   "createdAt": 1775295659949,
-  "updatedAt": 1775295664735,
-  "sessionId": null
+  "updatedAt": 1775295696773,
+  "lastResponseAt": 1775295696773,
+  "sessionId": "d5a0a9bd-62be-4ca9-abea-2a393198f95b",
+  "sdkSessionId": "d5a0a9bd-62be-4ca9-abea-2a393198f95b",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分判敛.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
