@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775286667311-rx61cwjrt",
+  "title": "Explain improper integral convergence paradox",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775286667311,
+  "updatedAt": 1775286723395,
+  "lastResponseAt": 1775286723395,
+  "sessionId": "9364dc8a-91b4-4b1b-bc79-730075b33d4e",
+  "sdkSessionId": "9364dc8a-91b4-4b1b-bc79-730075b33d4e",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分判敛.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
