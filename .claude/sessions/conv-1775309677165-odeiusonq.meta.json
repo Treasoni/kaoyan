@@ -3,6 +3,18 @@
   "title": "Generate English vocab notes and word list",
   "titleGenerationStatus": "success",
   "createdAt": 1775309677165,
-  "updatedAt": 1775309681573,
-  "sessionId": null
+  "updatedAt": 1775310121531,
+  "lastResponseAt": 1775310121531,
+  "sessionId": "9f396b26-8ae2-45eb-9988-66c72a5c53d4",
+  "sdkSessionId": "9f396b26-8ae2-45eb-9988-66c72a5c53d4",
+  "currentNote": "考研英语/英语单词/2026-4-4.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 61,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 52032,
+    "contextWindow": 200000,
+    "contextTokens": 52093,
+    "percentage": 26
+  }
 }
