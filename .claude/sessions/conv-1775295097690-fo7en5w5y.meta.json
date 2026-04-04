@@ -3,18 +3,18 @@
   "title": "Generate Excalidraw diagram from Mermaid code",
   "titleGenerationStatus": "success",
   "createdAt": 1775295097690,
-  "updatedAt": 1775295163814,
-  "lastResponseAt": 1775295163814,
+  "updatedAt": 1775295637477,
+  "lastResponseAt": 1775295637477,
   "sessionId": "0d19ed3f-6c70-4762-9d14-84d2bdfa51bf",
   "sdkSessionId": "0d19ed3f-6c70-4762-9d14-84d2bdfa51bf",
   "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分判敛.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 3915,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 52864,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 56779,
+    "percentage": 28
   }
 }
