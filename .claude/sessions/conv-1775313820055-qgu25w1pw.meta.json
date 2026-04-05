@@ -3,18 +3,21 @@
   "title": "Update study plan with English and math progress",
   "titleGenerationStatus": "success",
   "createdAt": 1775313820055,
-  "updatedAt": 1775314776420,
-  "lastResponseAt": 1775314776420,
+  "updatedAt": 1775353975681,
+  "lastResponseAt": 1775315053366,
   "sessionId": "282bf71a-f165-47ef-a53d-6ad64a0a6b57",
   "sdkSessionId": "282bf71a-f165-47ef-a53d-6ad64a0a6b57",
   "currentNote": "考研计划/每日计划/2026-04-04-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
   "usage": {
     "model": "glm-5",
-    "inputTokens": 261,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 59968,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 60229,
-    "percentage": 30
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
