@@ -3,6 +3,21 @@
   "title": "Pull latest study progress from MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1775353982510,
-  "updatedAt": 1775353988159,
-  "sessionId": null
+  "updatedAt": 1775354182003,
+  "lastResponseAt": 1775354182003,
+  "sessionId": "1dc81327-3493-4286-9adf-4ddcee0c3fe9",
+  "sdkSessionId": "1dc81327-3493-4286-9adf-4ddcee0c3fe9",
+  "currentNote": "考研计划/每日计划/2026-04-04-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
