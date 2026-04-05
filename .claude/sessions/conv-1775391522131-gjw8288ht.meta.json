@@ -3,6 +3,21 @@
   "title": "Update study plan for April 5th progress",
   "titleGenerationStatus": "success",
   "createdAt": 1775391522132,
-  "updatedAt": 1775391525416,
-  "sessionId": null
+  "updatedAt": 1775391897487,
+  "lastResponseAt": 1775391897487,
+  "sessionId": "16f9e88f-61d3-4946-94bc-d63f46c0304b",
+  "sdkSessionId": "16f9e88f-61d3-4946-94bc-d63f46c0304b",
+  "currentNote": "考研英语/📊 学习进度.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
