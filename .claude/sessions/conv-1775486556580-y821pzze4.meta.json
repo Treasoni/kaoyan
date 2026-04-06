@@ -3,19 +3,20 @@
   "title": "Pull latest study progress from MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1775486556580,
-  "updatedAt": 1775486587689,
-  "lastResponseAt": 1775486587689,
-  "sessionId": null,
+  "updatedAt": 1775486835597,
+  "lastResponseAt": 1775486835597,
+  "sessionId": "721be961-f3cd-4fc4-935c-193ca5b5fac0",
+  "sdkSessionId": "721be961-f3cd-4fc4-935c-193ca5b5fac0",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
   "usage": {
     "model": "glm-5",
-    "inputTokens": 6582,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 20736,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 27318,
-    "percentage": 14
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
