@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775453244457-fc0vxb31u",
+  "title": "Generate sortspec for calculus integration folder",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775453244458,
+  "updatedAt": 1775453409643,
+  "lastResponseAt": 1775453409643,
+  "sessionId": "df8e9472-cd59-475c-b0c2-4c15d51c4696",
+  "sdkSessionId": "df8e9472-cd59-475c-b0c2-4c15d51c4696",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/📑 索引.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
