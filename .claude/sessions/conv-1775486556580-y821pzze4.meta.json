@@ -1,0 +1,21 @@
+{
+  "id": "conv-1775486556580-y821pzze4",
+  "title": "Pull latest study progress from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775486556580,
+  "updatedAt": 1775486587689,
+  "lastResponseAt": 1775486587689,
+  "sessionId": null,
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 6582,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 20736,
+    "contextWindow": 200000,
+    "contextTokens": 27318,
+    "percentage": 14
+  }
+}

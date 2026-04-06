@@ -3,18 +3,18 @@
   "title": "Route English vocab requests to specialized sub...",
   "titleGenerationStatus": "success",
   "createdAt": 1775482540819,
-  "updatedAt": 1775486366808,
-  "lastResponseAt": 1775486366808,
+  "updatedAt": 1775486615814,
+  "lastResponseAt": 1775486615814,
   "sessionId": "12049efb-7c8e-4e4d-989b-f3ad6763b198",
   "sdkSessionId": "12049efb-7c8e-4e4d-989b-f3ad6763b198",
   "currentNote": "考研英语/英语单词/2026-4-6.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 84,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 89344,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 89428,
-    "percentage": 45
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
