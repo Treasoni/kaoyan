@@ -3,8 +3,18 @@
   "title": "Record study progress for English and math",
   "titleGenerationStatus": "success",
   "createdAt": 1775485162738,
-  "updatedAt": 1775485168025,
-  "lastResponseAt": 1775485168025,
-  "sessionId": null,
-  "currentNote": "考研计划/每日计划/2026-04-06-每日计划.md"
+  "updatedAt": 1775485542317,
+  "lastResponseAt": 1775485542317,
+  "sessionId": "9dc36884-6511-4e4f-9964-793ac05c7ddb",
+  "sdkSessionId": "9dc36884-6511-4e4f-9964-793ac05c7ddb",
+  "currentNote": "考研计划/每日计划/2026-04-06-每日计划.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
