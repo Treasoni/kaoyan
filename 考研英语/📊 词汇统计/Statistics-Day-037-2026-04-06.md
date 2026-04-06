@@ -1,4 +1,4 @@
-# 词汇统计 - Day 27
+# 词汇统计 - Day 37
 
 **日期**: 2026-04-06
 **词汇量**: 100词
@@ -56,24 +56,34 @@
 - 考研僻义：adj. 主要的；n. 主食
 - 预警级别：[critical]
 - 常用搭配：staple food 主食
-
 #### stake
 - 常见义：n. 标桩
 - 考研僻义：n. 股份；重大利益；赌注
 - 预警级别：[critical]
 - 常用搭配：at stake 有风险
-
 #### lodge
 - 常见义：n. 乡间小屋
 - 考研僻义：vt. 正式提出；v. 固定，卡住
 - 预警级别：[warning]
 - 常用搭配：lodge an appeal 提出上诉
-
 #### long
 - 常见义：adj. 长的
 - 考研僻义：v. 渴望
 - 预警级别：[warning]
 - 常用搭配：long for sth 渴望某事
+
+#### heel
+- 常见义：n. 脚后跟
+- 考研僻义：vt. 给...换后跟
+跟在...后面
+- 预警级别：[warning]
+- 常用搭配：heel over 跟在...后面
+
+#### dispose
+- 常见义：v. 处理
+- 考研僻义：vt. 安排；布置；使倾向于
+- 预警级别：[warning]
+- 常用搭配：dispose of... 处理...
 
 ---
 
@@ -81,17 +91,21 @@
 
 | 字母 | 单词数 | 主要词汇 |
 |------|--------|----------|
-| A-D | 22词 | boycott, bow, bowl, bowel, bounce, contingent, contagious, contact, contain, contaminate |
-| E-H | 20词 | esteem, eternal, evaporate, evade, evacuate, herb, herald, hence, henceforth, heritage |
-| I-L | 28词 | living, liver, loan, lodge, lobby, loaf, lofty, locomotive, log, longitude, long |
-| M-P | 12词 | misunderstand, mistake, mist, mistress, mist, nuisance, nursery, nurture, numerous |
-| Q-T | 10词 | retort, retrospect, retrieve, retreat, retire, retain, retail, retention, tragic, tragedy |
-| U-Z | 8词 | outstanding, outskirts, outfit, outdoor, outing, outbreak, ought |
+| A-c | 10词 | contingent, contagious, contact, contain, contaminate |
+| b-f | 8词 | bow, bowl, bowel, bounce, boycott, boycott |
+| c-e | 12词 | contain, contaminate, contact, contingent, contagious |
+| d-g | 12词 | dispose, disguise, disgust, discourage, dislike, discrepancy |
+| h-l | 10词 | hence, henceforth, heritage, herd, hemisphere, helpful |
+| l-o | 11词 | loan, lodge, lobby, living, liver, loaf, lofty, log, longitude |
+| n-u | 8词 | nutrition, numerous, nurture, numb, nuisance, nursery |
+| o-u | 6词 | outstanding, outskirts, outfit, outdoor, outing, outbreak |
+| r-t | 12词 | revolve, revolution, retain, retail, retort, retrospect, retrieve, retreat, retire |
+| s-t | 8词 | stale, stamp, staple, stall, stalk, stake, stain, stare |
+| t-v | 2词 | tragic, tragedy |
 
 ---
 
 ## 📖 记忆难度分析
-
 | 难度等级 | 数量 | 占比 | 说明 |
 |----------|------|------|------|
 | 简单（已知词汇） | 约20词 | 20% | 如 nut, foot, fool, hell, bowl |
@@ -101,9 +115,7 @@
 ---
 
 ## 🎯 重点词汇清单
-
 ### 必考高频词（20个）
-
 1. **contain** - 包含；克制
 2. **contaminate** - 污染
 3. **revolution** - 革命
@@ -126,7 +138,6 @@
 20. **revolve** - 旋转
 
 ### 写作替换词（10个）
-
 | 基础词汇 | 高级替换 | 单词 |
 |----------|----------|------|
 | many | **numerous** | 众多的 |
@@ -143,30 +154,25 @@
 ---
 
 ## 📈 学习进度追踪
-
 | 项目 | 数量 | 累计 |
 |------|------|------|
-| 已学天数 | 1天 | Day 27 |
-| 已学词汇 | 100词 | 累计约2830词 |
-| 词族掌握 | 12个 | 累计约194个 |
-| 僻义预警词 | 7词 | 累计约163词 |
+| 已学天数 | 1天 | Day 37 |
+| 已学词汇 | 100词 | 累计约3700词 |
+| 词族掌握 | 12个 | 累计约240个 |
+| 僻义预警词 | 7词 | 累计约170词 |
 
 ---
 
 ## 🎯 明日复习计划
-
 ### 复习重点
-1. 僻义预警词：bow, staple, stake, lodge, long
-2. 高频词族：rev-族（12词）、dis-族（12词）、sta-族（8词）
-3. 写作替换词：numerous, outstanding, retain, nurture
-
+1. 僻义预警词： bow, staple, stake, lodge, long
+2. 高频词族： rev-族（12词）、dis-族（12词）、sta-族（8词）
+3. 写作替换词: numerous, outstanding, retain, nurture
 ### 复习方法
 1. 遮住中文，看英文说释义
 2. 遮住英文，看中文写单词
 3. 重点复习僻义预警
 4. 造句练习写作替换词
-
 ---
-
 **下次复习日期**: 2026-04-08
 **预计复习时间**: 30分钟
