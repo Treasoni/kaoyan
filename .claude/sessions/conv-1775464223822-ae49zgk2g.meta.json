@@ -3,17 +3,17 @@
   "title": "Summarize integration techniques and key formulas",
   "titleGenerationStatus": "success",
   "createdAt": 1775464223823,
-  "updatedAt": 1775464399861,
-  "lastResponseAt": 1775464399861,
+  "updatedAt": 1775464599047,
+  "lastResponseAt": 1775464599047,
   "sessionId": "88cb1433-c3a0-4463-a9b5-d431ade7c89c",
   "sdkSessionId": "88cb1433-c3a0-4463-a9b5-d431ade7c89c",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 445,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 37696,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 38141,
-    "percentage": 19
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
