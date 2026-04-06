@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775454823924-85oicbjnz",
+  "title": "Compile important integral formulas with deriva...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775454823925,
+  "updatedAt": 1775454998812,
+  "lastResponseAt": 1775454998812,
+  "sessionId": "679340b2-f708-4223-b4f3-ba1b9786d540",
+  "sdkSessionId": "679340b2-f708-4223-b4f3-ba1b9786d540",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/1-基本积分公式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
