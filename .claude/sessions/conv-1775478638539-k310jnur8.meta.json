@@ -3,6 +3,18 @@
   "title": "Fix limit substitution error in math proof",
   "titleGenerationStatus": "success",
   "createdAt": 1775478638539,
-  "updatedAt": 1775478643045,
-  "sessionId": null
+  "updatedAt": 1775478753420,
+  "lastResponseAt": 1775478753420,
+  "sessionId": "e8f85a69-ba88-47b7-a5b8-1f12f6b6ccb9",
+  "sdkSessionId": "e8f85a69-ba88-47b7-a5b8-1f12f6b6ccb9",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
