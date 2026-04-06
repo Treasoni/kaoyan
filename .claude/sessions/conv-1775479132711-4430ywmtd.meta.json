@@ -1,0 +1,19 @@
+{
+  "id": "conv-1775479132711-4430ywmtd",
+  "title": "Create math properties summary for limits",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775479132712,
+  "updatedAt": 1775479229513,
+  "lastResponseAt": 1775479229513,
+  "sessionId": "a950f5a1-5537-4fec-9ce1-fdcf21a5ade9",
+  "sdkSessionId": "a950f5a1-5537-4fec-9ce1-fdcf21a5ade9",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
