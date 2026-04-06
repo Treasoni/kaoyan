@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775463384571-sku66huk4",
+  "title": "整理内容并写入学习笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775463384572,
+  "updatedAt": 1775463530580,
+  "lastResponseAt": 1775463530580,
+  "sessionId": "3db2022a-7adf-40a0-972d-073115ee6a7d",
+  "sdkSessionId": "3db2022a-7adf-40a0-972d-073115ee6a7d",
+  "currentNote": "考研数学/0-基础知识/重要公式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
