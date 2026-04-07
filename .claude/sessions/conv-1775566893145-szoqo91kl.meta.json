@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775566893145-szoqo91kl",
+  "title": "Prove second-order derivative equation roots",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775566893145,
+  "updatedAt": 1775567114755,
+  "lastResponseAt": 1775567114755,
+  "sessionId": "894739c8-677b-400d-aeeb-092fff1226b6",
+  "sdkSessionId": "894739c8-677b-400d-aeeb-092fff1226b6",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
