@@ -56,16 +56,37 @@ description: This skill handles vocabulary organization and word lookup for 考�
 ```
 [用户提供单词表]
       ↓
-[步骤0: 整理格式化单词表] ← 必须首先执行！覆盖原文件
+[步骤0: 计算 Day 编号] ← ⚠️ 必须首先执行！使用 day_calculator
       ↓
-[步骤1: 检测熟词僻义]
+[步骤1: 整理格式化单词表] ← 覆盖原文件
       ↓
-[步骤2: 生成四类笔记]
-      ├── 📊 词汇统计 → 考研英语/📊 词汇统计/
-      ├── 📰 真题语境文章 → 考研英语/📰 真题语境文章/
-      ├── 📝 测试记录 → 考研英语/📝 测试记录/
-      └── ✍️ 写作输出 → 考研英语/✍️ 写作输出/
+[步骤2: 检测熟词僻义]
+      ↓
+[步骤3: 生成四类笔记]
+      ├── 📊 词汇统计 → 考研英语/📊 词汇统计/Statistics-Day-{XXX}-{YYYY-MM-DD}.md
+      ├── 📰 真题语境文章 → 考研英语/📰 真题语境文章/Context-Day-{XXX}-{YYYY-MM-DD}.md
+      ├── 📝 测试记录 → 考研英语/📝 测试记录/Quiz-Day-{XXX}-{YYYY-MM-DD}.md
+      └── ✍️ 写作输�� → 考研英语/✍️ 写作输出/Writing-Day-{XXX}-{YYYY-MM-DD}.md
 ```
+
+### ⚠️ Day 编号强制要求
+
+**必须使用 `kaoyan-english-core` 的 `day_calculator` 模块计算 Day 编号！**
+
+```python
+from kaoyan_english_core.day_calculator import get_validated_day_number, generate_day_filenames
+
+# 步骤0: 获取验证后的 Day 编号（必须首先执行！）
+day_number = get_validated_day_number(target_date, "考研英语/📰 真题语境文章")
+filenames = generate_day_filenames(target_date, day_number)
+```
+
+**禁止事项**:
+- ❌ 禁止手动硬编码 Day 编号（如 Day-001）
+- ❌ 禁止使用错误的 Day 编号
+- ❌ 禁止跳过 Day 编号计算步骤
+
+详细说明见: [docs/day-number.md](docs/day-number.md)
 
 ---
 

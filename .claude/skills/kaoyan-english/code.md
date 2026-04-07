@@ -65,6 +65,26 @@ def route_english_request(user_input):
 def execute_full_vocab_workflow(user_input):
     """执行完整的词汇处理流程"""
 
+    # ⚠️ 步骤0: Day 编号计算（必须首先执行！）
+    #   - 从用户输入的文件路径中提取日期
+    #   - 调用 kaoyan-english-core 的 Day 计算模块
+    #   - 双重验证：日期计算 + 现有文件检查
+    #   - 生成四类文件的统一文件名
+    #
+    #   from kaoyan_english_core.day_calculator import (
+    #       get_validated_day_number,
+    #       generate_day_filenames
+    #   )
+    #
+    #   target_date = extract_date_from_path(user_input)  # 例如 "2026-04-06"
+    #   day_number = get_validated_day_number(target_date, "考研英语/📰 真题语境文章")
+    #   filenames = generate_day_filenames(target_date, day_number)
+    #
+    #   禁止事项：
+    #   - ❌ 禁止手动硬编码 Day 编号（如直接写 "Day-001"）
+    #   - ❌ 禁止跳过 Day 编号计算步骤
+    #   - ❌ 禁止使用错误的 Day 编号
+
     # 步骤1: 整理和格式化单词表
     #   - 读取用户提供的单词表文件
     #   - 按词族分类
@@ -75,11 +95,11 @@ def execute_full_vocab_workflow(user_input):
     #   - 更新原始文件
     #   - 输出路径: 考研英语/英语单词/{日期}-整理版.md
 
-    # 步骤2: 生成四类笔记（⚠️ 必须放到正确的文件夹！）
-    #   - 📊 词汇统计 → 考研英语/📊 词汇统计/Statistics-Day-XXX-YYYY-MM-DD.md
-    #   - 📰 真题语境文章 → 考研英语/📰 真题语境文章/Context-Day-XXX-YYYY-MM-DD.md
-    #   - 📝 测试记录 → 考研英语/📝 测试记录/Quiz-Day-XXX-YYYY-MM-DD.md
-    #   - ✍️ 写作输出 → 考研英语/✍️ 写作输出/Writing-Day-XXX-YYYY-MM-DD.md
+    # 步骤2: 生成四类笔记（⚠️ 使用步骤0计算的 Day 编号！）
+    #   - 📊 词汇统计 → 考研英语/📊 词汇统计/Statistics-Day-{day_number}-{target_date}.md
+    #   - 📰 真题语境文章 → 考研英语/📰 真题语境文章/Context-Day-{day_number}-{target_date}.md
+    #   - 📝 测试记录 → 考研英语/📝 测试记录/Quiz-Day-{day_number}-{target_date}.md
+    #   - ✍️ 写作输出 → 考研英语/✍️ 写作输出/Writing-Day-{day_number}-{target_date}.md
 
     # 步骤3: 更新学习进度
     #   - 更新 考研英语/📊 学习进度.md
