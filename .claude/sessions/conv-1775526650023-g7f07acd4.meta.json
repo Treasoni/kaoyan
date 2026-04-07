@@ -3,11 +3,10 @@
   "title": "Generate English vocabulary notes and word lists",
   "titleGenerationStatus": "success",
   "createdAt": 1775526650024,
-  "updatedAt": 1775527089645,
-  "lastResponseAt": 1775527089645,
+  "updatedAt": 1775529191662,
+  "lastResponseAt": 1775529191662,
   "sessionId": "ee94b909-56d2-4bd2-be1f-f2d6c2905d6a",
   "sdkSessionId": "ee94b909-56d2-4bd2-be1f-f2d6c2905d6a",
-  "currentNote": "考研英语/英语单词/2026-4-7.md",
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
