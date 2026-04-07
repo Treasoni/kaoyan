@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775535435469-29d80bu1i",
+  "title": "Summarize exponential and logarithmic rules",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775535435469,
+  "updatedAt": 1775535479103,
+  "lastResponseAt": 1775535479103,
+  "sessionId": "de54bbf0-7e1f-48b3-98fe-d406997481e2",
+  "sdkSessionId": "de54bbf0-7e1f-48b3-98fe-d406997481e2",
+  "currentNote": "考研数学/0-基础知识/重要公式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

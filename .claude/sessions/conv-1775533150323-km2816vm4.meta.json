@@ -3,18 +3,18 @@
   "title": "Analyze math derivation progress and identify b...",
   "titleGenerationStatus": "success",
   "createdAt": 1775533150323,
-  "updatedAt": 1775533242486,
-  "lastResponseAt": 1775533242486,
+  "updatedAt": 1775535420383,
+  "lastResponseAt": 1775535243907,
   "sessionId": "89cfda45-02c0-45b2-8e85-4990fedc748c",
   "sdkSessionId": "89cfda45-02c0-45b2-8e85-4990fedc748c",
   "currentNote": "考研数学/高数-数列极限/错题本.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 1873,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 34048,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 35921,
-    "percentage": 18
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
