@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775568747064-83cn77kxj",
+  "title": "Prove bounded function from bounded derivative ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775568747064,
+  "updatedAt": 1775568932978,
+  "lastResponseAt": 1775568932978,
+  "sessionId": "8b410b83-218a-4526-92f3-9278ebd03842",
+  "sdkSessionId": "8b410b83-218a-4526-92f3-9278ebd03842",
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
