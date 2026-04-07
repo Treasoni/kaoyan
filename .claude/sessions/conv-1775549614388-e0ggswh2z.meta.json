@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775549614388-e0ggswh2z",
+  "title": "整理有理函数真分式与假分式笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775549614388,
+  "updatedAt": 1775549680090,
+  "lastResponseAt": 1775549680090,
+  "sessionId": "c914b15c-d5e2-4671-a3ac-f95e2d96ab8f",
+  "sdkSessionId": "c914b15c-d5e2-4671-a3ac-f95e2d96ab8f",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/2-不定积分的积分法/有理函数的积分.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
