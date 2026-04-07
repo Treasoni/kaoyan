@@ -1,0 +1,23 @@
+{
+  "id": "conv-1775575423708-ozwt3r8sp",
+  "title": "Pull latest study progress from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775575423708,
+  "updatedAt": 1775575526036,
+  "lastResponseAt": 1775575526036,
+  "sessionId": "d41cac2c-c26d-43ac-b8b8-8ad4082b8438",
+  "sdkSessionId": "d41cac2c-c26d-43ac-b8b8-8ad4082b8438",
+  "currentNote": "考研英语/📅 学习日志.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
