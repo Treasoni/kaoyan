@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775620999914-wysodrcff",
+  "title": "Reformat notes for better study comprehension",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775620999915,
+  "updatedAt": 1775621120725,
+  "lastResponseAt": 1775621120725,
+  "sessionId": "d26e2a35-228c-443b-9c6b-39bf4a14ef0f",
+  "sdkSessionId": "d26e2a35-228c-443b-9c6b-39bf4a14ef0f",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/1-不定积分/原函数存在定理.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
