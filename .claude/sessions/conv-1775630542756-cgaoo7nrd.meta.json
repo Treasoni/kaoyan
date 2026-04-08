@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775630542756-cgaoo7nrd",
+  "title": "Compute integral of x·arcsin√(4x-4x²)",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775630542757,
+  "updatedAt": 1775630661881,
+  "lastResponseAt": 1775630661881,
+  "sessionId": "ee7addce-3329-4c74-af33-6737590016b5",
+  "sdkSessionId": "ee7addce-3329-4c74-af33-6737590016b5",
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
