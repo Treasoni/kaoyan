@@ -3,6 +3,18 @@
   "title": "Explain integral definition vs squeeze theorem ...",
   "titleGenerationStatus": "success",
   "createdAt": 1775617563786,
-  "updatedAt": 1775617568081,
-  "sessionId": null
+  "updatedAt": 1775617740952,
+  "lastResponseAt": 1775617740951,
+  "sessionId": "349f3005-1986-455d-891a-e123dce9bec6",
+  "sdkSessionId": "349f3005-1986-455d-891a-e123dce9bec6",
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 2016,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 32000,
+    "contextWindow": 200000,
+    "contextTokens": 34016,
+    "percentage": 17
+  }
 }
