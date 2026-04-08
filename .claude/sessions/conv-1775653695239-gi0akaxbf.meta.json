@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775653695239-gi0akaxbf",
+  "title": "整理数学比较题到错题本",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775653695240,
+  "updatedAt": 1775653767548,
+  "lastResponseAt": 1775653767548,
+  "sessionId": "02528dba-9147-4672-a532-b1ae48e484a5",
+  "sdkSessionId": "02528dba-9147-4672-a532-b1ae48e484a5",
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
