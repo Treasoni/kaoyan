@@ -3,6 +3,18 @@
   "title": "Reformat markdown document layout",
   "titleGenerationStatus": "success",
   "createdAt": 1775617394787,
-  "updatedAt": 1775617404608,
-  "sessionId": null
+  "updatedAt": 1775617640727,
+  "lastResponseAt": 1775617640727,
+  "sessionId": "5e153186-29ed-4ee6-8b79-dbb197ab7e1d",
+  "sdkSessionId": "5e153186-29ed-4ee6-8b79-dbb197ab7e1d",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/4-变限积分的计算/求导公式.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
