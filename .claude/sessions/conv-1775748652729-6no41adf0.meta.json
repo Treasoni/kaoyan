@@ -1,0 +1,23 @@
+{
+  "id": "conv-1775748652729-6no41adf0",
+  "title": "Sync and pull latest study data from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775748652729,
+  "updatedAt": 1775750859177,
+  "lastResponseAt": 1775750859177,
+  "sessionId": "7c8ea5a0-adf3-4ece-9c29-a98416da8f63",
+  "sdkSessionId": "7c8ea5a0-adf3-4ece-9c29-a98416da8f63",
+  "currentNote": "考研英语/📊 学习进度.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
