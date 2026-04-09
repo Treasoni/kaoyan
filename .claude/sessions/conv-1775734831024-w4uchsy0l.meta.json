@@ -3,18 +3,18 @@
   "title": "Analyze 74HC138 decoder logic design method",
   "titleGenerationStatus": "success",
   "createdAt": 1775734831025,
-  "updatedAt": 1775735095807,
-  "lastResponseAt": 1775735095807,
+  "updatedAt": 1775735280365,
+  "lastResponseAt": 1775735280365,
   "sessionId": "bb49e14c-1761-4020-bc7f-e98875058763",
   "sdkSessionId": "bb49e14c-1761-4020-bc7f-e98875058763",
   "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/05-译码器与数据分配器.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 639,
+    "inputTokens": 742,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 37952,
+    "cacheReadInputTokens": 46272,
     "contextWindow": 200000,
-    "contextTokens": 38591,
-    "percentage": 19
+    "contextTokens": 47014,
+    "percentage": 24
   }
 }
