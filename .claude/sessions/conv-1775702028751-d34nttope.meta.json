@@ -3,6 +3,18 @@
   "title": "Solve integral with variable limit using parts",
   "titleGenerationStatus": "success",
   "createdAt": 1775702028756,
-  "updatedAt": 1775702033874,
-  "sessionId": null
+  "updatedAt": 1775702244217,
+  "lastResponseAt": 1775702244217,
+  "sessionId": "0f563652-a1a4-4844-9783-f40e01246109",
+  "sdkSessionId": "0f563652-a1a4-4844-9783-f40e01246109",
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
