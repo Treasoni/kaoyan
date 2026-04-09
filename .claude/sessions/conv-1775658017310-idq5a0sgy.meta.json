@@ -3,11 +3,10 @@
   "title": "Generate English vocab notes and word lists",
   "titleGenerationStatus": "success",
   "createdAt": 1775658017310,
-  "updatedAt": 1775659012984,
+  "updatedAt": 1775742299271,
   "lastResponseAt": 1775659012984,
   "sessionId": "3002f761-36f6-48bc-a3bc-607cdae23ae1",
   "sdkSessionId": "3002f761-36f6-48bc-a3bc-607cdae23ae1",
-  "currentNote": "考研英语/英语单词/2026-4-8.md",
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
