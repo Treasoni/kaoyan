@@ -3,11 +3,10 @@
   "title": "Organize English vocab and generate study notes",
   "titleGenerationStatus": "success",
   "createdAt": 1775745148125,
-  "updatedAt": 1775747705313,
+  "updatedAt": 1775791461832,
   "lastResponseAt": 1775747705313,
   "sessionId": "75647df7-844d-486b-b107-e1742cff267b",
   "sdkSessionId": "75647df7-844d-486b-b107-e1742cff267b",
-  "currentNote": "考研英语/英语单词/2026-4-9.md",
   "usage": {
     "model": "glm-5",
     "inputTokens": 225,

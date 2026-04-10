@@ -1,0 +1,19 @@
+{
+  "id": "conv-1775791459609-svgmewmis",
+  "title": "Generate sortspec for calculus folder",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775791459609,
+  "updatedAt": 1775791584726,
+  "lastResponseAt": 1775791584726,
+  "sessionId": null,
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学应用1/1-平面图形的面积/参数方程下的面积.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 25473,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 192,
+    "contextWindow": 200000,
+    "contextTokens": 25665,
+    "percentage": 13
+  }
+}
