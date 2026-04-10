@@ -1,0 +1,19 @@
+{
+  "id": "conv-1775790468327-r8zwpku6h",
+  "title": "Generate sortspec for calculus notes folder",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775790468329,
+  "updatedAt": 1775790812977,
+  "lastResponseAt": 1775790812977,
+  "sessionId": "58488413-7daf-4900-8ff1-cb1ffaa0a3c7",
+  "sdkSessionId": "58488413-7daf-4900-8ff1-cb1ffaa0a3c7",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
