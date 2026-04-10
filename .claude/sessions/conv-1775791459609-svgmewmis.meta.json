@@ -3,17 +3,17 @@
   "title": "Generate sortspec for calculus folder",
   "titleGenerationStatus": "success",
   "createdAt": 1775791459609,
-  "updatedAt": 1775791584726,
-  "lastResponseAt": 1775791584726,
+  "updatedAt": 1775792163146,
+  "lastResponseAt": 1775792163146,
   "sessionId": null,
   "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学应用1/1-平面图形的面积/参数方程下的面积.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 25473,
+    "inputTokens": 2129,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 192,
+    "cacheReadInputTokens": 25280,
     "contextWindow": 200000,
-    "contextTokens": 25665,
-    "percentage": 13
+    "contextTokens": 27409,
+    "percentage": 14
   }
 }
