@@ -31,8 +31,8 @@
 | dr-族 (拉/拖) | 11 | 12.2% |
 | cr-族 (爬/创造) | 10 | 11.1% |
 | ex-族 (向外) | 9 | 10.0% |
-| aud/audit-族 (听觉) | 7 | 7.8% |
 | br-族 (打破/树枝) | 8 | 8.9% |
+| aud/audit-族 (听觉) | 7 | 7.8% |
 | trans-族 (跨越/转变) | 6 | 6.7% |
 | inter-族 (在…之间) | 5 | 5.6% |
 | broad族 (宽阔) | 2 | 2.2% |
@@ -41,11 +41,11 @@
 
 ## 📊 难度分布
 
-| 难度级别 | 单词 | 数量 |
-|----------|------|------|
-| ⭐⭐⭐ 高频核心 | convince, conviction, convert, intervene, interfere, transition, transparent, translate, explicit, struggle, strive, stroke, draft, framework, frequent, audience, authentic, intact, expedition, explosive, convenience, convenient, strong, stuff, style, drift, drop, craft, crash, brutal, buffer, interface, contemplate, contrive, fresh | 35 |
-| ⭐⭐ 中频 | conversation, conversion, conversely, convict, transit, transistor, transcend, interference, strip, stroll, stumble, sturdy, freeze, frequency, freight, fraud, frank, frame, explode, explanation, expenditure, expel, drone, drown, drill, dread, dress, crew, creature, crazy, cradle, cream, brush, credential | 35 |
-| ⭐ 低频/生僻 | freedom, freelance, franchise, drought, drip, crawl, creep, strife, bug, buffet, bud, bruise, aural, audio, audit, auditorium, augment, broad, broadcast, hum, huge, submarine, drum, auction | 24 |
+| 难度级别 | 代表单词 | 数量 |
+|----------|----------|------|
+| ⭐⭐⭐ 高频核心 | convince, conviction, convert, intervene, interfere, transition, transparent, translate, explicit, struggle, strive, stroke, draft, framework, frequent, audience, authentic, intact, expedition, explosive, convenience, convenient, strong, stuff, style... | 35 |
+| ⭐⭐ 中频 | conversation, conversion, conversely, convict, transit, transistor, transcend, interference, strip, stroll, stumble, sturdy, freeze, frequency, freight, fraud, frank, frame, explode, explanation, expenditure, expel, drone, drown, drill, dread... | 35 |
+| ⭐ 低频/生僻 | freedom, freelance, franchise, drought, drip, crawl, creep, strife, bug, buffet, bud, bruise, aural, audio, audit, auditorium, augment, broad, broadcast, hum | 20 |
 
 ## 📊 搭配掌握度自评
 
