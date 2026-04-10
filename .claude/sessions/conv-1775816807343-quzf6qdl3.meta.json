@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775816807343-quzf6qdl3",
+  "title": "整理数据选择器笔记加入考研专业科目",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775816807344,
+  "updatedAt": 1775816893712,
+  "lastResponseAt": 1775816893712,
+  "sessionId": "a732a60a-f1b0-4399-b7d0-e567cdde7265",
+  "sdkSessionId": "a732a60a-f1b0-4399-b7d0-e567cdde7265",
+  "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/06-数据选择器.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 364,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 27968,
+    "contextWindow": 200000,
+    "contextTokens": 28332,
+    "percentage": 14
+  }
+}
