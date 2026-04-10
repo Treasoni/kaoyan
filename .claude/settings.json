@@ -61,7 +61,9 @@
       "Bash(find /Users/zhqznc/Documents/考研复习/数电资料 -type f -name *.pdf)",
       "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/1-平面图形的面积\")",
       "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积\")",
-      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/4-其他几何应用\")"
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/4-其他几何应用\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用2/1-积分等式\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用2/2-积分不等式\")"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
