@@ -3,18 +3,18 @@
   "title": "Explain MUX data selector circuit concepts",
   "titleGenerationStatus": "success",
   "createdAt": 1775818552813,
-  "updatedAt": 1775819523158,
-  "lastResponseAt": 1775819523158,
+  "updatedAt": 1775819777762,
+  "lastResponseAt": 1775819777762,
   "sessionId": "86884c1a-d1c2-470c-9312-8b5195842109",
   "sdkSessionId": "86884c1a-d1c2-470c-9312-8b5195842109",
   "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/06-数据选择器.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 0,
+    "inputTokens": 257,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 55360,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 55617,
+    "percentage": 28
   }
 }
