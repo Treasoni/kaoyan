@@ -41,11 +41,11 @@
 
 ## 📊 难度分布
 
-| 难度级别 | 代表单词 | 数量 |
-|----------|----------|------|
+| 难度级别 | 单词 | 数量 |
+|----------|------|------|
 | ⭐⭐⭐ 高频核心 | convince, conviction, convert, intervene, interfere, transition, transparent, translate, explicit, struggle, strive, stroke, draft, framework, frequent, audience, authentic, intact, expedition, explosive, convenience, convenient, strong, stuff, style, drift, drop, craft, crash, brutal, buffer, interface, contemplate, contrive, fresh | 35 |
-| ⭐⭐ 中频 | conversation, conversion, conversely, convict, transit, transistor, transcend, interference, strip, stroll, stumble, sturdy, freeze, frequency, freight, fraud, frank, frame, explode, explanation, expenditure, expel, drone, drown, drill, dread, dress, crew, creature, crazy, cradle, cream, brush, credential | 34 |
-| ⭐ 低频/生僻 | freedom, freelance, franchise, drought, drip, crawl, creep, strife, bug, buffet, bud, bruise, aural, audio, audit, auditorium, augment, broad, broadcast, hum, huge, submarine, drum | 23 |
+| ⭐⭐ 中频 | conversation, conversion, conversely, convict, transit, transistor, transcend, interference, strip, stroll, stumble, sturdy, freeze, frequency, freight, fraud, frank, frame, explode, explanation, expenditure, expel, drone, drown, drill, dread, dress, crew, creature, crazy, cradle, cream, brush, credential | 35 |
+| ⭐ 低频/生僻 | freedom, freelance, franchise, drought, drip, crawl, creep, strife, bug, buffet, bud, bruise, aural, audio, audit, auditorium, augment, broad, broadcast, hum, huge, submarine, drum, auction | 24 |
 
 ## 📊 搭配掌握度自评
 
