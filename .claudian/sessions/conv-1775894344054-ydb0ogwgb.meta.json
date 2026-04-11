@@ -1,12 +1,12 @@
 {
   "id": "conv-1775894344054-ydb0ogwgb",
+  "providerId": "claude",
   "title": "Analyze variable-limit integral and function di...",
   "titleGenerationStatus": "success",
   "createdAt": 1775894344054,
-  "updatedAt": 1775901261911,
+  "updatedAt": 1775919048694,
   "lastResponseAt": 1775894502816,
   "sessionId": "e17d9e72-9a64-45d6-9e11-646530b957a2",
-  "sdkSessionId": "e17d9e72-9a64-45d6-9e11-646530b957a2",
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
     "model": "glm-5",
