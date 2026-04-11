@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775874451211-9y8n5yxh1",
+  "title": "Analyze parametric equation area formula deriva...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775874451212,
+  "updatedAt": 1775874573604,
+  "lastResponseAt": 1775874573604,
+  "sessionId": "c7078fdc-1dc1-4bd6-ba35-1843d2f35bd6",
+  "sdkSessionId": "c7078fdc-1dc1-4bd6-ba35-1843d2f35bd6",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学应用1/1-平面图形的面积/参数方程下的面积.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
