@@ -14,13 +14,27 @@ tags:
 
 $$V_y = 2\pi \int_a^b x|y(x)| \, \mathrm{d}x$$
 
-![](assets/绕y轴旋转/file-20260411112913007.png)
-![](assets/绕y轴旋转/file-20260411112921879.png)
 ## 推导思路（微元法）
 
-取 $[x, x + \Delta x]$（$\Delta x > 0$），得到一个小竖条，绕 $y$ 轴旋转一周成为一个"圆柱壳"，展开为"长方体"：
+在 $x$ 轴上取微小区间 $[x, x + \Delta x]$（$\Delta x > 0$），对应的小竖条绕 $y$ 轴旋转一周形成一个**圆柱壳**（Shell）：
 
-$$\mathrm{d}V_y = 2\pi x|y(x)| \, \mathrm{d}x$$
+![](assets/绕y轴旋转/file-20260411112913007.png)
+
+将圆柱壳"展开"为一个**长方体薄片**，其三个维度为：
+
+| 维度 | 几何含义 | 对应量 |
+|------|----------|--------|
+| 长 | 圆柱壳底面周长 | $2\pi x$ |
+| 宽 | 圆柱壳高度 | $|y(x)|$ |
+| 高（厚度） | 圆柱壳壁厚 | $\mathrm{d}x$ |
+
+![](assets/绕y轴旋转/file-20260411112921879.png)
+
+因此体积微元为：
+
+$$\mathrm{d}V_y = \underbrace{2\pi x}_{\text{周长}} \cdot \underbrace{|y(x)|}_{\text{高度}} \cdot \underbrace{\mathrm{d}x}_{\text{厚度}}$$
+
+对 $x$ 从 $a$ 到 $b$ 积分即得总体积。
 
 > [!tip] 记忆方法
 > $$V_x = \pi \int_a^b \square^2 \, \mathrm{d}x \quad \text{（往"口"里代）}$$
