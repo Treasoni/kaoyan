@@ -1,0 +1,64 @@
+{
+  "userName": "",
+  "permissionMode": "yolo",
+  "model": "glm-5",
+  "thinkingBudget": "low",
+  "effortLevel": "high",
+  "serviceTier": "default",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "",
+  "excludedTags": [],
+  "mediaFolder": "",
+  "systemPrompt": "",
+  "persistentExternalContextPaths": [],
+  "sharedEnvironmentVariables": "export API_TIMEOUT_MS=\"3000000\"",
+  "envSnippets": [],
+  "customContextLimits": {},
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "locale": "zh-CN",
+  "providerConfigs": {
+    "claude": {
+      "safeMode": "acceptEdits",
+      "cliPath": "",
+      "cliPathsByHost": {
+        "zhqzncdeMacBook-Air.local": "/Users/zhqznc/.local/bin/claude"
+      },
+      "loadUserSettings": true,
+      "enableChrome": true,
+      "enableBangBash": false,
+      "enableOpus1M": false,
+      "enableSonnet1M": false,
+      "lastModel": "haiku",
+      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"cr_3df48edde17ed5cb7ee3a9efdd430c8603bbff504dbc951a5ea069f9af684686\"\nexport ANTHROPIC_BASE_URL=\"https://cloud.hongqiye.com:3300/api\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"GLM-5-Turbo\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://cloud.hongqiye.com:3300/api|ANTHROPIC_DEFAULT_HAIKU_MODEL=GLM-5-Turbo|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
+    },
+    "codex": {
+      "enabled": false,
+      "safeMode": "workspace-write",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "reasoningSummary": "detailed",
+      "environmentVariables": "",
+      "environmentHash": "",
+      "installationMethodsByHost": {
+        "zhqzncdeMacBook-Air.local": "native-windows"
+      },
+      "wslDistroOverridesByHost": {}
+    }
+  },
+  "settingsProvider": "claude",
+  "savedProviderModel": {},
+  "savedProviderEffort": {},
+  "savedProviderServiceTier": {},
+  "savedProviderThinkingBudget": {},
+  "lastCustomModel": "glm-5",
+  "maxTabs": 3,
+  "tabBarPosition": "input",
+  "enableAutoScroll": true,
+  "openInMainTab": false,
+  "hiddenProviderCommands": {}
+}
