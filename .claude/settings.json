@@ -63,7 +63,14 @@
       "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积\")",
       "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用1/4-其他几何应用\")",
       "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用2/1-积分等式\")",
-      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用2/2-积分不等式\")"
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用2/2-积分不等式\")",
+      "Bash(curl -s -o /tmp/kaoyan_math_img.png \"https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/246aa974-e8ef-4be5-bd32-4a4a12ec71ee/627def96c309925aba51b3b9ce8b7d52.png?UCloudPublicKey=TOKEN_e15ba47a-d098-4fbd-9afc-a0dcf0e4e621&Expires=1775901771&Signature=XDOSXrBiBCUckqOmDfNw01FrFEE=\")",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用3/1-变力沿直线做功\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用3/2-抽水做功\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用3/3-静水压力\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用3/4-引力\")",
+      "Bash(mkdir -p \"/Users/zhqznc/Documents/考研复习/考研数学/高数-一元函数积分学/一元函数积分学应用3/5-古鲁金定理\")"
     ],
     "additionalDirectories": [
       "/Users/zhqznc/Documents/考研复习/考研数学/高数-数列极限/1-用定义",
