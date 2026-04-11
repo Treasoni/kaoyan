@@ -4,6 +4,21 @@
   "title": "Update study progress for math, English, electr...",
   "titleGenerationStatus": "success",
   "createdAt": 1775919185558,
-  "updatedAt": 1775919189683,
-  "sessionId": null
+  "updatedAt": 1775919905077,
+  "lastResponseAt": 1775919905077,
+  "sessionId": "b1d379b1-1f31-4fda-9ab3-41fa75c15a84",
+  "providerState": {
+    "providerSessionId": "b1d379b1-1f31-4fda-9ab3-41fa75c15a84"
+  },
+  "currentNote": "考研计划/每日计划/2026-04-11-每日计划.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
