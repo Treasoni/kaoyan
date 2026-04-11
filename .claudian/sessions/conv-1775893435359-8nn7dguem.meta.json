@@ -1,12 +1,12 @@
 {
   "id": "conv-1775893435359-8nn7dguem",
+  "providerId": "claude",
   "title": "Generate sortspec for integral applications folder",
   "titleGenerationStatus": "success",
   "createdAt": 1775893435360,
-  "updatedAt": 1775901261909,
+  "updatedAt": 1775904804239,
   "lastResponseAt": 1775894371027,
   "sessionId": "0ea0b650-626d-437f-bf57-8e8b77095437",
-  "sdkSessionId": "0ea0b650-626d-437f-bf57-8e8b77095437",
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
