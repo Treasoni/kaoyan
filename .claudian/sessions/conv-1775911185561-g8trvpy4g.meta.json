@@ -1,9 +1,14 @@
 {
   "id": "conv-1775911185561-g8trvpy4g",
   "providerId": "claude",
-  "title": "错因复盘：导数有界推函数有界1",
-  "titleGenerationStatus": "pending",
+  "title": "导数有界推函数有界的错因复盘",
+  "titleGenerationStatus": "success",
   "createdAt": 1775911185562,
-  "updatedAt": 1775911185579,
-  "sessionId": null
+  "updatedAt": 1775911192814,
+  "lastResponseAt": 1775911192814,
+  "sessionId": "ca1a6748-b50b-4287-a4c7-9dcaee24abef",
+  "providerState": {
+    "providerSessionId": "ca1a6748-b50b-4287-a4c7-9dcaee24abef"
+  },
+  "currentNote": "考研数学/高数-一元微分学/错题本.md"
 }
