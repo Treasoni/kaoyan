@@ -3,6 +3,18 @@
   "title": "Analyze polar coordinate area notes from images",
   "titleGenerationStatus": "success",
   "createdAt": 1775872440948,
-  "updatedAt": 1775872445079,
-  "sessionId": null
+  "updatedAt": 1775872706956,
+  "lastResponseAt": 1775872706956,
+  "sessionId": "7051c702-591d-4573-92a5-a18b941dd744",
+  "sdkSessionId": "7051c702-591d-4573-92a5-a18b941dd744",
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学应用1/1-平面图形的面积/极坐标系下的面积.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
