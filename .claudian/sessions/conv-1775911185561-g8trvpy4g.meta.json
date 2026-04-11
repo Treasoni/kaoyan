@@ -4,11 +4,21 @@
   "title": "导数有界推函数有界的错因复盘",
   "titleGenerationStatus": "success",
   "createdAt": 1775911185562,
-  "updatedAt": 1775911192814,
-  "lastResponseAt": 1775911192814,
+  "updatedAt": 1775911433012,
+  "lastResponseAt": 1775911433012,
   "sessionId": "ca1a6748-b50b-4287-a4c7-9dcaee24abef",
   "providerState": {
     "providerSessionId": "ca1a6748-b50b-4287-a4c7-9dcaee24abef"
   },
-  "currentNote": "考研数学/高数-一元微分学/错题本.md"
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
