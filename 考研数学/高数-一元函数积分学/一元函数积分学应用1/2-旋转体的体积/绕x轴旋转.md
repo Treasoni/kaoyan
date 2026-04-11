@@ -14,6 +14,8 @@ tags:
 
 $$V_x = \pi \int_a^b y^2(x) \, \mathrm{d}x$$
 
+![](assets/绕x轴旋转/file-20260411110746706.png)
+
 ## 推导思路（微元法）
 
 1. **取微元**：$\Delta V = \pi y^2(x) \, \mathrm{d}x$（圆盘面积 × 厚度）
