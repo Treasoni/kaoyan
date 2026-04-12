@@ -1,0 +1,24 @@
+{
+  "id": "conv-1775960504447-h2fe32am9",
+  "providerId": "claude",
+  "title": "Analyze limit of series with bounded non-negati...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775960504448,
+  "updatedAt": 1775960760874,
+  "lastResponseAt": 1775960760874,
+  "sessionId": "f32539bd-cf43-4557-b597-8f52078d0f68",
+  "providerState": {
+    "providerSessionId": "f32539bd-cf43-4557-b597-8f52078d0f68"
+  },
+  "currentNote": "考研数学/高数-数列极限/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
