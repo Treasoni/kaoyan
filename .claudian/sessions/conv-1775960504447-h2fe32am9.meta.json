@@ -4,8 +4,8 @@
   "title": "Analyze limit of series with bounded non-negati...",
   "titleGenerationStatus": "success",
   "createdAt": 1775960504448,
-  "updatedAt": 1775960760874,
-  "lastResponseAt": 1775960760874,
+  "updatedAt": 1775964125404,
+  "lastResponseAt": 1775964111776,
   "sessionId": "f32539bd-cf43-4557-b597-8f52078d0f68",
   "providerState": {
     "providerSessionId": "f32539bd-cf43-4557-b597-8f52078d0f68"
@@ -18,7 +18,6 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
-    "percentage": 0,
-    "contextWindowIsAuthoritative": true
+    "percentage": 0
   }
 }
