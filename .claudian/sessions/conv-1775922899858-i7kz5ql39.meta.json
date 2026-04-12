@@ -1,16 +1,15 @@
 {
-  "id": "conv-1775919185557-z2g5fhsia",
+  "id": "conv-1775922899858-i7kz5ql39",
   "providerId": "claude",
-  "title": "Update study progress for math, English, electr...",
+  "title": "Pull latest study progress from MemOS",
   "titleGenerationStatus": "success",
-  "createdAt": 1775919185558,
-  "updatedAt": 1775922886052,
-  "lastResponseAt": 1775922880675,
-  "sessionId": "b1d379b1-1f31-4fda-9ab3-41fa75c15a84",
+  "createdAt": 1775922899858,
+  "updatedAt": 1775957714972,
+  "lastResponseAt": 1775957714972,
+  "sessionId": "0879a0c3-059c-4dd1-9a1f-ab49854169b6",
   "providerState": {
-    "providerSessionId": "b1d379b1-1f31-4fda-9ab3-41fa75c15a84"
+    "providerSessionId": "0879a0c3-059c-4dd1-9a1f-ab49854169b6"
   },
-  "currentNote": "考研计划/每日计划/2026-04-11-每日计划.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
