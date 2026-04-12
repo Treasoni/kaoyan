@@ -4,10 +4,12 @@
   "title": "Extract key formulas from math chapter summaries",
   "titleGenerationStatus": "success",
   "createdAt": 1775980703794,
-  "updatedAt": 1775981471182,
-  "lastResponseAt": 1775981471182,
-  "sessionId": null,
-  "providerState": {},
+  "updatedAt": 1775982136375,
+  "lastResponseAt": 1775982136375,
+  "sessionId": "e43e72d3-9ddb-4ef5-9e44-aed9a777a990",
+  "providerState": {
+    "providerSessionId": "e43e72d3-9ddb-4ef5-9e44-aed9a777a990"
+  },
   "currentNote": "考研数学/高数-一元微分学/📝 章节总结.md",
   "usage": {
     "model": "glm-5",
@@ -16,6 +18,7 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
-    "percentage": 0
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
   }
 }
