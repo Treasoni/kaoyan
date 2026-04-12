@@ -4,6 +4,21 @@
   "title": "Analyze piecewise function extremum error",
   "titleGenerationStatus": "success",
   "createdAt": 1775964137334,
-  "updatedAt": 1775964141676,
-  "sessionId": null
+  "updatedAt": 1775964796805,
+  "lastResponseAt": 1775964796805,
+  "sessionId": "9a9ad59a-67e5-4729-aad1-cccf255f6cfc",
+  "providerState": {
+    "providerSessionId": "9a9ad59a-67e5-4729-aad1-cccf255f6cfc"
+  },
+  "currentNote": "考研数学/高数-一元微分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
