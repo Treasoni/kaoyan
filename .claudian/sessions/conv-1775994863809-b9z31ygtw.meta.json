@@ -1,14 +1,14 @@
 {
-  "id": "conv-1775983389308-xg8b31rlk",
+  "id": "conv-1775994863809-b9z31ygtw",
   "providerId": "claude",
-  "title": "Analyze non-negative function integral positivi...",
+  "title": "Fix proof of integral positivity for non-negati...",
   "titleGenerationStatus": "success",
-  "createdAt": 1775983389309,
-  "updatedAt": 1775994859843,
-  "lastResponseAt": 1775983566471,
-  "sessionId": "315a4271-b31c-4039-961f-d46c0180cd6b",
+  "createdAt": 1775994863809,
+  "updatedAt": 1775995040426,
+  "lastResponseAt": 1775995040426,
+  "sessionId": "ce1668af-921e-49b8-b831-bedb56d18252",
   "providerState": {
-    "providerSessionId": "315a4271-b31c-4039-961f-d46c0180cd6b"
+    "providerSessionId": "ce1668af-921e-49b8-b831-bedb56d18252"
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
