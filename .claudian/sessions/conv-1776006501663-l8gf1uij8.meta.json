@@ -1,0 +1,21 @@
+{
+  "id": "conv-1776006501663-l8gf1uij8",
+  "providerId": "claude",
+  "title": "Update daily study progress and log completions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776006501664,
+  "updatedAt": 1776007021039,
+  "lastResponseAt": 1776007021039,
+  "sessionId": null,
+  "providerState": {},
+  "currentNote": "考研计划/每日计划/2026-04-12-每日计划.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 164,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 71616,
+    "contextWindow": 200000,
+    "contextTokens": 71780,
+    "percentage": 36
+  }
+}
