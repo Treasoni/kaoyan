@@ -4,6 +4,21 @@
   "title": "Analyze non-negative function integral positivi...",
   "titleGenerationStatus": "success",
   "createdAt": 1775983389309,
-  "updatedAt": 1775983394317,
-  "sessionId": null
+  "updatedAt": 1775983566471,
+  "lastResponseAt": 1775983566471,
+  "sessionId": "315a4271-b31c-4039-961f-d46c0180cd6b",
+  "providerState": {
+    "providerSessionId": "315a4271-b31c-4039-961f-d46c0180cd6b"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
