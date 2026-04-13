@@ -1,0 +1,22 @@
+{
+  "id": "conv-1776080303986-ixuyynhhx",
+  "providerId": "claude",
+  "title": "Organize derivative concept notes for review",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776080303986,
+  "updatedAt": 1776080505696,
+  "lastResponseAt": 1776080505696,
+  "sessionId": "cc61dd7b-4f51-4fe3-9103-ec56b65ac94e",
+  "providerState": {
+    "providerSessionId": "cc61dd7b-4f51-4fe3-9103-ec56b65ac94e"
+  },
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
