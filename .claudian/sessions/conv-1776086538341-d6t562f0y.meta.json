@@ -4,9 +4,21 @@
   "title": "Record study progress for Day 043-044",
   "titleGenerationStatus": "success",
   "createdAt": 1776086538342,
-  "updatedAt": 1776086738031,
-  "lastResponseAt": 1776086738030,
-  "sessionId": null,
-  "providerState": {},
-  "currentNote": "考研计划/每日计划/完成记录/2026-04-12-完成记录.md"
+  "updatedAt": 1776088669767,
+  "lastResponseAt": 1776087104336,
+  "sessionId": "68b94091-14f9-4370-bea0-1006134dae07",
+  "providerState": {
+    "providerSessionId": "68b94091-14f9-4370-bea0-1006134dae07"
+  },
+  "currentNote": "考研计划/每日计划/完成记录/2026-04-12-完成记录.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 208,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 49984,
+    "contextWindow": 200000,
+    "contextTokens": 50192,
+    "percentage": 25,
+    "contextWindowIsAuthoritative": true
+  }
 }
