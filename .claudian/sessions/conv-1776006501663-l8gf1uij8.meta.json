@@ -4,18 +4,21 @@
   "title": "Update daily study progress and log completions",
   "titleGenerationStatus": "success",
   "createdAt": 1776006501664,
-  "updatedAt": 1776008270672,
-  "lastResponseAt": 1776008270671,
-  "sessionId": null,
-  "providerState": {},
+  "updatedAt": 1776009341296,
+  "lastResponseAt": 1776009341296,
+  "sessionId": "9b1c4b86-4aba-4e3a-9dd5-197a4ef94fff",
+  "providerState": {
+    "providerSessionId": "9b1c4b86-4aba-4e3a-9dd5-197a4ef94fff"
+  },
   "currentNote": "考研计划/每日计划/2026-04-12-每日计划.md",
   "usage": {
     "model": "glm-5",
-    "inputTokens": 307,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 30272,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 30579,
-    "percentage": 15
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
   }
 }
