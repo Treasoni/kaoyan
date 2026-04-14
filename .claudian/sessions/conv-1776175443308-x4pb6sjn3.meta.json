@@ -4,6 +4,21 @@
   "title": "Update study progress and mark completed tasks",
   "titleGenerationStatus": "success",
   "createdAt": 1776175443309,
-  "updatedAt": 1776175447662,
-  "sessionId": null
+  "updatedAt": 1776175791446,
+  "lastResponseAt": 1776175791446,
+  "sessionId": "4a0b5baa-a1ad-45e2-a88d-26822f52b70b",
+  "providerState": {
+    "providerSessionId": "4a0b5baa-a1ad-45e2-a88d-26822f52b70b"
+  },
+  "currentNote": "考研计划/每日计划/2026-04-14-每日计划.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
