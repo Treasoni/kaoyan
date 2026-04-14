@@ -1,12 +1,12 @@
 {
   "id": "conv-1775825226552-uaofi59ua",
+  "providerId": "claude",
   "title": "Solve limit using definite integral definition",
   "titleGenerationStatus": "success",
   "createdAt": 1775825226552,
   "updatedAt": 1775830773043,
   "lastResponseAt": 1775825509328,
-  "sessionId": "638accc8-9521-47d7-877e-d49aeeed0f57",
-  "sdkSessionId": "638accc8-9521-47d7-877e-d49aeeed0f57",
+  "sessionId": null,
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",

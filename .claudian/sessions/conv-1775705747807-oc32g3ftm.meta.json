@@ -1,12 +1,12 @@
 {
   "id": "conv-1775705747807-oc32g3ftm",
+  "providerId": "claude",
   "title": "整理变限积分奇偶性与周期性笔记",
   "titleGenerationStatus": "success",
   "createdAt": 1775705747807,
   "updatedAt": 1775734822829,
   "lastResponseAt": 1775705910900,
-  "sessionId": "f095821d-ecfd-4031-8f2d-c3d36b3f0a7d",
-  "sdkSessionId": "f095821d-ecfd-4031-8f2d-c3d36b3f0a7d",
+  "sessionId": null,
   "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/4-变限积分的计算/重要结论.md",
   "usage": {
     "model": "glm-5",

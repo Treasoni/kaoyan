@@ -1,12 +1,12 @@
 {
   "id": "conv-1775742309515-nrlryxtxi",
+  "providerId": "claude",
   "title": "Analyze derivative and inverse function problem",
   "titleGenerationStatus": "success",
   "createdAt": 1775742309515,
   "updatedAt": 1775747551298,
   "lastResponseAt": 1775745113499,
-  "sessionId": "8827ec70-44fc-4c78-8700-4b6ea8f22d72",
-  "sdkSessionId": "8827ec70-44fc-4c78-8700-4b6ea8f22d72",
+  "sessionId": null,
   "currentNote": "考研数学/高数-一元微分学/错题本.md",
   "usage": {
     "model": "glm-5",

@@ -1,12 +1,12 @@
 {
   "id": "conv-1775632359941-hlptw2ns2",
+  "providerId": "claude",
   "title": "整理周期函数积分性质错题",
   "titleGenerationStatus": "success",
   "createdAt": 1775632359942,
   "updatedAt": 1775632868757,
   "lastResponseAt": 1775632848089,
-  "sessionId": "51e21c6e-9349-4285-888f-51b6803e13cb",
-  "sdkSessionId": "51e21c6e-9349-4285-888f-51b6803e13cb",
+  "sessionId": null,
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
     "model": "glm-5",

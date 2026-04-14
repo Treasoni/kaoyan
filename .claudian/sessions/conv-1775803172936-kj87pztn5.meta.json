@@ -1,12 +1,12 @@
 {
   "id": "conv-1775803172936-kj87pztn5",
+  "providerId": "claude",
   "title": "Add continuity insight to math notes",
   "titleGenerationStatus": "success",
   "createdAt": 1775803172937,
   "updatedAt": 1775816799572,
   "lastResponseAt": 1775815932863,
-  "sessionId": "384ce8dc-100f-4893-bec4-0f464a2ea668",
-  "sdkSessionId": "384ce8dc-100f-4893-bec4-0f464a2ea668",
+  "sessionId": null,
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,

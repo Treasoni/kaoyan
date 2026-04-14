@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "glm-5",
+  "model": "glm-4.7",
   "thinkingBudget": "low",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -33,8 +33,8 @@
       "enableOpus1M": false,
       "enableSonnet1M": false,
       "lastModel": "haiku",
-      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"cr_3df48edde17ed5cb7ee3a9efdd430c8603bbff504dbc951a5ea069f9af684686\"\nexport ANTHROPIC_BASE_URL=\"https://cloud.hongqiye.com:3300/api\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"GLM-5-Turbo\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
-      "environmentHash": "ANTHROPIC_BASE_URL=https://cloud.hongqiye.com:3300/api|ANTHROPIC_DEFAULT_HAIKU_MODEL=GLM-5-Turbo|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
+      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"f06dd08a20fd48a79b1444bdf97610d1.FccvDxdv5MaADHMV\"\nexport ANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"GLM-5-Turbo\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=GLM-5-Turbo|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
     },
     "codex": {
       "enabled": false,
@@ -51,11 +51,17 @@
     }
   },
   "settingsProvider": "claude",
-  "savedProviderModel": {},
-  "savedProviderEffort": {},
+  "savedProviderModel": {
+    "claude": "glm-4.7"
+  },
+  "savedProviderEffort": {
+    "claude": "high"
+  },
   "savedProviderServiceTier": {},
-  "savedProviderThinkingBudget": {},
-  "lastCustomModel": "glm-5",
+  "savedProviderThinkingBudget": {
+    "claude": "low"
+  },
+  "lastCustomModel": "glm-4.7",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,

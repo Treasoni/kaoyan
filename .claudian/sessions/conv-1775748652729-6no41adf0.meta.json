@@ -1,12 +1,12 @@
 {
   "id": "conv-1775748652729-6no41adf0",
+  "providerId": "claude",
   "title": "Sync and pull latest study data from MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1775748652729,
   "updatedAt": 1775785345203,
   "lastResponseAt": 1775751387435,
-  "sessionId": "7c8ea5a0-adf3-4ece-9c29-a98416da8f63",
-  "sdkSessionId": "7c8ea5a0-adf3-4ece-9c29-a98416da8f63",
+  "sessionId": null,
   "currentNote": "考研英语/📊 学习进度.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"

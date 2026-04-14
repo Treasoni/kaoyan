@@ -1,12 +1,12 @@
 {
   "id": "conv-1775702028751-d34nttope",
+  "providerId": "claude",
   "title": "Solve integral with variable limit using parts",
   "titleGenerationStatus": "success",
   "createdAt": 1775702028756,
   "updatedAt": 1775705725561,
   "lastResponseAt": 1775702244217,
-  "sessionId": "0f563652-a1a4-4844-9783-f40e01246109",
-  "sdkSessionId": "0f563652-a1a4-4844-9783-f40e01246109",
+  "sessionId": null,
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
     "model": "glm-5",

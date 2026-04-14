@@ -6,7 +6,7 @@
   "createdAt": 1775893435360,
   "updatedAt": 1775904804239,
   "lastResponseAt": 1775894371027,
-  "sessionId": "0ea0b650-626d-437f-bf57-8e8b77095437",
+  "sessionId": null,
   "usage": {
     "model": "glm-5",
     "inputTokens": 0,
