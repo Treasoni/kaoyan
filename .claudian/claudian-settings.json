@@ -33,7 +33,7 @@
       "enableOpus1M": false,
       "enableSonnet1M": false,
       "lastModel": "haiku",
-      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"f06dd08a20fd48a79b1444bdf97610d1.FccvDxdv5MaADHMV\"\nexport ANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"GLM-5-Turbo\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
+      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"6e1c07912b6d420081cf959f71c69eb6.joEVpzXz7h8Hg8vd\"\nexport ANTHROPIC_BASE_URL=\"https://open.bigmodel.cn/api/anthropic\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"GLM-5-Turbo\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5\"",
       "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=GLM-5-Turbo|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7"
     },
     "codex": {
