@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776169008511-0c17esloj",
+  "providerId": "claude",
+  "title": "Analyze calculus integral problem with inverse ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776169008511,
+  "updatedAt": 1776169442182,
+  "lastResponseAt": 1776169442182,
+  "sessionId": "4c6be0ef-c757-4320-ad7b-b7ecd33f6ec0",
+  "providerState": {
+    "providerSessionId": "4c6be0ef-c757-4320-ad7b-b7ecd33f6ec0"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}

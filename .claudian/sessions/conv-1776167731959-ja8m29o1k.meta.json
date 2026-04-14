@@ -4,11 +4,20 @@
   "title": "你好",
   "titleGenerationStatus": "failed",
   "createdAt": 1776167731960,
-  "updatedAt": 1776168032142,
-  "lastResponseAt": 1776168013288,
+  "updatedAt": 1776168873145,
+  "lastResponseAt": 1776168873145,
   "sessionId": "01b049af-6979-4e83-86cf-f971aac40d71",
   "providerState": {
     "providerSessionId": "01b049af-6979-4e83-86cf-f971aac40d71"
   },
-  "currentNote": "考研数学/高数-一元函数积分学/错题本.md"
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
 }
