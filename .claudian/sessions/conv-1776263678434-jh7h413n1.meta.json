@@ -4,10 +4,11 @@
   "title": "Record study progress for math and English",
   "titleGenerationStatus": "success",
   "createdAt": 1776263678435,
-  "updatedAt": 1776264829603,
-  "lastResponseAt": 1776264829603,
-  "sessionId": null,
+  "updatedAt": 1776265377720,
+  "lastResponseAt": 1776265377720,
+  "sessionId": "4ca2bb2f-98a6-404e-8a04-e1eef226efc1",
   "providerState": {
+    "providerSessionId": "4ca2bb2f-98a6-404e-8a04-e1eef226efc1",
     "subagentData": {
       "call_218381d5ba964ac49ab01936": {
         "id": "call_218381d5ba964ac49ab01936",
@@ -122,13 +123,17 @@
     }
   },
   "currentNote": "考研计划/每日计划/2026-04-15-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ],
   "usage": {
     "model": "glm-5.1",
-    "inputTokens": 0,
+    "inputTokens": 805,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 50880,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 51685,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
   }
 }
