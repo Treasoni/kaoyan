@@ -4,6 +4,21 @@
   "title": "Compare integral values I₁ I₂ and 1 using inequ...",
   "titleGenerationStatus": "success",
   "createdAt": 1776226300856,
-  "updatedAt": 1776226305529,
-  "sessionId": null
+  "updatedAt": 1776226581758,
+  "lastResponseAt": 1776226581758,
+  "sessionId": "61269a37-ca74-4bf8-ae50-2be6009d4720",
+  "providerState": {
+    "providerSessionId": "61269a37-ca74-4bf8-ae50-2be6009d4720"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
