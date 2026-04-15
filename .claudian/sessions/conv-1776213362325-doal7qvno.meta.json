@@ -4,8 +4,8 @@
   "title": "Pull latest data from MemOS",
   "titleGenerationStatus": "success",
   "createdAt": 1776213362326,
-  "updatedAt": 1776214102911,
-  "lastResponseAt": 1776214102911,
+  "updatedAt": 1776214470894,
+  "lastResponseAt": 1776214470894,
   "sessionId": "c143253c-95f0-4f48-9390-7c031619fd9a",
   "providerState": {
     "providerSessionId": "c143253c-95f0-4f48-9390-7c031619fd9a"
@@ -15,7 +15,7 @@
     "MemoryOperatingSystem"
   ],
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
