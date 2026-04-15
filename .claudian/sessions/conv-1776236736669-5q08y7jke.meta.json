@@ -1,18 +1,18 @@
 {
-  "id": "conv-1776169008511-0c17esloj",
+  "id": "conv-1776236736669-5q08y7jke",
   "providerId": "claude",
-  "title": "Analyze calculus integral problem with inverse ...",
+  "title": "反三角函数化简陷阱：arcsin(cos t) 分段讨论",
   "titleGenerationStatus": "success",
-  "createdAt": 1776169008511,
-  "updatedAt": 1776169724220,
-  "lastResponseAt": 1776169442182,
-  "sessionId": null,
+  "createdAt": 1776236736670,
+  "updatedAt": 1776236889758,
+  "lastResponseAt": 1776236889758,
+  "sessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92",
   "providerState": {
-    "providerSessionId": "4c6be0ef-c757-4320-ad7b-b7ecd33f6ec0"
+    "providerSessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92"
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
-    "model": "glm-4.7",
+    "model": "glm-5.1",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
