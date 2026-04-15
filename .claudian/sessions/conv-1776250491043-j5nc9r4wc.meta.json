@@ -4,6 +4,21 @@
   "title": "Explain variable limit integral concept",
   "titleGenerationStatus": "success",
   "createdAt": 1776250491043,
-  "updatedAt": 1776250495521,
-  "sessionId": null
+  "updatedAt": 1776250634245,
+  "lastResponseAt": 1776250634245,
+  "sessionId": "fe7fe6e4-926a-4e58-99d1-dc9ac8bf67f5",
+  "providerState": {
+    "providerSessionId": "fe7fe6e4-926a-4e58-99d1-dc9ac8bf67f5"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/3-变限积分/变限积分性质.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
