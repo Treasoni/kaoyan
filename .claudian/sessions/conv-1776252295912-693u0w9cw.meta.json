@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776252295912-693u0w9cw",
+  "providerId": "claude",
+  "title": "Regenerate chapter summary notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776252295913,
+  "updatedAt": 1776252565666,
+  "lastResponseAt": 1776252565666,
+  "sessionId": "157a44e4-568c-494a-9d0d-7f67ee2b8e20",
+  "providerState": {
+    "providerSessionId": "157a44e4-568c-494a-9d0d-7f67ee2b8e20"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/📝 章节总结.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
