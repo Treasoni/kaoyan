@@ -1,16 +1,16 @@
 {
-  "id": "conv-1776175443308-x4pb6sjn3",
+  "id": "conv-1776213362325-doal7qvno",
   "providerId": "claude",
-  "title": "Update study progress and mark completed tasks",
+  "title": "Pull latest data from MemOS",
   "titleGenerationStatus": "success",
-  "createdAt": 1776175443309,
-  "updatedAt": 1776213348727,
-  "lastResponseAt": 1776213346847,
-  "sessionId": "4a0b5baa-a1ad-45e2-a88d-26822f52b70b",
+  "createdAt": 1776213362326,
+  "updatedAt": 1776213444919,
+  "lastResponseAt": 1776213444919,
+  "sessionId": "c143253c-95f0-4f48-9390-7c031619fd9a",
   "providerState": {
-    "providerSessionId": "4a0b5baa-a1ad-45e2-a88d-26822f52b70b"
+    "providerSessionId": "c143253c-95f0-4f48-9390-7c031619fd9a"
   },
-  "currentNote": "考研计划/每日计划/2026-04-14-每日计划.md",
+  "currentNote": "考研计划/每日计划/完成记录/2026-04-14-完成记录.md",
   "enabledMcpServers": [
     "MemoryOperatingSystem"
   ],
