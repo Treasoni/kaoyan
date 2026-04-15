@@ -4,7 +4,7 @@
   "title": "Add math mistake to Obsidian notebook",
   "titleGenerationStatus": "success",
   "createdAt": 1776168879356,
-  "updatedAt": 1776169036062,
+  "updatedAt": 1776251963055,
   "lastResponseAt": 1776169036062,
   "sessionId": null,
   "providerState": {},
@@ -16,6 +16,7 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
-    "percentage": 0
+    "percentage": 0,
+    "contextWindowIsAuthoritative": false
   }
 }
