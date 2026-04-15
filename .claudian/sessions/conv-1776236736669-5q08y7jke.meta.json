@@ -4,8 +4,8 @@
   "title": "反三角函数化简陷阱：arcsin(cos t) 分段讨论",
   "titleGenerationStatus": "success",
   "createdAt": 1776236736670,
-  "updatedAt": 1776236889758,
-  "lastResponseAt": 1776236889758,
+  "updatedAt": 1776237391359,
+  "lastResponseAt": 1776237391359,
   "sessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92",
   "providerState": {
     "providerSessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92"
@@ -18,7 +18,6 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
-    "percentage": 0,
-    "contextWindowIsAuthoritative": true
+    "percentage": 0
   }
 }
