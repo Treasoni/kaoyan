@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776257761309-yodr03dwf",
+  "providerId": "claude",
+  "title": "Extract core calculus principles from notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776257761310,
+  "updatedAt": 1776257925023,
+  "lastResponseAt": 1776257925023,
+  "sessionId": "6318adf2-02cc-4804-b303-4d378147b946",
+  "providerState": {
+    "providerSessionId": "6318adf2-02cc-4804-b303-4d378147b946"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分的概念与性质/4-反常积分/反常积分收敛判断.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 395,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 38016,
+    "contextWindow": 200000,
+    "contextTokens": 38411,
+    "percentage": 19,
+    "contextWindowIsAuthoritative": true
+  }
+}
