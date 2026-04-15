@@ -1,18 +1,18 @@
 {
-  "id": "conv-1776236736669-5q08y7jke",
+  "id": "conv-1776237791680-ywwpklr6w",
   "providerId": "claude",
-  "title": "反三角函数化简陷阱：arcsin(cos t) 分段讨论",
+  "title": "Reorganize mistake problem 04",
   "titleGenerationStatus": "success",
-  "createdAt": 1776236736670,
-  "updatedAt": 1776237573360,
-  "lastResponseAt": 1776237572083,
-  "sessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92",
+  "createdAt": 1776237791681,
+  "updatedAt": 1776238660594,
+  "lastResponseAt": 1776238660594,
+  "sessionId": "d8094812-a32a-423b-b578-0ce4ba0c3449",
   "providerState": {
-    "providerSessionId": "bb9886b8-2cb5-4696-81e5-4111c84d6b92"
+    "providerSessionId": "d8094812-a32a-423b-b578-0ce4ba0c3449"
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
-    "model": "glm-5",
+    "model": "glm-5.1",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,

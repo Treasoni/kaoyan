@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "glm-5.1",
+  "model": "glm-5",
   "thinkingBudget": "low",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -52,7 +52,7 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "glm-5.1"
+    "claude": "glm-5"
   },
   "savedProviderEffort": {
     "claude": "high"
@@ -61,7 +61,7 @@
   "savedProviderThinkingBudget": {
     "claude": "low"
   },
-  "lastCustomModel": "glm-5.1",
+  "lastCustomModel": "glm-5",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,

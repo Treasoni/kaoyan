@@ -1,0 +1,23 @@
+{
+  "id": "conv-1776238611357-6vmfjlbvz",
+  "providerId": "claude",
+  "title": "Greet and welcome user",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776238611357,
+  "updatedAt": 1776238799678,
+  "lastResponseAt": 1776238799677,
+  "sessionId": "cd90281b-087f-48cc-94bd-0d12a85cce64",
+  "providerState": {
+    "providerSessionId": "cd90281b-087f-48cc-94bd-0d12a85cce64"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
