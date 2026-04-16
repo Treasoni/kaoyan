@@ -1,14 +1,14 @@
 {
-  "id": "conv-1776346136367-32otn3d7f",
+  "id": "conv-1776346608692-tew727hg7",
   "providerId": "claude",
-  "title": "Memorize derivative formulas table",
+  "title": "Fix Markdown table pipe formatting",
   "titleGenerationStatus": "success",
-  "createdAt": 1776346136367,
-  "updatedAt": 1776346595626,
-  "lastResponseAt": 1776346594582,
-  "sessionId": "c58f6a83-0a22-46f2-b6d4-4db89470d961",
+  "createdAt": 1776346608692,
+  "updatedAt": 1776346660153,
+  "lastResponseAt": 1776346660153,
+  "sessionId": "221862f3-2ace-4d9f-81d4-d65139332716",
   "providerState": {
-    "providerSessionId": "c58f6a83-0a22-46f2-b6d4-4db89470d961"
+    "providerSessionId": "221862f3-2ace-4d9f-81d4-d65139332716"
   },
   "currentNote": "考研数学/0-基础知识/🧪 高数必背自测（遮挡式）.md",
   "usage": {
@@ -18,6 +18,7 @@
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
-    "percentage": 0
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
   }
 }
