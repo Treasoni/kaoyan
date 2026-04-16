@@ -1,0 +1,17 @@
+{
+  "id": "conv-1776305640581-wrzwqh2xs",
+  "providerId": "claude",
+  "title": "Sync study data from MemOS",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776305640582,
+  "updatedAt": 1776305689759,
+  "lastResponseAt": 1776305688521,
+  "sessionId": "65bb70bf-dd3a-484e-afd7-b83650010695",
+  "providerState": {
+    "providerSessionId": "65bb70bf-dd3a-484e-afd7-b83650010695"
+  },
+  "currentNote": "考研计划/每日计划/2026-04-15-每日计划.md",
+  "enabledMcpServers": [
+    "MemoryOperatingSystem"
+  ]
+}
