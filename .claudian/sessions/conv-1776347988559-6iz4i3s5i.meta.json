@@ -4,11 +4,21 @@
   "title": "Update study progress after completing daily tasks",
   "titleGenerationStatus": "success",
   "createdAt": 1776347988559,
-  "updatedAt": 1776347996481,
-  "lastResponseAt": 1776347996480,
+  "updatedAt": 1776348529618,
+  "lastResponseAt": 1776348529618,
   "sessionId": "4af15eef-b8bf-4d89-85e0-27337c9c1790",
   "providerState": {
     "providerSessionId": "4af15eef-b8bf-4d89-85e0-27337c9c1790"
   },
-  "currentNote": "考研计划/每日计划/2026-04-16-每日计划.md"
+  "currentNote": "考研计划/每日计划/2026-04-16-每日计划.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
