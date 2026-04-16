@@ -1,0 +1,21 @@
+{
+  "id": "conv-1776348678046-n38f6qx1e",
+  "providerId": "claude",
+  "title": "Organize English vocabulary and generate four n...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776348678047,
+  "updatedAt": 1776348778029,
+  "lastResponseAt": 1776348778029,
+  "sessionId": null,
+  "providerState": {},
+  "currentNote": "考研英语/英语单词/2026-4-16.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
