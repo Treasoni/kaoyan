@@ -4,7 +4,7 @@
   "title": "Organize English vocabulary and generate notes",
   "titleGenerationStatus": "success",
   "createdAt": 1776337653475,
-  "updatedAt": 1776343143421,
+  "updatedAt": 1776345718527,
   "lastResponseAt": 1776343143421,
   "sessionId": "6fae927c-a197-4259-89b8-61eee93bbe2b",
   "providerState": {
@@ -239,7 +239,6 @@
       }
     }
   },
-  "currentNote": "考研英语/英语单词/2026-4-15.md",
   "usage": {
     "model": "glm-5.1",
     "inputTokens": 0,
