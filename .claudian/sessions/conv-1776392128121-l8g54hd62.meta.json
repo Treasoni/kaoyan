@@ -1,0 +1,14 @@
+{
+  "id": "conv-1776392128121-l8g54hd62",
+  "providerId": "claude",
+  "title": "Organize study notes for better learning",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776392128122,
+  "updatedAt": 1776392292079,
+  "lastResponseAt": 1776392292079,
+  "sessionId": "22c18f80-f1ef-41c8-8dd8-d9d31dc8f779",
+  "providerState": {
+    "providerSessionId": "22c18f80-f1ef-41c8-8dd8-d9d31dc8f779"
+  },
+  "currentNote": "考研数学/高数-多元函数微分学/1-基本概念/可微.md"
+}
