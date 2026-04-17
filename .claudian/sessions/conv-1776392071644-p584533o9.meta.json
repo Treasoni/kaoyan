@@ -1,0 +1,23 @@
+{
+  "id": "conv-1776392071644-p584533o9",
+  "providerId": "claude",
+  "title": "Summarize chapter content",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776392071645,
+  "updatedAt": 1776392102569,
+  "lastResponseAt": 1776392097625,
+  "sessionId": "e0548c59-11c0-42fb-84a5-8011fe91401b",
+  "providerState": {
+    "providerSessionId": "e0548c59-11c0-42fb-84a5-8011fe91401b"
+  },
+  "currentNote": "考研数学/高数-多元函数微分学/1-基本概念/可微.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 22345,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 192,
+    "contextWindow": 200000,
+    "contextTokens": 22537,
+    "percentage": 11
+  }
+}
