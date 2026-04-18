@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776516951472-wphod15wr",
+  "providerId": "claude",
+  "title": "整理高等数学无穷小定理笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776516951472,
+  "updatedAt": 1776517001761,
+  "lastResponseAt": 1776517001761,
+  "sessionId": "0db47543-2cc1-465d-9612-130fdbcd6134",
+  "providerState": {
+    "providerSessionId": "0db47543-2cc1-465d-9612-130fdbcd6134"
+  },
+  "currentNote": "考研数学/0-基础知识/函数运算性质速查表.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
