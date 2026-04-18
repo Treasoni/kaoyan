@@ -1,0 +1,23 @@
+{
+  "id": "conv-1776526906648-pn2ir4a91",
+  "providerId": "claude",
+  "title": "Greet user and assist",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776526906648,
+  "updatedAt": 1776526962215,
+  "lastResponseAt": 1776526941784,
+  "sessionId": "d2b3b2f7-5697-4637-bfae-feca5b3fd3bb",
+  "providerState": {
+    "providerSessionId": "d2b3b2f7-5697-4637-bfae-feca5b3fd3bb"
+  },
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": false
+  }
+}
