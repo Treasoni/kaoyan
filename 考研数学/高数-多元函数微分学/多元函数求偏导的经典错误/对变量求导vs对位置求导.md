@@ -6,7 +6,7 @@ tags: [高数, 多元函数微分学, 经典错误, 微分法则]
 # 多元函数"对变量求导"与"对位置求导"的混淆陷阱
 
 > [!abstract] 一句话
-> 已知 $f(g(x,y), h(x,y)) = \cdots$，要求 $\dfrac{\partial f(x,y)}{\partial x}$ 时，**先换元求出 $f$ 的纯净法��，再求导**——绝不能直接对原式用链式法则。
+> 已知 $f(g(x,y), h(x,y)) = \cdots$，要求 $\dfrac{\partial f(x,y)}{\partial x}$ 时，**先换元求出 $f$ 的纯净法则，再求导**——绝不能直接对原式用链式法则。
 
 > [!warning] 致命陷阱
 > 题设 $f(x+y,\; xy)$ 中的 $x, y$ 是参与运算的**真实变量**；
@@ -97,7 +97,7 @@ $$\frac{\partial f(x,y)}{\partial x} + \frac{\partial f(x,y)}{\partial y} = 2x -
 
 ## 五、解题方法论
 
-> [!important] 换元法求函数解���式——通用流程
+> [!important] 换元法求函数解析式——通用流程
 >
 > **适用题型**：已知 $f(g(x,y),\; h(x,y)) = \text{表达式}$，求 $f$ 对自变量的偏导。
 >
