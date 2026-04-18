@@ -93,6 +93,7 @@ body.theme-light .claudian-container[data-provider="codex"] {
    ============================================ */
 /* Header - logo, title/tabs slot, and actions */
 .claudian-header {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0 12px 12px 12px;
@@ -243,7 +244,7 @@ body.theme-light .claudian-container[data-provider="codex"] {
    components/history.css
    ============================================ */
 .claudian-history-container {
-  position: relative;
+  position: static;
 }
 
 /* History dropup menu (opens upward since it's at bottom of view) */
@@ -251,7 +252,6 @@ body.theme-light .claudian-container[data-provider="codex"] {
   display: none;
   position: absolute;
   bottom: 100%;
-  inset-inline-end: 0;
   margin-bottom: 4px;
   background: var(--background-secondary);
   backdrop-filter: blur(20px);
@@ -262,7 +262,8 @@ body.theme-light .claudian-container[data-provider="codex"] {
   z-index: 1000;
   max-height: 400px;
   overflow: hidden;
-  width: 280px;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
 }
 
 .claudian-history-menu.visible {
