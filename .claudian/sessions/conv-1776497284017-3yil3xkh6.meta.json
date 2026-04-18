@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776497284017-3yil3xkh6",
+  "providerId": "claude",
+  "title": "Explain multivariable partial derivative notation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776497284017,
+  "updatedAt": 1776497424256,
+  "lastResponseAt": 1776497424255,
+  "sessionId": "d238ad65-97df-4d9f-9fce-d7ad8e61eb7b",
+  "providerState": {
+    "providerSessionId": "d238ad65-97df-4d9f-9fce-d7ad8e61eb7b"
+  },
+  "currentNote": "考研数学/高数-多元函数微分学/2-微分法则/链式求导规则.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
