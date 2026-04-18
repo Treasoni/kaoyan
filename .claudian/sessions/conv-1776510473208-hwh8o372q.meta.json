@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776510473208-hwh8o372q",
+  "providerId": "claude",
+  "title": "Analyze logic function for hazards using Karnau...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776510473208,
+  "updatedAt": 1776510596325,
+  "lastResponseAt": 1776510596325,
+  "sessionId": "cc4ea092-1b16-4b08-9725-e13911890b76",
+  "providerState": {
+    "providerSessionId": "cc4ea092-1b16-4b08-9725-e13911890b76"
+  },
+  "currentNote": "考研专业课/数字电子技术/4-组合逻辑电路/03-竞争与冒险.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
