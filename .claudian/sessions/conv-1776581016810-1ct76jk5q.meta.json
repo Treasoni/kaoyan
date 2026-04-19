@@ -1,14 +1,14 @@
 {
-  "id": "conv-1776570059172-44gjenfq5",
+  "id": "conv-1776581016810-1ct76jk5q",
   "providerId": "claude",
-  "title": "Solve calculus integral problem",
+  "title": "Organize complex calculus mistake note",
   "titleGenerationStatus": "success",
-  "createdAt": 1776570059172,
-  "updatedAt": 1776580998415,
-  "lastResponseAt": 1776580073684,
-  "sessionId": "397f4844-1b12-46e3-8b42-aa17d1e693b2",
+  "createdAt": 1776581016810,
+  "updatedAt": 1776581246808,
+  "lastResponseAt": 1776581246808,
+  "sessionId": "80f8a19a-0618-408d-aada-ca223fc55fba",
   "providerState": {
-    "providerSessionId": "397f4844-1b12-46e3-8b42-aa17d1e693b2"
+    "providerSessionId": "80f8a19a-0618-408d-aada-ca223fc55fba"
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
