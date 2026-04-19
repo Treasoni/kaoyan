@@ -28,7 +28,8 @@
       "Bash(for:*)",
       "Bash(do echo:*)",
       "Bash(hexdump:*)",
-      "Bash(while read -r1)"
+      "Bash(while read -r1)",
+      "Bash(find:*)"
     ]
   }
 }
