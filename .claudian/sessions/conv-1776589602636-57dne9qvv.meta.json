@@ -4,6 +4,21 @@
   "title": "Analyze improper integral solution efficiency",
   "titleGenerationStatus": "success",
   "createdAt": 1776589602637,
-  "updatedAt": 1776589634713,
-  "sessionId": null
+  "updatedAt": 1776594116744,
+  "lastResponseAt": 1776592236862,
+  "sessionId": "341257b8-579c-46ab-b94a-dfb871ea0dd4",
+  "providerState": {
+    "providerSessionId": "341257b8-579c-46ab-b94a-dfb871ea0dd4"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
 }
