@@ -1,14 +1,14 @@
 {
-  "id": "conv-1776566089277-s0zvwn6u2",
+  "id": "conv-1776570059172-44gjenfq5",
   "providerId": "claude",
-  "title": "Solve indefinite integral with trigonometric su...",
+  "title": "Solve calculus integral problem",
   "titleGenerationStatus": "success",
-  "createdAt": 1776566089277,
-  "updatedAt": 1776570050339,
-  "lastResponseAt": 1776569654377,
-  "sessionId": "9b37508a-b38d-4ef5-8c1c-eae826265e51",
+  "createdAt": 1776570059172,
+  "updatedAt": 1776570288673,
+  "lastResponseAt": 1776570288672,
+  "sessionId": "397f4844-1b12-46e3-8b42-aa17d1e693b2",
   "providerState": {
-    "providerSessionId": "9b37508a-b38d-4ef5-8c1c-eae826265e51"
+    "providerSessionId": "397f4844-1b12-46e3-8b42-aa17d1e693b2"
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
