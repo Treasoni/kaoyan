@@ -4,7 +4,7 @@
   "title": "Analyze improper integral convergence mistake",
   "titleGenerationStatus": "success",
   "createdAt": 1776345744443,
-  "updatedAt": 1776345921299,
+  "updatedAt": 1776567681121,
   "lastResponseAt": 1776345921299,
   "sessionId": null,
   "providerState": {
@@ -12,13 +12,13 @@
   },
   "currentNote": "考研数学/高数-一元函数积分学/错题本.md",
   "usage": {
-    "model": "glm-5.1",
+    "model": "glm-4.7",
     "inputTokens": 0,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
     "contextTokens": 0,
     "percentage": 0,
-    "contextWindowIsAuthoritative": true
+    "contextWindowIsAuthoritative": false
   }
 }
