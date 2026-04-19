@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776584446176-6ffam6ore",
+  "providerId": "claude",
+  "title": "Explain integral variable roles in calculus",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776584446176,
+  "updatedAt": 1776584521704,
+  "lastResponseAt": 1776584521704,
+  "sessionId": "f50ed1a5-964c-405a-8e05-6e0fe6e002e8",
+  "providerState": {
+    "providerSessionId": "f50ed1a5-964c-405a-8e05-6e0fe6e002e8"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/一元函数积分学的计算/4-变限积分的计算/求导公式.md",
+  "usage": {
+    "model": "glm-5.1",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0,
+    "contextWindowIsAuthoritative": true
+  }
+}
