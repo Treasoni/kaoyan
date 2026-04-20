@@ -2,8 +2,11 @@
   "id": "conv-1776695582913-dujirvnp7",
   "providerId": "claude",
   "title": "/kaoyan-plan",
-  "titleGenerationStatus": "pending",
+  "titleGenerationStatus": "failed",
   "createdAt": 1776695582913,
-  "updatedAt": 1776695582918,
-  "sessionId": null
+  "updatedAt": 1776695645821,
+  "lastResponseAt": 1776695645821,
+  "sessionId": null,
+  "providerState": {},
+  "currentNote": "考研计划/每日计划/2026-04-20-每日计划.md"
 }
