@@ -1,9 +1,14 @@
 {
   "id": "conv-1776738956086-ccixastp4",
   "providerId": "claude",
-  "title": "核心概念错误：混淆了“原函数”与“被积函数”这是导致整道题做错的根本原因。你的误区： 认为 $\\in...",
-  "titleGenerationStatus": "pending",
+  "title": "Identify fundamental calculus concept error abo...",
+  "titleGenerationStatus": "success",
   "createdAt": 1776738956086,
-  "updatedAt": 1776738956090,
-  "sessionId": null
+  "updatedAt": 1776739059329,
+  "lastResponseAt": 1776739059329,
+  "sessionId": "9fdbd339-70ab-40af-8425-1c29448415c0",
+  "providerState": {
+    "providerSessionId": "9fdbd339-70ab-40af-8425-1c29448415c0"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md"
 }
