@@ -1,0 +1,14 @@
+{
+  "id": "conv-1776860329175-qmm1eaoqb",
+  "providerId": "claude",
+  "title": "Fix Markdown table pipe syntax",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776860329175,
+  "updatedAt": 1776860364758,
+  "lastResponseAt": 1776860364758,
+  "sessionId": "23d8bd7d-e349-4197-8e70-758bb1f6407f",
+  "providerState": {
+    "providerSessionId": "23d8bd7d-e349-4197-8e70-758bb1f6407f"
+  },
+  "currentNote": "考研数学/高数-一元函数积分学/错题本.md"
+}
