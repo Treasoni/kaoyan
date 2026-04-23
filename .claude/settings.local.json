@@ -29,7 +29,8 @@
       "Bash(do echo:*)",
       "Bash(hexdump:*)",
       "Bash(while read -r1)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)"
     ]
   }
 }
