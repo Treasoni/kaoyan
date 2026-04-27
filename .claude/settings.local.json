@@ -38,7 +38,8 @@
       "Bash(opencli zhihu search:*)",
       "Bash(opencli google search:*)",
       "Bash(opencli gemini ask:*)",
-      "Bash(opencli bilibili search:*)"
+      "Bash(opencli bilibili search:*)",
+      "Bash(OPENCLI_DIAGNOSTIC=1 opencli:*)"
     ]
   }
 }
