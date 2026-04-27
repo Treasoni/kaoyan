@@ -36,7 +36,9 @@
       "Bash(opencli web/read:*)",
       "Bash(opencli web:*)",
       "Bash(opencli zhihu search:*)",
-      "Bash(opencli google search:*)"
+      "Bash(opencli google search:*)",
+      "Bash(opencli gemini ask:*)",
+      "Bash(opencli bilibili search:*)"
     ]
   }
 }
