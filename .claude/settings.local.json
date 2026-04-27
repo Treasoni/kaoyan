@@ -30,7 +30,13 @@
       "Bash(hexdump:*)",
       "Bash(while read -r1)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(opencli list:*)",
+      "Bash(opencli doubao:*)",
+      "Bash(opencli web/read:*)",
+      "Bash(opencli web:*)",
+      "Bash(opencli zhihu search:*)",
+      "Bash(opencli google search:*)"
     ]
   }
 }
