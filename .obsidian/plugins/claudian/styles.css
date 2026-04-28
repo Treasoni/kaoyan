@@ -9,20 +9,38 @@
 .claudian-container {
   --claudian-brand: #D97757;
   --claudian-brand-rgb: 217, 119, 87;
+  --claudian-brand-claude: #D97757;
+  --claudian-brand-claude-rgb: 217, 119, 87;
+  --claudian-brand-codex: #d0d0d0;
+  --claudian-brand-codex-rgb: 208, 208, 208;
+  --claudian-brand-opencode: #B8B8B8;
+  --claudian-brand-opencode-rgb: 184, 184, 184;
   --claudian-error: #dc3545;
   --claudian-error-rgb: 220, 53, 69;
   --claudian-compact: #5bc0de;
 }
 
-/* Provider-specific brand overrides */
-body.theme-dark .claudian-container[data-provider="codex"] {
-  --claudian-brand: #d0d0d0;
-  --claudian-brand-rgb: 208, 208, 208;
+body.theme-light .claudian-container {
+  --claudian-brand-codex: #000000;
+  --claudian-brand-codex-rgb: 0, 0, 0;
+  --claudian-brand-opencode: #707070;
+  --claudian-brand-opencode-rgb: 112, 112, 112;
 }
 
-body.theme-light .claudian-container[data-provider="codex"] {
-  --claudian-brand: #000000;
-  --claudian-brand-rgb: 0, 0, 0;
+/* Active-provider alias for single-provider surfaces. */
+.claudian-container[data-provider="claude"] {
+  --claudian-brand: var(--claudian-brand-claude);
+  --claudian-brand-rgb: var(--claudian-brand-claude-rgb);
+}
+
+.claudian-container[data-provider="codex"] {
+  --claudian-brand: var(--claudian-brand-codex);
+  --claudian-brand-rgb: var(--claudian-brand-codex-rgb);
+}
+
+.claudian-container[data-provider="opencode"] {
+  --claudian-brand: var(--claudian-brand-opencode);
+  --claudian-brand-rgb: var(--claudian-brand-opencode-rgb);
 }
 
 
@@ -36,6 +54,18 @@ body.theme-light .claudian-container[data-provider="codex"] {
   padding: 0;
   overflow: hidden;
   font-family: var(--font-text);
+}
+
+.claudian-provider-icon-variant--dark {
+  display: none;
+}
+
+body.theme-dark .claudian-provider-icon-variant--light {
+  display: none;
+}
+
+body.theme-dark .claudian-provider-icon-variant--dark {
+  display: inline;
 }
 
 
@@ -212,6 +242,18 @@ body.theme-light .claudian-container[data-provider="codex"] {
 
 .claudian-tab-badge-streaming {
   border-color: var(--claudian-brand, #da7756);
+}
+
+.claudian-tab-badge-streaming[data-provider="claude"] {
+  border-color: var(--claudian-brand-claude, #D97757);
+}
+
+.claudian-tab-badge-streaming[data-provider="codex"] {
+  border-color: var(--claudian-brand-codex, #d0d0d0);
+}
+
+.claudian-tab-badge-streaming[data-provider="opencode"] {
+  border-color: var(--claudian-brand-opencode, #C8C8C8);
 }
 
 .claudian-tab-badge-attention {
@@ -1012,6 +1054,20 @@ body.theme-light .claudian-message-content pre {
   display: none;
 }
 
+.claudian-tool-call-bash.expanded .claudian-tool-summary {
+  display: none;
+}
+
+.claudian-tool-bash-command {
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-normal);
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 2px 0 4px;
+}
+
 /* Legacy: StatusPanel bash entries still use claudian-tool-label */
 .claudian-tool-label {
   font-family: var(--font-monospace);
@@ -1485,12 +1541,6 @@ body.theme-light .claudian-message-content pre {
   font-size: 13px;
   font-weight: 400;
   color: var(--text-normal);
-}
-
-.claudian-subagent-count {
-  font-size: 11px;
-  color: var(--text-muted);
-  flex-shrink: 0;
 }
 
 .claudian-subagent-status {
@@ -2110,6 +2160,30 @@ body.theme-light .claudian-message-content pre {
   background: rgba(var(--claudian-brand-rgb), 0.15);
   color: var(--claudian-brand);
   font-weight: 500;
+}
+
+
+/* ============================================
+   toolbar/mode-selector.css
+   ============================================ */
+.claudian-mode-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding-left: 12px;
+  padding-right: 8px;
+}
+
+.claudian-mode-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 32px;
+}
+
+.claudian-mode-label.active {
+  color: var(--claudian-brand);
+  font-weight: 600;
 }
 
 
@@ -5653,6 +5727,358 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Agent Settings — all structural rules live in base.css .claudian-sp-* */
 /* This file is kept as a placeholder for future agent-specific overrides. */
+
+
+/* ============================================
+   settings/opencode-model-picker.css
+   ============================================ */
+/* OpenCode model picker */
+
+.claudian-opencode-model-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.claudian-opencode-model-picker-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+}
+
+.claudian-opencode-model-picker-summary-value {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+}
+
+.claudian-opencode-model-picker-selected {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--background-secondary);
+  border-radius: 6px;
+}
+
+.claudian-opencode-model-picker-selected-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.claudian-opencode-model-picker-selected-label {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.claudian-opencode-model-picker-selected-clear {
+  padding: 2px 8px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.claudian-opencode-model-picker-selected-clear:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.claudian-opencode-model-picker-selected-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.claudian-opencode-model-picker-selected-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+
+.claudian-opencode-model-picker-selected-row--unavailable {
+  border-style: dashed;
+}
+
+.claudian-opencode-model-picker-selected-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.claudian-opencode-model-picker-selected-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.claudian-opencode-model-picker-selected-badge {
+  font-size: var(--font-ui-smaller);
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.claudian-opencode-model-picker-selected-name {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.claudian-opencode-model-picker-selected-id {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.claudian-opencode-model-picker-selected-unavailable {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.claudian-opencode-model-picker-selected-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.claudian-opencode-model-picker-selected-alias {
+  width: 180px;
+  padding: 4px 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-opencode-model-picker-selected-alias:focus {
+  outline: none;
+  border-color: var(--interactive-accent);
+}
+
+.claudian-opencode-model-picker-selected-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  font-size: 16px;
+}
+
+.claudian-opencode-model-picker-selected-remove:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.claudian-opencode-model-picker-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--background-secondary);
+  border-radius: 6px;
+}
+
+.claudian-opencode-model-picker-catalog-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.claudian-opencode-model-picker-catalog-summary::-webkit-details-marker {
+  display: none;
+}
+
+.claudian-opencode-model-picker-catalog-caret {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform 0.12s ease;
+  display: inline-flex;
+  width: 18px;
+  justify-content: center;
+  line-height: 1;
+}
+
+.claudian-opencode-model-picker-catalog[open] .claudian-opencode-model-picker-catalog-caret {
+  transform: rotate(90deg);
+}
+
+.claudian-opencode-model-picker-catalog-title {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-opencode-model-picker-catalog-count {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.claudian-opencode-model-picker-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.claudian-opencode-model-picker-search {
+  flex: 1 1 220px;
+  min-width: 180px;
+  padding: 6px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-opencode-model-picker-search:focus {
+  outline: none;
+  border-color: var(--interactive-accent);
+}
+
+.claudian-opencode-model-picker-provider {
+  padding: 6px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-opencode-model-picker-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.claudian-opencode-model-picker-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+}
+
+.claudian-opencode-model-picker-row:last-child {
+  border-bottom: none;
+}
+
+.claudian-opencode-model-picker-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.claudian-opencode-model-picker-row--selected {
+  background: var(--background-modifier-hover);
+}
+
+.claudian-opencode-model-picker-row input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.claudian-opencode-model-picker-row-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.claudian-opencode-model-picker-row-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.claudian-opencode-model-picker-row-name {
+  color: var(--text-normal);
+  font-weight: var(--font-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.claudian-opencode-model-picker-row-badge {
+  font-size: var(--font-ui-smaller);
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.claudian-opencode-model-picker-row-badge--unavailable {
+  background: var(--background-modifier-error);
+  color: var(--text-on-accent);
+}
+
+.claudian-opencode-model-picker-row-meta {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.claudian-opencode-model-picker-row-desc {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.claudian-opencode-model-picker-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
 
 
 /* ============================================
