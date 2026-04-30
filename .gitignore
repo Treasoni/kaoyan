@@ -98,6 +98,16 @@ Sessionx.vim
 .claude/projects/*/memory/
 .claude/cache/
 
+# 本地设置文件（包含本机绝对路径、临时令牌等敏感信息）
+.claude/settings.json
+.claude/settings.local.json
+.claude/mcp.json
+
+# -----------------------------------
+# 5b. Claudian 插件数据（包含 API 密钥等凭据 + 会话元数据）
+# -----------------------------------
+.claudian/
+
 # -----------------------------------
 # 6. 其他可能产生冲突的文件
 # -----------------------------------
