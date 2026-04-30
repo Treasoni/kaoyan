@@ -1,7 +1,7 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "glm-5.1",
+  "model": "deepseek-v4-flash",
   "thinkingBudget": "low",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -32,15 +32,17 @@
       "enableBangBash": false,
       "enableOpus1M": false,
       "enableSonnet1M": false,
+      "customModels": "",
       "lastModel": "haiku",
-      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"cr_3dfbb45f9e5f0daf87574af576108c0f9f24f4b752c21d0446b66ec4ec9285b0\"\nexport ANTHROPIC_BASE_URL=\"http://47.108.60.237:3300/api\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"glm-4.7\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"glm-5\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"glm-5.1\"",
-      "environmentHash": "ANTHROPIC_BASE_URL=http://47.108.60.237:3300/api|ANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.7|ANTHROPIC_DEFAULT_OPUS_MODEL=glm-5.1|ANTHROPIC_DEFAULT_SONNET_MODEL=glm-5"
+      "environmentVariables": "export ANTHROPIC_AUTH_TOKEN=\"sk-3988637745a749a1b0812939ea50c1bd\"\nexport ANTHROPIC_BASE_URL=\"https://api.deepseek.com/anthropic\"\nexport CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1\nexport ANTHROPIC_DEFAULT_HAIKU_MODEL=\"deepseek-v4-flash\"\nexport ANTHROPIC_DEFAULT_SONNET_MODEL=\"deepseek-v4-pro[1m]\"\nexport ANTHROPIC_DEFAULT_OPUS_MODEL=\"deepseek-v4-pro[1m]\"",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]|ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]"
     },
     "codex": {
       "enabled": false,
       "safeMode": "workspace-write",
       "cliPath": "",
       "cliPathsByHost": {},
+      "customModels": "",
       "reasoningSummary": "detailed",
       "environmentVariables": "",
       "environmentHash": "",
@@ -52,7 +54,7 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "glm-5.1"
+    "claude": "deepseek-v4-flash"
   },
   "savedProviderEffort": {
     "claude": "high"
@@ -60,6 +62,9 @@
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {
     "claude": "low"
+  },
+  "savedProviderPermissionMode": {
+    "claude": "yolo"
   },
   "lastCustomModel": "glm-5.1",
   "maxTabs": 3,
