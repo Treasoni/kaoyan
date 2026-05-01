@@ -6,8 +6,9 @@
         "conversationId": "conv-1777644327807-g90hs1tdc"
       },
       {
+        "draftModel": "deepseek-v4-pro[1m]",
         "tabId": "tab-1776663449719-cybjsab",
-        "conversationId": "conv-1777645150022-tqshbhah7"
+        "conversationId": null
       },
       {
         "tabId": "tab-1776695612131-rw4ssfd",
