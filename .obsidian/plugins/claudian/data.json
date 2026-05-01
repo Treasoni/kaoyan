@@ -6,6 +6,7 @@
         "conversationId": "conv-1776584446176-6ffam6ore"
       },
       {
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1776663449719-cybjsab",
         "conversationId": null
       },
