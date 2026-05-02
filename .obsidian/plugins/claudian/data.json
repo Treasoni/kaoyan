@@ -10,10 +10,11 @@
         "conversationId": "conv-1777705578546-uim6xqthf"
       },
       {
+        "draftModel": "deepseek-v4-pro[1m]",
         "tabId": "tab-1776695612131-rw4ssfd",
-        "conversationId": "conv-1777703349994-78ykduhcw"
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1776663449719-cybjsab"
+    "activeTabId": "tab-1776695612131-rw4ssfd"
   }
 }
