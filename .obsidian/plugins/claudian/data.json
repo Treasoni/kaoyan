@@ -10,8 +10,9 @@
         "conversationId": "conv-1777805283756-ead1ciio9"
       },
       {
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1776695612131-rw4ssfd",
-        "conversationId": "conv-1777803646495-sq6r002g5"
+        "conversationId": null
       }
     ],
     "activeTabId": "tab-1776695612131-rw4ssfd"
