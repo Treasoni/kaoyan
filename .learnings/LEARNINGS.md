@@ -6,6 +6,41 @@ Corrections, insights, and knowledge gaps captured during development.
 
 ---
 
+## [LRN-20260506-002] knowledge_gap
+
+**Logged**: 2026-05-06T07:00:00Z
+**Priority**: medium
+**Status**: promoted
+**Area**: docs, config
+
+### Summary
+Obsidian (KaTeX) 不支持 `\iddots`，抗对角行列式须用 `\ddots` 替代
+
+### Details
+在 Obsidian 中（使用 KaTeX 渲染引擎），`\iddots`（逆对角线省略号，⋰）不被支持，渲染不出任何内容。
+编写副对角行列式/副对角三角行列式时，须用 `\ddots`（⋱）替代。
+虽然 `\ddots` 的视觉方向（从上到下、从左到右）与 `\iddots`（从下到上、从左到右）不同，但它是 KaTeX 下唯一可用的对角省略号命令，且在线性代数的矩阵表示中被广泛接受。
+
+受影响场景：
+- 副对角行列式：`\begin{vmatrix} & & & a_{1n} \\ & & a_{2,n-1} & \\ & \ddots & & \\ a_{n1} & & & \end{vmatrix}`
+- 副对角三角行列式：同上
+
+### Suggested Action
+编写含 LaTeX 矩阵的文档时，避免使用 `\iddots`，一律用 `\ddots`。
+
+### Metadata
+- Source: user_feedback
+- Related Files: 线性代数/第一章：行列式/1.3-行列式的计算/1.3.2-常见行列式计算.md
+- Tags: obsidian, katex, latex, matrix, iddots
+- See Also: LRN-20260501-001
+
+### Resolution
+- **Resolved**: 2026-05-06T07:00:00Z
+- **Promoted**: CLAUDE.md (rule 2.5)
+- **Notes**: 已推广到 CLAUDE.md 2.5 节，作为 Obsidian/KaTeX 兼容性规则。
+
+---
+
 ## [LRN-20260425-001] correction
 
 **Logged**: 2026-04-25T00:00:00Z
