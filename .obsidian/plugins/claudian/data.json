@@ -3,15 +3,16 @@
     "openTabs": [
       {
         "tabId": "tab-1775011597993-m81k6tl",
-        "conversationId": "conv-1778041859989-cbsbskpt6"
+        "conversationId": "conv-1778126962562-5fgackpx9"
       },
       {
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1776663449719-cybjsab",
-        "conversationId": "conv-1778124251034-2zw4ik91u"
+        "conversationId": null
       },
       {
         "tabId": "tab-1776695612131-rw4ssfd",
-        "conversationId": "conv-1778125921157-rrpgmkjfo"
+        "conversationId": "conv-1778126867739-v0194y0ez"
       }
     ],
     "activeTabId": "tab-1776663449719-cybjsab"
