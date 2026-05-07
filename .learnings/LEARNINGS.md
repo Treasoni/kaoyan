@@ -30,18 +30,50 @@ Obsidian (KaTeX) 不支持 `\iddots`，抗对角行列式须用 `\ddots` 替代
 
 ### Metadata
 - Source: user_feedback
-- Related Files: 线性代数/第一章：行列式/1.3-行列式的计算/1.3.2-常见行列式计算.md
-- Tags: obsidian, katex, latex, matrix, iddots
-- See Also: LRN-20260501-001
-
-### Resolution
-- **Resolved**: 2026-05-06T07:00:00Z
-- **Promoted**: CLAUDE.md (rule 2.5)
-- **Notes**: 已推广到 CLAUDE.md 2.5 节，作为 Obsidian/KaTeX 兼容性规则。
+- Related Files:
+  - 考研英语/📅 学习日志.md
+  - 考研英语/📊 学习进度.md
+  - .claude/skills/kaoyan-plan/SKILL.md
+- Tags: kaoyan-plan, progress-update, checklist
 
 ---
 
-## [LRN-20260425-001] correction
+## [LRN-20260506-003] correction
+
+**Logged**: 2026-05-06T14:30:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+执行 /kaoyan-plan 完成报告时，必须同步更新考研英语/📅 学习日志.md
+
+### Details
+当用户报告英语学习完成时（如 Day 051 第3次复习 + Day 066 新学），除了更新 📊 学习进度.md，还必须同步更新 📅 学习日志.md。
+
+问题原因：更新清单中第 4 项容易被忽略。
+
+### Suggested Action
+执行完 /kaoyan-plan 完成报告后，逐一检查更新清单：
+1. ✅ 每日计划 - 今日完成情况
+2. ✅ 完成记录文件
+3. ✅ 英语 📊 学习进度.md
+4. ⭐ **英语 📅 学习日志.md** ← 容易遗漏
+5. ⭐ **线性代数进度文件** ← 如有数学任务
+6. ✅ 专业课 📊 学习进度.md
+7. ✅ 专业课章节进度文件
+
+### Metadata
+- Source: user_feedback
+- Related Files:
+  - 考研英语/📅 学习日志.md
+  - 考研英语/📊 学习进度.md
+  - .claude/skills/kaoyan-plan/SKILL.md
+- Tags: kaoyan-plan, progress-update, checklist
+
+---
+
+## [LRN-20260506-002] knowledge_gap
 
 **Logged**: 2026-04-25T00:00:00Z
 **Priority**: high
