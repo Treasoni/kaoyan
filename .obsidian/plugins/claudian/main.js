@@ -24834,12 +24834,18 @@ init_env();
 function createCustomSpawnFunction(enhancedPath) {
   return (options) => {
     let { command } = options;
-    const { args, cwd, env, signal } = options;
+    let { args } = options;
+    const { cwd, env, signal } = options;
     const shouldPipeStderr = !!(env == null ? void 0 : env.DEBUG_CLAUDE_AGENT_SDK);
-    if (command === "node") {
+    if (command === "node" || cliPathRequiresNode(command)) {
       const nodeFullPath = findNodeExecutable(enhancedPath);
-      if (nodeFullPath) {
-        command = nodeFullPath;
+      if (command === "node") {
+        if (nodeFullPath) {
+          command = nodeFullPath;
+        }
+      } else {
+        args = [command, ...args];
+        command = nodeFullPath != null ? nodeFullPath : "node";
       }
     }
     const child = (0, import_child_process4.spawn)(command, args, {
@@ -25187,6 +25193,9 @@ function getClaudeProviderSettings(settings11) {
     environmentHash: (_v = (_u = config2.environmentHash) != null ? _u : settings11.lastEnvHash) != null ? _v : DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentHash
   };
 }
+function resolveClaudeSettingSources(loadUserSettings) {
+  return loadUserSettings ? ["user", "project", "local"] : ["project", "local"];
+}
 function updateClaudeProviderSettings(settings11, updates) {
   var _a3;
   const current = getClaudeProviderSettings(settings11);
@@ -25238,7 +25247,7 @@ async function probeRuntimeCommands(plugin) {
         env: { ...process.env, ...customEnv, PATH: enhancedPath },
         permissionMode: "bypassPermissions",
         allowDangerouslySkipPermissions: true,
-        settingSources: claudeSettings.loadUserSettings ? ["user", "project"] : ["project"],
+        settingSources: resolveClaudeSettingSources(claudeSettings.loadUserSettings),
         ...Object.keys(extraArgs).length > 0 ? { extraArgs } : {},
         spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath),
         persistSession: false
@@ -25410,6 +25419,8 @@ var fs6 = __toESM(require("fs"));
 var os6 = __toESM(require("os"));
 var path6 = __toESM(require("path"));
 init_path();
+var CLAUDE_CODE_PACKAGE_SEGMENTS = ["node_modules", "@anthropic-ai", "claude-code"];
+var CLAUDE_CODE_NODE_ENTRYPOINTS = ["cli-wrapper.cjs", "cli.js"];
 function getEnvValue2(name) {
   return process.env[name];
 }
@@ -25444,24 +25455,38 @@ function isExistingFile(filePath) {
   }
   return false;
 }
-function resolveCliJsNearPathEntry(entry, isWindows2) {
-  const directCandidate = path6.join(entry, "node_modules", "@anthropic-ai", "claude-code", "cli.js");
-  if (isExistingFile(directCandidate)) {
-    return directCandidate;
-  }
-  const baseName = path6.basename(entry).toLowerCase();
-  if (baseName === "bin") {
-    const prefix = path6.dirname(entry);
-    const candidate = isWindows2 ? path6.join(prefix, "node_modules", "@anthropic-ai", "claude-code", "cli.js") : path6.join(prefix, "lib", "node_modules", "@anthropic-ai", "claude-code", "cli.js");
+function findClaudeCodeNodeEntrypoint(packageRoot) {
+  for (const entrypoint of CLAUDE_CODE_NODE_ENTRYPOINTS) {
+    const candidate = path6.join(packageRoot, entrypoint);
     if (isExistingFile(candidate)) {
       return candidate;
     }
   }
   return null;
 }
-function resolveCliJsFromPathEntries(entries, isWindows2) {
+function resolveClaudeCodeEntrypointNearPathEntry(entry, isWindows2) {
+  const directCandidate = findClaudeCodeNodeEntrypoint(
+    path6.join(entry, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
+  );
+  if (directCandidate) {
+    return directCandidate;
+  }
+  const baseName = path6.basename(entry).toLowerCase();
+  if (baseName === "bin") {
+    const prefix = path6.dirname(entry);
+    const packageParent = isWindows2 ? prefix : path6.join(prefix, "lib");
+    const candidate = findClaudeCodeNodeEntrypoint(
+      path6.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
+    );
+    if (candidate) {
+      return candidate;
+    }
+  }
+  return null;
+}
+function resolveClaudeCodeEntrypointFromPathEntries(entries, isWindows2) {
   for (const entry of entries) {
-    const candidate = resolveCliJsNearPathEntry(entry, isWindows2);
+    const candidate = resolveClaudeCodeEntrypointNearPathEntry(entry, isWindows2);
     if (candidate) {
       return candidate;
     }
@@ -25480,9 +25505,9 @@ function resolveClaudeFromPathEntries(entries, isWindows2) {
   if (exeCandidate) {
     return exeCandidate;
   }
-  const cliJsCandidate = resolveCliJsFromPathEntries(entries, isWindows2);
-  if (cliJsCandidate) {
-    return cliJsCandidate;
+  const packageEntrypoint = resolveClaudeCodeEntrypointFromPathEntries(entries, isWindows2);
+  if (packageEntrypoint) {
+    return packageEntrypoint;
   }
   return null;
 }
@@ -25498,42 +25523,36 @@ function getNpmGlobalPrefix() {
   }
   return null;
 }
-function getNpmCliJsPaths() {
+function addClaudeCodeEntrypointPaths(paths, packageParent) {
+  const packageRoot = path6.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS);
+  for (const entrypoint of CLAUDE_CODE_NODE_ENTRYPOINTS) {
+    paths.push(path6.join(packageRoot, entrypoint));
+  }
+}
+function getNpmClaudeCodeEntrypointPaths() {
   const homeDir = os6.homedir();
   const isWindows2 = process.platform === "win32";
-  const cliJsPaths = [];
+  const entrypointPaths = [];
   if (isWindows2) {
-    cliJsPaths.push(
-      path6.join(homeDir, "AppData", "Roaming", "npm", "node_modules", "@anthropic-ai", "claude-code", "cli.js")
-    );
+    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(homeDir, "AppData", "Roaming", "npm"));
     const npmPrefix = getNpmGlobalPrefix();
     if (npmPrefix) {
-      cliJsPaths.push(
-        path6.join(npmPrefix, "node_modules", "@anthropic-ai", "claude-code", "cli.js")
-      );
+      addClaudeCodeEntrypointPaths(entrypointPaths, npmPrefix);
     }
     const programFiles = process.env.ProgramFiles || "C:\\Program Files";
     const programFilesX86 = process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)";
-    cliJsPaths.push(
-      path6.join(programFiles, "nodejs", "node_global", "node_modules", "@anthropic-ai", "claude-code", "cli.js"),
-      path6.join(programFilesX86, "nodejs", "node_global", "node_modules", "@anthropic-ai", "claude-code", "cli.js")
-    );
-    cliJsPaths.push(
-      path6.join("D:", "Program Files", "nodejs", "node_global", "node_modules", "@anthropic-ai", "claude-code", "cli.js")
-    );
+    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(programFiles, "nodejs", "node_global"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(programFilesX86, "nodejs", "node_global"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join("D:", "Program Files", "nodejs", "node_global"));
   } else {
-    cliJsPaths.push(
-      path6.join(homeDir, ".npm-global", "lib", "node_modules", "@anthropic-ai", "claude-code", "cli.js"),
-      "/usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js",
-      "/usr/lib/node_modules/@anthropic-ai/claude-code/cli.js"
-    );
+    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(homeDir, ".npm-global", "lib"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, "/usr/local/lib");
+    addClaudeCodeEntrypointPaths(entrypointPaths, "/usr/lib");
     if (process.env.npm_config_prefix) {
-      cliJsPaths.push(
-        path6.join(process.env.npm_config_prefix, "lib", "node_modules", "@anthropic-ai", "claude-code", "cli.js")
-      );
+      addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(process.env.npm_config_prefix, "lib"));
     }
   }
-  return cliJsPaths;
+  return entrypointPaths;
 }
 function findClaudeCLIPath(pathValue) {
   const homeDir = os6.homedir();
@@ -25558,8 +25577,8 @@ function findClaudeCLIPath(pathValue) {
         return p;
       }
     }
-    const cliJsPaths = getNpmCliJsPaths();
-    for (const p of cliJsPaths) {
+    const packageEntrypointPaths = getNpmClaudeCodeEntrypointPaths();
+    for (const p of packageEntrypointPaths) {
       if (isExistingFile(p)) {
         return p;
       }
@@ -25590,8 +25609,8 @@ function findClaudeCLIPath(pathValue) {
     }
   }
   if (!isWindows2) {
-    const cliJsPaths = getNpmCliJsPaths();
-    for (const p of cliJsPaths) {
+    const packageEntrypointPaths = getNpmClaudeCodeEntrypointPaths();
+    for (const p of packageEntrypointPaths) {
       if (isExistingFile(p)) {
         return p;
       }
@@ -25732,6 +25751,13 @@ function getHiddenProviderCommands(settings11, providerId) {
 function getHiddenProviderCommandSet(settings11, providerId) {
   return new Set(getHiddenProviderCommands(settings11, providerId).map((command) => command.toLowerCase()));
 }
+
+// src/core/types/settings.ts
+var CHAT_VIEW_PLACEMENTS = [
+  "right-sidebar",
+  "left-sidebar",
+  "main-tab"
+];
 
 // src/providers/codex/settings.ts
 init_env();
@@ -26580,7 +26606,8 @@ var DEFAULT_CLAUDIAN_SETTINGS = {
   maxTabs: 3,
   tabBarPosition: "input",
   enableAutoScroll: true,
-  openInMainTab: false,
+  deferMathRenderingDuringStreaming: true,
+  chatViewPlacement: "right-sidebar",
   hiddenProviderCommands: getDefaultHiddenProviderCommands()
 };
 
@@ -26631,9 +26658,25 @@ function stripLegacyFields(settings11) {
     environmentVariables: _environmentVariables,
     lastEnvHash: _lastEnvHash,
     lastCodexEnvHash: _lastCodexEnvHash,
+    openInMainTab: _openInMainTab,
     ...cleaned
   } = settings11;
   return cleaned;
+}
+function isChatViewPlacement(value) {
+  return typeof value === "string" && CHAT_VIEW_PLACEMENTS.includes(value);
+}
+function normalizeChatViewPlacement(value, legacyOpenInMainTab) {
+  if (isChatViewPlacement(value)) {
+    return value;
+  }
+  if (typeof legacyOpenInMainTab === "boolean") {
+    return legacyOpenInMainTab ? "main-tab" : "right-sidebar";
+  }
+  return DEFAULT_CLAUDIAN_SETTINGS.chatViewPlacement;
+}
+function shouldPersistChatViewPlacementMigration(stored, normalized) {
+  return "openInMainTab" in stored || "chatViewPlacement" in stored && stored.chatViewPlacement !== normalized;
 }
 function normalizeProviderConfigs(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -26720,6 +26763,10 @@ var ClaudianSettingsStorage = class {
     );
     const envSnippets = normalizeEnvSnippets(stored.envSnippets);
     const providerConfigs = normalizeProviderConfigs(stored.providerConfigs);
+    const chatViewPlacement = normalizeChatViewPlacement(
+      stored.chatViewPlacement,
+      stored.openInMainTab
+    );
     const legacyProviderSettings = {
       ...stored,
       hiddenProviderCommands,
@@ -26733,7 +26780,8 @@ var ClaudianSettingsStorage = class {
       sharedEnvironmentVariables: getSharedEnvironmentVariables(legacyProviderSettings),
       envSnippets,
       hiddenProviderCommands,
-      providerConfigs
+      providerConfigs,
+      chatViewPlacement
     };
     const merged = {
       ...this.getDefaults(),
@@ -26747,7 +26795,7 @@ var ClaudianSettingsStorage = class {
       merged,
       getCodexProviderSettings(legacyProviderSettings)
     );
-    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || JSON.stringify(envSnippets) !== JSON.stringify((_a3 = stored.envSnippets) != null ? _a3 : []))) {
+    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || shouldPersistChatViewPlacementMigration(stored, chatViewPlacement) || JSON.stringify(envSnippets) !== JSON.stringify((_a3 = stored.envSnippets) != null ? _a3 : []))) {
       await this.save(merged);
     }
     return merged;
@@ -28255,14 +28303,21 @@ var settings = {
     name: "Automatisches Scrollen w\xE4hrend Streaming",
     desc: "Automatisch nach unten scrollen, w\xE4hrend Claude Antworten streamt. Deaktivieren, um oben zu bleiben und von Anfang an zu lesen."
   },
-  openInMainTab: {
-    name: "Im Haupteditorbereich \xF6ffnen",
-    desc: "Chat-Panel als Haupttab im zentralen Editorbereich statt in der rechten Seitenleiste \xF6ffnen"
+  deferMathRenderingDuringStreaming: {
+    name: "Mathe-Rendering w\xE4hrend Streaming aufschieben",
+    desc: "LaTeX w\xE4hrend des Streamings roh anzeigen und Mathematik einmal rendern, wenn der Textblock abgeschlossen ist."
+  },
+  chatViewPlacement: {
+    name: "Claudian \xF6ffnen in",
+    desc: "W\xE4hlen Sie, wo das Chat-Panel beim Erstellen ge\xF6ffnet wird",
+    rightSidebar: "Rechte Seitenleiste",
+    leftSidebar: "Linke Seitenleiste",
+    mainTab: "Haupteditor-Tab"
   },
   cliPath: {
     name: "Claude CLI-Pfad",
     desc: "Benutzerdefinierter Pfad zum Claude Code CLI. Leer lassen f\xFCr automatische Erkennung.",
-    descWindows: "F\xFCr den nativen Installer verwenden Sie claude.exe. F\xFCr npm/pnpm/yarn oder andere Paketmanager-Installationen verwenden Sie den cli.js-Pfad (nicht claude.cmd).",
+    descWindows: "F\xFCr den nativen Installer verwenden Sie claude.exe. F\xFCr npm/pnpm/yarn oder andere Paketmanager-Installationen verwenden Sie den cli-wrapper.cjs-Pfad (nicht claude.cmd).",
     descUnix: 'F\xFCgen Sie die Ausgabe von "which claude" ein \u2014 funktioniert sowohl f\xFCr native als auch npm/pnpm/yarn-Installationen.',
     validation: {
       notExist: "Pfad existiert nicht",
@@ -28568,14 +28623,21 @@ var settings2 = {
     name: "Auto-scroll during streaming",
     desc: "Automatically scroll to the bottom as Claude streams responses. Disable to stay at the top and read from the beginning."
   },
-  openInMainTab: {
-    name: "Open in main editor area",
-    desc: "Open chat panel as a main tab in the center editor area instead of the right sidebar"
+  deferMathRenderingDuringStreaming: {
+    name: "Defer math rendering during streaming",
+    desc: "Show raw LaTeX while responses stream, then render math once when each text block completes."
+  },
+  chatViewPlacement: {
+    name: "Open Claudian in",
+    desc: "Choose where the chat panel opens when it is created",
+    rightSidebar: "Right sidebar",
+    leftSidebar: "Left sidebar",
+    mainTab: "Main editor tab"
   },
   cliPath: {
     name: "Claude CLI path",
     desc: "Custom path to Claude Code CLI. Leave empty for auto-detection.",
-    descWindows: "For the native installer, use claude.exe. For npm/pnpm/yarn or other package manager installs, use the cli.js path (not claude.cmd).",
+    descWindows: "For the native installer, use claude.exe. For npm/pnpm/yarn or other package manager installs, use the cli-wrapper.cjs path (not claude.cmd).",
     descUnix: 'Paste the output of "which claude" \u2014 works for both native and npm/pnpm/yarn installs.',
     validation: {
       notExist: "Path does not exist",
@@ -28881,14 +28943,21 @@ var settings3 = {
     name: "Desplazamiento autom\xE1tico durante streaming",
     desc: "Desplazarse autom\xE1ticamente hacia abajo mientras Claude transmite respuestas. Desactivar para quedarse arriba y leer desde el principio."
   },
-  openInMainTab: {
-    name: "Abrir en \xE1rea de editor principal",
-    desc: "Abrir el panel de chat como una pesta\xF1a principal en el \xE1rea de editor central en lugar de la barra lateral derecha"
+  deferMathRenderingDuringStreaming: {
+    name: "Diferir renderizado matem\xE1tico durante streaming",
+    desc: "Mostrar LaTeX sin procesar mientras se transmite la respuesta y renderizar las f\xF3rmulas una vez al completar cada bloque de texto."
+  },
+  chatViewPlacement: {
+    name: "Abrir Claudian en",
+    desc: "Elige d\xF3nde se abre el panel de chat cuando se crea",
+    rightSidebar: "Barra lateral derecha",
+    leftSidebar: "Barra lateral izquierda",
+    mainTab: "Pesta\xF1a del editor principal"
   },
   cliPath: {
     name: "Ruta CLI Claude",
     desc: "Ruta personalizada a Claude Code CLI. Dejar vac\xEDo para detecci\xF3n autom\xE1tica.",
-    descWindows: "Para el instalador nativo, use claude.exe. Para instalaciones con npm/pnpm/yarn u otros gestores de paquetes, use la ruta cli.js (no claude.cmd).",
+    descWindows: "Para el instalador nativo, use claude.exe. Para instalaciones con npm/pnpm/yarn u otros gestores de paquetes, use la ruta cli-wrapper.cjs (no claude.cmd).",
     descUnix: 'Pegue la salida de "which claude" \u2014 funciona tanto para instalaciones nativas como npm/pnpm/yarn.',
     validation: {
       notExist: "La ruta no existe",
@@ -29194,14 +29263,21 @@ var settings4 = {
     name: "D\xE9filement automatique pendant le streaming",
     desc: "D\xE9filer automatiquement vers le bas pendant que Claude diffuse les r\xE9ponses. D\xE9sactiver pour rester en haut et lire depuis le d\xE9but."
   },
-  openInMainTab: {
-    name: "Ouvrir dans la zone d'\xE9diteur principale",
-    desc: "Ouvrir le panneau de chat comme un onglet principal dans la zone d'\xE9diteur centrale au lieu de la barre lat\xE9rale droite"
+  deferMathRenderingDuringStreaming: {
+    name: "Diff\xE9rer le rendu math\xE9matique pendant le streaming",
+    desc: "Afficher le LaTeX brut pendant la diffusion, puis rendre les formules une fois chaque bloc de texte termin\xE9."
+  },
+  chatViewPlacement: {
+    name: "Ouvrir Claudian dans",
+    desc: "Choisissez o\xF9 le panneau de chat s'ouvre lors de sa cr\xE9ation",
+    rightSidebar: "Barre lat\xE9rale droite",
+    leftSidebar: "Barre lat\xE9rale gauche",
+    mainTab: "Onglet principal de l'\xE9diteur"
   },
   cliPath: {
     name: "Chemin CLI Claude",
     desc: "Chemin personnalis\xE9 vers Claude Code CLI. Laisser vide pour la d\xE9tection automatique.",
-    descWindows: "Pour l'installateur natif, utilisez claude.exe. Pour les installations npm/pnpm/yarn ou autres gestionnaires de paquets, utilisez le chemin cli.js (pas claude.cmd).",
+    descWindows: "Pour l'installateur natif, utilisez claude.exe. Pour les installations npm/pnpm/yarn ou autres gestionnaires de paquets, utilisez le chemin cli-wrapper.cjs (pas claude.cmd).",
     descUnix: 'Collez la sortie de "which claude" \u2014 fonctionne pour les installations natives et npm/pnpm/yarn.',
     validation: {
       notExist: "Le chemin n'existe pas",
@@ -29507,14 +29583,21 @@ var settings5 = {
     name: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306E\u81EA\u52D5\u30B9\u30AF\u30ED\u30FC\u30EB",
     desc: "Claude\u304C\u5FDC\u7B54\u3092\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u3057\u3066\u3044\u308B\u9593\u3001\u81EA\u52D5\u7684\u306B\u4E0B\u306B\u30B9\u30AF\u30ED\u30FC\u30EB\u3057\u307E\u3059\u3002\u7121\u52B9\u306B\u3059\u308B\u3068\u4E0A\u90E8\u306B\u7559\u307E\u308A\u3001\u6700\u521D\u304B\u3089\u8AAD\u3080\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002"
   },
-  openInMainTab: {
-    name: "\u30E1\u30A4\u30F3\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u3067\u958B\u304F",
-    desc: "\u30C1\u30E3\u30C3\u30C8\u30D1\u30CD\u30EB\u3092\u53F3\u30B5\u30A4\u30C9\u30D0\u30FC\u3067\u306F\u306A\u304F\u3001\u4E2D\u592E\u30A8\u30C7\u30A3\u30BF\u9818\u57DF\u306E\u30E1\u30A4\u30F3\u30BF\u30D6\u3068\u3057\u3066\u958B\u304D\u307E\u3059"
+  deferMathRenderingDuringStreaming: {
+    name: "\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306E\u6570\u5F0F\u30EC\u30F3\u30C0\u30EA\u30F3\u30B0\u3092\u9045\u5EF6",
+    desc: "\u5FDC\u7B54\u306E\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u4E2D\u306F\u751F\u306E LaTeX \u3092\u8868\u793A\u3057\u3001\u5404\u30C6\u30AD\u30B9\u30C8\u30D6\u30ED\u30C3\u30AF\u306E\u5B8C\u4E86\u6642\u306B\u4E00\u5EA6\u3060\u3051\u6570\u5F0F\u3092\u30EC\u30F3\u30C0\u30EA\u30F3\u30B0\u3057\u307E\u3059\u3002"
+  },
+  chatViewPlacement: {
+    name: "Claudian \u3092\u958B\u304F\u5834\u6240",
+    desc: "\u30C1\u30E3\u30C3\u30C8\u30D1\u30CD\u30EB\u3092\u4F5C\u6210\u3059\u308B\u3068\u304D\u306B\u958B\u304F\u5834\u6240\u3092\u9078\u629E\u3057\u307E\u3059",
+    rightSidebar: "\u53F3\u30B5\u30A4\u30C9\u30D0\u30FC",
+    leftSidebar: "\u5DE6\u30B5\u30A4\u30C9\u30D0\u30FC",
+    mainTab: "\u30E1\u30A4\u30F3\u30A8\u30C7\u30A3\u30BF\u30BF\u30D6"
   },
   cliPath: {
     name: "Claude CLI \u30D1\u30B9",
     desc: "Claude Code CLI \u306E\u30AB\u30B9\u30BF\u30E0\u30D1\u30B9\u3002\u7A7A\u6B04\u3067\u81EA\u52D5\u691C\u51FA\u3092\u4F7F\u7528\u3002",
-    descWindows: "\u30CD\u30A4\u30C6\u30A3\u30D6\u30A4\u30F3\u30B9\u30C8\u30FC\u30E9\u30FC\u306E\u5834\u5408\u306F claude.exe \u3092\u4F7F\u7528\u3002npm/pnpm/yarn \u3084\u305D\u306E\u4ED6\u306E\u30D1\u30C3\u30B1\u30FC\u30B8\u30DE\u30CD\u30FC\u30B8\u30E3\u30FC\u3067\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u5834\u5408\u306F cli.js \u30D1\u30B9\u3092\u4F7F\u7528\uFF08claude.cmd \u3067\u306F\u306A\u3044\uFF09\u3002",
+    descWindows: "\u30CD\u30A4\u30C6\u30A3\u30D6\u30A4\u30F3\u30B9\u30C8\u30FC\u30E9\u30FC\u306E\u5834\u5408\u306F claude.exe \u3092\u4F7F\u7528\u3002npm/pnpm/yarn \u3084\u305D\u306E\u4ED6\u306E\u30D1\u30C3\u30B1\u30FC\u30B8\u30DE\u30CD\u30FC\u30B8\u30E3\u30FC\u3067\u306E\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u5834\u5408\u306F cli-wrapper.cjs \u30D1\u30B9\u3092\u4F7F\u7528\uFF08claude.cmd \u3067\u306F\u306A\u3044\uFF09\u3002",
     descUnix: '"which claude" \u306E\u51FA\u529B\u3092\u8CBC\u308A\u4ED8\u3051\u3066\u304F\u3060\u3055\u3044 - \u30CD\u30A4\u30C6\u30A3\u30D6\u3068 npm/pnpm/yarn \u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u306E\u4E21\u65B9\u3067\u52D5\u4F5C\u3057\u307E\u3059\u3002',
     validation: {
       notExist: "\u30D1\u30B9\u304C\u5B58\u5728\u3057\u307E\u305B\u3093",
@@ -29820,14 +29903,21 @@ var settings6 = {
     name: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911 \uC790\uB3D9 \uC2A4\uD06C\uB864",
     desc: "Claude\uAC00 \uC751\uB2F5\uC744 \uC2A4\uD2B8\uB9AC\uBC0D\uD558\uB294 \uB3D9\uC548 \uC790\uB3D9\uC73C\uB85C \uC544\uB798\uB85C \uC2A4\uD06C\uB864\uD569\uB2C8\uB2E4. \uBE44\uD65C\uC131\uD654\uD558\uBA74 \uC0C1\uB2E8\uC5D0 \uBA38\uBB3C\uB7EC \uCC98\uC74C\uBD80\uD130 \uC77D\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   },
-  openInMainTab: {
-    name: "\uBA54\uC778 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC5D0\uC11C \uC5F4\uAE30",
-    desc: "\uCC44\uD305 \uD328\uB110\uC744 \uC624\uB978\uCABD \uC0AC\uC774\uB4DC\uBC14\uAC00 \uC544\uB2CC \uC911\uC559 \uD3B8\uC9D1\uAE30 \uC601\uC5ED\uC758 \uBA54\uC778 \uD0ED\uC73C\uB85C \uC5FD\uB2C8\uB2E4"
+  deferMathRenderingDuringStreaming: {
+    name: "\uC2A4\uD2B8\uB9AC\uBC0D \uC911 \uC218\uC2DD \uB80C\uB354\uB9C1 \uC9C0\uC5F0",
+    desc: "\uC751\uB2F5\uC774 \uC2A4\uD2B8\uB9AC\uBC0D\uB418\uB294 \uB3D9\uC548 \uC6D0\uBCF8 LaTeX\uB97C \uD45C\uC2DC\uD558\uACE0 \uAC01 \uD14D\uC2A4\uD2B8 \uBE14\uB85D\uC774 \uC644\uB8CC\uB418\uBA74 \uC218\uC2DD\uC744 \uD55C \uBC88 \uB80C\uB354\uB9C1\uD569\uB2C8\uB2E4."
+  },
+  chatViewPlacement: {
+    name: "Claudian \uC5F4 \uC704\uCE58",
+    desc: "\uCC44\uD305 \uD328\uB110\uC774 \uC0DD\uC131\uB420 \uB54C \uC5F4\uB9B4 \uC704\uCE58\uB97C \uC120\uD0DD\uD569\uB2C8\uB2E4",
+    rightSidebar: "\uC624\uB978\uCABD \uC0AC\uC774\uB4DC\uBC14",
+    leftSidebar: "\uC67C\uCABD \uC0AC\uC774\uB4DC\uBC14",
+    mainTab: "\uBA54\uC778 \uD3B8\uC9D1\uAE30 \uD0ED"
   },
   cliPath: {
     name: "Claude CLI \uACBD\uB85C",
     desc: "Claude Code CLI\uC758 \uC0AC\uC6A9\uC790 \uC815\uC758 \uACBD\uB85C. \uBE44\uC6CC\uB450\uBA74 \uC790\uB3D9 \uAC10\uC9C0 \uC0AC\uC6A9.",
-    descWindows: "\uB124\uC774\uD2F0\uBE0C \uC124\uCE58 \uD504\uB85C\uADF8\uB7A8\uC758 \uACBD\uC6B0 claude.exe\uB97C \uC0AC\uC6A9\uD558\uC138\uC694. npm/pnpm/yarn \uB610\uB294 \uAE30\uD0C0 \uD328\uD0A4\uC9C0 \uAD00\uB9AC\uC790 \uC124\uCE58\uC758 \uACBD\uC6B0 cli.js \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uC138\uC694 (claude.cmd\uAC00 \uC544\uB2D8).",
+    descWindows: "\uB124\uC774\uD2F0\uBE0C \uC124\uCE58 \uD504\uB85C\uADF8\uB7A8\uC758 \uACBD\uC6B0 claude.exe\uB97C \uC0AC\uC6A9\uD558\uC138\uC694. npm/pnpm/yarn \uB610\uB294 \uAE30\uD0C0 \uD328\uD0A4\uC9C0 \uAD00\uB9AC\uC790 \uC124\uCE58\uC758 \uACBD\uC6B0 cli-wrapper.cjs \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uC138\uC694 (claude.cmd\uAC00 \uC544\uB2D8).",
     descUnix: '"which claude"\uC758 \uCD9C\uB825\uC744 \uBD99\uC5EC\uB123\uC73C\uC138\uC694 - \uB124\uC774\uD2F0\uBE0C \uBC0F npm/pnpm/yarn \uC124\uCE58 \uBAA8\uB450\uC5D0\uC11C \uC791\uB3D9\uD569\uB2C8\uB2E4.',
     validation: {
       notExist: "\uACBD\uB85C\uAC00 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4",
@@ -30133,14 +30223,21 @@ var settings7 = {
     name: "Rolagem autom\xE1tica durante streaming",
     desc: "Rolar automaticamente para baixo enquanto o Claude transmite respostas. Desativar para ficar no topo e ler desde o in\xEDcio."
   },
-  openInMainTab: {
-    name: "Abrir na \xE1rea do editor principal",
-    desc: "Abrir o painel de chat como uma aba principal na \xE1rea do editor central em vez da barra lateral direita"
+  deferMathRenderingDuringStreaming: {
+    name: "Adiar renderiza\xE7\xE3o matem\xE1tica durante streaming",
+    desc: "Mostrar LaTeX bruto enquanto a resposta \xE9 transmitida e renderizar a matem\xE1tica uma vez quando cada bloco de texto terminar."
+  },
+  chatViewPlacement: {
+    name: "Abrir Claudian em",
+    desc: "Escolha onde o painel de chat abre quando \xE9 criado",
+    rightSidebar: "Barra lateral direita",
+    leftSidebar: "Barra lateral esquerda",
+    mainTab: "Aba do editor principal"
   },
   cliPath: {
     name: "Caminho CLI Claude",
     desc: "Caminho personalizado para Claude Code CLI. Deixe vazio para detec\xE7\xE3o autom\xE1tica.",
-    descWindows: "Para o instalador nativo, use claude.exe. Para instala\xE7\xF5es com npm/pnpm/yarn ou outros gerenciadores de pacotes, use o caminho cli.js (n\xE3o claude.cmd).",
+    descWindows: "Para o instalador nativo, use claude.exe. Para instala\xE7\xF5es com npm/pnpm/yarn ou outros gerenciadores de pacotes, use o caminho cli-wrapper.cjs (n\xE3o claude.cmd).",
     descUnix: 'Cole a sa\xEDda de "which claude" \u2014 funciona tanto para instala\xE7\xF5es nativas quanto npm/pnpm/yarn.',
     validation: {
       notExist: "Caminho n\xE3o existe",
@@ -30446,14 +30543,21 @@ var settings8 = {
     name: "\u0410\u0432\u0442\u043E\u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0430 \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438",
     desc: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043F\u0440\u043E\u043A\u0440\u0443\u0447\u0438\u0432\u0430\u0442\u044C \u0432\u043D\u0438\u0437, \u043F\u043E\u043A\u0430 Claude \u043F\u0435\u0440\u0435\u0434\u0430\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u044B. \u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u0435, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0430\u0442\u044C\u0441\u044F \u043D\u0430\u0432\u0435\u0440\u0445\u0443 \u0438 \u0447\u0438\u0442\u0430\u0442\u044C \u0441 \u043D\u0430\u0447\u0430\u043B\u0430."
   },
-  openInMainTab: {
-    name: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0432 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430",
-    desc: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u0447\u0430\u0442\u0430 \u0432 \u0432\u0438\u0434\u0435 \u043E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0432\u043A\u043B\u0430\u0434\u043A\u0438 \u0432 \u0446\u0435\u043D\u0442\u0440\u0430\u043B\u044C\u043D\u043E\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430 \u0432\u043C\u0435\u0441\u0442\u043E \u043F\u0440\u0430\u0432\u043E\u0439 \u0431\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0430\u043D\u0435\u043B\u0438"
+  deferMathRenderingDuringStreaming: {
+    name: "\u041E\u0442\u043B\u043E\u0436\u0438\u0442\u044C \u0440\u0435\u043D\u0434\u0435\u0440\u0438\u043D\u0433 \u0444\u043E\u0440\u043C\u0443\u043B \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u0430",
+    desc: "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0439 LaTeX \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0438 \u0440\u0435\u043D\u0434\u0435\u0440\u0438\u0442\u044C \u0444\u043E\u0440\u043C\u0443\u043B\u044B \u043E\u0434\u0438\u043D \u0440\u0430\u0437 \u043F\u043E\u0441\u043B\u0435 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0442\u0435\u043A\u0441\u0442\u043E\u0432\u043E\u0433\u043E \u0431\u043B\u043E\u043A\u0430."
+  },
+  chatViewPlacement: {
+    name: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C Claudian \u0432",
+    desc: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435, \u0433\u0434\u0435 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043F\u0430\u043D\u0435\u043B\u044C \u0447\u0430\u0442\u0430 \u043F\u0440\u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u0438",
+    rightSidebar: "\u041F\u0440\u0430\u0432\u0430\u044F \u0431\u043E\u043A\u043E\u0432\u0430\u044F \u043F\u0430\u043D\u0435\u043B\u044C",
+    leftSidebar: "\u041B\u0435\u0432\u0430\u044F \u0431\u043E\u043A\u043E\u0432\u0430\u044F \u043F\u0430\u043D\u0435\u043B\u044C",
+    mainTab: "\u041E\u0441\u043D\u043E\u0432\u043D\u0430\u044F \u0432\u043A\u043B\u0430\u0434\u043A\u0430 \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u0430"
   },
   cliPath: {
     name: "\u041F\u0443\u0442\u044C \u043A CLI Claude",
     desc: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u043F\u0443\u0442\u044C \u043A Claude Code CLI. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F.",
-    descWindows: "\u0414\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0449\u0438\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 claude.exe. \u0414\u043B\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A \u0447\u0435\u0440\u0435\u0437 npm/pnpm/yarn \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u044B \u043F\u0430\u043A\u0435\u0442\u043E\u0432 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u0443\u0442\u044C \u043A cli.js (\u043D\u0435 claude.cmd).",
+    descWindows: "\u0414\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0449\u0438\u043A\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 claude.exe. \u0414\u043B\u044F \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A \u0447\u0435\u0440\u0435\u0437 npm/pnpm/yarn \u0438\u043B\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u044B \u043F\u0430\u043A\u0435\u0442\u043E\u0432 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u0443\u0442\u044C \u043A cli-wrapper.cjs (\u043D\u0435 claude.cmd).",
     descUnix: '\u0412\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u0432\u044B\u0432\u043E\u0434 \u043A\u043E\u043C\u0430\u043D\u0434\u044B "which claude" \u2014 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u043A\u0430\u043A \u0434\u043B\u044F \u043D\u0430\u0442\u0438\u0432\u043D\u044B\u0445 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043E\u043A, \u0442\u0430\u043A \u0438 \u0434\u043B\u044F npm/pnpm/yarn.',
     validation: {
       notExist: "\u041F\u0443\u0442\u044C \u043D\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442",
@@ -30759,14 +30863,21 @@ var settings9 = {
     name: "\u6D41\u5F0F\u4F20\u8F93\u65F6\u81EA\u52A8\u6EDA\u52A8",
     desc: "\u5728 Claude \u6D41\u5F0F\u4F20\u8F93\u54CD\u5E94\u65F6\u81EA\u52A8\u6EDA\u52A8\u5230\u5E95\u90E8\u3002\u7981\u7528\u540E\u5C06\u505C\u7559\u5728\u9876\u90E8\uFF0C\u4ECE\u5934\u5F00\u59CB\u9605\u8BFB\u3002"
   },
-  openInMainTab: {
-    name: "\u5728\u4E3B\u7F16\u8F91\u5668\u533A\u57DF\u6253\u5F00",
-    desc: "\u5728\u4E2D\u592E\u7F16\u8F91\u5668\u533A\u57DF\u4EE5\u4E3B\u6807\u7B7E\u9875\u5F62\u5F0F\u6253\u5F00\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u4FA7\u8FB9\u680F"
+  deferMathRenderingDuringStreaming: {
+    name: "\u6D41\u5F0F\u4F20\u8F93\u65F6\u5EF6\u8FDF\u6E32\u67D3\u6570\u5B66\u516C\u5F0F",
+    desc: "\u54CD\u5E94\u6D41\u5F0F\u4F20\u8F93\u65F6\u663E\u793A\u539F\u59CB LaTeX\uFF0C\u5E76\u5728\u6BCF\u4E2A\u6587\u672C\u5757\u5B8C\u6210\u540E\u53EA\u6E32\u67D3\u4E00\u6B21\u6570\u5B66\u516C\u5F0F\u3002"
+  },
+  chatViewPlacement: {
+    name: "Claudian \u6253\u5F00\u4F4D\u7F6E",
+    desc: "\u9009\u62E9\u65B0\u5EFA\u804A\u5929\u9762\u677F\u65F6\u7684\u6253\u5F00\u4F4D\u7F6E",
+    rightSidebar: "\u53F3\u4FA7\u8FB9\u680F",
+    leftSidebar: "\u5DE6\u4FA7\u8FB9\u680F",
+    mainTab: "\u4E3B\u7F16\u8F91\u5668\u6807\u7B7E\u9875"
   },
   cliPath: {
     name: "Claude CLI \u8DEF\u5F84",
     desc: "Claude Code CLI \u7684\u81EA\u5B9A\u4E49\u8DEF\u5F84\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52A8\u68C0\u6D4B\u3002",
-    descWindows: "\u5BF9\u4E8E\u539F\u751F\u5B89\u88C5\u7A0B\u5E8F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5BF9\u4E8E npm/pnpm/yarn \u6216\u5176\u4ED6\u5305\u7BA1\u7406\u5668\u5B89\u88C5\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F84\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
+    descWindows: "\u5BF9\u4E8E\u539F\u751F\u5B89\u88C5\u7A0B\u5E8F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5BF9\u4E8E npm/pnpm/yarn \u6216\u5176\u4ED6\u5305\u7BA1\u7406\u5668\u5B89\u88C5\uFF0C\u4F7F\u7528 cli-wrapper.cjs \u8DEF\u5F84\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
     descUnix: '\u7C98\u8D34 "which claude" \u7684\u8F93\u51FA - \u9002\u7528\u4E8E\u539F\u751F\u5B89\u88C5\u548C npm/pnpm/yarn \u5B89\u88C5\u3002',
     validation: {
       notExist: "\u8DEF\u5F84\u4E0D\u5B58\u5728",
@@ -31072,14 +31183,21 @@ var settings10 = {
     name: "\u4E32\u6D41\u50B3\u8F38\u6642\u81EA\u52D5\u6372\u52D5",
     desc: "\u5728 Claude \u4E32\u6D41\u50B3\u8F38\u56DE\u61C9\u6642\u81EA\u52D5\u6372\u52D5\u5230\u5E95\u90E8\u3002\u505C\u7528\u5F8C\u5C07\u505C\u7559\u5728\u9802\u90E8\uFF0C\u5F9E\u982D\u958B\u59CB\u95B1\u8B80\u3002"
   },
-  openInMainTab: {
-    name: "\u5728\u4E3B\u7DE8\u8F2F\u5668\u5340\u57DF\u958B\u555F",
-    desc: "\u5728\u4E2D\u592E\u7DE8\u8F2F\u5668\u5340\u57DF\u4EE5\u4E3B\u5206\u9801\u5F62\u5F0F\u958B\u555F\u804A\u5929\u9762\u677F\uFF0C\u800C\u4E0D\u662F\u5728\u53F3\u5074\u908A\u6B04"
+  deferMathRenderingDuringStreaming: {
+    name: "\u4E32\u6D41\u50B3\u8F38\u6642\u5EF6\u9072\u6E32\u67D3\u6578\u5B78\u516C\u5F0F",
+    desc: "\u56DE\u61C9\u4E32\u6D41\u50B3\u8F38\u6642\u986F\u793A\u539F\u59CB LaTeX\uFF0C\u4E26\u5728\u6BCF\u500B\u6587\u5B57\u5340\u584A\u5B8C\u6210\u5F8C\u53EA\u6E32\u67D3\u4E00\u6B21\u6578\u5B78\u516C\u5F0F\u3002"
+  },
+  chatViewPlacement: {
+    name: "Claudian \u958B\u555F\u4F4D\u7F6E",
+    desc: "\u9078\u64C7\u65B0\u5EFA\u804A\u5929\u9762\u677F\u6642\u7684\u958B\u555F\u4F4D\u7F6E",
+    rightSidebar: "\u53F3\u5074\u908A\u6B04",
+    leftSidebar: "\u5DE6\u5074\u908A\u6B04",
+    mainTab: "\u4E3B\u7DE8\u8F2F\u5668\u5206\u9801"
   },
   cliPath: {
     name: "Claude CLI \u8DEF\u5F91",
     desc: "Claude Code CLI \u7684\u81EA\u8A02\u8DEF\u5F91\u3002\u7559\u7A7A\u4F7F\u7528\u81EA\u52D5\u6AA2\u6E2C\u3002",
-    descWindows: "\u5C0D\u65BC\u539F\u751F\u5B89\u88DD\u7A0B\u5F0F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5C0D\u65BC npm/pnpm/yarn \u6216\u5176\u4ED6\u5957\u4EF6\u7BA1\u7406\u5668\u5B89\u88DD\uFF0C\u4F7F\u7528 cli.js \u8DEF\u5F91\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
+    descWindows: "\u5C0D\u65BC\u539F\u751F\u5B89\u88DD\u7A0B\u5F0F\uFF0C\u4F7F\u7528 claude.exe\u3002\u5C0D\u65BC npm/pnpm/yarn \u6216\u5176\u4ED6\u5957\u4EF6\u7BA1\u7406\u5668\u5B89\u88DD\uFF0C\u4F7F\u7528 cli-wrapper.cjs \u8DEF\u5F91\uFF08\u4E0D\u662F claude.cmd\uFF09\u3002",
     descUnix: '\u8CBC\u4E0A "which claude" \u7684\u8F38\u51FA - \u9069\u7528\u65BC\u539F\u751F\u5B89\u88DD\u548C npm/pnpm/yarn \u5B89\u88DD\u3002',
     validation: {
       notExist: "\u8DEF\u5F91\u4E0D\u5B58\u5728",
@@ -56764,7 +56882,7 @@ var claudeSettingsTabRenderer = {
       return true;
     };
     cliPathSetting.addText((text) => {
-      const placeholder = process.platform === "win32" ? "D:\\nodejs\\node_global\\node_modules\\@anthropic-ai\\claude-code\\cli.js" : "/usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js";
+      const placeholder = process.platform === "win32" ? "D:\\nodejs\\node_global\\node_modules\\@anthropic-ai\\claude-code\\cli-wrapper.cjs" : "/usr/local/lib/node_modules/@anthropic-ai/claude-code/cli-wrapper.cjs";
       text.setPlaceholder(placeholder).setValue(currentValue).onChange(async (value) => {
         await persistCliPath(value);
       });
@@ -57443,7 +57561,7 @@ async function runColdStartQuery(config2, prompt) {
     },
     permissionMode: "bypassPermissions",
     allowDangerouslySkipPermissions: true,
-    settingSources: claudeSettings.loadUserSettings ? ["user", "project"] : ["project"],
+    settingSources: resolveClaudeSettingSources(claudeSettings.loadUserSettings),
     spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath)
   };
   if (config2.tools !== void 0) {
@@ -61212,6 +61330,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
     );
     const disallowedToolsKey = ctx.mcpManager.getAllDisallowedMcpTools().join("|");
     const pluginsKey = ctx.pluginManager.getPluginsKey();
+    const settingSources = resolveClaudeSettingSources(claudeSettings.loadUserSettings);
     return {
       model: ctx.settings.model,
       thinkingTokens: resolveThinkingTokens(ctx.settings.model, ctx.settings.thinkingBudget),
@@ -61224,7 +61343,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
       // Dynamic via setMcpServers, not tracked for restart
       pluginsKey,
       externalContextPaths: externalContextPaths || [],
-      settingSources: claudeSettings.loadUserSettings ? "user,project" : "project",
+      settingSources: settingSources.join(","),
       claudeCliPath: ctx.cliPath,
       enableChrome: claudeSettings.enableChrome,
       enableAutoMode: claudeSettings.safeMode === "auto"
@@ -61341,7 +61460,7 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
       model,
       abortController,
       pathToClaudeCodeExecutable: ctx.cliPath,
-      settingSources: claudeSettings.loadUserSettings ? ["user", "project"] : ["project"],
+      settingSources: resolveClaudeSettingSources(claudeSettings.loadUserSettings),
       env: {
         ...process.env,
         ...ctx.customEnv,
@@ -69804,14 +69923,14 @@ User: ${turn.prompt}`
           transcriptRootTarget,
           threadPath != null ? threadPath : transcriptSessionFilePath
         );
-        const collaborationMode = isPlanMode ? {
-          mode: "plan",
+        const collaborationMode = {
+          mode: isPlanMode ? "plan" : "default",
           settings: {
             model: resolvedModel,
             reasoning_effort: effort,
             developer_instructions: null
           }
-        } : void 0;
+        };
         const summary = getEffectiveCodexReasoningSummary(providerSettings, resolvedModel);
         const serviceTier = resolveCodexServiceTier(providerSettings.serviceTier, resolvedModel);
         (_p2 = this.notificationRouter) == null ? void 0 : _p2.beginTurn({ isPlanTurn: isPlanMode });
@@ -69824,7 +69943,7 @@ User: ${turn.prompt}`
           effort,
           summary,
           sandboxPolicy,
-          ...collaborationMode ? { collaborationMode } : {}
+          collaborationMode
         });
         this.currentTurnId = turnResult.turn.id;
         this.recordTurnMetadata({
@@ -72117,6 +72236,7 @@ function getAcpMethodCandidates(logicalMethod, overrides) {
 }
 
 // src/providers/acp/AcpClientConnection.ts
+var ACP_PROMPT_TURN_TIMEOUT_MS = 0;
 var AcpClientConnection = class {
   constructor(options) {
     this.options = options;
@@ -72182,7 +72302,9 @@ var AcpClientConnection = class {
     return this.requestWithFallback("listSessions", request);
   }
   prompt(request) {
-    return this.requestWithFallback("prompt", request);
+    return this.requestWithFallback("prompt", request, {
+      timeoutMs: ACP_PROMPT_TURN_TIMEOUT_MS
+    });
   }
   cancel(notification) {
     this.notifyLogicalMethod("cancel", notification, { sendAllCandidatesIfUncached: true });
@@ -72284,16 +72406,16 @@ var AcpClientConnection = class {
   }
   // -32601 (Method not found) is the only error we absorb; agents that advertise legacy
   // method names only reject unknown candidates with it, so every other code is real.
-  async requestWithFallback(logicalMethod, params) {
+  async requestWithFallback(logicalMethod, params, requestOptions) {
     const cachedMethod = this.methodCache.get(logicalMethod);
     if (cachedMethod) {
-      return this.options.transport.request(cachedMethod, params);
+      return this.options.transport.request(cachedMethod, params, requestOptions);
     }
     const candidates = getAcpMethodCandidates(logicalMethod, this.options.methodOverrides);
     let lastError = null;
     for (const methodName of candidates) {
       try {
-        const result = await this.options.transport.request(methodName, params);
+        const result = await this.options.transport.request(methodName, params, requestOptions);
         this.methodCache.set(logicalMethod, methodName);
         return result;
       } catch (error48) {
@@ -76693,10 +76815,6 @@ function createThinkingBlock(parentEl, renderContent) {
   setupCollapsible(wrapperEl, header, contentEl, state);
   return state;
 }
-async function appendThinkingContent(state, content, renderContent) {
-  state.content += content;
-  await renderContent(state.contentEl, state.content);
-}
 function finalizeThinkingBlock(state) {
   if (state.timerInterval) {
     clearInterval(state.timerInterval);
@@ -80056,7 +80174,7 @@ var InputController = class {
           wasInterrupted = true;
           break;
         }
-        if (this.handleProviderMessageBoundaryChunk(chunk)) {
+        if (await this.handleProviderMessageBoundaryChunk(chunk)) {
           continue;
         }
         await streamController.handleStreamChunk(
@@ -80103,8 +80221,8 @@ var InputController = class {
           }
         }
         state.currentContentEl = null;
-        streamController.finalizeCurrentThinkingBlock(finalAssistantMsg);
-        streamController.finalizeCurrentTextBlock(finalAssistantMsg);
+        await streamController.finalizeCurrentThinkingBlock(finalAssistantMsg);
+        await streamController.finalizeCurrentTextBlock(finalAssistantMsg);
         this.deps.getSubagentManager().resetStreamingState();
         if (state.currentTodos && state.currentTodos.every((t2) => t2.status === "completed")) {
           state.currentTodos = null;
@@ -80427,19 +80545,19 @@ var InputController = class {
     this.sawInitialProviderUserMessage = false;
     this.awaitingProviderAssistantStart = false;
   }
-  handleProviderMessageBoundaryChunk(chunk) {
+  async handleProviderMessageBoundaryChunk(chunk) {
     switch (chunk.type) {
       case "user_message_start":
-        this.handleProviderUserMessageStart(chunk);
+        await this.handleProviderUserMessageStart(chunk);
         return true;
       case "assistant_message_start":
-        this.handleProviderAssistantMessageStart();
+        await this.handleProviderAssistantMessageStart();
         return true;
       default:
         return false;
     }
   }
-  handleProviderUserMessageStart(chunk) {
+  async handleProviderUserMessageStart(chunk) {
     var _a3, _b2, _c;
     const expected = this.pendingProviderUserMessages.shift();
     if (!this.sawInitialProviderUserMessage) {
@@ -80454,8 +80572,8 @@ var InputController = class {
       if (shouldDiscardPlaceholder) {
         this.discardStreamingAssistantMessage(previousAssistant.id);
       } else {
-        this.deps.streamController.finalizeCurrentThinkingBlock(previousAssistant);
-        this.deps.streamController.finalizeCurrentTextBlock(previousAssistant);
+        await this.deps.streamController.finalizeCurrentThinkingBlock(previousAssistant);
+        await this.deps.streamController.finalizeCurrentTextBlock(previousAssistant);
       }
     }
     this.deps.streamController.hideThinkingIndicator();
@@ -80490,15 +80608,15 @@ var InputController = class {
     this.deps.state.responseStartTime = performance.now();
     this.awaitingProviderAssistantStart = true;
   }
-  handleProviderAssistantMessageStart() {
+  async handleProviderAssistantMessageStart() {
     if (this.awaitingProviderAssistantStart) {
       this.awaitingProviderAssistantStart = false;
       return;
     }
     const previousAssistant = this.activeStreamingAssistantMessage;
     if (previousAssistant) {
-      this.deps.streamController.finalizeCurrentThinkingBlock(previousAssistant);
-      this.deps.streamController.finalizeCurrentTextBlock(previousAssistant);
+      await this.deps.streamController.finalizeCurrentThinkingBlock(previousAssistant);
+      await this.deps.streamController.finalizeCurrentTextBlock(previousAssistant);
     }
     const assistantMessage = {
       id: this.deps.generateId(),
@@ -81497,6 +81615,130 @@ function parseTodoInput(input) {
   return validTodos.length > 0 ? validTodos : null;
 }
 
+// src/utils/animationFrame.ts
+function scheduleAnimationFrame(callback) {
+  if (typeof globalThis.requestAnimationFrame === "function") {
+    return {
+      kind: "raf",
+      id: globalThis.requestAnimationFrame(() => callback())
+    };
+  }
+  return {
+    kind: "timeout",
+    id: globalThis.setTimeout(callback, 16)
+  };
+}
+function cancelScheduledAnimationFrame(frame) {
+  if (frame.kind === "raf" && typeof globalThis.cancelAnimationFrame === "function") {
+    globalThis.cancelAnimationFrame(frame.id);
+    return;
+  }
+  globalThis.clearTimeout(frame.id);
+}
+
+// src/utils/markdownMath.ts
+function getFenceRun(line) {
+  var _a3;
+  const match = line.match(/^ {0,3}(`{3,}|~{3,})/);
+  return (_a3 = match == null ? void 0 : match[1]) != null ? _a3 : null;
+}
+function isClosingFence(line, fence) {
+  const run = getFenceRun(line);
+  return !!run && run[0] === fence.marker && run.length >= fence.length;
+}
+function isHtmlTagStart(line, index) {
+  const next = line[index + 1];
+  return !!next && /[A-Za-z/!?]/.test(next);
+}
+function readBacktickRun(line, index) {
+  let length = 0;
+  while (line[index + length] === "`") {
+    length += 1;
+  }
+  return length;
+}
+function escapeMathDelimitersInLine(line) {
+  let escaped = "";
+  let inlineCodeRunLength = 0;
+  let inHtmlTag = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    if (char === "`") {
+      const runLength = readBacktickRun(line, index);
+      escaped += line.slice(index, index + runLength);
+      index += runLength - 1;
+      if (inlineCodeRunLength === 0) {
+        inlineCodeRunLength = runLength;
+      } else if (runLength === inlineCodeRunLength) {
+        inlineCodeRunLength = 0;
+      }
+      continue;
+    }
+    if (inlineCodeRunLength > 0) {
+      escaped += char;
+      continue;
+    }
+    if (inHtmlTag) {
+      escaped += char;
+      if (char === ">") {
+        inHtmlTag = false;
+      }
+      continue;
+    }
+    if (char === "<" && isHtmlTagStart(line, index)) {
+      inHtmlTag = true;
+      escaped += char;
+      continue;
+    }
+    if (char === "\\" && line[index + 1] === "$") {
+      escaped += "\\$";
+      index += 1;
+      continue;
+    }
+    escaped += char === "$" ? "\\$" : char;
+  }
+  return escaped;
+}
+function escapeMathDelimitersForStreaming(markdown) {
+  if (!markdown.includes("$")) {
+    return markdown;
+  }
+  let result = "";
+  let fence = null;
+  let lineStart = 0;
+  while (lineStart < markdown.length) {
+    const newlineIndex = markdown.indexOf("\n", lineStart);
+    const lineEnd = newlineIndex === -1 ? markdown.length : newlineIndex + 1;
+    const line = markdown.slice(lineStart, lineEnd);
+    const lineWithoutNewline = line.endsWith("\n") ? line.slice(0, -1) : line;
+    if (fence) {
+      result += line;
+      if (isClosingFence(lineWithoutNewline, fence)) {
+        fence = null;
+      }
+    } else {
+      const fenceRun = getFenceRun(lineWithoutNewline);
+      if (fenceRun) {
+        result += line;
+        fence = {
+          marker: fenceRun[0],
+          length: fenceRun.length
+        };
+      } else {
+        result += escapeMathDelimitersInLine(line);
+      }
+    }
+    lineStart = lineEnd;
+  }
+  return result;
+}
+function hasStreamingMathDelimiters(markdown) {
+  if (!markdown.includes("$")) {
+    return false;
+  }
+  return escapeMathDelimitersForStreaming(markdown) !== markdown;
+}
+
 // src/features/chat/controllers/StreamController.ts
 init_path();
 
@@ -82155,6 +82397,16 @@ function renderStoredWriteEdit(parentEl, toolCall) {
 var _StreamController = class _StreamController {
   // agentId → spawn callId
   constructor(deps) {
+    this.pendingTextRenderFrame = null;
+    this.pendingTextRenderPromise = null;
+    this.resolvePendingTextRender = null;
+    this.isTextRenderRunning = false;
+    this.pendingThinkingRenderFrame = null;
+    this.pendingThinkingRenderPromise = null;
+    this.resolvePendingThinkingRender = null;
+    this.isThinkingRenderRunning = false;
+    this.pendingToolOutputFrames = /* @__PURE__ */ new Map();
+    this.pendingScrollFrame = null;
     // Provider lifecycle agent tracking (spawn → wait/close lifecycle)
     this.lifecycleSubagentStates = /* @__PURE__ */ new Map();
     // spawn callId → SubagentState
@@ -82181,23 +82433,23 @@ var _StreamController = class _StreamController {
       case "thinking":
         this.flushPendingTools();
         if (state.currentTextEl) {
-          this.finalizeCurrentTextBlock(msg);
+          await this.finalizeCurrentTextBlock(msg);
         }
         await this.appendThinking(chunk.content);
         break;
       case "text":
         this.flushPendingTools();
         if (state.currentThinkingState) {
-          this.finalizeCurrentThinkingBlock(msg);
+          await this.finalizeCurrentThinkingBlock(msg);
         }
         msg.content += chunk.content;
         await this.appendText(chunk.content);
         break;
       case "tool_use": {
         if (state.currentThinkingState) {
-          this.finalizeCurrentThinkingBlock(msg);
+          await this.finalizeCurrentThinkingBlock(msg);
         }
-        this.finalizeCurrentTextBlock(msg);
+        await this.finalizeCurrentTextBlock(msg);
         if (isSubagentToolName(chunk.name)) {
           this.flushPendingTools();
           this.handleTaskToolUseViaManager(chunk, msg);
@@ -82248,9 +82500,9 @@ var _StreamController = class _StreamController {
       case "context_compacted": {
         this.flushPendingTools();
         if (state.currentThinkingState) {
-          this.finalizeCurrentThinkingBlock(msg);
+          await this.finalizeCurrentThinkingBlock(msg);
         }
-        this.finalizeCurrentTextBlock(msg);
+        await this.finalizeCurrentTextBlock(msg);
         msg.contentBlocks = msg.contentBlocks || [];
         msg.contentBlocks.push({ type: "context_compacted" });
         this.renderCompactBoundary();
@@ -82354,6 +82606,12 @@ var _StreamController = class _StreamController {
     );
     return typeof settings11.model === "string" ? settings11.model : void 0;
   }
+  shouldDeferMathRendering() {
+    return this.deps.plugin.settings.deferMathRenderingDuringStreaming !== false;
+  }
+  getStreamingRenderOptions(content) {
+    return this.shouldDeferMathRendering() && hasStreamingMathDelimiters(content) ? { deferMath: true } : void 0;
+  }
   capturePlanFilePath(input) {
     var _a3, _b2, _c;
     const filePath = input.file_path;
@@ -82406,7 +82664,7 @@ var _StreamController = class _StreamController {
       return;
     }
     existingToolCall.result = ((_b2 = existingToolCall.result) != null ? _b2 : "") + chunk.content;
-    updateToolCallResult(chunk.id, existingToolCall, state.toolCallElements);
+    this.scheduleToolOutputRender(chunk.id, existingToolCall);
     this.showThinkingIndicator();
   }
   // ============================================
@@ -82563,6 +82821,7 @@ var _StreamController = class _StreamController {
         }
         finalizeWriteEditBlock(writeEditState, chunk.isError || isBlocked);
       } else {
+        this.cancelPendingToolOutputRender(chunk.id);
         updateToolCallResult(chunk.id, existingToolCall, state.toolCallElements);
       }
       if (!chunk.isError && !isBlocked && isEditTool(existingToolCall.name)) {
@@ -82578,7 +82837,7 @@ var _StreamController = class _StreamController {
   // Text Block Management
   // ============================================
   async appendText(text) {
-    const { state, renderer } = this.deps;
+    const { state } = this.deps;
     if (!state.currentContentEl) return;
     this.hideThinkingIndicator();
     if (!state.currentTextEl) {
@@ -82586,11 +82845,15 @@ var _StreamController = class _StreamController {
       state.currentTextContent = "";
     }
     state.currentTextContent += text;
-    await renderer.renderContent(state.currentTextEl, state.currentTextContent);
+    void this.scheduleCurrentTextRender();
   }
-  finalizeCurrentTextBlock(msg) {
+  async finalizeCurrentTextBlock(msg) {
     const { state, renderer } = this.deps;
+    await this.flushPendingTextRender();
     if (msg && state.currentTextContent) {
+      if (state.currentTextEl && this.shouldDeferMathRendering() && hasStreamingMathDelimiters(state.currentTextContent)) {
+        await renderer.renderContent(state.currentTextEl, state.currentTextContent);
+      }
       msg.contentBlocks = msg.contentBlocks || [];
       msg.contentBlocks.push({ type: "text", content: state.currentTextContent });
       if (state.currentTextEl) {
@@ -82599,6 +82862,93 @@ var _StreamController = class _StreamController {
     }
     state.currentTextEl = null;
     state.currentTextContent = "";
+  }
+  scheduleCurrentTextRender() {
+    if (!this.pendingTextRenderPromise) {
+      this.pendingTextRenderPromise = new Promise((resolve8) => {
+        this.resolvePendingTextRender = resolve8;
+      });
+    }
+    if (this.pendingTextRenderFrame === null && !this.isTextRenderRunning) {
+      this.pendingTextRenderFrame = scheduleAnimationFrame(() => {
+        this.pendingTextRenderFrame = null;
+        void this.renderPendingText();
+      });
+    }
+    return this.pendingTextRenderPromise;
+  }
+  async flushPendingTextRender() {
+    const pendingRender = this.pendingTextRenderPromise;
+    if (!pendingRender) return;
+    if (this.pendingTextRenderFrame !== null) {
+      cancelScheduledAnimationFrame(this.pendingTextRenderFrame);
+      this.pendingTextRenderFrame = null;
+      void this.renderPendingText();
+    }
+    await pendingRender;
+  }
+  async renderPendingText() {
+    if (this.isTextRenderRunning) return;
+    this.isTextRenderRunning = true;
+    const { state, renderer } = this.deps;
+    const textEl = state.currentTextEl;
+    const content = state.currentTextContent;
+    try {
+      if (textEl) {
+        const options = this.getStreamingRenderOptions(content);
+        if (options) {
+          await renderer.renderContent(textEl, content, options);
+        } else {
+          await renderer.renderContent(textEl, content);
+        }
+        this.scrollToBottom();
+      }
+    } catch (e2) {
+    } finally {
+      this.isTextRenderRunning = false;
+    }
+    if (state.currentTextEl === textEl && state.currentTextContent !== content) {
+      this.pendingTextRenderFrame = scheduleAnimationFrame(() => {
+        this.pendingTextRenderFrame = null;
+        void this.renderPendingText();
+      });
+      return;
+    }
+    const resolve8 = this.resolvePendingTextRender;
+    this.pendingTextRenderPromise = null;
+    this.resolvePendingTextRender = null;
+    resolve8 == null ? void 0 : resolve8();
+  }
+  cancelPendingTextRender() {
+    if (this.pendingTextRenderFrame !== null) {
+      cancelScheduledAnimationFrame(this.pendingTextRenderFrame);
+      this.pendingTextRenderFrame = null;
+    }
+    const resolve8 = this.resolvePendingTextRender;
+    this.pendingTextRenderPromise = null;
+    this.resolvePendingTextRender = null;
+    resolve8 == null ? void 0 : resolve8();
+  }
+  scheduleToolOutputRender(toolId, toolCall) {
+    if (this.pendingToolOutputFrames.has(toolId)) return;
+    const frame = scheduleAnimationFrame(() => {
+      this.pendingToolOutputFrames.delete(toolId);
+      updateToolCallResult(toolId, toolCall, this.deps.state.toolCallElements);
+      this.scrollToBottom();
+    });
+    this.pendingToolOutputFrames.set(toolId, frame);
+  }
+  cancelPendingToolOutputRender(toolId) {
+    const frame = this.pendingToolOutputFrames.get(toolId);
+    if (!frame) return;
+    cancelScheduledAnimationFrame(frame);
+    this.pendingToolOutputFrames.delete(toolId);
+  }
+  cancelPendingToolOutputRenders() {
+    for (const frame of this.pendingToolOutputFrames.values()) {
+      cancelScheduledAnimationFrame(frame);
+    }
+    this.pendingToolOutputFrames.clear();
   }
   // ============================================
   // Thinking Block Management
@@ -82613,21 +82963,94 @@ var _StreamController = class _StreamController {
         (el, md) => renderer.renderContent(el, md)
       );
     }
-    await appendThinkingContent(state.currentThinkingState, content, (el, md) => renderer.renderContent(el, md));
+    state.currentThinkingState.content += content;
+    void this.scheduleCurrentThinkingRender();
   }
-  finalizeCurrentThinkingBlock(msg) {
-    const { state } = this.deps;
+  async finalizeCurrentThinkingBlock(msg) {
+    const { state, renderer } = this.deps;
     if (!state.currentThinkingState) return;
-    const durationSeconds = finalizeThinkingBlock(state.currentThinkingState);
-    if (msg && state.currentThinkingState.content) {
+    await this.flushPendingThinkingRender();
+    const thinkingState = state.currentThinkingState;
+    if (this.getStreamingRenderOptions(thinkingState.content)) {
+      await renderer.renderContent(thinkingState.contentEl, thinkingState.content);
+    }
+    const durationSeconds = finalizeThinkingBlock(thinkingState);
+    if (msg && thinkingState.content) {
       msg.contentBlocks = msg.contentBlocks || [];
       msg.contentBlocks.push({
         type: "thinking",
-        content: state.currentThinkingState.content,
+        content: thinkingState.content,
         durationSeconds
       });
     }
     state.currentThinkingState = null;
+  }
+  scheduleCurrentThinkingRender() {
+    if (!this.pendingThinkingRenderPromise) {
+      this.pendingThinkingRenderPromise = new Promise((resolve8) => {
+        this.resolvePendingThinkingRender = resolve8;
+      });
+    }
+    if (this.pendingThinkingRenderFrame === null && !this.isThinkingRenderRunning) {
+      this.pendingThinkingRenderFrame = scheduleAnimationFrame(() => {
+        this.pendingThinkingRenderFrame = null;
+        void this.renderPendingThinking();
+      });
+    }
+    return this.pendingThinkingRenderPromise;
+  }
+  async flushPendingThinkingRender() {
+    const pendingRender = this.pendingThinkingRenderPromise;
+    if (!pendingRender) return;
+    if (this.pendingThinkingRenderFrame !== null) {
+      cancelScheduledAnimationFrame(this.pendingThinkingRenderFrame);
+      this.pendingThinkingRenderFrame = null;
+      void this.renderPendingThinking();
+    }
+    await pendingRender;
+  }
+  async renderPendingThinking() {
+    var _a3;
+    if (this.isThinkingRenderRunning) return;
+    this.isThinkingRenderRunning = true;
+    const { state, renderer } = this.deps;
+    const thinkingState = state.currentThinkingState;
+    const content = (_a3 = thinkingState == null ? void 0 : thinkingState.content) != null ? _a3 : "";
+    try {
+      if (thinkingState) {
+        const options = this.getStreamingRenderOptions(content);
+        if (options) {
+          await renderer.renderContent(thinkingState.contentEl, content, options);
+        } else {
+          await renderer.renderContent(thinkingState.contentEl, content);
+        }
+        this.scrollToBottom();
+      }
+    } catch (e2) {
+    } finally {
+      this.isThinkingRenderRunning = false;
+    }
+    if (state.currentThinkingState === thinkingState && thinkingState && thinkingState.content !== content) {
+      this.pendingThinkingRenderFrame = scheduleAnimationFrame(() => {
+        this.pendingThinkingRenderFrame = null;
+        void this.renderPendingThinking();
+      });
+      return;
+    }
+    const resolve8 = this.resolvePendingThinkingRender;
+    this.pendingThinkingRenderPromise = null;
+    this.resolvePendingThinkingRender = null;
+    resolve8 == null ? void 0 : resolve8();
+  }
+  cancelPendingThinkingRender() {
+    if (this.pendingThinkingRenderFrame !== null) {
+      cancelScheduledAnimationFrame(this.pendingThinkingRenderFrame);
+      this.pendingThinkingRenderFrame = null;
+    }
+    const resolve8 = this.resolvePendingThinkingRender;
+    this.pendingThinkingRenderPromise = null;
+    this.resolvePendingThinkingRender = null;
+    resolve8 == null ? void 0 : resolve8();
   }
   // ============================================
   // Subagent Tool Handling (via SubagentManager)
@@ -83044,6 +83467,13 @@ var _StreamController = class _StreamController {
   }
   /** Scrolls messages to bottom if auto-scroll is enabled. */
   scrollToBottom() {
+    if (this.pendingScrollFrame !== null) return;
+    this.pendingScrollFrame = scheduleAnimationFrame(() => {
+      this.pendingScrollFrame = null;
+      this.applyScrollToBottom();
+    });
+  }
+  applyScrollToBottom() {
     var _a3;
     const { state, plugin } = this.deps;
     if (!((_a3 = plugin.settings.enableAutoScroll) != null ? _a3 : true)) return;
@@ -83051,8 +83481,17 @@ var _StreamController = class _StreamController {
     const messagesEl = this.deps.getMessagesEl();
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
+  cancelPendingScroll() {
+    if (this.pendingScrollFrame === null) return;
+    cancelScheduledAnimationFrame(this.pendingScrollFrame);
+    this.pendingScrollFrame = null;
+  }
   resetStreamingState() {
     const { state } = this.deps;
+    this.cancelPendingTextRender();
+    this.cancelPendingThinkingRender();
+    this.cancelPendingToolOutputRenders();
+    this.cancelPendingScroll();
     this.hideThinkingIndicator();
     state.currentContentEl = null;
     state.currentTextEl = null;
@@ -83749,11 +84188,12 @@ var _MessageRenderer = class _MessageRenderer {
   /**
    * Renders markdown content with code block enhancements.
    */
-  async renderContent(el, markdown) {
+  async renderContent(el, markdown, options) {
     el.empty();
     try {
+      const renderMarkdown = (options == null ? void 0 : options.deferMath) ? escapeMathDelimitersForStreaming(markdown) : markdown;
       const processedMarkdown = replaceImageEmbedsWithHtml(
-        markdown,
+        renderMarkdown,
         this.app,
         this.plugin.settings.mediaFolder
       );
@@ -83794,7 +84234,9 @@ var _MessageRenderer = class _MessageRenderer {
           wrapper.appendChild(copyBtn);
         }
       });
-      processFileLinks(this.app, el);
+      if (processedMarkdown.includes("[[")) {
+        processFileLinks(this.app, el);
+      }
     } catch (e2) {
       el.createDiv({
         cls: "claudian-render-error",
@@ -87909,13 +88351,15 @@ var NavigationSidebar = class {
     this.messagesEl = messagesEl;
     this.scrollHandler = () => {
     };
+    this.pendingVisibilityFrame = null;
+    this.isVisible = null;
     this.container = this.parentEl.createDiv({ cls: "claudian-nav-sidebar" });
     this.topBtn = this.createButton("claudian-nav-btn-top", "chevrons-up", "Scroll to top");
     this.prevBtn = this.createButton("claudian-nav-btn-prev", "chevron-up", "Previous message");
     this.nextBtn = this.createButton("claudian-nav-btn-next", "chevron-down", "Next message");
     this.bottomBtn = this.createButton("claudian-nav-btn-bottom", "chevrons-down", "Scroll to bottom");
     this.setupEventListeners();
-    this.updateVisibility();
+    this.applyVisibility();
   }
   createButton(cls, icon, label) {
     const btn = this.container.createDiv({ cls: `claudian-nav-btn ${cls}` });
@@ -87940,8 +88384,17 @@ var NavigationSidebar = class {
    * Visible if content overflows.
    */
   updateVisibility() {
+    if (this.pendingVisibilityFrame !== null) return;
+    this.pendingVisibilityFrame = scheduleAnimationFrame(() => {
+      this.pendingVisibilityFrame = null;
+      this.applyVisibility();
+    });
+  }
+  applyVisibility() {
     const { scrollHeight, clientHeight } = this.messagesEl;
     const isScrollable = scrollHeight > clientHeight + 50;
+    if (this.isVisible === isScrollable) return;
+    this.isVisible = isScrollable;
     this.container.classList.toggle("visible", isScrollable);
   }
   /**
@@ -87971,6 +88424,10 @@ var NavigationSidebar = class {
     }
   }
   destroy() {
+    if (this.pendingVisibilityFrame !== null) {
+      cancelScheduledAnimationFrame(this.pendingVisibilityFrame);
+      this.pendingVisibilityFrame = null;
+    }
     this.messagesEl.removeEventListener("scroll", this.scrollHandler);
     this.container.remove();
   }
@@ -91895,17 +92352,26 @@ var ClaudianSettingTab = class extends import_obsidian46.PluginSettingTab {
       });
       updateMaxTabsWarning((_b2 = this.plugin.settings.maxTabs) != null ? _b2 : 3);
     });
-    new import_obsidian46.Setting(container).setName(t("settings.openInMainTab.name")).setDesc(t("settings.openInMainTab.desc")).addToggle(
-      (toggle) => toggle.setValue(this.plugin.settings.openInMainTab).onChange(async (value) => {
-        this.plugin.settings.openInMainTab = value;
+    new import_obsidian46.Setting(container).setName(t("settings.chatViewPlacement.name")).setDesc(t("settings.chatViewPlacement.desc")).addDropdown((dropdown) => {
+      dropdown.addOption("right-sidebar", t("settings.chatViewPlacement.rightSidebar")).addOption("left-sidebar", t("settings.chatViewPlacement.leftSidebar")).addOption("main-tab", t("settings.chatViewPlacement.mainTab")).setValue(this.plugin.settings.chatViewPlacement).onChange(async (value) => {
+        this.plugin.settings.chatViewPlacement = value;
         await this.plugin.saveSettings();
-      })
-    );
+      });
+    });
     new import_obsidian46.Setting(container).setName(t("settings.enableAutoScroll.name")).setDesc(t("settings.enableAutoScroll.desc")).addToggle(
       (toggle) => {
         var _a3;
         return toggle.setValue((_a3 = this.plugin.settings.enableAutoScroll) != null ? _a3 : true).onChange(async (value) => {
           this.plugin.settings.enableAutoScroll = value;
+          await this.plugin.saveSettings();
+        });
+      }
+    );
+    new import_obsidian46.Setting(container).setName(t("settings.deferMathRenderingDuringStreaming.name")).setDesc(t("settings.deferMathRenderingDuringStreaming.desc")).addToggle(
+      (toggle) => {
+        var _a3;
+        return toggle.setValue((_a3 = this.plugin.settings.deferMathRenderingDuringStreaming) != null ? _a3 : true).onChange(async (value) => {
+          this.plugin.settings.deferMathRenderingDuringStreaming = value;
           await this.plugin.saveSettings();
         });
       }
@@ -92126,6 +92592,9 @@ var ClaudianSettingTab = class extends import_obsidian46.PluginSettingTab {
 // src/main.ts
 init_path();
 patchSetMaxListenersForElectron();
+function isClaudianView(value) {
+  return !!value && typeof value === "object" && typeof value.getTabManager === "function";
+}
 var ClaudianPlugin = class extends import_obsidian47.Plugin {
   constructor() {
     super(...arguments);
@@ -92207,9 +92676,8 @@ var ClaudianPlugin = class extends import_obsidian47.Plugin {
       id: "new-session",
       name: "New session (in current tab)",
       checkCallback: (checking) => {
-        const leaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN)[0];
-        if (!leaf) return false;
-        const view = leaf.view;
+        const view = this.getView();
+        if (!view) return false;
         const tabManager = view.getTabManager();
         if (!tabManager) return false;
         const activeTab = tabManager.getActiveTab();
@@ -92225,9 +92693,8 @@ var ClaudianPlugin = class extends import_obsidian47.Plugin {
       id: "close-current-tab",
       name: "Close current tab",
       checkCallback: (checking) => {
-        const leaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN)[0];
-        if (!leaf) return false;
-        const view = leaf.view;
+        const view = this.getView();
+        if (!view) return false;
         const tabManager = view.getTabManager();
         if (!tabManager) return false;
         if (!checking) {
@@ -92254,7 +92721,7 @@ var ClaudianPlugin = class extends import_obsidian47.Plugin {
     const { workspace } = this.app;
     let leaf = workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN)[0];
     if (!leaf) {
-      const newLeaf = this.settings.openInMainTab ? workspace.getLeaf("tab") : workspace.getRightLeaf(false);
+      const newLeaf = this.getLeafForPlacement(this.settings.chatViewPlacement);
       if (newLeaf) {
         await newLeaf.setViewState({
           type: VIEW_TYPE_CLAUDIAN,
@@ -92267,13 +92734,25 @@ var ClaudianPlugin = class extends import_obsidian47.Plugin {
       workspace.revealLeaf(leaf);
     }
   }
+  getLeafForPlacement(placement) {
+    const { workspace } = this.app;
+    switch (placement) {
+      case "main-tab":
+        return workspace.getLeaf("tab");
+      case "left-sidebar":
+        return workspace.getLeftLeaf(false);
+      case "right-sidebar":
+        return workspace.getRightLeaf(false);
+    }
+  }
   canCreateNewTab() {
+    const hasClaudianLeaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN).length > 0;
     const view = this.getView();
     const tabManager = view == null ? void 0 : view.getTabManager();
     if (tabManager) {
       return tabManager.canCreateTab();
     }
-    if (view) {
+    if (hasClaudianLeaf) {
       return false;
     }
     return this.getLastKnownOpenTabCount() < this.getMaxTabsLimit();
@@ -92667,15 +93146,13 @@ var ClaudianPlugin = class extends import_obsidian47.Plugin {
     await this.storage.setTabManagerState(state);
   }
   getView() {
+    var _a3;
     const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN);
-    if (leaves.length > 0) {
-      return leaves[0].view;
-    }
-    return null;
+    return (_a3 = leaves.map((leaf) => leaf.view).find(isClaudianView)) != null ? _a3 : null;
   }
   getAllViews() {
     const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN);
-    return leaves.map((leaf) => leaf.view);
+    return leaves.map((leaf) => leaf.view).filter(isClaudianView);
   }
   findConversationAcrossViews(conversationId) {
     for (const view of this.getAllViews()) {
