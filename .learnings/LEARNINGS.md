@@ -38,6 +38,49 @@ Obsidian (KaTeX) 不支持 `\iddots`，抗对角行列式须用 `\ddots` 替代
 
 ---
 
+## [LRN-20260507-001] best_practice
+
+**Logged**: 2026-05-07T11:40:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+Obsidian Mermaid 图表中禁止使用 LaTeX 语法（$...$），须用纯文本替代
+
+### Details
+在 Obsidian 中使用 Mermaid 语法绘制状态图、时序图等图表时，`note` 注释块内禁止使用 LaTeX 数学语法（如 `$Q_2$`、`$\overline{R_{D1}}$`），否则渲染异常或显示不出来。
+
+**错误示例：**
+```mermaid
+note right of 01
+  此时 $Q_2=1$ 导致 $\overline{R_{D1}}=0$
+  $FF_1$ 被异步清零锁定
+end note
+```
+
+**正确示例：**
+```mermaid
+note right of 01
+  此时 Q2=1 导致 RD1清零生效
+  FF1 被异步清零锁定，电路自锁
+end note
+```
+
+### Suggested Action
+在 Mermaid 图表的 `note`、`title` 等文本节点中：
+1. 避免使用 `$...$` 包裹公式
+2. 直接使用下标符号（如 Q2 而非 $Q_2$）
+3. 用汉字或英文描述替代特殊符号（如"清零"代替 $\overline{R_{D}}$）
+
+### Metadata
+- Source: user_feedback
+- Related Files:
+  - 考研专业课/数字电子技术/6-时序逻辑电路/错题本.md
+- Tags: obsidian, mermaid, latex, markdown
+
+---
+
 ## [LRN-20260506-003] correction
 
 **Logged**: 2026-05-06T14:30:00Z
