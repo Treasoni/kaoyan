@@ -112,6 +112,7 @@
   "dualPaneOrientation": "horizontal",
   "showTooltips": false,
   "showTooltipPath": true,
+  "showTooltipWordCount": false,
   "desktopBackground": "separate",
   "desktopScale": 1,
   "mobileScale": 1,
@@ -206,7 +207,6 @@
   "filterPinnedByFolder": false,
   "showPinnedGroupHeader": true,
   "showPinnedIcon": true,
-  "optimizeNoteHeight": true,
   "compactItemHeight": 28,
   "compactItemHeightScaleText": true,
   "showQuickActions": true,
@@ -497,7 +497,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "2.6.2",
+  "lastShownVersion": "2.6.4",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": []

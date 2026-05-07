@@ -1969,8 +1969,9 @@ body {
 .nn-desktop .nn-navitem:not([data-search-match]):hover::after {
     content: '';
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 0.5px;
+    /* Match row overlay overdraw while avoiding overlap with the previous row */
+    bottom: -0.5px;
     inset-inline-start: 0;
     inset-inline-end: 0;
     background-color: var(--nn-theme-navitem-hover-bg);
@@ -3651,6 +3652,7 @@ body {
     -webkit-user-select: none;
     user-select: none;
     position: relative;
+    height: 100%;
 
     /* CSS Custom Properties for file items - themes can override these */
     /* Isolate layout and style calculations per item while allowing ::before to extend beyond bounds */
@@ -3670,6 +3672,8 @@ body {
     border-radius: var(--nn-file-item-border-radius);
     background: transparent;
     position: relative; /* For absolute positioning of reveal overlay */
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .nn-file.nn-has-custom-background::before {
@@ -3719,6 +3723,7 @@ body {
     gap: var(--nn-file-row-gap);
     align-items: flex-start;
     position: relative;
+    height: 100%;
 }
 
 .nn-file-icon-slot {
@@ -3790,9 +3795,9 @@ body {
     flex-direction: column;
     gap: 0;
     order: 1; /* Ensure it appears on the left */
-    min-height: var(--nn-file-thumbnail-min-size); /* Keep short rows aligned to the shared thumbnail floor */
-    justify-content: center; /* Center short text stacks within the shared row height */
-    /* No align-self - let it stretch naturally */
+    height: 100%;
+    min-height: 0;
+    justify-content: flex-start;
 }
 
 /* Compact mode file text content - same as above but without min-height */
@@ -3986,9 +3991,8 @@ body {
     word-break: break-word;
 }
 
-/* Multi-line preview - shrink to content and cap at the configured rows */
+/* Multi-line preview - clamp to the configured number of lines */
 .nn-file-preview:not(.nn-file-second-line .nn-file-preview) {
-    flex: 0 0 auto;
     max-height: calc(var(--nn-file-multiline-text-line-height) * var(--preview-rows, 1));
 }
 
@@ -4024,6 +4028,9 @@ body {
 }
 
 .nn-parent-folder-content[data-has-background='true'] {
+    box-sizing: border-box;
+    height: var(--nn-file-single-text-line-height);
+    line-height: calc(var(--nn-file-single-text-line-height) - 2px);
     border-radius: 4px;
     padding: 1px 4px;
 }
@@ -4102,7 +4109,8 @@ body {
     --nn-file-pill-border-color-resolved: var(--nn-theme-file-tag-border-color);
     display: inline-flex;
     align-items: center;
-    height: 20px;
+    box-sizing: border-box;
+    height: var(--nn-file-tag-row-height);
     line-height: 1;
     padding: 0 8px;
     background-color: var(--nn-theme-file-tag-bg);
@@ -4595,6 +4603,11 @@ body {
     box-shadow: inset 0 0 0 var(--nn-theme-navitem-border-width) var(--nn-selected-navitem-border-color);
     z-index: 1;
     pointer-events: none;
+}
+
+.nn-split-container:is([data-navigator-focused='false'], [data-focus-pane='files'], [data-focus-pane='search'])
+    .nn-navitem.nn-selected::after {
+    top: 0.5px;
 }
 
 .nn-navitem.nn-selected > .nn-navitem-content {
@@ -6202,6 +6215,7 @@ body.nn-resizing {
 /* Virtual file item wrapper - position relative for separator positioning */
 .nn-virtual-file-item {
     position: relative;
+    height: var(--item-height);
     /* Isolate layout and style calculations per item while allowing overlays to extend beyond bounds */
     contain: layout style;
 }
@@ -7781,10 +7795,7 @@ body.nn-resizing {
     font-size: calc(var(--nn-file-icon-size-mobile, var(--nn-file-icon-size)) * var(--nn-android-font-scale-reciprocal, 1)) !important;
 }
 
-/* Row-cap compensation - Android doesn't scale max-height, but the line-height
-   variables above are pre-divided to offset textZoom. Multiply the cap by the
-   detected font scale so the final row limit matches the rendered line height
-   while still allowing shorter titles and previews to shrink naturally. */
+/* Clamp height compensation - Android doesn't scale max-height, so match the compensated line-height after textZoom applies. */
 .notebook-navigator-android .nn-file-name {
     max-height: calc(var(--nn-file-title-line-height) * var(--filename-rows, 1) * var(--nn-android-font-scale, 1));
 }
