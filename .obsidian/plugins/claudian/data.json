@@ -7,13 +7,14 @@
       },
       {
         "tabId": "tab-1776663449719-cybjsab",
-        "conversationId": "conv-1778244864183-zpunq73ra"
+        "conversationId": "conv-1778246216175-s59aihubh"
       },
       {
+        "draftModel": "MiniMax-M2.7-highspeed",
         "tabId": "tab-1776695612131-rw4ssfd",
-        "conversationId": "conv-1778240256881-gdyt7d1y4"
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1775011597993-m81k6tl"
+    "activeTabId": "tab-1776695612131-rw4ssfd"
   }
 }
