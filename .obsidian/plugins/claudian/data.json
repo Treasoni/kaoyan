@@ -6,13 +6,13 @@
         "conversationId": "conv-1778207797688-7wbqucc9w"
       },
       {
-        "draftModel": "deepseek-v4-flash",
+        "draftModel": "MiniMax-M2.7-highspeed",
         "tabId": "tab-1776663449719-cybjsab",
         "conversationId": null
       },
       {
         "tabId": "tab-1776695612131-rw4ssfd",
-        "conversationId": "conv-1778235546770-l0nvh1dn9"
+        "conversationId": "conv-1778237224604-gtgbo4w9w"
       }
     ],
     "activeTabId": "tab-1776695612131-rw4ssfd"
