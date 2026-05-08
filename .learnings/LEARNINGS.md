@@ -256,3 +256,42 @@ Markdown 表格内 LaTeX 公式中的 `|` 管道符会被误解析为表格分�
 - Last-Seen: 2026-05-08
 
 ---
+
+## [LRN-20260508-003] correction
+
+**Logged**: 2026-05-08
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+生成 Obsidian wikilink 时，必须确认目标文件确实存在，不能凭空猜测文件路径。
+
+### Details
+在错题本中生成 `[[关联知识点]]` wikilink 时，我使用了以下不存在的路径：
+- `[[2.3 矩阵基本运算/矩阵的乘法]]` → 实际文件为 `2.3 矩阵基本运算/2.3.3 矩阵的乘法`
+- `[[2.4 方阵的幂]]` → 实际文件为 `2.4 方阵的幂和方阵的多项式/2.4.1 方阵的幂`
+- `[[2.5 转置矩阵/行列式与转置的关系]]` → 根本不存在此文件
+- `[[2.7 逆矩阵]]` → 是文件夹名，不是 .md 文件名
+
+正确的做法是：在生成 wikilink 之前，先用 Glob 或类似工具确认目标文件的真实路径，然后再写入链接，或在笔记的 `📑 索引.md` 中查找规范路径。
+
+### Suggested Action
+在每次生成/更新包含 wikilink 的笔记时，务必先 `find 或 Glob` 确认目标文件存在。对于不存在的文件，可以：
+1. 使用 `Glob` 搜索相似文件名
+2. 在 `📑 索引.md` 中查找规范路径
+3. 若找不到，则跳过该链接或使用 vault 全局搜索
+
+### Metadata
+- Source: user_feedback
+- Related Files:
+  - 线性代数/第二章：矩阵/错题本.md
+  - 线性代数/第二章：矩阵/错题题目.md
+- Tags: obsidian, wikilink, link-accuracy
+- Pattern-Key: obsidian.wikilink_validation
+- Recurrence-Count: 1
+- First-Seen: 2026-05-08
+- Last-Seen: 2026-05-08
+
+---
+
