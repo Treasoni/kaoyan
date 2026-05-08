@@ -81,6 +81,42 @@ end note
 
 ---
 
+## [LRN-20260507-002] correction
+
+**Logged**: 2026-05-07T13:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+执行 /kaoyan-plan 完成报告时，线性代数进度文件（`线性代数/第一章：行列式/📊 学习进度.md`）也需要同步更新
+
+### Details
+当用户报告数学学习完成且涉及线性代数时（如"行列式全部内容+矩阵定义+特殊矩阵"），除了更新高数进度文件，还必须更新线性代数相应章节的进度文件。
+
+**问题原因**：线性代数有自己的目录结构，与考研数学/高数-xxx 是独立路径，容易被忽略。
+
+### Suggested Action
+执行完 /kaoyan-plan 完成报告后，检查数学任务涉及的科目：
+1. ✅ 高数进度文件：`考研数学/高数-xxx/📊 学习进度.md`
+2. ⭐ **线性代数进度文件**：`线性代数/第X章：XXX/📊 学习进度.md` ← 容易遗漏
+
+### Metadata
+- Source: user_feedback
+- Related Files:
+  - 线性代数/第一章：行列式/📊 学习进度.md
+  - 线性代数/第二章：矩阵/📊 学习进度.md
+- Tags: kaoyan-plan, progress-update, checklist, linear-algebra
+- Recurrence-Count: 1
+- First-Seen: 2026-05-07
+- See Also: LRN-20260506-003
+
+### Resolution
+- **Resolved**: 2026-05-07
+- **Action Taken**: 已修改 SKILL.md，在"完成报告处理清单"和"数学完成报告更新步骤"中添加了⭐标记和明确提示，要求搜索 `线性代数/**/📊 学习进度.md` 路径
+
+---
+
 ## [LRN-20260506-003] correction
 
 **Logged**: 2026-05-06T14:30:00Z
@@ -94,7 +130,11 @@ end note
 ### Details
 当用户报告英语学习完成时（如 Day 051 第3次复习 + Day 066 新学），除了更新 📊 学习进度.md，还必须同步更新 📅 学习日志.md。
 
-问题原因：更新清单中第 4 项容易被忽略。
+**问题原因**：更新清单中第 4 项容易被遗漏。
+
+**历史记录**：
+- 2026-05-06：首次记录此问题（LRN-20260506-003）
+- 2026-05-07：**再次遗漏**，用户再次指出同一问题
 
 ### Suggested Action
 执行完 /kaoyan-plan 完成报告后，逐一检查更新清单：
@@ -106,6 +146,8 @@ end note
 6. ✅ 专业课 📊 学习进度.md
 7. ✅ 专业课章节进度文件
 
+**根本解决方案**：在 SKILL.md 的完成报告处理清单中，将"英语 📅 学习日志.md"和"线性代数进度文件"明确标注为**必须更新**，并放在清单前部以提高优先级。
+
 ### Metadata
 - Source: user_feedback
 - Related Files:
@@ -113,6 +155,10 @@ end note
   - 考研英语/📊 学习进度.md
   - .claude/skills/kaoyan-plan/SKILL.md
 - Tags: kaoyan-plan, progress-update, checklist
+- Recurrence-Count: 2
+- First-Seen: 2026-05-06
+- Last-Seen: 2026-05-07
+- See Also: LRN-20260506-001 (关于线代进度文件也需要更新)
 
 ---
 
