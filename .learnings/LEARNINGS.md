@@ -185,6 +185,40 @@ end note
 
 ---
 
+## [LRN-20260508-001] correction
+
+**Logged**: 2026-05-08T10:20:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+Markdown 表格内 LaTeX 绝对值符号管道符冲突第三次复发——写入 `$|A|$` 到表格导致列错位
+
+### Details
+尽管 CLAUDE.md 已明确记录 "表格内 LaTeX 防管道符冲突" 规则（第 2 条），本次在 `线性代数/第二章：矩阵/错题本.md` 的第 137-141 行表格中，仍错误地写入了 `$|A|$` 和 `$|B|$`，导致：
+1. 表格被管道符 `|` 误解析为 10+ 列
+2. 第 2 行（命题 ④）完全错位，内容被割裂
+3. 需要额外的 fix-table-pipe 修复流程
+
+**复发根因**：CLAUDE.md 的规则是"被动查阅"式说明，在快速生成内容时容易被忽略，尤其当注意力集中在整理知识点逻辑而非格式规范时。
+
+### Suggested Action
+1. ✅ 已在 CLAUDE.md 记录规则（已有）
+2. ⭐ **额外防护**：每次在表格单元格内写 LaTeX 行内公式时，必须立即检查是否包含竖线符号 `|` —— 这是一种自动化的肌肉记忆，不应依赖事后检查
+3. ⭐ **心理检查表**：生成表格前默念一次："表格内禁止裸管道符"
+
+### Metadata
+- Source: user_feedback
+- Area: docs
+- Related Files: 线性代数/第二章：矩阵/错题本.md
+- Tags: obsidian, markdown, table, latex, pipe-conflict, recurrence
+- See Also: LRN-20260501-001 (原始条目, Pattern-Key: table.pipe_in_math)
+- Recurrence-Count: 1
+- First-Seen: 2026-05-08
+
+---
+
 ## [LRN-20260501-001] best_practice
 
 **Logged**: 2026-05-01T00:00:00Z
@@ -212,8 +246,13 @@ Markdown 表格内 LaTeX 公式中的 `|` 管道符会被误解析为表格分�
 
 ### Metadata
 - Source: user_feedback
-- Related Files: 考研数学/微分方程/4-微分方程的综合应用/几何应用.md
+- Related Files:
+  - 考研数学/微分方程/4-微分方程的综合应用/几何应用.md
+  - 线性代数/第二章：矩阵/错题本.md (2026-05-08 复发)
 - Tags: obsidian, markdown, table, latex, pipe-conflict
 - Pattern-Key: table.pipe_in_math
+- Recurrence-Count: 3
+- First-Seen: 2026-05-01
+- Last-Seen: 2026-05-08
 
 ---
