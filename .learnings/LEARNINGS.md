@@ -185,6 +185,44 @@ end note
 
 ---
 
+## [LRN-20260509-001] correction
+
+**Logged**: 2026-05-09T00:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+表格内 LaTeX 管道符冲突第四次复发——`\Vert` 渲染为双竖线，应用 `\lvert \rvert` 替代
+
+### Details
+在 `线性代数/第二章：矩阵/2.6 伴随矩阵/2.6.2 伴随矩阵的相关公式.md` 的公式(2)证明表格中，写入了 `$\Vert A \Vert \neq 0$`，Obsidian 渲染结果显示为双竖线（‖），不符合单竖线绝对值的数学表示。
+
+**根本原因**：即使使用 `\Vert`（双竖线）或 `\vert`，这些 LaTeX 宏在源代码层面仍包含字面管道符 `|`，同样会被 Markdown 表格解析器误识别为列分隔符。
+
+**正确写法**：
+- 绝对值（单竖线）：`$\lvert A \rvert$` — 用 `\lvert` 和 `\rvert` 包裹，两侧留空格
+- 范数（双竖线）：`$\left\lVert A \right\rVert$`
+
+### Suggested Action
+1. ⭐ **立即检查所有表格单元格**：搜索模式 `$\vert`、`$\Vert`、`$\left|`、`$\right|`
+2. ⭐ **统一使用** `\lvert ... \rvert` 表示绝对值
+3. **不要**使用 `\left|` / `\right|` — Obsidian KaTeX 可能不支持 `\left` 与 `\lvert` 的组合
+4. **显示公式（`$$...$$`）不受此限制**，只在行内公式（`$...$`）且位于表格内时需要注意
+
+### Metadata
+- Source: user_feedback
+- Area: docs
+- Related Files: 线性代数/第二章：矩阵/2.6 伴随矩阵/2.6.2 伴随矩阵的相关公式.md
+- Tags: obsidian, markdown, table, latex, pipe-conflict, recurrence
+- Pattern-Key: table.pipe_in_math
+- Recurrence-Count: 4
+- First-Seen: 2026-05-01
+- Last-Seen: 2026-05-09
+- See Also: LRN-20260508-001, LRN-20260501-001
+
+---
+
 ## [LRN-20260508-001] correction
 
 **Logged**: 2026-05-08T10:20:00Z
@@ -214,8 +252,9 @@ Markdown 表格内 LaTeX 绝对值符号管道符冲突第三次复发——写�
 - Related Files: 线性代数/第二章：矩阵/错题本.md
 - Tags: obsidian, markdown, table, latex, pipe-conflict, recurrence
 - See Also: LRN-20260501-001 (原始条目, Pattern-Key: table.pipe_in_math)
-- Recurrence-Count: 1
-- First-Seen: 2026-05-08
+- Recurrence-Count: 3
+- First-Seen: 2026-05-01
+- Last-Seen: 2026-05-08
 
 ---
 
