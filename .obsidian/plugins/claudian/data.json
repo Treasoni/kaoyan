@@ -3,10 +3,10 @@
     "openTabs": [
       {
         "tabId": "tab-1775011597993-m81k6tl",
-        "conversationId": "conv-1778323716177-tql3tctx5"
+        "conversationId": "conv-1778465859057-aeyjix1pz"
       },
       {
-        "draftModel": "MiniMax-M2.7-highspeed",
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1776663449719-cybjsab",
         "conversationId": null
       },
@@ -15,6 +15,6 @@
         "conversationId": "conv-1778411071440-c5oizyyz2"
       }
     ],
-    "activeTabId": "tab-1776663449719-cybjsab"
+    "activeTabId": "tab-1775011597993-m81k6tl"
   }
 }
