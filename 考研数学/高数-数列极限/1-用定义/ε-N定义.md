@@ -86,13 +86,13 @@ $$
 
 ### 四步法模板
 
-| 步骤 | 操作 | 示例（证 $\lim \frac{1}{n} = 0$） |
-|------|------|----------------------------------|
-| **① 设** | 任取 $\varepsilon > 0$ | 任取 $\varepsilon > 0$ |
-| **② 列** | 写出 $ \lvert x_n - a \rvert < \varepsilon$ | $\lvert \frac{1}{n} - 0 \rvert = \frac{1}{n} < \varepsilon$ |
-| **③ 解** | 反解出 $n$ 的范围 | $n > \frac{1}{\varepsilon}$ |
-| **④ 取** | 取 $N = \frac{1}{\varepsilon}$（或取整） | 取 $N = \lceil \frac{1}{\varepsilon} \rceil$ |
-| **验证** | 当 $n > N$ 时反代回去 | $n > N \Rightarrow \frac{1}{n} < \frac{1}{N} = \varepsilon$ ✓ |
+| 步骤      | 操作                                        | 示例（证 $\lim \frac{1}{n} = 0$）                                  |
+| ------- | ----------------------------------------- | ------------------------------------------------------------- |
+| **① 设** | 任取 $\varepsilon > 0$                      | 任取 $\varepsilon > 0$                                          |
+| **② 列** | 写出 $ \lvert x_n - a \rvert < \varepsilon$ | $\lvert \frac{1}{n} - 0 \rvert = \frac{1}{n} < \varepsilon$   |
+| **③ 解** | 反解出 $n$ 的范围                               | $n > \frac{1}{\varepsilon}$                                   |
+| **④ 取** | 取 $N = \frac{1}{\varepsilon}$（或取整）        | 取 $N = \lceil \frac{1}{\varepsilon} \rceil$                   |
+| **验证**  | 当 $n > N$ 时反代回去                           | $n > N \Rightarrow \frac{1}{n} < \frac{1}{N} = \varepsilon$ ✓ |
 
 > [!warning] 常见注意点
 > - **$N$ 不一定要是整数** —— $n > 100$ 和 $n > 100.5$ 表达效果一样（$n$ 是自然数，自动取整）
