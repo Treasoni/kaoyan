@@ -10,8 +10,9 @@
         "conversationId": "conv-1779001300641-josf7w0o2"
       },
       {
+        "draftModel": "mimo-v2.5-pro",
         "tabId": "tab-1778506702337-k688s0c",
-        "conversationId": "conv-1779001333694-s9lkt0g1l"
+        "conversationId": null
       }
     ],
     "activeTabId": "tab-1778506702337-k688s0c"
