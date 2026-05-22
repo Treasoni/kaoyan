@@ -301,7 +301,9 @@ __export(env_exports, {
   formatContextLimit: () => formatContextLimit,
   getEnhancedPath: () => getEnhancedPath,
   getHostnameKey: () => getHostnameKey,
+  getLegacyHostnameKey: () => getLegacyHostnameKey,
   getMissingNodeError: () => getMissingNodeError,
+  migrateLegacyHostnameKeyedMap: () => migrateLegacyHostnameKeyedMap,
   parseContextLimit: () => parseContextLimit,
   parseEnvironmentVariables: () => parseEnvironmentVariables
 });
@@ -571,8 +573,69 @@ function parseEnvironmentVariables(input) {
   }
   return result;
 }
+function getDeviceSettingsStorage() {
+  try {
+    return typeof window === "undefined" ? null : window.localStorage;
+  } catch (e2) {
+    return null;
+  }
+}
+function createOpaqueDeviceSettingsKey() {
+  var _a3;
+  const cryptoApi = typeof window === "undefined" ? null : window.crypto;
+  const randomUUID2 = (_a3 = cryptoApi == null ? void 0 : cryptoApi.randomUUID) == null ? void 0 : _a3.call(cryptoApi);
+  if (randomUUID2) {
+    return `device:${randomUUID2}`;
+  }
+  if (cryptoApi == null ? void 0 : cryptoApi.getRandomValues) {
+    const randomBytes = new Uint8Array(16);
+    cryptoApi.getRandomValues(randomBytes);
+    const entropy2 = Array.from(randomBytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+    return `device:${Date.now().toString(36)}:${entropy2}`;
+  }
+  const entropy = Math.random().toString(36).slice(2);
+  return `device:${Date.now().toString(36)}:${entropy}`;
+}
 function getHostnameKey() {
-  return os4.hostname();
+  var _a3;
+  if (cachedDeviceSettingsKey) {
+    return cachedDeviceSettingsKey;
+  }
+  const storage = getDeviceSettingsStorage();
+  const stored = (_a3 = storage == null ? void 0 : storage.getItem(DEVICE_SETTINGS_STORAGE_KEY)) == null ? void 0 : _a3.trim();
+  if (stored) {
+    cachedDeviceSettingsKey = stored;
+    return cachedDeviceSettingsKey;
+  }
+  cachedDeviceSettingsKey = createOpaqueDeviceSettingsKey();
+  try {
+    storage == null ? void 0 : storage.setItem(DEVICE_SETTINGS_STORAGE_KEY, cachedDeviceSettingsKey);
+  } catch (e2) {
+  }
+  return cachedDeviceSettingsKey;
+}
+function getLegacyHostnameKey() {
+  try {
+    return os4.hostname();
+  } catch (e2) {
+    return "";
+  }
+}
+function migrateLegacyHostnameKeyedMap(entries, currentKey, legacyHostnameKey) {
+  if (!currentKey || !legacyHostnameKey || currentKey === legacyHostnameKey) {
+    return entries;
+  }
+  const hasCurrentEntry = Object.prototype.hasOwnProperty.call(entries, currentKey);
+  const hasLegacyEntry = Object.prototype.hasOwnProperty.call(entries, legacyHostnameKey);
+  if (!hasLegacyEntry) {
+    return entries;
+  }
+  const migrated = { ...entries };
+  if (!hasCurrentEntry) {
+    migrated[currentKey] = entries[legacyHostnameKey];
+  }
+  delete migrated[legacyHostnameKey];
+  return migrated;
 }
 function parseContextLimit(input) {
   var _a3;
@@ -598,7 +661,7 @@ function formatContextLimit(tokens) {
   }
   return tokens.toLocaleString();
 }
-var fs4, os4, path4, isWindows, PATH_SEPARATOR, NODE_EXECUTABLE, MIN_CONTEXT_LIMIT, MAX_CONTEXT_LIMIT;
+var fs4, os4, path4, isWindows, PATH_SEPARATOR, NODE_EXECUTABLE, DEVICE_SETTINGS_STORAGE_KEY, cachedDeviceSettingsKey, MIN_CONTEXT_LIMIT, MAX_CONTEXT_LIMIT;
 var init_env = __esm({
   "src/utils/env.ts"() {
     fs4 = __toESM(require("fs"));
@@ -608,6 +671,8 @@ var init_env = __esm({
     isWindows = process.platform === "win32";
     PATH_SEPARATOR = isWindows ? ";" : ":";
     NODE_EXECUTABLE = isWindows ? "node.exe" : "node";
+    DEVICE_SETTINGS_STORAGE_KEY = "claudian.deviceSettingsKey";
+    cachedDeviceSettingsKey = null;
     MIN_CONTEXT_LIMIT = 1e3;
     MAX_CONTEXT_LIMIT = 1e7;
   }
@@ -16137,7 +16202,7 @@ var require_scope = __commonJS({
       let: new code_1.Name("let"),
       var: new code_1.Name("var")
     };
-    var Scope = class {
+    var Scope2 = class {
       constructor({ prefixes, parent } = {}) {
         this._names = {};
         this._prefixes = prefixes;
@@ -16161,7 +16226,7 @@ var require_scope = __commonJS({
         return this._names[prefix] = { prefix, index: 0 };
       }
     };
-    exports.Scope = Scope;
+    exports.Scope = Scope2;
     var ValueScopeName = class extends code_1.Name {
       constructor(prefix, nameStr) {
         super(nameStr);
@@ -16174,7 +16239,7 @@ var require_scope = __commonJS({
     };
     exports.ValueScopeName = ValueScopeName;
     var line = (0, code_1._)`\n`;
-    var ValueScope = class extends Scope {
+    var ValueScope = class extends Scope2 {
       constructor(opts) {
         super(opts);
         this._values = {};
@@ -24787,8 +24852,20 @@ var ProviderRegistry = class {
     const providerId = (_a3 = options.providerId) != null ? _a3 : DEFAULT_CHAT_PROVIDER_ID;
     return this.getProviderRegistration(providerId).createRuntime(options);
   }
-  static createTitleGenerationService(plugin, providerId = DEFAULT_CHAT_PROVIDER_ID) {
+  static createTitleGenerationService(plugin, providerId) {
+    if (!providerId) {
+      return new RoutedTitleGenerationService(plugin);
+    }
     return this.getProviderRegistration(providerId).createTitleGenerationService(plugin);
+  }
+  static resolveTitleGenerationProviderId(settings11) {
+    const titleModel = typeof settings11.titleGenerationModel === "string" ? settings11.titleGenerationModel.trim() : "";
+    if (!titleModel) {
+      return DEFAULT_CHAT_PROVIDER_ID;
+    }
+    return this.resolveProviderForModel(titleModel, settings11, {
+      fallbackProviderId: DEFAULT_CHAT_PROVIDER_ID
+    });
   }
   static createInstructionRefineService(plugin, providerId = DEFAULT_CHAT_PROVIDER_ID) {
     return this.getProviderRegistration(providerId).createInstructionRefineService(plugin);
@@ -24869,6 +24946,43 @@ var ProviderRegistry = class {
   }
 };
 ProviderRegistry.registrations = {};
+var RoutedTitleGenerationService = class {
+  constructor(plugin) {
+    this.plugin = plugin;
+    this.activeGenerations = /* @__PURE__ */ new Map();
+  }
+  async generateTitle(conversationId, userMessage, callback) {
+    const providerId = ProviderRegistry.resolveTitleGenerationProviderId(
+      this.plugin.settings
+    );
+    const service = ProviderRegistry.createTitleGenerationService(this.plugin, providerId);
+    const generation = { service };
+    const previous = this.activeGenerations.get(conversationId);
+    this.activeGenerations.set(conversationId, generation);
+    previous == null ? void 0 : previous.service.cancel();
+    try {
+      await service.generateTitle(conversationId, userMessage, async (convId, result) => {
+        if (this.activeGenerations.get(conversationId) !== generation) {
+          return;
+        }
+        await callback(convId, result);
+      });
+    } finally {
+      if (this.activeGenerations.get(conversationId) === generation) {
+        this.activeGenerations.delete(conversationId);
+      }
+    }
+  }
+  cancel() {
+    const services = new Set(
+      [...this.activeGenerations.values()].map((generation) => generation.service)
+    );
+    this.activeGenerations.clear();
+    for (const service of services) {
+      service.cancel();
+    }
+  }
+};
 
 // src/core/storage/HomeFileAdapter.ts
 var fs = __toESM(require("fs"));
@@ -42003,6 +42117,7 @@ function getEnvironmentScopeUpdates(envText, fallbackScope) {
 }
 
 // src/providers/claude/settings.ts
+init_env();
 var CLAUDE_SAFE_MODES = ["acceptEdits", "auto", "default"];
 var DEFAULT_CLAUDE_PROVIDER_SETTINGS = Object.freeze({
   safeMode: "acceptEdits",
@@ -42036,10 +42151,18 @@ function normalizeClaudeSafeMode(value) {
 function getClaudeProviderSettings(settings11) {
   var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m, _n, _o, _p2, _q, _r, _s, _t, _u, _v;
   const config2 = getProviderConfig(settings11, "claude");
+  const normalizedCliPathsByHost = normalizeHostnameCliPaths(
+    (_a3 = config2.cliPathsByHost) != null ? _a3 : settings11.claudeCliPathsByHost
+  );
+  const cliPathsByHost = Object.keys(normalizedCliPathsByHost).length > 0 ? migrateLegacyHostnameKeyedMap(
+    normalizedCliPathsByHost,
+    getHostnameKey(),
+    getLegacyHostnameKey()
+  ) : normalizedCliPathsByHost;
   return {
-    safeMode: (_b2 = (_a3 = normalizeClaudeSafeMode(config2.safeMode)) != null ? _a3 : normalizeClaudeSafeMode(settings11.claudeSafeMode)) != null ? _b2 : DEFAULT_CLAUDE_PROVIDER_SETTINGS.safeMode,
-    cliPath: (_d2 = (_c = config2.cliPath) != null ? _c : settings11.claudeCliPath) != null ? _d2 : DEFAULT_CLAUDE_PROVIDER_SETTINGS.cliPath,
-    cliPathsByHost: normalizeHostnameCliPaths((_e = config2.cliPathsByHost) != null ? _e : settings11.claudeCliPathsByHost),
+    safeMode: (_c = (_b2 = normalizeClaudeSafeMode(config2.safeMode)) != null ? _b2 : normalizeClaudeSafeMode(settings11.claudeSafeMode)) != null ? _c : DEFAULT_CLAUDE_PROVIDER_SETTINGS.safeMode,
+    cliPath: (_e = (_d2 = config2.cliPath) != null ? _d2 : settings11.claudeCliPath) != null ? _e : DEFAULT_CLAUDE_PROVIDER_SETTINGS.cliPath,
+    cliPathsByHost,
     loadUserSettings: (_g = (_f = config2.loadUserSettings) != null ? _f : settings11.loadUserClaudeSettings) != null ? _g : DEFAULT_CLAUDE_PROVIDER_SETTINGS.loadUserSettings,
     enableChrome: (_i = (_h = config2.enableChrome) != null ? _h : settings11.enableChrome) != null ? _i : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableChrome,
     enableBangBash: (_k = (_j2 = config2.enableBangBash) != null ? _j2 : settings11.enableBangBash) != null ? _k : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableBangBash,
@@ -42494,7 +42617,7 @@ var ClaudeCliResolver = class {
     this.cachedHostname = getHostnameKey();
   }
   /**
-   * Resolves CLI path with priority: hostname-specific -> legacy -> auto-detect.
+   * Resolves CLI path with priority: device-specific -> legacy -> auto-detect.
    * @param settings Full app settings bag
    */
   resolveFromSettings(settings11) {
@@ -42716,17 +42839,23 @@ function getCodexProviderSettings(settings11) {
   var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m, _n, _o, _p2;
   const config2 = getProviderConfig(settings11, "codex");
   const hostnameKey = getHostnameKey();
-  const installationMethodsByHost = normalizeInstallationMethodsByHost(config2.installationMethodsByHost);
-  const wslDistroOverridesByHost = normalizeHostnameCliPaths2(config2.wslDistroOverridesByHost);
+  const normalizedCliPathsByHost = normalizeHostnameCliPaths2((_a3 = config2.cliPathsByHost) != null ? _a3 : settings11.codexCliPathsByHost);
+  const normalizedInstallationMethodsByHost = normalizeInstallationMethodsByHost(config2.installationMethodsByHost);
+  const normalizedWslDistroOverridesByHost = normalizeHostnameCliPaths2(config2.wslDistroOverridesByHost);
+  const hasLegacyHostnameKeyedSettings = Object.keys(normalizedCliPathsByHost).length > 0 || Object.keys(normalizedInstallationMethodsByHost).length > 0 || Object.keys(normalizedWslDistroOverridesByHost).length > 0;
+  const legacyHostnameKey = hasLegacyHostnameKeyedSettings ? getLegacyHostnameKey() : "";
+  const cliPathsByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedCliPathsByHost, hostnameKey, legacyHostnameKey) : normalizedCliPathsByHost;
+  const installationMethodsByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedInstallationMethodsByHost, hostnameKey, legacyHostnameKey) : normalizedInstallationMethodsByHost;
+  const wslDistroOverridesByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedWslDistroOverridesByHost, hostnameKey, legacyHostnameKey) : normalizedWslDistroOverridesByHost;
   const hasHostScopedInstallationMethods = Object.keys(installationMethodsByHost).length > 0;
   const hasHostScopedWslDistroOverrides = Object.keys(wslDistroOverridesByHost).length > 0;
   const legacyInstallationMethod = normalizeCodexInstallationMethod(config2.installationMethod);
   const legacyWslDistroOverride = normalizeOptionalString(config2.wslDistroOverride);
   return {
-    enabled: (_b2 = (_a3 = config2.enabled) != null ? _a3 : settings11.codexEnabled) != null ? _b2 : DEFAULT_CODEX_PROVIDER_SETTINGS.enabled,
-    safeMode: (_d2 = (_c = config2.safeMode) != null ? _c : settings11.codexSafeMode) != null ? _d2 : DEFAULT_CODEX_PROVIDER_SETTINGS.safeMode,
-    cliPath: (_f = (_e = config2.cliPath) != null ? _e : settings11.codexCliPath) != null ? _f : DEFAULT_CODEX_PROVIDER_SETTINGS.cliPath,
-    cliPathsByHost: normalizeHostnameCliPaths2((_g = config2.cliPathsByHost) != null ? _g : settings11.codexCliPathsByHost),
+    enabled: (_c = (_b2 = config2.enabled) != null ? _b2 : settings11.codexEnabled) != null ? _c : DEFAULT_CODEX_PROVIDER_SETTINGS.enabled,
+    safeMode: (_e = (_d2 = config2.safeMode) != null ? _d2 : settings11.codexSafeMode) != null ? _e : DEFAULT_CODEX_PROVIDER_SETTINGS.safeMode,
+    cliPath: (_g = (_f = config2.cliPath) != null ? _f : settings11.codexCliPath) != null ? _g : DEFAULT_CODEX_PROVIDER_SETTINGS.cliPath,
+    cliPathsByHost,
     customModels: (_h = config2.customModels) != null ? _h : DEFAULT_CODEX_PROVIDER_SETTINGS.customModels,
     reasoningSummary: (_j2 = (_i = config2.reasoningSummary) != null ? _i : settings11.codexReasoningSummary) != null ? _j2 : DEFAULT_CODEX_PROVIDER_SETTINGS.reasoningSummary,
     environmentVariables: (_l = (_k = config2.environmentVariables) != null ? _k : getProviderEnvironmentVariables(settings11, "codex")) != null ? _l : DEFAULT_CODEX_PROVIDER_SETTINGS.environmentVariables,
@@ -42818,6 +42947,23 @@ function sameDiscoveredModels(left, right) {
     return model.rawId === ((_a3 = right[index]) == null ? void 0 : _a3.rawId) && model.label === ((_b2 = right[index]) == null ? void 0 : _b2.label) && ((_c = model.description) != null ? _c : "") === ((_e = (_d2 = right[index]) == null ? void 0 : _d2.description) != null ? _e : "");
   });
 }
+function sameThinkingOptionsByModel(left, right) {
+  const leftEntries = Object.entries(left);
+  if (leftEntries.length !== Object.keys(right).length) {
+    return false;
+  }
+  return leftEntries.every(([rawId, leftOptions]) => {
+    var _a3;
+    const rightOptions = (_a3 = right[rawId]) != null ? _a3 : [];
+    if (leftOptions.length !== rightOptions.length) {
+      return false;
+    }
+    return leftOptions.every((option, index) => {
+      var _a4, _b2, _c, _d2, _e;
+      return option.value === ((_a4 = rightOptions[index]) == null ? void 0 : _a4.value) && option.label === ((_b2 = rightOptions[index]) == null ? void 0 : _b2.label) && ((_c = option.description) != null ? _c : "") === ((_e = (_d2 = rightOptions[index]) == null ? void 0 : _d2.description) != null ? _e : "");
+    });
+  });
+}
 
 // src/providers/opencode/models.ts
 var OPENCODE_SYNTHETIC_MODEL_ID = "opencode";
@@ -42875,6 +43021,50 @@ function normalizeOpencodeDiscoveredModels(value) {
   }
   return normalized;
 }
+function normalizeOpencodeModelVariants(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const variants = [];
+  for (const entry of value) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      continue;
+    }
+    const record2 = entry;
+    const rawValue = typeof record2.value === "string" ? record2.value.trim() : "";
+    if (!rawValue) {
+      continue;
+    }
+    let rawLabel = "";
+    if (typeof record2.label === "string") {
+      rawLabel = record2.label.trim();
+    } else if (typeof record2.name === "string") {
+      rawLabel = record2.name.trim();
+    }
+    const description = typeof record2.description === "string" ? record2.description.trim() : "";
+    variants.push({
+      ...description ? { description } : {},
+      label: rawLabel || formatOpencodeThinkingLevelLabel(rawValue),
+      value: rawValue
+    });
+  }
+  return dedupeOpencodeVariants(variants);
+}
+function normalizeOpencodeThinkingOptionsByModel(value, discoveredModels = []) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return {};
+  }
+  const normalized = {};
+  for (const [rawId, variants] of Object.entries(value)) {
+    const normalizedRawId = resolveOpencodeBaseModelRawId(rawId.trim(), discoveredModels);
+    const normalizedVariants = normalizeOpencodeModelVariants(variants);
+    if (!normalizedRawId || normalizedVariants.length === 0) {
+      continue;
+    }
+    normalized[normalizedRawId] = normalizedVariants;
+  }
+  return normalized;
+}
 function resolveOpencodeBaseModelRawId(rawId, discoveredModels) {
   const normalizedRawId = rawId.trim();
   if (!normalizedRawId) {
@@ -42903,20 +43093,6 @@ function extractOpencodeModelVariantValue(rawId, discoveredModels) {
   }
   const variant = normalizedRawId.slice(baseRawId.length + 1).trim();
   return variant || null;
-}
-function combineOpencodeRawModelSelection(baseRawId, thinkingLevel, discoveredModels) {
-  const normalizedBaseRawId = baseRawId == null ? void 0 : baseRawId.trim();
-  if (!normalizedBaseRawId) {
-    return null;
-  }
-  const variant = thinkingLevel == null ? void 0 : thinkingLevel.trim();
-  if (!variant || variant === OPENCODE_DEFAULT_THINKING_LEVEL) {
-    return normalizedBaseRawId;
-  }
-  const supportedVariants = new Set(
-    getOpencodeModelVariants(normalizedBaseRawId, discoveredModels).map((entry) => entry.value)
-  );
-  return supportedVariants.has(variant) ? `${normalizedBaseRawId}/${variant}` : normalizedBaseRawId;
 }
 function splitOpencodeModelLabel(label) {
   const trimmed = label.trim();
@@ -42969,11 +43145,6 @@ function buildOpencodeBaseModels(models) {
       variants: dedupeOpencodeVariants(variants)
     };
   }).sort((left, right) => left.label.localeCompare(right.label));
-}
-function getOpencodeModelVariants(rawId, models) {
-  var _a3, _b2;
-  const baseRawId = resolveOpencodeBaseModelRawId(rawId, models);
-  return (_b2 = (_a3 = buildOpencodeBaseModels(models).find((model) => model.rawId === baseRawId)) == null ? void 0 : _a3.variants) != null ? _b2 : [];
 }
 function formatOpencodeThinkingLevelLabel(value) {
   const trimmed = value.trim();
@@ -43125,14 +43296,20 @@ function resolvePermissionModeForManagedOpencodeMode(modeId) {
 // src/providers/opencode/discoveryState.ts
 var OPENCODE_DISCOVERY_STATE = /* @__PURE__ */ Symbol("opencodeDiscoveryState");
 function ensureDiscoveryState(settings11) {
+  var _a3, _b2, _c;
   const bag = settings11;
   const existing = bag[OPENCODE_DISCOVERY_STATE];
   if (existing && typeof existing === "object" && !Array.isArray(existing)) {
-    return existing;
+    const state = existing;
+    (_a3 = state.availableModes) != null ? _a3 : state.availableModes = [];
+    (_b2 = state.discoveredModels) != null ? _b2 : state.discoveredModels = [];
+    (_c = state.thinkingOptionsByModel) != null ? _c : state.thinkingOptionsByModel = {};
+    return state;
   }
   const next = {
     availableModes: [],
-    discoveredModels: []
+    discoveredModels: [],
+    thinkingOptionsByModel: {}
   };
   bag[OPENCODE_DISCOVERY_STATE] = next;
   return next;
@@ -43143,41 +43320,55 @@ function cloneModes(modes) {
 function cloneDiscoveredModels(models) {
   return models.map((model) => ({ ...model }));
 }
+function cloneThinkingOptionsByModel(optionsByModel) {
+  return Object.fromEntries(
+    Object.entries(optionsByModel).map(([rawId, options]) => [
+      rawId,
+      options.map((option) => ({ ...option }))
+    ])
+  );
+}
 function getOpencodeDiscoveryState(settings11) {
   const state = ensureDiscoveryState(settings11);
   return {
     availableModes: cloneModes(state.availableModes),
-    discoveredModels: cloneDiscoveredModels(state.discoveredModels)
+    discoveredModels: cloneDiscoveredModels(state.discoveredModels),
+    thinkingOptionsByModel: cloneThinkingOptionsByModel(state.thinkingOptionsByModel)
   };
 }
 function updateOpencodeDiscoveryState(settings11, updates) {
   const state = ensureDiscoveryState(settings11);
   const nextAvailableModes = "availableModes" in updates ? normalizeOpencodeAvailableModes(updates.availableModes) : state.availableModes;
   const nextDiscoveredModels = "discoveredModels" in updates ? normalizeOpencodeDiscoveredModels(updates.discoveredModels) : state.discoveredModels;
-  const changed = !sameModes(state.availableModes, nextAvailableModes) || !sameDiscoveredModels(state.discoveredModels, nextDiscoveredModels);
+  const nextThinkingOptionsByModel = "thinkingOptionsByModel" in updates ? normalizeOpencodeThinkingOptionsByModel(updates.thinkingOptionsByModel, nextDiscoveredModels) : state.thinkingOptionsByModel;
+  const changed = !sameModes(state.availableModes, nextAvailableModes) || !sameDiscoveredModels(state.discoveredModels, nextDiscoveredModels) || !sameThinkingOptionsByModel(state.thinkingOptionsByModel, nextThinkingOptionsByModel);
   if (!changed) {
     return false;
   }
   state.availableModes = cloneModes(nextAvailableModes);
   state.discoveredModels = cloneDiscoveredModels(nextDiscoveredModels);
+  state.thinkingOptionsByModel = cloneThinkingOptionsByModel(nextThinkingOptionsByModel);
   return true;
 }
 function clearOpencodeDiscoveryState(settings11) {
   const state = ensureDiscoveryState(settings11);
-  if (state.availableModes.length === 0 && state.discoveredModels.length === 0) {
+  if (state.availableModes.length === 0 && state.discoveredModels.length === 0 && Object.keys(state.thinkingOptionsByModel).length === 0) {
     return false;
   }
   state.availableModes = [];
   state.discoveredModels = [];
+  state.thinkingOptionsByModel = {};
   return true;
 }
 function seedOpencodeDiscoveryStateFromLegacyConfig(settings11, legacyConfig) {
   const state = ensureDiscoveryState(settings11);
   const nextAvailableModes = state.availableModes.length > 0 ? state.availableModes : normalizeOpencodeAvailableModes(legacyConfig.availableModes);
   const nextDiscoveredModels = state.discoveredModels.length > 0 ? state.discoveredModels : normalizeOpencodeDiscoveredModels(legacyConfig.discoveredModels);
+  const nextThinkingOptionsByModel = Object.keys(state.thinkingOptionsByModel).length > 0 ? state.thinkingOptionsByModel : normalizeOpencodeThinkingOptionsByModel(legacyConfig.thinkingOptionsByModel, nextDiscoveredModels);
   return updateOpencodeDiscoveryState(settings11, {
     availableModes: nextAvailableModes,
-    discoveredModels: nextDiscoveredModels
+    discoveredModels: nextDiscoveredModels,
+    thinkingOptionsByModel: nextThinkingOptionsByModel
   });
 }
 
@@ -43203,6 +43394,7 @@ var DEFAULT_OPENCODE_PROVIDER_SETTINGS = Object.freeze({
   modelAliases: {},
   preferredThinkingByModel: {},
   selectedMode: "",
+  thinkingOptionsByModel: {},
   visibleModels: []
 });
 function normalizeHostnameCliPaths3(value) {
@@ -43275,14 +43467,28 @@ function normalizeOpencodePreferredThinkingByModel(value, discoveredModels = [])
 function getOpencodeProviderSettings(settings11) {
   var _a3, _b2, _c, _d2, _e;
   const config2 = getProviderConfig(settings11, "opencode");
+  const normalizedCliPathsByHost = normalizeHostnameCliPaths3(config2.cliPathsByHost);
+  const cliPathsByHost = Object.keys(normalizedCliPathsByHost).length > 0 ? migrateLegacyHostnameKeyedMap(
+    normalizedCliPathsByHost,
+    getHostnameKey(),
+    getLegacyHostnameKey()
+  ) : normalizedCliPathsByHost;
   seedOpencodeDiscoveryStateFromLegacyConfig(settings11, config2);
   const discoveryState = getOpencodeDiscoveryState(settings11);
   const availableModes = discoveryState.availableModes;
   const discoveredModels = discoveryState.discoveredModels;
+  const persistedThinkingOptionsByModel = normalizeOpencodeThinkingOptionsByModel(
+    config2.thinkingOptionsByModel,
+    discoveredModels
+  );
+  const thinkingOptionsByModel = normalizeOpencodeThinkingOptionsByModel({
+    ...persistedThinkingOptionsByModel,
+    ...discoveryState.thinkingOptionsByModel
+  }, discoveredModels);
   return {
     availableModes,
     cliPath: (_a3 = config2.cliPath) != null ? _a3 : DEFAULT_OPENCODE_PROVIDER_SETTINGS.cliPath,
-    cliPathsByHost: normalizeHostnameCliPaths3(config2.cliPathsByHost),
+    cliPathsByHost,
     discoveredModels,
     enabled: (_b2 = config2.enabled) != null ? _b2 : DEFAULT_OPENCODE_PROVIDER_SETTINGS.enabled,
     environmentHash: (_c = config2.environmentHash) != null ? _c : DEFAULT_OPENCODE_PROVIDER_SETTINGS.environmentHash,
@@ -43293,6 +43499,7 @@ function getOpencodeProviderSettings(settings11) {
       discoveredModels
     ),
     selectedMode: normalizeManagedOpencodeSelectedMode(config2.selectedMode, availableModes),
+    thinkingOptionsByModel,
     visibleModels: normalizeOpencodeVisibleModels(config2.visibleModels, discoveredModels)
   };
 }
@@ -43300,15 +43507,20 @@ function updateOpencodeProviderSettings(settings11, updates) {
   var _a3, _b2, _c, _d2;
   const current = getOpencodeProviderSettings(settings11);
   const hostnameKey = getHostnameKey();
-  if ("availableModes" in updates || "discoveredModels" in updates) {
+  if ("availableModes" in updates || "discoveredModels" in updates || "thinkingOptionsByModel" in updates) {
     updateOpencodeDiscoveryState(settings11, {
       ...updates.availableModes !== void 0 ? { availableModes: updates.availableModes } : {},
-      ...updates.discoveredModels !== void 0 ? { discoveredModels: updates.discoveredModels } : {}
+      ...updates.discoveredModels !== void 0 ? { discoveredModels: updates.discoveredModels } : {},
+      ...updates.thinkingOptionsByModel !== void 0 ? { thinkingOptionsByModel: updates.thinkingOptionsByModel } : {}
     });
   }
   const discoveryState = getOpencodeDiscoveryState(settings11);
   const nextAvailableModes = discoveryState.availableModes;
   const nextDiscoveredModels = discoveryState.discoveredModels;
+  const nextThinkingOptionsByModel = updates.thinkingOptionsByModel !== void 0 ? discoveryState.thinkingOptionsByModel : normalizeOpencodeThinkingOptionsByModel(
+    current.thinkingOptionsByModel,
+    nextDiscoveredModels
+  );
   const nextSelectedMode = normalizeManagedOpencodeSelectedMode(
     (_a3 = updates.selectedMode) != null ? _a3 : current.selectedMode,
     nextAvailableModes
@@ -43325,8 +43537,8 @@ function updateOpencodeProviderSettings(settings11, updates) {
     nextVisibleModels
   );
   const nextCliPathsByHost = "cliPathsByHost" in updates ? normalizeHostnameCliPaths3(updates.cliPathsByHost) : { ...current.cliPathsByHost };
-  let nextCliPath = "cliPathsByHost" in updates ? DEFAULT_OPENCODE_PROVIDER_SETTINGS.cliPath : current.cliPath.trim();
-  if ("cliPath" in updates) {
+  let nextCliPath = "cliPathsByHost" in updates ? typeof updates.cliPath === "string" ? updates.cliPath.trim() : DEFAULT_OPENCODE_PROVIDER_SETTINGS.cliPath : current.cliPath.trim();
+  if ("cliPath" in updates && !("cliPathsByHost" in updates)) {
     const trimmedCliPath = typeof updates.cliPath === "string" ? updates.cliPath.trim() : "";
     if (trimmedCliPath) {
       nextCliPathsByHost[hostnameKey] = trimmedCliPath;
@@ -43348,11 +43560,16 @@ function updateOpencodeProviderSettings(settings11, updates) {
       nextDiscoveredModels
     ),
     selectedMode: nextSelectedMode,
+    thinkingOptionsByModel: nextThinkingOptionsByModel,
     visibleModels: nextVisibleModels
   };
   if (updates.visibleModels !== void 0) {
     retargetRemovedOpencodeSelections(settings11, next);
   }
+  const persistedThinkingOptionsByModel = pruneThinkingOptionsToPersistedSelections(
+    settings11,
+    next
+  );
   setProviderConfig(settings11, "opencode", {
     cliPath: next.cliPath,
     cliPathsByHost: next.cliPathsByHost,
@@ -43362,6 +43579,7 @@ function updateOpencodeProviderSettings(settings11, updates) {
     modelAliases: next.modelAliases,
     preferredThinkingByModel: next.preferredThinkingByModel,
     selectedMode: next.selectedMode,
+    thinkingOptionsByModel: persistedThinkingOptionsByModel,
     visibleModels: next.visibleModels
   });
   return next;
@@ -43382,6 +43600,40 @@ function pruneModelAliasesToVisible(aliases, visibleModels) {
     }
   }
   return pruned;
+}
+function pruneThinkingOptionsToPersistedSelections(settings11, next) {
+  const persistableRawIds = new Set(next.visibleModels);
+  addPersistableSelection(persistableRawIds, settings11.model, next.discoveredModels);
+  addPersistableSelection(persistableRawIds, settings11.titleGenerationModel, next.discoveredModels);
+  const savedProviderModel = settings11.savedProviderModel;
+  if (savedProviderModel && typeof savedProviderModel === "object" && !Array.isArray(savedProviderModel)) {
+    addPersistableSelection(
+      persistableRawIds,
+      savedProviderModel.opencode,
+      next.discoveredModels
+    );
+  }
+  const pruned = {};
+  for (const rawId of persistableRawIds) {
+    const options = next.thinkingOptionsByModel[rawId];
+    if (options == null ? void 0 : options.length) {
+      pruned[rawId] = options.map((option) => ({ ...option }));
+    }
+  }
+  return pruned;
+}
+function addPersistableSelection(target, value, discoveredModels) {
+  if (typeof value !== "string" || !isOpencodeModelSelectionId(value)) {
+    return;
+  }
+  const rawModelId = decodeOpencodeModelId(value);
+  if (!rawModelId) {
+    return;
+  }
+  const baseRawId = resolveOpencodeBaseModelRawId(rawModelId, discoveredModels);
+  if (baseRawId) {
+    target.add(baseRawId);
+  }
 }
 function retargetRemovedOpencodeSelections(settings11, next) {
   var _a3;
@@ -43538,6 +43790,30 @@ function normalizeProviderConfigs(value) {
   }
   return result;
 }
+var HOST_SCOPED_PROVIDER_CONFIG_FIELDS = {
+  claude: ["cliPathsByHost"],
+  codex: ["cliPathsByHost", "installationMethodsByHost", "wslDistroOverridesByHost"],
+  opencode: ["cliPathsByHost"]
+};
+function hasHostScopedProviderConfigNormalization(original, normalized) {
+  if (!normalized || typeof normalized !== "object" || Array.isArray(normalized)) {
+    return false;
+  }
+  const normalizedConfigs = normalized;
+  for (const [providerId, fields] of Object.entries(HOST_SCOPED_PROVIDER_CONFIG_FIELDS)) {
+    const originalConfig = original[providerId];
+    const normalizedConfig = normalizedConfigs[providerId];
+    if (!originalConfig || !normalizedConfig) {
+      continue;
+    }
+    for (const field of fields) {
+      if (field in originalConfig && JSON.stringify(originalConfig[field]) !== JSON.stringify(normalizedConfig[field])) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 function isEnvironmentScope(value) {
   return value === "shared" || typeof value === "string" && value.startsWith("provider:");
 }
@@ -43643,7 +43919,15 @@ var ClaudianSettingsStorage = class {
       merged,
       getCodexProviderSettings(legacyProviderSettings)
     );
-    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || shouldPersistChatViewPlacementMigration(stored, chatViewPlacement) || JSON.stringify(envSnippets) !== JSON.stringify((_a3 = stored.envSnippets) != null ? _a3 : []))) {
+    updateOpencodeProviderSettings(
+      merged,
+      getOpencodeProviderSettings(legacyProviderSettings)
+    );
+    const didNormalizeHostScopedProviderConfigs = hasHostScopedProviderConfigNormalization(
+      providerConfigs,
+      merged.providerConfigs
+    );
+    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || shouldPersistChatViewPlacementMigration(stored, chatViewPlacement) || JSON.stringify(envSnippets) !== JSON.stringify((_a3 = stored.envSnippets) != null ? _a3 : []) || didNormalizeHostScopedProviderConfigs)) {
       await this.save(merged);
     }
     return merged;
@@ -57668,7 +57952,7 @@ var claudeSettingsTabRenderer = {
     const hostnameKey = getHostnameKey();
     const platformDesc = process.platform === "win32" ? t("settings.cliPath.descWindows") : t("settings.cliPath.descUnix");
     const cliPathDescription = `${t("settings.cliPath.desc")} ${platformDesc}`;
-    const cliPathSetting = new import_obsidian13.Setting(container).setName(`${t("settings.cliPath.name")} (${hostnameKey})`).setDesc(cliPathDescription);
+    const cliPathSetting = new import_obsidian13.Setting(container).setName(t("settings.cliPath.name")).setDesc(cliPathDescription);
     const validationEl = container.createDiv({
       cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
     });
@@ -58768,7 +59052,14 @@ Generate a title for this conversation:`;
     const envVars = parseEnvironmentVariables(
       this.plugin.getActiveEnvironmentVariables("claude")
     );
-    return this.plugin.settings.titleGenerationModel || envVars.ANTHROPIC_DEFAULT_HAIKU_MODEL || "claude-haiku-4-5";
+    const titleModel = this.plugin.settings.titleGenerationModel;
+    if (titleModel && claudeChatUIConfig.ownsModel(
+      titleModel,
+      this.plugin.settings
+    )) {
+      return titleModel;
+    }
+    return envVars.ANTHROPIC_DEFAULT_HAIKU_MODEL || "claude-haiku-4-5";
   }
   truncateText(text, maxLength) {
     if (text.length <= maxLength) return text;
@@ -66926,7 +67217,7 @@ var codexSettingsTabRenderer = {
       };
     };
     const shouldValidateCliPathAsFile = () => !isWindowsHost || installationMethod !== "wsl";
-    const cliPathSetting = new import_obsidian17.Setting(container).setName(`Codex CLI path (${hostnameKey})`).setDesc(getCliPathCopy().desc);
+    const cliPathSetting = new import_obsidian17.Setting(container).setName("Codex CLI path").setDesc(getCliPathCopy().desc);
     const validationEl = container.createDiv({
       cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
     });
@@ -71925,891 +72216,13 @@ function isSupportedAgentFilePath(filePath) {
 }
 
 // src/providers/opencode/ui/OpencodeSettingsTab.ts
-var fs18 = __toESM(require("fs"));
+var fs21 = __toESM(require("fs"));
 var import_obsidian19 = require("obsidian");
 init_env();
 init_path();
 
-// src/providers/opencode/ui/OpencodeAgentSettings.ts
-var import_obsidian18 = require("obsidian");
-var OPENCODE_AGENT_INVALID_SEGMENT_PATTERN = /[<>:"\\|?*]/;
-function validateOpencodeAgentName(name) {
-  if (!name) return "Agent name is required";
-  const segments = name.split("/");
-  if (segments.length === 0 || segments.some((segment) => segment.length === 0)) {
-    return "Agent name must use slash-separated path segments without leading or trailing slashes";
-  }
-  for (const segment of segments) {
-    if (!segment.trim()) {
-      return "Agent name path segments cannot be empty or whitespace-only";
-    }
-    if (segment !== segment.trim()) {
-      return "Agent name path segments cannot start or end with whitespace";
-    }
-    if (segment === "." || segment === "..") {
-      return 'Agent name cannot include "." or ".." path segments';
-    }
-    if (segment.includes("\0") || OPENCODE_AGENT_INVALID_SEGMENT_PATTERN.test(segment)) {
-      return "Agent name path segments cannot contain Windows-reserved filename characters";
-    }
-  }
-  return null;
-}
-function findOpencodeAgentNameConflict(agents, name, currentPersistenceKey) {
-  var _a3;
-  const normalizedName = name.toLowerCase();
-  return (_a3 = agents.find(
-    (agent) => agent.name.toLowerCase() === normalizedName && agent.persistenceKey !== currentPersistenceKey
-  )) != null ? _a3 : null;
-}
-var OpencodeAgentModal = class extends import_obsidian18.Modal {
-  constructor(app, existing, allAgents, onSave) {
-    super(app);
-    this.existing = existing;
-    this.allAgents = allAgents;
-    this.onSave = onSave;
-  }
-  onOpen() {
-    var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m, _n, _o, _p2, _q;
-    this.setTitle(this.existing ? "Edit OpenCode Subagent" : "Add OpenCode Subagent");
-    this.modalEl.addClass("claudian-sp-modal");
-    const { contentEl } = this;
-    let nameInput;
-    let descriptionInput;
-    let modelInput;
-    let variantInput;
-    let temperatureInput;
-    let topPInput;
-    let colorInput;
-    let stepsInput;
-    let hiddenValue = (_b2 = (_a3 = this.existing) == null ? void 0 : _a3.hidden) != null ? _b2 : false;
-    let disableValue = (_d2 = (_c = this.existing) == null ? void 0 : _c.disable) != null ? _d2 : false;
-    let toolsInput;
-    let permissionInput;
-    let optionsInput;
-    new import_obsidian18.Setting(contentEl).setName("Name").setDesc("OpenCode agent name. Use slash-separated segments for nested agents.").addText((text) => {
-      var _a4, _b3;
-      nameInput = text.inputEl;
-      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.name) != null ? _b3 : "").setPlaceholder("Review");
-    });
-    new import_obsidian18.Setting(contentEl).setName("Description").setDesc("When OpenCode should use this subagent").addText((text) => {
-      var _a4, _b3;
-      descriptionInput = text.inputEl;
-      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.description) != null ? _b3 : "").setPlaceholder("Reviews code for correctness and maintainability");
-    });
-    const details = contentEl.createEl("details", { cls: "claudian-sp-advanced-section" });
-    details.createEl("summary", {
-      text: "Advanced options",
-      cls: "claudian-sp-advanced-summary"
-    });
-    if (((_e = this.existing) == null ? void 0 : _e.model) || ((_f = this.existing) == null ? void 0 : _f.variant) || ((_g = this.existing) == null ? void 0 : _g.temperature) !== void 0 || ((_h = this.existing) == null ? void 0 : _h.topP) !== void 0 || ((_i = this.existing) == null ? void 0 : _i.color) || ((_j2 = this.existing) == null ? void 0 : _j2.steps) !== void 0 || ((_k = this.existing) == null ? void 0 : _k.hidden) || ((_l = this.existing) == null ? void 0 : _l.disable) || ((_m = this.existing) == null ? void 0 : _m.tools) || ((_n = this.existing) == null ? void 0 : _n.permission) !== void 0 || ((_o = this.existing) == null ? void 0 : _o.options)) {
-      details.open = true;
-    }
-    new import_obsidian18.Setting(details).setName("Model").setDesc("Model override in provider/model format").addText((text) => {
-      var _a4, _b3;
-      modelInput = text.inputEl;
-      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.model) != null ? _b3 : "").setPlaceholder("Anthropic/Claude-sonnet-4-20250514");
-    });
-    new import_obsidian18.Setting(details).setName("Variant").setDesc("Model variant override").addText((text) => {
-      var _a4, _b3;
-      variantInput = text.inputEl;
-      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.variant) != null ? _b3 : "").setPlaceholder("High");
-    });
-    new import_obsidian18.Setting(details).setName("Temperature").setDesc("Optional sampling temperature").addText((text) => {
-      var _a4;
-      temperatureInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.temperature) !== void 0 ? String(this.existing.temperature) : "").setPlaceholder("0.1");
-    });
-    new import_obsidian18.Setting(details).setName("Top p").setDesc("Optional nucleus sampling value").addText((text) => {
-      var _a4;
-      topPInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.topP) !== void 0 ? String(this.existing.topP) : "").setPlaceholder("0.9");
-    });
-    new import_obsidian18.Setting(details).setName("Color").setDesc("Hex color or theme token").addText((text) => {
-      var _a4, _b3;
-      colorInput = text.inputEl;
-      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.color) != null ? _b3 : "").setPlaceholder("#Ff5733");
-    });
-    new import_obsidian18.Setting(details).setName("Steps").setDesc("Maximum agentic iterations before forcing text-only output").addText((text) => {
-      var _a4;
-      stepsInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.steps) !== void 0 ? String(this.existing.steps) : "").setPlaceholder("10");
-    });
-    new import_obsidian18.Setting(details).setName("Hide from @mention").setDesc("Hide this subagent from the @ autocomplete menu").addToggle((toggle) => {
-      toggle.setValue(hiddenValue).onChange((value) => {
-        hiddenValue = value;
-      });
-    });
-    new import_obsidian18.Setting(details).setName("Disable agent").setDesc("Disable the agent without deleting the file").addToggle((toggle) => {
-      toggle.setValue(disableValue).onChange((value) => {
-        disableValue = value;
-      });
-    });
-    new import_obsidian18.Setting(details).setName("Enabled tools (JSON)").setDesc('Optional deprecated tools map, e.g. {"write":false,"edit":false}').addTextArea((text) => {
-      var _a4;
-      toolsInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.tools) ? JSON.stringify(this.existing.tools, null, 2) : "").setPlaceholder('{\n  "write": false,\n  "edit": false\n}');
-    });
-    new import_obsidian18.Setting(details).setName("Permission (JSON)").setDesc('Optional permission config, e.g. {"edit":"deny","bash":"allow"}').addTextArea((text) => {
-      var _a4;
-      permissionInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.permission) !== void 0 ? JSON.stringify(this.existing.permission, null, 2) : "").setPlaceholder('{\n  "edit": "deny"\n}');
-    });
-    new import_obsidian18.Setting(details).setName("Options (JSON)").setDesc("Optional custom agent options").addTextArea((text) => {
-      var _a4;
-      optionsInput = text.inputEl;
-      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.options) ? JSON.stringify(this.existing.options, null, 2) : "").setPlaceholder('{\n  "focus": "security"\n}');
-    });
-    new import_obsidian18.Setting(contentEl).setName("Prompt").setDesc("Markdown body used as the agent prompt");
-    const promptArea = contentEl.createEl("textarea", {
-      cls: "claudian-sp-content-area",
-      attr: {
-        rows: "10",
-        placeholder: "Review code changes carefully and call out correctness, regressions, and missing coverage."
-      }
-    });
-    promptArea.value = (_q = (_p2 = this.existing) == null ? void 0 : _p2.prompt) != null ? _q : "";
-    const buttonContainer = contentEl.createDiv({ cls: "claudian-sp-modal-buttons" });
-    const cancelBtn = buttonContainer.createEl("button", {
-      text: "Cancel",
-      cls: "claudian-cancel-btn"
-    });
-    cancelBtn.addEventListener("click", () => this.close());
-    const saveBtn = buttonContainer.createEl("button", {
-      text: "Save",
-      cls: "claudian-save-btn"
-    });
-    saveBtn.addEventListener("click", () => {
-      void (async () => {
-        var _a4, _b3, _c2;
-        const name = nameInput.value.trim();
-        const nameError = validateOpencodeAgentName(name);
-        if (nameError) {
-          new import_obsidian18.Notice(nameError);
-          return;
-        }
-        const description = descriptionInput.value.trim();
-        if (!description) {
-          new import_obsidian18.Notice("Description is required");
-          return;
-        }
-        const prompt = promptArea.value;
-        if (!prompt.trim()) {
-          new import_obsidian18.Notice("Prompt is required");
-          return;
-        }
-        const duplicate = findOpencodeAgentNameConflict(
-          this.allAgents,
-          name,
-          (_a4 = this.existing) == null ? void 0 : _a4.persistenceKey
-        );
-        if (duplicate) {
-          new import_obsidian18.Notice(`A subagent named "${name}" already exists`);
-          return;
-        }
-        const temperature = parseOptionalNumber(temperatureInput.value, "Temperature");
-        if (temperature.error) {
-          new import_obsidian18.Notice(temperature.error);
-          return;
-        }
-        const topP = parseOptionalNumber(topPInput.value, "Top P");
-        if (topP.error) {
-          new import_obsidian18.Notice(topP.error);
-          return;
-        }
-        const steps = parseOptionalPositiveInteger(stepsInput.value, "Steps");
-        if (steps.error) {
-          new import_obsidian18.Notice(steps.error);
-          return;
-        }
-        const tools = parseOptionalJsonObjectOfBooleans(toolsInput.value, "Enabled Tools");
-        if (tools.error) {
-          new import_obsidian18.Notice(tools.error);
-          return;
-        }
-        const permission = parseOptionalJson(permissionInput.value, "Permission");
-        if (permission.error) {
-          new import_obsidian18.Notice(permission.error);
-          return;
-        }
-        const options = parseOptionalJsonObject(optionsInput.value, "Options");
-        if (options.error) {
-          new import_obsidian18.Notice(options.error);
-          return;
-        }
-        const agent = {
-          name,
-          description,
-          prompt,
-          mode: "subagent",
-          hidden: hiddenValue || void 0,
-          disable: disableValue || void 0,
-          model: modelInput.value.trim() || void 0,
-          variant: variantInput.value.trim() || void 0,
-          temperature: temperature.value,
-          topP: topP.value,
-          color: colorInput.value.trim() || void 0,
-          steps: steps.value,
-          tools: tools.value,
-          permission: permission.value,
-          options: options.value,
-          persistenceKey: (_b3 = this.existing) == null ? void 0 : _b3.persistenceKey,
-          extraFrontmatter: (_c2 = this.existing) == null ? void 0 : _c2.extraFrontmatter
-        };
-        try {
-          await this.onSave(agent);
-        } catch (error48) {
-          const message = error48 instanceof Error ? error48.message : "Unknown error";
-          new import_obsidian18.Notice(`Failed to save subagent: ${message}`);
-          return;
-        }
-        this.close();
-      })();
-    });
-  }
-  onClose() {
-    this.contentEl.empty();
-  }
-};
-var OpencodeAgentSettings = class {
-  constructor(containerEl, storage, app, onChanged) {
-    this.agents = [];
-    this.containerEl = containerEl;
-    this.storage = storage;
-    this.app = app;
-    this.onChanged = onChanged;
-    void this.render();
-  }
-  async render() {
-    this.containerEl.empty();
-    try {
-      this.agents = await this.storage.loadAll();
-    } catch (e2) {
-      this.agents = [];
-    }
-    const visibleAgents = this.agents.filter((agent) => agent.mode === "subagent");
-    const headerEl = this.containerEl.createDiv({ cls: "claudian-sp-header" });
-    headerEl.createSpan({ text: "OpenCode Subagents", cls: "claudian-sp-label" });
-    const actionsEl = headerEl.createDiv({ cls: "claudian-sp-header-actions" });
-    const refreshBtn = actionsEl.createEl("button", {
-      cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Refresh" }
-    });
-    (0, import_obsidian18.setIcon)(refreshBtn, "refresh-cw");
-    refreshBtn.addEventListener("click", () => {
-      void this.render();
-    });
-    const addBtn = actionsEl.createEl("button", {
-      cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Add" }
-    });
-    (0, import_obsidian18.setIcon)(addBtn, "plus");
-    addBtn.addEventListener("click", () => this.openModal(null));
-    if (visibleAgents.length === 0) {
-      const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
-      emptyEl.setText("No OpenCode subagents in vault. Click + to create one.");
-      return;
-    }
-    const listEl = this.containerEl.createDiv({ cls: "claudian-sp-list" });
-    for (const agent of visibleAgents) {
-      this.renderItem(listEl, agent);
-    }
-  }
-  renderItem(listEl, agent) {
-    const itemEl = listEl.createDiv({ cls: "claudian-sp-item" });
-    const infoEl = itemEl.createDiv({ cls: "claudian-sp-info" });
-    const headerRow = infoEl.createDiv({ cls: "claudian-sp-item-header" });
-    const nameEl = headerRow.createSpan({ cls: "claudian-sp-item-name" });
-    nameEl.setText(agent.name);
-    headerRow.createSpan({
-      text: "subagent",
-      cls: "claudian-slash-item-badge"
-    });
-    if (agent.model) {
-      headerRow.createSpan({ text: agent.model, cls: "claudian-slash-item-badge" });
-    }
-    if (agent.description) {
-      const descEl = infoEl.createDiv({ cls: "claudian-sp-item-desc" });
-      descEl.setText(agent.description);
-    }
-    const actionsEl = itemEl.createDiv({ cls: "claudian-sp-item-actions" });
-    const editBtn = actionsEl.createEl("button", {
-      cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Edit" }
-    });
-    (0, import_obsidian18.setIcon)(editBtn, "pencil");
-    editBtn.addEventListener("click", () => this.openModal(agent));
-    const deleteBtn = actionsEl.createEl("button", {
-      cls: "claudian-settings-action-btn claudian-settings-delete-btn",
-      attr: { "aria-label": "Delete" }
-    });
-    (0, import_obsidian18.setIcon)(deleteBtn, "trash-2");
-    deleteBtn.addEventListener("click", () => {
-      void (async () => {
-        var _a3;
-        if (!this.app) return;
-        const confirmed = await confirmDelete(
-          this.app,
-          `Delete subagent "${agent.name}"?`
-        );
-        if (!confirmed) return;
-        try {
-          await this.storage.delete(agent);
-          await this.render();
-          await ((_a3 = this.onChanged) == null ? void 0 : _a3.call(this));
-          new import_obsidian18.Notice(`Subagent "${agent.name}" deleted`);
-        } catch (e2) {
-          new import_obsidian18.Notice("Failed to delete subagent");
-        }
-      })();
-    });
-  }
-  openModal(existing) {
-    if (!this.app) return;
-    const modal = new OpencodeAgentModal(
-      this.app,
-      existing,
-      this.agents,
-      async (agent) => {
-        var _a3;
-        await this.storage.save(agent, existing);
-        await this.render();
-        await ((_a3 = this.onChanged) == null ? void 0 : _a3.call(this));
-        new import_obsidian18.Notice(
-          existing ? `Subagent "${agent.name}" updated` : `Subagent "${agent.name}" created`
-        );
-      }
-    );
-    modal.open();
-  }
-};
-function parseOptionalNumber(value, label) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return {};
-  }
-  const parsed = Number(trimmed);
-  if (!Number.isFinite(parsed)) {
-    return { error: `${label} must be a valid number` };
-  }
-  return { value: parsed };
-}
-function parseOptionalPositiveInteger(value, label) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return {};
-  }
-  const parsed = Number(trimmed);
-  if (!Number.isInteger(parsed) || parsed <= 0) {
-    return { error: `${label} must be a positive integer` };
-  }
-  return { value: parsed };
-}
-function parseOptionalJson(value, label) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return {};
-  }
-  try {
-    return { value: JSON.parse(trimmed) };
-  } catch (e2) {
-    return { error: `${label} must be valid JSON` };
-  }
-}
-function parseOptionalJsonObject(value, label) {
-  const parsed = parseOptionalJson(value, label);
-  if (parsed.error || parsed.value === void 0) {
-    return parsed.error ? { error: parsed.error } : {};
-  }
-  if (!isJsonObject(parsed.value)) {
-    return { error: `${label} must be a JSON object` };
-  }
-  return { value: parsed.value };
-}
-function parseOptionalJsonObjectOfBooleans(value, label) {
-  const parsed = parseOptionalJsonObject(value, label);
-  if (parsed.error || parsed.value === void 0) {
-    return parsed.error ? { error: parsed.error } : {};
-  }
-  if (!Object.values(parsed.value).every((entry) => typeof entry === "boolean")) {
-    return { error: `${label} must map tool names to boolean values` };
-  }
-  return { value: parsed.value };
-}
-function isJsonObject(value) {
-  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
-}
-
-// src/providers/opencode/ui/OpencodeSettingsTab.ts
-var ALL_PROVIDERS_KEY = "all";
-var opencodeSettingsTabRenderer = {
-  render(container, context) {
-    const opencodeWorkspace = maybeGetOpencodeWorkspaceServices();
-    const settingsBag = context.plugin.settings;
-    const opencodeSettings = getOpencodeProviderSettings(settingsBag);
-    const hostnameKey = getHostnameKey();
-    new import_obsidian19.Setting(container).setName("Setup").setHeading();
-    new import_obsidian19.Setting(container).setName("Enable OpenCode").setDesc("Launch `opencode acp` as a provider.").addToggle(
-      (toggle) => toggle.setValue(opencodeSettings.enabled).onChange(async (value) => {
-        updateOpencodeProviderSettings(settingsBag, { enabled: value });
-        await context.plugin.saveSettings();
-        context.refreshModelSelectors();
-      })
-    );
-    const cliPathSetting = new import_obsidian19.Setting(container).setName(`CLI Path (${hostnameKey})`).setDesc("Optional absolute path to the OpenCode CLI for this computer. Leave empty to use `opencode` from PATH.");
-    const validationEl = container.createDiv({
-      cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
-    });
-    const validatePath = (value) => {
-      const trimmed = value.trim();
-      if (!trimmed) {
-        return null;
-      }
-      const expandedPath = expandHomePath(trimmed);
-      if (!fs18.existsSync(expandedPath)) {
-        return "Path does not exist";
-      }
-      const stat = fs18.statSync(expandedPath);
-      if (!stat.isFile()) {
-        return "Path must point to a file";
-      }
-      return null;
-    };
-    const updateCliPathValidation = (value, inputEl) => {
-      const error48 = validatePath(value);
-      if (error48) {
-        validationEl.setText(error48);
-        validationEl.toggleClass("claudian-hidden", false);
-        if (inputEl) {
-          inputEl.toggleClass("claudian-input-error", true);
-        }
-        return false;
-      }
-      validationEl.toggleClass("claudian-hidden", true);
-      if (inputEl) {
-        inputEl.toggleClass("claudian-input-error", false);
-      }
-      return true;
-    };
-    const cliPathsByHost = { ...opencodeSettings.cliPathsByHost };
-    const currentValue = opencodeSettings.cliPathsByHost[hostnameKey] || "";
-    let cliPathInputEl = null;
-    const persistCliPath = async (value) => {
-      var _a3;
-      const isValid2 = updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0);
-      if (!isValid2) {
-        return false;
-      }
-      const trimmed = value.trim();
-      if (trimmed) {
-        cliPathsByHost[hostnameKey] = trimmed;
-      } else {
-        delete cliPathsByHost[hostnameKey];
-      }
-      updateOpencodeProviderSettings(settingsBag, { cliPathsByHost: { ...cliPathsByHost } });
-      clearOpencodeDiscoveryState(settingsBag);
-      await context.plugin.saveSettings();
-      (_a3 = opencodeWorkspace == null ? void 0 : opencodeWorkspace.cliResolver) == null ? void 0 : _a3.reset();
-      await recycleOpencodeRuntime();
-      return true;
-    };
-    const recycleOpencodeRuntime = async () => {
-      var _a3, _b2;
-      for (const view of context.plugin.getAllViews()) {
-        const tabManager = view.getTabManager();
-        if (tabManager == null ? void 0 : tabManager.broadcastToProviderTabs) {
-          await tabManager.broadcastToProviderTabs("opencode", (service) => Promise.resolve(service.cleanup()));
-        } else {
-          await (tabManager == null ? void 0 : tabManager.broadcastToAllTabs(
-            (service) => Promise.resolve(service.cleanup())
-          ));
-        }
-        (_a3 = view.invalidateProviderCommandCaches) == null ? void 0 : _a3.call(view, ["opencode"]);
-        (_b2 = view.refreshModelSelector) == null ? void 0 : _b2.call(view);
-      }
-    };
-    cliPathSetting.addText((text) => {
-      text.setPlaceholder(process.platform === "win32" ? "C:\\Users\\you\\AppData\\Roaming\\npm\\opencode.cmd" : "/usr/local/bin/opencode").setValue(currentValue).onChange(async (value) => {
-        await persistCliPath(value);
-      });
-      text.inputEl.addClass("claudian-settings-cli-path-input");
-      cliPathInputEl = text.inputEl;
-      updateCliPathValidation(currentValue, text.inputEl);
-    });
-    new import_obsidian19.Setting(container).setName("Models").setHeading();
-    new import_obsidian19.Setting(container).setName("Visible models").setDesc("Choose which OpenCode models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.");
-    const pickerEl = container.createDiv({ cls: "claudian-opencode-model-picker" });
-    let searchQuery = "";
-    let providerFilter = ALL_PROVIDERS_KEY;
-    const summaryEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-summary" });
-    const selectedEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-selected" });
-    const catalogEl = pickerEl.createEl("details", { cls: "claudian-opencode-model-picker-catalog" });
-    catalogEl.open = getOpencodeProviderSettings(settingsBag).visibleModels.length === 0;
-    const catalogSummaryEl = catalogEl.createEl("summary", {
-      cls: "claudian-opencode-model-picker-catalog-summary"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-caret",
-      text: "\u25B8"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-title",
-      text: "Browse models"
-    });
-    const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-count"
-    });
-    const controlsEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-controls" });
-    const searchInput = controlsEl.createEl("input", {
-      cls: "claudian-opencode-model-picker-search",
-      type: "search"
-    });
-    searchInput.placeholder = "Filter by model, provider, or ID\u2026";
-    searchInput.addEventListener("input", () => {
-      searchQuery = searchInput.value.trim().toLowerCase();
-      renderList();
-    });
-    const providerSelectEl = controlsEl.createEl("select", {
-      cls: "claudian-opencode-model-picker-provider"
-    });
-    providerSelectEl.addEventListener("change", () => {
-      providerFilter = providerSelectEl.value;
-      renderList();
-    });
-    const listEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-list" });
-    const getEnrichedModels = () => {
-      const current = getOpencodeProviderSettings(settingsBag);
-      return buildEnrichedModels(current.discoveredModels, current.visibleModels);
-    };
-    const filterModels = (models) => {
-      return models.filter((model) => {
-        if (providerFilter !== ALL_PROVIDERS_KEY && model.providerKey !== providerFilter) {
-          return false;
-        }
-        if (!searchQuery) {
-          return true;
-        }
-        return model.rawId.toLowerCase().includes(searchQuery) || model.modelLabel.toLowerCase().includes(searchQuery) || model.providerLabel.toLowerCase().includes(searchQuery) || model.description.toLowerCase().includes(searchQuery);
-      });
-    };
-    const persistVisibleModels = async (visibleModels) => {
-      const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
-      const normalized = normalizeOpencodeVisibleModels(
-        visibleModels,
-        getOpencodeProviderSettings(settingsBag).discoveredModels
-      );
-      if (sameStringList(currentVisibleModels, normalized)) {
-        return;
-      }
-      updateOpencodeProviderSettings(settingsBag, { visibleModels: normalized });
-      await context.plugin.saveSettings();
-      renderAll();
-      context.refreshModelSelectors();
-    };
-    const persistModelAliases = async (modelAliases) => {
-      updateOpencodeProviderSettings(settingsBag, { modelAliases });
-      await context.plugin.saveSettings();
-      renderSelected();
-      context.refreshModelSelectors();
-    };
-    const renderSummary = () => {
-      summaryEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      const enriched = getEnrichedModels();
-      const providerCount = new Set(enriched.map((model) => model.providerKey)).size;
-      const providerWord = providerCount === 1 ? "provider" : "providers";
-      summaryEl.createSpan({ text: "Visible: " });
-      summaryEl.createSpan({
-        cls: "claudian-opencode-model-picker-summary-value",
-        text: String(current.visibleModels.length)
-      });
-      summaryEl.createSpan({
-        text: ` of ${current.discoveredModels.length} discovered \u2022 ${providerCount} ${providerWord}`
-      });
-      catalogSummaryCountEl.setText(
-        current.discoveredModels.length > 0 ? `${current.discoveredModels.length} available` : "No models discovered yet"
-      );
-    };
-    const renderSelected = () => {
-      var _a3;
-      selectedEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      if (current.visibleModels.length === 0) {
-        selectedEl.toggleClass("claudian-hidden", true);
-        return;
-      }
-      selectedEl.toggleClass("claudian-hidden", false);
-      const enrichedByRawId = new Map(
-        getEnrichedModels().map((model) => [model.rawId, model])
-      );
-      const headerEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-header" });
-      headerEl.createEl("span", {
-        cls: "claudian-opencode-model-picker-selected-label",
-        text: `Selected (${current.visibleModels.length})`
-      });
-      const clearAllBtn = headerEl.createEl("button", {
-        cls: "claudian-opencode-model-picker-selected-clear",
-        text: "Clear all"
-      });
-      clearAllBtn.setAttribute("aria-label", "Clear all selected models");
-      clearAllBtn.addEventListener("click", () => {
-        void persistVisibleModels([]);
-      });
-      const rowsEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-rows" });
-      for (const rawId of current.visibleModels) {
-        const enriched = enrichedByRawId.get(rawId);
-        const defaultLabel = enriched ? `${enriched.providerLabel}/${enriched.modelLabel}` : rawId;
-        const rowEl = rowsEl.createDiv({ cls: "claudian-opencode-model-picker-selected-row" });
-        if (enriched && !enriched.isAvailable) {
-          rowEl.classList.add("claudian-opencode-model-picker-selected-row--unavailable");
-        }
-        const infoEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-info" });
-        const titleEl = infoEl.createDiv({ cls: "claudian-opencode-model-picker-selected-title" });
-        if (enriched) {
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-badge",
-            text: enriched.providerLabel
-          });
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-name",
-            text: enriched.modelLabel
-          });
-        } else {
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-name",
-            text: rawId
-          });
-        }
-        if (enriched && !enriched.isAvailable) {
-          infoEl.createEl("div", {
-            cls: "claudian-opencode-model-picker-selected-unavailable",
-            text: "Not currently reported by OpenCode"
-          });
-        }
-        infoEl.createEl("div", {
-          cls: "claudian-opencode-model-picker-selected-id",
-          text: rawId
-        });
-        const controlsEl2 = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-controls" });
-        const aliasInput = controlsEl2.createEl("input", {
-          cls: "claudian-opencode-model-picker-selected-alias",
-          type: "text"
-        });
-        aliasInput.placeholder = defaultLabel;
-        aliasInput.value = (_a3 = current.modelAliases[rawId]) != null ? _a3 : "";
-        aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
-        aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
-        const commitAlias = () => {
-          var _a4;
-          const latest = getOpencodeProviderSettings(settingsBag);
-          const existing = (_a4 = latest.modelAliases[rawId]) != null ? _a4 : "";
-          const next = aliasInput.value.trim();
-          if (next === existing) {
-            aliasInput.value = existing;
-            return;
-          }
-          const nextAliases = { ...latest.modelAliases };
-          if (next) {
-            nextAliases[rawId] = next;
-          } else {
-            delete nextAliases[rawId];
-          }
-          void persistModelAliases(nextAliases);
-        };
-        aliasInput.addEventListener("blur", commitAlias);
-        aliasInput.addEventListener("keydown", (event) => {
-          var _a4;
-          if (event.key === "Enter") {
-            event.preventDefault();
-            aliasInput.blur();
-          } else if (event.key === "Escape") {
-            event.preventDefault();
-            aliasInput.value = (_a4 = getOpencodeProviderSettings(settingsBag).modelAliases[rawId]) != null ? _a4 : "";
-            aliasInput.blur();
-          }
-        });
-        const removeBtn = controlsEl2.createEl("button", {
-          cls: "claudian-opencode-model-picker-selected-remove",
-          text: "\xD7"
-        });
-        removeBtn.setAttribute("aria-label", `Remove ${defaultLabel}`);
-        removeBtn.addEventListener("click", () => {
-          void persistVisibleModels(current.visibleModels.filter((entry) => entry !== rawId));
-        });
-      }
-    };
-    const renderProviderSelect = () => {
-      const enriched = getEnrichedModels();
-      const providers = /* @__PURE__ */ new Map();
-      for (const model of enriched) {
-        const existing = providers.get(model.providerKey);
-        if (existing) {
-          existing.count += 1;
-        } else {
-          providers.set(model.providerKey, { count: 1, label: model.providerLabel });
-        }
-      }
-      providerSelectEl.empty();
-      providerSelectEl.createEl("option", {
-        text: `All providers (${enriched.length})`,
-        value: ALL_PROVIDERS_KEY
-      });
-      const sortedProviders = Array.from(providers.entries()).sort(([, left], [, right]) => left.label.localeCompare(right.label));
-      for (const [key, { count, label }] of sortedProviders) {
-        providerSelectEl.createEl("option", {
-          text: `${label} (${count})`,
-          value: key
-        });
-      }
-      if (providerFilter !== ALL_PROVIDERS_KEY && !providers.has(providerFilter)) {
-        providerFilter = ALL_PROVIDERS_KEY;
-      }
-      providerSelectEl.value = providerFilter;
-    };
-    const renderList = () => {
-      listEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      const selectedIds = new Set(current.visibleModels);
-      const enriched = getEnrichedModels();
-      const filtered = filterModels(enriched);
-      if (filtered.length === 0) {
-        const emptyEl = listEl.createDiv({ cls: "claudian-opencode-model-picker-empty" });
-        emptyEl.setText(enriched.length === 0 ? "Start OpenCode once to load its model catalog. Claudian will then let you pick visible models." : "No models match your filter.");
-        return;
-      }
-      for (const model of filtered) {
-        const rowEl = listEl.createEl("label", { cls: "claudian-opencode-model-picker-row" });
-        const isSelected = selectedIds.has(model.rawId);
-        if (isSelected) {
-          rowEl.classList.add("claudian-opencode-model-picker-row--selected");
-        }
-        rowEl.title = model.rawId;
-        const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
-        checkboxEl.checked = isSelected;
-        checkboxEl.addEventListener("change", () => {
-          const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
-          const next = checkboxEl.checked ? [...currentVisibleModels, model.rawId] : currentVisibleModels.filter((id) => id !== model.rawId);
-          void persistVisibleModels(next);
-        });
-        const textEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-row-text" });
-        const headerEl = textEl.createDiv({ cls: "claudian-opencode-model-picker-row-header" });
-        headerEl.createEl("span", {
-          cls: "claudian-opencode-model-picker-row-name",
-          text: model.modelLabel
-        });
-        const badgeEl = headerEl.createEl("span", {
-          cls: "claudian-opencode-model-picker-row-badge",
-          text: model.providerLabel
-        });
-        if (!model.isAvailable) {
-          badgeEl.classList.add("claudian-opencode-model-picker-row-badge--unavailable");
-          badgeEl.setText("Unavailable");
-          badgeEl.title = "Configured model not currently reported by OpenCode";
-        }
-        textEl.createDiv({
-          cls: "claudian-opencode-model-picker-row-meta",
-          text: model.rawId
-        });
-        if (model.description) {
-          textEl.createDiv({
-            cls: "claudian-opencode-model-picker-row-desc",
-            text: model.description
-          });
-        }
-      }
-    };
-    const renderAll = () => {
-      renderSummary();
-      renderSelected();
-      renderProviderSelect();
-      renderList();
-    };
-    renderAll();
-    new import_obsidian19.Setting(container).setName("Commands and skills").setHeading();
-    const commandsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
-    commandsDesc.createEl("p", {
-      cls: "setting-item-description",
-      text: "OpenCode can auto-detect vault-level Claude slash commands from .claude/commands/ and skills from .claude/skills/, .codex/skills/, and .agents/skills/. Manage those entries in the Claude or Codex settings tab. This setting only hides entries from the OpenCode dropdown."
-    });
-    context.renderHiddenProviderCommandSetting(container, "opencode", {
-      name: "Hidden Commands and Skills",
-      desc: "Hide specific OpenCode commands and skills from the dropdown. Enter names without the leading slash, one per line.",
-      placeholder: "compact\nreview\nfix"
-    });
-    if (opencodeWorkspace == null ? void 0 : opencodeWorkspace.agentStorage) {
-      new import_obsidian19.Setting(container).setName("Subagents").setHeading();
-      const subagentsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
-      subagentsDesc.createEl("p", {
-        cls: "setting-item-description",
-        text: "Manage vault-level OpenCode subagents from .opencode/agent/ and legacy .opencode/agents/. New entries are saved as subagent-only files and appear in the @mention menu."
-      });
-      const subagentsContainer = container.createDiv({ cls: "claudian-slash-commands-container" });
-      new OpencodeAgentSettings(
-        subagentsContainer,
-        opencodeWorkspace.agentStorage,
-        context.plugin.app,
-        async () => {
-          var _a3;
-          await ((_a3 = opencodeWorkspace.refreshAgentMentions) == null ? void 0 : _a3.call(opencodeWorkspace));
-          await recycleOpencodeRuntime();
-        }
-      );
-    }
-    renderEnvironmentSettingsSection({
-      container,
-      plugin: context.plugin,
-      scope: "provider:opencode",
-      heading: "Environment",
-      name: "Environment Variables",
-      desc: "Extra environment variables passed to OpenCode. `OPENCODE_ENABLE_EXA=1` is enabled by default.",
-      placeholder: `${OPENCODE_DEFAULT_ENVIRONMENT_VARIABLES}
-OPENCODE_DB=/path/to/opencode.db`,
-      renderCustomContextLimits: (target) => context.renderCustomContextLimits(target, "opencode")
-    });
-  }
-};
-function buildEnrichedModels(discoveredModels, visibleModels) {
-  var _a3;
-  const enriched = [];
-  const discoveredIds = /* @__PURE__ */ new Set();
-  const baseModels = buildOpencodeBaseModels(discoveredModels);
-  for (const model of baseModels) {
-    const { modelLabel, providerLabel } = splitOpencodeModelLabel(model.label || model.rawId);
-    discoveredIds.add(model.rawId);
-    enriched.push({
-      description: (_a3 = model.description) != null ? _a3 : "",
-      isAvailable: true,
-      modelLabel,
-      providerKey: providerLabel.toLowerCase(),
-      providerLabel,
-      rawId: model.rawId
-    });
-  }
-  for (const rawId of visibleModels) {
-    if (discoveredIds.has(rawId)) {
-      continue;
-    }
-    const { modelLabel, providerLabel } = splitOpencodeModelLabel(rawId);
-    enriched.push({
-      description: "",
-      isAvailable: false,
-      modelLabel,
-      providerKey: providerLabel.toLowerCase(),
-      providerLabel,
-      rawId
-    });
-  }
-  return enriched.sort((left, right) => {
-    const providerCmp = left.providerLabel.localeCompare(right.providerLabel);
-    if (providerCmp !== 0) {
-      return providerCmp;
-    }
-    return left.modelLabel.localeCompare(right.modelLabel);
-  });
-}
-
 // src/providers/opencode/runtime/OpencodeChatRuntime.ts
-var fs21 = __toESM(require("node:fs/promises"));
+var fs20 = __toESM(require("node:fs/promises"));
 var path19 = __toESM(require("node:path"));
 init_env();
 init_path();
@@ -73369,10 +72782,18 @@ function extractAcpSessionModeState(params) {
     currentModeId: (_d2 = (_c = params.modes) == null ? void 0 : _c.currentModeId) != null ? _d2 : current
   };
 }
+function extractAcpSessionThoughtLevelState(params) {
+  const { configId, items, current } = resolveSelectItems(params.configOptions, "thought_level");
+  return {
+    availableLevels: items != null ? items : [],
+    configId,
+    currentLevel: current
+  };
+}
 function resolveSelectItems(configOptions, category) {
   const selectOption = findSessionConfigSelectOption(configOptions, category);
   if (!selectOption) {
-    return { current: null, items: null };
+    return { configId: null, current: null, items: null };
   }
   const items = flattenAcpSessionConfigSelectOptions(selectOption.options).map((option) => ({
     ...option.description ? { description: option.description } : {},
@@ -73380,6 +72801,7 @@ function resolveSelectItems(configOptions, category) {
     name: option.name
   }));
   return {
+    configId: selectOption.id,
     current: selectOption.currentValue,
     items: items.length > 0 ? items : null
   };
@@ -73392,8 +72814,11 @@ function findSessionConfigSelectOption(configOptions, category) {
   if ((byCategory == null ? void 0 : byCategory.type) === "select") {
     return byCategory;
   }
-  const byLegacyId = configOptions.find((option) => option.type === "select" && normalizeComparableKey(option.id) === category);
+  const byLegacyId = configOptions.find((option) => option.type === "select" && normalizeComparableKey(option.id) === legacyConfigIdForCategory(category));
   return (byLegacyId == null ? void 0 : byLegacyId.type) === "select" ? byLegacyId : null;
+}
+function legacyConfigIdForCategory(category) {
+  return category === "thought_level" ? "effort" : category;
 }
 function isSelectGroup(option) {
   return "options" in option;
@@ -74238,12 +73663,12 @@ function buildOpencodePromptBlocks(request, conversationHistory = []) {
 }
 
 // src/providers/opencode/runtime/OpencodeLaunchArtifacts.ts
-var fs20 = __toESM(require("node:fs/promises"));
+var fs19 = __toESM(require("node:fs/promises"));
 var path18 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/runtime/OpencodePaths.ts
-var fs19 = __toESM(require("node:fs"));
+var fs18 = __toESM(require("node:fs"));
 var os11 = __toESM(require("node:os"));
 var path17 = __toESM(require("node:path"));
 var OPENCODE_APP_NAME = "opencode";
@@ -74273,7 +73698,7 @@ function resolveOpencodeDatabasePath(env = process.env) {
   }
   const candidates = getOpencodeDatabasePathCandidates(env);
   for (const candidate of candidates) {
-    if (fs19.existsSync(candidate)) {
+    if (fs18.existsSync(candidate)) {
       return candidate;
     }
   }
@@ -74285,12 +73710,12 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
     if (preferred === ":memory:") {
       return preferred;
     }
-    if (fs19.existsSync(preferred)) {
+    if (fs18.existsSync(preferred)) {
       return preferred;
     }
   }
   const resolved = resolveOpencodeDatabasePath(env);
-  if (resolved && (resolved === ":memory:" || fs19.existsSync(resolved))) {
+  if (resolved && (resolved === ":memory:" || fs18.existsSync(resolved))) {
     return resolved;
   }
   return preferred != null ? preferred : resolved;
@@ -74306,7 +73731,7 @@ function getOpencodeDatabasePathCandidates(env) {
   for (const dataDir of dataDirs) {
     pushCandidate(candidates, seen, path17.join(dataDir, DEFAULT_DATABASE_NAME));
     try {
-      const matches = fs19.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
+      const matches = fs18.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
         if (left === DEFAULT_DATABASE_NAME) return -1;
         if (right === DEFAULT_DATABASE_NAME) return 1;
         return left.localeCompare(right);
@@ -74384,7 +73809,7 @@ async function prepareOpencodeLaunchArtifacts(params) {
   )}
 `;
   const databasePath = resolveOpencodeDatabasePath(params.runtimeEnv);
-  await fs20.mkdir(artifactsDir, { recursive: true });
+  await fs19.mkdir(artifactsDir, { recursive: true });
   await writeIfChanged(systemPromptPath, systemPrompt);
   await writeIfChanged(configPath, configContent);
   return {
@@ -74431,13 +73856,13 @@ function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, mana
 }
 async function writeIfChanged(filePath, content) {
   try {
-    const existing = await fs20.readFile(filePath, "utf-8");
+    const existing = await fs19.readFile(filePath, "utf-8");
     if (existing === content) {
       return;
     }
   } catch (e2) {
   }
-  await fs20.writeFile(filePath, content, "utf-8");
+  await fs19.writeFile(filePath, content, "utf-8");
 }
 async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
   const trimmedPath = configuredPath == null ? void 0 : configuredPath.trim();
@@ -74447,7 +73872,7 @@ async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
   const expandedPath = expandHomePath(trimmedPath);
   const resolvedPath = path18.isAbsolute(expandedPath) ? expandedPath : path18.resolve(workspaceRoot, expandedPath);
   try {
-    const rawConfig = await fs20.readFile(resolvedPath, "utf8");
+    const rawConfig = await fs19.readFile(resolvedPath, "utf8");
     const parsedConfig = JSON.parse(rawConfig);
     return isPlainObject5(parsedConfig) ? parsedConfig : {};
   } catch (e2) {
@@ -74530,6 +73955,9 @@ var OpencodeChatRuntime = class {
     this.contextUsage = null;
     this.currentDatabasePath = null;
     this.currentLaunchKey = null;
+    this.currentSessionEffortConfigId = null;
+    this.currentSessionEffortValue = null;
+    this.currentSessionEffortValues = /* @__PURE__ */ new Set();
     this.currentSessionModelId = null;
     this.currentSessionModeId = null;
     this.currentTurnMetadata = {};
@@ -74577,6 +74005,9 @@ var OpencodeChatRuntime = class {
     const previousSessionId = this.sessionId;
     const nextSessionId = (_a3 = conversation == null ? void 0 : conversation.sessionId) != null ? _a3 : null;
     if (this.sessionId !== nextSessionId) {
+      this.currentSessionEffortConfigId = null;
+      this.currentSessionEffortValue = null;
+      this.currentSessionEffortValues = /* @__PURE__ */ new Set();
       this.currentSessionModelId = null;
       this.currentSessionModeId = null;
       this.sessionInvalidated = false;
@@ -74593,6 +74024,38 @@ var OpencodeChatRuntime = class {
     }
   }
   async reloadMcpServers() {
+  }
+  async warmModelMetadata(model) {
+    const selectedRawModelId = decodeOpencodeModelId(model);
+    if (!selectedRawModelId) {
+      return false;
+    }
+    if (!await this.ensureReady({ allowSessionCreation: true })) {
+      return false;
+    }
+    if (!this.connection || !this.sessionId) {
+      return false;
+    }
+    const discoveredModels = getOpencodeProviderSettings(this.plugin.settings).discoveredModels;
+    const selectedBaseRawModelId = resolveOpencodeBaseModelRawId(selectedRawModelId, discoveredModels);
+    if (!selectedBaseRawModelId) {
+      return false;
+    }
+    const availableModelIds = new Set(discoveredModels.map((entry) => entry.rawId));
+    if (availableModelIds.size > 0 && !availableModelIds.has(selectedBaseRawModelId)) {
+      return false;
+    }
+    const response = await this.connection.setConfigOption({
+      configId: "model",
+      sessionId: this.sessionId,
+      type: "select",
+      value: selectedBaseRawModelId
+    });
+    this.currentSessionModelId = selectedBaseRawModelId;
+    await this.syncSessionModelState({
+      configOptions: response.configOptions
+    });
+    return true;
   }
   async ensureReady(options) {
     var _a3, _b2;
@@ -74694,6 +74157,7 @@ var OpencodeChatRuntime = class {
     try {
       await this.applySelectedMode(sessionId);
       await this.applySelectedModel(sessionId, queryOptions);
+      await this.applySelectedEffort(sessionId);
     } catch (error48) {
       yield {
         type: "error",
@@ -74952,21 +74416,15 @@ var OpencodeChatRuntime = class {
       return null;
     }
     const discoveredModels = getOpencodeProviderSettings(providerSettings).discoveredModels;
-    const effortLevel = typeof providerSettings.effortLevel === "string" ? providerSettings.effortLevel : OPENCODE_DEFAULT_THINKING_LEVEL;
     const normalizedBaseRawModelId = resolveOpencodeBaseModelRawId(selectedBaseRawModelId, discoveredModels);
-    const resolvedRawModelId = combineOpencodeRawModelSelection(
-      normalizedBaseRawModelId,
-      effortLevel,
-      discoveredModels
-    );
-    if (!resolvedRawModelId) {
+    if (!normalizedBaseRawModelId) {
       return null;
     }
     const availableModelIds = new Set(discoveredModels.map((model) => model.rawId));
-    if (availableModelIds.size > 0 && !availableModelIds.has(resolvedRawModelId)) {
+    if (availableModelIds.size > 0 && !availableModelIds.has(normalizedBaseRawModelId)) {
       return null;
     }
-    return resolvedRawModelId;
+    return normalizedBaseRawModelId;
   }
   getAuxiliaryModel() {
     var _a3;
@@ -75038,9 +74496,37 @@ var OpencodeChatRuntime = class {
       configOptions: response.configOptions
     });
   }
+  resolveSelectedEffortValue() {
+    const providerSettings = this.getProviderSettings();
+    const selectedEffort = typeof providerSettings.effortLevel === "string" ? providerSettings.effortLevel.trim() : "";
+    if (!selectedEffort || selectedEffort === OPENCODE_DEFAULT_THINKING_LEVEL) {
+      return null;
+    }
+    return this.currentSessionEffortValues.has(selectedEffort) ? selectedEffort : null;
+  }
+  async applySelectedEffort(sessionId) {
+    if (!this.connection || !this.currentSessionEffortConfigId) {
+      return;
+    }
+    const selectedEffort = this.resolveSelectedEffortValue();
+    if (!selectedEffort || selectedEffort === this.currentSessionEffortValue) {
+      return;
+    }
+    const response = await this.connection.setConfigOption({
+      configId: this.currentSessionEffortConfigId,
+      sessionId,
+      type: "select",
+      value: selectedEffort
+    });
+    this.currentSessionEffortValue = selectedEffort;
+    await this.syncSessionModelState({
+      configOptions: response.configOptions
+    });
+  }
   async syncSessionModelState(params) {
+    var _a3;
     const acpState = extractAcpSessionModelState(params);
-    const currentRawModelId = acpState.currentModelId;
+    const currentRawModelId = (_a3 = acpState.currentModelId) != null ? _a3 : this.currentSessionModelId;
     const discoveredModels = normalizeOpencodeDiscoveredModels(
       acpState.availableModels.map((model) => ({
         ...model.description ? { description: model.description } : {},
@@ -75054,9 +74540,30 @@ var OpencodeChatRuntime = class {
     const settingsBag = this.plugin.settings;
     const currentSettings = getOpencodeProviderSettings(settingsBag);
     const currentBaseRawModelId = currentRawModelId ? resolveOpencodeBaseModelRawId(currentRawModelId, discoveredModels) : null;
-    const currentThinkingLevel = currentRawModelId ? extractOpencodeModelVariantValue(currentRawModelId, discoveredModels) : null;
+    const thoughtLevelState = extractAcpSessionThoughtLevelState(params);
+    const currentThinkingOptions = normalizeOpencodeModelVariants(
+      thoughtLevelState.availableLevels.map((level) => ({
+        ...level.description ? { description: level.description } : {},
+        label: level.name,
+        value: level.id
+      }))
+    );
+    const currentThinkingLevel = thoughtLevelState.currentLevel;
+    this.currentSessionEffortConfigId = currentThinkingOptions.length > 0 ? thoughtLevelState.configId : null;
+    this.currentSessionEffortValue = currentThinkingOptions.length > 0 ? currentThinkingLevel : null;
+    this.currentSessionEffortValues = new Set(currentThinkingOptions.map((option) => option.value));
+    const nextThinkingOptionsByModel = { ...currentSettings.thinkingOptionsByModel };
+    if (currentBaseRawModelId) {
+      if (currentThinkingOptions.length > 0) {
+        nextThinkingOptionsByModel[currentBaseRawModelId] = currentThinkingOptions;
+      } else {
+        delete nextThinkingOptionsByModel[currentBaseRawModelId];
+      }
+    }
     const nextVisibleModels = currentSettings.visibleModels.length === 0 && currentBaseRawModelId ? [currentBaseRawModelId] : currentSettings.visibleModels;
-    const nextPreferredThinkingByModel = currentBaseRawModelId && currentThinkingLevel ? {
+    const currentPreferredThinking = currentBaseRawModelId ? currentSettings.preferredThinkingByModel[currentBaseRawModelId] : "";
+    const shouldSeedCurrentThinking = currentBaseRawModelId && currentThinkingLevel && (!currentPreferredThinking || currentThinkingOptions.length > 0 && !this.currentSessionEffortValues.has(currentPreferredThinking));
+    const nextPreferredThinkingByModel = shouldSeedCurrentThinking && currentBaseRawModelId && currentThinkingLevel ? {
       ...currentSettings.preferredThinkingByModel,
       [currentBaseRawModelId]: currentThinkingLevel
     } : currentSettings.preferredThinkingByModel;
@@ -75065,14 +74572,13 @@ var OpencodeChatRuntime = class {
       currentSettings.preferredThinkingByModel,
       nextPreferredThinkingByModel
     );
-    const discoveryChanged = discoveredModels.length > 0 && !sameDiscoveredModels(currentSettings.discoveredModels, discoveredModels) && updateOpencodeDiscoveryState(settingsBag, { discoveredModels });
+    const shouldUpdateDiscoveredModels = discoveredModels.length > 0 && !sameDiscoveredModels(currentSettings.discoveredModels, discoveredModels);
+    const shouldUpdateThinkingOptions = !sameThinkingOptionsByModel(
+      currentSettings.thinkingOptionsByModel,
+      nextThinkingOptionsByModel
+    );
+    const discoveryChanged = shouldUpdateDiscoveredModels && updateOpencodeDiscoveryState(settingsBag, { discoveredModels });
     let changed = shouldSeedVisibleModels || shouldSeedPreferredThinking;
-    if (changed) {
-      updateOpencodeProviderSettings(settingsBag, {
-        ...shouldSeedPreferredThinking ? { preferredThinkingByModel: nextPreferredThinkingByModel } : {},
-        ...shouldSeedVisibleModels ? { visibleModels: nextVisibleModels } : {}
-      });
-    }
     if (currentBaseRawModelId) {
       const seeded = this.seedActiveModelSelection(
         settingsBag,
@@ -75081,10 +74587,17 @@ var OpencodeChatRuntime = class {
       );
       changed = changed || seeded;
     }
-    if (!changed && !discoveryChanged) {
+    if (shouldUpdateThinkingOptions || shouldSeedPreferredThinking || shouldSeedVisibleModels) {
+      updateOpencodeProviderSettings(settingsBag, {
+        ...shouldSeedPreferredThinking ? { preferredThinkingByModel: nextPreferredThinkingByModel } : {},
+        ...shouldUpdateThinkingOptions ? { thinkingOptionsByModel: nextThinkingOptionsByModel } : {},
+        ...shouldSeedVisibleModels ? { visibleModels: nextVisibleModels } : {}
+      });
+    }
+    if (!changed && !discoveryChanged && !shouldUpdateThinkingOptions) {
       return;
     }
-    if (changed) {
+    if (changed || shouldUpdateThinkingOptions) {
       await this.plugin.saveSettings();
     }
     this.refreshModelSelectors();
@@ -75099,7 +74612,8 @@ var OpencodeChatRuntime = class {
     }
     if (thinkingLevel) {
       const savedProviderEffort = ensureProviderProjectionMap(settingsBag, "savedProviderEffort");
-      if (typeof savedProviderEffort.opencode !== "string" || !savedProviderEffort.opencode) {
+      const savedEffort = typeof savedProviderEffort.opencode === "string" ? savedProviderEffort.opencode.trim() : "";
+      if (!savedEffort || savedEffort === OPENCODE_DEFAULT_THINKING_LEVEL) {
         savedProviderEffort.opencode = thinkingLevel;
         changed = true;
       }
@@ -75114,7 +74628,7 @@ var OpencodeChatRuntime = class {
     }
     if (thinkingLevel) {
       const activeEffort = typeof settingsBag.effortLevel === "string" ? settingsBag.effortLevel : "";
-      if (!activeEffort) {
+      if (!activeEffort || activeEffort === OPENCODE_DEFAULT_THINKING_LEVEL) {
         settingsBag.effortLevel = thinkingLevel;
         changed = true;
       }
@@ -75329,7 +74843,7 @@ var OpencodeChatRuntime = class {
   async readTextFile(request) {
     var _a3;
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    const content = await fs21.readFile(resolvedPath, "utf-8");
+    const content = await fs20.readFile(resolvedPath, "utf-8");
     if (request.line === void 0 && request.limit === void 0) {
       return { content };
     }
@@ -75342,8 +74856,8 @@ var OpencodeChatRuntime = class {
   }
   async writeTextFile(request) {
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    await fs21.mkdir(path19.dirname(resolvedPath), { recursive: true });
-    await fs21.writeFile(resolvedPath, request.content, "utf-8");
+    await fs20.mkdir(path19.dirname(resolvedPath), { recursive: true });
+    await fs20.writeFile(resolvedPath, request.content, "utf-8");
     return {};
   }
   resolveSessionPath(sessionId, rawPath) {
@@ -75579,8 +75093,956 @@ function selectPermissionOption(options, preferredKinds) {
   return { outcome: { outcome: "cancelled" } };
 }
 
-// src/providers/opencode/app/OpencodeRuntimeCommandLoader.ts
+// src/providers/opencode/ui/OpencodeAgentSettings.ts
+var import_obsidian18 = require("obsidian");
+var OPENCODE_AGENT_INVALID_SEGMENT_PATTERN = /[<>:"\\|?*]/;
+function validateOpencodeAgentName(name) {
+  if (!name) return "Agent name is required";
+  const segments = name.split("/");
+  if (segments.length === 0 || segments.some((segment) => segment.length === 0)) {
+    return "Agent name must use slash-separated path segments without leading or trailing slashes";
+  }
+  for (const segment of segments) {
+    if (!segment.trim()) {
+      return "Agent name path segments cannot be empty or whitespace-only";
+    }
+    if (segment !== segment.trim()) {
+      return "Agent name path segments cannot start or end with whitespace";
+    }
+    if (segment === "." || segment === "..") {
+      return 'Agent name cannot include "." or ".." path segments';
+    }
+    if (segment.includes("\0") || OPENCODE_AGENT_INVALID_SEGMENT_PATTERN.test(segment)) {
+      return "Agent name path segments cannot contain Windows-reserved filename characters";
+    }
+  }
+  return null;
+}
+function findOpencodeAgentNameConflict(agents, name, currentPersistenceKey) {
+  var _a3;
+  const normalizedName = name.toLowerCase();
+  return (_a3 = agents.find(
+    (agent) => agent.name.toLowerCase() === normalizedName && agent.persistenceKey !== currentPersistenceKey
+  )) != null ? _a3 : null;
+}
+var OpencodeAgentModal = class extends import_obsidian18.Modal {
+  constructor(app, existing, allAgents, onSave) {
+    super(app);
+    this.existing = existing;
+    this.allAgents = allAgents;
+    this.onSave = onSave;
+  }
+  onOpen() {
+    var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m, _n, _o, _p2, _q;
+    this.setTitle(this.existing ? "Edit OpenCode Subagent" : "Add OpenCode Subagent");
+    this.modalEl.addClass("claudian-sp-modal");
+    const { contentEl } = this;
+    let nameInput;
+    let descriptionInput;
+    let modelInput;
+    let variantInput;
+    let temperatureInput;
+    let topPInput;
+    let colorInput;
+    let stepsInput;
+    let hiddenValue = (_b2 = (_a3 = this.existing) == null ? void 0 : _a3.hidden) != null ? _b2 : false;
+    let disableValue = (_d2 = (_c = this.existing) == null ? void 0 : _c.disable) != null ? _d2 : false;
+    let toolsInput;
+    let permissionInput;
+    let optionsInput;
+    new import_obsidian18.Setting(contentEl).setName("Name").setDesc("OpenCode agent name. Use slash-separated segments for nested agents.").addText((text) => {
+      var _a4, _b3;
+      nameInput = text.inputEl;
+      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.name) != null ? _b3 : "").setPlaceholder("Review");
+    });
+    new import_obsidian18.Setting(contentEl).setName("Description").setDesc("When OpenCode should use this subagent").addText((text) => {
+      var _a4, _b3;
+      descriptionInput = text.inputEl;
+      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.description) != null ? _b3 : "").setPlaceholder("Reviews code for correctness and maintainability");
+    });
+    const details = contentEl.createEl("details", { cls: "claudian-sp-advanced-section" });
+    details.createEl("summary", {
+      text: "Advanced options",
+      cls: "claudian-sp-advanced-summary"
+    });
+    if (((_e = this.existing) == null ? void 0 : _e.model) || ((_f = this.existing) == null ? void 0 : _f.variant) || ((_g = this.existing) == null ? void 0 : _g.temperature) !== void 0 || ((_h = this.existing) == null ? void 0 : _h.topP) !== void 0 || ((_i = this.existing) == null ? void 0 : _i.color) || ((_j2 = this.existing) == null ? void 0 : _j2.steps) !== void 0 || ((_k = this.existing) == null ? void 0 : _k.hidden) || ((_l = this.existing) == null ? void 0 : _l.disable) || ((_m = this.existing) == null ? void 0 : _m.tools) || ((_n = this.existing) == null ? void 0 : _n.permission) !== void 0 || ((_o = this.existing) == null ? void 0 : _o.options)) {
+      details.open = true;
+    }
+    new import_obsidian18.Setting(details).setName("Model").setDesc("Model override in provider/model format").addText((text) => {
+      var _a4, _b3;
+      modelInput = text.inputEl;
+      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.model) != null ? _b3 : "").setPlaceholder("Anthropic/Claude-sonnet-4-20250514");
+    });
+    new import_obsidian18.Setting(details).setName("Variant").setDesc("Model variant override").addText((text) => {
+      var _a4, _b3;
+      variantInput = text.inputEl;
+      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.variant) != null ? _b3 : "").setPlaceholder("High");
+    });
+    new import_obsidian18.Setting(details).setName("Temperature").setDesc("Optional sampling temperature").addText((text) => {
+      var _a4;
+      temperatureInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.temperature) !== void 0 ? String(this.existing.temperature) : "").setPlaceholder("0.1");
+    });
+    new import_obsidian18.Setting(details).setName("Top p").setDesc("Optional nucleus sampling value").addText((text) => {
+      var _a4;
+      topPInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.topP) !== void 0 ? String(this.existing.topP) : "").setPlaceholder("0.9");
+    });
+    new import_obsidian18.Setting(details).setName("Color").setDesc("Hex color or theme token").addText((text) => {
+      var _a4, _b3;
+      colorInput = text.inputEl;
+      text.setValue((_b3 = (_a4 = this.existing) == null ? void 0 : _a4.color) != null ? _b3 : "").setPlaceholder("#Ff5733");
+    });
+    new import_obsidian18.Setting(details).setName("Steps").setDesc("Maximum agentic iterations before forcing text-only output").addText((text) => {
+      var _a4;
+      stepsInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.steps) !== void 0 ? String(this.existing.steps) : "").setPlaceholder("10");
+    });
+    new import_obsidian18.Setting(details).setName("Hide from @mention").setDesc("Hide this subagent from the @ autocomplete menu").addToggle((toggle) => {
+      toggle.setValue(hiddenValue).onChange((value) => {
+        hiddenValue = value;
+      });
+    });
+    new import_obsidian18.Setting(details).setName("Disable agent").setDesc("Disable the agent without deleting the file").addToggle((toggle) => {
+      toggle.setValue(disableValue).onChange((value) => {
+        disableValue = value;
+      });
+    });
+    new import_obsidian18.Setting(details).setName("Enabled tools (JSON)").setDesc('Optional deprecated tools map, e.g. {"write":false,"edit":false}').addTextArea((text) => {
+      var _a4;
+      toolsInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.tools) ? JSON.stringify(this.existing.tools, null, 2) : "").setPlaceholder('{\n  "write": false,\n  "edit": false\n}');
+    });
+    new import_obsidian18.Setting(details).setName("Permission (JSON)").setDesc('Optional permission config, e.g. {"edit":"deny","bash":"allow"}').addTextArea((text) => {
+      var _a4;
+      permissionInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.permission) !== void 0 ? JSON.stringify(this.existing.permission, null, 2) : "").setPlaceholder('{\n  "edit": "deny"\n}');
+    });
+    new import_obsidian18.Setting(details).setName("Options (JSON)").setDesc("Optional custom agent options").addTextArea((text) => {
+      var _a4;
+      optionsInput = text.inputEl;
+      text.setValue(((_a4 = this.existing) == null ? void 0 : _a4.options) ? JSON.stringify(this.existing.options, null, 2) : "").setPlaceholder('{\n  "focus": "security"\n}');
+    });
+    new import_obsidian18.Setting(contentEl).setName("Prompt").setDesc("Markdown body used as the agent prompt");
+    const promptArea = contentEl.createEl("textarea", {
+      cls: "claudian-sp-content-area",
+      attr: {
+        rows: "10",
+        placeholder: "Review code changes carefully and call out correctness, regressions, and missing coverage."
+      }
+    });
+    promptArea.value = (_q = (_p2 = this.existing) == null ? void 0 : _p2.prompt) != null ? _q : "";
+    const buttonContainer = contentEl.createDiv({ cls: "claudian-sp-modal-buttons" });
+    const cancelBtn = buttonContainer.createEl("button", {
+      text: "Cancel",
+      cls: "claudian-cancel-btn"
+    });
+    cancelBtn.addEventListener("click", () => this.close());
+    const saveBtn = buttonContainer.createEl("button", {
+      text: "Save",
+      cls: "claudian-save-btn"
+    });
+    saveBtn.addEventListener("click", () => {
+      void (async () => {
+        var _a4, _b3, _c2;
+        const name = nameInput.value.trim();
+        const nameError = validateOpencodeAgentName(name);
+        if (nameError) {
+          new import_obsidian18.Notice(nameError);
+          return;
+        }
+        const description = descriptionInput.value.trim();
+        if (!description) {
+          new import_obsidian18.Notice("Description is required");
+          return;
+        }
+        const prompt = promptArea.value;
+        if (!prompt.trim()) {
+          new import_obsidian18.Notice("Prompt is required");
+          return;
+        }
+        const duplicate = findOpencodeAgentNameConflict(
+          this.allAgents,
+          name,
+          (_a4 = this.existing) == null ? void 0 : _a4.persistenceKey
+        );
+        if (duplicate) {
+          new import_obsidian18.Notice(`A subagent named "${name}" already exists`);
+          return;
+        }
+        const temperature = parseOptionalNumber(temperatureInput.value, "Temperature");
+        if (temperature.error) {
+          new import_obsidian18.Notice(temperature.error);
+          return;
+        }
+        const topP = parseOptionalNumber(topPInput.value, "Top P");
+        if (topP.error) {
+          new import_obsidian18.Notice(topP.error);
+          return;
+        }
+        const steps = parseOptionalPositiveInteger(stepsInput.value, "Steps");
+        if (steps.error) {
+          new import_obsidian18.Notice(steps.error);
+          return;
+        }
+        const tools = parseOptionalJsonObjectOfBooleans(toolsInput.value, "Enabled Tools");
+        if (tools.error) {
+          new import_obsidian18.Notice(tools.error);
+          return;
+        }
+        const permission = parseOptionalJson(permissionInput.value, "Permission");
+        if (permission.error) {
+          new import_obsidian18.Notice(permission.error);
+          return;
+        }
+        const options = parseOptionalJsonObject(optionsInput.value, "Options");
+        if (options.error) {
+          new import_obsidian18.Notice(options.error);
+          return;
+        }
+        const agent = {
+          name,
+          description,
+          prompt,
+          mode: "subagent",
+          hidden: hiddenValue || void 0,
+          disable: disableValue || void 0,
+          model: modelInput.value.trim() || void 0,
+          variant: variantInput.value.trim() || void 0,
+          temperature: temperature.value,
+          topP: topP.value,
+          color: colorInput.value.trim() || void 0,
+          steps: steps.value,
+          tools: tools.value,
+          permission: permission.value,
+          options: options.value,
+          persistenceKey: (_b3 = this.existing) == null ? void 0 : _b3.persistenceKey,
+          extraFrontmatter: (_c2 = this.existing) == null ? void 0 : _c2.extraFrontmatter
+        };
+        try {
+          await this.onSave(agent);
+        } catch (error48) {
+          const message = error48 instanceof Error ? error48.message : "Unknown error";
+          new import_obsidian18.Notice(`Failed to save subagent: ${message}`);
+          return;
+        }
+        this.close();
+      })();
+    });
+  }
+  onClose() {
+    this.contentEl.empty();
+  }
+};
+var OpencodeAgentSettings = class {
+  constructor(containerEl, storage, app, onChanged) {
+    this.agents = [];
+    this.containerEl = containerEl;
+    this.storage = storage;
+    this.app = app;
+    this.onChanged = onChanged;
+    void this.render();
+  }
+  async render() {
+    this.containerEl.empty();
+    try {
+      this.agents = await this.storage.loadAll();
+    } catch (e2) {
+      this.agents = [];
+    }
+    const visibleAgents = this.agents.filter((agent) => agent.mode === "subagent");
+    const headerEl = this.containerEl.createDiv({ cls: "claudian-sp-header" });
+    headerEl.createSpan({ text: "OpenCode Subagents", cls: "claudian-sp-label" });
+    const actionsEl = headerEl.createDiv({ cls: "claudian-sp-header-actions" });
+    const refreshBtn = actionsEl.createEl("button", {
+      cls: "claudian-settings-action-btn",
+      attr: { "aria-label": "Refresh" }
+    });
+    (0, import_obsidian18.setIcon)(refreshBtn, "refresh-cw");
+    refreshBtn.addEventListener("click", () => {
+      void this.render();
+    });
+    const addBtn = actionsEl.createEl("button", {
+      cls: "claudian-settings-action-btn",
+      attr: { "aria-label": "Add" }
+    });
+    (0, import_obsidian18.setIcon)(addBtn, "plus");
+    addBtn.addEventListener("click", () => this.openModal(null));
+    if (visibleAgents.length === 0) {
+      const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
+      emptyEl.setText("No OpenCode subagents in vault. Click + to create one.");
+      return;
+    }
+    const listEl = this.containerEl.createDiv({ cls: "claudian-sp-list" });
+    for (const agent of visibleAgents) {
+      this.renderItem(listEl, agent);
+    }
+  }
+  renderItem(listEl, agent) {
+    const itemEl = listEl.createDiv({ cls: "claudian-sp-item" });
+    const infoEl = itemEl.createDiv({ cls: "claudian-sp-info" });
+    const headerRow = infoEl.createDiv({ cls: "claudian-sp-item-header" });
+    const nameEl = headerRow.createSpan({ cls: "claudian-sp-item-name" });
+    nameEl.setText(agent.name);
+    headerRow.createSpan({
+      text: "subagent",
+      cls: "claudian-slash-item-badge"
+    });
+    if (agent.model) {
+      headerRow.createSpan({ text: agent.model, cls: "claudian-slash-item-badge" });
+    }
+    if (agent.description) {
+      const descEl = infoEl.createDiv({ cls: "claudian-sp-item-desc" });
+      descEl.setText(agent.description);
+    }
+    const actionsEl = itemEl.createDiv({ cls: "claudian-sp-item-actions" });
+    const editBtn = actionsEl.createEl("button", {
+      cls: "claudian-settings-action-btn",
+      attr: { "aria-label": "Edit" }
+    });
+    (0, import_obsidian18.setIcon)(editBtn, "pencil");
+    editBtn.addEventListener("click", () => this.openModal(agent));
+    const deleteBtn = actionsEl.createEl("button", {
+      cls: "claudian-settings-action-btn claudian-settings-delete-btn",
+      attr: { "aria-label": "Delete" }
+    });
+    (0, import_obsidian18.setIcon)(deleteBtn, "trash-2");
+    deleteBtn.addEventListener("click", () => {
+      void (async () => {
+        var _a3;
+        if (!this.app) return;
+        const confirmed = await confirmDelete(
+          this.app,
+          `Delete subagent "${agent.name}"?`
+        );
+        if (!confirmed) return;
+        try {
+          await this.storage.delete(agent);
+          await this.render();
+          await ((_a3 = this.onChanged) == null ? void 0 : _a3.call(this));
+          new import_obsidian18.Notice(`Subagent "${agent.name}" deleted`);
+        } catch (e2) {
+          new import_obsidian18.Notice("Failed to delete subagent");
+        }
+      })();
+    });
+  }
+  openModal(existing) {
+    if (!this.app) return;
+    const modal = new OpencodeAgentModal(
+      this.app,
+      existing,
+      this.agents,
+      async (agent) => {
+        var _a3;
+        await this.storage.save(agent, existing);
+        await this.render();
+        await ((_a3 = this.onChanged) == null ? void 0 : _a3.call(this));
+        new import_obsidian18.Notice(
+          existing ? `Subagent "${agent.name}" updated` : `Subagent "${agent.name}" created`
+        );
+      }
+    );
+    modal.open();
+  }
+};
+function parseOptionalNumber(value, label) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return {};
+  }
+  const parsed = Number(trimmed);
+  if (!Number.isFinite(parsed)) {
+    return { error: `${label} must be a valid number` };
+  }
+  return { value: parsed };
+}
+function parseOptionalPositiveInteger(value, label) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return {};
+  }
+  const parsed = Number(trimmed);
+  if (!Number.isInteger(parsed) || parsed <= 0) {
+    return { error: `${label} must be a positive integer` };
+  }
+  return { value: parsed };
+}
+function parseOptionalJson(value, label) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return {};
+  }
+  try {
+    return { value: JSON.parse(trimmed) };
+  } catch (e2) {
+    return { error: `${label} must be valid JSON` };
+  }
+}
+function parseOptionalJsonObject(value, label) {
+  const parsed = parseOptionalJson(value, label);
+  if (parsed.error || parsed.value === void 0) {
+    return parsed.error ? { error: parsed.error } : {};
+  }
+  if (!isJsonObject(parsed.value)) {
+    return { error: `${label} must be a JSON object` };
+  }
+  return { value: parsed.value };
+}
+function parseOptionalJsonObjectOfBooleans(value, label) {
+  const parsed = parseOptionalJsonObject(value, label);
+  if (parsed.error || parsed.value === void 0) {
+    return parsed.error ? { error: parsed.error } : {};
+  }
+  if (!Object.values(parsed.value).every((entry) => typeof entry === "boolean")) {
+    return { error: `${label} must map tool names to boolean values` };
+  }
+  return { value: parsed.value };
+}
+function isJsonObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+// src/providers/opencode/ui/OpencodeSettingsTab.ts
+var ALL_PROVIDERS_KEY = "all";
 var OPENCODE_METADATA_WARMUP_DB = ":memory:";
+var opencodeSettingsTabRenderer = {
+  render(container, context) {
+    const opencodeWorkspace = maybeGetOpencodeWorkspaceServices();
+    const settingsBag = context.plugin.settings;
+    const opencodeSettings = getOpencodeProviderSettings(settingsBag);
+    const hostnameKey = getHostnameKey();
+    new import_obsidian19.Setting(container).setName("Setup").setHeading();
+    new import_obsidian19.Setting(container).setName("Enable OpenCode").setDesc("Launch `opencode acp` as a provider.").addToggle(
+      (toggle) => toggle.setValue(opencodeSettings.enabled).onChange(async (value) => {
+        updateOpencodeProviderSettings(settingsBag, { enabled: value });
+        await context.plugin.saveSettings();
+        context.refreshModelSelectors();
+      })
+    );
+    const cliPathSetting = new import_obsidian19.Setting(container).setName("CLI path").setDesc("Optional absolute path to the OpenCode CLI for this computer. Leave empty to use `opencode` from PATH.");
+    const validationEl = container.createDiv({
+      cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
+    });
+    const validatePath = (value) => {
+      const trimmed = value.trim();
+      if (!trimmed) {
+        return null;
+      }
+      const expandedPath = expandHomePath(trimmed);
+      if (!fs21.existsSync(expandedPath)) {
+        return "Path does not exist";
+      }
+      const stat = fs21.statSync(expandedPath);
+      if (!stat.isFile()) {
+        return "Path must point to a file";
+      }
+      return null;
+    };
+    const updateCliPathValidation = (value, inputEl) => {
+      const error48 = validatePath(value);
+      if (error48) {
+        validationEl.setText(error48);
+        validationEl.toggleClass("claudian-hidden", false);
+        if (inputEl) {
+          inputEl.toggleClass("claudian-input-error", true);
+        }
+        return false;
+      }
+      validationEl.toggleClass("claudian-hidden", true);
+      if (inputEl) {
+        inputEl.toggleClass("claudian-input-error", false);
+      }
+      return true;
+    };
+    const cliPathsByHost = { ...opencodeSettings.cliPathsByHost };
+    const currentValue = opencodeSettings.cliPathsByHost[hostnameKey] || "";
+    let cliPathInputEl = null;
+    const persistCliPath = async (value) => {
+      var _a3;
+      const isValid2 = updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0);
+      if (!isValid2) {
+        return false;
+      }
+      const trimmed = value.trim();
+      if (trimmed) {
+        cliPathsByHost[hostnameKey] = trimmed;
+      } else {
+        delete cliPathsByHost[hostnameKey];
+      }
+      updateOpencodeProviderSettings(settingsBag, { cliPathsByHost: { ...cliPathsByHost } });
+      clearOpencodeDiscoveryState(settingsBag);
+      await context.plugin.saveSettings();
+      (_a3 = opencodeWorkspace == null ? void 0 : opencodeWorkspace.cliResolver) == null ? void 0 : _a3.reset();
+      await recycleOpencodeRuntime();
+      return true;
+    };
+    const recycleOpencodeRuntime = async () => {
+      var _a3, _b2;
+      for (const view of context.plugin.getAllViews()) {
+        const tabManager = view.getTabManager();
+        if (tabManager == null ? void 0 : tabManager.broadcastToProviderTabs) {
+          await tabManager.broadcastToProviderTabs("opencode", (service) => Promise.resolve(service.cleanup()));
+        } else {
+          await (tabManager == null ? void 0 : tabManager.broadcastToAllTabs(
+            (service) => Promise.resolve(service.cleanup())
+          ));
+        }
+        (_a3 = view.invalidateProviderCommandCaches) == null ? void 0 : _a3.call(view, ["opencode"]);
+        (_b2 = view.refreshModelSelector) == null ? void 0 : _b2.call(view);
+      }
+    };
+    cliPathSetting.addText((text) => {
+      text.setPlaceholder(process.platform === "win32" ? "C:\\Users\\you\\AppData\\Roaming\\npm\\opencode.cmd" : "/usr/local/bin/opencode").setValue(currentValue).onChange(async (value) => {
+        await persistCliPath(value);
+      });
+      text.inputEl.addClass("claudian-settings-cli-path-input");
+      cliPathInputEl = text.inputEl;
+      updateCliPathValidation(currentValue, text.inputEl);
+    });
+    new import_obsidian19.Setting(container).setName("Models").setHeading();
+    new import_obsidian19.Setting(container).setName("Visible models").setDesc("Choose which OpenCode models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.");
+    const pickerEl = container.createDiv({ cls: "claudian-opencode-model-picker" });
+    let searchQuery = "";
+    let providerFilter = ALL_PROVIDERS_KEY;
+    const summaryEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-summary" });
+    const selectedEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-selected" });
+    const catalogEl = pickerEl.createEl("details", { cls: "claudian-opencode-model-picker-catalog" });
+    catalogEl.open = getOpencodeProviderSettings(settingsBag).visibleModels.length === 0;
+    const catalogSummaryEl = catalogEl.createEl("summary", {
+      cls: "claudian-opencode-model-picker-catalog-summary"
+    });
+    catalogSummaryEl.createSpan({
+      cls: "claudian-opencode-model-picker-catalog-caret",
+      text: "\u25B8"
+    });
+    catalogSummaryEl.createSpan({
+      cls: "claudian-opencode-model-picker-catalog-title",
+      text: "Browse models"
+    });
+    const catalogSummaryCountEl = catalogSummaryEl.createSpan({
+      cls: "claudian-opencode-model-picker-catalog-count"
+    });
+    const controlsEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-controls" });
+    const searchInput = controlsEl.createEl("input", {
+      cls: "claudian-opencode-model-picker-search",
+      type: "search"
+    });
+    searchInput.placeholder = "Filter by model, provider, or ID\u2026";
+    searchInput.addEventListener("input", () => {
+      searchQuery = searchInput.value.trim().toLowerCase();
+      renderList();
+    });
+    const providerSelectEl = controlsEl.createEl("select", {
+      cls: "claudian-opencode-model-picker-provider"
+    });
+    providerSelectEl.addEventListener("change", () => {
+      providerFilter = providerSelectEl.value;
+      renderList();
+    });
+    const listEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-list" });
+    let loadingModelCatalog = false;
+    let modelCatalogLoadFailed = false;
+    const getEnrichedModels = () => {
+      const current = getOpencodeProviderSettings(settingsBag);
+      return buildEnrichedModels(current.discoveredModels, current.visibleModels);
+    };
+    const filterModels = (models) => {
+      return models.filter((model) => {
+        if (providerFilter !== ALL_PROVIDERS_KEY && model.providerKey !== providerFilter) {
+          return false;
+        }
+        if (!searchQuery) {
+          return true;
+        }
+        return model.rawId.toLowerCase().includes(searchQuery) || model.modelLabel.toLowerCase().includes(searchQuery) || model.providerLabel.toLowerCase().includes(searchQuery) || model.description.toLowerCase().includes(searchQuery);
+      });
+    };
+    const persistVisibleModels = async (visibleModels) => {
+      const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
+      const normalized = normalizeOpencodeVisibleModels(
+        visibleModels,
+        getOpencodeProviderSettings(settingsBag).discoveredModels
+      );
+      if (sameStringList(currentVisibleModels, normalized)) {
+        return;
+      }
+      updateOpencodeProviderSettings(settingsBag, { visibleModels: normalized });
+      await context.plugin.saveSettings();
+      renderAll();
+      context.refreshModelSelectors();
+    };
+    const persistModelMetadata = async (rawId) => {
+      const runtime = new OpencodeChatRuntime(context.plugin);
+      try {
+        runtime.syncConversationState({
+          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
+          sessionId: null
+        });
+        const loaded = await runtime.warmModelMetadata(encodeOpencodeModelId(rawId));
+        if (loaded) {
+          context.refreshModelSelectors();
+        }
+      } catch (e2) {
+      } finally {
+        runtime.cleanup();
+      }
+    };
+    const persistModelAliases = async (modelAliases) => {
+      updateOpencodeProviderSettings(settingsBag, { modelAliases });
+      await context.plugin.saveSettings();
+      renderSelected();
+      context.refreshModelSelectors();
+    };
+    const renderSummary = () => {
+      summaryEl.empty();
+      const current = getOpencodeProviderSettings(settingsBag);
+      const enriched = getEnrichedModels();
+      const providerCount = new Set(enriched.map((model) => model.providerKey)).size;
+      const providerWord = providerCount === 1 ? "provider" : "providers";
+      summaryEl.createSpan({ text: "Visible: " });
+      summaryEl.createSpan({
+        cls: "claudian-opencode-model-picker-summary-value",
+        text: String(current.visibleModels.length)
+      });
+      summaryEl.createSpan({
+        text: ` of ${current.discoveredModels.length} discovered \u2022 ${providerCount} ${providerWord}`
+      });
+      let catalogSummary = "No models discovered yet";
+      if (loadingModelCatalog) {
+        catalogSummary = "Loading models...";
+      } else if (current.discoveredModels.length > 0) {
+        catalogSummary = `${current.discoveredModels.length} available`;
+      }
+      catalogSummaryCountEl.setText(catalogSummary);
+    };
+    const renderSelected = () => {
+      var _a3;
+      selectedEl.empty();
+      const current = getOpencodeProviderSettings(settingsBag);
+      if (current.visibleModels.length === 0) {
+        selectedEl.toggleClass("claudian-hidden", true);
+        return;
+      }
+      selectedEl.toggleClass("claudian-hidden", false);
+      const enrichedByRawId = new Map(
+        getEnrichedModels().map((model) => [model.rawId, model])
+      );
+      const headerEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-header" });
+      headerEl.createEl("span", {
+        cls: "claudian-opencode-model-picker-selected-label",
+        text: `Selected (${current.visibleModels.length})`
+      });
+      const clearAllBtn = headerEl.createEl("button", {
+        cls: "claudian-opencode-model-picker-selected-clear",
+        text: "Clear all"
+      });
+      clearAllBtn.setAttribute("aria-label", "Clear all selected models");
+      clearAllBtn.addEventListener("click", () => {
+        void persistVisibleModels([]);
+      });
+      const rowsEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-rows" });
+      for (const rawId of current.visibleModels) {
+        const enriched = enrichedByRawId.get(rawId);
+        const defaultLabel = enriched ? `${enriched.providerLabel}/${enriched.modelLabel}` : rawId;
+        const rowEl = rowsEl.createDiv({ cls: "claudian-opencode-model-picker-selected-row" });
+        if (enriched && !enriched.isAvailable) {
+          rowEl.classList.add("claudian-opencode-model-picker-selected-row--unavailable");
+        }
+        const infoEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-info" });
+        const titleEl = infoEl.createDiv({ cls: "claudian-opencode-model-picker-selected-title" });
+        if (enriched) {
+          titleEl.createEl("span", {
+            cls: "claudian-opencode-model-picker-selected-badge",
+            text: enriched.providerLabel
+          });
+          titleEl.createEl("span", {
+            cls: "claudian-opencode-model-picker-selected-name",
+            text: enriched.modelLabel
+          });
+        } else {
+          titleEl.createEl("span", {
+            cls: "claudian-opencode-model-picker-selected-name",
+            text: rawId
+          });
+        }
+        if (enriched && !enriched.isAvailable) {
+          infoEl.createEl("div", {
+            cls: "claudian-opencode-model-picker-selected-unavailable",
+            text: "Not currently reported by OpenCode"
+          });
+        }
+        infoEl.createEl("div", {
+          cls: "claudian-opencode-model-picker-selected-id",
+          text: rawId
+        });
+        const controlsEl2 = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-controls" });
+        const aliasInput = controlsEl2.createEl("input", {
+          cls: "claudian-opencode-model-picker-selected-alias",
+          type: "text"
+        });
+        aliasInput.placeholder = defaultLabel;
+        aliasInput.value = (_a3 = current.modelAliases[rawId]) != null ? _a3 : "";
+        aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
+        aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
+        const commitAlias = () => {
+          var _a4;
+          const latest = getOpencodeProviderSettings(settingsBag);
+          const existing = (_a4 = latest.modelAliases[rawId]) != null ? _a4 : "";
+          const next = aliasInput.value.trim();
+          if (next === existing) {
+            aliasInput.value = existing;
+            return;
+          }
+          const nextAliases = { ...latest.modelAliases };
+          if (next) {
+            nextAliases[rawId] = next;
+          } else {
+            delete nextAliases[rawId];
+          }
+          void persistModelAliases(nextAliases);
+        };
+        aliasInput.addEventListener("blur", commitAlias);
+        aliasInput.addEventListener("keydown", (event) => {
+          var _a4;
+          if (event.key === "Enter") {
+            event.preventDefault();
+            aliasInput.blur();
+          } else if (event.key === "Escape") {
+            event.preventDefault();
+            aliasInput.value = (_a4 = getOpencodeProviderSettings(settingsBag).modelAliases[rawId]) != null ? _a4 : "";
+            aliasInput.blur();
+          }
+        });
+        const removeBtn = controlsEl2.createEl("button", {
+          cls: "claudian-opencode-model-picker-selected-remove",
+          text: "\xD7"
+        });
+        removeBtn.setAttribute("aria-label", `Remove ${defaultLabel}`);
+        removeBtn.addEventListener("click", () => {
+          void persistVisibleModels(current.visibleModels.filter((entry) => entry !== rawId));
+        });
+      }
+    };
+    const renderProviderSelect = () => {
+      const enriched = getEnrichedModels();
+      const providers = /* @__PURE__ */ new Map();
+      for (const model of enriched) {
+        const existing = providers.get(model.providerKey);
+        if (existing) {
+          existing.count += 1;
+        } else {
+          providers.set(model.providerKey, { count: 1, label: model.providerLabel });
+        }
+      }
+      providerSelectEl.empty();
+      providerSelectEl.createEl("option", {
+        text: `All providers (${enriched.length})`,
+        value: ALL_PROVIDERS_KEY
+      });
+      const sortedProviders = Array.from(providers.entries()).sort(([, left], [, right]) => left.label.localeCompare(right.label));
+      for (const [key, { count, label }] of sortedProviders) {
+        providerSelectEl.createEl("option", {
+          text: `${label} (${count})`,
+          value: key
+        });
+      }
+      if (providerFilter !== ALL_PROVIDERS_KEY && !providers.has(providerFilter)) {
+        providerFilter = ALL_PROVIDERS_KEY;
+      }
+      providerSelectEl.value = providerFilter;
+    };
+    const renderList = () => {
+      listEl.empty();
+      const current = getOpencodeProviderSettings(settingsBag);
+      const selectedIds = new Set(current.visibleModels);
+      const enriched = getEnrichedModels();
+      const filtered = filterModels(enriched);
+      if (filtered.length === 0) {
+        const emptyEl = listEl.createDiv({ cls: "claudian-opencode-model-picker-empty" });
+        let emptyText = "No models match your filter.";
+        if (loadingModelCatalog) {
+          emptyText = "Loading OpenCode model catalog...";
+        } else if (modelCatalogLoadFailed) {
+          emptyText = "Could not load the OpenCode model catalog. Check the CLI path and login state, then expand this section again.";
+        } else if (enriched.length === 0) {
+          emptyText = "Start OpenCode once to load its model catalog. Claudian will then let you pick visible models.";
+        }
+        emptyEl.setText(emptyText);
+        return;
+      }
+      for (const model of filtered) {
+        const rowEl = listEl.createEl("label", { cls: "claudian-opencode-model-picker-row" });
+        const isSelected = selectedIds.has(model.rawId);
+        if (isSelected) {
+          rowEl.classList.add("claudian-opencode-model-picker-row--selected");
+        }
+        rowEl.title = model.rawId;
+        const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
+        checkboxEl.checked = isSelected;
+        checkboxEl.addEventListener("change", () => {
+          const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
+          const next = checkboxEl.checked ? [...currentVisibleModels, model.rawId] : currentVisibleModels.filter((id) => id !== model.rawId);
+          void (async () => {
+            await persistVisibleModels(next);
+            if (checkboxEl.checked) {
+              await persistModelMetadata(model.rawId);
+            }
+          })();
+        });
+        const textEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-row-text" });
+        const headerEl = textEl.createDiv({ cls: "claudian-opencode-model-picker-row-header" });
+        headerEl.createEl("span", {
+          cls: "claudian-opencode-model-picker-row-name",
+          text: model.modelLabel
+        });
+        const badgeEl = headerEl.createEl("span", {
+          cls: "claudian-opencode-model-picker-row-badge",
+          text: model.providerLabel
+        });
+        if (!model.isAvailable) {
+          badgeEl.classList.add("claudian-opencode-model-picker-row-badge--unavailable");
+          badgeEl.setText("Unavailable");
+          badgeEl.title = "Configured model not currently reported by OpenCode";
+        }
+        textEl.createDiv({
+          cls: "claudian-opencode-model-picker-row-meta",
+          text: model.rawId
+        });
+        if (model.description) {
+          textEl.createDiv({
+            cls: "claudian-opencode-model-picker-row-desc",
+            text: model.description
+          });
+        }
+      }
+    };
+    const renderAll = () => {
+      renderSummary();
+      renderSelected();
+      renderProviderSelect();
+      renderList();
+    };
+    renderAll();
+    const loadModelCatalog = async () => {
+      if (loadingModelCatalog || getOpencodeProviderSettings(settingsBag).discoveredModels.length > 0) {
+        return;
+      }
+      loadingModelCatalog = true;
+      modelCatalogLoadFailed = false;
+      renderAll();
+      const runtime = new OpencodeChatRuntime(context.plugin);
+      try {
+        runtime.syncConversationState({
+          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
+          sessionId: null
+        });
+        const loaded = await runtime.ensureReady({ allowSessionCreation: true });
+        modelCatalogLoadFailed = !loaded || getOpencodeProviderSettings(settingsBag).discoveredModels.length === 0;
+        if (!modelCatalogLoadFailed) {
+          context.refreshModelSelectors();
+        }
+      } catch (e2) {
+        modelCatalogLoadFailed = true;
+      } finally {
+        loadingModelCatalog = false;
+        runtime.cleanup();
+        renderAll();
+      }
+    };
+    catalogEl.addEventListener("toggle", () => {
+      if (catalogEl.open) {
+        void loadModelCatalog();
+      }
+    });
+    if (catalogEl.open) {
+      void loadModelCatalog();
+    }
+    new import_obsidian19.Setting(container).setName("Commands and skills").setHeading();
+    const commandsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
+    commandsDesc.createEl("p", {
+      cls: "setting-item-description",
+      text: "OpenCode can auto-detect vault-level Claude slash commands from .claude/commands/ and skills from .claude/skills/, .codex/skills/, and .agents/skills/. Manage those entries in the Claude or Codex settings tab. This setting only hides entries from the OpenCode dropdown."
+    });
+    context.renderHiddenProviderCommandSetting(container, "opencode", {
+      name: "Hidden Commands and Skills",
+      desc: "Hide specific OpenCode commands and skills from the dropdown. Enter names without the leading slash, one per line.",
+      placeholder: "compact\nreview\nfix"
+    });
+    if (opencodeWorkspace == null ? void 0 : opencodeWorkspace.agentStorage) {
+      new import_obsidian19.Setting(container).setName("Subagents").setHeading();
+      const subagentsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
+      subagentsDesc.createEl("p", {
+        cls: "setting-item-description",
+        text: "Manage vault-level OpenCode subagents from .opencode/agent/ and legacy .opencode/agents/. New entries are saved as subagent-only files and appear in the @mention menu."
+      });
+      const subagentsContainer = container.createDiv({ cls: "claudian-slash-commands-container" });
+      new OpencodeAgentSettings(
+        subagentsContainer,
+        opencodeWorkspace.agentStorage,
+        context.plugin.app,
+        async () => {
+          var _a3;
+          await ((_a3 = opencodeWorkspace.refreshAgentMentions) == null ? void 0 : _a3.call(opencodeWorkspace));
+          await recycleOpencodeRuntime();
+        }
+      );
+    }
+    renderEnvironmentSettingsSection({
+      container,
+      plugin: context.plugin,
+      scope: "provider:opencode",
+      heading: "Environment",
+      name: "Environment Variables",
+      desc: "Extra environment variables passed to OpenCode. `OPENCODE_ENABLE_EXA=1` is enabled by default.",
+      placeholder: `${OPENCODE_DEFAULT_ENVIRONMENT_VARIABLES}
+OPENCODE_DB=/path/to/opencode.db`,
+      renderCustomContextLimits: (target) => context.renderCustomContextLimits(target, "opencode")
+    });
+  }
+};
+function buildEnrichedModels(discoveredModels, visibleModels) {
+  var _a3;
+  const enriched = [];
+  const discoveredIds = /* @__PURE__ */ new Set();
+  const baseModels = buildOpencodeBaseModels(discoveredModels);
+  for (const model of baseModels) {
+    const { modelLabel, providerLabel } = splitOpencodeModelLabel(model.label || model.rawId);
+    discoveredIds.add(model.rawId);
+    enriched.push({
+      description: (_a3 = model.description) != null ? _a3 : "",
+      isAvailable: true,
+      modelLabel,
+      providerKey: providerLabel.toLowerCase(),
+      providerLabel,
+      rawId: model.rawId
+    });
+  }
+  for (const rawId of visibleModels) {
+    if (discoveredIds.has(rawId)) {
+      continue;
+    }
+    const { modelLabel, providerLabel } = splitOpencodeModelLabel(rawId);
+    enriched.push({
+      description: "",
+      isAvailable: false,
+      modelLabel,
+      providerKey: providerLabel.toLowerCase(),
+      providerLabel,
+      rawId
+    });
+  }
+  return enriched.sort((left, right) => {
+    const providerCmp = left.providerLabel.localeCompare(right.providerLabel);
+    if (providerCmp !== 0) {
+      return providerCmp;
+    }
+    return left.modelLabel.localeCompare(right.modelLabel);
+  });
+}
+
+// src/providers/opencode/app/OpencodeRuntimeCommandLoader.ts
+var OPENCODE_METADATA_WARMUP_DB2 = ":memory:";
 var OpencodeRuntimeCommandLoader = class {
   isAvailable(settings11) {
     return getOpencodeProviderSettings(settings11).enabled;
@@ -75599,7 +76061,7 @@ var OpencodeRuntimeCommandLoader = class {
         runtime.syncConversationState(context.conversation, context.externalContextPaths);
       } else if (shouldWarmBlankSession) {
         runtime.syncConversationState({
-          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
+          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB2 },
           sessionId: null
         });
       }
@@ -75658,6 +76120,7 @@ var OPENCODE_MODELS = [
   { value: OPENCODE_SYNTHETIC_MODEL_ID, label: "OpenCode", description: "ACP runtime" }
 ];
 var DEFAULT_CONTEXT_WINDOW2 = 2e5;
+var OPENCODE_METADATA_WARMUP_DB3 = ":memory:";
 var OPENCODE_PERMISSION_MODE_TOGGLE = {
   inactiveValue: "normal",
   inactiveLabel: "Safe",
@@ -75728,28 +76191,15 @@ var opencodeChatUIConfig = {
   ownsModel(model) {
     return isOpencodeModelSelectionId(model);
   },
-  isAdaptiveReasoningModel(_model, _settings) {
-    return true;
+  isAdaptiveReasoningModel(model, settings11) {
+    return getOpencodeThinkingOptions(model, settings11).length > 0;
   },
   getReasoningOptions(model, settings11) {
-    const rawModelId = decodeOpencodeModelId(model);
-    if (!rawModelId) {
-      return [];
-    }
-    const opencodeSettings = getOpencodeProviderSettings(settings11);
-    const baseRawId = resolveOpencodeBaseModelRawId(rawModelId, opencodeSettings.discoveredModels);
-    const variants = getOpencodeModelVariants(baseRawId, opencodeSettings.discoveredModels);
-    if (variants.length === 0) {
-      return [];
-    }
-    return [
-      { value: OPENCODE_DEFAULT_THINKING_LEVEL, label: "Default" },
-      ...variants.map((variant) => ({
-        description: variant.description,
-        label: variant.label,
-        value: variant.value
-      }))
-    ];
+    return getOpencodeThinkingOptions(model, settings11).map((variant) => ({
+      description: variant.description,
+      label: variant.label,
+      value: variant.value
+    }));
   },
   getDefaultReasoningValue(model, settings11) {
     const rawModelId = decodeOpencodeModelId(model);
@@ -75782,7 +76232,30 @@ var opencodeChatUIConfig = {
     settingsBag.model = encodeOpencodeModelId(baseRawId);
     settingsBag.effortLevel = getDefaultThinkingLevelForModel(baseRawId, settingsBag);
   },
+  async prepareModelMetadata(model, _settings, context) {
+    const rawModelId = decodeOpencodeModelId(model);
+    if (!rawModelId) {
+      return;
+    }
+    const opencodeSettings = getOpencodeProviderSettings(context.plugin.settings);
+    const baseRawId = resolveOpencodeBaseModelRawId(rawModelId, opencodeSettings.discoveredModels);
+    if (baseRawId && opencodeSettings.thinkingOptionsByModel[baseRawId]) {
+      return;
+    }
+    const runtime = new OpencodeChatRuntime(context.plugin);
+    try {
+      runtime.syncConversationState({
+        providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB3 },
+        sessionId: null
+      });
+      await runtime.warmModelMetadata(model);
+    } catch (e2) {
+    } finally {
+      runtime.cleanup();
+    }
+  },
   applyReasoningSelection(model, value, settings11) {
+    var _a3;
     if (!settings11 || typeof settings11 !== "object" || Array.isArray(settings11)) {
       return;
     }
@@ -75794,7 +76267,7 @@ var opencodeChatUIConfig = {
     const opencodeSettings = getOpencodeProviderSettings(settingsBag);
     const baseRawId = resolveOpencodeBaseModelRawId(rawModelId, opencodeSettings.discoveredModels);
     const supportedValues = new Set(
-      getOpencodeModelVariants(baseRawId, opencodeSettings.discoveredModels).map((variant) => variant.value)
+      ((_a3 = opencodeSettings.thinkingOptionsByModel[baseRawId]) != null ? _a3 : []).map((variant) => variant.value)
     );
     const nextPreferredThinkingByModel = {
       ...opencodeSettings.preferredThinkingByModel
@@ -75848,15 +76321,26 @@ var opencodeChatUIConfig = {
   }
 };
 function getDefaultThinkingLevelForModel(baseRawId, settings11) {
+  var _a3, _b2, _c, _d2;
   const opencodeSettings = getOpencodeProviderSettings(settings11);
   const preferred = opencodeSettings.preferredThinkingByModel[baseRawId];
   const supportedValues = new Set(
-    getOpencodeModelVariants(baseRawId, opencodeSettings.discoveredModels).map((variant) => variant.value)
+    ((_a3 = opencodeSettings.thinkingOptionsByModel[baseRawId]) != null ? _a3 : []).map((variant) => variant.value)
   );
   if (preferred && supportedValues.has(preferred)) {
     return preferred;
   }
-  return OPENCODE_DEFAULT_THINKING_LEVEL;
+  return (_d2 = (_c = (_b2 = opencodeSettings.thinkingOptionsByModel[baseRawId]) == null ? void 0 : _b2[0]) == null ? void 0 : _c.value) != null ? _d2 : OPENCODE_DEFAULT_THINKING_LEVEL;
+}
+function getOpencodeThinkingOptions(model, settings11) {
+  var _a3;
+  const rawModelId = decodeOpencodeModelId(model);
+  if (!rawModelId) {
+    return [];
+  }
+  const opencodeSettings = getOpencodeProviderSettings(settings11);
+  const baseRawId = resolveOpencodeBaseModelRawId(rawModelId, opencodeSettings.discoveredModels);
+  return (_a3 = opencodeSettings.thinkingOptionsByModel[baseRawId]) != null ? _a3 : [];
 }
 function pushOption(target, seenValues, value, option) {
   if (seenValues.has(value)) {
@@ -78519,6 +79003,65 @@ var ConversationController = class {
 // src/features/chat/controllers/InputController.ts
 var import_obsidian26 = require("obsidian");
 
+// src/core/runtime/QueuedTurn.ts
+function cloneChatTurnRequest(request) {
+  return {
+    ...request,
+    images: cloneImages(request.images),
+    externalContextPaths: request.externalContextPaths ? [...request.externalContextPaths] : void 0,
+    enabledMcpServers: request.enabledMcpServers ? new Set(request.enabledMcpServers) : void 0
+  };
+}
+function mergeQueuedChatTurns(existing, incoming) {
+  var _a3;
+  const existingRequest = existing.request;
+  const incomingRequest = incoming.request;
+  return {
+    displayContent: mergeText(existing.displayContent, incoming.displayContent),
+    request: {
+      ...cloneChatTurnRequest(incomingRequest),
+      text: mergeText(existingRequest.text, incomingRequest.text),
+      images: mergeImages(existingRequest.images, incomingRequest.images),
+      currentNotePath: (_a3 = incomingRequest.currentNotePath) != null ? _a3 : existingRequest.currentNotePath,
+      externalContextPaths: mergeStringLists(
+        existingRequest.externalContextPaths,
+        incomingRequest.externalContextPaths
+      ),
+      enabledMcpServers: mergeSets(
+        existingRequest.enabledMcpServers,
+        incomingRequest.enabledMcpServers
+      )
+    }
+  };
+}
+function mergeText(first, second) {
+  return [first, second].map((part) => part.trim()).filter((part) => part.length > 0).join("\n\n");
+}
+function cloneImages(images) {
+  return images && images.length > 0 ? [...images] : void 0;
+}
+function mergeImages(first, second) {
+  const merged = [...first != null ? first : [], ...second != null ? second : []];
+  return merged.length > 0 ? merged : void 0;
+}
+function mergeStringLists(first, second) {
+  const merged = [...first != null ? first : [], ...second != null ? second : []];
+  if (merged.length === 0) {
+    return void 0;
+  }
+  return Array.from(new Set(merged));
+}
+function mergeSets(first, second) {
+  const merged = /* @__PURE__ */ new Set();
+  for (const value of first != null ? first : []) {
+    merged.add(value);
+  }
+  for (const value of second != null ? second : []) {
+    merged.add(value);
+  }
+  return merged.size > 0 ? merged : void 0;
+}
+
 // src/shared/components/ResumeSessionDropdown.ts
 var import_obsidian22 = require("obsidian");
 var ResumeSessionDropdown = class {
@@ -81054,7 +81597,7 @@ var InputController = class {
   // Message Sending
   // ============================================
   async sendMessage(options) {
-    var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l;
+    var _a3, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m, _n;
     const {
       plugin,
       state,
@@ -81072,7 +81615,8 @@ var InputController = class {
     const contentOverride = options == null ? void 0 : options.content;
     const shouldUseInput = contentOverride === void 0;
     const content = (contentOverride != null ? contentOverride : inputEl.value).trim();
-    const hasImages = (_a3 = imageContextManager == null ? void 0 : imageContextManager.hasImages()) != null ? _a3 : false;
+    const imageOverride = options == null ? void 0 : options.images;
+    const hasImages = imageOverride !== void 0 ? imageOverride.length > 0 : (_a3 = imageContextManager == null ? void 0 : imageContextManager.hasImages()) != null ? _a3 : false;
     if (!content && !hasImages) return;
     const builtInCmd = detectBuiltInCommand(content);
     if (builtInCmd) {
@@ -81084,22 +81628,28 @@ var InputController = class {
       return;
     }
     if (state.isStreaming) {
-      const images2 = hasImages ? [...(imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) || []] : void 0;
+      const images2 = hasImages ? [...(_b2 = imageOverride != null ? imageOverride : imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) != null ? _b2 : []] : void 0;
       const editorContext = selectionController.getContext();
-      const browserContext = (_b2 = browserSelectionController == null ? void 0 : browserSelectionController.getContext()) != null ? _b2 : null;
+      const browserContext = (_c = browserSelectionController == null ? void 0 : browserSelectionController.getContext()) != null ? _c : null;
       const canvasContext = canvasSelectionController.getContext();
-      state.queuedMessage = this.mergeQueuedMessages(state.queuedMessage, {
+      const { displayContent: displayContent2, turnRequest: turnRequest2 } = this.buildTurnSubmission({
         content,
         images: images2,
-        editorContext,
-        browserContext,
-        canvasContext
+        editorContextOverride: editorContext,
+        browserContextOverride: browserContext,
+        canvasContextOverride: canvasContext
       });
+      state.queuedMessage = this.mergeQueuedMessages(
+        state.queuedMessage,
+        this.createQueuedMessage(displayContent2, turnRequest2)
+      );
       if (shouldUseInput) {
         inputEl.value = "";
         this.deps.resetInputHeight();
       }
-      imageContextManager == null ? void 0 : imageContextManager.clearImages();
+      if (shouldUseInput) {
+        imageContextManager == null ? void 0 : imageContextManager.clearImages();
+      }
       this.updateQueueIndicator();
       return;
     }
@@ -81111,26 +81661,30 @@ var InputController = class {
     state.cancelRequested = false;
     state.ignoreUsageUpdates = false;
     this.deps.getSubagentManager().resetSpawnedCount();
-    state.autoScrollEnabled = (_c = plugin.settings.enableAutoScroll) != null ? _c : true;
+    state.autoScrollEnabled = (_d2 = plugin.settings.enableAutoScroll) != null ? _d2 : true;
     const streamGeneration = state.bumpStreamGeneration();
     const welcomeEl = this.deps.getWelcomeEl();
     if (welcomeEl) {
       welcomeEl.addClass("claudian-hidden");
     }
     fileContextManager == null ? void 0 : fileContextManager.startSession();
-    const images = (imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) || [];
+    const images = (_e = imageOverride != null ? imageOverride : imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) != null ? _e : [];
     const imagesForMessage = images.length > 0 ? [...images] : void 0;
     const isCompact = /^\/compact(\s|$)/i.test(content);
     if (shouldUseInput) {
       imageContextManager == null ? void 0 : imageContextManager.clearImages();
     }
-    const { displayContent, turnRequest } = this.buildTurnSubmission({
+    const turnSubmission = (options == null ? void 0 : options.turnRequestOverride) ? {
+      displayContent: content,
+      turnRequest: cloneChatTurnRequest(options.turnRequestOverride)
+    } : this.buildTurnSubmission({
       content,
       images: imagesForMessage,
       editorContextOverride: options == null ? void 0 : options.editorContextOverride,
       browserContextOverride: options == null ? void 0 : options.browserContextOverride,
       canvasContextOverride: options == null ? void 0 : options.canvasContextOverride
     });
+    const { displayContent, turnRequest } = turnSubmission;
     fileContextManager == null ? void 0 : fileContextManager.markCurrentNoteSent();
     const userMsg = {
       id: this.deps.generateId(),
@@ -81222,7 +81776,7 @@ var InputController = class {
         }
         await streamController.handleStreamChunk(
           chunk,
-          (_d2 = this.activeStreamingAssistantMessage) != null ? _d2 : assistantMsg
+          (_f = this.activeStreamingAssistantMessage) != null ? _f : assistantMsg
         );
       }
     } catch (error48) {
@@ -81231,10 +81785,10 @@ var InputController = class {
 
 **Error:** ${errorMsg}`);
     } finally {
-      const finalAssistantMsg = (_e = this.activeStreamingAssistantMessage) != null ? _e : assistantMsg;
+      const finalAssistantMsg = (_g = this.activeStreamingAssistantMessage) != null ? _g : assistantMsg;
       const turnMetadata = agentService.consumeTurnMetadata();
-      userMsg.userMessageId = (_f = turnMetadata.userMessageId) != null ? _f : userMsg.userMessageId;
-      finalAssistantMsg.assistantMessageId = (_g = turnMetadata.assistantMessageId) != null ? _g : finalAssistantMsg.assistantMessageId;
+      userMsg.userMessageId = (_h = turnMetadata.userMessageId) != null ? _h : userMsg.userMessageId;
+      finalAssistantMsg.assistantMessageId = (_i = turnMetadata.assistantMessageId) != null ? _i : finalAssistantMsg.assistantMessageId;
       didEnqueueToSdk = didEnqueueToSdk || turnMetadata.wasSent === true;
       planCompleted = planCompleted || turnMetadata.planCompleted === true;
       state.clearFlavorTimerInterval();
@@ -81247,7 +81801,7 @@ var InputController = class {
         state.isStreaming = false;
         state.cancelRequested = false;
         this.restorePendingSteerMessageToQueue();
-        const hasCompactBoundary = (_h = finalAssistantMsg.contentBlocks) == null ? void 0 : _h.some((b10) => b10.type === "context_compacted");
+        const hasCompactBoundary = (_j2 = finalAssistantMsg.contentBlocks) == null ? void 0 : _j2.some((b10) => b10.type === "context_compacted");
         if (!didCancelThisTurn && !hasCompactBoundary) {
           const durationSeconds = state.responseStartTime ? Math.floor((performance.now() - state.responseStartTime) / 1e3) : 0;
           if (durationSeconds > 0) {
@@ -81288,13 +81842,13 @@ var InputController = class {
           if (state.streamGeneration !== streamGeneration || invalidated) {
             planApprovalInvalidated = true;
           } else if ((decision == null ? void 0 : decision.type) === "implement") {
-            (_j2 = (_i = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _j2.call(_i);
+            (_l = (_k = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _l.call(_k);
             planAutoSendContent = "Implement the plan.";
           } else if ((decision == null ? void 0 : decision.type) === "revise") {
             this.deps.getInputEl().value = decision.text;
             shouldProcessQueuedMessage = false;
           } else {
-            (_l = (_k = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _l.call(_k);
+            (_n = (_m = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _n.call(_m);
           }
         }
         if (!planApprovalInvalidated) {
@@ -81344,20 +81898,41 @@ var InputController = class {
         cls: "claudian-queue-indicator-text",
         text: `${isPendingSteerOnly ? "\u2319 Steering: " : "\u2319 Queued: "}${this.getQueuedMessageDisplay(visibleQueuedMessage)}`
       });
-      if (state.queuedMessage && this.canSteerQueuedMessage()) {
-        const steerButton = indicatorEl.createEl("button", {
-          cls: "claudian-queue-indicator-action",
-          text: this.steerInFlight ? "Steering..." : "Steer Now"
-        });
-        steerButton.setAttribute("type", "button");
-        if (this.steerInFlight) {
-          steerButton.setAttribute("disabled", "true");
-        } else {
-          steerButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            void this.steerQueuedMessage();
+      if (state.queuedMessage) {
+        const actionsEl = indicatorEl.createDiv({ cls: "claudian-queue-indicator-actions" });
+        if (this.canSteerQueuedMessage()) {
+          const steerButton = actionsEl.createEl("button", {
+            cls: "claudian-queue-indicator-action",
+            text: this.steerInFlight ? "Steering..." : "Steer Now"
           });
+          steerButton.setAttribute("type", "button");
+          if (this.steerInFlight) {
+            steerButton.setAttribute("disabled", "true");
+          } else {
+            steerButton.addEventListener("click", (event) => {
+              event.stopPropagation();
+              void this.steerQueuedMessage();
+            });
+          }
         }
+        const editButton = this.createQueueIconButton(
+          actionsEl,
+          "pencil",
+          "Edit queued message"
+        );
+        editButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          this.withdrawQueuedMessageToComposer();
+        });
+        const discardButton = this.createQueueIconButton(
+          actionsEl,
+          "trash-2",
+          "Discard queued message"
+        );
+        discardButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          this.clearQueuedMessage();
+        });
       }
       indicatorEl.addClass("claudian-visible-flex");
       indicatorEl.removeClass("claudian-hidden");
@@ -81371,15 +81946,29 @@ var InputController = class {
     state.queuedMessage = null;
     this.updateQueueIndicator();
   }
-  restoreMessageToInput(message) {
+  withdrawQueuedMessageToComposer() {
+    const { state } = this.deps;
+    if (!state.queuedMessage) return;
+    const queuedMessage = this.cloneQueuedMessage(state.queuedMessage);
+    state.queuedMessage = null;
+    this.restoreMessageToInput(queuedMessage, { mergeWithComposer: true });
+    this.updateQueueIndicator();
+  }
+  restoreMessageToInput(message, options = {}) {
     var _a3;
     if (!message) return;
     const { content, images } = message;
     const inputEl = this.deps.getInputEl();
-    inputEl.value = content;
-    if (images && images.length > 0) {
-      (_a3 = this.deps.getImageContextManager()) == null ? void 0 : _a3.setImages(images);
+    const currentContent = options.mergeWithComposer ? inputEl.value.trim() : "";
+    inputEl.value = currentContent ? appendMarkdownSnippet(content, currentContent) : content;
+    const imageContextManager = this.deps.getImageContextManager();
+    const currentImages = options.mergeWithComposer ? (_a3 = imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) != null ? _a3 : [] : [];
+    const restoredImages = [...images != null ? images : [], ...currentImages];
+    if (restoredImages.length > 0) {
+      imageContextManager == null ? void 0 : imageContextManager.setImages(restoredImages);
     }
+    this.deps.resetInputHeight();
+    inputEl.focus();
   }
   restorePendingMessagesToInput() {
     const { state } = this.deps;
@@ -81387,29 +81976,23 @@ var InputController = class {
       this.pendingSteerMessage,
       state.queuedMessage
     );
-    this.restoreMessageToInput(combinedMessage);
+    this.restoreMessageToInput(combinedMessage, { mergeWithComposer: true });
     state.queuedMessage = null;
     this.clearPendingSteerState();
     this.updateQueueIndicator();
   }
   processQueuedMessage() {
-    var _a3;
     const { state } = this.deps;
     if (!state.queuedMessage) return;
-    const { content, images, editorContext, browserContext, canvasContext } = state.queuedMessage;
+    const queuedMessage = this.cloneQueuedMessage(state.queuedMessage);
     state.queuedMessage = null;
     this.updateQueueIndicator();
-    const inputEl = this.deps.getInputEl();
-    inputEl.value = content;
-    if (images && images.length > 0) {
-      (_a3 = this.deps.getImageContextManager()) == null ? void 0 : _a3.setImages(images);
-    }
     window.setTimeout(
       () => {
         void this.sendMessage({
-          editorContextOverride: editorContext,
-          browserContextOverride: browserContext != null ? browserContext : null,
-          canvasContextOverride: canvasContext
+          content: queuedMessage.content,
+          images: queuedMessage.images,
+          turnRequestOverride: this.toQueuedChatTurn(queuedMessage).request
         });
       },
       0
@@ -81461,6 +82044,18 @@ var InputController = class {
     }
     return preview;
   }
+  createQueueIconButton(parentEl, icon, label) {
+    const button = parentEl.createEl("button", {
+      cls: "claudian-queue-indicator-icon-action",
+      attr: {
+        "aria-label": label,
+        title: label,
+        type: "button"
+      }
+    });
+    (0, import_obsidian26.setIcon)(button, icon);
+    return button;
+  }
   canSteerQueuedMessage() {
     const agentService = this.getAgentService();
     return this.deps.state.isStreaming && this.getActiveCapabilities().supportsTurnSteer === true && typeof (agentService == null ? void 0 : agentService.steer) === "function";
@@ -81468,7 +82063,39 @@ var InputController = class {
   cloneQueuedMessage(message) {
     return {
       ...message,
-      images: message.images ? [...message.images] : void 0
+      images: message.images ? [...message.images] : void 0,
+      turnRequest: message.turnRequest ? cloneChatTurnRequest(message.turnRequest) : void 0
+    };
+  }
+  createQueuedMessage(displayContent, turnRequest) {
+    var _a3, _b2, _c;
+    const request = cloneChatTurnRequest(turnRequest);
+    return {
+      content: displayContent,
+      images: request.images,
+      editorContext: (_a3 = request.editorSelection) != null ? _a3 : null,
+      browserContext: (_b2 = request.browserSelection) != null ? _b2 : null,
+      canvasContext: (_c = request.canvasSelection) != null ? _c : null,
+      turnRequest: request
+    };
+  }
+  toQueuedChatTurn(message) {
+    var _a3;
+    if (message.turnRequest) {
+      return {
+        displayContent: message.content,
+        request: cloneChatTurnRequest(message.turnRequest)
+      };
+    }
+    return {
+      displayContent: message.content,
+      request: {
+        text: message.content,
+        images: message.images ? [...message.images] : void 0,
+        editorSelection: message.editorContext,
+        browserSelection: (_a3 = message.browserContext) != null ? _a3 : null,
+        canvasSelection: message.canvasContext
+      }
     };
   }
   mergePendingMessages(first, second) {
@@ -81499,22 +82126,16 @@ var InputController = class {
   }
   mergeQueuedMessages(existing, incoming) {
     if (!existing) {
-      return {
-        ...incoming,
-        images: incoming.images ? [...incoming.images] : void 0
-      };
+      return this.cloneQueuedMessage(incoming);
     }
-    const contentParts = [existing.content, incoming.content].filter((part) => part.length > 0);
-    return {
-      content: contentParts.join("\n\n"),
-      images: [...existing.images || [], ...incoming.images || []].filter(Boolean).length > 0 ? [...existing.images || [], ...incoming.images || []] : void 0,
-      editorContext: incoming.editorContext,
-      browserContext: incoming.browserContext,
-      canvasContext: incoming.canvasContext
-    };
+    const mergedTurn = mergeQueuedChatTurns(
+      this.toQueuedChatTurn(existing),
+      this.toQueuedChatTurn(incoming)
+    );
+    return this.createQueuedMessage(mergedTurn.displayContent, mergedTurn.request);
   }
   async steerQueuedMessage() {
-    var _a3, _b2;
+    var _a3;
     if (this.steerInFlight) {
       return;
     }
@@ -81529,14 +82150,8 @@ var InputController = class {
     this.steerInFlight = true;
     this.updateQueueIndicator();
     try {
-      const { displayContent, turnRequest } = this.buildTurnSubmission({
-        content: queuedMessage.content,
-        images: queuedMessage.images,
-        editorContextOverride: queuedMessage.editorContext,
-        browserContextOverride: (_a3 = queuedMessage.browserContext) != null ? _a3 : null,
-        canvasContextOverride: queuedMessage.canvasContext
-      });
-      const preparedTurn = agentService.prepareTurn(turnRequest);
+      const { displayContent, request } = this.toQueuedChatTurn(queuedMessage);
+      const preparedTurn = agentService.prepareTurn(request);
       const accepted = await agentService.steer(preparedTurn);
       if (state.cancelRequested || !this.pendingSteerMessage) {
         return;
@@ -81545,12 +82160,12 @@ var InputController = class {
         this.restoreQueuedMessageAfterSteerFailure(queuedMessage);
         return;
       }
-      (_b2 = this.deps.getFileContextManager()) == null ? void 0 : _b2.markCurrentNoteSent();
+      (_a3 = this.deps.getFileContextManager()) == null ? void 0 : _a3.markCurrentNoteSent();
       this.pendingProviderUserMessages.push({
         displayContent,
         persistedContent: preparedTurn.persistedContent,
         currentNote: preparedTurn.isCompact ? void 0 : preparedTurn.request.currentNotePath,
-        images: queuedMessage.images
+        images: request.images
       });
     } catch (e2) {
       this.restoreQueuedMessageAfterSteerFailure(queuedMessage);
@@ -81569,7 +82184,7 @@ var InputController = class {
       this.updateQueueIndicator();
       return;
     }
-    this.restoreMessageToInput(message);
+    this.restoreMessageToInput(message, { mergeWithComposer: true });
     this.updateQueueIndicator();
   }
   activateStreamingAssistantMessage(message) {
@@ -90166,6 +90781,36 @@ ${output}` : `$ ${latest.command}`;
   }
 };
 
+// src/features/chat/ui/textareaResize.ts
+var TEXTAREA_BASE_MIN_HEIGHT = 60;
+var TEXTAREA_MIN_MAX_HEIGHT = 150;
+var TEXTAREA_MAX_HEIGHT_PERCENT = 0.55;
+function calculateTextareaMaxHeight(viewHeight) {
+  return Math.max(TEXTAREA_MIN_MAX_HEIGHT, viewHeight * TEXTAREA_MAX_HEIGHT_PERCENT);
+}
+function calculateTextareaMinHeight({
+  contentHeight,
+  flexAllocatedHeight
+}) {
+  return contentHeight > flexAllocatedHeight ? contentHeight : TEXTAREA_BASE_MIN_HEIGHT;
+}
+function autoResizeTextarea(textarea) {
+  var _a3, _b2;
+  const viewHeight = (_b2 = (_a3 = textarea.closest(".claudian-container")) == null ? void 0 : _a3.clientHeight) != null ? _b2 : window.innerHeight;
+  const maxHeight = calculateTextareaMaxHeight(viewHeight);
+  textarea.setCssProps({
+    "--claudian-textarea-min-height": `${TEXTAREA_BASE_MIN_HEIGHT}px`,
+    "--claudian-textarea-max-height": `${maxHeight}px`
+  });
+  const flexAllocatedHeight = textarea.offsetHeight;
+  const contentHeight = Math.min(textarea.scrollHeight, maxHeight);
+  const minHeight = calculateTextareaMinHeight({ contentHeight, flexAllocatedHeight });
+  textarea.setCssProps({
+    "--claudian-textarea-min-height": `${minHeight}px`,
+    "--claudian-textarea-max-height": `${maxHeight}px`
+  });
+}
+
 // src/features/chat/utils/usageInfo.ts
 function calculateUsagePercentage(contextTokens, contextWindow) {
   return contextWindow > 0 ? Math.min(100, Math.max(0, Math.round(contextTokens / contextWindow * 100))) : 0;
@@ -90208,8 +90853,6 @@ function getTabProviderId(tab, plugin, conversation) {
 var DEFAULT_MAX_TABS = 3;
 var MIN_TABS = 3;
 var MAX_TABS = 10;
-var TEXTAREA_MIN_MAX_HEIGHT = 150;
-var TEXTAREA_MAX_HEIGHT_PERCENT = 0.55;
 function generateTabId() {
   return `tab-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 }
@@ -90346,16 +90989,19 @@ function applyProviderUIGating(tab, plugin) {
   (_h = tab.ui.contextUsageMeter) == null ? void 0 : _h.update(tab.state.usage);
 }
 function syncTabProviderServices(tab, plugin) {
-  var _a3, _b2, _c, _d2, _e;
+  var _a3, _b2, _c, _d2;
   (_a3 = tab.services.instructionRefineService) == null ? void 0 : _a3.cancel();
   (_b2 = tab.services.instructionRefineService) == null ? void 0 : _b2.resetConversation();
-  (_c = tab.services.titleGenerationService) == null ? void 0 : _c.cancel();
   tab.services.instructionRefineService = ProviderRegistry.createInstructionRefineService(plugin, tab.providerId);
-  tab.services.titleGenerationService = ProviderRegistry.createTitleGenerationService(plugin, tab.providerId);
-  (_e = (_d2 = tab.services.subagentManager).setTaskResultInterpreter) == null ? void 0 : _e.call(
-    _d2,
+  (_d2 = (_c = tab.services.subagentManager).setTaskResultInterpreter) == null ? void 0 : _d2.call(
+    _c,
     ProviderRegistry.getTaskResultInterpreter(tab.providerId)
   );
+}
+function ensureTitleGenerationService(tab, plugin) {
+  if (!tab.services.titleGenerationService) {
+    tab.services.titleGenerationService = ProviderRegistry.createTitleGenerationService(plugin);
+  }
 }
 function cleanupTabRuntime(tab) {
   if (tab.service && typeof tab.service.cleanup === "function") {
@@ -90464,18 +91110,6 @@ function createTab(options) {
     renderer: null
   };
   return tab;
-}
-function autoResizeTextarea(textarea) {
-  var _a3, _b2;
-  const viewHeight = (_b2 = (_a3 = textarea.closest(".claudian-container")) == null ? void 0 : _a3.clientHeight) != null ? _b2 : window.innerHeight;
-  const maxHeight = Math.max(TEXTAREA_MIN_MAX_HEIGHT, viewHeight * TEXTAREA_MAX_HEIGHT_PERCENT);
-  const flexAllocatedHeight = textarea.offsetHeight;
-  const contentHeight = Math.min(textarea.scrollHeight, maxHeight);
-  const minHeight = contentHeight > flexAllocatedHeight ? contentHeight : 60;
-  textarea.setCssProps({
-    "--claudian-textarea-min-height": `${minHeight}px`,
-    "--claudian-textarea-max-height": `${maxHeight}px`
-  });
 }
 function buildTabDOM(contentEl) {
   const messagesWrapperEl = contentEl.createDiv({ cls: "claudian-messages-wrapper" });
@@ -90628,6 +91262,7 @@ function initializeSlashCommands(tab, getHiddenCommands, catalogInfo) {
 function initializeInstructionAndTodo(tab, plugin) {
   const { dom } = tab;
   syncTabProviderServices(tab, plugin);
+  ensureTitleGenerationService(tab, plugin);
   tab.ui.instructionModeManager = new InstructionModeManager(
     dom.inputEl,
     {
@@ -90693,7 +91328,7 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
     getSettings: () => getTabSettingsSnapshot(tab, plugin),
     getEnvironmentVariables: () => plugin.getActiveEnvironmentVariables(),
     onModelChange: async (model) => {
-      var _a4, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k;
+      var _a4, _b2, _c, _d2, _e, _f, _g, _h, _i, _j2, _k, _l, _m;
       if (tab.lifecycleState === "blank") {
         const previousProvider = tab.providerId;
         tab.draftModel = model;
@@ -90718,12 +91353,13 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
         if (didProviderChange) {
           await (onProviderChanged == null ? void 0 : onProviderChanged(newProvider));
         }
-        (_a4 = tab.ui.thinkingBudgetSelector) == null ? void 0 : _a4.updateDisplay();
-        (_b2 = tab.ui.serviceTierToggle) == null ? void 0 : _b2.updateDisplay();
-        (_c = tab.ui.modelSelector) == null ? void 0 : _c.updateDisplay();
-        (_d2 = tab.ui.modeSelector) == null ? void 0 : _d2.updateDisplay();
-        (_e = tab.ui.modelSelector) == null ? void 0 : _e.renderOptions();
-        (_f = tab.ui.modeSelector) == null ? void 0 : _f.renderOptions();
+        await ((_a4 = uiConfig2.prepareModelMetadata) == null ? void 0 : _a4.call(uiConfig2, model, plugin.settings, { plugin }));
+        (_b2 = tab.ui.thinkingBudgetSelector) == null ? void 0 : _b2.updateDisplay();
+        (_c = tab.ui.serviceTierToggle) == null ? void 0 : _c.updateDisplay();
+        (_d2 = tab.ui.modelSelector) == null ? void 0 : _d2.updateDisplay();
+        (_e = tab.ui.modeSelector) == null ? void 0 : _e.updateDisplay();
+        (_f = tab.ui.modelSelector) == null ? void 0 : _f.renderOptions();
+        (_g = tab.ui.modeSelector) == null ? void 0 : _g.renderOptions();
         applyProviderUIGating(tab, plugin);
         return;
       }
@@ -90731,7 +91367,7 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
       const modelProvider = getProviderForModel(model, plugin.settings);
       if (modelProvider !== boundProvider) {
         new import_obsidian41.Notice("Cannot switch provider on a bound session. Start a new tab instead.");
-        (_g = tab.ui.modelSelector) == null ? void 0 : _g.updateDisplay();
+        (_h = tab.ui.modelSelector) == null ? void 0 : _h.updateDisplay();
         return;
       }
       const uiConfig = getTabChatUIConfig(tab, plugin);
@@ -90739,10 +91375,11 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
         settings11.model = model;
         uiConfig.applyModelDefaults(model, settings11);
       });
-      (_h = tab.ui.thinkingBudgetSelector) == null ? void 0 : _h.updateDisplay();
-      (_i = tab.ui.serviceTierToggle) == null ? void 0 : _i.updateDisplay();
-      (_j2 = tab.ui.modelSelector) == null ? void 0 : _j2.updateDisplay();
-      (_k = tab.ui.modelSelector) == null ? void 0 : _k.renderOptions();
+      await ((_i = uiConfig.prepareModelMetadata) == null ? void 0 : _i.call(uiConfig, model, plugin.settings, { plugin }));
+      (_j2 = tab.ui.thinkingBudgetSelector) == null ? void 0 : _j2.updateDisplay();
+      (_k = tab.ui.serviceTierToggle) == null ? void 0 : _k.updateDisplay();
+      (_l = tab.ui.modelSelector) == null ? void 0 : _l.updateDisplay();
+      (_m = tab.ui.modelSelector) == null ? void 0 : _m.renderOptions();
       const currentUsage = tab.state.usage;
       if (currentUsage) {
         const newContextWindow = uiConfig.getContextWindowSize(
@@ -92360,6 +92997,7 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     this.titleTextEl = null;
     this.headerActionsEl = null;
     this.headerActionsContent = null;
+    this.newTabButtonEl = null;
     // Header elements
     this.historyDropdown = null;
     // Event refs for cleanup
@@ -92514,6 +93152,7 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     this.tabManager = null;
     (_b2 = this.tabBar) == null ? void 0 : _b2.destroy();
     this.tabBar = null;
+    this.scope = null;
   }
   // ============================================
   // UI Building
@@ -92547,10 +93186,10 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     fragment.appendChild(this.tabBarContainerEl);
     this.headerActionsContent = activeDocument.createElement("div");
     this.headerActionsContent.className = "claudian-header-actions";
-    const newTabBtn = this.headerActionsContent.createDiv({ cls: "claudian-header-btn claudian-new-tab-btn" });
-    (0, import_obsidian44.setIcon)(newTabBtn, "square-plus");
-    newTabBtn.setAttribute("aria-label", "New tab");
-    newTabBtn.addEventListener("click", () => {
+    this.newTabButtonEl = this.headerActionsContent.createDiv({ cls: "claudian-header-btn claudian-new-tab-btn" });
+    (0, import_obsidian44.setIcon)(this.newTabButtonEl, "square-plus");
+    this.newTabButtonEl.setAttribute("aria-label", "New tab");
+    this.newTabButtonEl.addEventListener("click", () => {
       void this.createNewTab().catch(() => new import_obsidian44.Notice("Failed to create tab"));
     });
     const newBtn = this.headerActionsContent.createDiv({ cls: "claudian-header-btn" });
@@ -92574,7 +93213,7 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     });
     fragment.appendChild(this.headerActionsContent);
     const wrapper = activeDocument.createElement("div");
-    wrapper.className = "claudian-visible-contents";
+    wrapper.className = "claudian-input-nav-content";
     wrapper.appendChild(fragment);
     return wrapper;
   }
@@ -92618,6 +93257,10 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     this.updateNavRowLocation();
     this.updateTabBarVisibility();
   }
+  /** Refreshes tab controls after settings that affect tab availability change. */
+  refreshTabControls() {
+    this.updateTabBarVisibility();
+  }
   // ============================================
   // Tab Management
   // ============================================
@@ -92645,6 +93288,7 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     if (!tab) {
       const maxTabs = (_b2 = this.plugin.settings.maxTabs) != null ? _b2 : 3;
       new import_obsidian44.Notice(`Maximum ${maxTabs} tabs allowed`);
+      this.updateTabBarVisibility();
       return;
     }
     this.updateTabBarVisibility();
@@ -92676,6 +93320,19 @@ var ClaudianView = class extends import_obsidian44.ItemView {
     if (this.titleTextEl) {
       this.titleTextEl.toggleClass("claudian-hidden", hideBranding);
     }
+    this.updateNewTabButtonVisibility();
+  }
+  updateNewTabButtonVisibility() {
+    if (!this.newTabButtonEl || !this.tabManager) return;
+    const canCreateTab = this.tabManager.canCreateTab();
+    this.newTabButtonEl.toggleClass("claudian-hidden", !canCreateTab);
+    if (canCreateTab) {
+      this.newTabButtonEl.removeAttribute("aria-disabled");
+      this.newTabButtonEl.removeAttribute("aria-hidden");
+      return;
+    }
+    this.newTabButtonEl.setAttribute("aria-disabled", "true");
+    this.newTabButtonEl.setAttribute("aria-hidden", "true");
   }
   /** Sets `data-provider` on the root container so CSS brand color follows the active provider. */
   syncProviderBrandColor() {
@@ -92794,18 +93451,18 @@ var ClaudianView = class extends import_obsidian44.ItemView {
         }
       }
     });
-    this.registerDomEvent(activeDocument, "keydown", (e2) => {
+    this.scope = new import_obsidian44.Scope(this.app.scope);
+    this.scope.register([], "Escape", (e2) => {
       var _a3, _b2;
-      if (e2.key !== "Escape" || e2.isComposing) return;
-      const activeElement = activeDocument.activeElement;
-      if (!activeElement || !this.containerEl.contains(activeElement)) return;
-      e2.preventDefault();
-      e2.stopPropagation();
-      const activeTab = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab();
-      if (activeTab == null ? void 0 : activeTab.state.isStreaming) {
-        (_b2 = activeTab.controllers.inputController) == null ? void 0 : _b2.cancelStreaming();
+      if (e2.isComposing) return;
+      if (!e2.defaultPrevented) {
+        const activeTab = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab();
+        if (activeTab == null ? void 0 : activeTab.state.isStreaming) {
+          (_b2 = activeTab.controllers.inputController) == null ? void 0 : _b2.cancelStreaming();
+        }
       }
-    }, { capture: true });
+      return false;
+    });
     const markCacheDirty = (includesFolders) => {
       var _a3, _b2;
       const mgr = (_b2 = (_a3 = this.tabManager) == null ? void 0 : _a3.getActiveTab()) == null ? void 0 : _b2.ui.fileContextManager;
@@ -92946,21 +93603,33 @@ var InputWidget = class extends import_view2.WidgetType {
     return true;
   }
 };
+function buildInlineEditInputDecorations(options) {
+  var _a3;
+  const isInbetween = (_a3 = options.isInbetween) != null ? _a3 : false;
+  const lineStart = options.doc.lineAt(options.inputPos).from;
+  return import_view2.Decoration.set([
+    import_view2.Decoration.line({
+      class: "claudian-inline-input-line"
+    }).range(lineStart),
+    import_view2.Decoration.widget({
+      widget: options.widget,
+      block: !isInbetween,
+      side: isInbetween ? 1 : -1
+    }).range(options.inputPos)
+  ], true);
+}
 var inlineEditField = import_state2.StateField.define({
   create: () => import_view2.Decoration.none,
   update: (deco, tr) => {
-    var _a3;
     deco = deco.map(tr.changes);
     for (const e2 of tr.effects) {
       if (e2.is(showInlineEdit)) {
-        const builder = new import_state2.RangeSetBuilder();
-        const isInbetween = (_a3 = e2.value.isInbetween) != null ? _a3 : false;
-        builder.add(e2.value.inputPos, e2.value.inputPos, import_view2.Decoration.widget({
-          widget: new InputWidget(e2.value.widget),
-          block: !isInbetween,
-          side: isInbetween ? 1 : -1
-        }));
-        deco = builder.finish();
+        deco = buildInlineEditInputDecorations({
+          doc: tr.state.doc,
+          inputPos: e2.value.inputPos,
+          isInbetween: e2.value.isInbetween,
+          widget: new InputWidget(e2.value.widget)
+        });
       } else if (e2.is(showDiff)) {
         const builder = new import_state2.RangeSetBuilder();
         builder.add(e2.value.from, e2.value.to, import_view2.Decoration.replace({
@@ -93724,6 +94393,9 @@ var ClaudianSettingTab = class extends import_obsidian46.PluginSettingTab {
         this.plugin.settings.maxTabs = value;
         await this.plugin.saveSettings();
         updateMaxTabsWarning(value);
+        for (const view of this.plugin.getAllViews()) {
+          view.refreshTabControls();
+        }
       });
       updateMaxTabsWarning((_b2 = this.plugin.settings.maxTabs) != null ? _b2 : 3);
     });
@@ -94611,3 +95283,5 @@ smol-toml/dist/index.js:
    * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    *)
 */
+
+/* nosourcemap */
