@@ -15,14 +15,13 @@
       },
       {
         "tabId": "tab-1779448736594-d2ya7lo",
-        "conversationId": "conv-1779450823915-jkgo141yt"
+        "conversationId": "conv-1779451540004-wd8wtg5t6"
       },
       {
-        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": null
+        "conversationId": "conv-1779451453985-klxqgfwyx"
       }
     ],
-    "activeTabId": "tab-1779448736943-hq3dr8b"
+    "activeTabId": "tab-1779448736594-d2ya7lo"
   }
 }
