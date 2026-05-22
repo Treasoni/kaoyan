@@ -68,10 +68,6 @@ body.theme-light .claudian-container {
   display: flex !important;
 }
 
-.claudian-visible-contents {
-  display: contents !important;
-}
-
 .claudian-provider-icon-variant--dark {
   display: none;
 }
@@ -1476,7 +1472,6 @@ body.theme-light .claudian-message-content pre {
 
 .claudian-status-panel-bash-content {
   padding-top: 2px;
-  max-height: 320px;
   max-height: min(40vh, 320px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1804,6 +1799,14 @@ body.theme-light .claudian-message-content pre {
   min-height: 0;
 }
 
+.claudian-input-nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+}
+
 /* Header mode: hide nav row above input (content moved to header) */
 .claudian-container--header-mode .claudian-input-nav-row {
   display: none;
@@ -1954,6 +1957,13 @@ body.theme-light .claudian-message-content pre {
   text-overflow: ellipsis;
 }
 
+.claudian-queue-indicator-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .claudian-queue-indicator-action {
   flex: 0 0 auto;
   padding: 1px 8px;
@@ -1972,6 +1982,31 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-faint);
   cursor: default;
   text-decoration: none;
+}
+
+.claudian-queue-indicator-icon-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.claudian-queue-indicator-icon-action:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.claudian-queue-indicator-icon-action svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* Light blue border when instruction mode is active */
@@ -3284,7 +3319,7 @@ code .claudian-file-link:hover {
 
 /* CM6 widget container - ensure transparent background */
 .cm-widgetBuffer,
-.cm-line:has(.claudian-inline-input-container) {
+.cm-line.claudian-inline-input-line {
   background: transparent !important;
 }
 
