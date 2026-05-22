@@ -14,9 +14,8 @@
         "conversationId": "conv-1779439503577-flli3cl90"
       },
       {
-        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1779448736594-d2ya7lo",
-        "conversationId": null
+        "conversationId": "conv-1779450823915-jkgo141yt"
       },
       {
         "draftModel": "deepseek-v4-flash",
@@ -24,6 +23,6 @@
         "conversationId": null
       }
     ],
-    "activeTabId": "tab-1775011597993-m81k6tl"
+    "activeTabId": "tab-1779448736594-d2ya7lo"
   }
 }
