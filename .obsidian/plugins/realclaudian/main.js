@@ -61987,6 +61987,14 @@ function createClaudeApprovalCallback(deps) {
     const askUserQuestionCallback = deps.getAskUserQuestionCallback();
     if (toolName === TOOL_ASK_USER_QUESTION && askUserQuestionCallback) {
       try {
+        const questions = input.questions;
+        if (Array.isArray(questions)) {
+          for (const q10 of questions) {
+            if (q10 && typeof q10 === "object" && !("isOther" in q10)) {
+              q10.isOther = true;
+            }
+          }
+        }
         const answers = await askUserQuestionCallback(input, options.signal);
         if (answers === null) {
           return { behavior: "deny", message: "User declined to answer.", interrupt: true };
@@ -72257,6 +72265,7 @@ var AcpJsonRpcTransport = class {
     this.pending = /* @__PURE__ */ new Map();
     this.readline = null;
     this.requestHandlers = /* @__PURE__ */ new Map();
+    this.streamUnsubscribers = [];
   }
   get signal() {
     return this.abortController.signal;
@@ -72279,6 +72288,23 @@ var AcpJsonRpcTransport = class {
         this.dispose(new JsonRpcTransportClosedError("JSON-RPC input closed"));
       }
     });
+    this.streamUnsubscribers.push(
+      subscribeStreamEvent(this.streams.input, "error", (error48) => {
+        if (!this.disposed) {
+          this.dispose(error48 instanceof Error ? error48 : new JsonRpcTransportClosedError("JSON-RPC input error"));
+        }
+      }),
+      subscribeStreamEvent(this.streams.output, "close", () => {
+        if (!this.disposed) {
+          this.dispose(new JsonRpcTransportClosedError("JSON-RPC output closed"));
+        }
+      }),
+      subscribeStreamEvent(this.streams.output, "error", (error48) => {
+        if (!this.disposed) {
+          this.dispose(error48 instanceof Error ? error48 : new JsonRpcTransportClosedError("JSON-RPC output error"));
+        }
+      })
+    );
     this.unregisterClose = (_b2 = (_a3 = this.streams).onClose) == null ? void 0 : _b2.call(_a3, (error48) => {
       if (!this.disposed) {
         this.dispose(error48 != null ? error48 : new JsonRpcTransportClosedError());
@@ -72367,7 +72393,9 @@ var AcpJsonRpcTransport = class {
       } catch (error48) {
         this.pending.delete(id);
         cleanup();
-        reject(error48 instanceof Error ? error48 : new Error(String(error48)));
+        const transportError = error48 instanceof Error ? error48 : new Error(String(error48));
+        this.dispose(transportError);
+        reject(transportError);
       }
     });
   }
@@ -72376,10 +72404,10 @@ var AcpJsonRpcTransport = class {
     if (this.disposed) {
       return;
     }
-    this.sendRaw({ jsonrpc: "2.0", method, params });
+    this.trySendRaw({ jsonrpc: "2.0", method, params });
   }
   dispose(error48 = new JsonRpcTransportClosedError("JSON-RPC transport disposed")) {
-    var _a3;
+    var _a3, _b2;
     if (this.disposed) {
       return;
     }
@@ -72387,6 +72415,9 @@ var AcpJsonRpcTransport = class {
     this.abortController.abort();
     (_a3 = this.unregisterClose) == null ? void 0 : _a3.call(this);
     this.unregisterClose = void 0;
+    while (this.streamUnsubscribers.length > 0) {
+      (_b2 = this.streamUnsubscribers.pop()) == null ? void 0 : _b2();
+    }
     if (this.readline) {
       this.readline.removeAllListeners();
       this.readline.close();
@@ -72460,7 +72491,7 @@ var AcpJsonRpcTransport = class {
   handleRequest(message) {
     const handler = this.requestHandlers.get(message.method);
     if (!handler) {
-      this.sendRaw({
+      this.trySendRaw({
         error: {
           code: -32601,
           message: `Unhandled server request: ${message.method}`
@@ -72472,10 +72503,10 @@ var AcpJsonRpcTransport = class {
     }
     void Promise.resolve(handler(message.params)).then(
       (result) => {
-        this.sendRaw({ id: message.id, jsonrpc: "2.0", result });
+        this.trySendRaw({ id: message.id, jsonrpc: "2.0", result });
       },
       (error48) => {
-        this.sendRaw({
+        this.trySendRaw({
           error: {
             code: -32603,
             message: error48 instanceof Error ? error48.message : "Internal error"
@@ -72493,7 +72524,28 @@ var AcpJsonRpcTransport = class {
     this.streams.output.write(`${JSON.stringify(message)}
 `);
   }
+  trySendRaw(message) {
+    try {
+      this.sendRaw(message);
+    } catch (error48) {
+      const transportError = error48 instanceof Error ? error48 : new Error(String(error48));
+      this.dispose(transportError);
+    }
+  }
 };
+function subscribeStreamEvent(stream, eventName, listener) {
+  var _a3;
+  const evented = stream;
+  (_a3 = evented.on) == null ? void 0 : _a3.call(evented, eventName, listener);
+  return () => {
+    var _a4;
+    if (typeof evented.off === "function") {
+      evented.off(eventName, listener);
+      return;
+    }
+    (_a4 = evented.removeListener) == null ? void 0 : _a4.call(evented, eventName, listener);
+  };
+}
 
 // src/providers/acp/methodNames.ts
 var ACP_METHOD_CANDIDATES = {
@@ -73780,7 +73832,7 @@ var DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS = [
   { id: OPENCODE_PLAN_MODE_ID }
 ];
 async function prepareOpencodeLaunchArtifacts(params) {
-  var _a3, _b2, _c, _d2, _e, _f, _g;
+  var _a3, _b2, _c, _d2, _e, _f;
   const artifactsDir = path18.join(
     params.workspaceRoot,
     CLAUDIAN_STORAGE_PATH,
@@ -73810,6 +73862,7 @@ async function prepareOpencodeLaunchArtifacts(params) {
 `;
   const databasePath = resolveOpencodeDatabasePath(params.runtimeEnv);
   await fs19.mkdir(artifactsDir, { recursive: true });
+  await ensureOpencodeDatabaseDirectory(databasePath);
   await writeIfChanged(systemPromptPath, systemPrompt);
   await writeIfChanged(configPath, configContent);
   return {
@@ -73820,11 +73873,16 @@ async function prepareOpencodeLaunchArtifacts(params) {
       promptKey,
       configContent,
       databasePath != null ? databasePath : "",
-      (_f = params.runtimeEnv.OPENCODE_DB) != null ? _f : "",
-      (_g = params.runtimeEnv.XDG_DATA_HOME) != null ? _g : ""
+      (_f = params.runtimeEnv.XDG_DATA_HOME) != null ? _f : ""
     ].join("::"),
     systemPromptPath
   };
+}
+async function ensureOpencodeDatabaseDirectory(databasePath) {
+  if (!databasePath || databasePath === ":memory:") {
+    return;
+  }
+  await fs19.mkdir(path18.dirname(databasePath), { recursive: true });
 }
 function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, managedAgents = DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS, defaultAgentId) {
   const config2 = {
@@ -73975,6 +74033,7 @@ var OpencodeChatRuntime = class {
     this.sessionUpdateNormalizer = new AcpSessionUpdateNormalizer();
     this.toolStreamAdapter = createOpencodeToolStreamAdapter();
     this.transport = null;
+    this.unregisterTransportClose = null;
   }
   getCapabilities() {
     return OPENCODE_PROVIDER_CAPABILITIES;
@@ -74085,7 +74144,7 @@ var OpencodeChatRuntime = class {
       promptKey: computeSystemPromptKey(promptSettings),
       artifactKey: artifacts.launchKey
     });
-    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || (options == null ? void 0 : options.force) === true || this.currentLaunchKey !== nextLaunchKey;
+    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || this.transport.isClosed || (options == null ? void 0 : options.force) === true || this.currentLaunchKey !== nextLaunchKey;
     if (shouldRestart) {
       await this.shutdownProcess();
       await this.startProcess({
@@ -74338,6 +74397,12 @@ var OpencodeChatRuntime = class {
       onClose: (listener) => this.process.onClose(listener),
       output: this.process.stdin
     });
+    const transport = this.transport;
+    this.unregisterTransportClose = transport.onClose(() => {
+      if (this.transport === transport) {
+        this.setReady(false);
+      }
+    });
     this.connection = new AcpClientConnection({
       clientInfo: {
         name: "claudian",
@@ -74358,16 +74423,18 @@ var OpencodeChatRuntime = class {
     this.setReady(true);
   }
   async shutdownProcess() {
-    var _a3, _b2, _c;
+    var _a3, _b2, _c, _d2;
     this.setReady(false);
     (_a3 = this.activeTurn) == null ? void 0 : _a3.queue.close();
     this.activeTurn = null;
     this.currentSessionModelId = null;
     this.currentSessionModeId = null;
     this.setSupportedCommands([]);
-    (_b2 = this.connection) == null ? void 0 : _b2.dispose();
+    (_b2 = this.unregisterTransportClose) == null ? void 0 : _b2.call(this);
+    this.unregisterTransportClose = null;
+    (_c = this.connection) == null ? void 0 : _c.dispose();
     this.connection = null;
-    (_c = this.transport) == null ? void 0 : _c.dispose();
+    (_d2 = this.transport) == null ? void 0 : _d2.dispose();
     this.transport = null;
     if (this.process) {
       await this.process.shutdown().catch(() => {
@@ -76493,7 +76560,7 @@ ${stderr}` : message,
       configPath: artifacts.configPath,
       envText: getRuntimeEnvironmentText(settings11, "opencode")
     });
-    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || this.currentLaunchKey !== nextLaunchKey;
+    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || this.transport.isClosed || this.currentLaunchKey !== nextLaunchKey;
     if (!shouldRestart) {
       return;
     }
@@ -79775,6 +79842,11 @@ var InlineAskUserQuestion = class {
       inputEl.addEventListener("blur", () => {
         this.isInputFocused = false;
       });
+      customRow.addEventListener("click", () => {
+        this.focusedItemIndex = customIdx;
+        this.updateFocusIndicator();
+        inputEl.focus();
+      });
       this.currentItems.push(customRow);
     }
     this.contentArea.createDiv({
@@ -79911,23 +79983,9 @@ var InlineAskUserQuestion = class {
         item.addClass("is-focused");
         if (cursor) cursor.textContent = "\u203A";
         item.scrollIntoView({ block: "nearest" });
-        if (item.hasClass("claudian-ask-custom-item")) {
-          const input = item.querySelector(".claudian-ask-custom-text");
-          if (input) {
-            input.focus();
-            this.isInputFocused = true;
-          }
-        }
       } else {
         item.removeClass("is-focused");
         if (cursor) cursor.textContent = "\xA0";
-        if (item.hasClass("claudian-ask-custom-item")) {
-          const input = item.querySelector(".claudian-ask-custom-text");
-          if (input && this.rootEl.ownerDocument.activeElement === input) {
-            input.blur();
-            this.isInputFocused = false;
-          }
-        }
       }
     }
   }
@@ -79986,7 +80044,7 @@ var InlineAskUserQuestion = class {
     }
   }
   handleKeyDown(e2) {
-    var _a3, _b2;
+    var _a3, _b2, _c;
     if (this.isInputFocused) {
       if (e2.key === "Escape") {
         e2.preventDefault();
@@ -80006,6 +80064,22 @@ var InlineAskUserQuestion = class {
         } else {
           this.switchTab(this.activeTabIndex + 1);
         }
+        return;
+      }
+      if (e2.key === "ArrowUp" || e2.key === "ArrowDown") {
+        e2.preventDefault();
+        e2.stopPropagation();
+        (_c = this.rootEl.ownerDocument.activeElement) == null ? void 0 : _c.blur();
+        this.isInputFocused = false;
+        const q11 = this.questions[this.activeTabIndex];
+        const maxIdx = this.canShowCustomInputForQuestion(q11) ? q11.options.length : q11.options.length - 1;
+        if (e2.key === "ArrowUp") {
+          this.focusedItemIndex = Math.max(this.focusedItemIndex - 1, 0);
+        } else {
+          this.focusedItemIndex = Math.min(this.focusedItemIndex + 1, maxIdx);
+        }
+        this.updateFocusIndicator();
+        this.rootEl.focus();
         return;
       }
       return;
@@ -80049,9 +80123,8 @@ var InlineAskUserQuestion = class {
           this.selectOption(this.activeTabIndex, q10.options[this.focusedItemIndex]);
         } else if (this.canShowCustomInputForQuestion(q10)) {
           this.isInputFocused = true;
-          const input = this.contentArea.querySelector(
-            ".claudian-ask-custom-text"
-          );
+          const customRow = this.currentItems[this.focusedItemIndex];
+          const input = customRow == null ? void 0 : customRow.querySelector(".claudian-ask-custom-text");
           input == null ? void 0 : input.focus();
         }
         break;
