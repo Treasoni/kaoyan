@@ -2,8 +2,9 @@
   "tabManagerState": {
     "openTabs": [
       {
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1775011597993-m81k6tl",
-        "conversationId": "conv-1779778395265-rncy7ulnq"
+        "conversationId": null
       },
       {
         "tabId": "tab-1778492346086-rk6c0kv",
