@@ -10,12 +10,13 @@
         "conversationId": "conv-1780021531875-4s83i2yep"
       },
       {
+        "draftModel": "mimo-v2.5",
         "tabId": "tab-1778506702337-k688s0c",
-        "conversationId": "conv-1780048972759-t1h9dj6de"
+        "conversationId": null
       },
       {
         "tabId": "tab-1779448736594-d2ya7lo",
-        "conversationId": "conv-1780053582198-1nklqct8g"
+        "conversationId": "conv-1780054607569-z5izy545j"
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
