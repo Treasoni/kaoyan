@@ -6,13 +6,12 @@
         "conversationId": "conv-1780451392922-9hcd3omse"
       },
       {
-        "draftModel": "mimo-v2.5",
         "tabId": "tab-1778492346086-rk6c0kv",
-        "conversationId": null
+        "conversationId": "conv-1780494407239-n4oyn0soy"
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": "conv-1780459829589-u1crcf17j"
+        "conversationId": "conv-1780494424527-qqqm6idgm"
       },
       {
         "tabId": "tab-1780191852688-np19lnk",
@@ -23,6 +22,6 @@
         "conversationId": "conv-1780457692042-srzuzaxce"
       }
     ],
-    "activeTabId": "tab-1778492346086-rk6c0kv"
+    "activeTabId": "tab-1779448736943-hq3dr8b"
   }
 }
