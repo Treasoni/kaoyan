@@ -6,8 +6,9 @@
         "conversationId": "conv-1780451392922-9hcd3omse"
       },
       {
+        "draftModel": "mimo-v2.5",
         "tabId": "tab-1778492346086-rk6c0kv",
-        "conversationId": "conv-1780459018577-2ok76gr7b"
+        "conversationId": null
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
