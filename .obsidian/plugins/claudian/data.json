@@ -2,8 +2,9 @@
   "tabManagerState": {
     "openTabs": [
       {
+        "draftModel": "MiniMax-M2.7-highspeed",
         "tabId": "tab-1775011597993-m81k6tl",
-        "conversationId": "conv-1780732452516-6yh3del3e"
+        "conversationId": null
       },
       {
         "tabId": "tab-1778492346086-rk6c0kv",
