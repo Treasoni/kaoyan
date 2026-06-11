@@ -6,7 +6,7 @@
         "conversationId": "conv-1781144013473-scrfcz224"
       },
       {
-        "draftModel": "mimo-v2.5",
+        "draftModel": "MiniMax-M2.7-highspeed",
         "tabId": "tab-1778492346086-rk6c0kv",
         "conversationId": null
       },
@@ -16,13 +16,13 @@
       },
       {
         "tabId": "tab-1780191852688-np19lnk",
-        "conversationId": "conv-1781144705633-a8owz2rkt"
+        "conversationId": "conv-1781174526164-wfvw2lm5z"
       },
       {
         "tabId": "tab-1780456956859-0i1qnvx",
         "conversationId": "conv-1781143265807-zscvfp4kp"
       }
     ],
-    "activeTabId": "tab-1775011597993-m81k6tl"
+    "activeTabId": "tab-1780191852688-np19lnk"
   }
 }
