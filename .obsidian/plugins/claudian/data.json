@@ -19,10 +19,11 @@
         "conversationId": "conv-1781178145551-ixhe7yx5x"
       },
       {
+        "draftModel": "MMiniMax-M3",
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": "conv-1781143265807-zscvfp4kp"
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1780191852688-np19lnk"
+    "activeTabId": "tab-1780456956859-0i1qnvx"
   }
 }
