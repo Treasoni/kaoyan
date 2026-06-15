@@ -6,9 +6,8 @@
         "conversationId": "conv-1781144013473-scrfcz224"
       },
       {
-        "draftModel": "mimo-v2.5",
         "tabId": "tab-1778492346086-rk6c0kv",
-        "conversationId": null
+        "conversationId": "conv-1781523941279-pnrh2xukh"
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
@@ -23,6 +22,6 @@
         "conversationId": "conv-1781523342932-ja0sld4gy"
       }
     ],
-    "activeTabId": "tab-1780456956859-0i1qnvx"
+    "activeTabId": "tab-1778492346086-rk6c0kv"
   }
 }
