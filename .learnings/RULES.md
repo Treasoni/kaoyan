@@ -1,0 +1,24 @@
+# Rules
+
+Compressed patterns from repeated learnings and errors.
+
+---
+
+## Do
+
+- (4x) 表格内 LaTeX 绝对值用 `$\lvert A \rvert$`，范数用 `$\left\lVert A \right\rVert$`
+- (2x) `/kaoyan-plan` 完成报告后必须更新：每日计划 → 完成记录 → 英语📊进度 → ⭐英语📅日志 → ⭐线代📊进度 → 专业课📊进度
+- (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
+- (1x) 错题归档按知识模块判断，不按表象判断
+
+## Don't
+
+- (4x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
+- (1x) Callout 内 `$$` 不要紧跟 `[!type]` 后面 — 会被当作 callout 标题而非数学公式
+- (1x) 不要凭空猜测 wikilink 路径
+
+## Watch For
+
+- (4x) 表格内 LaTeX 管道符冲突（Pattern-Key: table.pipe_in_math）— 高频复发
+- (2x) 完成报告更新清单中"英语📅日志"和"线代📊进度"容易遗漏
+- (1x) Obsidian callout 内多行 `$$` 数学块渲染问题（Pattern-Key: obsidian.callout_math）
