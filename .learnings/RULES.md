@@ -16,6 +16,7 @@ Compressed patterns from repeated learnings and errors.
 - (4x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
 - (1x) Callout 内 `$$` 不要紧跟 `[!type]` 后面 — 会被当作 callout 标题而非数学公式
 - (1x) 不要凭空猜测 wikilink 路径
+- **不要将新规则提升到 CLAUDE.md** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
 
 ## Watch For
 

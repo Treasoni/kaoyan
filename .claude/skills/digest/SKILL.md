@@ -32,9 +32,8 @@ wc -l .learnings/LEARNINGS.md .learnings/ERRORS.md 2>/dev/null || echo "0 .learn
    - `## Watch For` — 需要特别注意的情况
    - 每行一条规则，合并重复出现：`(3x) 用 X 而非 Y`
    - 丢弃只出现一次的孤立噪声
-4. 如果某规则对核心 Study System 流程至关重要，提升到 CLAUDE.md
-5. 归档旧条目到 `.learnings/archive/YYYY-MM-DD.md`
-6. 截断 `.learnings/LEARNINGS.md` 和 `.learnings/ERRORS.md` 只保留头部
+4. 归档旧条目到 `.learnings/archive/YYYY-MM-DD.md`
+5. 截断 `.learnings/LEARNINGS.md` 和 `.learnings/ERRORS.md` 只保留头部
 
 ### Step 2: 确保 .learnings/ 目录存在
 
@@ -116,6 +115,7 @@ What was being attempted
 - 不要跳过压缩阈值检查
 - 不要归档未压缩的条目
 - 不要在无意义时强行记录
+- **不要将新规则提升到 CLAUDE.md** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
 
 ## 硬停止 (Hard Stop)
 
