@@ -11,17 +11,14 @@
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": "conv-1781766786884-1ovzz0blf"
+        "conversationId": "conv-1781790474516-xr7bvhtpe"
       },
       {
-        "tabId": "tab-1780191852688-np19lnk",
-        "conversationId": "conv-1781781657296-wqwcd0g6u"
-      },
-      {
+        "draftModel": "MMiniMax-M3",
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": "conv-1781611655300-hrsr4trjq"
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1780191852688-np19lnk"
+    "activeTabId": "tab-1779448736943-hq3dr8b"
   }
 }
