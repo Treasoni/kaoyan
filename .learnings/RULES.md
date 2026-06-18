@@ -8,12 +8,16 @@ Compressed patterns from repeated learnings and errors.
 
 - (4x) 表格内 LaTeX 绝对值用 `$\lvert A \rvert$`，范数用 `$\left\lVert A \right\rVert$`
 - (2x) `/kaoyan-plan` 完成报告后必须更新：每日计划 → 完成记录 → 英语📊进度 → ⭐英语📅日志 → ⭐线代📊进度 → 专业课📊进度
+- (2x) 删除 Obsidian 文件前先调用 safe-delete skill 清理悬空链接
 - (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
 - (1x) 错题归档按知识模块判断，不按表象判断
+- (1x) 证明内容统一使用 `> [!note]-` 折叠形式呈现
+- (1x) sortspec 中文件夹只用文件夹名称，不展开子文件
 
 ## Don't
 
 - (4x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
+- (2x) Callout 内不要用 `$$` 块级公式，应移到 callout 外面
 - (1x) Callout 内 `$$` 不要紧跟 `[!type]` 后面 — 会被当作 callout 标题而非数学公式
 - (1x) 不要凭空猜测 wikilink 路径
 - **不要将新规则提升到 CLAUDE.md** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
