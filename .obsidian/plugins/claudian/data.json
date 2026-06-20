@@ -17,8 +17,13 @@
         "draftModel": "MMiniMax-M3",
         "tabId": "tab-1780456956859-0i1qnvx",
         "conversationId": null
+      },
+      {
+        "draftModel": "MMiniMax-M3",
+        "tabId": "tab-1781919391739-6k2ygl1",
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1779448736943-hq3dr8b"
+    "activeTabId": "tab-1781919391739-6k2ygl1"
   }
 }
