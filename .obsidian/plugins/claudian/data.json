@@ -3,7 +3,7 @@
     "openTabs": [
       {
         "tabId": "tab-1775011597993-m81k6tl",
-        "conversationId": "conv-1781754035706-nz3746h5w"
+        "conversationId": "conv-1781920837263-f1z7robu4"
       },
       {
         "tabId": "tab-1778492346086-rk6c0kv",
@@ -14,16 +14,16 @@
         "conversationId": "conv-1781790474516-xr7bvhtpe"
       },
       {
-        "draftModel": "MMiniMax-M3",
+        "draftModel": "mimo-v2.5",
         "tabId": "tab-1780456956859-0i1qnvx",
         "conversationId": null
       },
       {
-        "draftModel": "MMiniMax-M3",
+        "draftModel": "mimo-v2.5",
         "tabId": "tab-1781919391739-6k2ygl1",
         "conversationId": null
       }
     ],
-    "activeTabId": "tab-1781919391739-6k2ygl1"
+    "activeTabId": "tab-1775011597993-m81k6tl"
   }
 }
