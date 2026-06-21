@@ -14,15 +14,14 @@
         "conversationId": "conv-1781922317392-zd2wp5r47"
       },
       {
-        "draftModel": "MMiniMax-M3",
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": null
+        "conversationId": "conv-1782006599197-4xaqwmjpk"
       },
       {
         "tabId": "tab-1782004129110-rax9f12",
         "conversationId": "conv-1782004244720-xqaa4bj8i"
       }
     ],
-    "activeTabId": "tab-1782004129110-rax9f12"
+    "activeTabId": "tab-1780456956859-0i1qnvx"
   }
 }
