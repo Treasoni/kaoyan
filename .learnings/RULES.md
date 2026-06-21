@@ -13,6 +13,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 错题归档按知识模块判断，不按表象判断
 - (1x) **证明/推导类内容使用嵌套 callout 结构**：外层 `> [!example]+ 标题`（`+` 默认折叠）作为可折叠入口，内层用 `> [!proof]` / `> [!tip]` / `> [!note]` 嵌套承载具体内容；标题本身是折叠块的一部分，**不要**把 H3 标题与 callout 并列摆放
 - (1x) sortspec 中文件夹只用文件夹名称，不展开子文件
+- (1x) **写入笔记前验证数学内容正确性** — 公式、定理、推导必须先自行核验（对教材/推导/边界检查）再写入，不能"写完再看"
 
 ## Don't
 
@@ -29,3 +30,4 @@ Compressed patterns from repeated learnings and errors.
 - (2x) 完成报告更新清单中"英语📅日志"和"线代📊进度"容易遗漏
 - (1x) Obsidian 单层 callout 内多行 `$$` 数学块渲染问题（Pattern-Key: obsidian.callout_math）
 - (1x) Obsidian 嵌套 callout 结构用于证明/推导（Pattern-Key: obsidian.proof_collapsible）— 注意外层用 `+` 默认折叠，内层子 callout 用 `-` 或无标记
+- (1x) 数学笔记内容准确性验证（Pattern-Key: math.content_verify）— 公式/定理/推导写入前必须独立验证

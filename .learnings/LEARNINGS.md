@@ -63,3 +63,28 @@ RULES.md 记录"Callout 内不要用 `$$` 块级公式"，但用户明确要求�
 - 已合并到 RULES.md
 
 ---
+
+## [LRN-20260621-001] best_practice
+
+**Logged**: 2026-06-21T19:30:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs
+
+### Summary
+写入笔记前必须先验证数学内容的正确性
+
+### Details
+用户指出"万能圆柱壳法"笔记中的内容，质疑是否有错。经审查该内容实际正确，但暴露了一个流程问题：我在生成/整理笔记内容时，没有先独立验证数学公式的正确性就直接写入了笔记。如果内容真的有误，用户会在复习时才发现，造成误导。
+
+### Suggested Action
+在将任何数学公式、定理陈述、推导过程写入笔记之前，必须先自行验证其正确性（核对教材、推导一遍、或检查边界情况）。不能"写完再看"，要"验证后再写"。
+
+### Resolution
+2026-06-21：规则已合并到 `RULES.md` Do 区（写入前验证数学内容）与 Watch For 区（math.content_verify 模式）。本条目关闭。
+
+### Related Rules
+- Pattern-Key: math.content_verify
+- 已合并到 RULES.md
+
+---
