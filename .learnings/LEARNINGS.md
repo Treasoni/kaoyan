@@ -88,3 +88,28 @@ RULES.md 记录"Callout 内不要用 `$$` 块级公式"，但用户明确要求�
 - 已合并到 RULES.md
 
 ---
+
+## [LRN-20260622-001] best_practice
+
+**Logged**: 2026-06-22T12:00:00+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs
+
+### Summary
+Obsidian 表格内行列式必须用 `\lvert A \rvert` 而非 `\|A\|`
+
+### Details
+在编辑伴随矩阵公式笔记时，表格中使用 `\|A\|` 表示行列式，导致 Obsidian 将 `|` 误解析为表格分隔符，LaTeX 公式渲染失败。正确写法是 `\lvert A \rvert`。
+
+### Suggested Action
+在 Obsidian 表格内的 LaTeX 公式中，行列式符号必须使用 `\lvert A \rvert`（或 `\det A`），禁止使用裸 `|` 符号。写入表格内容后需验证渲染效果。
+
+### Resolution
+2026-06-22：与 RULES.md 已有规则 `table.pipe_in_math` 一致，计数更新为 5x。本条目关闭。
+
+### Related Rules
+- Pattern-Key: table.pipe_in_math
+- 已合并到 RULES.md
+
+---
