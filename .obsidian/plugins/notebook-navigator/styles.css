@@ -183,6 +183,8 @@ body {
     );
     --nn-theme-nav-separator-height: 1px;
     --nn-theme-nav-separator-opacity: 0.3;
+    --nn-theme-nav-indent-guide-color: var(--nn-theme-foreground-faded);
+    --nn-theme-nav-leader-color: var(--nn-theme-foreground-faded);
     --nn-theme-pinned-shortcut-shadow-color: rgba(0, 0, 0, 0.03);
 
     /* -- Navigation Calendar -- */
@@ -709,7 +711,7 @@ body {
     left: 0;
     top: 0;
     bottom: 0;
-    z-index: 10;
+    z-index: 300;
     touch-action: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -1890,7 +1892,7 @@ button.nn-icon-button.nn-icon-button-active svg:not(.nn-vault-icon-svg) {
     );
     width: var(--nn-indent-guide-line-width);
     transform: translateX(-50%);
-    background-color: var(--nn-theme-foreground-faint);
+    background-color: var(--nn-theme-nav-indent-guide-color);
     pointer-events: none;
     z-index: 0;
 }
@@ -2059,8 +2061,57 @@ button.nn-icon-button.nn-icon-button-active svg:not(.nn-vault-icon-svg) {
 
 /* Spacer element to push count to the end */
 .nn-navitem-spacer {
+    --nn-nav-leader-color: var(--nn-theme-nav-leader-color);
+    --nn-nav-count-leader-bottom-offset: calc((var(--nn-setting-nav-item-height) - var(--nn-nav-line-height)) / 2 + 4px);
     flex: 1;
     min-width: 8px; /* Minimum space between name and count */
+}
+
+.notebook-navigator-mobile .nn-navitem-spacer {
+    --nn-nav-count-leader-bottom-offset: calc((var(--nn-setting-nav-item-height-mobile) - var(--nn-nav-line-height)) / 2 + 5px);
+}
+
+[data-nav-count-leader-style='dots'] .nn-navitem-spacer--leader,
+[data-nav-count-leader-style='dashes'] .nn-navitem-spacer--leader,
+[data-nav-count-leader-style='line'] .nn-navitem-spacer--leader {
+    position: relative;
+    align-self: stretch;
+    margin-inline: 8px;
+    min-width: 16px;
+}
+
+[data-nav-count-leader-style='dots'] .nn-navitem-spacer--leader::after,
+[data-nav-count-leader-style='dashes'] .nn-navitem-spacer--leader::after,
+[data-nav-count-leader-style='line'] .nn-navitem-spacer--leader::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: var(--nn-nav-count-leader-bottom-offset);
+    pointer-events: none;
+}
+
+[data-nav-count-leader-style='dots'] .nn-navitem-spacer--leader::after {
+    height: 2px;
+    background-image: radial-gradient(circle, var(--nn-nav-leader-color) 0, var(--nn-nav-leader-color) 1px, transparent 1px);
+    background-repeat: repeat-x;
+    background-position: center;
+    background-size: 6px 2px;
+}
+
+[data-nav-count-leader-style='dashes'] .nn-navitem-spacer--leader::after {
+    height: 1px;
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--nn-nav-leader-color) 0,
+        var(--nn-nav-leader-color) 6px,
+        transparent 6px,
+        transparent 10px
+    );
+}
+
+[data-nav-count-leader-style='line'] .nn-navitem-spacer--leader::after {
+    height: 1px;
+    background-color: var(--nn-nav-leader-color);
 }
 
 /* Folder file count - shows number of files in folder */
@@ -2569,8 +2620,7 @@ button.nn-icon-button.nn-navitem-hover-action-button {
     flex: 0 0 auto;
 }
 
-.nn-navigation-calendar-month .nn-navigation-calendar-quarter-button,
-.nn-navigation-calendar-month .nn-navigation-calendar-quarter-label {
+.nn-navigation-calendar-month .nn-navigation-calendar-quarter-button {
     flex: 0 0 auto;
 }
 
@@ -2621,16 +2671,7 @@ button.nn-navigation-calendar-period-button {
     justify-content: center;
 }
 
-.nn-navigation-calendar-period-label {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 1px;
-    border-radius: 6px;
-    background-color: var(--nn-calendar-header-chip-bg);
-    line-height: 1;
-}
-
-.nn-navigation-calendar-period-button.has-period-note:not(.nn-navigation-calendar-quarter-button)::after {
+.nn-navigation-calendar-period-button.has-period-note::after {
     content: '';
     position: absolute;
     left: 3px;
@@ -2640,15 +2681,6 @@ button.nn-navigation-calendar-period-button {
     background-color: currentColor;
     pointer-events: none;
     z-index: 1;
-}
-
-.nn-navigation-calendar-quarter-button.has-period-note {
-    box-shadow: none;
-}
-
-.nn-navigation-calendar-quarter-button.has-period-note .nn-navigation-calendar-quarter-value {
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 1px;
 }
 
 .nn-navigation-calendar-period-button.is-active-editor-file .nn-navigation-calendar-active-outline,
@@ -4369,7 +4401,7 @@ button.nn-navigation-calendar-day {
 /* Source: src/styles/sections/list-compact-mode.css */
 
 /* ========================================================================
-   Compact Mode Styles - When date, preview, and image are all disabled
+   Compact Mode Styles
    ======================================================================== */
 
 /* Compact file item - more compact list appearance */
@@ -4773,6 +4805,31 @@ button.nn-navigation-calendar-day {
 
 .nn-list-group-header-text--custom-color {
     font-weight: var(--nn-theme-navitem-custom-color-name-font-weight);
+}
+
+.nn-list-group-header-path {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nn-list-group-header-folder-segment {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nn-list-group-header-folder-segment:not(:last-child) {
+    flex-shrink: 0;
+}
+
+.nn-list-group-header-folder-segment:last-child {
+    flex: 1 1 auto;
+}
+
+.nn-list-group-header-path-separator {
+    flex: 0 0 auto;
+    padding-inline: 4px;
 }
 
 button.nn-list-group-header-collapse-button {
@@ -5284,6 +5341,22 @@ body.nn-resizing {
     margin-top: 12px;
 }
 
+.nn-merge-notes-summary {
+    margin-bottom: 8px;
+}
+
+.nn-merge-notes-details {
+    color: var(--nn-theme-foreground-muted);
+    font-size: var(--font-ui-small);
+    unicode-bidi: plaintext;
+}
+
+.nn-merge-notes-warning {
+    color: var(--text-error);
+    font-weight: 700;
+    unicode-bidi: plaintext;
+}
+
 .nn-input-checkbox-row {
     display: flex;
     align-items: center;
@@ -5784,10 +5857,15 @@ body.nn-resizing {
 .modal.nn-whats-new-modal {
     width: 600px;
     max-width: calc(100vw - 40px);
+    overflow: hidden;
 }
 
 /* What's new content layout */
 .modal.nn-whats-new-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
     padding: 16px;
 }
 
@@ -5796,13 +5874,10 @@ body.nn-resizing {
     pointer-events: auto;
 }
 
-/* What's new header */
-.nn-whats-new-header {
-    margin-bottom: 16px;
-}
-
 /* What's new scrollable container */
 .nn-whats-new-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
     max-height: min(70vh, 520px);
     overflow-y: auto;
     margin-bottom: 0;
@@ -5863,6 +5938,34 @@ body.nn-resizing {
 /* Release banner image */
 .nn-whats-new-banner {
     position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    margin-bottom: 12px;
+    text-decoration: none;
+}
+
+.nn-whats-new-banner:focus-visible {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 2px;
+}
+
+.nn-whats-new-banner-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Release video */
+.nn-whats-new-video-frame {
+    position: relative;
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
@@ -5872,12 +5975,46 @@ body.nn-resizing {
     margin-bottom: 12px;
 }
 
-.nn-whats-new-banner-image {
+.nn-whats-new-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background: #000000;
+}
+
+.nn-whats-new-video-open {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--text-normal);
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.nn-whats-new-video-open:hover {
+    color: var(--text-normal);
+    background: var(--background-secondary);
+}
+
+.nn-whats-new-video-open:focus-visible {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 2px;
+}
+
+.nn-whats-new-video-open svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* YouTube link preview */
@@ -6035,11 +6172,6 @@ body.nn-resizing {
         line-height: 1.6;
     }
 
-    /* Mobile header size for the modal title */
-    .nn-whats-new-header {
-        font-size: 16px;
-    }
-
     /* Version header size on mobile */
     .nn-whats-new-version h3 {
         font-size: 15px;
@@ -6048,11 +6180,6 @@ body.nn-resizing {
 
 /* Obsidian mobile app adjustments */
 .is-mobile {
-    /* Modal title */
-    .nn-whats-new-header {
-        font-size: 16px;
-    }
-
     /* Body text and labels */
     .nn-whats-new-info,
     .nn-whats-new-version li,
@@ -6698,129 +6825,45 @@ body.nn-resizing {
    Settings Page Styles
    ======================================================================== */
 
-/* Settings page indentation for sub-settings */
-.nn-sub-settings {
-    margin-inline-start: 20px;
-    padding-left: 1em;
-}
-
-/* Restore bottom padding on last setting inside sub-settings containers
-   (Obsidian's .setting-item:last-child removes it, but nested containers need it) */
-.nn-sub-settings > .setting-item:last-child {
-    padding-bottom: var(--size-4-4);
-}
-
 /* Settings layout root */
 .nn-settings-tab-root {
     display: block;
     min-height: 0;
 }
 
-/* Settings tabs layout and navigation */
-.nn-settings-tabs {
-    display: block;
-    min-height: 0;
-}
-
-.nn-settings-tabs-nav {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-2-3);
-    flex-shrink: 0;
-    margin-bottom: var(--size-4-4);
-}
-
-.nn-settings-tabs-nav-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--size-2-3);
-}
-
-.nn-settings-tabs-nav-row.is-hidden {
+.nn-settings-tab-root .setting-group.nn-settings-lifecycle-group {
     display: none;
 }
 
-.nn-settings-tabs-nav-row.is-icons-hidden .nn-settings-tab-icon {
-    display: none;
-}
-
-/* Separator between primary and secondary tab rows */
-.nn-settings-tabs-nav-secondary {
-    gap: var(--size-2-2);
-    border-top: 1px solid var(--background-modifier-border);
-    padding-top: var(--size-2-3);
-}
-
-.nn-settings-tab-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--size-2-2);
-    padding: 6px 12px;
-    font-size: var(--font-ui-small);
-}
-
-/* Icon inside settings tab buttons */
-.nn-settings-tab-icon {
-    display: inline-flex;
-    align-items: center;
-}
-
-.nn-settings-tab-icon svg {
-    width: 16px;
-    height: 16px;
-    stroke-width: 2;
-}
-
-.nn-settings-tab-button.is-hidden {
-    display: none;
-}
-
-.nn-settings-tab-button-primary.is-group-active {
-    background-color: transparent;
-    color: var(--interactive-accent);
-    opacity: 0.85;
-}
-
-.nn-settings-tab-button-primary.is-group-active:hover {
-    background-color: var(--background-modifier-hover);
-    opacity: 1;
-}
-
-.nn-settings-tab-button-secondary {
-    padding: 5px 10px;
-}
-
-.nn-settings-tab-button-secondary.is-active {
-    background-color: var(--background-modifier-hover);
-    color: var(--text-normal);
-}
-
-.nn-settings-tabs-content {
-    position: static;
-    min-height: 0;
-    overflow: visible;
-    box-sizing: border-box;
-    padding-inline-end: 0;
-}
-
-/* Hide tabs by default, show only active tab */
-.nn-settings-tab {
-    display: none;
-}
-
-.nn-settings-tab.is-active {
-    display: block;
+.nn-settings-tab-root .setting-group.nn-settings-lifecycle-group + .setting-group {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 /* Settings section header spacing */
-.setting-item-heading {
+.nn-settings-tab-root .setting-item-heading {
     margin-top: 30px;
 }
 
 /* First settings header - no top margin */
-.setting-item-heading:first-child {
+.nn-settings-tab-root .setting-item-heading:first-child {
     margin-top: 0;
+}
+
+.nn-settings-legacy-titlebar {
+    padding-inline: 0;
+}
+
+.nn-settings-legacy-titlebar .setting-item-name {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2-2);
+}
+
+.nn-settings-legacy-page-link:focus-visible {
+    outline: 2px solid var(--background-modifier-border-focus);
+    outline-offset: -2px;
 }
 
 /* Utility class for conditionally hidden settings */
@@ -6858,49 +6901,10 @@ body.nn-resizing {
     opacity: 1;
 }
 
-/* Setting name marker appended to setting names */
-.nn-settings-tab-root .setting-item-name.nn-setting-name-marker::after {
-    content: ' ' attr(data-nn-setting-marker);
-    color: var(--text-muted);
-    font-weight: normal;
-}
-
-.mod-rtl .nn-settings-tab-root .setting-item-name.nn-setting-name-marker::after {
-    content: '';
-}
-
-.mod-rtl .nn-settings-tab-root .setting-item-name.nn-setting-name-marker::before {
-    content: attr(data-nn-setting-marker) ' ';
-    color: var(--text-muted);
-    font-weight: normal;
-}
-
-/* Dim disabled calendar pattern text inputs */
-.nn-settings-tab-root .setting-item.nn-setting-disabled input[type='text']:disabled {
-    opacity: 0.6;
-    pointer-events: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
 /* Container for additional info below settings */
 .nn-setting-info-container {
     margin-top: 8px;
     margin-bottom: 8px;
-}
-
-.nn-setting-info-container.nn-setting-info-centered.setting-item {
-    justify-content: center;
-}
-
-.nn-setting-info-container.nn-setting-info-centered .setting-item-info,
-.nn-setting-info-container.nn-setting-info-centered .setting-item-description {
-    text-align: center;
-}
-
-.nn-setting-info-container.nn-setting-info-list .setting-item-info,
-.nn-setting-info-container.nn-setting-info-list .setting-item-description {
-    text-align: left;
 }
 
 .nn-setting-info-list ol {
@@ -6910,10 +6914,6 @@ body.nn-resizing {
 
 .nn-setting-info-list li + li {
     margin-top: 4px;
-}
-
-.nn-sub-settings > .setting-item.nn-setting-property-keys-info:last-child {
-    padding-bottom: 0;
 }
 
 /* Wider text inputs for settings that benefit from more space */
@@ -7171,11 +7171,20 @@ button.nn-youtube-button svg {
     max-width: none;
 }
 
+.nn-slider-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nn-slider-control input[type='range'] {
+    flex: 0 0 100px;
+}
+
 .nn-slider-value {
-    margin-left: 12px;
+    flex: 0 0 48px;
     font-size: var(--font-ui-smaller);
     color: var(--nn-theme-foreground-muted);
-    min-width: 48px;
     text-align: right;
     font-variant-numeric: tabular-nums;
 }
@@ -7217,7 +7226,6 @@ button.nn-youtube-button svg {
 .nn-stats-text {
     font-size: var(--font-ui-smaller);
     color: var(--nn-theme-foreground-muted);
-    text-align: center;
     line-height: 1.5;
 }
 
@@ -7226,19 +7234,6 @@ button.nn-youtube-button svg {
     border: none;
     padding: 0;
     margin-top: 0;
-}
-
-/* Advanced > Local cache: center text by removing the empty control column */
-.nn-local-cache-stats-setting .setting-item-control {
-    display: none;
-}
-
-.nn-local-cache-stats-setting .setting-item-info {
-    width: 100%;
-}
-
-.nn-local-cache-stats-setting .nn-stats-text {
-    text-align: center;
 }
 /* Source: src/styles/sections/modal-color-picker.css */
 
@@ -7328,8 +7323,6 @@ button.nn-youtube-button svg {
 }
 
 .nn-preview-label,
-.nn-rgb-label,
-.nn-rgb-title,
 .nn-hex-title {
     font-size: 11px;
     color: var(--nn-theme-foreground-muted);
@@ -7390,99 +7383,121 @@ button.nn-youtube-button svg {
     height: 16px;
 }
 
-/* RGB sliders section */
-.nn-rgb-section,
+/* Visual color picker section */
+.nn-color-area-section,
 .nn-color-preview-section {
     padding-bottom: 15px;
 }
 
-.nn-rgb-section {
+.nn-color-area-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
     margin-bottom: auto; /* Push everything below to the bottom */
 }
 
-.nn-rgb-title {
-    margin-bottom: 6px;
+.nn-color-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.nn-rgb-row {
+/* Header above the saturation/value area; matches the preset header height so the picker
+   lines up with the swatch grid in the left column. Hidden on mobile where the area sits
+   beside the sliders. */
+.nn-sv-header {
     display: flex;
     align-items: center;
-    gap: 8px;
+    min-height: 20px;
     margin-bottom: 8px;
 }
 
-.nn-rgb-row:last-child {
+.nn-sv-area {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-m);
+    background-color: var(--nn-sv-hue, #ff0000);
+    background-image: linear-gradient(to top, #000000, rgba(0, 0, 0, 0)), linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.nn-sv-thumb {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: var(--nn-thumb-color, #ffffff);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.nn-color-slider {
+    position: relative;
+    width: calc(100% - 16px);
+    height: 14px;
+    margin: 0 8px;
+    border-radius: 7px;
+    cursor: pointer;
+    touch-action: none;
+}
+
+.nn-hue-slider {
+    background: linear-gradient(
+        to right,
+        #ff0000 0%,
+        #ffff00 16.66%,
+        #00ff00 33.33%,
+        #00ffff 50%,
+        #0000ff 66.66%,
+        #ff00ff 83.33%,
+        #ff0000 100%
+    );
+}
+
+.nn-alpha-gradient {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), var(--nn-alpha-color, #000000));
+    pointer-events: none;
+}
+
+.nn-color-slider .nn-slider-thumb {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+/* Hex input section - sits at the bottom of the picker, below the alpha slider */
+.nn-hex-section {
     margin-bottom: 0;
 }
 
-.nn-rgb-label {
-    width: 16px;
-}
-
-.nn-rgb-slider {
-    flex: 1;
-    height: 4px;
-    -webkit-appearance: none;
-    appearance: none;
-    background: var(--background-modifier-border);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-}
-
-/* Slider thumb */
-.nn-rgb-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--interactive-accent);
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.nn-rgb-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--interactive-accent);
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-/* RGB value display */
-.nn-rgb-value {
-    width: 32px;
-    text-align: right;
-    font-size: 11px;
-    color: var(--nn-theme-foreground-muted);
-    font-family: var(--font-monospace);
-}
-
-/* Color gradients for sliders */
-.nn-rgb-slider-r {
-    background: linear-gradient(to right, #000000, #ff0000);
-}
-
-.nn-rgb-slider-g {
-    background: linear-gradient(to right, #000000, #00ff00);
-}
-
-.nn-rgb-slider-b {
-    background: linear-gradient(to right, #000000, #0000ff);
-}
-
-/* Hex input section */
-.nn-hex-section {
-    margin-bottom: 20px;
+.nn-hex-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
 }
 
 .nn-hex-title {
     display: block;
-    margin-bottom: 6px;
     height: 17px; /* Match the preview label height for alignment */
+    margin-bottom: 0;
 }
 
 .nn-hex-container {
@@ -7600,9 +7615,12 @@ button.nn-youtube-button svg {
 }
 
 /* Preset and Recent colors sections */
-.nn-preset-section,
-.nn-recent-section {
+.nn-preset-section {
     margin-top: auto; /* Align to bottom */
+}
+
+.nn-recent-section {
+    margin-top: 0;
 }
 
 .nn-preset-colors,
@@ -7611,6 +7629,16 @@ button.nn-youtube-button svg {
     grid-template-columns: repeat(5, 1fr);
     gap: 6px;
     overflow: hidden;
+}
+
+.nn-recent-colors {
+    grid-template-columns: repeat(10, 36px);
+}
+
+.nn-recent-colors .nn-color-dot {
+    width: 36px;
+    height: 36px;
+    aspect-ratio: auto;
 }
 
 .nn-preset-colors {
@@ -7758,6 +7786,29 @@ button.nn-youtube-button svg {
         grid-template-columns: repeat(8, 1fr);
     }
 
+    .nn-sv-header {
+        display: none;
+    }
+
+    /* Saturation/value area on the left, hue + transparency + hex stacked on the right.
+       The SV area stretches to match the height of that stack. */
+    .nn-color-area-section {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .nn-sv-area {
+        flex: 1 1 0;
+        width: auto;
+        height: auto;
+    }
+
+    .nn-color-controls {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
     .modal.nn-color-picker-modal .modal-content {
         padding: 16px 16px 12px;
         gap: 12px;
@@ -7766,6 +7817,311 @@ button.nn-youtube-button svg {
     .nn-color-button-container {
         margin-top: 12px;
         padding-top: 12px;
+    }
+}
+/* Source: src/styles/sections/modal-appearance.css */
+
+/* ========================================================================
+   Appearance Modal - icon, foreground color, and background color editor
+   ======================================================================== */
+
+.modal.nn-appearance-modal {
+    width: 620px;
+    max-width: calc(100vw - 40px);
+    max-height: 86vh;
+}
+
+.modal.nn-appearance-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    overflow: hidden;
+}
+
+.modal.nn-appearance-modal .modal-close-button {
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.nn-appearance-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 14px 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-m);
+    background: var(--background-secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nn-appearance-preview-item:hover .nn-appearance-clear-button,
+    .nn-appearance-preview-item:focus-within .nn-appearance-clear-button {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+.nn-appearance-clear-button.nn-appearance-clear-hidden {
+    display: none;
+}
+
+.nn-appearance-preview-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-s);
+    background: var(--nn-preview-bg, var(--background-secondary));
+    color: var(--nn-preview-fg, var(--nn-theme-foreground));
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nn-appearance-preview-icon {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.nn-appearance-preview-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.nn-appearance-preview-icon-empty {
+    display: none;
+}
+
+.nn-appearance-preview-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nn-appearance-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.nn-appearance-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 7px 12px;
+    margin: 0 0 -1px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: var(--nn-theme-foreground-muted);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nn-appearance-tab:hover {
+    color: var(--nn-theme-foreground);
+}
+
+.nn-appearance-tab.nn-active {
+    border-bottom-color: var(--interactive-accent);
+    color: var(--nn-theme-foreground);
+}
+
+.nn-appearance-tab-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.nn-appearance-tab-icon-chip {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-s);
+    color: var(--nn-theme-foreground);
+}
+
+.nn-appearance-tab-icon-chip svg {
+    width: 16px;
+    height: 16px;
+}
+
+.nn-appearance-tab-color-chip {
+    width: 32px;
+    height: 18px;
+    border-radius: 4px;
+}
+
+.nn-appearance-tab-chip-empty {
+    opacity: 0.55;
+}
+
+.nn-appearance-tab-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nn-appearance-body {
+    flex: 1 1 auto;
+    height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.nn-appearance-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    min-height: 0;
+}
+
+.nn-appearance-panel-hidden {
+    display: none;
+}
+
+.nn-appearance-reset-button {
+    padding: 4px 10px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    background: transparent;
+    color: var(--nn-theme-foreground-muted);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nn-appearance-reset-button:hover {
+    border-color: var(--background-modifier-border-hover);
+    color: var(--nn-theme-foreground);
+}
+
+.nn-appearance-reset-button.nn-appearance-reset-active {
+    border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+}
+
+.nn-appearance-picker-host {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.nn-appearance-picker-host .nn-icon-provider-tabs {
+    margin-bottom: 0;
+}
+
+.nn-appearance-picker-host .nn-icon-search-container {
+    padding: 0 8px;
+    border-bottom: 0;
+}
+
+.nn-appearance-picker-host .nn-icon-results-container {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+}
+
+.nn-appearance-picker-host .nn-color-picker-content {
+    gap: 16px;
+    padding-bottom: 0;
+    overflow: visible;
+}
+
+.nn-appearance-picker-host .nn-color-picker-left {
+    flex-basis: 220px;
+}
+
+.nn-appearance-picker-host .nn-color-picker-left-no-preview .nn-preset-section {
+    margin-top: 0;
+}
+
+.nn-appearance-picker-host .nn-recent-section {
+    margin-top: 4px;
+}
+
+.nn-appearance-picker-host .nn-preset-header,
+.nn-appearance-picker-host .nn-hex-header,
+.nn-appearance-picker-host .nn-recent-header {
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.nn-appearance-picker-host .nn-recent-colors {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.nn-appearance-picker-host .nn-recent-colors .nn-color-dot {
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.nn-icon-item.nn-icon-item-selected {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: -2px;
+}
+
+.nn-appearance-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.nn-appearance-footer-actions {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 600px) {
+    .modal.nn-appearance-modal {
+        width: 100%;
+        max-width: calc(100vw - 20px);
+    }
+
+    .nn-appearance-tabs {
+        overflow-x: auto;
+    }
+
+    .nn-appearance-tab {
+        flex: 0 0 auto;
+    }
+
+    /* Size the body to its content rather than a fixed height so the modal adapts to large
+       fonts and display scaling. The base max-height caps it to the viewport and the body
+       scrolls instead of clipping. The modal resizes between tabs because each tab fits its
+       own content. */
+    .nn-appearance-body {
+        height: auto;
+        min-height: 0;
+    }
+
+    .nn-appearance-picker-host .nn-icon-results-container {
+        flex: 0 0 auto;
+        height: 240px;
+        min-height: 240px;
+    }
+
+    .nn-appearance-picker-host .nn-recent-colors {
+        grid-template-columns: repeat(8, 1fr);
     }
 }
 /* Source: src/styles/sections/theme-folder-colors.css */
@@ -8183,6 +8539,18 @@ button.nn-mobile-toolbar-button {
 .notebook-navigator-ios .nn-list-pane .nn-virtual-item {
     transform: translateZ(0);
 }
+
+/*
+ * iOS/iPadOS: WebKit paint workaround for pinned navigation shortcuts.
+ *
+ * Pinned shortcuts can remain mounted and measurable while their row contents stop repainting after the mobile
+ * single-pane transform finishes. Keep the pinned shortcut surface and its rows on composited layers.
+ */
+.notebook-navigator-ios .nn-shortcut-pinned,
+.notebook-navigator-ios .nn-shortcut-pinned-scroll,
+.notebook-navigator-ios .nn-shortcut-pinned .nn-navitem {
+    transform: translateZ(0);
+}
 /* Source: src/styles/sections/platform-android.css */
 
 /* ========================================================================
@@ -8518,28 +8886,10 @@ button.nn-mobile-toolbar-button {
    Metadata Info Styles
    ======================================================================== */
 
-/* Container for metadata parsing info - flex row layout */
-.nn-metadata-info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-
-/* Text container - takes up available space */
-.nn-metadata-info-text {
-    flex: 1;
-}
-
 /* Error text styling */
 .nn-metadata-error-text {
     color: var(--text-error);
     font-weight: bold;
-}
-
-/* Export button - stays on the right */
-.nn-metadata-export-button {
-    flex-shrink: 0;
 }
 /* Source: src/styles/sections/settings-style-settings.css */
 
@@ -8980,6 +9330,24 @@ settings:
         description: Line color for separators rendered inside navigation spacers.
         type: variable-themed-color
         format: hex
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: nn-theme-nav-indent-guide-color
+        title: Indent guide color
+        description: Line color for navigation indent guides.
+        type: variable-themed-color
+        opacity: true
+        format: rgb
+        default-light: '#'
+        default-dark: '#'
+    -
+        id: nn-theme-nav-leader-color
+        title: Leader color
+        description: Color for leaders between item names and trailing values.
+        type: variable-themed-color
+        opacity: true
+        format: rgb
         default-light: '#'
         default-dark: '#'
     -

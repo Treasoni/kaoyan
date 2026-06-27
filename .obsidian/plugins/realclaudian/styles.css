@@ -130,7 +130,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 /* ============================================
    components/header.css
    ============================================ */
-/* Header - logo, title/tabs slot, and actions */
+/* Header - logo and title */
 .claudian-header {
   position: relative;
   display: flex;
@@ -138,21 +138,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   padding: 0 12px 12px 12px;
 }
 
-/* Title slot: contains logo + title (or tabs in header mode) */
-.claudian-title-slot {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;  /* Allow flex item to shrink below content size */
-}
-
-/* Legacy class for backwards compatibility */
 .claudian-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .claudian-title-text {
@@ -167,46 +158,6 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   color: var(--claudian-brand);
 }
 
-/* Header actions (end side - always stays at end via margin-inline-start: auto) */
-.claudian-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-  margin-inline-start: auto;
-}
-
-.claudian-header-actions-slot {
-  /* No margin-inline-start: auto here; it's set by the base .claudian-header-actions */
-}
-
-.claudian-header .claudian-tab-bar-container {
-  display: flex;
-  gap: 4px;
-}
-
-.claudian-header-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text-faint);
-  transition: color 0.15s ease;
-}
-
-.claudian-header-btn:hover {
-  color: var(--text-normal);
-}
-
-.claudian-header-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.claudian-new-tab-btn svg {
-  width: 16.8px;
-  height: 16.8px;
-}
 
 /* ============================================
    components/tabs.css
@@ -214,21 +165,40 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 .claudian-tab-bar-container {
   display: flex;
   align-items: center;
+  flex: 1 1 auto;
   gap: 4px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .claudian-tab-badges {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.claudian-tab-badges::-webkit-scrollbar {
+  display: none;
 }
 
 .claudian-tab-badge {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 24px;
   width: 24px;
+  max-width: 24px;
   height: 24px;
+  box-sizing: border-box;
+  padding: 0;
   border-radius: 4px;
   border: 2px solid var(--background-modifier-border);
   font-size: 12px;
@@ -236,7 +206,18 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   cursor: pointer;
   color: var(--text-muted);
   background: var(--background-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.claudian-tab-badge-expanded {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  width: auto;
+  max-width: none;
+  padding: 0 8px;
 }
 
 .claudian-tab-badge:hover {
@@ -325,15 +306,6 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   display: block;
 }
 
-/* Header mode: dropdown instead of dropup */
-.claudian-container--header-mode .claudian-history-menu {
-  bottom: auto;
-  top: 100%;
-  margin-bottom: 0;
-  margin-top: 4px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-}
-
 .claudian-history-header {
   padding: 8px 12px;
   font-size: 12px;
@@ -386,9 +358,13 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 .claudian-history-item.active {
-  background: var(--background-secondary);
+  background: var(--background-modifier-hover);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
+}
+
+.claudian-history-item.active:hover {
+  background: var(--background-modifier-active-hover, var(--background-modifier-hover));
 }
 
 .claudian-history-item.active .claudian-history-item-icon {
@@ -401,6 +377,37 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 
 .claudian-history-item.active .claudian-history-item-date {
   color: var(--text-faint);
+}
+
+.claudian-history-item.open {
+  background: var(--background-modifier-hover);
+  border-inline-start: 2px solid var(--interactive-accent);
+  padding-inline-start: 10px;
+}
+
+.claudian-history-item.open:hover {
+  background: var(--background-modifier-active-hover, var(--background-modifier-hover));
+}
+
+.claudian-history-item.open .claudian-history-item-icon {
+  color: var(--interactive-accent);
+}
+
+.claudian-history-item.open .claudian-history-item-date {
+  color: var(--text-muted);
+}
+
+.claudian-history-item.running .claudian-history-item-icon {
+  color: var(--interactive-accent);
+}
+
+.claudian-history-item.running .claudian-history-item-icon svg {
+  animation: spin 1s linear infinite;
+}
+
+.claudian-history-item.running .claudian-history-item-date {
+  color: var(--interactive-accent);
+  font-weight: 500;
 }
 
 .claudian-history-item-content {
@@ -436,6 +443,10 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   opacity: 1;
 }
 
+.claudian-history-item:focus-within .claudian-history-item-actions {
+  opacity: 1;
+}
+
 .claudian-action-btn {
   background: transparent;
   border: none;
@@ -458,6 +469,10 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 
 .claudian-delete-btn:hover {
   color: var(--color-red);
+}
+
+.claudian-open-new-tab-btn:hover {
+  color: var(--interactive-accent);
 }
 
 .claudian-rename-input {
@@ -1763,6 +1778,16 @@ body.theme-light .claudian-message-content pre {
   padding: 12px 0 0 0;
 }
 
+.claudian-input-footer {
+  position: relative;
+  flex-shrink: 0;
+  padding: 12px 0 0 0;
+}
+
+.claudian-active-input-slot > .claudian-input-composer > .claudian-input-container {
+  padding-top: 0;
+}
+
 /* Input wrapper (border container) - flex column so textarea expands when no chips */
 /* Height calculation: context row (36px) + textarea min (60px) + toolbar (38px) + border (2px) = 136px */
 .claudian-input-wrapper {
@@ -1794,13 +1819,17 @@ body.theme-light .claudian-message-content pre {
   display: flex;
 }
 
-/* Nav row (tab badges start, header icons end) - above input wrapper */
+/* Nav row (tab badges start, action icons end) - above input wrapper */
 .claudian-input-nav-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 0 8px 0;
   min-height: 0;
+}
+
+.claudian-input-nav-row:empty {
+  display: none;
 }
 
 .claudian-input-nav-content {
@@ -1811,9 +1840,35 @@ body.theme-light .claudian-message-content pre {
   min-width: 0;
 }
 
-/* Header mode: hide nav row above input (content moved to header) */
-.claudian-container--header-mode .claudian-input-nav-row {
-  display: none;
+.claudian-input-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.claudian-input-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-faint);
+  transition: color 0.15s ease;
+}
+
+.claudian-input-nav-btn:hover {
+  color: var(--text-normal);
+}
+
+.claudian-input-nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.claudian-new-tab-btn svg {
+  width: 16.8px;
+  height: 16.8px;
 }
 
 /* Selection indicator (shown when text is selected in editor) */
@@ -6343,7 +6398,7 @@ code .claudian-file-link:hover {
 .claudian-tool-header:focus-visible,
 .claudian-thinking-header:focus-visible,
 .claudian-subagent-header:focus-visible,
-.claudian-header-btn:focus-visible,
+.claudian-input-nav-btn:focus-visible,
 .claudian-model-btn:focus-visible,
 .claudian-thinking-current:focus-visible {
   outline: 2px solid var(--interactive-accent);
