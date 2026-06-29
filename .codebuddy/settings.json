@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/zhqznc/Documents/考研复习/.claude/hooks/read-learnings.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
