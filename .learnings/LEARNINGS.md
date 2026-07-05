@@ -22,94 +22,30 @@ Self-improvement patterns, corrections, and knowledge gaps.
 
 ---
 
-## [LRN-20260618-002] best_practice
+## [LRN-20260705-001] best_practice
 
-**Logged**: 2026-06-18T15:00:00+08:00
-**Priority**: medium
-**Status**: pending
-**Area**: docs
-
-### Summary
-用户显式指令覆盖 RULES.md 中的一般性规则
-
-### Details
-RULES.md 记录"Callout 内不要用 `$$` 块级公式"，但用户明确要求将整个证明过程（含 `$$` 公式）放入 `> [!note]-` 折叠 callout 内。此时应以用户的显式指令为准，不被一般性规则阻塞。
-
-### Suggested Action
-当用户明确要求某种格式时，即使与 RULES.md 的一般性建议冲突，也应按用户要求执行。RULES.md 是经验总结而非硬性约束。
-
----
-
-## [LRN-20260620-001] best_practice
-
-**Logged**: 2026-06-20T07:41:35+00:00
-**Priority**: medium
+**Logged**: 2026-07-05T16:30:00+08:00
+**Priority**: high
 **Status**: resolved
 **Area**: docs
 
 ### Summary
-证明类内容的标题与正文都应放在同一个折叠块内
+证明过程统一使用 `> [!note]-` 单一折叠块（默认折叠）
 
 ### Details
-在 5.5.2-实对称矩阵的性质.md 中，第一次插入"性质 (2) 的证明"时用了 `### H3 标题` + 单独 `[!proof]` callout + 单独 `[!tip]` callout 的并列结构。用户反馈"证明内容+证明标题都要放在折叠块中啊"。
+为高数必背公式.md 中的四个三角积分（∫tan x、∫cot x、∫sec x、∫csc x）添加证明过程时，第一次写成零散 `> [!tip]` + 普通段落形式，用户反馈"证明过程放到 note 块中啊"；改为 `> [!note]` 后又反馈"我想用的是折叠形式的啊"。
 
-正确做法：使用嵌套 callout 包裹——外层 `> [!example]+ 标题`（`+` 表示默认折叠）作为可折叠入口，内层用 `> [!proof]` 和 `> [!tip]` 嵌套承载具体内容。这样打开笔记时默认收起证明区域，标题本身也是折叠块的一部分。
+用户明确表态"以后如果是某个东西的证明过程都是用这样的折叠"——即统一使用 `> [!note]-` 单一折叠 callout 包裹整个证明内容（默认折叠），不再使用嵌套 callout 结构（外层 `> [!example]+` + 内层 `> [!proof]/[!tip]/[!note]`）。
+
+### Suggested Action
+凡是"证明/推导"类内容，统一使用 `> [!note]-` 单一折叠块。Callout 内可包含 `$$` 公式、列表、表格（注意表格前后留空行）。不要再使用嵌套 callout 结构。
 
 ### Resolution
-2026-06-20：经用户确认，规则已合并到 `RULES.md` Do 区（嵌套 callout 结构）与 Don't 区（单层 callout 禁 `$$` / 嵌套 callout 允许 `$$` 例外）。Watch For 区补充 `obsidian.proof_collapsible` 模式追踪。本条目关闭。
+2026-07-05：经用户确认，原 RULES.md Do 区"嵌套 callout 结构"规则**被替换**为新的"证明过程统一用 `> [!note]-` 单一折叠块"规则。同时清除了 LRN-20260618-002（用户显式指令覆盖规则——本就是临时性观察，现已升级为显式规则）。Watch For 区保留 `obsidian.proof_collapsible` 模式追踪，更新计数为 2x。本条目关闭。
 
 ### Related Rules
 - Pattern-Key: obsidian.proof_collapsible
-- 已合并到 RULES.md
-
----
-
-## [LRN-20260621-001] best_practice
-
-**Logged**: 2026-06-21T19:30:00+08:00
-**Priority**: high
-**Status**: resolved
-**Area**: docs
-
-### Summary
-写入笔记前必须先验证数学内容的正确性
-
-### Details
-用户指出"万能圆柱壳法"笔记中的内容，质疑是否有错。经审查该内容实际正确，但暴露了一个流程问题：我在生成/整理笔记内容时，没有先独立验证数学公式的正确性就直接写入了笔记。如果内容真的有误，用户会在复习时才发现，造成误导。
-
-### Suggested Action
-在将任何数学公式、定理陈述、推导过程写入笔记之前，必须先自行验证其正确性（核对教材、推导一遍、或检查边界情况）。不能"写完再看"，要"验证后再写"。
-
-### Resolution
-2026-06-21：规则已合并到 `RULES.md` Do 区（写入前验证数学内容）与 Watch For 区（math.content_verify 模式）。本条目关闭。
-
-### Related Rules
-- Pattern-Key: math.content_verify
-- 已合并到 RULES.md
-
----
-
-## [LRN-20260622-001] best_practice
-
-**Logged**: 2026-06-22T12:00:00+08:00
-**Priority**: high
-**Status**: resolved
-**Area**: docs
-
-### Summary
-Obsidian 表格内行列式必须用 `\lvert A \rvert` 而非 `\|A\|`
-
-### Details
-在编辑伴随矩阵公式笔记时，表格中使用 `\|A\|` 表示行列式，导致 Obsidian 将 `|` 误解析为表格分隔符，LaTeX 公式渲染失败。正确写法是 `\lvert A \rvert`。
-
-### Suggested Action
-在 Obsidian 表格内的 LaTeX 公式中，行列式符号必须使用 `\lvert A \rvert`（或 `\det A`），禁止使用裸 `|` 符号。写入表格内容后需验证渲染效果。
-
-### Resolution
-2026-06-22：与 RULES.md 已有规则 `table.pipe_in_math` 一致，计数更新为 5x。本条目关闭。
-
-### Related Rules
-- Pattern-Key: table.pipe_in_math
+- 替换原嵌套 callout 规则
 - 已合并到 RULES.md
 
 ---
