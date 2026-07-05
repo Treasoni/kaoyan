@@ -14,6 +14,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) **证明/推导类内容统一使用 `> [!note]-` 单一折叠块**（默认折叠，可包含 `$$` 公式、列表、表格），不再使用嵌套 callout 结构。标题直接作为 callout 标题：`> [!note]- 标题内容`
 - (1x) sortspec 中文件夹只用文件夹名称，不展开子文件
 - (1x) **写入笔记前验证数学内容正确性** — 公式、定理、推导必须先自行核验（对教材/推导/边界检查）再写入，不能"写完再看"
+- (1x) **更新《🧪 高数必背自测（遮挡式）.md》前必须做覆盖率审计** — 对比源文件《高数必背公式.md》的 `## / ###` 章节，生成「缺失章节清单」，所有缺失项必须**补全或显式标注忽略原因**后才算更新完成
 
 ## Don't
 
@@ -28,3 +29,4 @@ Compressed patterns from repeated learnings and errors.
 - (2x) 完成报告更新清单中"英语📅日志"和"线代📊进度"容易遗漏
 - (2x) Obsidian 证明/推导使用 `> [!note]-` 单一折叠块（Pattern-Key: obsidian.proof_collapsible）— 默认折叠；callout 内允许 `$$` 块级公式；表格前后留空行
 - (1x) 数学笔记内容准确性验证（Pattern-Key: math.content_verify）— 公式/定理/推导写入前必须独立验证
+- (1x) 自测文件覆盖率遗漏（Pattern-Key: quiz.coverage_audit）— 更新自测前必须对比源文件章节列表
