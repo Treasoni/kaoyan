@@ -945,10 +945,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path27) {
-  if (!path27)
+function getElementAtPath(obj, path28) {
+  if (!path28)
     return obj;
-  return path27.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
+  return path28.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -1261,12 +1261,12 @@ function aborted(x2, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path27, issues) {
+function prefixIssues(path28, issues) {
   return issues.map((iss) => {
     var _a6;
     var _a5;
     (_a6 = (_a5 = iss).path) != null ? _a6 : _a5.path = [];
-    iss.path.unshift(path27);
+    iss.path.unshift(path28);
     return iss;
   });
 }
@@ -1510,7 +1510,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path27 = []) => {
+  const processError = (error49, path28 = []) => {
     var _a6, _b4, _c2, _d;
     var _a5, _b3;
     for (const issue2 of error49.issues) {
@@ -1521,7 +1521,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path27, ...issue2.path];
+        const fullpath = [...path28, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -1553,8 +1553,8 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path27 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path27) {
+  const path28 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path28) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -19233,8 +19233,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path27) {
-      let input = path27;
+    function removeDotSegments(path28) {
+      let input = path28;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -19486,8 +19486,8 @@ var require_schemes = __commonJS({
         wsComponent.secure = void 0;
       }
       if (wsComponent.resourceName) {
-        const [path27, query] = wsComponent.resourceName.split("?");
-        wsComponent.path = path27 && path27 !== "/" ? path27 : void 0;
+        const [path28, query] = wsComponent.resourceName.split("?");
+        wsComponent.path = path28 && path28 !== "/" ? path28 : void 0;
         wsComponent.query = query;
         wsComponent.resourceName = void 0;
       }
@@ -22880,12 +22880,12 @@ var require_dist = __commonJS({
         throw new Error(`Unknown format "${name}"`);
       return f9;
     };
-    function addFormats(ajv, list, fs29, exportName) {
+    function addFormats(ajv, list, fs30, exportName) {
       var _a5;
       var _b3;
       (_a5 = (_b3 = ajv.opts.code).formats) !== null && _a5 !== void 0 ? _a5 : _b3.formats = (0, codegen_1._)`require("ajv-formats/dist/formats").${exportName}`;
       for (const f9 of list)
-        ajv.addFormat(f9, fs29[f9]);
+        ajv.addFormat(f9, fs30[f9]);
     }
     module2.exports = exports = formatsPlugin;
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -22898,8 +22898,8 @@ var require_windows = __commonJS({
   "node_modules/isexe/windows.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs29 = require("fs");
-    function checkPathExt(path27, options) {
+    var fs30 = require("fs");
+    function checkPathExt(path28, options) {
       var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
@@ -22910,25 +22910,25 @@ var require_windows = __commonJS({
       }
       for (var i = 0; i < pathext.length; i++) {
         var p = pathext[i].toLowerCase();
-        if (p && path27.substr(-p.length).toLowerCase() === p) {
+        if (p && path28.substr(-p.length).toLowerCase() === p) {
           return true;
         }
       }
       return false;
     }
-    function checkStat(stat, path27, options) {
+    function checkStat(stat, path28, options) {
       if (!stat.isSymbolicLink() && !stat.isFile()) {
         return false;
       }
-      return checkPathExt(path27, options);
+      return checkPathExt(path28, options);
     }
-    function isexe(path27, options, cb2) {
-      fs29.stat(path27, function(er, stat) {
-        cb2(er, er ? false : checkStat(stat, path27, options));
+    function isexe(path28, options, cb2) {
+      fs30.stat(path28, function(er, stat) {
+        cb2(er, er ? false : checkStat(stat, path28, options));
       });
     }
-    function sync(path27, options) {
-      return checkStat(fs29.statSync(path27), path27, options);
+    function sync(path28, options) {
+      return checkStat(fs30.statSync(path28), path28, options);
     }
   }
 });
@@ -22938,14 +22938,14 @@ var require_mode = __commonJS({
   "node_modules/isexe/mode.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs29 = require("fs");
-    function isexe(path27, options, cb2) {
-      fs29.stat(path27, function(er, stat) {
+    var fs30 = require("fs");
+    function isexe(path28, options, cb2) {
+      fs30.stat(path28, function(er, stat) {
         cb2(er, er ? false : checkStat(stat, options));
       });
     }
-    function sync(path27, options) {
-      return checkStat(fs29.statSync(path27), options);
+    function sync(path28, options) {
+      return checkStat(fs30.statSync(path28), options);
     }
     function checkStat(stat, options) {
       return stat.isFile() && checkMode(stat, options);
@@ -22969,7 +22969,7 @@ var require_mode = __commonJS({
 // node_modules/isexe/index.js
 var require_isexe = __commonJS({
   "node_modules/isexe/index.js"(exports, module2) {
-    var fs29 = require("fs");
+    var fs30 = require("fs");
     var core;
     if (process.platform === "win32" || global.TESTING_WINDOWS) {
       core = require_windows();
@@ -22978,7 +22978,7 @@ var require_isexe = __commonJS({
     }
     module2.exports = isexe;
     isexe.sync = sync;
-    function isexe(path27, options, cb2) {
+    function isexe(path28, options, cb2) {
       if (typeof options === "function") {
         cb2 = options;
         options = {};
@@ -22988,7 +22988,7 @@ var require_isexe = __commonJS({
           throw new TypeError("callback not provided");
         }
         return new Promise(function(resolve8, reject) {
-          isexe(path27, options || {}, function(er, is) {
+          isexe(path28, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
@@ -22997,7 +22997,7 @@ var require_isexe = __commonJS({
           });
         });
       }
-      core(path27, options || {}, function(er, is) {
+      core(path28, options || {}, function(er, is) {
         if (er) {
           if (er.code === "EACCES" || options && options.ignoreErrors) {
             er = null;
@@ -23007,9 +23007,9 @@ var require_isexe = __commonJS({
         cb2(er, is);
       });
     }
-    function sync(path27, options) {
+    function sync(path28, options) {
       try {
-        return core.sync(path27, options || {});
+        return core.sync(path28, options || {});
       } catch (er) {
         if (options && options.ignoreErrors || er.code === "EACCES") {
           return false;
@@ -23025,7 +23025,7 @@ var require_isexe = __commonJS({
 var require_which = __commonJS({
   "node_modules/which/which.js"(exports, module2) {
     var isWindows2 = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path27 = require("path");
+    var path28 = require("path");
     var COLON = isWindows2 ? ";" : ":";
     var isexe = require_isexe();
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
@@ -23063,7 +23063,7 @@ var require_which = __commonJS({
           return opt.all && found.length ? resolve8(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path27.join(pathPart, cmd);
+        const pCmd = path28.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         resolve8(subStep(p, i, 0));
       });
@@ -23090,7 +23090,7 @@ var require_which = __commonJS({
       for (let i = 0; i < pathEnv.length; i++) {
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path27.join(pathPart, cmd);
+        const pCmd = path28.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         for (let j = 0; j < pathExt.length; j++) {
           const cur = p + pathExt[j];
@@ -23138,7 +23138,7 @@ var require_path_key = __commonJS({
 var require_resolveCommand = __commonJS({
   "node_modules/cross-spawn/lib/util/resolveCommand.js"(exports, module2) {
     "use strict";
-    var path27 = require("path");
+    var path28 = require("path");
     var which = require_which();
     var getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
@@ -23156,7 +23156,7 @@ var require_resolveCommand = __commonJS({
       try {
         resolved = which.sync(parsed.command, {
           path: env[getPathKey({ env })],
-          pathExt: withoutPathExt ? path27.delimiter : void 0
+          pathExt: withoutPathExt ? path28.delimiter : void 0
         });
       } catch (e2) {
       } finally {
@@ -23165,7 +23165,7 @@ var require_resolveCommand = __commonJS({
         }
       }
       if (resolved) {
-        resolved = path27.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
+        resolved = path28.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
       }
       return resolved;
     }
@@ -23219,8 +23219,8 @@ var require_shebang_command = __commonJS({
       if (!match) {
         return null;
       }
-      const [path27, argument] = match[0].replace(/#! ?/, "").split(" ");
-      const binary = path27.split("/").pop();
+      const [path28, argument] = match[0].replace(/#! ?/, "").split(" ");
+      const binary = path28.split("/").pop();
       if (binary === "env") {
         return argument;
       }
@@ -23233,16 +23233,16 @@ var require_shebang_command = __commonJS({
 var require_readShebang = __commonJS({
   "node_modules/cross-spawn/lib/util/readShebang.js"(exports, module2) {
     "use strict";
-    var fs29 = require("fs");
+    var fs30 = require("fs");
     var shebangCommand = require_shebang_command();
     function readShebang(command) {
       const size = 150;
       const buffer = Buffer.alloc(size);
       let fd;
       try {
-        fd = fs29.openSync(command, "r");
-        fs29.readSync(fd, buffer, 0, size, 0);
-        fs29.closeSync(fd);
+        fd = fs30.openSync(command, "r");
+        fs30.readSync(fd, buffer, 0, size, 0);
+        fs30.closeSync(fd);
       } catch (e2) {
       }
       return shebangCommand(buffer.toString());
@@ -23255,7 +23255,7 @@ var require_readShebang = __commonJS({
 var require_parse = __commonJS({
   "node_modules/cross-spawn/lib/parse.js"(exports, module2) {
     "use strict";
-    var path27 = require("path");
+    var path28 = require("path");
     var resolveCommand = require_resolveCommand();
     var escape2 = require_escape();
     var readShebang = require_readShebang();
@@ -23280,7 +23280,7 @@ var require_parse = __commonJS({
       const needsShell = !isExecutableRegExp.test(commandFile);
       if (parsed.options.forceShell || needsShell) {
         const needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-        parsed.command = path27.normalize(parsed.command);
+        parsed.command = path28.normalize(parsed.command);
         parsed.command = escape2.command(parsed.command);
         parsed.args = parsed.args.map((arg) => escape2.argument(arg, needsDoubleEscapeMetaChars));
         const shellCommand = [parsed.command].concat(parsed.args).join(" ");
@@ -46106,11 +46106,12 @@ function installTreeAwareKill(child, spawnSpec) {
     return;
   }
   const originalKill = child.kill;
+  const callOriginalKill = (signal) => originalKill.call(child, signal);
   const killableChild = {
     get pid() {
       return child.pid;
     },
-    kill: (signal) => originalKill.call(child, signal)
+    kill: callOriginalKill
   };
   child.kill = ((signal) => terminateSpawnedProcess(killableChild, signal, import_child_process6.spawn, spawnSpec));
 }
@@ -48964,39 +48965,39 @@ var VaultFileAdapter = class {
     this.app = app;
     this.writeQueue = Promise.resolve();
   }
-  async exists(path27) {
-    return this.app.vault.adapter.exists(path27);
+  async exists(path28) {
+    return this.app.vault.adapter.exists(path28);
   }
-  async read(path27) {
-    return this.app.vault.adapter.read(path27);
+  async read(path28) {
+    return this.app.vault.adapter.read(path28);
   }
-  async write(path27, content) {
-    await this.ensureParentFolder(path27);
-    await this.app.vault.adapter.write(path27, content);
+  async write(path28, content) {
+    await this.ensureParentFolder(path28);
+    await this.app.vault.adapter.write(path28, content);
   }
-  async append(path27, content) {
-    await this.ensureParentFolder(path27);
+  async append(path28, content) {
+    await this.ensureParentFolder(path28);
     this.writeQueue = this.writeQueue.then(async () => {
-      if (await this.exists(path27)) {
-        const existing = await this.read(path27);
-        await this.app.vault.adapter.write(path27, existing + content);
+      if (await this.exists(path28)) {
+        const existing = await this.read(path28);
+        await this.app.vault.adapter.write(path28, existing + content);
       } else {
-        await this.app.vault.adapter.write(path27, content);
+        await this.app.vault.adapter.write(path28, content);
       }
     }).catch(() => {
     });
     await this.writeQueue;
   }
-  async delete(path27) {
-    if (await this.exists(path27)) {
-      await this.app.vault.adapter.remove(path27);
+  async delete(path28) {
+    if (await this.exists(path28)) {
+      await this.app.vault.adapter.remove(path28);
     }
   }
   /** Fails silently if non-empty or missing. */
-  async deleteFolder(path27) {
+  async deleteFolder(path28) {
     try {
-      if (await this.exists(path27)) {
-        await this.app.vault.adapter.rmdir(path27, false);
+      if (await this.exists(path28)) {
+        await this.app.vault.adapter.rmdir(path28, false);
       }
     } catch (e2) {
     }
@@ -49037,9 +49038,9 @@ var VaultFileAdapter = class {
     }
   }
   /** Ensure a folder exists, creating it and parent folders if needed. */
-  async ensureFolder(path27) {
-    if (await this.exists(path27)) return;
-    const parts = path27.split("/").filter(Boolean);
+  async ensureFolder(path28) {
+    if (await this.exists(path28)) return;
+    const parts = path28.split("/").filter(Boolean);
     let current = "";
     for (const part of parts) {
       current = current ? `${current}/${part}` : part;
@@ -49052,9 +49053,9 @@ var VaultFileAdapter = class {
   async rename(oldPath, newPath) {
     await this.app.vault.adapter.rename(oldPath, newPath);
   }
-  async stat(path27) {
+  async stat(path28) {
     try {
-      const stat = await this.app.vault.adapter.stat(path27);
+      const stat = await this.app.vault.adapter.stat(path28);
       if (!stat) return null;
       return { mtime: stat.mtime, size: stat.size };
     } catch (e2) {
@@ -54283,8 +54284,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path27, errorMaps, issueData } = params;
-  const fullPath = [...path27, ...issueData.path || []];
+  const { data, path: path28, errorMaps, issueData } = params;
+  const fullPath = [...path28, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -54399,11 +54400,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path27, key) {
+  constructor(parent, value, path28, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path27;
+    this._path = path28;
     this._key = key;
   }
   get path() {
@@ -60985,12 +60986,12 @@ function appendSpinnerSvg(container) {
   svg.setAttribute("fill", "none");
   svg.setAttribute("stroke", "currentColor");
   svg.setAttribute("stroke-width", "2");
-  const path27 = container.ownerDocument.createElementNS(SVG_NS, "path");
-  path27.setAttribute(
+  const path28 = container.ownerDocument.createElementNS(SVG_NS, "path");
+  path28.setAttribute(
     "d",
     "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
   );
-  svg.appendChild(path27);
+  svg.appendChild(path28);
   container.appendChild(svg);
 }
 var McpTestModal = class extends import_obsidian8.Modal {
@@ -61592,7 +61593,7 @@ function formatClaudeCustomModelLabel(labelSource) {
   const claudePrefixIndex = without1M.toLowerCase().indexOf("claude-");
   const candidate = claudePrefixIndex >= 0 ? without1M.slice(claudePrefixIndex) : without1M;
   const versionedMatch = candidate.match(
-    /^claude-(haiku|sonnet|opus)-(\d+)-(\d+)(?:-(\d{8}))?(?:-v\d+:\d+)?$/i
+    /^claude-(haiku|sonnet|opus|fable)-(\d+)-(\d+)(?:-(\d{8}))?(?:-v\d+:\d+)?$/i
   );
   if (versionedMatch) {
     const [, family, major, minor, date7] = versionedMatch;
@@ -61603,7 +61604,7 @@ function formatClaudeCustomModelLabel(labelSource) {
     return `${getFamilyDisplayName(family)} ${major}.${minor}${suffixes ? ` ${suffixes}` : ""}`;
   }
   const majorOnlyMatch = candidate.match(
-    /^claude-(haiku|sonnet|opus)-(\d+)(?:-(\d{8}))?(?:-v\d+:\d+)?$/i
+    /^claude-(haiku|sonnet|opus|fable)-(\d+)(?:-(\d{8}))?(?:-v\d+:\d+)?$/i
   );
   if (majorOnlyMatch) {
     const [, family, major, date7] = majorOnlyMatch;
@@ -61687,7 +61688,8 @@ var DEFAULT_CLAUDE_MODELS = [
   { value: "sonnet", label: "Sonnet", description: "Balanced performance" },
   { value: "sonnet[1m]", label: "Sonnet 1M", description: "Balanced performance (1M context window)" },
   { value: "opus", label: "Opus", description: "Most capable" },
-  { value: "opus[1m]", label: "Opus 1M", description: "Most capable (1M context window)" }
+  { value: "opus[1m]", label: "Opus 1M", description: "Most capable (1M context window)" },
+  { value: "claude-fable-5", label: "Fable 5 ($$$)", description: "Anthropic's most capable model \u2014 premium pricing above Opus" }
 ];
 var EFFORT_LEVELS = [
   { value: "low", label: "Low" },
@@ -61701,7 +61703,8 @@ var DEFAULT_EFFORT_LEVEL = {
   "sonnet": "high",
   "sonnet[1m]": "high",
   "opus": "high",
-  "opus[1m]": "high"
+  "opus[1m]": "high",
+  "claude-fable-5": "high"
 };
 var ONE_M_SUFFIX = "[1m]";
 var DEFAULT_MODEL_VALUES = new Set(DEFAULT_CLAUDE_MODELS.map((m4) => m4.value.toLowerCase()));
@@ -61714,6 +61717,9 @@ function has1MContextSuffix(model) {
 function isBuiltInFamilyVariant(model, family) {
   const normalized = normalizeModelId(model);
   return normalized === family || normalized === `${family}${ONE_M_SUFFIX}`;
+}
+function isFableModel(model) {
+  return /claude-fable-\d+/.test(normalizeModelId(model));
 }
 function isValidContextLimit(limit) {
   return typeof limit === "number" && limit > 0 && !isNaN(limit) && isFinite(limit);
@@ -61736,7 +61742,9 @@ function isDefaultClaudeModel(model) {
 function supportsXHighEffort(model) {
   const normalized = normalizeModelId(model);
   if (isBuiltInFamilyVariant(normalized, "opus")) return true;
-  return /claude-opus-(4-[7-9]|[5-9])/.test(normalized);
+  if (isBuiltInFamilyVariant(normalized, "sonnet")) return true;
+  if (isFableModel(normalized)) return true;
+  return /claude-opus-(4-[7-9]|[5-9])/.test(normalized) || /claude-sonnet-(?:[5-9]|\d{2,})(?:-\d{8})?(?:-|$)/.test(normalized);
 }
 function normalizeEffortLevel(model, effortLevel) {
   var _a5;
@@ -61779,7 +61787,7 @@ function getContextWindowSize(model, customLimits) {
   if (customLimit !== null) {
     return customLimit;
   }
-  if (has1MContextSuffix(model)) {
+  if (has1MContextSuffix(model) || isFableModel(model)) {
     return CONTEXT_WINDOW_1M;
   }
   return CONTEXT_WINDOW_STANDARD;
@@ -62191,9 +62199,9 @@ function appendMcpIcon(container) {
   title.textContent = "MCP";
   svg.appendChild(title);
   for (const pathData of MCP_ICON_PATHS) {
-    const path27 = createSvgElement(container.ownerDocument, "path");
-    path27.setAttribute("d", pathData);
-    svg.appendChild(path27);
+    const path28 = createSvgElement(container.ownerDocument, "path");
+    path28.setAttribute("d", pathData);
+    svg.appendChild(path28);
   }
   container.appendChild(svg);
 }
@@ -62296,10 +62304,10 @@ function createProviderIconSvg(icon, options = {}) {
     }
     return svg;
   }
-  const path27 = ownerDocument.createElementNS(SVG_NS2, "path");
-  path27.setAttribute("d", icon.path);
-  path27.setAttribute("fill", "currentColor");
-  svg.appendChild(path27);
+  const path28 = ownerDocument.createElementNS(SVG_NS2, "path");
+  path28.setAttribute("d", icon.path);
+  path28.setAttribute("fill", "currentColor");
+  svg.appendChild(path28);
   return svg;
 }
 function createProviderSvgChild(child, ownerDocument) {
@@ -63204,14 +63212,16 @@ function getClaudeWorkspaceServices() {
 }
 
 // src/utils/context.ts
-var CURRENT_NOTE_PREFIX_REGEX = /^<current_note>\n[\s\S]*?<\/current_note>\n\n/;
-var CURRENT_NOTE_SUFFIX_REGEX = /\n\n<current_note>\n[\s\S]*?<\/current_note>$/;
-var XML_CONTEXT_PATTERN = /\n\n<(?:current_note|editor_selection|editor_cursor|context_files|canvas_selection|browser_selection)[\s>]/;
+var LINKED_NOTE_TAG = "linked_note";
+var NOTE_CONTEXT_TAG_PATTERN = "(linked_note|current_note)";
+var NOTE_CONTEXT_PREFIX_REGEX = new RegExp(`^<${NOTE_CONTEXT_TAG_PATTERN}>\\n[\\s\\S]*?<\\/\\1>\\n\\n`);
+var NOTE_CONTEXT_SUFFIX_REGEX = new RegExp(`\\n\\n<${NOTE_CONTEXT_TAG_PATTERN}>\\n[\\s\\S]*?<\\/\\1>$`);
+var XML_CONTEXT_PATTERN = /\n\n<(?:linked_note|current_note|editor_selection|editor_cursor|context_files|canvas_selection|browser_selection)[\s>]/;
 var BRACKET_CONTEXT_PATTERN = /\n\[(?:Current note|Editor selection from|Browser selection from|Canvas selection from)\b/;
 function formatCurrentNote(notePath) {
-  return `<current_note>
+  return `<${LINKED_NOTE_TAG}>
 ${notePath}
-</current_note>`;
+</${LINKED_NOTE_TAG}>`;
 }
 function appendCurrentNote(prompt, notePath) {
   return `${prompt}
@@ -63219,11 +63229,11 @@ function appendCurrentNote(prompt, notePath) {
 ${formatCurrentNote(notePath)}`;
 }
 function stripCurrentNoteContext(prompt) {
-  const strippedPrefix = prompt.replace(CURRENT_NOTE_PREFIX_REGEX, "");
+  const strippedPrefix = prompt.replace(NOTE_CONTEXT_PREFIX_REGEX, "");
   if (strippedPrefix !== prompt) {
     return strippedPrefix;
   }
-  return prompt.replace(CURRENT_NOTE_SUFFIX_REGEX, "");
+  return prompt.replace(NOTE_CONTEXT_SUFFIX_REGEX, "");
 }
 function extractContentBeforeXmlContext(text) {
   if (!text) return void 0;
@@ -63255,7 +63265,7 @@ function extractUserQuery(prompt) {
   if (extracted !== void 0) {
     return extracted;
   }
-  return prompt.replace(/<current_note>[\s\S]*?<\/current_note>\s*/g, "").replace(/<editor_selection[\s\S]*?<\/editor_selection>\s*/g, "").replace(/<editor_cursor[\s\S]*?<\/editor_cursor>\s*/g, "").replace(/<context_files>[\s\S]*?<\/context_files>\s*/g, "").replace(/<canvas_selection[\s\S]*?<\/canvas_selection>\s*/g, "").replace(/<browser_selection[\s\S]*?<\/browser_selection>\s*/g, "").trim();
+  return prompt.replace(/<(linked_note|current_note)>[\s\S]*?<\/\1>\s*/g, "").replace(/<editor_selection[\s\S]*?<\/editor_selection>\s*/g, "").replace(/<editor_cursor[\s\S]*?<\/editor_cursor>\s*/g, "").replace(/<context_files>[\s\S]*?<\/context_files>\s*/g, "").replace(/<canvas_selection[\s\S]*?<\/canvas_selection>\s*/g, "").replace(/<browser_selection[\s\S]*?<\/browser_selection>\s*/g, "").trim();
 }
 function formatContextFilesLine(files) {
   return `<context_files>
@@ -64807,6 +64817,65 @@ function parseUnifiedDiffLines(diffText) {
   return diffLines;
 }
 
+// src/utils/imageAttachment.ts
+var IMAGE_MEDIA_TYPES = {
+  "image/gif": "image/gif",
+  "image/jpeg": "image/jpeg",
+  "image/jpg": "image/jpeg",
+  "image/png": "image/png",
+  "image/webp": "image/webp"
+};
+var IMAGE_EXTENSIONS = {
+  "image/gif": "gif",
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp"
+};
+function normalizeImageMediaType(value) {
+  var _a5;
+  if (typeof value !== "string") {
+    return null;
+  }
+  return (_a5 = IMAGE_MEDIA_TYPES[value.trim().toLowerCase()]) != null ? _a5 : null;
+}
+function parseImageDataUri(value) {
+  var _a5;
+  if (typeof value !== "string") {
+    return null;
+  }
+  const match = value.trim().match(/^data:([^;,]+);base64,(.+)$/i);
+  if (!match) {
+    return null;
+  }
+  const mediaType = normalizeImageMediaType(match[1]);
+  const data = (_a5 = match[2]) == null ? void 0 : _a5.trim();
+  if (!mediaType || !data) {
+    return null;
+  }
+  return { data, mediaType };
+}
+function buildImageAttachmentFromBase64(options) {
+  var _a5;
+  const mediaType = normalizeImageMediaType(options.mediaType);
+  const data = options.data.trim();
+  if (!mediaType || !data) {
+    return null;
+  }
+  return {
+    data,
+    id: options.id,
+    mediaType,
+    name: ((_a5 = options.name) == null ? void 0 : _a5.trim()) || `image.${IMAGE_EXTENSIONS[mediaType]}`,
+    size: estimateBase64ByteLength(data),
+    source: "paste"
+  };
+}
+function estimateBase64ByteLength(value) {
+  const data = value.replace(/\s/g, "");
+  const padding = data.endsWith("==") ? 2 : data.endsWith("=") ? 1 : 0;
+  return Math.max(0, Math.floor(data.length * 3 / 4) - padding);
+}
+
 // src/utils/interrupt.ts
 var INTERRUPT_MARKERS = /* @__PURE__ */ new Set([
   "[Request interrupted by user]",
@@ -64860,7 +64929,7 @@ function isRebuiltContextContent(textContent) {
   }
   return textContent.includes("\n\nUser:") || textContent.includes("\n\nAssistant:") || textContent.includes("\n\nA:");
 }
-function extractImages(content) {
+function extractImages(content, messageId) {
   if (!content || typeof content === "string") {
     return void 0;
   }
@@ -64873,14 +64942,18 @@ function extractImages(content) {
   if (imageBlocks.length === 0) {
     return void 0;
   }
-  return imageBlocks.map((block, index) => ({
-    id: `sdk-img-${Date.now()}-${index}`,
-    name: `image-${index + 1}`,
-    mediaType: block.source.media_type,
-    data: block.source.data,
-    size: Math.ceil(block.source.data.length * 0.75),
-    source: "paste"
-  }));
+  const images = imageBlocks.flatMap((block, index) => {
+    var _a5, _b3;
+    const parsedDataUri = parseImageDataUri(block.source.data);
+    const image = buildImageAttachmentFromBase64({
+      data: (_a5 = parsedDataUri == null ? void 0 : parsedDataUri.data) != null ? _a5 : block.source.data,
+      id: `sdk-img-${messageId}-${index}`,
+      mediaType: (_b3 = parsedDataUri == null ? void 0 : parsedDataUri.mediaType) != null ? _b3 : block.source.media_type,
+      name: `image-${index + 1}`
+    });
+    return image ? [image] : [];
+  });
+  return images.length > 0 ? images : void 0;
 }
 function extractToolCalls(content, toolResults) {
   var _a5;
@@ -64974,13 +65047,14 @@ function parseSDKMessageToChat(sdkMsg, toolResults) {
   }
   const content = (_a5 = sdkMsg.message) == null ? void 0 : _a5.content;
   const textContent = extractTextContent(content);
-  const images = sdkMsg.type === "user" ? extractImages(content) : void 0;
+  const timestamp = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
+  const messageId = sdkMsg.uuid || `sdk-${timestamp}`;
+  const images = sdkMsg.type === "user" ? extractImages(content, messageId) : void 0;
   const hasToolUse = Array.isArray(content) && content.some((block) => block.type === "tool_use");
   const hasImages = !!images && images.length > 0;
   if (!textContent && !hasToolUse && !hasImages && (!content || typeof content === "string")) {
     return null;
   }
-  const timestamp = sdkMsg.timestamp ? new Date(sdkMsg.timestamp).getTime() : Date.now();
   const commandNameMatch = sdkMsg.type === "user" ? textContent.match(/<command-name>(\/[^<]+)<\/command-name>/) : null;
   let displayContent;
   if (sdkMsg.type === "user") {
@@ -65647,12 +65721,50 @@ function ensureTaskToolCall(msg, subagentId, subagent) {
   taskToolCall.subagent = mergedSubagent;
   return taskToolCall;
 }
+function hasImageData(image) {
+  return typeof (image == null ? void 0 : image.data) === "string" && image.data.length > 0;
+}
+function mergeImageAttachments(current, incoming) {
+  var _a5;
+  if (!(incoming == null ? void 0 : incoming.length)) {
+    return current;
+  }
+  if (!(current == null ? void 0 : current.length)) {
+    return incoming;
+  }
+  const merged = [...current];
+  for (const [index, incomingImage] of incoming.entries()) {
+    const currentImage = merged[index];
+    if (!currentImage) {
+      merged.push(incomingImage);
+      continue;
+    }
+    if (!hasImageData(currentImage) && hasImageData(incomingImage)) {
+      merged[index] = {
+        ...currentImage,
+        data: incomingImage.data,
+        mediaType: incomingImage.mediaType,
+        name: currentImage.name || incomingImage.name,
+        size: incomingImage.size,
+        source: (_a5 = currentImage.source) != null ? _a5 : incomingImage.source
+      };
+    }
+  }
+  return merged;
+}
+function mergeDuplicateMessage(target, incoming) {
+  target.images = mergeImageAttachments(target.images, incoming.images);
+}
 function dedupeMessages(messages) {
-  const seen = /* @__PURE__ */ new Set();
+  const byId = /* @__PURE__ */ new Map();
   const result = [];
   for (const message of messages) {
-    if (seen.has(message.id)) continue;
-    seen.add(message.id);
+    const existing = byId.get(message.id);
+    if (existing) {
+      mergeDuplicateMessage(existing, message);
+      continue;
+    }
+    byId.set(message.id, message);
     result.push(message);
   }
   return result;
@@ -66524,7 +66636,7 @@ function parseClaudeModelSignature(model) {
     return { normalizedModel: normalized, family: "opus", is1M: normalized.endsWith("[1m]") };
   }
   const versionedMatch = normalized.match(
-    /^claude-(haiku|sonnet|opus)-(\d+)(?:-(\d+))?(?:-(\d{8}))?(?:-v\d+:\d+)?(\[1m\])?$/
+    /^claude-(haiku|sonnet|opus|fable)-(\d+)(?:-(\d+))?(?:-(\d{8}))?(?:-v\d+:\d+)?(\[1m\])?$/
   );
   if (versionedMatch) {
     const [, familyMatch, major, minor, date7, oneMillionSuffix] = versionedMatch;
@@ -67424,9 +67536,9 @@ User messages have the query first, followed by optional XML context tags:
 \`\`\`
 User's question or request here
 
-<current_note>
+<linked_note>
 path/to/note.md
-</current_note>
+</linked_note>
 
 <editor_selection path="path/to/note.md" lines="10-15">
 selected text content
@@ -67438,7 +67550,7 @@ selected content from an Obsidian browser view
 \`\`\`
 
 - The user's query/instruction always comes first in the message.
-- \`<current_note>\`: The note the user is currently viewing/focused on. Read this to understand context.
+- \`<linked_note>\`: The note this session is linked to. Read this to understand session context. Legacy messages may use \`<current_note>\` for the same context.
 - \`<editor_selection>\`: Text currently selected in the editor, with file path and line numbers.
 - \`<browser_selection>\`: Text selected in an Obsidian browser/web view (for example Surfing), including optional source/title/url metadata.
 - \`@filename.md\`: Files mentioned with @ in the query. Read these files when referenced.
@@ -67846,8 +67958,12 @@ async function createClaudeRewindBackup(filesChanged, vaultPath) {
 }
 async function executeClaudeRewind(userMessageId, deps) {
   if (deps.mode === "conversation") {
-    deps.setPendingResumeAt(deps.assistantMessageId);
-    deps.closePersistentQuery("conversation rewind");
+    if (deps.assistantMessageId) {
+      deps.setPendingResumeAt(deps.assistantMessageId);
+      deps.closePersistentQuery("conversation rewind");
+    } else {
+      deps.resetSession();
+    }
     return { canRewind: true, filesChanged: [] };
   }
   const preview = await deps.rewindFiles(userMessageId, true);
@@ -67862,8 +67978,12 @@ async function executeClaudeRewind(userMessageId, deps) {
       deps.closePersistentQuery("rewind failed");
       return result;
     }
-    deps.setPendingResumeAt(deps.assistantMessageId);
-    deps.closePersistentQuery("rewind");
+    if (deps.assistantMessageId) {
+      deps.setPendingResumeAt(deps.assistantMessageId);
+      deps.closePersistentQuery("rewind");
+    } else {
+      deps.resetSession();
+    }
     return {
       ...result,
       filesChanged: preview.filesChanged,
@@ -69247,6 +69367,7 @@ var ClaudianService = class {
       setPendingResumeAt: (resumeAt) => {
         this.pendingResumeAt = resumeAt;
       },
+      resetSession: () => this.resetSession(),
       vaultPath: this.vaultPath
     });
   }
@@ -69480,6 +69601,7 @@ var CodexAgentMentionProvider = class {
 // src/providers/codex/runtime/CodexAppServerProcess.ts
 var import_child_process7 = require("child_process");
 var SIGKILL_TIMEOUT_MS = 3e3;
+var STDERR_BUFFER_LIMIT = 8192;
 var CodexAppServerProcess = class {
   constructor(launchSpec) {
     this.launchSpec = launchSpec;
@@ -69487,8 +69609,10 @@ var CodexAppServerProcess = class {
     this.alive = false;
     this.exitCallbacks = [];
     this.resolvedSpawnSpec = null;
+    this.stderrBuffer = "";
   }
   start() {
+    var _a5;
     const resolvedSpawnSpec = resolveWindowsCmdShimSpawnSpec(this.launchSpec);
     this.resolvedSpawnSpec = resolvedSpawnSpec;
     this.proc = (0, import_child_process7.spawn)(resolvedSpawnSpec.command, resolvedSpawnSpec.args, {
@@ -69499,7 +69623,10 @@ var CodexAppServerProcess = class {
       ...resolvedSpawnSpec.windowsVerbatimArguments ? { windowsVerbatimArguments: true } : {}
     });
     this.alive = true;
-    this.proc.on("exit", (code, signal) => {
+    this.proc.on("exit", () => {
+      this.alive = false;
+    });
+    this.proc.on("close", (code, signal) => {
       this.alive = false;
       for (const cb2 of this.exitCallbacks) {
         cb2(code, signal);
@@ -69507,6 +69634,10 @@ var CodexAppServerProcess = class {
     });
     this.proc.on("error", () => {
       this.alive = false;
+    });
+    (_a5 = this.proc.stderr) == null ? void 0 : _a5.on("data", (chunk) => {
+      const text = Buffer.isBuffer(chunk) ? chunk.toString("utf8") : String(chunk);
+      this.stderrBuffer = `${this.stderrBuffer}${text}`.slice(-STDERR_BUFFER_LIMIT);
     });
   }
   get stdin() {
@@ -69526,6 +69657,9 @@ var CodexAppServerProcess = class {
   }
   isAlive() {
     return this.alive;
+  }
+  getStderrSnapshot() {
+    return this.stderrBuffer.trim();
   }
   onExit(callback) {
     this.exitCallbacks.push(callback);
@@ -69870,7 +70004,7 @@ var CodexRpcTransport = class {
     const rl2 = (0, import_readline3.createInterface)({ input: this.proc.stdout });
     rl2.on("line", (line) => this.handleLine(line));
     this.proc.onExit(() => {
-      this.rejectAllPending(new Error("App-server process exited"));
+      this.rejectAllPending(new Error(this.buildProcessExitMessage()));
     });
   }
   request(method, params, timeoutMs = DEFAULT_TIMEOUT_MS) {
@@ -69981,6 +70115,12 @@ var CodexRpcTransport = class {
       pending.reject(error48);
     }
     this.pending.clear();
+  }
+  buildProcessExitMessage() {
+    const stderr = this.proc.getStderrSnapshot();
+    return stderr ? `App-server process exited
+
+${stderr}` : "App-server process exited";
   }
 };
 
@@ -70448,6 +70588,11 @@ var CodexSkillCatalog = class {
 // src/providers/codex/runtime/CodexCliResolver.ts
 init_env();
 
+// src/providers/codex/runtime/CodexBinaryLocator.ts
+var fs13 = __toESM(require("fs"));
+var os9 = __toESM(require("os"));
+var path14 = __toESM(require("path"));
+
 // src/utils/cliBinaryLocator.ts
 var fs12 = __toESM(require("fs"));
 var path13 = __toESM(require("path"));
@@ -70519,6 +70664,7 @@ function translateMsysPathForPlatform(value, platform) {
 
 // src/providers/codex/runtime/CodexBinaryLocator.ts
 init_env();
+init_path();
 function isWindowsStyleCliReference(value) {
   const trimmed = (value != null ? value : "").trim();
   if (!trimmed) {
@@ -70527,7 +70673,82 @@ function isWindowsStyleCliReference(value) {
   return /^[A-Za-z]:[\\/]/.test(trimmed) || trimmed.startsWith("\\\\") || /\.(?:exe|cmd|bat|ps1)$/i.test(trimmed);
 }
 function findCodexBinaryPath(additionalPath, platform = process.platform) {
+  const explicitPathBinary = findCodexBinaryInDirs(
+    parsePathEntriesForPlatform2(additionalPath, platform),
+    platform
+  );
+  if (explicitPathBinary) {
+    return explicitPathBinary;
+  }
+  const preferredBinary = findCodexBinaryInDirs(
+    getPreferredCodexBinaryDirs(platform),
+    platform
+  );
+  if (preferredBinary) {
+    return preferredBinary;
+  }
   return findCliBinaryPath("codex", additionalPath, platform);
+}
+function getCodexBinaryNames(platform) {
+  return platform === "win32" ? ["codex.exe", "codex.cmd", "codex"] : ["codex"];
+}
+function findCodexBinaryInDirs(dirs, platform) {
+  const binaryNames = getCodexBinaryNames(platform);
+  for (const dir of dirs) {
+    if (!dir) continue;
+    for (const binaryName of binaryNames) {
+      const candidate = path14.join(dir, binaryName);
+      if (isExistingFile3(candidate)) {
+        return candidate;
+      }
+    }
+  }
+  return null;
+}
+function getPreferredCodexBinaryDirs(platform) {
+  const home = getHomeDir2();
+  if (platform === "darwin") {
+    return [
+      path14.join(home, "Applications", "Codex.app", "Contents", "Resources"),
+      "/Applications/Codex.app/Contents/Resources",
+      path14.join(home, "Applications", "Codex.app", "Contents", "MacOS"),
+      "/Applications/Codex.app/Contents/MacOS",
+      path14.join(home, ".local", "bin")
+    ];
+  }
+  if (platform !== "win32") {
+    return [
+      path14.join(home, ".local", "bin")
+    ];
+  }
+  return [];
+}
+function getHomeDir2() {
+  return process.env.HOME || process.env.USERPROFILE || os9.homedir();
+}
+function isExistingFile3(filePath) {
+  try {
+    return fs13.statSync(filePath).isFile();
+  } catch (e2) {
+    return false;
+  }
+}
+function parsePathEntriesForPlatform2(pathValue, platform) {
+  if (!pathValue) {
+    return [];
+  }
+  const delimiter = platform === "win32" ? ";" : ":";
+  return pathValue.split(delimiter).map((segment) => stripSurroundingQuotes3(segment.trim())).filter((segment) => {
+    if (!segment) return false;
+    const upper = segment.toUpperCase();
+    return upper !== "$PATH" && upper !== "${PATH}" && upper !== "%PATH%";
+  }).map((segment) => expandHomePath(segment));
+}
+function stripSurroundingQuotes3(value) {
+  if (value.startsWith('"') && value.endsWith('"') || value.startsWith("'") && value.endsWith("'")) {
+    return value.slice(1, -1);
+  }
+  return value;
 }
 function resolveCodexCliPath(hostnamePath, legacyPath, envText, options = {}) {
   var _a5;
@@ -71595,7 +71816,7 @@ function serializeSubagentToml(agent) {
 }
 
 // src/providers/codex/ui/CodexSettingsTab.ts
-var fs13 = __toESM(require("fs"));
+var fs14 = __toESM(require("fs"));
 var import_obsidian17 = require("obsidian");
 init_env();
 init_path();
@@ -72239,7 +72460,7 @@ var codexSettingsTabRenderer = {
     const getCliPathCopy = () => {
       if (!isWindowsHost) {
         return {
-          desc: "Custom path to the local Codex CLI. Leave empty for auto-detection from PATH.",
+          desc: "Custom path to the local Codex CLI. Leave empty to prefer known Codex installs, then PATH.",
           placeholder: "/usr/local/bin/codex"
         };
       }
@@ -72250,7 +72471,7 @@ var codexSettingsTabRenderer = {
         };
       }
       return {
-        desc: "Custom path to the local Codex CLI. Leave empty for auto-detection from PATH. Use the native Windows executable path, usually `codex.exe`.",
+        desc: "Custom path to the local Codex CLI. Leave empty to auto-detect from PATH. Use the native Windows executable path, usually `codex.exe`.",
         placeholder: "C:\\Users\\you\\AppData\\Roaming\\npm\\codex.exe"
       };
     };
@@ -72269,10 +72490,10 @@ var codexSettingsTabRenderer = {
         return null;
       }
       const expandedPath = expandHomePath(trimmed);
-      if (!fs13.existsSync(expandedPath)) {
+      if (!fs14.existsSync(expandedPath)) {
         return t10("settings.cliPath.validation.notExist");
       }
-      const stat = fs13.statSync(expandedPath);
+      const stat = fs14.statSync(expandedPath);
       if (!stat.isFile()) {
         return t10("settings.cliPath.validation.isDirectory");
       }
@@ -73037,12 +73258,31 @@ var codexSettingsReconciler = {
 };
 
 // src/providers/codex/history/CodexConversationHistoryService.ts
-var fs15 = __toESM(require("fs"));
+var fs16 = __toESM(require("fs"));
 
 // src/providers/codex/history/CodexHistoryStore.ts
-var fs14 = __toESM(require("fs"));
-var os9 = __toESM(require("os"));
-var path14 = __toESM(require("path"));
+var fs15 = __toESM(require("fs"));
+var os10 = __toESM(require("os"));
+var path15 = __toESM(require("path"));
+
+// src/providers/codex/codexUserText.ts
+var CODEX_IMAGE_OPEN_TAG_PATTERN = /^<image\b[^>]*>$/i;
+var CODEX_IMAGE_CLOSE_TAG_PATTERN = /^<\/image>$/i;
+var CODEX_EMPTY_IMAGE_TAG_PATTERN = /^<image\b[^>]*>\s*<\/image>$/i;
+var CODEX_EMPTY_IMAGE_TAG_PATTERN_GLOBAL = /<image\b[^>]*>\s*<\/image>\s*/gi;
+function stripCodexImagePlaceholderText(text) {
+  const trimmed = text.trim();
+  if (!trimmed) {
+    return text;
+  }
+  if (CODEX_IMAGE_OPEN_TAG_PATTERN.test(trimmed) || CODEX_IMAGE_CLOSE_TAG_PATTERN.test(trimmed) || CODEX_EMPTY_IMAGE_TAG_PATTERN.test(trimmed)) {
+    return "";
+  }
+  return text.replace(CODEX_EMPTY_IMAGE_TAG_PATTERN_GLOBAL, "");
+}
+function joinCodexUserTextParts(parts, separator = "") {
+  return parts.map(stripCodexImagePlaceholderText).filter((text) => text.length > 0).join(separator);
+}
 
 // src/providers/codex/normalization/codexToolNormalization.ts
 var TOOL_NAME_MAP = {
@@ -73327,6 +73567,7 @@ function newTurnState(id, timestamp) {
     startedAt: timestamp,
     lastEventAt: timestamp,
     userChunks: [],
+    userImages: [],
     assistantBubbles: [],
     activeBubbleIndex: null
   };
@@ -73399,6 +73640,16 @@ function appendUserChunk(turn, value, timestamp) {
   const chunkCountBefore = turn.userChunks.length;
   appendUniqueChunk(turn.userChunks, value);
   if (turn.userChunks.length > chunkCountBefore && !turn.userTimestamp && timestamp > 0) {
+    turn.userTimestamp = timestamp;
+  }
+}
+function appendUserImages(turn, content, timestamp) {
+  const images = extractMessageImages(content, `codex-img-${turn.id}`, turn.userImages.length);
+  if (images.length === 0) {
+    return;
+  }
+  turn.userImages.push(...images);
+  if (!turn.userTimestamp && timestamp > 0) {
     turn.userTimestamp = timestamp;
   }
 }
@@ -73513,14 +73764,14 @@ function stripLeadingCodexControlBlocks(text) {
   return remaining;
 }
 function extractCodexUserVisibleText(text) {
-  const trimmed = text.trimStart();
+  const trimmed = stripCodexImagePlaceholderText(text).trimStart();
   if (!trimmed) {
     return null;
   }
   if (CODEX_SYSTEM_MESSAGE_PREFIXES.some((prefix) => trimmed.startsWith(prefix))) {
     return null;
   }
-  const visible = stripLeadingCodexControlBlocks(trimmed).trim();
+  const visible = stripCodexImagePlaceholderText(stripLeadingCodexControlBlocks(trimmed)).trim();
   return visible ? visible : null;
 }
 function extractMessageText(content) {
@@ -73528,6 +73779,54 @@ function extractMessageText(content) {
     return "";
   }
   return content.map((part) => typeof (part == null ? void 0 : part.text) === "string" ? part.text : "").join("");
+}
+function extractUserMessageText(content) {
+  if (!Array.isArray(content)) {
+    return "";
+  }
+  return joinCodexUserTextParts(
+    content.map((part) => typeof (part == null ? void 0 : part.text) === "string" ? part.text : "")
+  );
+}
+function extractMessageImages(content, idPrefix, startIndex = 0) {
+  var _a5;
+  if (!Array.isArray(content)) {
+    return [];
+  }
+  const images = [];
+  for (const part of content) {
+    if ((part == null ? void 0 : part.type) !== "input_image") {
+      continue;
+    }
+    const imageUrl = typeof part.image_url === "string" ? part.image_url : typeof ((_a5 = part.image_url) == null ? void 0 : _a5.url) === "string" ? part.image_url.url : null;
+    const parsed = parseImageDataUri(imageUrl);
+    if (!parsed) {
+      continue;
+    }
+    const image = buildImageAttachmentFromBase64({
+      data: parsed.data,
+      id: `${idPrefix}-${startIndex + images.length}`,
+      mediaType: parsed.mediaType,
+      name: `image-${startIndex + images.length + 1}.${parsed.mediaType.split("/")[1]}`
+    });
+    if (image) {
+      images.push(image);
+    }
+  }
+  return images;
+}
+function hasMessageImages(content) {
+  if (!Array.isArray(content)) {
+    return false;
+  }
+  return content.some((part) => {
+    var _a5;
+    if ((part == null ? void 0 : part.type) !== "input_image") {
+      return false;
+    }
+    const imageUrl = typeof part.image_url === "string" ? part.image_url : typeof ((_a5 = part.image_url) == null ? void 0 : _a5.url) === "string" ? part.image_url.url : null;
+    return parseImageDataUri(imageUrl) !== null;
+  });
 }
 function joinTextParts(parts) {
   return parts.map((part) => {
@@ -73844,10 +74143,11 @@ function processPersistedPayload(payload, timestamp, lineIndex, ctx) {
   switch (payload.type) {
     case "message": {
       const messagePayload = payload;
-      const text = extractMessageText(messagePayload.content);
       if (messagePayload.role === "user") {
+        const text = extractUserMessageText(messagePayload.content);
         const visibleText = extractCodexUserVisibleText(text);
-        if (visibleText === null) break;
+        const hasImages = hasMessageImages(messagePayload.content);
+        if (visibleText === null && !hasImages) break;
         if (ctx.currentTurnId) {
           const prevTurn = ctx.turns.get(ctx.currentTurnId);
           if (prevTurn) closeAssistantBubble(prevTurn);
@@ -73855,8 +74155,12 @@ function processPersistedPayload(payload, timestamp, lineIndex, ctx) {
         ctx.currentTurnId = null;
         const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), null, timestamp);
         ctx.currentTurnId = turn.id;
-        appendUserChunk(turn, visibleText, timestamp);
+        if (visibleText !== null) {
+          appendUserChunk(turn, visibleText, timestamp);
+        }
+        appendUserImages(turn, messagePayload.content, timestamp);
       } else if (messagePayload.role === "assistant") {
+        const text = extractMessageText(messagePayload.content);
         const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
         const bubble = ensureAssistantBubble(turn, timestamp);
         if (text) {
@@ -73892,27 +74196,6 @@ function processPersistedPayload(payload, timestamp, lineIndex, ctx) {
       break;
     default:
       break;
-  }
-}
-function applyCompactedReplacementHistory(payload, timestamp, ctx) {
-  ctx.turns.clear();
-  ctx.turnOrder.length = 0;
-  ctx.currentTurnId = null;
-  ctx.toolCallToTurn.clear();
-  ctx.suppressedToolOutputIds.clear();
-  ctx.terminalSessionToCommandId.clear();
-  ctx.stdinCallToCommandId.clear();
-  ctx.turnCounter = 0;
-  const replacementHistory = Array.isArray(payload == null ? void 0 : payload.replacement_history) ? payload.replacement_history : [];
-  for (const [index, item] of replacementHistory.entries()) {
-    processPersistedPayload(item, timestamp + index, index, ctx);
-  }
-  if (ctx.currentTurnId) {
-    const turn = ctx.turns.get(ctx.currentTurnId);
-    if (turn) {
-      closeAssistantBubble(turn);
-    }
-    ctx.currentTurnId = null;
   }
 }
 function extractServerTurnId(payload) {
@@ -74006,13 +74289,15 @@ function processEventMsg(payload, timestamp, ctx) {
 function flushBubbleTurnMessages(turn, msgIndex) {
   const messages = [];
   const visibleUserText = extractCodexUserVisibleText(turn.userChunks.join("\n"));
-  if (visibleUserText) {
-    const displayContent = extractUserDisplayContent(visibleUserText);
+  const userImages = turn.userImages.length > 0 ? turn.userImages : void 0;
+  if (visibleUserText || userImages) {
+    const displayContent = visibleUserText ? extractUserDisplayContent(visibleUserText) : void 0;
     messages.push({
       id: `codex-msg-${msgIndex}`,
       role: "user",
-      content: visibleUserText,
+      content: visibleUserText != null ? visibleUserText : "",
       ...displayContent !== void 0 ? { displayContent } : {},
+      ...userImages ? { images: userImages } : {},
       ...turn.serverTurnId ? { userMessageId: turn.serverTurnId } : {},
       timestamp: turn.userTimestamp || turn.startedAt || Date.now()
     });
@@ -74081,7 +74366,7 @@ function flushBubbleTurnMessages(turn, msgIndex) {
 }
 var SAFE_SESSION_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 function getPathModuleForSessionPath(sessionPath) {
-  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path14.win32 : path14.posix;
+  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path15.win32 : path15.posix;
 }
 function deriveCodexSessionsRootFromSessionPath(sessionFilePath) {
   if (!sessionFilePath) {
@@ -74106,12 +74391,12 @@ function deriveCodexMemoriesDirFromSessionsRoot(sessionsDir) {
   const pathModule = getPathModuleForSessionPath(sessionsDir);
   return pathModule.join(pathModule.dirname(sessionsDir), "memories");
 }
-function findCodexSessionFile(threadId, root = path14.join(os9.homedir(), ".codex", "sessions")) {
-  if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId) || !fs14.existsSync(root)) {
+function findCodexSessionFile(threadId, root = path15.join(os10.homedir(), ".codex", "sessions")) {
+  if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId) || !fs15.existsSync(root)) {
     return null;
   }
-  const directPath = path14.join(root, `${threadId}.jsonl`);
-  if (fs14.existsSync(directPath)) {
+  const directPath = path15.join(root, `${threadId}.jsonl`);
+  if (fs15.existsSync(directPath)) {
     return directPath;
   }
   const stack = [root];
@@ -74122,12 +74407,12 @@ function findCodexSessionFile(threadId, root = path14.join(os9.homedir(), ".code
     }
     let entries;
     try {
-      entries = fs14.readdirSync(current, { withFileTypes: true });
+      entries = fs15.readdirSync(current, { withFileTypes: true });
     } catch (e2) {
       continue;
     }
     for (const entry of entries) {
-      const fullPath = path14.join(current, entry.name);
+      const fullPath = path15.join(current, entry.name);
       if (entry.isDirectory()) {
         stack.push(fullPath);
         continue;
@@ -74142,7 +74427,7 @@ function findCodexSessionFile(threadId, root = path14.join(os9.homedir(), ".code
 function parseCodexSessionFile(filePath) {
   let content;
   try {
-    content = fs14.readFileSync(filePath, "utf-8");
+    content = fs15.readFileSync(filePath, "utf-8");
   } catch (e2) {
     return [];
   }
@@ -74218,7 +74503,6 @@ function parseModernSessionTurns(records) {
       continue;
     }
     if (parsed.type === "compacted") {
-      applyCompactedReplacementHistory(parsed.payload, timestamp, ctx);
       continue;
     }
     if (parsed.type === "response_item") {
@@ -74450,7 +74734,7 @@ function processLegacyEventInModernContext(event, timestamp, ctx) {
 function readSessionTurns(sessionFilePath) {
   let content;
   try {
-    content = fs15.readFileSync(sessionFilePath, "utf-8");
+    content = fs16.readFileSync(sessionFilePath, "utf-8");
   } catch (e2) {
     return [];
   }
@@ -74745,9 +75029,9 @@ var codexSubagentLifecycleAdapter = {
 };
 
 // src/providers/codex/runtime/CodexChatRuntime.ts
-var fs16 = __toESM(require("fs"));
-var os10 = __toESM(require("os"));
-var path15 = __toESM(require("path"));
+var fs17 = __toESM(require("fs"));
+var os11 = __toESM(require("os"));
+var path16 = __toESM(require("path"));
 init_path();
 
 // src/providers/codex/prompt/encodeCodexTurn.ts
@@ -75392,7 +75676,10 @@ var CodexNotificationRouter = class {
     this.emitMissingAssistantSegmentText(item.text, item.id);
   }
   extractUserMessageText(content) {
-    return content.map((part) => part.type === "text" ? part.text : "").filter((text) => text.length > 0).join("\n\n");
+    return joinCodexUserTextParts(
+      content.map((part) => part.type === "text" ? part.text : ""),
+      "\n\n"
+    );
   }
   // -- turn/plan/updated (update_plan) ----------------------------------------
   onPlanUpdated(params) {
@@ -75528,15 +75815,15 @@ function normalizeFileChanges(changes) {
 function normalizeFileChange(change) {
   var _a5;
   const record2 = asRecord(change);
-  const path27 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path27) {
+  const path28 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path28) {
     return null;
   }
   const kindInfo = normalizeFileChangeKind((_a5 = record2.kind) != null ? _a5 : record2.type);
   const diff = firstString2(record2.diff);
   return {
     ...record2,
-    path: path27,
+    path: path28,
     kind: kindInfo.kind,
     type: kindInfo.kind,
     ...kindInfo.movePath ? { movePath: kindInfo.movePath } : {},
@@ -75583,12 +75870,12 @@ function fileChangeKey(change) {
 }
 function formatFileChangeSummary(change) {
   const record2 = asRecord(change);
-  const path27 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path27) {
+  const path28 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path28) {
     return "";
   }
   const kind = firstString2(record2.kind, record2.type) || "change";
-  return `${kind}: ${path27}`;
+  return `${kind}: ${path28}`;
 }
 function readContentText(value) {
   if (!Array.isArray(value)) {
@@ -76584,12 +76871,12 @@ User: ${turn.prompt}`
       externalContextPaths,
       "external context path"
     );
-    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path15.join(os10.homedir(), ".codex", "memories");
+    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path16.join(os11.homedir(), ".codex", "memories");
     const writableRoots = [
       (_e2 = (_d = this.launchSpec) == null ? void 0 : _d.targetCwd) != null ? _e2 : getVaultPath(this.plugin.app),
       ...mappedExternalContextPaths,
       memoriesDirTarget,
-      this.mapHostPathToTarget(os10.tmpdir()),
+      this.mapHostPathToTarget(os11.tmpdir()),
       ((_f2 = this.launchSpec) == null ? void 0 : _f2.target.platformFamily) === "unix" ? "/tmp" : null,
       this.mapHostPathToTarget(process.env.TMPDIR)
     ].filter((value) => typeof value === "string" && value.trim().length > 0);
@@ -76721,19 +77008,19 @@ User: ${turn.prompt}`
         return;
       }
       try {
-        fs16.rmSync(tempDir, { recursive: true, force: true });
+        fs17.rmSync(tempDir, { recursive: true, force: true });
       } catch (e2) {
       }
     };
     try {
       if (images && images.length > 0) {
-        tempDir = fs16.mkdtempSync(path15.join(os10.tmpdir(), "claudian-codex-images-"));
+        tempDir = fs17.mkdtempSync(path16.join(os11.tmpdir(), "claudian-codex-images-"));
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
           if (!img.mediaType.startsWith("image/")) continue;
           const filename = toAttachmentFilename(img, i);
-          const filePath = path15.join(tempDir, `${i + 1}-${filename}`);
-          fs16.writeFileSync(filePath, Buffer.from(img.data, "base64"));
+          const filePath = path16.join(tempDir, `${i + 1}-${filename}`);
+          fs17.writeFileSync(filePath, Buffer.from(img.data, "base64"));
           const targetFilePath = this.mapHostPathToTarget(filePath);
           if (!targetFilePath) {
             throw new Error(`Codex cannot access image attachment path from the selected target: ${filePath}`);
@@ -76996,7 +77283,7 @@ var OpencodeCliResolver = class {
 };
 
 // src/providers/opencode/storage/OpencodeAgentStorage.ts
-var path16 = __toESM(require("node:path"));
+var path17 = __toESM(require("node:path"));
 
 // src/providers/opencode/types/agent.ts
 var OPENCODE_AGENT_KNOWN_KEYS = /* @__PURE__ */ new Set([
@@ -77067,7 +77354,7 @@ var OpencodeAgentStorage = class {
   async save(agent, previous) {
     const filePath = this.resolveTargetPath(agent, previous);
     const previousPath = previous ? this.resolveCurrentPath(previous) : null;
-    await this.vaultAdapter.ensureFolder(path16.posix.dirname(filePath));
+    await this.vaultAdapter.ensureFolder(path17.posix.dirname(filePath));
     const content = serializeOpencodeAgentMarkdown(agent);
     await this.vaultAdapter.write(filePath, content);
     if (previousPath && previousPath !== filePath) {
@@ -77284,14 +77571,14 @@ function isSupportedAgentFilePath(filePath) {
 }
 
 // src/providers/opencode/ui/OpencodeSettingsTab.ts
-var fs20 = __toESM(require("fs"));
+var fs21 = __toESM(require("fs"));
 var import_obsidian19 = require("obsidian");
 init_env();
 init_path();
 
 // src/providers/opencode/runtime/OpencodeChatRuntime.ts
-var fs19 = __toESM(require("node:fs/promises"));
-var path19 = __toESM(require("node:path"));
+var fs20 = __toESM(require("node:fs/promises"));
+var path20 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -78199,7 +78486,7 @@ function parseIsoDate(value) {
 // src/providers/acp/AcpSubprocess.ts
 var import_node_child_process = require("node:child_process");
 var SIGKILL_TIMEOUT_MS2 = 3e3;
-var STDERR_BUFFER_LIMIT = 8e3;
+var STDERR_BUFFER_LIMIT2 = 8e3;
 var AcpSubprocess = class {
   constructor(launchSpec) {
     this.launchSpec = launchSpec;
@@ -78240,7 +78527,7 @@ var AcpSubprocess = class {
     });
     proc.stderr.on("data", (chunk) => {
       const text = typeof chunk === "string" ? chunk : chunk.toString("utf-8");
-      this.stderrBuffer = `${this.stderrBuffer}${text}`.slice(-STDERR_BUFFER_LIMIT);
+      this.stderrBuffer = `${this.stderrBuffer}${text}`.slice(-STDERR_BUFFER_LIMIT2);
     });
     proc.on("error", (error48) => {
       this.closeError = error48;
@@ -78782,14 +79069,14 @@ function buildOpencodePromptBlocks(request, conversationHistory = []) {
 }
 
 // src/providers/opencode/runtime/OpencodeLaunchArtifacts.ts
-var fs18 = __toESM(require("node:fs/promises"));
-var path18 = __toESM(require("node:path"));
+var fs19 = __toESM(require("node:fs/promises"));
+var path19 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/runtime/OpencodePaths.ts
-var fs17 = __toESM(require("node:fs"));
-var os11 = __toESM(require("node:os"));
-var path17 = __toESM(require("node:path"));
+var fs18 = __toESM(require("node:fs"));
+var os12 = __toESM(require("node:os"));
+var path18 = __toESM(require("node:path"));
 var OPENCODE_APP_NAME = "opencode";
 var DEFAULT_DATABASE_NAME = "opencode.db";
 var DATABASE_NAME_PATTERN = /^opencode(?:-[a-z0-9._-]+)?\.db$/i;
@@ -78797,27 +79084,27 @@ function resolveOpencodeDataDir(env = process.env) {
   var _a5;
   const xdgDataHome = (_a5 = env.XDG_DATA_HOME) == null ? void 0 : _a5.trim();
   if (xdgDataHome) {
-    return path17.join(xdgDataHome, OPENCODE_APP_NAME);
+    return path18.join(xdgDataHome, OPENCODE_APP_NAME);
   }
-  const home = env.HOME || os11.homedir();
+  const home = env.HOME || os12.homedir();
   if (process.platform === "win32") {
-    const appData = env.APPDATA || env.LOCALAPPDATA || path17.join(home, "AppData", "Roaming");
-    return path17.join(appData, OPENCODE_APP_NAME);
+    const appData = env.APPDATA || env.LOCALAPPDATA || path18.join(home, "AppData", "Roaming");
+    return path18.join(appData, OPENCODE_APP_NAME);
   }
-  return path17.join(home, ".local", "share", OPENCODE_APP_NAME);
+  return path18.join(home, ".local", "share", OPENCODE_APP_NAME);
 }
 function resolveOpencodeDatabasePath(env = process.env) {
   var _a5, _b3;
   const override = (_a5 = env.OPENCODE_DB) == null ? void 0 : _a5.trim();
   if (override) {
-    if (override === ":memory:" || path17.isAbsolute(override)) {
+    if (override === ":memory:" || path18.isAbsolute(override)) {
       return override;
     }
-    return path17.join(resolveOpencodeDataDir(env), override);
+    return path18.join(resolveOpencodeDataDir(env), override);
   }
   const candidates = getOpencodeDatabasePathCandidates(env);
   for (const candidate of candidates) {
-    if (fs17.existsSync(candidate)) {
+    if (fs18.existsSync(candidate)) {
       return candidate;
     }
   }
@@ -78829,12 +79116,12 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
     if (preferred === ":memory:") {
       return preferred;
     }
-    if (fs17.existsSync(preferred)) {
+    if (fs18.existsSync(preferred)) {
       return preferred;
     }
   }
   const resolved = resolveOpencodeDatabasePath(env);
-  if (resolved && (resolved === ":memory:" || fs17.existsSync(resolved))) {
+  if (resolved && (resolved === ":memory:" || fs18.existsSync(resolved))) {
     return resolved;
   }
   return preferred != null ? preferred : resolved;
@@ -78842,21 +79129,21 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
 function getOpencodeDatabasePathCandidates(env) {
   const candidates = [];
   const seen = /* @__PURE__ */ new Set();
-  const home = env.HOME || os11.homedir();
+  const home = env.HOME || os12.homedir();
   const dataDirs = [
     resolveOpencodeDataDir(env),
-    path17.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
+    path18.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
   ];
   for (const dataDir of dataDirs) {
-    pushCandidate(candidates, seen, path17.join(dataDir, DEFAULT_DATABASE_NAME));
+    pushCandidate(candidates, seen, path18.join(dataDir, DEFAULT_DATABASE_NAME));
     try {
-      const matches = fs17.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
+      const matches = fs18.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
         if (left === DEFAULT_DATABASE_NAME) return -1;
         if (right === DEFAULT_DATABASE_NAME) return 1;
         return left.localeCompare(right);
       });
       for (const entry of matches) {
-        pushCandidate(candidates, seen, path17.join(dataDir, entry));
+        pushCandidate(candidates, seen, path18.join(dataDir, entry));
       }
     } catch (e2) {
     }
@@ -78900,13 +79187,13 @@ var DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS = [
 ];
 async function prepareOpencodeLaunchArtifacts(params) {
   var _a5, _b3, _c2, _d, _e2, _f2;
-  const artifactsDir = path18.join(
+  const artifactsDir = path19.join(
     params.workspaceRoot,
     CLAUDIAN_STORAGE_PATH,
     (_a5 = params.artifactsSubdir) != null ? _a5 : "opencode"
   );
-  const systemPromptPath = path18.join(artifactsDir, "system.md");
-  const configPath = path18.join(artifactsDir, "config.json");
+  const systemPromptPath = path19.join(artifactsDir, "system.md");
+  const configPath = path19.join(artifactsDir, "config.json");
   const systemPrompt = normalizeSystemPrompt(
     (_b3 = params.systemPromptText) != null ? _b3 : buildSystemPrompt(requireSettings(params))
   );
@@ -78928,7 +79215,7 @@ async function prepareOpencodeLaunchArtifacts(params) {
   )}
 `;
   const databasePath = resolveOpencodeDatabasePath(params.runtimeEnv);
-  await fs18.mkdir(artifactsDir, { recursive: true });
+  await fs19.mkdir(artifactsDir, { recursive: true });
   await ensureOpencodeDatabaseDirectory(databasePath);
   await writeIfChanged(systemPromptPath, systemPrompt);
   await writeIfChanged(configPath, configContent);
@@ -78949,7 +79236,7 @@ async function ensureOpencodeDatabaseDirectory(databasePath) {
   if (!databasePath || databasePath === ":memory:") {
     return;
   }
-  await fs18.mkdir(path18.dirname(databasePath), { recursive: true });
+  await fs19.mkdir(path19.dirname(databasePath), { recursive: true });
 }
 function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, managedAgents = DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS, defaultAgentId) {
   const config2 = {
@@ -78981,13 +79268,13 @@ function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, mana
 }
 async function writeIfChanged(filePath, content) {
   try {
-    const existing = await fs18.readFile(filePath, "utf-8");
+    const existing = await fs19.readFile(filePath, "utf-8");
     if (existing === content) {
       return;
     }
   } catch (e2) {
   }
-  await fs18.writeFile(filePath, content, "utf-8");
+  await fs19.writeFile(filePath, content, "utf-8");
 }
 async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
   const trimmedPath = configuredPath == null ? void 0 : configuredPath.trim();
@@ -78995,9 +79282,9 @@ async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
     return {};
   }
   const expandedPath = expandHomePath(trimmedPath);
-  const resolvedPath = path18.isAbsolute(expandedPath) ? expandedPath : path18.resolve(workspaceRoot, expandedPath);
+  const resolvedPath = path19.isAbsolute(expandedPath) ? expandedPath : path19.resolve(workspaceRoot, expandedPath);
   try {
-    const rawConfig = await fs18.readFile(resolvedPath, "utf8");
+    const rawConfig = await fs19.readFile(resolvedPath, "utf8");
     const parsedConfig = JSON.parse(rawConfig);
     return isPlainObject6(parsedConfig) ? parsedConfig : {};
   } catch (e2) {
@@ -79449,7 +79736,7 @@ var OpencodeChatRuntime = class {
       OPENCODE_CONFIG: params.configPath,
       PATH: getEnhancedPath(
         params.runtimeEnv.PATH,
-        path19.isAbsolute(params.command) ? params.command : void 0
+        path20.isAbsolute(params.command) ? params.command : void 0
       )
     };
     this.process = new AcpSubprocess({
@@ -79977,7 +80264,7 @@ var OpencodeChatRuntime = class {
   async readTextFile(request) {
     var _a5;
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    const content = await fs19.readFile(resolvedPath, "utf-8");
+    const content = await fs20.readFile(resolvedPath, "utf-8");
     if (request.line === void 0 && request.limit === void 0) {
       return { content };
     }
@@ -79990,17 +80277,17 @@ var OpencodeChatRuntime = class {
   }
   async writeTextFile(request) {
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    await fs19.mkdir(path19.dirname(resolvedPath), { recursive: true });
-    await fs19.writeFile(resolvedPath, request.content, "utf-8");
+    await fs20.mkdir(path20.dirname(resolvedPath), { recursive: true });
+    await fs20.writeFile(resolvedPath, request.content, "utf-8");
     return {};
   }
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
-    if (path19.isAbsolute(rawPath)) {
+    if (path20.isAbsolute(rawPath)) {
       return rawPath;
     }
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    return path19.resolve(cwd, rawPath);
+    return path20.resolve(cwd, rawPath);
   }
   formatRuntimeError(error48) {
     var _a5;
@@ -80664,10 +80951,10 @@ var opencodeSettingsTabRenderer = {
         return null;
       }
       const expandedPath = expandHomePath(trimmed);
-      if (!fs20.existsSync(expandedPath)) {
+      if (!fs21.existsSync(expandedPath)) {
         return "Path does not exist";
       }
-      const stat = fs20.statSync(expandedPath);
+      const stat = fs21.statSync(expandedPath);
       if (!stat.isFile()) {
         return "Path must point to a file";
       }
@@ -81245,8 +81532,8 @@ function maybeGetOpencodeWorkspaceServices() {
 }
 
 // src/providers/opencode/runtime/OpencodeAuxQueryRunner.ts
-var fs21 = __toESM(require("node:fs/promises"));
-var path20 = __toESM(require("node:path"));
+var fs22 = __toESM(require("node:fs/promises"));
+var path21 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/ui/OpencodeChatUIConfig.ts
@@ -81708,7 +81995,7 @@ ${stderr}` : message,
   async readTextFile(request) {
     var _a5;
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    const content = await fs21.readFile(resolvedPath, "utf-8");
+    const content = await fs22.readFile(resolvedPath, "utf-8");
     if (request.line === void 0 && request.limit === void 0) {
       return { content };
     }
@@ -81758,9 +82045,9 @@ ${stderr}` : message,
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    const resolvedPath = path20.isAbsolute(rawPath) ? path20.resolve(rawPath) : path20.resolve(cwd, rawPath);
-    const relative4 = path20.relative(cwd, resolvedPath);
-    if (relative4 === "" || !relative4.startsWith("..") && !path20.isAbsolute(relative4)) {
+    const resolvedPath = path21.isAbsolute(rawPath) ? path21.resolve(rawPath) : path21.resolve(cwd, rawPath);
+    const relative4 = path21.relative(cwd, resolvedPath);
+    if (relative4 === "" || !relative4.startsWith("..") && !path21.isAbsolute(relative4)) {
       return resolvedPath;
     }
     throw new Error("OpenCode aux read access is limited to the current workspace.");
@@ -81991,7 +82278,7 @@ var opencodeSettingsReconciler = {
 };
 
 // src/providers/opencode/history/OpencodeHistoryStore.ts
-var fs22 = __toESM(require("node:fs"));
+var fs23 = __toESM(require("node:fs"));
 
 // src/providers/opencode/history/OpencodeSqliteReader.ts
 var import_node_child_process2 = require("node:child_process");
@@ -82200,7 +82487,7 @@ order by message_id asc, id asc;`.trim();
 var OPENCODE_HYDRATION_DIAGNOSTIC_ID_PREFIX = "opencode-hydration-error";
 async function loadOpencodeSessionMessages(sessionId, providerState) {
   const databasePath = resolveExistingOpencodeDatabasePath(providerState == null ? void 0 : providerState.databasePath);
-  if (!databasePath || databasePath === ":memory:" || !fs22.existsSync(databasePath)) {
+  if (!databasePath || databasePath === ":memory:" || !fs23.existsSync(databasePath)) {
     return [];
   }
   const rows = await loadOpencodeSessionRows(databasePath, sessionId);
@@ -82289,10 +82576,12 @@ function mapStoredMessage(message, context) {
   const createdAt = (_a5 = getMessageCreatedAt(message.info)) != null ? _a5 : Date.now();
   if (role === "user") {
     const promptText = extractUserQuery(getJoinedTextParts(message.parts));
+    const images = buildUserImages(message.parts, id);
     return {
       assistantMessageId: void 0,
       content: promptText,
       id,
+      ...images.length > 0 ? { images } : {},
       role: "user",
       timestamp: createdAt,
       userMessageId: id
@@ -82488,6 +82777,32 @@ function getJoinedTextParts(parts) {
     var _a5;
     return (_a5 = getString(part.text)) != null ? _a5 : "";
   }).join("");
+}
+function buildUserImages(parts, messageId) {
+  var _a5, _b3, _c2, _d;
+  const images = [];
+  for (const part of parts) {
+    if (getString(part.type) !== "file") {
+      continue;
+    }
+    const parsed = parseImageDataUri(getString(part.url));
+    const mime = getString(part.mime);
+    const mediaType = (_a5 = parsed == null ? void 0 : parsed.mediaType) != null ? _a5 : mime;
+    const data = parsed == null ? void 0 : parsed.data;
+    if (!data || !mediaType) {
+      continue;
+    }
+    const image = buildImageAttachmentFromBase64({
+      data,
+      id: `opencode-img-${messageId}-${images.length}`,
+      mediaType,
+      name: (_d = (_b3 = getString(part.filename)) != null ? _b3 : getString(part.name)) != null ? _d : `image-${images.length + 1}.${(_c2 = String(mediaType).split("/")[1]) != null ? _c2 : "img"}`
+    });
+    if (image) {
+      images.push(image);
+    }
+  }
+  return images;
 }
 function getDurationSeconds(part) {
   const start = getNestedNumber(part, ["time", "start"]);
@@ -82732,7 +83047,7 @@ var PiCliResolver = class {
 };
 
 // src/providers/pi/ui/PiSettingsTab.ts
-var fs23 = __toESM(require("node:fs"));
+var fs24 = __toESM(require("node:fs"));
 var import_obsidian20 = require("obsidian");
 init_env();
 init_path();
@@ -83021,10 +83336,10 @@ function isPlainObject9(value) {
 
 // src/providers/pi/runtime/PiSubprocess.ts
 var import_node_child_process3 = require("node:child_process");
-var path21 = __toESM(require("node:path"));
+var path22 = __toESM(require("node:path"));
 init_env();
 var SIGKILL_TIMEOUT_MS3 = 3e3;
-var STDERR_BUFFER_LIMIT2 = 8e3;
+var STDERR_BUFFER_LIMIT3 = 8e3;
 var PiSubprocess = class {
   constructor(launchSpec) {
     this.launchSpec = launchSpec;
@@ -83059,7 +83374,7 @@ var PiSubprocess = class {
         ...this.launchSpec.env,
         PATH: getEnhancedPath(
           this.launchSpec.env.PATH,
-          path21.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
+          path22.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
         )
       },
       stdio: "pipe",
@@ -83068,7 +83383,7 @@ var PiSubprocess = class {
     });
     proc.stderr.on("data", (chunk) => {
       const text = typeof chunk === "string" ? chunk : chunk.toString("utf-8");
-      this.stderrBuffer = `${this.stderrBuffer}${text}`.slice(-STDERR_BUFFER_LIMIT2);
+      this.stderrBuffer = `${this.stderrBuffer}${text}`.slice(-STDERR_BUFFER_LIMIT3);
     });
     proc.on("error", (error48) => {
       this.closeError = error48;
@@ -83641,10 +83956,10 @@ function validateCliPath(value) {
     return null;
   }
   const expandedPath = expandHomePath(trimmed);
-  if (!fs23.existsSync(expandedPath)) {
+  if (!fs24.existsSync(expandedPath)) {
     return "Path does not exist";
   }
-  if (!fs23.statSync(expandedPath).isFile()) {
+  if (!fs24.statSync(expandedPath).isFile()) {
     return "Path must point to a file";
   }
   return null;
@@ -83722,7 +84037,7 @@ function formatProviderLabel(provider) {
 
 // src/providers/pi/runtime/PiChatRuntime.ts
 var fsp2 = __toESM(require("node:fs/promises"));
-var path23 = __toESM(require("node:path"));
+var path24 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -83744,10 +84059,10 @@ var PI_PROVIDER_CAPABILITIES = Object.freeze({
 
 // src/providers/pi/history/PiHistoryStore.ts
 var import_node_crypto = require("node:crypto");
-var fs24 = __toESM(require("node:fs"));
+var fs25 = __toESM(require("node:fs"));
 var fsp = __toESM(require("node:fs/promises"));
-var os12 = __toESM(require("node:os"));
-var path22 = __toESM(require("node:path"));
+var os13 = __toESM(require("node:os"));
+var path23 = __toESM(require("node:path"));
 
 // src/providers/pi/normalizations/piToolNormalization.ts
 var PI_BUILT_IN_TOOL_NAMES = {
@@ -83969,8 +84284,8 @@ async function createPiForkSessionFile(sourceSessionFile, resumeAt, options = {}
   const timestamp = (_a5 = options.now) != null ? _a5 : /* @__PURE__ */ new Date();
   const timestampText = timestamp.toISOString();
   const sessionId = (_b3 = options.sessionId) != null ? _b3 : (0, import_node_crypto.randomUUID)();
-  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path22.dirname(sourceSessionFile);
-  const sessionFile = path22.join(
+  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path23.dirname(sourceSessionFile);
+  const sessionFile = path23.join(
     sessionDir,
     `${timestampText.replace(/[:.]/g, "-")}_${sessionId}.jsonl`
   );
@@ -84002,16 +84317,16 @@ function findPiSessionFile(sessionIdOrFile, cwd, sessionDir) {
   if (!trimmed) {
     return null;
   }
-  if (path22.isAbsolute(trimmed) && fileExists(trimmed)) {
+  if (path23.isAbsolute(trimmed) && fileExists(trimmed)) {
     return trimmed;
   }
   const roots = [
     sessionDir,
-    cwd ? path22.join(cwd, ".pi", "agent", "sessions") : null,
-    path22.join(os12.homedir(), ".pi", "agent", "sessions")
+    cwd ? path23.join(cwd, ".pi", "agent", "sessions") : null,
+    path23.join(os13.homedir(), ".pi", "agent", "sessions")
   ].filter((root) => !!root);
   for (const root of roots) {
-    const direct = path22.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
+    const direct = path23.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
     if (fileExists(direct)) {
       return direct;
     }
@@ -84071,28 +84386,30 @@ function mergeAssistantContinuation(target, source) {
   }
 }
 function mapPiSessionEntry(entry, messages) {
-  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o;
+  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r;
   const message = (_a5 = entry.message) != null ? _a5 : entry.raw;
   const role = (_b3 = getString2(message.role)) != null ? _b3 : inferRole(entry.type);
   const timestamp = getTimestamp((_c2 = message.timestamp) != null ? _c2 : entry.raw.timestamp);
   if (role === "user") {
+    const images = extractUserImages((_e2 = (_d = message.content) != null ? _d : message.parts) != null ? _e2 : message.blocks, (_f2 = entry.id) != null ? _f2 : `pi-user-${messages.length}`);
     return {
-      content: extractTextContent2((_e2 = (_d = message.content) != null ? _d : message.text) != null ? _e2 : message.message),
-      id: (_f2 = entry.id) != null ? _f2 : `pi-user-${messages.length}`,
+      content: extractTextContent2((_h2 = (_g = message.content) != null ? _g : message.text) != null ? _h2 : message.message),
+      id: (_i = entry.id) != null ? _i : `pi-user-${messages.length}`,
+      ...images.length > 0 ? { images } : {},
       role: "user",
       timestamp,
       userMessageId: entry.id
     };
   }
   if (role === "assistant") {
-    const contentBlocks = extractAssistantContentBlocks((_h2 = (_g = message.content) != null ? _g : message.parts) != null ? _h2 : message.blocks);
-    const toolCalls = extractAssistantToolCalls((_j = (_i = message.content) != null ? _i : message.parts) != null ? _j : message.blocks);
+    const contentBlocks = extractAssistantContentBlocks((_k3 = (_j = message.content) != null ? _j : message.parts) != null ? _k3 : message.blocks);
+    const toolCalls = extractAssistantToolCalls((_m = (_l2 = message.content) != null ? _l2 : message.parts) != null ? _m : message.blocks);
     const text = contentBlocks.filter((block) => block.type === "text").map((block) => block.content).join("");
     return {
       assistantMessageId: entry.id,
       content: text,
       ...contentBlocks.length > 0 ? { contentBlocks } : {},
-      id: (_k3 = entry.id) != null ? _k3 : `pi-assistant-${messages.length}`,
+      id: (_n = entry.id) != null ? _n : `pi-assistant-${messages.length}`,
       role: "assistant",
       timestamp,
       ...toolCalls.length > 0 ? { toolCalls } : {}
@@ -84106,20 +84423,20 @@ function mapPiSessionEntry(entry, messages) {
     return {
       content: "",
       contentBlocks: [{ type: "context_compacted" }],
-      id: (_l2 = entry.id) != null ? _l2 : `pi-compaction-${messages.length}`,
+      id: (_o = entry.id) != null ? _o : `pi-compaction-${messages.length}`,
       role: "assistant",
       timestamp
     };
   }
   if ((entry.type === "branch_summary" || entry.type === "compactionSummary" || entry.type === "custom_message") && entry.raw.display !== false) {
-    const content = extractTextContent2((_n = (_m = entry.raw.content) != null ? _m : entry.raw.summary) != null ? _n : entry.raw.message);
+    const content = extractTextContent2((_q3 = (_p = entry.raw.content) != null ? _p : entry.raw.summary) != null ? _q3 : entry.raw.message);
     if (!content) {
       return null;
     }
     return {
       content,
       contentBlocks: [{ type: "text", content }],
-      id: (_o = entry.id) != null ? _o : `pi-notice-${messages.length}`,
+      id: (_r = entry.id) != null ? _r : `pi-notice-${messages.length}`,
       role: "assistant",
       timestamp
     };
@@ -84155,6 +84472,35 @@ function extractAssistantContentBlocks(value) {
     }
   }
   return blocks;
+}
+function extractUserImages(value, messageId) {
+  var _a5, _b3, _c2, _d, _e2;
+  const parts = Array.isArray(value) ? value : [];
+  const images = [];
+  for (const part of parts) {
+    if (!isPlainObject11(part)) {
+      continue;
+    }
+    const type = getString2(part.type);
+    if (type !== "image") {
+      continue;
+    }
+    const data = getString2(part.data);
+    const mediaType = (_b3 = (_a5 = getString2(part.mimeType)) != null ? _a5 : getString2(part.mime_type)) != null ? _b3 : getString2(part.mediaType);
+    if (!data || !mediaType) {
+      continue;
+    }
+    const image = buildImageAttachmentFromBase64({
+      data,
+      id: `pi-img-${messageId}-${images.length}`,
+      mediaType,
+      name: (_e2 = (_c2 = getString2(part.name)) != null ? _c2 : getString2(part.filename)) != null ? _e2 : `image-${images.length + 1}.${(_d = mediaType.split("/")[1]) != null ? _d : "img"}`
+    });
+    if (image) {
+      images.push(image);
+    }
+  }
+  return images;
 }
 function extractAssistantToolCalls(value) {
   const parts = Array.isArray(value) ? value : [];
@@ -84256,9 +84602,9 @@ function extractTextContent2(value) {
 }
 function findSessionFileInRoot(root, sessionId) {
   try {
-    const entries = fs24.readdirSync(root, { withFileTypes: true });
+    const entries = fs25.readdirSync(root, { withFileTypes: true });
     for (const entry of entries) {
-      const candidate = path22.join(root, entry.name);
+      const candidate = path23.join(root, entry.name);
       if (entry.isDirectory()) {
         const nested = findSessionFileInRoot(candidate, sessionId);
         if (nested) {
@@ -84275,7 +84621,7 @@ function findSessionFileInRoot(root, sessionId) {
 }
 function fileExists(filePath) {
   try {
-    return fs24.existsSync(filePath) && fs24.statSync(filePath).isFile();
+    return fs25.existsSync(filePath) && fs25.statSync(filePath).isFile();
   } catch (e2) {
     return false;
   }
@@ -85412,7 +85758,7 @@ var PiChatRuntime = class {
 ${stderr}` : message;
   }
   isSwitchableSessionFile(sessionFile) {
-    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path23.isAbsolute(sessionFile);
+    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path24.isAbsolute(sessionFile);
   }
   async switchSession(sessionFile, launchSpec, nextLaunchKey) {
     var _a5, _b3;
@@ -86100,7 +86446,7 @@ function getDefaultPiEffortForSelection(selection, piSettings) {
 }
 
 // src/providers/pi/history/PiConversationHistoryService.ts
-var fs25 = __toESM(require("node:fs/promises"));
+var fs26 = __toESM(require("node:fs/promises"));
 var PiConversationHistoryService = class {
   constructor() {
     this.hydratedKeys = /* @__PURE__ */ new Map();
@@ -86118,7 +86464,7 @@ var PiConversationHistoryService = class {
         return;
       }
       try {
-        const content = await fs25.readFile(sourceSessionFile, "utf-8");
+        const content = await fs26.readFile(sourceSessionFile, "utf-8");
         const messages = parsePiSessionContent(content, {
           leafEntryId: state.forkSource.resumeAt,
           requireLeafEntryId: true
@@ -86149,7 +86495,7 @@ var PiConversationHistoryService = class {
       return;
     }
     try {
-      const content = await fs25.readFile(sessionFile, "utf-8");
+      const content = await fs26.readFile(sessionFile, "utf-8");
       const messages = parsePiSessionContent(content, {
         leafEntryId: state.leafEntryId
       });
@@ -87592,7 +87938,7 @@ var ConversationController = class {
       return;
     }
     const rewindCtx = findRewindContext(msgs, userIdx);
-    if (!rewindCtx.hasResponse || !rewindCtx.prevAssistantUuid) {
+    if (!rewindCtx.hasResponse) {
       new import_obsidian23.Notice(t10("chat.rewind.unavailableNoUuid"));
       return;
     }
@@ -87633,7 +87979,10 @@ var ConversationController = class {
     const filesChanged = (_c2 = (_b3 = result.filesChanged) == null ? void 0 : _b3.length) != null ? _c2 : 0;
     let saveError = null;
     try {
-      await this.save(false, { resumeAtMessageId: prevAssistantUuid });
+      await this.save(false, {
+        resumeAtMessageId: prevAssistantUuid,
+        resetProviderSession: !prevAssistantUuid
+      });
     } catch (e2) {
       saveError = e2 instanceof Error ? e2.message : "Failed to save";
     }
@@ -87679,7 +88028,7 @@ var ConversationController = class {
     const mcpServerSelector = this.deps.getMcpServerSelector();
     const enabledMcpServers = mcpServerSelector ? Array.from(mcpServerSelector.getEnabledServers()) : [];
     const conversation = plugin.getConversationSync(state.currentConversationId);
-    const { updates: sessionUpdates } = agentService ? agentService.buildSessionUpdates({ conversation, sessionInvalidated }) : { updates: {} };
+    const { updates: sessionUpdates } = agentService && !(options == null ? void 0 : options.resetProviderSession) ? agentService.buildSessionUpdates({ conversation, sessionInvalidated }) : { updates: {} };
     const updates = {
       ...sessionUpdates,
       messages: state.messages,
@@ -87693,6 +88042,10 @@ var ConversationController = class {
     }
     if (options) {
       updates.resumeAtMessageId = options.resumeAtMessageId;
+      if (options.resetProviderSession) {
+        updates.sessionId = null;
+        updates.providerState = void 0;
+      }
     }
     await plugin.updateConversation(state.currentConversationId, updates);
     state.hasPendingConversationSave = false;
@@ -89322,7 +89675,7 @@ var InlineAskUserQuestion = class {
 };
 
 // src/features/chat/rendering/InlineExitPlanMode.ts
-var fs26 = __toESM(require("fs"));
+var fs27 = __toESM(require("fs"));
 var nodePath = __toESM(require("path"));
 var HINTS_TEXT2 = "Arrow keys to navigate \xB7 Enter to select \xB7 Esc to cancel";
 var InlineExitPlanMode = class {
@@ -89437,7 +89790,7 @@ var InlineExitPlanMode = class {
       return null;
     }
     try {
-      const content = fs26.readFileSync(planFilePath, "utf-8");
+      const content = fs27.readFileSync(planFilePath, "utf-8");
       return content.trim() || null;
     } catch (err) {
       this.planReadError = err instanceof Error ? err.message : "unknown error";
@@ -90279,10 +90632,10 @@ function renderApplyPatchExpanded(container, input, result) {
     for (const change of changes) {
       if (!change || typeof change !== "object" || Array.isArray(change)) continue;
       const changeRecord = change;
-      const path27 = typeof changeRecord.path === "string" ? changeRecord.path : "";
-      if (!path27) continue;
+      const path28 = typeof changeRecord.path === "string" ? changeRecord.path : "";
+      if (!path28) continue;
       const movedTo = readMoveTarget(changeRecord.kind);
-      const pathText = movedTo ? `${path27} -> ${movedTo}` : path27;
+      const pathText = movedTo ? `${path28} -> ${movedTo}` : path28;
       linesEl.createDiv({ cls: "claudian-tool-line", text: pathText });
     }
     return;
@@ -94660,7 +95013,7 @@ function escapeHtml(text) {
 }
 
 // src/utils/imageEmbed.ts
-var IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
+var IMAGE_EXTENSIONS2 = /* @__PURE__ */ new Set([
   "png",
   "jpg",
   "jpeg",
@@ -94671,10 +95024,10 @@ var IMAGE_EXTENSIONS = /* @__PURE__ */ new Set([
   "ico"
 ]);
 var IMAGE_EMBED_PATTERN = /!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
-function isImagePath(path27) {
+function isImagePath(path28) {
   var _a5;
-  const ext = (_a5 = path27.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
-  return ext ? IMAGE_EXTENSIONS.has(ext) : false;
+  const ext = (_a5 = path28.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
+  return ext ? IMAGE_EXTENSIONS2.has(ext) : false;
 }
 function resolveImageFile(app, imagePath, options) {
   let file2 = getVaultFileByPath(app, imagePath);
@@ -94743,6 +95096,15 @@ function replaceImageEmbedsWithHtml(markdown, app, options) {
   );
 }
 
+// src/features/chat/utils/conversationDirectoryTitle.ts
+var CONVERSATION_DIRECTORY_TITLE_MAX_LENGTH = 80;
+function formatConversationDirectoryTitle(text) {
+  const firstLine = text.split(/\r?\n/).map((line) => line.trim()).find(Boolean);
+  if (!firstLine) return "";
+  if (firstLine.length <= CONVERSATION_DIRECTORY_TITLE_MAX_LENGTH) return firstLine;
+  return `${firstLine.slice(0, CONVERSATION_DIRECTORY_TITLE_MAX_LENGTH - 3)}...`;
+}
+
 // src/features/chat/rendering/MessageRenderer.ts
 function runRendererAction(action) {
   void action().catch(() => {
@@ -94788,6 +95150,14 @@ var MessageRenderer = class {
     var _a5, _b3;
     return (_b3 = (_a5 = msg.displayContent) != null ? _a5 : extractUserDisplayContent(msg.content)) != null ? _b3 : msg.content;
   }
+  applyTocTitle(msgEl, text) {
+    const tocTitle = formatConversationDirectoryTitle(text);
+    if (tocTitle) {
+      msgEl.setAttribute("data-toc-title", tocTitle);
+    } else {
+      msgEl.removeAttribute("data-toc-title");
+    }
+  }
   // ============================================
   // Streaming Message Rendering
   // ============================================
@@ -94821,6 +95191,7 @@ var MessageRenderer = class {
         const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
         void this.renderContent(textEl, textToShow);
         this.addUserCopyButton(msgEl, textToShow);
+        this.applyTocTitle(msgEl, textToShow);
       }
       if (this.rewindCallback || this.forkCallback) {
         this.liveMessageEls.set(msg.id, msgEl);
@@ -94847,6 +95218,9 @@ var MessageRenderer = class {
     if (textToShow) {
       const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
       void this.renderContent(textEl, textToShow);
+      this.applyTocTitle(msgEl, textToShow);
+    } else {
+      msgEl.removeAttribute("data-toc-title");
     }
     const toolbar = msgEl.querySelector(".claudian-user-msg-actions");
     if (toolbar) {
@@ -94919,12 +95293,13 @@ var MessageRenderer = class {
         const textEl = contentEl.createDiv({ cls: "claudian-text-block" });
         void this.renderContent(textEl, textToShow);
         this.addUserCopyButton(msgEl, textToShow);
+        this.applyTocTitle(msgEl, textToShow);
       }
-      if (msg.userMessageId && this.isRewindEligible(allMessages, index)) {
-        if (this.rewindCallback) {
+      if (msg.userMessageId) {
+        if (this.rewindCallback && this.isRewindEligible(allMessages, index)) {
           this.addRewindButton(msgEl, msg.id);
         }
-        if (this.forkCallback) {
+        if (this.forkCallback && this.isForkEligible(allMessages, index)) {
           this.addForkButton(msgEl, msg.id);
         }
       }
@@ -94954,6 +95329,11 @@ var MessageRenderer = class {
     return false;
   }
   isRewindEligible(allMessages, index) {
+    if (!allMessages || index === void 0) return false;
+    const ctx = findRewindContext(allMessages, index);
+    return ctx.hasResponse;
+  }
+  isForkEligible(allMessages, index) {
     if (!allMessages || index === void 0) return false;
     const ctx = findRewindContext(allMessages, index);
     return !!ctx.prevAssistantUuid && ctx.hasResponse;
@@ -95321,20 +95701,22 @@ var MessageRenderer = class {
   }
   refreshActionButtons(msg, allMessages, index) {
     if (!msg.userMessageId) return;
-    if (!this.isRewindEligible(allMessages, index)) return;
+    const canRewind = this.isRewindEligible(allMessages, index);
+    const canFork = this.isForkEligible(allMessages, index);
+    if (!canRewind && !canFork) return;
     const msgEl = this.liveMessageEls.get(msg.id);
     if (!msgEl) return;
-    if (this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn")) {
+    if (canRewind && this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn")) {
       this.addRewindButton(msgEl, msg.id);
     }
-    if (this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn")) {
+    if (canFork && this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn")) {
       this.addForkButton(msgEl, msg.id);
     }
-    this.cleanupLiveMessageEl(msg.id, msgEl);
+    this.cleanupLiveMessageEl(msg.id, msgEl, { canRewind, canFork });
   }
-  cleanupLiveMessageEl(msgId, msgEl) {
-    const needsRewind = this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn");
-    const needsFork = this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn");
+  cleanupLiveMessageEl(msgId, msgEl, expectedActions) {
+    const needsRewind = expectedActions.canRewind && this.rewindCallback && !msgEl.querySelector(".claudian-message-rewind-btn");
+    const needsFork = expectedActions.canFork && this.forkCallback && !msgEl.querySelector(".claudian-message-fork-btn");
     if (!needsRewind && !needsFork) {
       this.liveMessageEls.delete(msgId);
     }
@@ -95486,7 +95868,7 @@ var BangBashService = class {
 // src/features/chat/services/SubagentManager.ts
 var import_fs11 = require("fs");
 var import_os6 = require("os");
-var import_path41 = require("path");
+var import_path42 = require("path");
 function isRecord7(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
@@ -96290,7 +96672,7 @@ var _SubagentManager = class _SubagentManager {
     return Array.from(roots);
   }
   isTrustedOutputPath(fullOutputPath) {
-    if (!(0, import_path41.isAbsolute)(fullOutputPath)) {
+    if (!(0, import_path42.isAbsolute)(fullOutputPath)) {
       return false;
     }
     if (!fullOutputPath.toLowerCase().endsWith(_SubagentManager.TRUSTED_OUTPUT_EXT)) {
@@ -96303,7 +96685,7 @@ var _SubagentManager = class _SubagentManager {
       return false;
     }
     return _SubagentManager.TRUSTED_TMP_ROOTS.some(
-      (root) => resolvedPath === root || resolvedPath.startsWith(`${root}${import_path41.sep}`)
+      (root) => resolvedPath === root || resolvedPath.startsWith(`${root}${import_path42.sep}`)
     );
   }
 };
@@ -96753,7 +97135,7 @@ var import_obsidian38 = require("obsidian");
 var import_obsidian35 = require("obsidian");
 
 // src/utils/externalContext.ts
-var fs27 = __toESM(require("fs"));
+var fs28 = __toESM(require("fs"));
 init_path();
 function normalizePathForComparison3(p) {
   return normalizePathForComparison(p);
@@ -96813,7 +97195,7 @@ function buildExternalContextDisplayEntries(externalContexts) {
 }
 function validateDirectoryPath(p) {
   try {
-    const stats = fs27.statSync(p);
+    const stats = fs28.statSync(p);
     if (!stats.isDirectory()) {
       return { valid: false, error: "Path exists but is not a directory" };
     }
@@ -96841,8 +97223,8 @@ function isDuplicatePath(newPath, existingPaths) {
 }
 
 // src/utils/externalContextScanner.ts
-var fs28 = __toESM(require("fs"));
-var path24 = __toESM(require("path"));
+var fs29 = __toESM(require("fs"));
+var path25 = __toESM(require("path"));
 init_path();
 var CACHE_TTL_MS = 3e4;
 var MAX_FILES_PER_PATH = 1e3;
@@ -96888,25 +97270,25 @@ var ExternalContextScanner = class {
     if (depth > MAX_DEPTH) return [];
     const files = [];
     try {
-      if (!fs28.existsSync(dir)) return [];
-      const stat = fs28.statSync(dir);
+      if (!fs29.existsSync(dir)) return [];
+      const stat = fs29.statSync(dir);
       if (!stat.isDirectory()) return [];
-      const entries = fs28.readdirSync(dir, { withFileTypes: true });
+      const entries = fs29.readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
         if (entry.name.startsWith(".")) continue;
         if (SKIP_DIRECTORIES.has(entry.name)) continue;
         if (entry.isSymbolicLink()) continue;
-        const fullPath = path24.join(dir, entry.name);
+        const fullPath = path25.join(dir, entry.name);
         if (entry.isDirectory()) {
           const subFiles = this.scanDirectory(fullPath, contextRoot, depth + 1);
           files.push(...subFiles);
         } else if (entry.isFile()) {
           try {
-            const fileStat = fs28.statSync(fullPath);
+            const fileStat = fs29.statSync(fullPath);
             files.push({
               path: fullPath,
               name: entry.name,
-              relativePath: path24.relative(contextRoot, fullPath),
+              relativePath: path25.relative(contextRoot, fullPath),
               contextRoot,
               mtime: fileStat.mtimeMs
             });
@@ -97791,11 +98173,11 @@ var FileContextState = class {
       this.attachedFiles.add(file2);
     }
   }
-  attachFile(path27) {
-    this.attachedFiles.add(path27);
+  attachFile(path28) {
+    this.attachedFiles.add(path28);
   }
-  detachFile(path27) {
-    this.attachedFiles.delete(path27);
+  detachFile(path28) {
+    this.attachedFiles.delete(path28);
   }
   clearAttachments() {
     this.attachedFiles.clear();
@@ -98163,9 +98545,9 @@ var FileContextManager = class {
 
 // src/features/chat/ui/ImageContext.ts
 var import_obsidian39 = require("obsidian");
-var path25 = __toESM(require("path"));
+var path26 = __toESM(require("path"));
 var MAX_IMAGE_SIZE = 5 * 1024 * 1024;
-var IMAGE_EXTENSIONS2 = {
+var IMAGE_EXTENSIONS3 = {
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".png": "image/png",
@@ -98315,8 +98697,8 @@ var ImageContextManager = class {
     return file2.type.startsWith("image/") && this.getMediaType(file2.name) !== null;
   }
   getMediaType(filename) {
-    const ext = path25.extname(filename).toLowerCase();
-    return IMAGE_EXTENSIONS2[ext] || null;
+    const ext = path26.extname(filename).toLowerCase();
+    return IMAGE_EXTENSIONS3[ext] || null;
   }
   async addImageFromFile(file2, source) {
     if (!this.enabled) {
@@ -98433,7 +98815,7 @@ var ImageContextManager = class {
   }
   truncateName(name, maxLen) {
     if (name.length <= maxLen) return name;
-    const ext = path25.extname(name);
+    const ext = path26.extname(name);
     const base = name.slice(0, name.length - ext.length);
     const truncatedBase = base.slice(0, maxLen - ext.length - 3);
     return `${truncatedBase}...${ext}`;
@@ -98458,8 +98840,8 @@ var ImageContextManager = class {
 
 // src/features/chat/ui/InputToolbar.ts
 var import_obsidian40 = require("obsidian");
-var os13 = __toESM(require("os"));
-var path26 = __toESM(require("path"));
+var os14 = __toESM(require("os"));
+var path27 = __toESM(require("path"));
 init_path();
 function runToolbarAction(action, failureMessage) {
   void action().catch(() => {
@@ -98886,24 +99268,24 @@ var ExternalContextSelector = class {
       (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     }
   }
-  togglePersistence(path27) {
+  togglePersistence(path28) {
     var _a5;
-    if (this.persistentPaths.has(path27)) {
-      this.persistentPaths.delete(path27);
+    if (this.persistentPaths.has(path28)) {
+      this.persistentPaths.delete(path28);
     } else {
-      if (!isValidDirectoryPath(path27)) {
-        new import_obsidian40.Notice(`Cannot persist "${this.shortenPath(path27)}" - directory no longer exists`, 4e3);
+      if (!isValidDirectoryPath(path28)) {
+        new import_obsidian40.Notice(`Cannot persist "${this.shortenPath(path28)}" - directory no longer exists`, 4e3);
         return;
       }
-      this.persistentPaths.add(path27);
+      this.persistentPaths.add(path28);
     }
     (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     this.renderDropdown();
   }
   mergePersistentPaths() {
     const pathSet = new Set(this.externalContextPaths);
-    for (const path27 of this.persistentPaths) {
-      pathSet.add(path27);
+    for (const path28 of this.persistentPaths) {
+      pathSet.add(path28);
     }
     this.externalContextPaths = [...pathSet];
   }
@@ -98950,7 +99332,7 @@ var ExternalContextSelector = class {
     }
     const expandedPath = expandHomePath(cleanPath);
     const normalizedPath = normalizePathForFilesystem(expandedPath);
-    if (!path26.isAbsolute(normalizedPath)) {
+    if (!path27.isAbsolute(normalizedPath)) {
       return { success: false, error: "Path must be absolute. Usage: /add-dir /absolute/path" };
     }
     const validation = validateDirectoryPath(normalizedPath);
@@ -99075,7 +99457,7 @@ var ExternalContextSelector = class {
   /** Shorten path for display (replace home dir with ~) */
   shortenPath(fullPath) {
     try {
-      const homeDir = os13.homedir();
+      const homeDir = os14.homedir();
       const normalize3 = (value) => value.replace(/\\/g, "/");
       const normalizedFull = normalize3(fullPath);
       const normalizedHome = normalize3(homeDir);
@@ -99518,13 +99900,17 @@ var NavigationSidebar = class {
   constructor(parentEl, messagesEl) {
     this.parentEl = parentEl;
     this.messagesEl = messagesEl;
+    this.tocPopover = null;
     this.scrollHandler = () => {
     };
+    this.outsideClickHandler = null;
+    this.mutationObserver = null;
     this.pendingVisibilityFrame = null;
     this.isVisible = null;
     this.container = this.parentEl.createDiv({ cls: "claudian-nav-sidebar" });
     this.topBtn = this.createButton("claudian-nav-btn-top", "chevrons-up", "Scroll to top");
     this.prevBtn = this.createButton("claudian-nav-btn-prev", "chevron-up", "Previous message");
+    this.tocBtn = this.createButton("claudian-nav-btn-toc", "list-tree", "Conversation directory");
     this.nextBtn = this.createButton("claudian-nav-btn-next", "chevron-down", "Next message");
     this.bottomBtn = this.createButton("claudian-nav-btn-bottom", "chevrons-down", "Scroll to bottom");
     this.setupEventListeners();
@@ -99537,6 +99923,7 @@ var NavigationSidebar = class {
     return btn;
   }
   setupEventListeners() {
+    var _a5, _b3;
     this.scrollHandler = () => this.updateVisibility();
     this.messagesEl.addEventListener("scroll", this.scrollHandler, { passive: true });
     this.topBtn.addEventListener("click", () => {
@@ -99547,6 +99934,35 @@ var NavigationSidebar = class {
     });
     this.prevBtn.addEventListener("click", () => this.scrollToMessage("prev"));
     this.nextBtn.addEventListener("click", () => this.scrollToMessage("next"));
+    this.tocBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      this.toggleDirectory();
+    });
+    this.outsideClickHandler = (event) => {
+      var _a6;
+      const target = event.target;
+      if (!target) return;
+      const containerContainsTarget = typeof this.container.contains === "function" && this.container.contains(target);
+      const popoverContainsTarget = typeof ((_a6 = this.tocPopover) == null ? void 0 : _a6.contains) === "function" && this.tocPopover.contains(target);
+      if (!containerContainsTarget && !popoverContainsTarget) {
+        this.closeDirectory();
+      }
+    };
+    (_b3 = (_a5 = this.parentEl.ownerDocument) == null ? void 0 : _a5.addEventListener) == null ? void 0 : _b3.call(_a5, "click", this.outsideClickHandler);
+    if (typeof MutationObserver !== "undefined") {
+      this.mutationObserver = new MutationObserver((mutations) => {
+        this.updateVisibility();
+        if (this.shouldRefreshDirectory(mutations)) {
+          this.refreshOpenDirectory();
+        }
+      });
+      this.mutationObserver.observe(this.messagesEl, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["data-toc-title"]
+      });
+    }
   }
   /**
    * Updates visibility of the sidebar based on scroll state.
@@ -99563,9 +99979,101 @@ var NavigationSidebar = class {
   applyVisibility() {
     const { scrollHeight, clientHeight } = this.messagesEl;
     const isScrollable = scrollHeight > clientHeight + 50;
+    this.tocBtn.classList.remove("claudian-hidden");
     if (this.isVisible === isScrollable) return;
     this.isVisible = isScrollable;
     this.container.classList.toggle("visible", isScrollable);
+  }
+  getDirectoryEntries() {
+    return Array.from(this.messagesEl.querySelectorAll('.claudian-message-user, [data-role="user"]')).map((el2) => ({
+      el: el2,
+      title: this.getDirectoryTitle(el2)
+    })).filter((entry) => entry.title.length > 0);
+  }
+  getDirectoryTitle(el2) {
+    var _a5, _b3, _c2;
+    const explicitTitle = ((_a5 = el2.getAttribute("data-toc-title")) != null ? _a5 : "").trim();
+    if (explicitTitle) return explicitTitle;
+    const contentEl = el2.querySelector(".claudian-message-content");
+    return formatConversationDirectoryTitle((_c2 = (_b3 = contentEl == null ? void 0 : contentEl.textContent) != null ? _b3 : el2.textContent) != null ? _c2 : "");
+  }
+  shouldRefreshDirectory(mutations) {
+    if (!this.tocPopover) return false;
+    return mutations.some((mutation) => {
+      if (mutation.type === "attributes") {
+        return mutation.attributeName === "data-toc-title" && this.isDirectoryMessageElement(mutation.target);
+      }
+      if (mutation.type !== "childList") return false;
+      return Array.from(mutation.addedNodes).some((node) => this.nodeContainsDirectoryMessage(node)) || Array.from(mutation.removedNodes).some((node) => this.nodeContainsDirectoryMessage(node));
+    });
+  }
+  nodeContainsDirectoryMessage(node) {
+    if (this.isDirectoryMessageElement(node)) return true;
+    const candidate = node;
+    return typeof candidate.querySelector === "function" && candidate.querySelector('.claudian-message-user, [data-role="user"]') !== null;
+  }
+  isDirectoryMessageElement(node) {
+    var _a5, _b3, _c2;
+    const candidate = node;
+    if (typeof candidate.matches === "function") {
+      return candidate.matches('.claudian-message-user, [data-role="user"]');
+    }
+    return ((_b3 = (_a5 = candidate.classList) == null ? void 0 : _a5.contains) == null ? void 0 : _b3.call(_a5, "claudian-message-user")) === true || ((_c2 = candidate.getAttribute) == null ? void 0 : _c2.call(candidate, "data-role")) === "user";
+  }
+  toggleDirectory() {
+    if (this.tocPopover) {
+      this.closeDirectory();
+      return;
+    }
+    this.openDirectory();
+  }
+  openDirectory() {
+    const entries = this.getDirectoryEntries();
+    this.closeDirectory();
+    this.tocPopover = this.parentEl.createDiv({ cls: "claudian-nav-toc-popover" });
+    this.tocPopover.createDiv({ cls: "claudian-nav-toc-title", text: "Conversation directory" });
+    const listEl = this.tocPopover.createDiv({ cls: "claudian-nav-toc-list" });
+    if (entries.length === 0) {
+      listEl.createDiv({
+        cls: "claudian-nav-toc-empty",
+        text: "No user prompts in this conversation"
+      });
+      return;
+    }
+    entries.forEach((entry, index) => {
+      const itemEl = listEl.createDiv({
+        cls: "claudian-nav-toc-item",
+        text: `${index + 1}. ${entry.title}`
+      });
+      itemEl.setAttribute("role", "button");
+      itemEl.setAttribute("tabindex", "0");
+      itemEl.setAttribute("title", entry.title);
+      const selectEntry = () => {
+        this.scrollToElement(entry.el);
+        this.closeDirectory();
+      };
+      itemEl.addEventListener("click", selectEntry);
+      itemEl.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        selectEntry();
+      });
+    });
+  }
+  refreshOpenDirectory() {
+    if (!this.tocPopover) return;
+    this.openDirectory();
+  }
+  closeDirectory() {
+    var _a5;
+    (_a5 = this.tocPopover) == null ? void 0 : _a5.remove();
+    this.tocPopover = null;
+  }
+  scrollToElement(el2) {
+    this.messagesEl.scrollTo({
+      top: Math.max(el2.offsetTop - 10, 0),
+      behavior: "smooth"
+    });
   }
   /**
    * Scrolls to previous or next user message, skipping assistant messages.
@@ -99578,7 +100086,7 @@ var NavigationSidebar = class {
     if (direction === "prev") {
       for (let i = messages.length - 1; i >= 0; i--) {
         if (messages[i].offsetTop < scrollTop - threshold) {
-          this.messagesEl.scrollTo({ top: messages[i].offsetTop - 10, behavior: "smooth" });
+          this.scrollToElement(messages[i]);
           return;
         }
       }
@@ -99586,7 +100094,7 @@ var NavigationSidebar = class {
     } else {
       for (let i = 0; i < messages.length; i++) {
         if (messages[i].offsetTop > scrollTop + threshold) {
-          this.messagesEl.scrollTo({ top: messages[i].offsetTop - 10, behavior: "smooth" });
+          this.scrollToElement(messages[i]);
           return;
         }
       }
@@ -99594,10 +100102,18 @@ var NavigationSidebar = class {
     }
   }
   destroy() {
+    var _a5, _b3, _c2;
     if (this.pendingVisibilityFrame !== null) {
       cancelScheduledAnimationFrame(this.pendingVisibilityFrame);
       this.pendingVisibilityFrame = null;
     }
+    this.closeDirectory();
+    if (this.outsideClickHandler) {
+      (_b3 = (_a5 = this.parentEl.ownerDocument) == null ? void 0 : _a5.removeEventListener) == null ? void 0 : _b3.call(_a5, "click", this.outsideClickHandler);
+      this.outsideClickHandler = null;
+    }
+    (_c2 = this.mutationObserver) == null ? void 0 : _c2.disconnect();
+    this.mutationObserver = null;
     this.messagesEl.removeEventListener("scroll", this.scrollHandler);
     this.container.remove();
   }
@@ -104802,15 +105318,6 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
     await this.storage.sessions.saveMetadata(
       this.storage.sessions.toSessionMetadata(conversation)
     );
-    if (!ProviderRegistry.getConversationHistoryService(conversation.providerId).isPendingForkConversation(conversation)) {
-      for (const msg of conversation.messages) {
-        if (msg.images) {
-          for (const img of msg.images) {
-            img.data = "";
-          }
-        }
-      }
-    }
   }
   async getConversationById(id) {
     const conversation = this.conversations.find((c) => c.id === id) || null;
