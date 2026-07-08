@@ -201,8 +201,8 @@ body {
     --nn-theme-calendar-feature-image-overlay-color: rgb(0 0 0 / 0.05);
     --nn-theme-calendar-day-today-color: var(--nn-theme-calendar-day-in-month-color);
     --nn-theme-calendar-day-today-bg: var(--text-selection);
-    --nn-theme-calendar-day-active-border-color: #f94040;
-    --nn-theme-calendar-day-active-border-width: 3px;
+    --nn-theme-calendar-day-active-border-color: var(--interactive-accent);
+    --nn-theme-calendar-day-active-border-width: 2px;
 
     /* -- Folder & Tag Items -- */
     --nn-theme-navitem-chevron-color: var(--nn-theme-foreground-muted);
@@ -2980,6 +2980,11 @@ button.nn-navigation-calendar-year-month {
     z-index: 2;
 }
 
+.nn-navigation-calendar-day.has-feature-image.is-active-editor-file .nn-navigation-calendar-active-outline,
+.nn-navigation-calendar-year-month.has-feature-image.is-selected-month .nn-navigation-calendar-active-outline {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
 .nn-navigation-calendar-year-month-label {
     position: relative;
     z-index: 1;
@@ -3711,16 +3716,13 @@ button.nn-navigation-calendar-day {
     z-index: 2;
 }
 
-.nn-virtual-file-item-has-custom-background::after,
-.nn-virtual-file-item-has-custom-background-next::after {
-    display: none;
-}
-
+.nn-virtual-file-item-has-filled-background-previous > .nn-file,
 .nn-virtual-file-item-has-custom-background-previous > .nn-file.nn-has-custom-background {
     --nn-file-top-left-radius: 0;
     --nn-file-top-right-radius: 0;
 }
 
+.nn-virtual-file-item-has-filled-background-next > .nn-file,
 .nn-virtual-file-item-has-custom-background-next > .nn-file.nn-has-custom-background {
     --nn-file-bottom-left-radius: 0;
     --nn-file-bottom-right-radius: 0;
@@ -3788,7 +3790,11 @@ button.nn-navigation-calendar-day {
 
 /* Hide separator when flagged by renderer (selection) or context menu */
 .nn-virtual-file-item.nn-hide-separator-selection::after,
-.nn-virtual-file-item.nn-hide-separator-context-menu::after {
+.nn-virtual-file-item.nn-hide-separator-context-menu::after,
+.nn-virtual-file-item.nn-virtual-file-item-has-filled-background::after,
+.nn-virtual-file-item.nn-virtual-file-item-has-filled-background-next::after,
+.nn-virtual-file-item.nn-virtual-file-item-has-custom-background::after,
+.nn-virtual-file-item.nn-virtual-file-item-has-custom-background-next::after {
     display: none;
 }
 
@@ -3916,17 +3922,13 @@ button.nn-navigation-calendar-day {
     display: none;
 }
 
-.nn-manual-sort-row-hide-separator::after,
-.nn-manual-sort-row-has-custom-background::after,
-.nn-manual-sort-row-has-custom-background-next::after {
-    display: none;
-}
-
+.nn-manual-sort-row-has-filled-background-previous .nn-file,
 .nn-manual-sort-row-has-custom-background-previous .nn-file.nn-has-custom-background {
     --nn-file-top-left-radius: 0;
     --nn-file-top-right-radius: 0;
 }
 
+.nn-manual-sort-row-has-filled-background-next .nn-file,
 .nn-manual-sort-row-has-custom-background-next .nn-file.nn-has-custom-background {
     --nn-file-bottom-left-radius: 0;
     --nn-file-bottom-right-radius: 0;
@@ -3953,6 +3955,14 @@ button.nn-navigation-calendar-day {
     background-color: var(--nn-theme-list-separator-color);
     z-index: 100;
     pointer-events: none;
+}
+
+.nn-manual-sort-row.nn-manual-sort-row-hide-separator::after,
+.nn-manual-sort-row.nn-manual-sort-row-has-filled-background::after,
+.nn-manual-sort-row.nn-manual-sort-row-has-filled-background-next::after,
+.nn-manual-sort-row.nn-manual-sort-row-has-custom-background::after,
+.nn-manual-sort-row.nn-manual-sort-row-has-custom-background-next::after {
+    display: none;
 }
 
 .nn-manual-sort-file {
@@ -4953,6 +4963,64 @@ button.nn-list-group-header-collapse-button .nn-list-group-header-icon {
     border-right: none;
     border-bottom: 1px solid var(--nn-theme-divider-border-color);
 }
+/* Source: src/styles/sections/inline-rename.css */
+
+/* ========================================================================
+   Inline Rename Styles
+   ======================================================================== */
+
+.nn-inline-rename-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 6px;
+    border: 1px solid var(--interactive-accent);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+    font: inherit;
+    line-height: normal;
+}
+
+.nn-inline-rename-input:focus {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: -2px;
+}
+
+.nn-inline-rename-input:disabled {
+    opacity: 0.75;
+}
+
+.nn-navitem-inline-rename {
+    height: calc(var(--nn-setting-nav-item-height) - 8px);
+    font-size: var(--nn-setting-nav-font-size);
+    font-weight: var(--nn-theme-navitem-name-font-weight);
+}
+
+.notebook-navigator-mobile .nn-navitem-inline-rename {
+    height: calc(var(--nn-setting-nav-item-height-mobile) - 10px);
+}
+
+.nn-file-name--inline-renaming {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    max-height: none;
+    overflow: visible;
+    white-space: nowrap;
+    word-break: normal;
+}
+
+.nn-file-name--inline-renaming .nn-file-ext-suffix {
+    flex-shrink: 0;
+}
+
+.nn-file-inline-rename {
+    height: var(--nn-file-title-line-height);
+    font-size: var(--nn-file-name-size-mobile, var(--nn-file-name-size));
+    font-weight: var(--nn-theme-file-name-font-weight);
+}
 /* Source: src/styles/sections/ui-empty-state.css */
 
 /* ========================================================================
@@ -4992,7 +5060,10 @@ button.nn-list-group-header-collapse-button .nn-list-group-header-icon {
     bottom: -0.5px;
     /* Pre-composited solid color prevents hairlines by blending alpha with pane background */
     background-color: var(--nn-selected-file-bg-color);
-    border-radius: var(--nn-file-item-border-radius);
+    border-top-left-radius: var(--nn-file-top-left-radius, var(--nn-file-item-border-radius));
+    border-top-right-radius: var(--nn-file-top-right-radius, var(--nn-file-item-border-radius));
+    border-bottom-left-radius: var(--nn-file-bottom-left-radius, var(--nn-file-item-border-radius));
+    border-bottom-right-radius: var(--nn-file-bottom-right-radius, var(--nn-file-item-border-radius));
     box-shadow: inset 0 0 0 var(--nn-theme-file-border-width) var(--nn-selected-file-border-color);
     z-index: 0; /* Below separator lines */
 }
@@ -5135,30 +5206,20 @@ body.nn-resizing {
     outline: none;
 }
 
-/* Empty placeholder to hide browser's default drag preview */
-.nn-drag-empty-placeholder {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    left: -9999px;
-    top: -9999px;
-    opacity: 0;
-}
-
-/* Drag ghost element - follows the cursor during drag */
-.nn-drag-ghost {
+/* Offscreen element used as the browser-native drag image */
+.nn-drag-native-preview {
     position: fixed;
+    left: -1000px;
+    top: -1000px;
+    display: inline-flex;
+    padding: 10px 0 0 12px;
     pointer-events: none;
     z-index: 999999;
     opacity: 0.9;
-    will-change: transform;
-    left: 0;
-    top: 0;
-    transform: translate(var(--nn-drag-ghost-x, -1000px), var(--nn-drag-ghost-y, -1000px));
 }
 
-/* Badge shown on drag ghost for multiple files - Apple-style red badge */
-.nn-drag-ghost-badge {
+/* Badge shown in the native drag image for multiple files */
+.nn-drag-preview-badge {
     background-color: #dc3545;
     color: white;
     font-weight: bold;
@@ -5173,8 +5234,8 @@ body.nn-resizing {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Icon shown on drag ghost for single file/folder - dark circular background */
-.nn-drag-ghost-icon {
+/* Icon shown in the native drag image for single items */
+.nn-drag-preview-icon {
     background-color: #000000; /* Default black for light mode */
     border-radius: 50%;
     display: inline-flex;
@@ -5186,12 +5247,12 @@ body.nn-resizing {
 }
 
 /* Dark mode: use dark gray background */
-.theme-dark .nn-drag-ghost-icon {
+.theme-dark .nn-drag-preview-icon {
     background-color: var(--background-modifier-border-hover);
 }
 
-/* Style the Lucide icon inside drag ghost - white icon */
-.nn-drag-ghost-icon svg {
+/* Style the Lucide icon inside the drag preview */
+.nn-drag-preview-icon svg {
     width: 16px;
     height: 16px;
     color: #ffffff;
@@ -6110,6 +6171,15 @@ body.nn-resizing {
     padding: 0 2px;
     border-radius: 3px;
     font-weight: 600;
+}
+
+.nn-whats-new-info code,
+.nn-whats-new-version li code {
+    color: var(--code-normal);
+    background-color: var(--code-background);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.9em;
 }
 
 /* Support container */
@@ -9292,8 +9362,8 @@ settings:
         default-dark: '#'
     -
         id: nn-theme-calendar-day-active-border-color
-        title: Active day outline color
-        description: Border color for the outline shown on the active day in the calendar.
+        title: Selection outline color
+        description: Border color for active calendar outlines.
         type: variable-themed-color
         opacity: true
         format: rgb
@@ -9301,10 +9371,10 @@ settings:
         default-dark: '#'
     -
         id: nn-theme-calendar-day-active-border-width
-        title: Active day outline thickness
-        description: Border width for the outline shown on the active day in the calendar.
+        title: Selection outline thickness
+        description: Border width for active calendar outlines.
         type: variable-number-slider
-        default: 3
+        default: 2
         format: px
         min: 1
         max: 4
