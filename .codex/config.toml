@@ -1,0 +1,9 @@
+[mcp_servers.browser]
+command = "npx"
+args = [
+    "-y",
+    "@browsermcp/mcp@latest",
+]
+
+[mcp_servers.github]
+url = "https://server.smithery.ai/github/mcp"

@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/zhqznc/Documents/考研复习/.codex/hooks/read-learnings.sh'"
+          }
+        ]
+      }
+    ]
+  }
+}
