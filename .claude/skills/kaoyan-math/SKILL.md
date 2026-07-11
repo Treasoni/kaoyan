@@ -1,69 +1,48 @@
 ---
 name: kaoyan-math
-description: This skill routes mathematics learning requests to specialized sub-skills for 考研数学 (Chinese graduate entrance math exam) preparation, including note generation with LaTeX formatting, knowledge point structure templates, and core infrastructure with MemOS integration for persistent mistake tracking and cross-device synchronization.
+description: 考研数学入口路由器。用于数学二学习中的概念理解、笔记生成、推导补全、题目讲解、知识结构查询、进度/欠账检查。默认只加载一个最匹配子模块：notes、structure 或 core。
 ---
 
-# 考研数学技能路由器 (Kaoyan Math Router)
+# 考研数学入口路由器
 
-## 技能架构
+## 角色定位
 
-```
-kaoyan-math (路由器)
-    ↓ 识别意图后调用
-    ├─→ kaoyan-math-core      (核心协调层：MemOS集成、调度信号、错误模型)
-    ├─→ kaoyan-math-notes     (笔记生成更新：LaTeX格式、知识点模板)
-    └─→ kaoyan-math-structure (知识点结构：高数/线代/概率模块)
-```
+`kaoyan-math` 是数学学习的唯一日常入口。用户提到高数、线代、数学二、数学题、数学笔记、推导、知识结构或数学进度时，先进入本路由器，再按意图选择子模块。
+
+日常不要直接把 `core` 当入口；`core` 只处理状态、欠账、MemOS、跨学科关联。
 
 ---
 
-## 子技能速查
+## 路由规则
 
-| 子技能 | 功能描述 | 触发关键词 |
-|--------|----------|------------|
-| **kaoyan-math-notes** | 笔记生成+更新 | "生成考研数学笔记"、"更新数学笔记"、"我对XX不理解"、"听课时不理解" |
-| **kaoyan-math-structure** | 知识点结构 | "数学知识点结构"、"高数目录"、"极限章节结构"、"知识点关系图" |
-| **kaoyan-math-core** | 核心协调层 | "数学学习配置"、"数学状态"、"数学欠账检查"、"跨学科关联" |
+| 用户意图 | 子模块 | 判断线索 |
+| --- | --- | --- |
+| 生成/更新数学笔记、补推导、解释概念、讲题 | `kaoyan-math-notes` | “帮我整理笔记”“这个不会”“推导一下”“这题怎么做” |
+| 查询章节目录、知识点关系、前后置知识 | `kaoyan-math-structure` | “知识结构”“章节框架”“前置知识”“关系图” |
+| 检查进度、欠账、配置、跨学科关联 | `kaoyan-math-core` | “学习状态”“欠账”“配置”“同步”“跨学科” |
 
----
-
-## 使用示例
-
-### 示例1: 笔记生成
-**用户输入**："这是我的极限笔记，帮我生成考研学习笔记"
-→ 路由到 `kaoyan-math-notes`
-
-### 示例2: 笔记更新
-**用户输入**："我对洛必达法则的条件不太理解"
-→ 路由到 `kaoyan-math-notes`
-
-### 示例3: 知识点结构
-**用户输入**："高数极限章节的知识点结构是什么？"
-→ 路由到 `kaoyan-math-structure`
-
-### 示例4: 状态检查
-**用户输入**："检查我的数学学习进度"
-→ 路由到 `kaoyan-math-core`
+若同时命中多个意图，优先级为：`notes` > `structure` > `core`。  
+若用户显式点名子技能，则尊重用户选择。
 
 ---
 
-## 直接调用子技能
+## 协同规则
 
-用户也可以直接调用子技能，跳过路由器：
-- 使用 `kaoyan-math-notes` 生成极限笔记
-- 使用 `kaoyan-math-structure` 查看高数目录
-- 使用 `kaoyan-math-core` 检查学习状态
-
----
-
-## 协同技能
-
-| 技能 | 协同场景 |
-|------|----------|
-| kaoyan-plan | 提供每日计划时间分配，发送调度信号 |
-| kaoyan-electronics | 跨学科知识关联（数学→电子技术） |
-| obsidian-markdown | 创建Obsidian笔记 |
+- 计划、完成汇报、补课安排交给 `/kaoyan-plan`。
+- 证明/推导写入 Obsidian 时，统一使用 `> [!note]-` 单一折叠块。
+- 写入数学内容前必须先自检公式、定理、边界条件和推导链。
+- 涉及错题归档时转入 `/mistake-book`，按知识模块归档，不按题目表象归档。
+- 需要绘制函数图像或几何示意时，按需启用 `math-graph` 或图示技能。
 
 ---
 
-*最后更新: 2026-03-27*
+## 输出习惯
+
+数学学习输出优先包含：
+1. 核心结论。
+2. 条件与适用范围。
+3. 推导或解题逻辑链。
+4. 常见陷阱。
+5. 可写入笔记的精炼版本。
+
+保持“先解决当前问题，再补结构”的节奏，避免一次性展开整章内容。
