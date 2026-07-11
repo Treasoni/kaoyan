@@ -30,6 +30,11 @@
 - **`/mistake-book`**：错题整理器（快速整理错题到各科目错题本，自动格式化、更新索引、追加内容）
 - **`/sync [拉取/上传]`**：MemOS 数据同步器
 
+### 2.2 Codex / Claude Code 架构同步规则
+- 当用户要求更新 **Codex 架构、技能、命令、hook、MCP、配置或项目级说明** 时，必须同步检查并更新 Claude Code 对应结构，避免 Claude Code 丢失同等功能。
+- 同步范围包括但不限于：`AGENTS.md` ↔ `CLAUDE.md`、`.codex/` ↔ `.claude/`、相关 skills / commands / hooks / MCP 配置。
+- 若某个功能只能在 Codex 或 Claude Code 单端实现，必须在回复中明确说明差异、原因和替代方案。
+- 更新完成后必须做一致性检查：确认 `AGENTS.md` 与 `CLAUDE.md` 的核心规则一致，必要时对比 `.codex/` 与 `.claude/` 的对应能力。
 
 ---
 

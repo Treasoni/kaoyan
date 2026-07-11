@@ -7,3 +7,11 @@ args = [
 
 [mcp_servers.github]
 url = "https://server.smithery.ai/github/mcp"
+
+# Codex-side compatibility layer for the study workflow.
+# Keep Claude-specific settings in `.claude/` unchanged.
+[mcp_servers.MemoryOperatingSystem]
+url = "https://mcp.api-inference.modelscope.net/21e3d616f2cc43/sse"
+
+[mcp_servers.time]
+url = "https://mcp.api-inference.modelscope.net/b3158d0b497140/sse"
