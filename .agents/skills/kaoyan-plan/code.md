@@ -2,7 +2,7 @@
 
 本文档提供 kaoyan-plan 技能的入口逻辑。具体算法实现已模块化至 `scripts/` 目录下。
 
-> 📋 **返回主文档**: [skill.md](skill.md)
+> 📋 **返回主文档**: [SKILL.md](SKILL.md)
 
 ---
 
@@ -192,4 +192,4 @@ def process_completion_report(user_id, completed_tasks_raw, planned_tasks):
 
 ---
 
-> 📋 **返回主文档**: [skill.md](skill.md)
+> 📋 **返回主文档**: [SKILL.md](SKILL.md)

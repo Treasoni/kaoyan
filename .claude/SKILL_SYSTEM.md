@@ -54,6 +54,7 @@ L3 工具能力
 | 数学概念、笔记、题目、结构 | `/kaoyan-math` | 由路由器决定 notes/core/structure |
 | 英语单词、阅读词汇、复习、测试、写作 | `/kaoyan-english` | 高亮词汇解析优先 `/parse-words` |
 | 822 专业课、电路图、SOP、知识结构 | `/kaoyan-electronics` | 先参考 `考研专业课/📘 822电子技术基础考研学习体系.md`，图片/电路题优先 circuit |
+| 822 电路图生成、模电图、微变等效图 | `/kaoyan-electronics` -> `kaoyan-electronics-circuit` | 先读 `references/circuit-diagram-generation.md`，默认生成 Obsidian Excalidraw |
 | 我这样理解对不对、推导检查 | `/understanding` | 输出可写入 `[!personal]` 的记录 |
 | 记录错题、提炼错题、优化错题索引 | `/mistake-book` 或 `mistake-*` | 先判断学科与知识模块 |
 | 同步上下文 | `/sync 拉取` / `/sync 上传` | 每日开始与结束使用 |
