@@ -7,11 +7,12 @@
       },
       {
         "tabId": "tab-1778492346086-rk6c0kv",
-        "conversationId": "conv-1783843462930-81ppkn4iz"
+        "conversationId": "conv-1783844835297-trmind1qp"
       },
       {
+        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": "conv-1782449304688-xfi23ydk6"
+        "conversationId": null
       },
       {
         "tabId": "tab-1780456956859-0i1qnvx",
@@ -22,6 +23,6 @@
         "conversationId": "conv-1783650019931-tv08zptel"
       }
     ],
-    "activeTabId": "tab-1778492346086-rk6c0kv"
+    "activeTabId": "tab-1779448736943-hq3dr8b"
   }
 }
