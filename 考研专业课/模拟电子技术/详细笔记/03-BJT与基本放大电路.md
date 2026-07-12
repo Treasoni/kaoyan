@@ -7,13 +7,17 @@ tags:
   - BJT
   - 基本放大电路
 created: 2026-07-11
-last_updated: 2026-07-11
+last_updated: 2026-07-12
 source:
   - /Users/zhqznc/Documents/期末复习/ExamPass-Assistant/模电/第三章：双击结型三极管及其放大电路/full.md
   - /Users/zhqznc/Documents/期末复习/ExamPass-Assistant/模电/第二章讲义 - 学员版/full.md
 ---
 
 # 03-BJT 与基本放大电路
+
+
+> [!tip] 拆分版入口
+> 细学和复盘建议从[[考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路/00-章节导读|拆分版章节导读]]进入；本文件保留为整章汇总和原始上下文。
 
 > [!info] 章节定位
 > 这一章是模电大题的核心入口。822 考试里，后面的差分、反馈、功放、运放内部电路，都默认你已经会“工作区判断 -> 静态工作点 -> 小信号等效 -> 动态指标”这一套。
