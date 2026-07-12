@@ -945,10 +945,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path28) {
-  if (!path28)
+function getElementAtPath(obj, path32) {
+  if (!path32)
     return obj;
-  return path28.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
+  return path32.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -1261,12 +1261,12 @@ function aborted(x2, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path28, issues) {
+function prefixIssues(path32, issues) {
   return issues.map((iss) => {
     var _a6;
     var _a5;
     (_a6 = (_a5 = iss).path) != null ? _a6 : _a5.path = [];
-    iss.path.unshift(path28);
+    iss.path.unshift(path32);
     return iss;
   });
 }
@@ -1510,7 +1510,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path28 = []) => {
+  const processError = (error49, path32 = []) => {
     var _a6, _b4, _c2, _d;
     var _a5, _b3;
     for (const issue2 of error49.issues) {
@@ -1521,7 +1521,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path28, ...issue2.path];
+        const fullpath = [...path32, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -1553,8 +1553,8 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path28 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path28) {
+  const path32 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path32) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -19233,8 +19233,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path28) {
-      let input = path28;
+    function removeDotSegments(path32) {
+      let input = path32;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -19486,8 +19486,8 @@ var require_schemes = __commonJS({
         wsComponent.secure = void 0;
       }
       if (wsComponent.resourceName) {
-        const [path28, query] = wsComponent.resourceName.split("?");
-        wsComponent.path = path28 && path28 !== "/" ? path28 : void 0;
+        const [path32, query] = wsComponent.resourceName.split("?");
+        wsComponent.path = path32 && path32 !== "/" ? path32 : void 0;
         wsComponent.query = query;
         wsComponent.resourceName = void 0;
       }
@@ -22880,12 +22880,12 @@ var require_dist = __commonJS({
         throw new Error(`Unknown format "${name}"`);
       return f9;
     };
-    function addFormats(ajv, list, fs30, exportName) {
+    function addFormats(ajv, list, fs31, exportName) {
       var _a5;
       var _b3;
       (_a5 = (_b3 = ajv.opts.code).formats) !== null && _a5 !== void 0 ? _a5 : _b3.formats = (0, codegen_1._)`require("ajv-formats/dist/formats").${exportName}`;
       for (const f9 of list)
-        ajv.addFormat(f9, fs30[f9]);
+        ajv.addFormat(f9, fs31[f9]);
     }
     module2.exports = exports = formatsPlugin;
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -22898,8 +22898,8 @@ var require_windows = __commonJS({
   "node_modules/isexe/windows.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs30 = require("fs");
-    function checkPathExt(path28, options) {
+    var fs31 = require("fs");
+    function checkPathExt(path32, options) {
       var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
@@ -22910,25 +22910,25 @@ var require_windows = __commonJS({
       }
       for (var i = 0; i < pathext.length; i++) {
         var p = pathext[i].toLowerCase();
-        if (p && path28.substr(-p.length).toLowerCase() === p) {
+        if (p && path32.substr(-p.length).toLowerCase() === p) {
           return true;
         }
       }
       return false;
     }
-    function checkStat(stat, path28, options) {
+    function checkStat(stat, path32, options) {
       if (!stat.isSymbolicLink() && !stat.isFile()) {
         return false;
       }
-      return checkPathExt(path28, options);
+      return checkPathExt(path32, options);
     }
-    function isexe(path28, options, cb2) {
-      fs30.stat(path28, function(er, stat) {
-        cb2(er, er ? false : checkStat(stat, path28, options));
+    function isexe(path32, options, cb2) {
+      fs31.stat(path32, function(er, stat) {
+        cb2(er, er ? false : checkStat(stat, path32, options));
       });
     }
-    function sync(path28, options) {
-      return checkStat(fs30.statSync(path28), path28, options);
+    function sync(path32, options) {
+      return checkStat(fs31.statSync(path32), path32, options);
     }
   }
 });
@@ -22938,14 +22938,14 @@ var require_mode = __commonJS({
   "node_modules/isexe/mode.js"(exports, module2) {
     module2.exports = isexe;
     isexe.sync = sync;
-    var fs30 = require("fs");
-    function isexe(path28, options, cb2) {
-      fs30.stat(path28, function(er, stat) {
+    var fs31 = require("fs");
+    function isexe(path32, options, cb2) {
+      fs31.stat(path32, function(er, stat) {
         cb2(er, er ? false : checkStat(stat, options));
       });
     }
-    function sync(path28, options) {
-      return checkStat(fs30.statSync(path28), options);
+    function sync(path32, options) {
+      return checkStat(fs31.statSync(path32), options);
     }
     function checkStat(stat, options) {
       return stat.isFile() && checkMode(stat, options);
@@ -22969,7 +22969,7 @@ var require_mode = __commonJS({
 // node_modules/isexe/index.js
 var require_isexe = __commonJS({
   "node_modules/isexe/index.js"(exports, module2) {
-    var fs30 = require("fs");
+    var fs31 = require("fs");
     var core;
     if (process.platform === "win32" || global.TESTING_WINDOWS) {
       core = require_windows();
@@ -22978,7 +22978,7 @@ var require_isexe = __commonJS({
     }
     module2.exports = isexe;
     isexe.sync = sync;
-    function isexe(path28, options, cb2) {
+    function isexe(path32, options, cb2) {
       if (typeof options === "function") {
         cb2 = options;
         options = {};
@@ -22988,7 +22988,7 @@ var require_isexe = __commonJS({
           throw new TypeError("callback not provided");
         }
         return new Promise(function(resolve8, reject) {
-          isexe(path28, options || {}, function(er, is) {
+          isexe(path32, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
@@ -22997,7 +22997,7 @@ var require_isexe = __commonJS({
           });
         });
       }
-      core(path28, options || {}, function(er, is) {
+      core(path32, options || {}, function(er, is) {
         if (er) {
           if (er.code === "EACCES" || options && options.ignoreErrors) {
             er = null;
@@ -23007,9 +23007,9 @@ var require_isexe = __commonJS({
         cb2(er, is);
       });
     }
-    function sync(path28, options) {
+    function sync(path32, options) {
       try {
-        return core.sync(path28, options || {});
+        return core.sync(path32, options || {});
       } catch (er) {
         if (options && options.ignoreErrors || er.code === "EACCES") {
           return false;
@@ -23025,7 +23025,7 @@ var require_isexe = __commonJS({
 var require_which = __commonJS({
   "node_modules/which/which.js"(exports, module2) {
     var isWindows2 = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path28 = require("path");
+    var path32 = require("path");
     var COLON = isWindows2 ? ";" : ":";
     var isexe = require_isexe();
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
@@ -23063,7 +23063,7 @@ var require_which = __commonJS({
           return opt.all && found.length ? resolve8(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path28.join(pathPart, cmd);
+        const pCmd = path32.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         resolve8(subStep(p, i, 0));
       });
@@ -23090,7 +23090,7 @@ var require_which = __commonJS({
       for (let i = 0; i < pathEnv.length; i++) {
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path28.join(pathPart, cmd);
+        const pCmd = path32.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         for (let j = 0; j < pathExt.length; j++) {
           const cur = p + pathExt[j];
@@ -23138,7 +23138,7 @@ var require_path_key = __commonJS({
 var require_resolveCommand = __commonJS({
   "node_modules/cross-spawn/lib/util/resolveCommand.js"(exports, module2) {
     "use strict";
-    var path28 = require("path");
+    var path32 = require("path");
     var which = require_which();
     var getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
@@ -23156,7 +23156,7 @@ var require_resolveCommand = __commonJS({
       try {
         resolved = which.sync(parsed.command, {
           path: env[getPathKey({ env })],
-          pathExt: withoutPathExt ? path28.delimiter : void 0
+          pathExt: withoutPathExt ? path32.delimiter : void 0
         });
       } catch (e2) {
       } finally {
@@ -23165,7 +23165,7 @@ var require_resolveCommand = __commonJS({
         }
       }
       if (resolved) {
-        resolved = path28.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
+        resolved = path32.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
       }
       return resolved;
     }
@@ -23219,8 +23219,8 @@ var require_shebang_command = __commonJS({
       if (!match) {
         return null;
       }
-      const [path28, argument] = match[0].replace(/#! ?/, "").split(" ");
-      const binary = path28.split("/").pop();
+      const [path32, argument] = match[0].replace(/#! ?/, "").split(" ");
+      const binary = path32.split("/").pop();
       if (binary === "env") {
         return argument;
       }
@@ -23233,16 +23233,16 @@ var require_shebang_command = __commonJS({
 var require_readShebang = __commonJS({
   "node_modules/cross-spawn/lib/util/readShebang.js"(exports, module2) {
     "use strict";
-    var fs30 = require("fs");
+    var fs31 = require("fs");
     var shebangCommand = require_shebang_command();
     function readShebang(command) {
       const size = 150;
       const buffer = Buffer.alloc(size);
       let fd;
       try {
-        fd = fs30.openSync(command, "r");
-        fs30.readSync(fd, buffer, 0, size, 0);
-        fs30.closeSync(fd);
+        fd = fs31.openSync(command, "r");
+        fs31.readSync(fd, buffer, 0, size, 0);
+        fs31.closeSync(fd);
       } catch (e2) {
       }
       return shebangCommand(buffer.toString());
@@ -23255,7 +23255,7 @@ var require_readShebang = __commonJS({
 var require_parse = __commonJS({
   "node_modules/cross-spawn/lib/parse.js"(exports, module2) {
     "use strict";
-    var path28 = require("path");
+    var path32 = require("path");
     var resolveCommand = require_resolveCommand();
     var escape2 = require_escape();
     var readShebang = require_readShebang();
@@ -23280,7 +23280,7 @@ var require_parse = __commonJS({
       const needsShell = !isExecutableRegExp.test(commandFile);
       if (parsed.options.forceShell || needsShell) {
         const needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-        parsed.command = path28.normalize(parsed.command);
+        parsed.command = path32.normalize(parsed.command);
         parsed.command = escape2.command(parsed.command);
         parsed.args = parsed.args.map((arg) => escape2.argument(arg, needsDoubleEscapeMetaChars));
         const shellCommand = [parsed.command].concat(parsed.args).join(" ");
@@ -24976,7 +24976,7 @@ function isProviderModelSelectionId(providerId, value) {
 }
 function toProviderRuntimeModelId(providerId, value) {
   const decoded = decodeProviderModelSelectionId(value);
-  return (decoded == null ? void 0 : decoded.providerId) === providerId ? decoded.modelId : value;
+  return decoded && decoded.providerId === providerId ? decoded.modelId : value;
 }
 
 // src/core/providers/types.ts
@@ -25042,6 +25042,13 @@ var ProviderRegistry = class {
   }
   static getSettingsReconciler(providerId = DEFAULT_CHAT_PROVIDER_ID) {
     return this.getProviderRegistration(providerId).settingsReconciler;
+  }
+  static getSettingsStorageAdapter(providerId) {
+    const registration = this.getProviderRegistration(providerId);
+    if (!("settingsStorage" in registration)) {
+      throw new Error(`Provider "${providerId}" does not own settings storage normalization.`);
+    }
+    return registration.settingsStorage;
   }
   static getRegisteredProviderIds() {
     return Object.keys(this.registrations);
@@ -25248,6 +25255,10 @@ var ProviderWorkspaceRegistry = class {
     var _a5, _b3;
     await ((_b3 = (_a5 = this.getServices(providerId)) == null ? void 0 : _a5.refreshAgentMentions) == null ? void 0 : _b3.call(_a5));
   }
+  static async refreshModelCatalog(providerId) {
+    var _a5, _b3, _c2;
+    return (_c2 = await ((_b3 = (_a5 = this.getServices(providerId)) == null ? void 0 : _a5.refreshModelCatalog) == null ? void 0 : _b3.call(_a5))) != null ? _c2 : { changed: false };
+  }
   static getCliResolver(providerId) {
     var _a5, _b3;
     return (_b3 = (_a5 = this.getServices(providerId)) == null ? void 0 : _a5.cliResolver) != null ? _b3 : null;
@@ -25271,6 +25282,25 @@ var ProviderWorkspaceRegistry = class {
 };
 ProviderWorkspaceRegistry.registrations = {};
 ProviderWorkspaceRegistry.services = {};
+
+// src/core/providers/providerConfig.ts
+function isRecord(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+function getProviderConfig(settings11, providerId) {
+  const candidate = settings11.providerConfigs;
+  if (!isRecord(candidate)) {
+    return {};
+  }
+  const config2 = candidate[providerId];
+  return isRecord(config2) ? { ...config2 } : {};
+}
+function setProviderConfig(settings11, providerId, config2) {
+  const current = settings11.providerConfigs;
+  const nextConfigs = isRecord(current) ? { ...current } : {};
+  nextConfigs[providerId] = { ...config2 };
+  settings11.providerConfigs = nextConfigs;
+}
 
 // src/utils/mcp.ts
 function extractMcpMentions(text, validNames) {
@@ -25567,7 +25597,7 @@ function extractBoolean(fm2, key) {
   if (typeof val === "boolean") return val;
   return void 0;
 }
-function isRecord(value) {
+function isRecord2(value) {
   return value != null && typeof value === "object" && !Array.isArray(value);
 }
 var MAX_SLUG_LENGTH = 64;
@@ -25630,7 +25660,7 @@ function parseAgentFile(content) {
     model,
     skills: extractStringArray(fm2, "skills"),
     permissionMode: typeof fm2.permissionMode === "string" ? fm2.permissionMode : void 0,
-    hooks: isRecord(fm2.hooks) ? fm2.hooks : void 0,
+    hooks: isRecord2(fm2.hooks) ? fm2.hooks : void 0,
     extraFrontmatter: Object.keys(extra).length > 0 ? extra : void 0
   };
   return { frontmatter, body: body.trim() };
@@ -25887,7 +25917,7 @@ function parseSlashCommandContent(content) {
     userInvocable: (_d = extractBoolean(fm2, "user-invocable")) != null ? _d : extractBoolean(fm2, "userInvocable"),
     context: extractString(fm2, "context") === "fork" ? "fork" : void 0,
     agent: extractString(fm2, "agent"),
-    hooks: isRecord(fm2.hooks) ? fm2.hooks : void 0
+    hooks: isRecord2(fm2.hooks) ? fm2.hooks : void 0
   };
 }
 function normalizeArgumentHint(hint) {
@@ -46105,8 +46135,8 @@ function installTreeAwareKill(child, spawnSpec) {
   if (!spawnSpec.killProcessTree) {
     return;
   }
-  const originalKill = child.kill;
-  const callOriginalKill = (signal) => originalKill.call(child, signal);
+  const originalKill = child.kill.bind(child);
+  const callOriginalKill = (signal) => originalKill(signal);
   const killableChild = {
     get pid() {
       return child.pid;
@@ -46114,25 +46144,6 @@ function installTreeAwareKill(child, spawnSpec) {
     kill: callOriginalKill
   };
   child.kill = ((signal) => terminateSpawnedProcess(killableChild, signal, import_child_process6.spawn, spawnSpec));
-}
-
-// src/core/providers/providerConfig.ts
-function isRecord2(value) {
-  return !!value && typeof value === "object" && !Array.isArray(value);
-}
-function getProviderConfig(settings11, providerId) {
-  const candidate = settings11.providerConfigs;
-  if (!isRecord2(candidate)) {
-    return {};
-  }
-  const config2 = candidate[providerId];
-  return isRecord2(config2) ? { ...config2 } : {};
-}
-function setProviderConfig(settings11, providerId, config2) {
-  const current = settings11.providerConfigs;
-  const nextConfigs = isRecord2(current) ? { ...current } : {};
-  nextConfigs[providerId] = { ...config2 };
-  settings11.providerConfigs = nextConfigs;
 }
 
 // src/core/providers/providerEnvironment.ts
@@ -46398,8 +46409,6 @@ var DEFAULT_CLAUDE_PROVIDER_SETTINGS = Object.freeze({
   loadUserSettings: true,
   enableChrome: false,
   enableBangBash: false,
-  enableOpus1M: false,
-  enableSonnet1M: false,
   customModels: "",
   lastModel: "haiku",
   environmentVariables: "",
@@ -46421,7 +46430,7 @@ function normalizeClaudeSafeMode(value) {
   return CLAUDE_SAFE_MODES.includes(value) ? value : void 0;
 }
 function getClaudeProviderSettings(settings11) {
-  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r, _s, _t, _u2, _v2;
+  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r;
   const config2 = getProviderConfig(settings11, "claude");
   const normalizedCliPathsByHost = normalizeHostnameCliPaths(
     (_a5 = config2.cliPathsByHost) != null ? _a5 : settings11.claudeCliPathsByHost
@@ -46438,12 +46447,10 @@ function getClaudeProviderSettings(settings11) {
     loadUserSettings: (_g = (_f2 = config2.loadUserSettings) != null ? _f2 : settings11.loadUserClaudeSettings) != null ? _g : DEFAULT_CLAUDE_PROVIDER_SETTINGS.loadUserSettings,
     enableChrome: (_i = (_h2 = config2.enableChrome) != null ? _h2 : settings11.enableChrome) != null ? _i : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableChrome,
     enableBangBash: (_k3 = (_j = config2.enableBangBash) != null ? _j : settings11.enableBangBash) != null ? _k3 : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableBangBash,
-    enableOpus1M: (_m = (_l2 = config2.enableOpus1M) != null ? _l2 : settings11.enableOpus1M) != null ? _m : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableOpus1M,
-    enableSonnet1M: (_o = (_n = config2.enableSonnet1M) != null ? _n : settings11.enableSonnet1M) != null ? _o : DEFAULT_CLAUDE_PROVIDER_SETTINGS.enableSonnet1M,
-    customModels: (_p = config2.customModels) != null ? _p : DEFAULT_CLAUDE_PROVIDER_SETTINGS.customModels,
-    lastModel: (_r = (_q3 = config2.lastModel) != null ? _q3 : settings11.lastClaudeModel) != null ? _r : DEFAULT_CLAUDE_PROVIDER_SETTINGS.lastModel,
-    environmentVariables: (_t = (_s = config2.environmentVariables) != null ? _s : getProviderEnvironmentVariables(settings11, "claude")) != null ? _t : DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentVariables,
-    environmentHash: (_v2 = (_u2 = config2.environmentHash) != null ? _u2 : settings11.lastEnvHash) != null ? _v2 : DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentHash
+    customModels: (_l2 = config2.customModels) != null ? _l2 : DEFAULT_CLAUDE_PROVIDER_SETTINGS.customModels,
+    lastModel: (_n = (_m = config2.lastModel) != null ? _m : settings11.lastClaudeModel) != null ? _n : DEFAULT_CLAUDE_PROVIDER_SETTINGS.lastModel,
+    environmentVariables: (_p = (_o = config2.environmentVariables) != null ? _o : getProviderEnvironmentVariables(settings11, "claude")) != null ? _p : DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentVariables,
+    environmentHash: (_r = (_q3 = config2.environmentHash) != null ? _q3 : settings11.lastEnvHash) != null ? _r : DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentHash
   };
 }
 function resolveClaudeSettingSources(loadUserSettings) {
@@ -46640,25 +46647,31 @@ var PluginManager = class {
     if (!plugin) {
       return;
     }
-    const newEnabled = !plugin.enabled;
-    plugin.enabled = newEnabled;
-    await this.ccSettingsStorage.setPluginEnabled(pluginId, newEnabled);
+    await this.persistEnabledState(plugin, !plugin.enabled);
   }
   async enablePlugin(pluginId) {
     const plugin = this.plugins.find((p) => p.id === pluginId);
     if (!plugin || plugin.enabled) {
       return;
     }
-    plugin.enabled = true;
-    await this.ccSettingsStorage.setPluginEnabled(pluginId, true);
+    await this.persistEnabledState(plugin, true);
   }
   async disablePlugin(pluginId) {
     const plugin = this.plugins.find((p) => p.id === pluginId);
     if (!plugin || !plugin.enabled) {
       return;
     }
-    plugin.enabled = false;
-    await this.ccSettingsStorage.setPluginEnabled(pluginId, false);
+    await this.persistEnabledState(plugin, false);
+  }
+  async persistEnabledState(plugin, enabled) {
+    const previous = plugin.enabled;
+    plugin.enabled = enabled;
+    try {
+      await this.ccSettingsStorage.setPluginEnabled(plugin.id, enabled);
+    } catch (error48) {
+      plugin.enabled = previous;
+      throw error48;
+    }
   }
 };
 
@@ -46944,7 +46957,7 @@ function resolveClaudeCliPath(hostnamePath, legacyPath, envText) {
 }
 
 // src/providers/claude/storage/StorageService.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/core/bootstrap/StoragePaths.ts
 var CLAUDIAN_STORAGE_PATH = ".claudian";
@@ -47012,6 +47025,19 @@ var CHAT_VIEW_PLACEMENTS = [
   "main-tab"
 ];
 
+// src/core/providers/reasoning.ts
+var DEFAULT_REASONING_VALUE = "high";
+function resolvePreferredReasoningDefault(availableValues, fallbackValue) {
+  var _a5;
+  if (availableValues.includes(DEFAULT_REASONING_VALUE)) {
+    return DEFAULT_REASONING_VALUE;
+  }
+  if (availableValues.includes(fallbackValue)) {
+    return fallbackValue;
+  }
+  return (_a5 = availableValues[0]) != null ? _a5 : fallbackValue;
+}
+
 // src/providers/codex/settings.ts
 init_env();
 
@@ -47025,12 +47051,12 @@ function isCodexModelSelectionId(modelId) {
 function toCodexRuntimeModelId(modelId) {
   return toProviderRuntimeModelId("codex", modelId);
 }
+function looksLikeCodexModel(modelId) {
+  return /^gpt-/i.test(modelId) || /^o\d/i.test(modelId);
+}
 
 // src/providers/codex/types/models.ts
 var CODEX_SPARK_MODEL = "gpt-5.3-codex-spark";
-var DEFAULT_CODEX_MINI_MODEL = "gpt-5.4-mini";
-var DEFAULT_CODEX_PRIMARY_MODEL = "gpt-5.5";
-var FAST_TIER_CODEX_MODEL = DEFAULT_CODEX_PRIMARY_MODEL;
 function formatCodexModelSuffix(suffix) {
   return suffix.split("-").filter(Boolean).map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1).toLowerCase()).join(" ");
 }
@@ -47042,22 +47068,151 @@ function formatCodexModelLabel(model) {
   const [, version2, suffix] = match;
   return `GPT-${version2}${suffix ? ` ${formatCodexModelSuffix(suffix)}` : ""}`;
 }
-function createCodexModelOption(model, description) {
-  return {
-    value: model,
-    label: formatCodexModelLabel(model),
-    description
-  };
+
+// src/providers/codex/models.ts
+var DEFAULT_INPUT_MODALITIES = ["text", "image"];
+var EXCLUDED_REASONING_EFFORTS = /* @__PURE__ */ new Set(["ultra"]);
+function isRecord3(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value);
 }
-var DEFAULT_CODEX_MINI_MODEL_LABEL = formatCodexModelLabel(DEFAULT_CODEX_MINI_MODEL);
-var DEFAULT_CODEX_PRIMARY_MODEL_LABEL = formatCodexModelLabel(DEFAULT_CODEX_PRIMARY_MODEL);
-var FAST_TIER_CODEX_MODEL_LABEL = formatCodexModelLabel(FAST_TIER_CODEX_MODEL);
-var FAST_TIER_CODEX_DESCRIPTION = `Enable ${FAST_TIER_CODEX_MODEL_LABEL} fast mode for this conversation. Faster responses use more credits.`;
-var DEFAULT_CODEX_MODELS = [
-  createCodexModelOption(DEFAULT_CODEX_MINI_MODEL, "Fast"),
-  createCodexModelOption(DEFAULT_CODEX_PRIMARY_MODEL, "Latest")
-];
-var DEFAULT_CODEX_MODEL_SET = new Set(DEFAULT_CODEX_MODELS.map((model) => model.value));
+function normalizeNonEmptyString(value) {
+  if (typeof value !== "string") {
+    return null;
+  }
+  const normalized = value.trim();
+  return normalized || null;
+}
+function normalizeReasoningEfforts(value) {
+  var _a5, _b3;
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const efforts = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const entry of value) {
+    if (!isRecord3(entry)) {
+      continue;
+    }
+    const effort = normalizeNonEmptyString((_a5 = entry.value) != null ? _a5 : entry.reasoningEffort);
+    if (!effort || EXCLUDED_REASONING_EFFORTS.has(effort.toLowerCase()) || seen.has(effort)) {
+      continue;
+    }
+    seen.add(effort);
+    efforts.push({
+      value: effort,
+      description: (_b3 = normalizeNonEmptyString(entry.description)) != null ? _b3 : ""
+    });
+  }
+  return efforts;
+}
+function normalizeServiceTiers(value) {
+  var _a5, _b3;
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const tiers = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const entry of value) {
+    if (!isRecord3(entry)) {
+      continue;
+    }
+    const id = normalizeNonEmptyString(entry.id);
+    if (!id || seen.has(id)) {
+      continue;
+    }
+    seen.add(id);
+    tiers.push({
+      id,
+      name: (_a5 = normalizeNonEmptyString(entry.name)) != null ? _a5 : id,
+      description: (_b3 = normalizeNonEmptyString(entry.description)) != null ? _b3 : ""
+    });
+  }
+  return tiers;
+}
+function normalizeInputModalities(value) {
+  if (value === void 0) {
+    return [...DEFAULT_INPUT_MODALITIES];
+  }
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const modalities = /* @__PURE__ */ new Set();
+  for (const entry of value) {
+    if (typeof entry === "string" && (entry === "text" || entry === "image")) {
+      modalities.add(entry);
+    }
+  }
+  return Array.from(modalities);
+}
+function normalizeCodexDiscoveredModels(value) {
+  var _a5, _b3, _c2;
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const models = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const entry of value) {
+    if (!isRecord3(entry) || entry.hidden === true) {
+      continue;
+    }
+    const model = normalizeNonEmptyString((_a5 = entry.model) != null ? _a5 : entry.id);
+    if (!model || seen.has(model)) {
+      continue;
+    }
+    const supportedReasoningEfforts = normalizeReasoningEfforts(entry.supportedReasoningEfforts);
+    let defaultReasoningEffort = normalizeNonEmptyString(entry.defaultReasoningEffort);
+    if (!defaultReasoningEffort || !supportedReasoningEfforts.some((option) => option.value === defaultReasoningEffort)) {
+      if (defaultReasoningEffort && EXCLUDED_REASONING_EFFORTS.has(defaultReasoningEffort.toLowerCase()) && supportedReasoningEfforts.length > 0) {
+        defaultReasoningEffort = resolvePreferredReasoningDefault(
+          supportedReasoningEfforts.map((option) => option.value),
+          supportedReasoningEfforts[0].value
+        );
+      } else {
+        continue;
+      }
+    }
+    const serviceTiers = normalizeServiceTiers(entry.serviceTiers);
+    const defaultServiceTier = normalizeNonEmptyString(entry.defaultServiceTier);
+    seen.add(model);
+    models.push({
+      model,
+      displayName: (_b3 = normalizeNonEmptyString(entry.displayName)) != null ? _b3 : formatCodexModelLabel(model),
+      description: (_c2 = normalizeNonEmptyString(entry.description)) != null ? _c2 : "",
+      supportedReasoningEfforts,
+      defaultReasoningEffort,
+      serviceTiers,
+      defaultServiceTier,
+      inputModalities: normalizeInputModalities(entry.inputModalities),
+      isDefault: entry.isDefault === true
+    });
+  }
+  return models;
+}
+function findCodexModel(models, modelId) {
+  var _a5;
+  if (!modelId) {
+    return null;
+  }
+  const runtimeModelId = toCodexRuntimeModelId(modelId);
+  return (_a5 = models.find((model) => model.model === runtimeModelId)) != null ? _a5 : null;
+}
+function getDefaultCodexModel(models) {
+  var _a5, _b3;
+  return (_b3 = (_a5 = models.find((model) => model.isDefault)) != null ? _a5 : models[0]) != null ? _b3 : null;
+}
+function getCodexModelsInPickerOrder(models) {
+  return [...models].reverse();
+}
+function getCodexDefaultReasoningEffort(model) {
+  return resolvePreferredReasoningDefault(
+    model.supportedReasoningEfforts.map((option) => option.value),
+    model.defaultReasoningEffort || DEFAULT_REASONING_VALUE
+  );
+}
+function getCodexFastServiceTier(model) {
+  var _a5;
+  return (_a5 = model.serviceTiers.find((tier) => tier.name.trim().toLowerCase() === "fast")) != null ? _a5 : null;
+}
 
 // src/providers/codex/settings.ts
 function normalizeCodexInstallationMethod(value) {
@@ -47066,19 +47221,43 @@ function normalizeCodexInstallationMethod(value) {
 function normalizeOptionalString(value) {
   return typeof value === "string" ? value.trim() : "";
 }
-var DEFAULT_CODEX_PROVIDER_SETTINGS = Object.freeze({
+function shouldPersistCodexInstallationSettings() {
+  return process.platform === "win32";
+}
+function omitCurrentHost(entries, hostnameKey) {
+  const next = { ...entries };
+  delete next[hostnameKey];
+  delete next[getLegacyHostnameKey()];
+  return next;
+}
+function ensureCodexProjectionMap(settings11, key) {
+  const current = settings11[key];
+  if (current && typeof current === "object" && !Array.isArray(current)) {
+    return current;
+  }
+  const next = {};
+  settings11[key] = next;
+  return next;
+}
+var DEFAULT_CODEX_PROVIDER_CONFIG = Object.freeze({
   enabled: false,
   safeMode: "workspace-write",
   cliPath: "",
   cliPathsByHost: {},
   customModels: "",
+  discoveredModels: [],
+  modelAliases: {},
+  visibleModels: null,
   reasoningSummary: "detailed",
   environmentVariables: "",
   environmentHash: "",
-  installationMethod: "native-windows",
   installationMethodsByHost: {},
-  wslDistroOverride: "",
   wslDistroOverridesByHost: {}
+});
+var DEFAULT_CODEX_PROVIDER_SETTINGS = Object.freeze({
+  ...DEFAULT_CODEX_PROVIDER_CONFIG,
+  installationMethod: "native-windows",
+  wslDistroOverride: ""
 });
 function shouldDisableCodexReasoningSummary(model) {
   return model ? toCodexRuntimeModelId(model) === CODEX_SPARK_MODEL : false;
@@ -47090,6 +47269,8 @@ function getEffectiveCodexReasoningSummary(settings11, model) {
   return getCodexProviderSettings(settings11).reasoningSummary;
 }
 function applyCodexModelDefaults(model, settings11) {
+  const modelMetadata = findCodexModel(getCodexProviderSettings(settings11).discoveredModels, model);
+  settings11.effortLevel = modelMetadata ? getCodexDefaultReasoningEffort(modelMetadata) : DEFAULT_REASONING_VALUE;
   if (shouldDisableCodexReasoningSummary(model)) {
     updateCodexProviderSettings(settings11, { reasoningSummary: "none" });
   }
@@ -47106,6 +47287,116 @@ function normalizeHostnameCliPaths2(value) {
   }
   return result;
 }
+function normalizeCodexVisibleModels(value, discoveredModels = []) {
+  if (value === null || value === void 0) {
+    return null;
+  }
+  if (!Array.isArray(value)) {
+    return null;
+  }
+  const knownModelIds = new Set(discoveredModels.map((model) => model.model));
+  const visibleModels = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const entry of value) {
+    if (typeof entry !== "string") {
+      continue;
+    }
+    const modelId = entry.trim();
+    if (!modelId || seen.has(modelId) || knownModelIds.size > 0 && !knownModelIds.has(modelId)) {
+      continue;
+    }
+    seen.add(modelId);
+    visibleModels.push(modelId);
+  }
+  return visibleModels;
+}
+function normalizeCodexModelAliases(value, discoveredModels = []) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return {};
+  }
+  const knownModelIds = new Set(discoveredModels.map((model) => model.model));
+  const normalized = {};
+  for (const [rawModelId, rawAlias] of Object.entries(value)) {
+    if (typeof rawAlias !== "string") {
+      continue;
+    }
+    const modelId = rawModelId.trim();
+    const alias = rawAlias.trim();
+    if (!modelId || !alias || knownModelIds.size > 0 && !knownModelIds.has(modelId)) {
+      continue;
+    }
+    normalized[modelId] = alias;
+  }
+  return normalized;
+}
+function createCodexVisibleModelFilter(value, discoveredModels) {
+  const normalized = normalizeCodexVisibleModels(value, discoveredModels);
+  return normalized !== null && discoveredModels.length > 0 && normalized.length === discoveredModels.length ? null : normalized;
+}
+function getVisibleCodexModelIds(visibleModels, discoveredModels) {
+  var _a5;
+  return visibleModels === null ? discoveredModels.map((model) => model.model) : (_a5 = normalizeCodexVisibleModels(visibleModels, discoveredModels)) != null ? _a5 : [];
+}
+function pruneCodexModelAliases(aliases, visibleModelIds) {
+  if (visibleModelIds === null) {
+    return aliases;
+  }
+  const visible = new Set(visibleModelIds);
+  return Object.fromEntries(
+    Object.entries(aliases).filter(([modelId]) => visible.has(modelId))
+  );
+}
+function getCodexAliasModelIds(visibleModels, discoveredModels) {
+  if (discoveredModels.length === 0 && visibleModels === null) {
+    return null;
+  }
+  return getVisibleCodexModelIds(visibleModels, discoveredModels);
+}
+function retargetRemovedCodexSelections(settings11, next) {
+  var _a5;
+  if (next.visibleModels === null) {
+    return;
+  }
+  const visibleModelIds = new Set(next.visibleModels);
+  if (visibleModelIds.size === 0) {
+    if (findCodexModel(next.discoveredModels, settings11.titleGenerationModel)) {
+      settings11.titleGenerationModel = "";
+    }
+    return;
+  }
+  const fallbackModel = getDefaultCodexModel(
+    next.discoveredModels.filter((model) => visibleModelIds.has(model.model))
+  );
+  if (!fallbackModel) {
+    return;
+  }
+  const maybeRetarget = (value) => {
+    if (typeof value !== "string") {
+      return null;
+    }
+    const model = findCodexModel(next.discoveredModels, value);
+    return model && !visibleModelIds.has(model.model) ? fallbackModel.model : null;
+  };
+  const fallbackServiceTier = (_a5 = fallbackModel.defaultServiceTier) != null ? _a5 : "default";
+  const existingSavedModels = settings11.savedProviderModel;
+  const savedCodexModel = existingSavedModels && typeof existingSavedModels === "object" && !Array.isArray(existingSavedModels) ? existingSavedModels.codex : void 0;
+  const nextSavedModel = maybeRetarget(savedCodexModel);
+  if (nextSavedModel) {
+    ensureCodexProjectionMap(settings11, "savedProviderModel").codex = nextSavedModel;
+    ensureCodexProjectionMap(settings11, "savedProviderEffort").codex = getCodexDefaultReasoningEffort(fallbackModel);
+    ensureCodexProjectionMap(settings11, "savedProviderServiceTier").codex = fallbackServiceTier;
+  }
+  const nextTopLevelModel = maybeRetarget(settings11.model);
+  if (nextTopLevelModel) {
+    settings11.model = nextTopLevelModel;
+    settings11.effortLevel = getCodexDefaultReasoningEffort(fallbackModel);
+    settings11.serviceTier = fallbackServiceTier;
+  }
+  const nextTitleGenerationModel = maybeRetarget(settings11.titleGenerationModel);
+  if (nextTitleGenerationModel) {
+    settings11.titleGenerationModel = nextTitleGenerationModel;
+  }
+}
 function normalizeInstallationMethodsByHost(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return {};
@@ -47118,53 +47409,152 @@ function normalizeInstallationMethodsByHost(value) {
   }
   return result;
 }
-function getCodexProviderSettings(settings11) {
-  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p;
+function hasOwnEntry2(entries, key) {
+  return Object.prototype.hasOwnProperty.call(entries, key);
+}
+function getCodexStoredConfig(settings11, hostnameKey, legacyHostnameKey) {
+  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n;
   const config2 = getProviderConfig(settings11, "codex");
-  const hostnameKey = getHostnameKey();
   const normalizedCliPathsByHost = normalizeHostnameCliPaths2((_a5 = config2.cliPathsByHost) != null ? _a5 : settings11.codexCliPathsByHost);
   const normalizedInstallationMethodsByHost = normalizeInstallationMethodsByHost(config2.installationMethodsByHost);
   const normalizedWslDistroOverridesByHost = normalizeHostnameCliPaths2(config2.wslDistroOverridesByHost);
-  const hasLegacyHostnameKeyedSettings = Object.keys(normalizedCliPathsByHost).length > 0 || Object.keys(normalizedInstallationMethodsByHost).length > 0 || Object.keys(normalizedWslDistroOverridesByHost).length > 0;
-  const legacyHostnameKey = hasLegacyHostnameKeyedSettings ? getLegacyHostnameKey() : "";
-  const cliPathsByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedCliPathsByHost, hostnameKey, legacyHostnameKey) : normalizedCliPathsByHost;
-  const installationMethodsByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedInstallationMethodsByHost, hostnameKey, legacyHostnameKey) : normalizedInstallationMethodsByHost;
-  const wslDistroOverridesByHost = hasLegacyHostnameKeyedSettings ? migrateLegacyHostnameKeyedMap(normalizedWslDistroOverridesByHost, hostnameKey, legacyHostnameKey) : normalizedWslDistroOverridesByHost;
-  const hasHostScopedInstallationMethods = Object.keys(installationMethodsByHost).length > 0;
-  const hasHostScopedWslDistroOverrides = Object.keys(wslDistroOverridesByHost).length > 0;
-  const legacyInstallationMethod = normalizeCodexInstallationMethod(config2.installationMethod);
-  const legacyWslDistroOverride = normalizeOptionalString(config2.wslDistroOverride);
+  const cliPathsByHost = migrateLegacyHostnameKeyedMap(normalizedCliPathsByHost, hostnameKey, legacyHostnameKey);
+  const installationMethodsByHost = migrateLegacyHostnameKeyedMap(
+    normalizedInstallationMethodsByHost,
+    hostnameKey,
+    legacyHostnameKey
+  );
+  const wslDistroOverridesByHost = migrateLegacyHostnameKeyedMap(
+    normalizedWslDistroOverridesByHost,
+    hostnameKey,
+    legacyHostnameKey
+  );
+  const discoveredModels = normalizeCodexDiscoveredModels(config2.discoveredModels);
+  const visibleModels = normalizeCodexVisibleModels(config2.visibleModels, discoveredModels);
   return {
-    enabled: (_c2 = (_b3 = config2.enabled) != null ? _b3 : settings11.codexEnabled) != null ? _c2 : DEFAULT_CODEX_PROVIDER_SETTINGS.enabled,
-    safeMode: (_e2 = (_d = config2.safeMode) != null ? _d : settings11.codexSafeMode) != null ? _e2 : DEFAULT_CODEX_PROVIDER_SETTINGS.safeMode,
-    cliPath: (_g = (_f2 = config2.cliPath) != null ? _f2 : settings11.codexCliPath) != null ? _g : DEFAULT_CODEX_PROVIDER_SETTINGS.cliPath,
+    enabled: (_c2 = (_b3 = config2.enabled) != null ? _b3 : settings11.codexEnabled) != null ? _c2 : DEFAULT_CODEX_PROVIDER_CONFIG.enabled,
+    safeMode: (_e2 = (_d = config2.safeMode) != null ? _d : settings11.codexSafeMode) != null ? _e2 : DEFAULT_CODEX_PROVIDER_CONFIG.safeMode,
+    cliPath: (_g = (_f2 = config2.cliPath) != null ? _f2 : settings11.codexCliPath) != null ? _g : DEFAULT_CODEX_PROVIDER_CONFIG.cliPath,
     cliPathsByHost,
-    customModels: (_h2 = config2.customModels) != null ? _h2 : DEFAULT_CODEX_PROVIDER_SETTINGS.customModels,
-    reasoningSummary: (_j = (_i = config2.reasoningSummary) != null ? _i : settings11.codexReasoningSummary) != null ? _j : DEFAULT_CODEX_PROVIDER_SETTINGS.reasoningSummary,
-    environmentVariables: (_l2 = (_k3 = config2.environmentVariables) != null ? _k3 : getProviderEnvironmentVariables(settings11, "codex")) != null ? _l2 : DEFAULT_CODEX_PROVIDER_SETTINGS.environmentVariables,
-    environmentHash: (_n = (_m = config2.environmentHash) != null ? _m : settings11.lastCodexEnvHash) != null ? _n : DEFAULT_CODEX_PROVIDER_SETTINGS.environmentHash,
-    installationMethod: (_o = installationMethodsByHost[hostnameKey]) != null ? _o : hasHostScopedInstallationMethods ? DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod : legacyInstallationMethod,
+    customModels: (_h2 = config2.customModels) != null ? _h2 : DEFAULT_CODEX_PROVIDER_CONFIG.customModels,
+    discoveredModels,
+    modelAliases: pruneCodexModelAliases(
+      normalizeCodexModelAliases(config2.modelAliases, discoveredModels),
+      getCodexAliasModelIds(visibleModels, discoveredModels)
+    ),
+    visibleModels,
+    reasoningSummary: (_j = (_i = config2.reasoningSummary) != null ? _i : settings11.codexReasoningSummary) != null ? _j : DEFAULT_CODEX_PROVIDER_CONFIG.reasoningSummary,
+    environmentVariables: (_l2 = (_k3 = config2.environmentVariables) != null ? _k3 : getProviderEnvironmentVariables(settings11, "codex")) != null ? _l2 : DEFAULT_CODEX_PROVIDER_CONFIG.environmentVariables,
+    environmentHash: (_n = (_m = config2.environmentHash) != null ? _m : settings11.lastCodexEnvHash) != null ? _n : DEFAULT_CODEX_PROVIDER_CONFIG.environmentHash,
     installationMethodsByHost,
-    wslDistroOverride: (_p = wslDistroOverridesByHost[hostnameKey]) != null ? _p : hasHostScopedWslDistroOverrides ? DEFAULT_CODEX_PROVIDER_SETTINGS.wslDistroOverride : legacyWslDistroOverride,
     wslDistroOverridesByHost
   };
 }
-function updateCodexProviderSettings(settings11, updates) {
+function getNormalizedCodexStoredConfigContext(context) {
+  var _a5, _b3, _c2;
+  return {
+    platform: (_a5 = context.platform) != null ? _a5 : process.platform,
+    hostnameKey: (_b3 = context.hostnameKey) != null ? _b3 : getHostnameKey(),
+    legacyHostnameKey: (_c2 = context.legacyHostnameKey) != null ? _c2 : getLegacyHostnameKey()
+  };
+}
+function projectStoredCodexConfigNormalization(originalConfig, normalizedConfig) {
+  const projected = { ...originalConfig };
+  for (const key of Object.keys(DEFAULT_CODEX_PROVIDER_CONFIG)) {
+    if (key in originalConfig) {
+      projected[key] = normalizedConfig[key];
+    }
+  }
+  delete projected.installationMethod;
+  delete projected.wslDistroOverride;
+  return projected;
+}
+function normalizeCodexStoredConfig(settings11, context = {}) {
+  const originalConfig = getProviderConfig(settings11, "codex");
+  const {
+    platform,
+    hostnameKey,
+    legacyHostnameKey
+  } = getNormalizedCodexStoredConfigContext(context);
+  const storedConfig = getCodexStoredConfig(settings11, hostnameKey, legacyHostnameKey);
+  const installationMethodsByHost = { ...storedConfig.installationMethodsByHost };
+  const wslDistroOverridesByHost = { ...storedConfig.wslDistroOverridesByHost };
+  if (platform === "win32") {
+    if (!hasOwnEntry2(installationMethodsByHost, hostnameKey) && "installationMethod" in originalConfig) {
+      installationMethodsByHost[hostnameKey] = normalizeCodexInstallationMethod(originalConfig.installationMethod);
+    }
+    if (!hasOwnEntry2(wslDistroOverridesByHost, hostnameKey) && "wslDistroOverride" in originalConfig) {
+      const normalizedDistroOverride = normalizeOptionalString(originalConfig.wslDistroOverride);
+      if (normalizedDistroOverride) {
+        wslDistroOverridesByHost[hostnameKey] = normalizedDistroOverride;
+      }
+    }
+  } else {
+    delete installationMethodsByHost[hostnameKey];
+    delete installationMethodsByHost[legacyHostnameKey];
+    delete wslDistroOverridesByHost[hostnameKey];
+    delete wslDistroOverridesByHost[legacyHostnameKey];
+  }
+  const normalizedConfig = {
+    ...originalConfig,
+    ...storedConfig,
+    installationMethodsByHost,
+    wslDistroOverridesByHost
+  };
+  delete normalizedConfig.installationMethod;
+  delete normalizedConfig.wslDistroOverride;
+  const projectedConfig = projectStoredCodexConfigNormalization(originalConfig, normalizedConfig);
+  return {
+    config: normalizedConfig,
+    changed: JSON.stringify(projectedConfig) !== JSON.stringify(originalConfig)
+  };
+}
+function getCodexProviderSettings(settings11) {
   var _a5, _b3;
+  const config2 = getProviderConfig(settings11, "codex");
+  const hostnameKey = getHostnameKey();
+  const legacyHostnameKey = getLegacyHostnameKey();
+  const storedConfig = getCodexStoredConfig(settings11, hostnameKey, legacyHostnameKey);
+  const hasHostScopedInstallationMethods = Object.keys(storedConfig.installationMethodsByHost).length > 0;
+  const hasHostScopedWslDistroOverrides = Object.keys(storedConfig.wslDistroOverridesByHost).length > 0;
+  const legacyInstallationMethod = normalizeCodexInstallationMethod(config2.installationMethod);
+  const legacyWslDistroOverride = normalizeOptionalString(config2.wslDistroOverride);
+  return {
+    ...storedConfig,
+    installationMethod: (_a5 = storedConfig.installationMethodsByHost[hostnameKey]) != null ? _a5 : hasHostScopedInstallationMethods ? DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod : legacyInstallationMethod,
+    wslDistroOverride: (_b3 = storedConfig.wslDistroOverridesByHost[hostnameKey]) != null ? _b3 : hasHostScopedWslDistroOverrides ? DEFAULT_CODEX_PROVIDER_SETTINGS.wslDistroOverride : legacyWslDistroOverride
+  };
+}
+function updateCodexProviderSettings(settings11, updates) {
+  var _a5, _b3, _c2, _d;
   const current = getCodexProviderSettings(settings11);
   const hostnameKey = getHostnameKey();
-  const installationMethodsByHost = "installationMethodsByHost" in updates ? normalizeInstallationMethodsByHost(updates.installationMethodsByHost) : { ...current.installationMethodsByHost };
-  const wslDistroOverridesByHost = "wslDistroOverridesByHost" in updates ? normalizeHostnameCliPaths2(updates.wslDistroOverridesByHost) : { ...current.wslDistroOverridesByHost };
-  if (Object.keys(installationMethodsByHost).length === 0 && current.installationMethod !== DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod) {
+  const persistInstallationSettings = shouldPersistCodexInstallationSettings();
+  const updatedInstallationMethodsByHost = "installationMethodsByHost" in updates ? normalizeInstallationMethodsByHost(updates.installationMethodsByHost) : { ...current.installationMethodsByHost };
+  const updatedWslDistroOverridesByHost = "wslDistroOverridesByHost" in updates ? normalizeHostnameCliPaths2(updates.wslDistroOverridesByHost) : { ...current.wslDistroOverridesByHost };
+  const installationMethodsByHost = persistInstallationSettings ? updatedInstallationMethodsByHost : omitCurrentHost(updatedInstallationMethodsByHost, hostnameKey);
+  const wslDistroOverridesByHost = persistInstallationSettings ? updatedWslDistroOverridesByHost : omitCurrentHost(updatedWslDistroOverridesByHost, hostnameKey);
+  const discoveredModels = normalizeCodexDiscoveredModels(
+    (_a5 = updates.discoveredModels) != null ? _a5 : current.discoveredModels
+  );
+  const visibleModels = normalizeCodexVisibleModels(
+    "visibleModels" in updates ? updates.visibleModels : current.visibleModels,
+    discoveredModels
+  );
+  const modelAliases = pruneCodexModelAliases(
+    normalizeCodexModelAliases((_b3 = updates.modelAliases) != null ? _b3 : current.modelAliases, discoveredModels),
+    getCodexAliasModelIds(visibleModels, discoveredModels)
+  );
+  if (persistInstallationSettings && Object.keys(installationMethodsByHost).length === 0 && current.installationMethod !== DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod) {
     installationMethodsByHost[hostnameKey] = current.installationMethod;
   }
-  if (Object.keys(wslDistroOverridesByHost).length === 0 && current.wslDistroOverride) {
+  if (persistInstallationSettings && Object.keys(wslDistroOverridesByHost).length === 0 && current.wslDistroOverride) {
     wslDistroOverridesByHost[hostnameKey] = current.wslDistroOverride;
   }
-  if ("installationMethod" in updates) {
+  if (persistInstallationSettings && "installationMethod" in updates) {
     installationMethodsByHost[hostnameKey] = normalizeCodexInstallationMethod(updates.installationMethod);
   }
-  if ("wslDistroOverride" in updates) {
+  if (persistInstallationSettings && "wslDistroOverride" in updates) {
     const normalizedDistroOverride = normalizeOptionalString(updates.wslDistroOverride);
     if (normalizedDistroOverride) {
       wslDistroOverridesByHost[hostnameKey] = normalizedDistroOverride;
@@ -47175,9 +47565,12 @@ function updateCodexProviderSettings(settings11, updates) {
   const next = {
     ...current,
     ...updates,
-    installationMethod: (_a5 = installationMethodsByHost[hostnameKey]) != null ? _a5 : DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod,
+    discoveredModels,
+    modelAliases,
+    visibleModels,
+    installationMethod: persistInstallationSettings ? (_c2 = installationMethodsByHost[hostnameKey]) != null ? _c2 : DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod : DEFAULT_CODEX_PROVIDER_SETTINGS.installationMethod,
     installationMethodsByHost,
-    wslDistroOverride: (_b3 = wslDistroOverridesByHost[hostnameKey]) != null ? _b3 : DEFAULT_CODEX_PROVIDER_SETTINGS.wslDistroOverride,
+    wslDistroOverride: persistInstallationSettings ? (_d = wslDistroOverridesByHost[hostnameKey]) != null ? _d : DEFAULT_CODEX_PROVIDER_SETTINGS.wslDistroOverride : DEFAULT_CODEX_PROVIDER_SETTINGS.wslDistroOverride,
     wslDistroOverridesByHost
   };
   setProviderConfig(settings11, "codex", {
@@ -47186,12 +47579,18 @@ function updateCodexProviderSettings(settings11, updates) {
     cliPath: next.cliPath,
     cliPathsByHost: next.cliPathsByHost,
     customModels: next.customModels,
+    discoveredModels: next.discoveredModels,
+    modelAliases: next.modelAliases,
+    visibleModels: next.visibleModels,
     reasoningSummary: next.reasoningSummary,
     environmentVariables: next.environmentVariables,
     environmentHash: next.environmentHash,
     installationMethodsByHost,
     wslDistroOverridesByHost
   });
+  if ("visibleModels" in updates) {
+    retargetRemovedCodexSelections(settings11, next);
+  }
   return next;
 }
 
@@ -47264,6 +47663,13 @@ var OPENCODE_VARIANT_ASCENDING_ORDER = [
 var OPENCODE_VARIANT_ASCENDING_RANK = new Map(
   OPENCODE_VARIANT_ASCENDING_ORDER.map((value, index) => [value, index])
 );
+function resolveOpencodeDefaultThinkingLevel(options, preferredValue, fallbackValue = DEFAULT_REASONING_VALUE) {
+  const values = options.map((option) => option.value);
+  if (preferredValue && (values.length === 0 || values.includes(preferredValue))) {
+    return preferredValue;
+  }
+  return resolvePreferredReasoningDefault(values, fallbackValue);
+}
 function isOpencodeModelSelectionId(model) {
   return model === OPENCODE_SYNTHETIC_MODEL_ID || model.startsWith(OPENCODE_MODEL_PREFIX);
 }
@@ -47929,7 +48335,10 @@ function retargetRemovedOpencodeSelections(settings11, next) {
   const visibleSet = new Set(next.visibleModels);
   const fallbackRawId = next.visibleModels[0];
   const fallbackModelId = encodeOpencodeModelId(fallbackRawId);
-  const fallbackEffort = (_a5 = next.preferredThinkingByModel[fallbackRawId]) != null ? _a5 : OPENCODE_DEFAULT_THINKING_LEVEL;
+  const fallbackEffort = resolveOpencodeDefaultThinkingLevel(
+    (_a5 = next.thinkingOptionsByModel[fallbackRawId]) != null ? _a5 : [],
+    next.preferredThinkingByModel[fallbackRawId]
+  );
   const maybeRetargetModel = (value) => {
     if (typeof value !== "string" || !isOpencodeModelSelectionId(value)) {
       return null;
@@ -47962,9 +48371,22 @@ function retargetRemovedOpencodeSelections(settings11, next) {
 init_env();
 
 // src/providers/pi/internal/providerProjection.ts
+function normalizeProviderProjectionMap(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  const normalized = {};
+  for (const [providerId, projectedValue] of Object.entries(value)) {
+    if (typeof projectedValue === "string") {
+      normalized[providerId] = projectedValue;
+    }
+  }
+  return normalized;
+}
 function ensureProviderProjectionMap2(settings11, key) {
-  const current = settings11[key];
-  if (current && typeof current === "object" && !Array.isArray(current)) {
+  const current = normalizeProviderProjectionMap(settings11[key]);
+  if (current) {
+    settings11[key] = current;
     return current;
   }
   const next = {};
@@ -47975,7 +48397,7 @@ function ensureProviderProjectionMap2(settings11, key) {
 // src/providers/pi/models.ts
 var PI_SYNTHETIC_MODEL_ID = "pi";
 var PI_MODEL_PREFIX = "pi:";
-var PI_DEFAULT_THINKING_LEVEL = "medium";
+var PI_DEFAULT_THINKING_LEVEL = DEFAULT_REASONING_VALUE;
 var VALID_THINKING_LEVELS = /* @__PURE__ */ new Set([
   "off",
   "minimal",
@@ -48107,15 +48529,14 @@ function findPiModel(settings11, encodedId) {
   return (_a5 = settings11.discoveredModels.find((model) => model.encodedId === encodedId)) != null ? _a5 : null;
 }
 function clampPiThinkingLevel(level, supportedLevels) {
-  var _a5;
   const normalized = normalizePiThinkingLevel(level);
   if (normalized && supportedLevels.includes(normalized)) {
     return normalized;
   }
-  if (supportedLevels.includes(PI_DEFAULT_THINKING_LEVEL)) {
-    return PI_DEFAULT_THINKING_LEVEL;
+  if (supportedLevels.length === 0) {
+    return "off";
   }
-  return (_a5 = supportedLevels[0]) != null ? _a5 : "off";
+  return resolvePreferredReasoningDefault(supportedLevels, "medium");
 }
 function collectExplicitThinkingLevels(record2) {
   const rawLevels = [
@@ -48449,7 +48870,8 @@ function retargetRemovedPiSelections(settings11, next) {
   }
   const visibleSet = new Set(next.visibleModels);
   const fallbackModelId = next.visibleModels[0];
-  const fallbackEffort = (_a5 = next.preferredThinkingByModel[fallbackModelId]) != null ? _a5 : PI_DEFAULT_THINKING_LEVEL;
+  const fallbackModel = findPiModel(next, fallbackModelId);
+  const fallbackEffort = (_a5 = next.preferredThinkingByModel[fallbackModelId]) != null ? _a5 : fallbackModel ? clampPiThinkingLevel(PI_DEFAULT_THINKING_LEVEL, fallbackModel.thinkingLevels) : PI_DEFAULT_THINKING_LEVEL;
   const maybeRetargetModel = (value) => {
     if (typeof value !== "string" || !isPiModelSelectionId(value) || value === "pi") {
       return null;
@@ -48477,7 +48899,7 @@ function retargetRemovedPiSelections(settings11, next) {
 function getBuiltInProviderDefaultConfigs() {
   return {
     claude: { ...DEFAULT_CLAUDE_PROVIDER_SETTINGS },
-    codex: { ...DEFAULT_CODEX_PROVIDER_SETTINGS },
+    codex: { ...DEFAULT_CODEX_PROVIDER_CONFIG },
     opencode: { ...DEFAULT_OPENCODE_PROVIDER_SETTINGS },
     pi: { ...DEFAULT_PI_PROVIDER_SETTINGS }
   };
@@ -48489,7 +48911,7 @@ var DEFAULT_CLAUDIAN_SETTINGS = {
   permissionMode: "yolo",
   model: "haiku",
   thinkingBudget: "off",
-  effortLevel: "high",
+  effortLevel: DEFAULT_REASONING_VALUE,
   serviceTier: "default",
   enableAutoTitleGeneration: true,
   titleGenerationModel: "",
@@ -48525,26 +48947,7 @@ var DEFAULT_CLAUDIAN_SETTINGS = {
 };
 
 // src/app/settings/ClaudianSettingsStorage.ts
-var LEGACY_TOP_LEVEL_PROVIDER_FIELDS = [
-  "claudeSafeMode",
-  "codexSafeMode",
-  "claudeCliPath",
-  "claudeCliPathsByHost",
-  "codexCliPath",
-  "codexCliPathsByHost",
-  "codexReasoningSummary",
-  "loadUserClaudeSettings",
-  "codexEnabled",
-  "lastClaudeModel",
-  "enableChrome",
-  "enableBangBash",
-  "enableOpus1M",
-  "enableSonnet1M",
-  "environmentVariables",
-  "lastEnvHash",
-  "lastCodexEnvHash"
-];
-var LEGACY_STRIPPED_SETTING_FIELDS = [
+var LEGACY_STRIPPED_SHARED_SETTING_FIELDS = [
   "activeConversationId",
   "show1MModel",
   "hiddenSlashCommands",
@@ -48553,12 +48956,26 @@ var LEGACY_STRIPPED_SETTING_FIELDS = [
   "allowedExportPaths",
   "enableBlocklist",
   "blockedCommands",
-  ...LEGACY_TOP_LEVEL_PROVIDER_FIELDS,
   "openInMainTab"
 ];
+function getProviderSettingsAdapters() {
+  return ProviderRegistry.getRegisteredProviderIds().map((providerId) => ({
+    adapter: ProviderRegistry.getSettingsStorageAdapter(providerId),
+    providerId
+  }));
+}
+function getLegacyTopLevelProviderFields() {
+  return getProviderSettingsAdapters().flatMap(({ adapter }) => {
+    var _a5;
+    return (_a5 = adapter.legacyTopLevelFields) != null ? _a5 : [];
+  });
+}
 function stripLegacyFields(settings11) {
   const cleaned = { ...settings11 };
-  for (const key of LEGACY_STRIPPED_SETTING_FIELDS) {
+  for (const key of [
+    ...LEGACY_STRIPPED_SHARED_SETTING_FIELDS,
+    ...getLegacyTopLevelProviderFields()
+  ]) {
     delete cleaned[key];
   }
   return cleaned;
@@ -48590,18 +49007,33 @@ function normalizeProviderConfigs(value) {
   }
   return result;
 }
-var HOST_SCOPED_PROVIDER_CONFIG_FIELDS = {
-  claude: ["cliPathsByHost"],
-  codex: ["cliPathsByHost", "installationMethodsByHost", "wslDistroOverridesByHost"],
-  opencode: ["cliPathsByHost"],
-  pi: ["cliPathsByHost"]
-};
+function projectPersistableProviderConfigs(value) {
+  var _a5;
+  const providerConfigs = normalizeProviderConfigs(value);
+  let changed = false;
+  for (const { adapter, providerId } of getProviderSettingsAdapters()) {
+    const fields = (_a5 = adapter.runtimeOnlyFields) != null ? _a5 : [];
+    const config2 = providerConfigs[providerId];
+    if (!config2) {
+      continue;
+    }
+    for (const field of fields) {
+      if (field in config2) {
+        delete config2[field];
+        changed = true;
+      }
+    }
+  }
+  return { changed, providerConfigs };
+}
 function hasHostScopedProviderConfigNormalization(original, normalized) {
+  var _a5;
   if (!normalized || typeof normalized !== "object" || Array.isArray(normalized)) {
     return false;
   }
   const normalizedConfigs = normalized;
-  for (const [providerId, fields] of Object.entries(HOST_SCOPED_PROVIDER_CONFIG_FIELDS)) {
+  for (const { adapter, providerId } of getProviderSettingsAdapters()) {
+    const fields = (_a5 = adapter.hostScopedFields) != null ? _a5 : [];
     const originalConfig = original[providerId];
     const normalizedConfig = normalizedConfigs[providerId];
     if (!originalConfig || !normalizedConfig) {
@@ -48677,7 +49109,7 @@ function normalizeEnvSnippets(value) {
   return snippets;
 }
 function hasLegacyTopLevelProviderFields(stored) {
-  return LEGACY_TOP_LEVEL_PROVIDER_FIELDS.some((key) => key in stored);
+  return getLegacyTopLevelProviderFields().some((key) => key in stored);
 }
 function mergeLegacyClaudeHiddenCommands(hiddenProviderCommands, legacyHiddenSlashCommands) {
   const legacyCommands = normalizeHiddenCommandList(legacyHiddenSlashCommands);
@@ -48707,7 +49139,10 @@ var ClaudianSettingsStorage = class {
     );
     const envSnippets = normalizeEnvSnippets(stored.envSnippets);
     const customModelAliases = normalizeModelAliases(stored.customModelAliases);
-    const providerConfigs = normalizeProviderConfigs(stored.providerConfigs);
+    const {
+      changed: didStripRuntimeProviderConfig,
+      providerConfigs
+    } = projectPersistableProviderConfigs(stored.providerConfigs);
     const chatViewPlacement = normalizeChatViewPlacement(
       stored.chatViewPlacement,
       stored.openInMainTab
@@ -48733,34 +49168,29 @@ var ClaudianSettingsStorage = class {
       ...this.getDefaults(),
       ...legacyNormalized
     };
-    updateClaudeProviderSettings(
-      merged,
-      getClaudeProviderSettings(legacyProviderSettings)
-    );
-    updateCodexProviderSettings(
-      merged,
-      getCodexProviderSettings(legacyProviderSettings)
-    );
-    updateOpencodeProviderSettings(
-      merged,
-      getOpencodeProviderSettings(legacyProviderSettings)
-    );
-    updatePiProviderSettings(
-      merged,
-      getPiProviderSettings(legacyProviderSettings)
-    );
+    let didNormalizeProviderSettings = false;
+    for (const { adapter } of getProviderSettingsAdapters()) {
+      didNormalizeProviderSettings = adapter.normalizeStored(
+        merged,
+        legacyProviderSettings
+      ) || didNormalizeProviderSettings;
+    }
     const didNormalizeHostScopedProviderConfigs = hasHostScopedProviderConfigNormalization(
       providerConfigs,
       merged.providerConfigs
     );
-    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || shouldPersistChatViewPlacementMigration(stored, chatViewPlacement) || JSON.stringify(envSnippets) !== JSON.stringify((_a5 = stored.envSnippets) != null ? _a5 : []) || "customModelAliases" in stored && JSON.stringify(customModelAliases) !== JSON.stringify((_b3 = stored.customModelAliases) != null ? _b3 : {}) || didNormalizeHostScopedProviderConfigs)) {
+    if (settingsPath !== CLAUDIAN_SETTINGS_PATH || (hasLegacyTopLevelProviderFields(stored) || "show1MModel" in stored || "slashCommands" in stored || "hiddenSlashCommands" in stored || "activeConversationId" in stored || "allowExternalAccess" in stored || "allowedExportPaths" in stored || "enableBlocklist" in stored || "blockedCommands" in stored || shouldPersistChatViewPlacementMigration(stored, chatViewPlacement) || JSON.stringify(envSnippets) !== JSON.stringify((_a5 = stored.envSnippets) != null ? _a5 : []) || "customModelAliases" in stored && JSON.stringify(customModelAliases) !== JSON.stringify((_b3 = stored.customModelAliases) != null ? _b3 : {}) || didNormalizeProviderSettings || didStripRuntimeProviderConfig || didNormalizeHostScopedProviderConfigs)) {
       await this.save(merged);
     }
     return merged;
   }
   async save(settings11) {
+    const { providerConfigs } = projectPersistableProviderConfigs(settings11.providerConfigs);
     const content = JSON.stringify(
-      stripLegacyFields(settings11),
+      stripLegacyFields({
+        ...settings11,
+        providerConfigs
+      }),
       null,
       2
     );
@@ -48776,26 +49206,6 @@ var ClaudianSettingsStorage = class {
   async update(updates) {
     const current = await this.load();
     await this.save({ ...current, ...updates });
-  }
-  async setLastModel(model, isCustom) {
-    if (isCustom) {
-      await this.update({ lastCustomModel: model });
-      return;
-    }
-    const current = await this.load();
-    updateClaudeProviderSettings(
-      current,
-      { lastModel: model }
-    );
-    await this.save(current);
-  }
-  async setLastEnvHash(hash2) {
-    const current = await this.load();
-    updateClaudeProviderSettings(
-      current,
-      { environmentHash: hash2 }
-    );
-    await this.save(current);
   }
   getDefaults() {
     return DEFAULT_CLAUDIAN_SETTINGS;
@@ -48817,14 +49227,25 @@ var ClaudianSettingsStorage = class {
 };
 
 // src/core/bootstrap/SessionStorage.ts
+var SAFE_METADATA_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+function isValidSessionMetadataId(id) {
+  return SAFE_METADATA_ID_PATTERN.test(id) && id !== "." && id !== ".." && !/%(?:2f|5c)/i.test(id);
+}
+function assertValidSessionMetadataId(id) {
+  if (!isValidSessionMetadataId(id)) {
+    throw new Error(`Invalid session metadata id: ${JSON.stringify(id)}`);
+  }
+}
 var SessionStorage = class {
   constructor(adapter) {
     this.adapter = adapter;
   }
   getMetadataPath(id) {
+    assertValidSessionMetadataId(id);
     return `${SESSIONS_PATH}/${id}.meta.json`;
   }
   getLegacyMetadataPath(id) {
+    assertValidSessionMetadataId(id);
     return `${LEGACY_SESSIONS_PATH}/${id}.meta.json`;
   }
   async saveMetadata(metadata) {
@@ -48834,6 +49255,9 @@ var SessionStorage = class {
     await this.deleteLegacyMetadataIfPresent(metadata.id);
   }
   async loadMetadata(id) {
+    if (!isValidSessionMetadataId(id)) {
+      return null;
+    }
     const filePath = await this.getLoadPath(id);
     try {
       if (!filePath) {
@@ -48841,6 +49265,9 @@ var SessionStorage = class {
       }
       const content = await this.adapter.read(filePath);
       const metadata = JSON.parse(content);
+      if (metadata.id !== id || !isValidSessionMetadataId(metadata.id)) {
+        return null;
+      }
       if (filePath !== this.getMetadataPath(id)) {
         await this.saveMetadata(metadata);
       }
@@ -48857,9 +49284,16 @@ var SessionStorage = class {
     const metas = [];
     const files = await this.listUniqueMetadataFiles();
     for (const filePath of files) {
+      const fileId = this.getMetadataIdFromPath(filePath);
+      if (!fileId || !isValidSessionMetadataId(fileId)) {
+        continue;
+      }
       try {
         const content = await this.adapter.read(filePath);
         const raw = JSON.parse(content);
+        if (raw.id !== fileId || !isValidSessionMetadataId(raw.id)) {
+          continue;
+        }
         metas.push(raw);
         if (filePath.startsWith(`${LEGACY_SESSIONS_PATH}/`)) {
           await this.saveMetadata(raw);
@@ -48893,8 +49327,8 @@ var SessionStorage = class {
     );
   }
   toSessionMetadata(conversation) {
-    var _a5, _b3, _c2;
-    const providerState = (_c2 = (_b3 = (_a5 = ProviderRegistry.getConversationHistoryService(conversation.providerId)).buildPersistedProviderState) == null ? void 0 : _b3.call(_a5, conversation)) != null ? _c2 : conversation.providerState;
+    const historyService = ProviderRegistry.getConversationHistoryService(conversation.providerId);
+    const providerState = historyService.buildPersistedProviderState ? historyService.buildPersistedProviderState(conversation) : conversation.providerState;
     return {
       id: conversation.id,
       providerId: conversation.providerId,
@@ -48904,6 +49338,7 @@ var SessionStorage = class {
       updatedAt: conversation.updatedAt,
       lastResponseAt: conversation.lastResponseAt,
       sessionId: conversation.sessionId,
+      selectedModel: conversation.selectedModel,
       providerState: providerState && Object.keys(providerState).length > 0 ? providerState : void 0,
       currentNote: conversation.currentNote,
       externalContextPaths: conversation.externalContextPaths,
@@ -48957,7 +49392,51 @@ var SessionStorage = class {
     const parts = filePath.split("/");
     return (_a5 = parts[parts.length - 1]) != null ? _a5 : filePath;
   }
+  getMetadataIdFromPath(filePath) {
+    const fileName = this.getFileName(filePath);
+    const suffix = ".meta.json";
+    return fileName.endsWith(suffix) ? fileName.slice(0, -suffix.length) : null;
+  }
 };
+
+// src/core/bootstrap/tabManagerState.ts
+function isRecord4(value) {
+  return !!value && typeof value === "object" && !Array.isArray(value);
+}
+function normalizeTabManagerState(data) {
+  if (!isRecord4(data) || !Array.isArray(data.openTabs)) {
+    return null;
+  }
+  const openTabs = [];
+  const openTabIds = /* @__PURE__ */ new Set();
+  for (const tab of data.openTabs) {
+    if (!isRecord4(tab) || typeof tab.tabId !== "string") {
+      continue;
+    }
+    openTabs.push({
+      tabId: tab.tabId,
+      conversationId: typeof tab.conversationId === "string" ? tab.conversationId : null,
+      ...typeof tab.draftModel === "string" ? { draftModel: tab.draftModel } : {}
+    });
+    openTabIds.add(tab.tabId);
+  }
+  const expandedTitleTabIds = [];
+  const seenExpandedTabIds = /* @__PURE__ */ new Set();
+  if (Array.isArray(data.expandedTitleTabIds)) {
+    for (const tabId of data.expandedTitleTabIds) {
+      if (typeof tabId !== "string" || !openTabIds.has(tabId) || seenExpandedTabIds.has(tabId)) {
+        continue;
+      }
+      expandedTitleTabIds.push(tabId);
+      seenExpandedTabIds.add(tabId);
+    }
+  }
+  return {
+    openTabs,
+    activeTabId: typeof data.activeTabId === "string" ? data.activeTabId : null,
+    ...expandedTitleTabIds.length > 0 ? { expandedTitleTabIds } : {}
+  };
+}
 
 // src/core/storage/VaultFileAdapter.ts
 var VaultFileAdapter = class {
@@ -48965,39 +49444,39 @@ var VaultFileAdapter = class {
     this.app = app;
     this.writeQueue = Promise.resolve();
   }
-  async exists(path28) {
-    return this.app.vault.adapter.exists(path28);
+  async exists(path32) {
+    return this.app.vault.adapter.exists(path32);
   }
-  async read(path28) {
-    return this.app.vault.adapter.read(path28);
+  async read(path32) {
+    return this.app.vault.adapter.read(path32);
   }
-  async write(path28, content) {
-    await this.ensureParentFolder(path28);
-    await this.app.vault.adapter.write(path28, content);
+  async write(path32, content) {
+    await this.ensureParentFolder(path32);
+    await this.app.vault.adapter.write(path32, content);
   }
-  async append(path28, content) {
-    await this.ensureParentFolder(path28);
+  async append(path32, content) {
+    await this.ensureParentFolder(path32);
     this.writeQueue = this.writeQueue.then(async () => {
-      if (await this.exists(path28)) {
-        const existing = await this.read(path28);
-        await this.app.vault.adapter.write(path28, existing + content);
+      if (await this.exists(path32)) {
+        const existing = await this.read(path32);
+        await this.app.vault.adapter.write(path32, existing + content);
       } else {
-        await this.app.vault.adapter.write(path28, content);
+        await this.app.vault.adapter.write(path32, content);
       }
     }).catch(() => {
     });
     await this.writeQueue;
   }
-  async delete(path28) {
-    if (await this.exists(path28)) {
-      await this.app.vault.adapter.remove(path28);
+  async delete(path32) {
+    if (await this.exists(path32)) {
+      await this.app.vault.adapter.remove(path32);
     }
   }
   /** Fails silently if non-empty or missing. */
-  async deleteFolder(path28) {
+  async deleteFolder(path32) {
     try {
-      if (await this.exists(path28)) {
-        await this.app.vault.adapter.rmdir(path28, false);
+      if (await this.exists(path32)) {
+        await this.app.vault.adapter.rmdir(path32, false);
       }
     } catch (e2) {
     }
@@ -49038,9 +49517,9 @@ var VaultFileAdapter = class {
     }
   }
   /** Ensure a folder exists, creating it and parent folders if needed. */
-  async ensureFolder(path28) {
-    if (await this.exists(path28)) return;
-    const parts = path28.split("/").filter(Boolean);
+  async ensureFolder(path32) {
+    if (await this.exists(path32)) return;
+    const parts = path32.split("/").filter(Boolean);
     let current = "";
     for (const part of parts) {
       current = current ? `${current}/${part}` : part;
@@ -49053,9 +49532,9 @@ var VaultFileAdapter = class {
   async rename(oldPath, newPath) {
     await this.app.vault.adapter.rename(oldPath, newPath);
   }
-  async stat(path28) {
+  async stat(path32) {
     try {
-      const stat = await this.app.vault.adapter.stat(path28);
+      const stat = await this.app.vault.adapter.stat(path32);
       if (!stat) return null;
       return { mtime: stat.mtime, size: stat.size };
     } catch (e2) {
@@ -49204,8 +49683,27 @@ var AgentVaultStorage = class {
 };
 
 // src/providers/claude/storage/CCSettingsStorage.ts
+var import_obsidian3 = require("obsidian");
+
+// src/core/storage/NotifiedMutationError.ts
+var NotifiedMutationError = class extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "NotifiedMutationError";
+  }
+};
+function isNotifiedMutationError(error48) {
+  return error48 instanceof NotifiedMutationError;
+}
+
+// src/providers/claude/storage/CCSettingsStorage.ts
 var CC_SETTINGS_PATH = ".claude/settings.json";
 var CC_SETTINGS_SCHEMA = "https://json.schemastore.org/claude-code-settings.json";
+var INVALID_SETTINGS_MESSAGE = "Failed to update .claude/settings.json because it contains invalid JSON.";
+function rejectInvalidSettingsMutation() {
+  new import_obsidian3.Notice(INVALID_SETTINGS_MESSAGE);
+  throw new NotifiedMutationError(INVALID_SETTINGS_MESSAGE);
+}
 function normalizeRuleList(value) {
   if (!Array.isArray(value)) return [];
   return value.filter((r) => typeof r === "string");
@@ -49243,10 +49741,11 @@ var CCSettingsStorage = class {
     var _a5;
     let existing = {};
     if (await this.adapter.exists(CC_SETTINGS_PATH)) {
+      const content2 = await this.adapter.read(CC_SETTINGS_PATH);
       try {
-        const content2 = await this.adapter.read(CC_SETTINGS_PATH);
         existing = JSON.parse(content2);
       } catch (e2) {
+        rejectInvalidSettingsMutation();
       }
     }
     const merged = {
@@ -49269,41 +49768,49 @@ var CCSettingsStorage = class {
     return (_a5 = settings11.permissions) != null ? _a5 : { ...DEFAULT_CC_PERMISSIONS };
   }
   async updatePermissions(permissions) {
-    const settings11 = await this.load();
+    const settings11 = await this.loadForMutation();
     settings11.permissions = permissions;
     await this.save(settings11);
   }
   async addAllowRule(rule) {
-    var _a5, _b3;
-    const permissions = await this.getPermissions();
-    if (!((_a5 = permissions.allow) == null ? void 0 : _a5.includes(rule))) {
-      permissions.allow = [...(_b3 = permissions.allow) != null ? _b3 : [], rule];
-      await this.updatePermissions(permissions);
+    var _a5, _b3, _c2;
+    const settings11 = await this.loadForMutation();
+    const permissions = (_a5 = settings11.permissions) != null ? _a5 : { ...DEFAULT_CC_PERMISSIONS };
+    if (!((_b3 = permissions.allow) == null ? void 0 : _b3.includes(rule))) {
+      permissions.allow = [...(_c2 = permissions.allow) != null ? _c2 : [], rule];
+      settings11.permissions = permissions;
+      await this.save(settings11);
     }
   }
   async addDenyRule(rule) {
-    var _a5, _b3;
-    const permissions = await this.getPermissions();
-    if (!((_a5 = permissions.deny) == null ? void 0 : _a5.includes(rule))) {
-      permissions.deny = [...(_b3 = permissions.deny) != null ? _b3 : [], rule];
-      await this.updatePermissions(permissions);
+    var _a5, _b3, _c2;
+    const settings11 = await this.loadForMutation();
+    const permissions = (_a5 = settings11.permissions) != null ? _a5 : { ...DEFAULT_CC_PERMISSIONS };
+    if (!((_b3 = permissions.deny) == null ? void 0 : _b3.includes(rule))) {
+      permissions.deny = [...(_c2 = permissions.deny) != null ? _c2 : [], rule];
+      settings11.permissions = permissions;
+      await this.save(settings11);
     }
   }
   async addAskRule(rule) {
-    var _a5, _b3;
-    const permissions = await this.getPermissions();
-    if (!((_a5 = permissions.ask) == null ? void 0 : _a5.includes(rule))) {
-      permissions.ask = [...(_b3 = permissions.ask) != null ? _b3 : [], rule];
-      await this.updatePermissions(permissions);
+    var _a5, _b3, _c2;
+    const settings11 = await this.loadForMutation();
+    const permissions = (_a5 = settings11.permissions) != null ? _a5 : { ...DEFAULT_CC_PERMISSIONS };
+    if (!((_b3 = permissions.ask) == null ? void 0 : _b3.includes(rule))) {
+      permissions.ask = [...(_c2 = permissions.ask) != null ? _c2 : [], rule];
+      settings11.permissions = permissions;
+      await this.save(settings11);
     }
   }
   async removeRule(rule) {
-    var _a5, _b3, _c2;
-    const permissions = await this.getPermissions();
-    permissions.allow = (_a5 = permissions.allow) == null ? void 0 : _a5.filter((r) => r !== rule);
-    permissions.deny = (_b3 = permissions.deny) == null ? void 0 : _b3.filter((r) => r !== rule);
-    permissions.ask = (_c2 = permissions.ask) == null ? void 0 : _c2.filter((r) => r !== rule);
-    await this.updatePermissions(permissions);
+    var _a5, _b3, _c2, _d;
+    const settings11 = await this.loadForMutation();
+    const permissions = (_a5 = settings11.permissions) != null ? _a5 : { ...DEFAULT_CC_PERMISSIONS };
+    permissions.allow = (_b3 = permissions.allow) == null ? void 0 : _b3.filter((r) => r !== rule);
+    permissions.deny = (_c2 = permissions.deny) == null ? void 0 : _c2.filter((r) => r !== rule);
+    permissions.ask = (_d = permissions.ask) == null ? void 0 : _d.filter((r) => r !== rule);
+    settings11.permissions = permissions;
+    await this.save(settings11);
   }
   async getEnabledPlugins() {
     var _a5;
@@ -49312,7 +49819,7 @@ var CCSettingsStorage = class {
   }
   async setPluginEnabled(pluginId, enabled) {
     var _a5;
-    const settings11 = await this.load();
+    const settings11 = await this.loadForMutation();
     const enabledPlugins = (_a5 = settings11.enabledPlugins) != null ? _a5 : {};
     enabledPlugins[pluginId] = enabled;
     settings11.enabledPlugins = enabledPlugins;
@@ -49326,7 +49833,20 @@ var CCSettingsStorage = class {
     const enabledPlugins = await this.getEnabledPlugins();
     return enabledPlugins[pluginId] === false;
   }
+  async loadForMutation() {
+    try {
+      return await this.load();
+    } catch (error48) {
+      if (error48 instanceof SyntaxError) {
+        rejectInvalidSettingsMutation();
+      }
+      throw error48;
+    }
+  }
 };
+
+// src/providers/claude/storage/McpStorage.ts
+var import_obsidian4 = require("obsidian");
 
 // src/core/types/chat.ts
 var VIEW_TYPE_CLAUDIAN = "claudian-view";
@@ -49352,6 +49872,7 @@ var DEFAULT_MCP_SERVER = {
 
 // src/providers/claude/storage/McpStorage.ts
 var MCP_CONFIG_PATH = ".claude/mcp.json";
+var INVALID_MCP_CONFIG_MESSAGE = "Failed to update .claude/mcp.json because it contains invalid JSON.";
 var McpStorage = class {
   constructor(adapter) {
     this.adapter = adapter;
@@ -49416,14 +49937,15 @@ var McpStorage = class {
     }
     let existing = null;
     if (await this.adapter.exists(MCP_CONFIG_PATH)) {
+      const raw = await this.adapter.read(MCP_CONFIG_PATH);
       try {
-        const raw = await this.adapter.read(MCP_CONFIG_PATH);
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed === "object") {
           existing = parsed;
         }
       } catch (e2) {
-        existing = null;
+        new import_obsidian4.Notice(INVALID_MCP_CONFIG_MESSAGE);
+        throw new NotifiedMutationError(INVALID_MCP_CONFIG_MESSAGE);
       }
     }
     const file2 = existing ? { ...existing } : {};
@@ -49568,7 +50090,7 @@ var SlashCommandStorage = class {
 
 // src/providers/claude/storage/StorageService.ts
 var CLAUDE_PATH = ".claude";
-function isRecord3(value) {
+function isRecord5(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 var StorageService = class {
@@ -49633,58 +50155,29 @@ var StorageService = class {
   async getTabManagerState() {
     try {
       const data = await this.plugin.loadData();
-      if (isRecord3(data) && data.tabManagerState) {
-        return this.validateTabManagerState(data.tabManagerState);
+      if (isRecord5(data) && data.tabManagerState) {
+        return normalizeTabManagerState(data.tabManagerState);
       }
       return null;
     } catch (e2) {
       return null;
     }
-  }
-  validateTabManagerState(data) {
-    if (!data || typeof data !== "object") {
-      return null;
-    }
-    const state = data;
-    if (!Array.isArray(state.openTabs)) {
-      return null;
-    }
-    const validatedTabs = [];
-    for (const tab of state.openTabs) {
-      if (!tab || typeof tab !== "object") {
-        continue;
-      }
-      const tabObj = tab;
-      if (typeof tabObj.tabId !== "string") {
-        continue;
-      }
-      validatedTabs.push({
-        tabId: tabObj.tabId,
-        conversationId: typeof tabObj.conversationId === "string" ? tabObj.conversationId : null,
-        ...typeof tabObj.draftModel === "string" ? { draftModel: tabObj.draftModel } : {}
-      });
-    }
-    const activeTabId = typeof state.activeTabId === "string" ? state.activeTabId : null;
-    return {
-      openTabs: validatedTabs,
-      activeTabId
-    };
   }
   async setTabManagerState(state) {
     try {
       const loaded = await this.plugin.loadData();
-      const data = isRecord3(loaded) ? loaded : {};
+      const data = isRecord5(loaded) ? loaded : {};
       data.tabManagerState = state;
       await this.plugin.saveData(data);
     } catch (e2) {
-      new import_obsidian3.Notice("Failed to save tab layout");
+      new import_obsidian5.Notice("Failed to save tab layout");
     }
   }
 };
 
 // src/providers/claude/ui/ClaudeSettingsTab.ts
 var fs8 = __toESM(require("fs"));
-var import_obsidian13 = require("obsidian");
+var import_obsidian15 = require("obsidian");
 
 // src/core/providers/ProviderSettingsCoordinator.ts
 var PROJECTION_KEYS = /* @__PURE__ */ new Set([
@@ -49743,7 +50236,49 @@ function normalizeProviderModel(uiConfig, settings11, model) {
   }
   return uiConfig.normalizeModelVariant(model, settings11);
 }
+function normalizeModelDependentSettings(uiConfig, settings11, model) {
+  var _a5, _b3;
+  if (uiConfig.isAdaptiveReasoningModel(model, settings11)) {
+    settings11.effortLevel = normalizeReasoningValue(
+      uiConfig,
+      settings11,
+      model,
+      settings11.effortLevel
+    );
+  } else {
+    settings11.thinkingBudget = normalizeReasoningValue(
+      uiConfig,
+      settings11,
+      model,
+      settings11.thinkingBudget
+    );
+  }
+  const serviceTierToggle = (_b3 = (_a5 = uiConfig.getServiceTierToggle) == null ? void 0 : _a5.call(uiConfig, settings11)) != null ? _b3 : null;
+  if (!serviceTierToggle) {
+    settings11.serviceTier = "default";
+    return;
+  }
+  const currentServiceTier = typeof settings11.serviceTier === "string" ? settings11.serviceTier : void 0;
+  if (currentServiceTier === "fast") {
+    settings11.serviceTier = serviceTierToggle.activeValue;
+    return;
+  }
+  if (currentServiceTier !== serviceTierToggle.inactiveValue && currentServiceTier !== serviceTierToggle.activeValue) {
+    settings11.serviceTier = serviceTierToggle.inactiveValue;
+  }
+}
 var ProviderSettingsCoordinator = class {
+  static applyModelSelection(settings11, providerId, model) {
+    const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
+    settings11.model = model;
+    uiConfig.applyModelDefaults(model, settings11);
+    normalizeModelDependentSettings(uiConfig, settings11, model);
+  }
+  static projectModelSelection(settings11, providerId, model) {
+    const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
+    settings11.model = model;
+    normalizeModelDependentSettings(uiConfig, settings11, model);
+  }
   static handleEnvironmentChange(settings11, providerIds) {
     var _a5;
     let anyChanged = false;
@@ -49838,7 +50373,7 @@ var ProviderSettingsCoordinator = class {
     }
   }
   static projectProviderState(settings11, providerId) {
-    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n;
     const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
     const savedModel = settings11.savedProviderModel;
     const savedEffort = settings11.savedProviderEffort;
@@ -49854,19 +50389,21 @@ var ProviderSettingsCoordinator = class {
     const modelOptions = uiConfig.getModelOptions(settings11);
     const isDefaultModelOfAnotherProvider = currentModel.length > 0 && ProviderRegistry.getRegisteredProviderIds().filter((id) => id !== providerId).some((id) => ProviderRegistry.getChatUIConfig(id).isDefaultModel(currentModel));
     const canReuseCurrentModel = currentModel.length > 0 && !isDefaultModelOfAnotherProvider && (shouldPreferCurrentProjection || modelOptions.some((option) => option.value === currentModel));
-    const fallbackModel = canReuseCurrentModel ? currentModel : (_c2 = (_b3 = modelOptions[0]) == null ? void 0 : _b3.value) != null ? _c2 : currentModel;
+    const providerDefaultModel = (_c2 = (_b3 = uiConfig.getDefaultModel) == null ? void 0 : _b3.call(uiConfig, settings11)) != null ? _c2 : null;
+    const validProviderDefaultModel = providerDefaultModel && modelOptions.some((option) => option.value === providerDefaultModel) ? providerDefaultModel : null;
+    const fallbackModel = canReuseCurrentModel ? currentModel : (_e2 = validProviderDefaultModel != null ? validProviderDefaultModel : (_d = modelOptions[0]) == null ? void 0 : _d.value) != null ? _e2 : currentModel;
     const savedModelValue = normalizeProviderModel(uiConfig, settings11, savedModel == null ? void 0 : savedModel[providerId]);
     const isSavedModelValid = savedModelValue !== void 0 && modelOptions.some((option) => option.value === savedModelValue);
-    const model = (_d = isSavedModelValid ? savedModelValue : void 0) != null ? _d : fallbackModel;
+    const model = (_f2 = isSavedModelValid ? savedModelValue : void 0) != null ? _f2 : fallbackModel;
     const canReuseCurrentProjection = canReuseCurrentModel && model === currentModel;
     if (model) {
       settings11.model = model;
       uiConfig.applyModelDefaults(model, settings11);
     }
-    const serviceTierToggle = (_f2 = (_e2 = uiConfig.getServiceTierToggle) == null ? void 0 : _e2.call(uiConfig, {
+    const serviceTierToggle = (_h2 = (_g = uiConfig.getServiceTierToggle) == null ? void 0 : _g.call(uiConfig, {
       ...settings11,
       ...model ? { model } : {}
-    })) != null ? _f2 : null;
+    })) != null ? _h2 : null;
     const isAdaptive = Boolean(model) && uiConfig.isAdaptiveReasoningModel(model, settings11);
     if ((savedEffort == null ? void 0 : savedEffort[providerId]) !== void 0) {
       settings11.effortLevel = savedEffort[providerId];
@@ -49883,7 +50420,7 @@ var ProviderSettingsCoordinator = class {
     } else if (canReuseCurrentProjection && currentServiceTier !== void 0) {
       settings11.serviceTier = currentServiceTier;
     } else {
-      settings11.serviceTier = (_g = serviceTierToggle == null ? void 0 : serviceTierToggle.inactiveValue) != null ? _g : "default";
+      settings11.serviceTier = (_i = serviceTierToggle == null ? void 0 : serviceTierToggle.inactiveValue) != null ? _i : "default";
     }
     const usesBudget = Boolean(model) && !isAdaptive;
     if (usesBudget) {
@@ -49896,7 +50433,7 @@ var ProviderSettingsCoordinator = class {
       }
       settings11.thinkingBudget = normalizeReasoningValue(uiConfig, settings11, model, settings11.thinkingBudget);
     }
-    const permissionToggle = (_i = (_h2 = uiConfig.getPermissionModeToggle) == null ? void 0 : _h2.call(uiConfig)) != null ? _i : null;
+    const permissionToggle = (_k3 = (_j = uiConfig.getPermissionModeToggle) == null ? void 0 : _j.call(uiConfig)) != null ? _k3 : null;
     if (!permissionToggle) {
       return;
     }
@@ -49907,14 +50444,14 @@ var ProviderSettingsCoordinator = class {
     ]);
     const currentPermissionMode = normalizeToggleValue(settings11.permissionMode, allowedPermissionModes);
     const derivedPermissionMode = normalizeToggleValue(
-      (_j = uiConfig.resolvePermissionMode) == null ? void 0 : _j.call(uiConfig, settings11),
+      (_l2 = uiConfig.resolvePermissionMode) == null ? void 0 : _l2.call(uiConfig, settings11),
       allowedPermissionModes
     );
     const savedPermissionModeValue = normalizeToggleValue(
       savedPermissionMode == null ? void 0 : savedPermissionMode[providerId],
       allowedPermissionModes
     );
-    const projectedPermissionMode = (_l2 = (_k3 = savedPermissionModeValue != null ? savedPermissionModeValue : derivedPermissionMode) != null ? _k3 : shouldPreferCurrentProjection ? currentPermissionMode : void 0) != null ? _l2 : currentPermissionMode;
+    const projectedPermissionMode = (_n = (_m = savedPermissionModeValue != null ? savedPermissionModeValue : derivedPermissionMode) != null ? _m : shouldPreferCurrentProjection ? currentPermissionMode : void 0) != null ? _n : currentPermissionMode;
     if (projectedPermissionMode !== void 0) {
       settings11.permissionMode = projectedPermissionMode;
     }
@@ -49987,12 +50524,6 @@ var ProviderSettingsCoordinator = class {
     this.projectProviderState(settings11, getSettingsProviderId(settings11));
   }
 };
-
-// src/features/settings/ui/EnvironmentSettingsSection.ts
-var import_obsidian6 = require("obsidian");
-
-// src/features/settings/ui/EnvSnippetManager.ts
-var import_obsidian5 = require("obsidian");
 
 // src/i18n/locales/de.json
 var de_exports = {};
@@ -50216,12 +50747,12 @@ var settings = {
     desc: "L\xE4dt ~/.claude/settings.json. Wenn aktiviert, k\xF6nnen Benutzer-Claude-Code-Berechtigungsregeln den Sicherheitsmodus umgehen."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "Sicherheitsmodus",
+    desc: "Berechtigungsmodus, der verwendet wird, wenn der Safe-Schalter aktiv ist."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "Sicherheitsmodus",
+    desc: "Sandbox-Modus, der verwendet wird, wenn der Safe-Schalter aktiv ist."
   },
   environment: "Umgebung",
   customVariables: {
@@ -50252,25 +50783,17 @@ var settings = {
     desc: "Legen Sie Aliasnamen in der Modellauswahl und Kontextfenstergr\xF6\xDFen f\xFCr benutzerdefinierte Modelle fest."
   },
   customModelAliases: {
-    placeholder: "Alias"
+    placeholder: "Aliasname"
   },
   customContextLimits: {
     name: "Benutzerdefinierte Kontextlimits",
     desc: "Legen Sie die Kontextfenstergr\xF6\xDFen f\xFCr Ihre benutzerdefinierten Modelle fest. Leer lassen f\xFCr den Standardwert (200k Token).",
     invalid: "Ung\xFCltiges Format. Verwenden Sie: 256k, 1m oder exakte Anzahl (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Opus 1M Kontextfenster",
-    desc: "Opus 1M in der Modellauswahl anzeigen. In Max-, Team- und Enterprise-Pl\xE4nen enthalten. API- und Pro-Nutzer ben\xF6tigen zus\xE4tzliche Nutzung."
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M Kontextfenster",
-    desc: "Sonnet 1M in der Modellauswahl anzeigen. Erfordert zus\xE4tzliche Nutzung bei Max-, Team- und Enterprise-Pl\xE4nen. API- und Pro-Nutzer ben\xF6tigen zus\xE4tzliche Nutzung."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "Benutzerdefinierte Modelle",
+    desc: "F\xFCge zus\xE4tzliche Claude-Modell-IDs zur Auswahl hinzu, eine pro Zeile. Modell\xFCberschreibungen aus der Umgebung ersetzen die Auswahl weiterhin.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Chrome-Erweiterung aktivieren",
@@ -50320,6 +50843,138 @@ var settings = {
   language: {
     name: "Sprache",
     desc: "Anzeigesprache der Plugin-Oberfl\xE4che \xE4ndern"
+  },
+  codex: {
+    enableProvider: {
+      name: "Codex-Anbieter aktivieren",
+      desc: "Wenn aktiviert, erscheinen Codex-Modelle in der Modellauswahl f\xFCr neue Unterhaltungen. Bestehende Codex-Sitzungen bleiben erhalten."
+    },
+    installationMethod: {
+      name: "Installationsmethode",
+      desc: "Wie Claudian Codex unter Windows starten soll. Native Windows verwendet einen Windows-Programmpfad. WSL startet die Linux-CLI in einer ausgew\xE4hlten Distribution.",
+      nativeWindows: "Natives Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex-CLI-Pfad",
+      descUnix: "Benutzerdefinierter Pfad zur lokalen Codex-CLI. Leer lassen, um bekannte Codex-Installationen und dann PATH zu bevorzugen.",
+      descWindows: "Benutzerdefinierter Pfad zur lokalen Codex-CLI. Leer lassen f\xFCr automatische Erkennung \xFCber PATH. Verwende den nativen Windows-Programmpfad, normalerweise `codex.exe`.",
+      descWsl: "Linux-seitiger Codex-Befehl oder absoluter Pfad zur Ausf\xFChrung in WSL. Leer lassen f\xFCr PATH-Suche in der ausgew\xE4hlten Distribution.",
+      validation: {
+        wslWindowsPath: "Der WSL-Modus erwartet einen Linux-Befehl oder absoluten Linux-Pfad, keinen Windows-Programmpfad."
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL-Distribution \xFCberschreiben",
+      desc: "Optionale erweiterte \xDCberschreibung. Leer lassen, um die Distribution m\xF6glichst aus einem WSL-Workspace-Pfad abzuleiten, sonst wird die Standard-WSL-Distribution verwendet."
+    },
+    safeMode: {
+      workspaceWrite: "Workspace schreiben",
+      readOnly: "Nur lesen"
+    },
+    customModels: {
+      name: "Benutzerdefinierte Modelle",
+      desc: "F\xFCge zus\xE4tzliche Codex-Modell-IDs zur Auswahl hinzu, eine pro Zeile. `OPENAI_MODEL` hat weiterhin Vorrang, wenn gesetzt.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "Reasoning-Zusammenfassung",
+      desc: "Zeigt eine Zusammenfassung des Reasoning-Prozesses des Modells im Denkblock.",
+      auto: "Automatisch",
+      concise: "Kurz",
+      detailed: "Ausf\xFChrlich",
+      off: "Aus"
+    },
+    skills: {
+      name: "Codex-F\xE4higkeiten",
+      desc: "Verwalte Vault-Codex-F\xE4higkeiten in .codex/skills/ oder .agents/skills/. F\xE4higkeiten auf Home-Ebene sind hier ausgeschlossen.",
+      hiddenName: "Ausgeblendete F\xE4higkeiten",
+      hiddenDesc: "Blende bestimmte Codex-F\xE4higkeiten aus dem Dropdown aus. Gib F\xE4higkeitsnamen ohne f\xFChrendes $ ein, einen pro Zeile.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex-Sub-Agenten",
+      desc: "Verwalte Vault-Codex-Sub-Agenten in .codex/agents/. Jede TOML-Datei definiert einen benutzerdefinierten Agenten."
+    },
+    mcp: {
+      descBeforeCommand: "Codex verwaltet MCP-Server \xFCber seine eigene CLI. Konfiguriere mit ",
+      descAfterCommand: ", dann sind sie in Claudian verf\xFCgbar. ",
+      learnMore: "Mehr erfahren"
+    },
+    environment: {
+      name: "Codex-Umgebung",
+      desc: "Nur Codex-eigene Laufzeitvariablen. Verwende dies f\xFCr OPENAI_*- und CODEX_*-Einstellungen. Wenn die Codex-Autoerkennung Hilfe braucht, f\xFCge das Installationsverzeichnis dem gemeinsamen PATH hinzu statt diesem Anbieterabschnitt."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Codex-F\xE4higkeit bearbeiten",
+      titleAdd: "Codex-F\xE4higkeit hinzuf\xFCgen",
+      directory: "Verzeichnis",
+      directoryDesc: "Speicherort der F\xE4higkeit",
+      skillName: "Name der F\xE4higkeit",
+      skillNameDesc: 'Der Name nach $ (z. B. "analyze" f\xFCr $analyze)',
+      description: "Beschreibung",
+      descriptionDesc: "Optionale Beschreibung im Dropdown",
+      instructions: "Anweisungen",
+      instructionsDesc: "Anweisungen der F\xE4higkeit (SKILL.md-Inhalt)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "Anweisungen sind erforderlich",
+    saveFailed: "Codex-F\xE4higkeit konnte nicht gespeichert werden",
+    header: "Codex-F\xE4higkeiten",
+    noSkills: "Keine Codex-F\xE4higkeiten im Vault. Klicke auf +, um eine zu erstellen.",
+    skillBadge: "F\xE4higkeit",
+    deleted: 'Codex-F\xE4higkeit "{name}" gel\xF6scht',
+    deleteFailed: "Codex-F\xE4higkeit konnte nicht gel\xF6scht werden",
+    created: 'Codex-F\xE4higkeit "{name}" erstellt',
+    updated: 'Codex-F\xE4higkeit "{name}" aktualisiert'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Codex-Sub-Agent bearbeiten",
+      titleAdd: "Codex-Sub-Agent hinzuf\xFCgen",
+      nameDesc: "Agentenname, den Codex beim Starten verwendet (Kleinbuchstaben, Bindestriche, Unterstriche)",
+      descriptionDesc: "Wann Codex diesen Agenten verwenden soll",
+      modelDesc: "Modell\xFCberschreibung (leer lassen zum Vererben)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "Reasoning-Aufwand",
+      desc: "Reasoning-Aufwandsstufe des Modells",
+      inherit: "Vererben",
+      low: "Niedrig",
+      medium: "Mittel",
+      high: "Hoch",
+      xhigh: "Sehr hoch"
+    },
+    sandboxMode: {
+      name: "Sandbox-Modus",
+      desc: "Sandbox-Beschr\xE4nkung f\xFCr diesen Agenten",
+      inherit: "Vererben",
+      readOnly: "Nur lesen",
+      dangerFullAccess: "Vollzugriff",
+      workspaceWrite: "Workspace schreiben"
+    },
+    nicknameCandidates: {
+      name: "Nickname-Kandidaten",
+      desc: "Kommagetrennte Anzeige-Nicknames (z. B. atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "Entwickleranweisungen",
+      desc: "Kernanweisungen, die das Verhalten des Agenten definieren",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "Entwickleranweisungen sind erforderlich"
+    },
+    validation: {
+      nameRequired: "Sub-Agent-Name ist erforderlich",
+      nameTooLong: "Sub-Agent-Name darf h\xF6chstens {count} Zeichen lang sein",
+      nameInvalid: "Sub-Agent-Name darf nur Kleinbuchstaben, Zahlen, Bindestriche und Unterstriche enthalten",
+      nicknameInvalid: "Nickname-Kandidaten d\xFCrfen nur ASCII-Buchstaben, Zahlen, Leerzeichen, Bindestriche und Unterstriche enthalten",
+      nicknameDuplicate: "Nickname-Kandidaten m\xFCssen eindeutig sein"
+    },
+    header: "Codex-Sub-Agenten",
+    noAgents: "Keine Codex-Sub-Agenten im Vault. Klicke auf +, um einen zu erstellen."
   }
 };
 var de_default = {
@@ -50593,18 +51248,10 @@ var settings2 = {
     desc: "Set context window sizes for your custom models. Leave empty to use the default (200k tokens).",
     invalid: "Invalid format. Use: 256k, 1m, or exact count (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Opus 1M context window",
-    desc: "Show Opus 1M in the model selector. Included with Max, Team, and Enterprise plans. API and Pro users need extra usage."
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M context window",
-    desc: "Show Sonnet 1M in the model selector. Requires extra usage on Max, Team, and Enterprise plans. API and Pro users need extra usage."
-  },
   customModels: {
     name: "Custom models",
     desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Enable Chrome extension",
@@ -50654,6 +51301,138 @@ var settings2 = {
   language: {
     name: "Language",
     desc: "Change the display language of the plugin interface"
+  },
+  codex: {
+    enableProvider: {
+      name: "Enable Codex provider",
+      desc: "When enabled, Codex models appear in the model selector for new conversations. Existing Codex sessions are preserved."
+    },
+    installationMethod: {
+      name: "Installation method",
+      desc: "How Claudian should launch Codex on Windows. Native Windows uses a Windows executable path. WSL launches the Linux CLI inside a selected distro.",
+      nativeWindows: "Native Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex CLI path",
+      descUnix: "Custom path to the local Codex CLI. Leave empty to prefer known Codex installs, then PATH.",
+      descWindows: "Custom path to the local Codex CLI. Leave empty to auto-detect from PATH. Use the native Windows executable path, usually `codex.exe`.",
+      descWsl: "Linux-side Codex command or absolute path to run inside WSL. Leave empty for PATH lookup inside the selected distro.",
+      validation: {
+        wslWindowsPath: "WSL mode expects a Linux command or Linux absolute path, not a Windows executable path."
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL distro override",
+      desc: "Optional advanced override. Leave empty to infer the distro from a WSL workspace path when possible, otherwise use the default WSL distro."
+    },
+    safeMode: {
+      workspaceWrite: "Workspace write",
+      readOnly: "Read only"
+    },
+    customModels: {
+      name: "Custom models",
+      desc: "Append additional Codex model IDs to the picker, one per line. `OPENAI_MODEL` still takes precedence when set.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "Reasoning summary",
+      desc: "Show a summary of the model's reasoning process in the thinking block.",
+      auto: "Auto",
+      concise: "Concise",
+      detailed: "Detailed",
+      off: "Off"
+    },
+    skills: {
+      name: "Codex skills",
+      desc: "Manage vault-level Codex skills stored in .codex/skills/ or .agents/skills/. Home-level skills are excluded here.",
+      hiddenName: "Hidden Skills",
+      hiddenDesc: "Hide specific Codex skills from the dropdown. Enter skill names without the leading $, one per line.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex subagents",
+      desc: "Manage vault-level Codex subagents stored in .codex/agents/. Each TOML file defines one custom agent."
+    },
+    mcp: {
+      descBeforeCommand: "Codex manages MCP servers via its own CLI. Configure with ",
+      descAfterCommand: " and they will be available in Claudian. ",
+      learnMore: "Learn more"
+    },
+    environment: {
+      name: "Codex environment",
+      desc: "Codex-owned runtime variables only. Use this for OPENAI_* and CODEX_* settings. If Codex auto-detection needs help, add its install directory to shared PATH instead of this provider section."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Edit Codex Skill",
+      titleAdd: "Add Codex Skill",
+      directory: "Directory",
+      directoryDesc: "Where to store the skill",
+      skillName: "Skill name",
+      skillNameDesc: 'The name used after $ (e.g., "analyze" for $analyze)',
+      description: "Description",
+      descriptionDesc: "Optional description shown in dropdown",
+      instructions: "Instructions",
+      instructionsDesc: "The skill instructions (SKILL.md content)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "Instructions are required",
+    saveFailed: "Failed to save Codex skill",
+    header: "Codex Skills",
+    noSkills: "No Codex skills in vault. Click + to create one.",
+    skillBadge: "skill",
+    deleted: 'Codex skill "{name}" deleted',
+    deleteFailed: "Failed to delete Codex skill",
+    created: 'Codex skill "{name}" created',
+    updated: 'Codex skill "{name}" updated'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Edit Codex Subagent",
+      titleAdd: "Add Codex Subagent",
+      nameDesc: "Agent name Codex uses when spawning (lowercase, hyphens, underscores)",
+      descriptionDesc: "When Codex should use this agent",
+      modelDesc: "Model override (leave empty to inherit)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "Reasoning effort",
+      desc: "Model reasoning effort level",
+      inherit: "Inherit",
+      low: "Low",
+      medium: "Medium",
+      high: "High",
+      xhigh: "Extra High"
+    },
+    sandboxMode: {
+      name: "Sandbox mode",
+      desc: "Sandbox restriction for this agent",
+      inherit: "Inherit",
+      readOnly: "Read only",
+      dangerFullAccess: "Danger full access",
+      workspaceWrite: "Workspace write"
+    },
+    nicknameCandidates: {
+      name: "Nickname candidates",
+      desc: "Comma-separated display nicknames (e.g., atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "Developer instructions",
+      desc: "Core instructions that define the agent's behavior",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "Developer instructions are required"
+    },
+    validation: {
+      nameRequired: "Subagent name is required",
+      nameTooLong: "Subagent name must be {count} characters or fewer",
+      nameInvalid: "Subagent name can only contain lowercase letters, numbers, hyphens, and underscores",
+      nicknameInvalid: "Nickname candidates can only contain ASCII letters, numbers, spaces, hyphens, and underscores",
+      nicknameDuplicate: "Nickname candidates must be unique"
+    },
+    header: "Codex Subagents",
+    noAgents: "No Codex subagents in vault. Click + to create one."
   }
 };
 var en_default = {
@@ -50884,12 +51663,12 @@ var settings3 = {
     desc: "Carga ~/.claude/settings.json. Cuando est\xE1 habilitado, las reglas de permisos del usuario pueden eludir el modo seguro."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "Modo seguro",
+    desc: "Modo de permisos usado cuando el interruptor Seguro est\xE1 activo."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "Modo seguro",
+    desc: "Modo de sandbox usado cuando el interruptor Seguro est\xE1 activo."
   },
   environment: "Entorno",
   customVariables: {
@@ -50927,18 +51706,10 @@ var settings3 = {
     desc: "Establezca tama\xF1os de ventana de contexto para sus modelos personalizados. Deje vac\xEDo para usar el valor predeterminado (200k tokens).",
     invalid: "Formato inv\xE1lido. Use: 256k, 1m o n\xFAmero exacto (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Ventana de contexto Opus 1M",
-    desc: "Mostrar Opus 1M en el selector de modelos. Incluido en planes Max, Team y Enterprise. Usuarios de API y Pro necesitan uso adicional."
-  },
-  enableSonnet1M: {
-    name: "Ventana de contexto Sonnet 1M",
-    desc: "Mostrar Sonnet 1M en el selector de modelos. Requiere uso adicional en planes Max, Team y Enterprise. Usuarios de API y Pro necesitan uso adicional."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "Modelos personalizados",
+    desc: "A\xF1ade IDs de modelos de Claude al selector, uno por l\xEDnea. Las sobrescrituras de modelo desde el entorno siguen reemplazando el selector.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Habilitar extensi\xF3n de Chrome",
@@ -50988,6 +51759,138 @@ var settings3 = {
   language: {
     name: "Idioma",
     desc: "Cambiar el idioma de visualizaci\xF3n de la interfaz del plugin"
+  },
+  codex: {
+    enableProvider: {
+      name: "Activar proveedor Codex",
+      desc: "Cuando est\xE1 activado, los modelos Codex aparecen en el selector de modelos para nuevas conversaciones. Las sesiones Codex existentes se conservan."
+    },
+    installationMethod: {
+      name: "M\xE9todo de instalaci\xF3n",
+      desc: "C\xF3mo debe iniciar Claudian Codex en Windows. Windows nativo usa una ruta de ejecutable de Windows. WSL inicia la CLI de Linux dentro de una distribuci\xF3n seleccionada.",
+      nativeWindows: "Windows nativo",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Ruta de la CLI de Codex",
+      descUnix: "Ruta personalizada a la CLI local de Codex. D\xE9jala vac\xEDa para preferir instalaciones conocidas de Codex y luego PATH.",
+      descWindows: "Ruta personalizada a la CLI local de Codex. D\xE9jala vac\xEDa para autodetectar desde PATH. Usa la ruta del ejecutable nativo de Windows, normalmente `codex.exe`.",
+      descWsl: "Comando de Codex del lado Linux o ruta absoluta para ejecutar dentro de WSL. D\xE9jala vac\xEDa para buscar en PATH dentro de la distribuci\xF3n seleccionada.",
+      validation: {
+        wslWindowsPath: "El modo WSL espera un comando Linux o una ruta absoluta de Linux, no una ruta de ejecutable de Windows."
+      }
+    },
+    wslDistroOverride: {
+      name: "Sobrescritura de distribuci\xF3n WSL",
+      desc: "Sobrescritura avanzada opcional. D\xE9jala vac\xEDa para inferir la distribuci\xF3n desde una ruta de espacio de trabajo WSL cuando sea posible; si no, se usa la distribuci\xF3n WSL predeterminada."
+    },
+    safeMode: {
+      workspaceWrite: "Escritura en espacio de trabajo",
+      readOnly: "Solo lectura"
+    },
+    customModels: {
+      name: "Modelos personalizados",
+      desc: "A\xF1ade IDs de modelos Codex al selector, uno por l\xEDnea. `OPENAI_MODEL` sigue teniendo prioridad cuando est\xE1 definido.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "Resumen de razonamiento",
+      desc: "Muestra un resumen del proceso de razonamiento del modelo en el bloque de pensamiento.",
+      auto: "Auto",
+      concise: "Conciso",
+      detailed: "Detallado",
+      off: "Desactivado"
+    },
+    skills: {
+      name: "Habilidades de Codex",
+      desc: "Gestiona habilidades Codex de nivel vault guardadas en .codex/skills/ o .agents/skills/. Las habilidades de nivel home se excluyen aqu\xED.",
+      hiddenName: "Habilidades ocultas",
+      hiddenDesc: "Oculta habilidades Codex espec\xEDficas del desplegable. Introduce nombres de habilidad sin el $ inicial, uno por l\xEDnea.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Subagentes de Codex",
+      desc: "Gestiona subagentes Codex de nivel vault guardados en .codex/agents/. Cada archivo TOML define un agente personalizado."
+    },
+    mcp: {
+      descBeforeCommand: "Codex gestiona servidores MCP mediante su propia CLI. Config\xFAralos con ",
+      descAfterCommand: " y estar\xE1n disponibles en Claudian. ",
+      learnMore: "M\xE1s informaci\xF3n"
+    },
+    environment: {
+      name: "Entorno de Codex",
+      desc: "Solo variables de ejecuci\xF3n propiedad de Codex. \xDAsalo para ajustes OPENAI_* y CODEX_*. Si la autodetecci\xF3n de Codex necesita ayuda, a\xF1ade su directorio de instalaci\xF3n al PATH compartido en lugar de esta secci\xF3n del proveedor."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Editar habilidad de Codex",
+      titleAdd: "A\xF1adir habilidad de Codex",
+      directory: "Directorio",
+      directoryDesc: "D\xF3nde guardar la habilidad",
+      skillName: "Nombre de habilidad",
+      skillNameDesc: 'El nombre usado despu\xE9s de $ (por ejemplo, "analyze" para $analyze)',
+      description: "Descripci\xF3n",
+      descriptionDesc: "Descripci\xF3n opcional mostrada en el desplegable",
+      instructions: "Instrucciones",
+      instructionsDesc: "Instrucciones de la habilidad (contenido de SKILL.md)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "Las instrucciones son obligatorias",
+    saveFailed: "No se pudo guardar la habilidad de Codex",
+    header: "Habilidades de Codex",
+    noSkills: "No hay habilidades Codex en el vault. Haz clic en + para crear una.",
+    skillBadge: "habilidad",
+    deleted: 'Habilidad de Codex "{name}" eliminada',
+    deleteFailed: "No se pudo eliminar la habilidad de Codex",
+    created: 'Habilidad de Codex "{name}" creada',
+    updated: 'Habilidad de Codex "{name}" actualizada'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Editar subagente de Codex",
+      titleAdd: "A\xF1adir subagente de Codex",
+      nameDesc: "Nombre de agente que Codex usa al generarlo (min\xFAsculas, guiones y guiones bajos)",
+      descriptionDesc: "Cu\xE1ndo deber\xEDa usar Codex este agente",
+      modelDesc: "Sobrescritura de modelo (vac\xEDo = heredar)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "Esfuerzo de razonamiento",
+      desc: "Nivel de esfuerzo de razonamiento del modelo",
+      inherit: "Heredar",
+      low: "Bajo",
+      medium: "Medio",
+      high: "Alto",
+      xhigh: "Muy alto"
+    },
+    sandboxMode: {
+      name: "Modo sandbox",
+      desc: "Restricci\xF3n de sandbox para este agente",
+      inherit: "Heredar",
+      readOnly: "Solo lectura",
+      dangerFullAccess: "Acceso total",
+      workspaceWrite: "Escritura en espacio de trabajo"
+    },
+    nicknameCandidates: {
+      name: "Candidatos de apodo",
+      desc: "Apodos visibles separados por comas (p. ej., atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "Instrucciones de desarrollador",
+      desc: "Instrucciones centrales que definen el comportamiento del agente",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "Las instrucciones de desarrollador son obligatorias"
+    },
+    validation: {
+      nameRequired: "El nombre del subagente es obligatorio",
+      nameTooLong: "El nombre del subagente debe tener {count} caracteres o menos",
+      nameInvalid: "El nombre del subagente solo puede contener letras min\xFAsculas, n\xFAmeros, guiones y guiones bajos",
+      nicknameInvalid: "Los candidatos de apodo solo pueden contener letras ASCII, n\xFAmeros, espacios, guiones y guiones bajos",
+      nicknameDuplicate: "Los candidatos de apodo deben ser \xFAnicos"
+    },
+    header: "Subagentes de Codex",
+    noAgents: "No hay subagentes Codex en el vault. Haz clic en + para crear uno."
   }
 };
 var es_default = {
@@ -51218,12 +52121,12 @@ var settings4 = {
     desc: "Charge ~/.claude/settings.json. Lorsqu'activ\xE9, les r\xE8gles de permission de l'utilisateur peuvent contourner le mode s\xE9curis\xE9."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "Mode s\xE9curis\xE9",
+    desc: "Mode d'autorisation utilis\xE9 lorsque le bouton Safe est actif."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "Mode s\xE9curis\xE9",
+    desc: "Mode sandbox utilis\xE9 lorsque le bouton Safe est actif."
   },
   environment: "Environnement",
   customVariables: {
@@ -51261,18 +52164,10 @@ var settings4 = {
     desc: "D\xE9finissez les tailles de fen\xEAtre de contexte pour vos mod\xE8les personnalis\xE9s. Laissez vide pour utiliser la valeur par d\xE9faut (200k tokens).",
     invalid: "Format invalide. Utilisez : 256k, 1m ou nombre exact (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Fen\xEAtre de contexte Opus 1M",
-    desc: "Afficher Opus 1M dans le s\xE9lecteur de mod\xE8le. Inclus avec les plans Max, Team et Enterprise. Les utilisateurs API et Pro n\xE9cessitent une utilisation suppl\xE9mentaire."
-  },
-  enableSonnet1M: {
-    name: "Fen\xEAtre de contexte Sonnet 1M",
-    desc: "Afficher Sonnet 1M dans le s\xE9lecteur de mod\xE8le. N\xE9cessite une utilisation suppl\xE9mentaire sur les plans Max, Team et Enterprise. Les utilisateurs API et Pro n\xE9cessitent une utilisation suppl\xE9mentaire."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "Mod\xE8les personnalis\xE9s",
+    desc: "Ajoutez des IDs de mod\xE8les Claude au s\xE9lecteur, un par ligne. Les remplacements de mod\xE8le par variables d'environnement remplacent toujours le s\xE9lecteur.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Activer l'extension Chrome",
@@ -51322,6 +52217,138 @@ var settings4 = {
   language: {
     name: "Langue",
     desc: "Changer la langue d'affichage de l'interface du plugin"
+  },
+  codex: {
+    enableProvider: {
+      name: "Activer le fournisseur Codex",
+      desc: "Lorsque cette option est activ\xE9e, les mod\xE8les Codex apparaissent dans le s\xE9lecteur de mod\xE8les des nouvelles conversations. Les sessions Codex existantes sont conserv\xE9es."
+    },
+    installationMethod: {
+      name: "M\xE9thode d\u2019installation",
+      desc: "Comment Claudian doit lancer Codex sous Windows. Windows natif utilise un chemin d\u2019ex\xE9cutable Windows. WSL lance la CLI Linux dans une distribution choisie.",
+      nativeWindows: "Windows natif",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Chemin de la CLI Codex",
+      descUnix: "Chemin personnalis\xE9 vers la CLI Codex locale. Laissez vide pour pr\xE9f\xE9rer les installations Codex connues, puis PATH.",
+      descWindows: "Chemin personnalis\xE9 vers la CLI Codex locale. Laissez vide pour d\xE9tecter via PATH. Utilisez le chemin de l\u2019ex\xE9cutable Windows natif, g\xE9n\xE9ralement `codex.exe`.",
+      descWsl: "Commande Codex c\xF4t\xE9 Linux ou chemin absolu \xE0 ex\xE9cuter dans WSL. Laissez vide pour rechercher dans PATH dans la distribution choisie.",
+      validation: {
+        wslWindowsPath: "Le mode WSL attend une commande Linux ou un chemin absolu Linux, pas un chemin d\u2019ex\xE9cutable Windows."
+      }
+    },
+    wslDistroOverride: {
+      name: "Remplacement de distribution WSL",
+      desc: "Remplacement avanc\xE9 facultatif. Laissez vide pour d\xE9duire la distribution depuis un chemin d\u2019espace de travail WSL si possible, sinon utiliser la distribution WSL par d\xE9faut."
+    },
+    safeMode: {
+      workspaceWrite: "\xC9criture dans l\u2019espace de travail",
+      readOnly: "Lecture seule"
+    },
+    customModels: {
+      name: "Mod\xE8les personnalis\xE9s",
+      desc: "Ajoutez des IDs de mod\xE8les Codex au s\xE9lecteur, un par ligne. `OPENAI_MODEL` reste prioritaire lorsqu\u2019il est d\xE9fini.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "R\xE9sum\xE9 du raisonnement",
+      desc: "Affiche un r\xE9sum\xE9 du processus de raisonnement du mod\xE8le dans le bloc de r\xE9flexion.",
+      auto: "Auto",
+      concise: "Concise",
+      detailed: "D\xE9taill\xE9e",
+      off: "D\xE9sactiv\xE9"
+    },
+    skills: {
+      name: "Comp\xE9tences Codex",
+      desc: "G\xE9rez les comp\xE9tences Codex de niveau vault stock\xE9es dans .codex/skills/ ou .agents/skills/. Les comp\xE9tences de niveau home sont exclues ici.",
+      hiddenName: "Comp\xE9tences masqu\xE9es",
+      hiddenDesc: "Masquez certaines comp\xE9tences Codex dans le menu d\xE9roulant. Entrez les noms sans le $ initial, un par ligne.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Sous-agents Codex",
+      desc: "G\xE9rez les sous-agents Codex de niveau vault stock\xE9s dans .codex/agents/. Chaque fichier TOML d\xE9finit un agent personnalis\xE9."
+    },
+    mcp: {
+      descBeforeCommand: "Codex g\xE8re les serveurs MCP via sa propre CLI. Configurez avec ",
+      descAfterCommand: " et ils seront disponibles dans Claudian. ",
+      learnMore: "En savoir plus"
+    },
+    environment: {
+      name: "Environnement Codex",
+      desc: "Variables d\u2019ex\xE9cution appartenant uniquement \xE0 Codex. Utilisez ceci pour les r\xE9glages OPENAI_* et CODEX_*. Si l\u2019auto-d\xE9tection de Codex a besoin d\u2019aide, ajoutez son r\xE9pertoire d\u2019installation au PATH partag\xE9 plut\xF4t qu\u2019\xE0 cette section fournisseur."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Modifier la comp\xE9tence Codex",
+      titleAdd: "Ajouter une comp\xE9tence Codex",
+      directory: "R\xE9pertoire",
+      directoryDesc: "O\xF9 stocker la comp\xE9tence",
+      skillName: "Nom de la comp\xE9tence",
+      skillNameDesc: 'Le nom utilis\xE9 apr\xE8s $ (par ex. "analyze" pour $analyze)',
+      description: "Description",
+      descriptionDesc: "Description facultative affich\xE9e dans le menu d\xE9roulant",
+      instructions: "Instructions",
+      instructionsDesc: "Instructions de la comp\xE9tence (contenu de SKILL.md)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "Les instructions sont obligatoires",
+    saveFailed: "\xC9chec de l\u2019enregistrement de la comp\xE9tence Codex",
+    header: "Comp\xE9tences Codex",
+    noSkills: "Aucune comp\xE9tence Codex dans le vault. Cliquez sur + pour en cr\xE9er une.",
+    skillBadge: "comp\xE9tence",
+    deleted: 'Comp\xE9tence Codex "{name}" supprim\xE9e',
+    deleteFailed: "\xC9chec de la suppression de la comp\xE9tence Codex",
+    created: 'Comp\xE9tence Codex "{name}" cr\xE9\xE9e',
+    updated: 'Comp\xE9tence Codex "{name}" mise \xE0 jour'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Modifier le sous-agent Codex",
+      titleAdd: "Ajouter un sous-agent Codex",
+      nameDesc: "Nom d\u2019agent utilis\xE9 par Codex au lancement (minuscules, traits d\u2019union, underscores)",
+      descriptionDesc: "Quand Codex doit utiliser cet agent",
+      modelDesc: "Remplacement de mod\xE8le (vide = h\xE9riter)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "Effort de raisonnement",
+      desc: "Niveau d\u2019effort de raisonnement du mod\xE8le",
+      inherit: "H\xE9riter",
+      low: "Faible",
+      medium: "Moyen",
+      high: "\xC9lev\xE9",
+      xhigh: "Tr\xE8s \xE9lev\xE9"
+    },
+    sandboxMode: {
+      name: "Mode sandbox",
+      desc: "Restriction sandbox pour cet agent",
+      inherit: "H\xE9riter",
+      readOnly: "Lecture seule",
+      dangerFullAccess: "Acc\xE8s complet",
+      workspaceWrite: "\xC9criture dans l\u2019espace de travail"
+    },
+    nicknameCandidates: {
+      name: "Surnoms candidats",
+      desc: "Surnoms d\u2019affichage s\xE9par\xE9s par des virgules (ex. atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "Instructions d\xE9veloppeur",
+      desc: "Instructions centrales qui d\xE9finissent le comportement de l\u2019agent",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "Les instructions d\xE9veloppeur sont obligatoires"
+    },
+    validation: {
+      nameRequired: "Le nom du sous-agent est obligatoire",
+      nameTooLong: "Le nom du sous-agent doit contenir {count} caract\xE8res ou moins",
+      nameInvalid: "Le nom du sous-agent ne peut contenir que des minuscules, chiffres, traits d\u2019union et underscores",
+      nicknameInvalid: "Les surnoms candidats ne peuvent contenir que des lettres ASCII, chiffres, espaces, traits d\u2019union et underscores",
+      nicknameDuplicate: "Les surnoms candidats doivent \xEAtre uniques"
+    },
+    header: "Sous-agents Codex",
+    noAgents: "Aucun sous-agent Codex dans le vault. Cliquez sur + pour en cr\xE9er un."
   }
 };
 var fr_default = {
@@ -51552,12 +52579,12 @@ var settings5 = {
     desc: "~/.claude/settings.json \u3092\u8AAD\u307F\u8FBC\u307F\u307E\u3059\u3002\u6709\u52B9\u306B\u3059\u308B\u3068\u3001\u30E6\u30FC\u30B6\u30FC\u306E Claude Code \u8A31\u53EF\u30EB\u30FC\u30EB\u304C\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u30E2\u30FC\u30C9\u3092\u30D0\u30A4\u30D1\u30B9\u3059\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002"
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "\u30BB\u30FC\u30D5\u30E2\u30FC\u30C9",
+    desc: "Safe \u30C8\u30B0\u30EB\u304C\u6709\u52B9\u306A\u3068\u304D\u306B\u4F7F\u7528\u3059\u308B\u6A29\u9650\u30E2\u30FC\u30C9\u3067\u3059\u3002"
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "\u30BB\u30FC\u30D5\u30E2\u30FC\u30C9",
+    desc: "Safe \u30C8\u30B0\u30EB\u304C\u6709\u52B9\u306A\u3068\u304D\u306B\u4F7F\u7528\u3059\u308B\u30B5\u30F3\u30C9\u30DC\u30C3\u30AF\u30B9\u30E2\u30FC\u30C9\u3067\u3059\u3002"
   },
   environment: "\u74B0\u5883",
   customVariables: {
@@ -51595,18 +52622,10 @@ var settings5 = {
     desc: "\u30AB\u30B9\u30BF\u30E0\u30E2\u30C7\u30EB\u306E\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6\u30B5\u30A4\u30BA\u3092\u8A2D\u5B9A\u3057\u307E\u3059\u3002\u30C7\u30D5\u30A9\u30EB\u30C8\uFF08200k\u30C8\u30FC\u30AF\u30F3\uFF09\u3092\u4F7F\u7528\u3059\u308B\u5834\u5408\u306F\u7A7A\u6B04\u306E\u307E\u307E\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
     invalid: "\u7121\u52B9\u306A\u5F62\u5F0F\u3067\u3059\u3002\u4F7F\u7528\uFF1A256k\u30011m\u3001\u307E\u305F\u306F\u6B63\u78BA\u306A\u6570\u5024\uFF081000-10000000\uFF09\u3002"
   },
-  enableOpus1M: {
-    name: "Opus 1M\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6",
-    desc: "\u30E2\u30C7\u30EB\u30BB\u30EC\u30AF\u30BF\u30FC\u306BOpus 1M\u3092\u8868\u793A\u3057\u307E\u3059\u3002Max\u3001Team\u3001Enterprise\u30D7\u30E9\u30F3\u306B\u542B\u307E\u308C\u307E\u3059\u3002API\u304A\u3088\u3073Pro\u30E6\u30FC\u30B6\u30FC\u306F\u8FFD\u52A0\u4F7F\u7528\u91CF\u304C\u5FC5\u8981\u3067\u3059\u3002"
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u30A6\u30A3\u30F3\u30C9\u30A6",
-    desc: "\u30E2\u30C7\u30EB\u30BB\u30EC\u30AF\u30BF\u30FC\u306BSonnet 1M\u3092\u8868\u793A\u3057\u307E\u3059\u3002Max\u3001Team\u3001Enterprise\u30D7\u30E9\u30F3\u3067\u306F\u8FFD\u52A0\u4F7F\u7528\u91CF\u304C\u5FC5\u8981\u3067\u3059\u3002API\u304A\u3088\u3073Pro\u30E6\u30FC\u30B6\u30FC\u306F\u8FFD\u52A0\u4F7F\u7528\u91CF\u304C\u5FC5\u8981\u3067\u3059\u3002"
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "\u30AB\u30B9\u30BF\u30E0\u30E2\u30C7\u30EB",
+    desc: "\u8FFD\u52A0\u306E Claude \u30E2\u30C7\u30EB ID \u30921\u884C\u306B1\u3064\u305A\u3064\u30D4\u30C3\u30AB\u30FC\u306B\u8FFD\u52A0\u3057\u307E\u3059\u3002\u74B0\u5883\u5909\u6570\u306B\u3088\u308B\u30E2\u30C7\u30EB\u4E0A\u66F8\u304D\u306F\u5F15\u304D\u7D9A\u304D\u30D4\u30C3\u30AB\u30FC\u3092\u7F6E\u304D\u63DB\u3048\u307E\u3059\u3002",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Chrome\u62E1\u5F35\u6A5F\u80FD\u3092\u6709\u52B9\u5316",
@@ -51656,6 +52675,138 @@ var settings5 = {
   language: {
     name: "\u8A00\u8A9E",
     desc: "\u30D7\u30E9\u30B0\u30A4\u30F3\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u306E\u8868\u793A\u8A00\u8A9E\u3092\u5909\u66F4"
+  },
+  codex: {
+    enableProvider: {
+      name: "Codex \u30D7\u30ED\u30D0\u30A4\u30C0\u30FC\u3092\u6709\u52B9\u5316",
+      desc: "\u6709\u52B9\u306B\u3059\u308B\u3068\u3001\u65B0\u3057\u3044\u4F1A\u8A71\u306E\u30E2\u30C7\u30EB\u30BB\u30EC\u30AF\u30BF\u30FC\u306B Codex \u30E2\u30C7\u30EB\u304C\u8868\u793A\u3055\u308C\u307E\u3059\u3002\u65E2\u5B58\u306E Codex \u30BB\u30C3\u30B7\u30E7\u30F3\u306F\u4FDD\u6301\u3055\u308C\u307E\u3059\u3002"
+    },
+    installationMethod: {
+      name: "\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u65B9\u5F0F",
+      desc: "Windows \u3067 Claudian \u304C Codex \u3092\u8D77\u52D5\u3059\u308B\u65B9\u6CD5\u3002\u30CD\u30A4\u30C6\u30A3\u30D6 Windows \u306F Windows \u5B9F\u884C\u30D5\u30A1\u30A4\u30EB\u30D1\u30B9\u3092\u4F7F\u3044\u3001WSL \u306F\u9078\u629E\u3057\u305F\u30C7\u30A3\u30B9\u30C8\u30EA\u30D3\u30E5\u30FC\u30B7\u30E7\u30F3\u5185\u3067 Linux CLI \u3092\u8D77\u52D5\u3057\u307E\u3059\u3002",
+      nativeWindows: "\u30CD\u30A4\u30C6\u30A3\u30D6 Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex CLI \u30D1\u30B9",
+      descUnix: "\u30ED\u30FC\u30AB\u30EB Codex CLI \u306E\u30AB\u30B9\u30BF\u30E0\u30D1\u30B9\u3002\u7A7A\u6B04\u306E\u5834\u5408\u306F\u65E2\u77E5\u306E Codex \u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u3001\u6B21\u306B PATH \u3092\u512A\u5148\u3057\u307E\u3059\u3002",
+      descWindows: "\u30ED\u30FC\u30AB\u30EB Codex CLI \u306E\u30AB\u30B9\u30BF\u30E0\u30D1\u30B9\u3002\u7A7A\u6B04\u306E\u5834\u5408\u306F PATH \u304B\u3089\u81EA\u52D5\u691C\u51FA\u3057\u307E\u3059\u3002\u901A\u5E38\u306F `codex.exe` \u306E\u30CD\u30A4\u30C6\u30A3\u30D6 Windows \u5B9F\u884C\u30D5\u30A1\u30A4\u30EB\u30D1\u30B9\u3092\u4F7F\u7528\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      descWsl: "WSL \u5185\u3067\u5B9F\u884C\u3059\u308B Linux \u5074\u306E Codex \u30B3\u30DE\u30F3\u30C9\u307E\u305F\u306F\u7D76\u5BFE\u30D1\u30B9\u3002\u7A7A\u6B04\u306E\u5834\u5408\u306F\u9078\u629E\u3057\u305F\u30C7\u30A3\u30B9\u30C8\u30EA\u30D3\u30E5\u30FC\u30B7\u30E7\u30F3\u5185\u306E PATH \u3092\u691C\u7D22\u3057\u307E\u3059\u3002",
+      validation: {
+        wslWindowsPath: "WSL \u30E2\u30FC\u30C9\u3067\u306F Windows \u5B9F\u884C\u30D5\u30A1\u30A4\u30EB\u30D1\u30B9\u3067\u306F\u306A\u304F\u3001Linux \u30B3\u30DE\u30F3\u30C9\u307E\u305F\u306F Linux \u7D76\u5BFE\u30D1\u30B9\u304C\u5FC5\u8981\u3067\u3059\u3002"
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL \u30C7\u30A3\u30B9\u30C8\u30EA\u30D3\u30E5\u30FC\u30B7\u30E7\u30F3\u4E0A\u66F8\u304D",
+      desc: "\u4EFB\u610F\u306E\u8A73\u7D30\u4E0A\u66F8\u304D\u3002\u7A7A\u6B04\u306E\u5834\u5408\u3001\u53EF\u80FD\u306A\u3089 WSL \u30EF\u30FC\u30AF\u30B9\u30DA\u30FC\u30B9\u30D1\u30B9\u304B\u3089\u63A8\u6E2C\u3057\u3001\u305D\u308C\u4EE5\u5916\u306F\u65E2\u5B9A\u306E WSL \u30C7\u30A3\u30B9\u30C8\u30EA\u30D3\u30E5\u30FC\u30B7\u30E7\u30F3\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002"
+    },
+    safeMode: {
+      workspaceWrite: "\u30EF\u30FC\u30AF\u30B9\u30DA\u30FC\u30B9\u66F8\u304D\u8FBC\u307F",
+      readOnly: "\u8AAD\u307F\u53D6\u308A\u5C02\u7528"
+    },
+    customModels: {
+      name: "\u30AB\u30B9\u30BF\u30E0\u30E2\u30C7\u30EB",
+      desc: "\u8FFD\u52A0\u306E Codex \u30E2\u30C7\u30EB ID \u30921\u884C\u306B1\u3064\u305A\u3064\u30D4\u30C3\u30AB\u30FC\u306B\u8FFD\u52A0\u3057\u307E\u3059\u3002`OPENAI_MODEL` \u304C\u8A2D\u5B9A\u3055\u308C\u3066\u3044\u308B\u5834\u5408\u306F\u5F15\u304D\u7D9A\u304D\u512A\u5148\u3055\u308C\u307E\u3059\u3002",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "\u63A8\u8AD6\u30B5\u30DE\u30EA\u30FC",
+      desc: "\u601D\u8003\u30D6\u30ED\u30C3\u30AF\u306B\u30E2\u30C7\u30EB\u306E\u63A8\u8AD6\u30D7\u30ED\u30BB\u30B9\u306E\u30B5\u30DE\u30EA\u30FC\u3092\u8868\u793A\u3057\u307E\u3059\u3002",
+      auto: "\u81EA\u52D5",
+      concise: "\u7C21\u6F54",
+      detailed: "\u8A73\u7D30",
+      off: "\u30AA\u30D5"
+    },
+    skills: {
+      name: "Codex \u30B9\u30AD\u30EB",
+      desc: ".codex/skills/ \u307E\u305F\u306F .agents/skills/ \u306B\u4FDD\u5B58\u3055\u308C\u305F Vault \u30EC\u30D9\u30EB\u306E Codex \u30B9\u30AD\u30EB\u3092\u7BA1\u7406\u3057\u307E\u3059\u3002\u30DB\u30FC\u30E0\u30EC\u30D9\u30EB\u306E\u30B9\u30AD\u30EB\u306F\u3053\u3053\u3067\u306F\u9664\u5916\u3055\u308C\u307E\u3059\u3002",
+      hiddenName: "\u975E\u8868\u793A\u306E\u30B9\u30AD\u30EB",
+      hiddenDesc: "\u7279\u5B9A\u306E Codex \u30B9\u30AD\u30EB\u3092\u30C9\u30ED\u30C3\u30D7\u30C0\u30A6\u30F3\u304B\u3089\u975E\u8868\u793A\u306B\u3057\u307E\u3059\u3002\u5148\u982D\u306E $ \u306A\u3057\u3067\u30B9\u30AD\u30EB\u540D\u30921\u884C\u306B1\u3064\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8",
+      desc: ".codex/agents/ \u306B\u4FDD\u5B58\u3055\u308C\u305F Vault \u30EC\u30D9\u30EB\u306E Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u3092\u7BA1\u7406\u3057\u307E\u3059\u3002\u5404 TOML \u30D5\u30A1\u30A4\u30EB\u304C\u30AB\u30B9\u30BF\u30E0\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u30921\u3064\u5B9A\u7FA9\u3057\u307E\u3059\u3002"
+    },
+    mcp: {
+      descBeforeCommand: "Codex \u306F\u72EC\u81EA\u306E CLI \u3067 MCP \u30B5\u30FC\u30D0\u30FC\u3092\u7BA1\u7406\u3057\u307E\u3059\u3002",
+      descAfterCommand: " \u3067\u8A2D\u5B9A\u3059\u308B\u3068 Claudian \u3067\u5229\u7528\u3067\u304D\u307E\u3059\u3002",
+      learnMore: "\u8A73\u3057\u304F\u898B\u308B"
+    },
+    environment: {
+      name: "Codex \u74B0\u5883",
+      desc: "Codex \u304C\u6240\u6709\u3059\u308B\u30E9\u30F3\u30BF\u30A4\u30E0\u5909\u6570\u306E\u307F\u3002OPENAI_* \u3068 CODEX_* \u8A2D\u5B9A\u306B\u4F7F\u7528\u3057\u307E\u3059\u3002Codex \u306E\u81EA\u52D5\u691C\u51FA\u306B\u88DC\u52A9\u304C\u5FC5\u8981\u306A\u5834\u5408\u306F\u3001\u3053\u306E\u30D7\u30ED\u30D0\u30A4\u30C0\u30FC\u74B0\u5883\u3067\u306F\u306A\u304F\u5171\u6709 PATH \u306B\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u3092\u8FFD\u52A0\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Codex \u30B9\u30AD\u30EB\u3092\u7DE8\u96C6",
+      titleAdd: "Codex \u30B9\u30AD\u30EB\u3092\u8FFD\u52A0",
+      directory: "\u30C7\u30A3\u30EC\u30AF\u30C8\u30EA",
+      directoryDesc: "\u30B9\u30AD\u30EB\u306E\u4FDD\u5B58\u5148",
+      skillName: "\u30B9\u30AD\u30EB\u540D",
+      skillNameDesc: '$ \u306E\u5F8C\u306B\u4F7F\u3046\u540D\u524D\uFF08\u4F8B: $analyze \u306E\u5834\u5408\u306F "analyze"\uFF09',
+      description: "\u8AAC\u660E",
+      descriptionDesc: "\u30C9\u30ED\u30C3\u30D7\u30C0\u30A6\u30F3\u306B\u8868\u793A\u3055\u308C\u308B\u4EFB\u610F\u306E\u8AAC\u660E",
+      instructions: "\u6307\u793A",
+      instructionsDesc: "\u30B9\u30AD\u30EB\u306E\u6307\u793A\uFF08SKILL.md \u306E\u5185\u5BB9\uFF09",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "\u6307\u793A\u306F\u5FC5\u9808\u3067\u3059",
+    saveFailed: "Codex \u30B9\u30AD\u30EB\u306E\u4FDD\u5B58\u306B\u5931\u6557\u3057\u307E\u3057\u305F",
+    header: "Codex \u30B9\u30AD\u30EB",
+    noSkills: "Vault \u306B Codex \u30B9\u30AD\u30EB\u304C\u3042\u308A\u307E\u305B\u3093\u3002+ \u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u4F5C\u6210\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+    skillBadge: "\u30B9\u30AD\u30EB",
+    deleted: "Codex \u30B9\u30AD\u30EB\u300C{name}\u300D\u3092\u524A\u9664\u3057\u307E\u3057\u305F",
+    deleteFailed: "Codex \u30B9\u30AD\u30EB\u306E\u524A\u9664\u306B\u5931\u6557\u3057\u307E\u3057\u305F",
+    created: "Codex \u30B9\u30AD\u30EB\u300C{name}\u300D\u3092\u4F5C\u6210\u3057\u307E\u3057\u305F",
+    updated: "Codex \u30B9\u30AD\u30EB\u300C{name}\u300D\u3092\u66F4\u65B0\u3057\u307E\u3057\u305F"
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u3092\u7DE8\u96C6",
+      titleAdd: "Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u3092\u8FFD\u52A0",
+      nameDesc: "Codex \u304C\u8D77\u52D5\u6642\u306B\u4F7F\u7528\u3059\u308B\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u540D\uFF08\u5C0F\u6587\u5B57\u3001\u30CF\u30A4\u30D5\u30F3\u3001\u30A2\u30F3\u30C0\u30FC\u30B9\u30B3\u30A2\uFF09",
+      descriptionDesc: "Codex \u304C\u3053\u306E\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u3092\u4F7F\u3046\u3079\u304D\u30BF\u30A4\u30DF\u30F3\u30B0",
+      modelDesc: "\u30E2\u30C7\u30EB\u4E0A\u66F8\u304D\uFF08\u7A7A\u6B04\u3067\u7D99\u627F\uFF09",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "\u63A8\u8AD6\u5F37\u5EA6",
+      desc: "\u30E2\u30C7\u30EB\u63A8\u8AD6\u5F37\u5EA6\u30EC\u30D9\u30EB",
+      inherit: "\u7D99\u627F",
+      low: "\u4F4E",
+      medium: "\u4E2D",
+      high: "\u9AD8",
+      xhigh: "\u975E\u5E38\u306B\u9AD8\u3044"
+    },
+    sandboxMode: {
+      name: "\u30B5\u30F3\u30C9\u30DC\u30C3\u30AF\u30B9\u30E2\u30FC\u30C9",
+      desc: "\u3053\u306E\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u306E\u30B5\u30F3\u30C9\u30DC\u30C3\u30AF\u30B9\u5236\u9650",
+      inherit: "\u7D99\u627F",
+      readOnly: "\u8AAD\u307F\u53D6\u308A\u5C02\u7528",
+      dangerFullAccess: "\u5B8C\u5168\u30A2\u30AF\u30BB\u30B9",
+      workspaceWrite: "\u30EF\u30FC\u30AF\u30B9\u30DA\u30FC\u30B9\u66F8\u304D\u8FBC\u307F"
+    },
+    nicknameCandidates: {
+      name: "\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u5019\u88DC",
+      desc: "\u8868\u793A\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u3092\u30AB\u30F3\u30DE\u533A\u5207\u308A\u3067\u6307\u5B9A\uFF08\u4F8B: atlas, delta, echo\uFF09"
+    },
+    developerInstructions: {
+      name: "\u958B\u767A\u8005\u6307\u793A",
+      desc: "\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u306E\u52D5\u4F5C\u3092\u5B9A\u7FA9\u3059\u308B\u4E2D\u6838\u306E\u6307\u793A",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "\u958B\u767A\u8005\u6307\u793A\u306F\u5FC5\u9808\u3067\u3059"
+    },
+    validation: {
+      nameRequired: "\u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u540D\u306F\u5FC5\u9808\u3067\u3059",
+      nameTooLong: "\u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u540D\u306F {count} \u6587\u5B57\u4EE5\u5185\u306B\u3057\u3066\u304F\u3060\u3055\u3044",
+      nameInvalid: "\u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u540D\u306B\u306F\u5C0F\u6587\u5B57\u3001\u6570\u5B57\u3001\u30CF\u30A4\u30D5\u30F3\u3001\u30A2\u30F3\u30C0\u30FC\u30B9\u30B3\u30A2\u306E\u307F\u4F7F\u7528\u3067\u304D\u307E\u3059",
+      nicknameInvalid: "\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u5019\u88DC\u306B\u306F ASCII \u6587\u5B57\u3001\u6570\u5B57\u3001\u30B9\u30DA\u30FC\u30B9\u3001\u30CF\u30A4\u30D5\u30F3\u3001\u30A2\u30F3\u30C0\u30FC\u30B9\u30B3\u30A2\u306E\u307F\u4F7F\u7528\u3067\u304D\u307E\u3059",
+      nicknameDuplicate: "\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u5019\u88DC\u306F\u4E00\u610F\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059"
+    },
+    header: "Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8",
+    noAgents: "Vault \u306B Codex \u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u304C\u3042\u308A\u307E\u305B\u3093\u3002+ \u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u4F5C\u6210\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
   }
 };
 var ja_default = {
@@ -51886,12 +53037,12 @@ var settings6 = {
     desc: "~/.claude/settings.json\uC744 \uB85C\uB4DC\uD569\uB2C8\uB2E4. \uD65C\uC131\uD654\uD558\uBA74 \uC0AC\uC6A9\uC790\uC758 Claude Code \uD5C8\uC6A9 \uADDC\uCE59\uC774 \uBCF4\uC548 \uBAA8\uB4DC\uB97C \uC6B0\uD68C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "\uC548\uC804 \uBAA8\uB4DC",
+    desc: "Safe \uD1A0\uAE00\uC774 \uD65C\uC131\uD654\uB418\uC5C8\uC744 \uB54C \uC0AC\uC6A9\uD558\uB294 \uAD8C\uD55C \uBAA8\uB4DC\uC785\uB2C8\uB2E4."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "\uC548\uC804 \uBAA8\uB4DC",
+    desc: "Safe \uD1A0\uAE00\uC774 \uD65C\uC131\uD654\uB418\uC5C8\uC744 \uB54C \uC0AC\uC6A9\uD558\uB294 \uC0CC\uB4DC\uBC15\uC2A4 \uBAA8\uB4DC\uC785\uB2C8\uB2E4."
   },
   environment: "\uD658\uACBD",
   customVariables: {
@@ -51929,18 +53080,10 @@ var settings6 = {
     desc: "\uC0AC\uC6A9\uC790 \uC815\uC758 \uBAA8\uB378\uC758 \uCEE8\uD14D\uC2A4\uD2B8 \uCC3D \uD06C\uAE30\uB97C \uC124\uC815\uD569\uB2C8\uB2E4. \uAE30\uBCF8\uAC12(200k \uD1A0\uD070)\uC744 \uC0AC\uC6A9\uD558\uB824\uBA74 \uBE44\uC6CC\uB450\uC138\uC694.",
     invalid: "\uC798\uBABB\uB41C \uD615\uC2DD\uC785\uB2C8\uB2E4. \uC0AC\uC6A9: 256k, 1m \uB610\uB294 \uC815\uD655\uD55C \uC22B\uC790(1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Opus 1M \uCEE8\uD14D\uC2A4\uD2B8 \uC708\uB3C4\uC6B0",
-    desc: "\uBAA8\uB378 \uC120\uD0DD\uAE30\uC5D0\uC11C Opus 1M\uC744 \uD45C\uC2DC\uD569\uB2C8\uB2E4. Max, Team, Enterprise \uD50C\uB79C\uC5D0 \uD3EC\uD568\uB429\uB2C8\uB2E4. API \uBC0F Pro \uC0AC\uC6A9\uC790\uB294 \uCD94\uAC00 \uC0AC\uC6A9\uB7C9\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M \uCEE8\uD14D\uC2A4\uD2B8 \uC708\uB3C4\uC6B0",
-    desc: "\uBAA8\uB378 \uC120\uD0DD\uAE30\uC5D0\uC11C Sonnet 1M\uC744 \uD45C\uC2DC\uD569\uB2C8\uB2E4. Max, Team, Enterprise \uD50C\uB79C\uC5D0\uC11C \uCD94\uAC00 \uC0AC\uC6A9\uB7C9\uC774 \uD544\uC694\uD569\uB2C8\uB2E4. API \uBC0F Pro \uC0AC\uC6A9\uC790\uB294 \uCD94\uAC00 \uC0AC\uC6A9\uB7C9\uC774 \uD544\uC694\uD569\uB2C8\uB2E4."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "\uC0AC\uC6A9\uC790 \uC9C0\uC815 \uBAA8\uB378",
+    desc: "\uCD94\uAC00 Claude \uBAA8\uB378 ID\uB97C \uD55C \uC904\uC5D0 \uD558\uB098\uC529 \uC120\uD0DD\uAE30\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4. \uD658\uACBD \uBAA8\uB378 \uC7AC\uC815\uC758\uB294 \uACC4\uC18D \uC120\uD0DD\uAE30\uB97C \uB300\uCCB4\uD569\uB2C8\uB2E4.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Chrome \uD655\uC7A5 \uD504\uB85C\uADF8\uB7A8 \uD65C\uC131\uD654",
@@ -51990,6 +53133,138 @@ var settings6 = {
   language: {
     name: "\uC5B8\uC5B4",
     desc: "\uD50C\uB7EC\uADF8\uC778 \uC778\uD130\uD398\uC774\uC2A4\uC758 \uD45C\uC2DC \uC5B8\uC5B4 \uBCC0\uACBD"
+  },
+  codex: {
+    enableProvider: {
+      name: "Codex \uACF5\uAE09\uC790 \uD65C\uC131\uD654",
+      desc: "\uD65C\uC131\uD654\uD558\uBA74 \uC0C8 \uB300\uD654\uC758 \uBAA8\uB378 \uC120\uD0DD\uAE30\uC5D0 Codex \uBAA8\uB378\uC774 \uD45C\uC2DC\uB429\uB2C8\uB2E4. \uAE30\uC874 Codex \uC138\uC158\uC740 \uC720\uC9C0\uB429\uB2C8\uB2E4."
+    },
+    installationMethod: {
+      name: "\uC124\uCE58 \uBC29\uC2DD",
+      desc: "Windows\uC5D0\uC11C Claudian\uC774 Codex\uB97C \uC2E4\uD589\uD558\uB294 \uBC29\uC2DD\uC785\uB2C8\uB2E4. \uB124\uC774\uD2F0\uBE0C Windows\uB294 Windows \uC2E4\uD589 \uD30C\uC77C \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uACE0, WSL\uC740 \uC120\uD0DD\uD55C \uBC30\uD3EC\uD310 \uC548\uC5D0\uC11C Linux CLI\uB97C \uC2E4\uD589\uD569\uB2C8\uB2E4.",
+      nativeWindows: "\uB124\uC774\uD2F0\uBE0C Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex CLI \uACBD\uB85C",
+      descUnix: "\uB85C\uCEEC Codex CLI\uC758 \uC0AC\uC6A9\uC790 \uC9C0\uC815 \uACBD\uB85C\uC785\uB2C8\uB2E4. \uBE44\uC6CC \uB450\uBA74 \uC54C\uB824\uC9C4 Codex \uC124\uCE58\uB97C \uBA3C\uC800 \uC0AC\uC6A9\uD55C \uB4A4 PATH\uB97C \uCC3E\uC2B5\uB2C8\uB2E4.",
+      descWindows: "\uB85C\uCEEC Codex CLI\uC758 \uC0AC\uC6A9\uC790 \uC9C0\uC815 \uACBD\uB85C\uC785\uB2C8\uB2E4. \uBE44\uC6CC \uB450\uBA74 PATH\uC5D0\uC11C \uC790\uB3D9 \uAC10\uC9C0\uD569\uB2C8\uB2E4. \uC77C\uBC18\uC801\uC73C\uB85C `codex.exe`\uC778 \uB124\uC774\uD2F0\uBE0C Windows \uC2E4\uD589 \uD30C\uC77C \uACBD\uB85C\uB97C \uC0AC\uC6A9\uD558\uC138\uC694.",
+      descWsl: "WSL \uC548\uC5D0\uC11C \uC2E4\uD589\uD560 Linux \uCE21 Codex \uBA85\uB839 \uB610\uB294 \uC808\uB300 \uACBD\uB85C\uC785\uB2C8\uB2E4. \uBE44\uC6CC \uB450\uBA74 \uC120\uD0DD\uD55C \uBC30\uD3EC\uD310\uC758 PATH\uC5D0\uC11C \uCC3E\uC2B5\uB2C8\uB2E4.",
+      validation: {
+        wslWindowsPath: "WSL \uBAA8\uB4DC\uC5D0\uB294 Windows \uC2E4\uD589 \uD30C\uC77C \uACBD\uB85C\uAC00 \uC544\uB2C8\uB77C Linux \uBA85\uB839 \uB610\uB294 Linux \uC808\uB300 \uACBD\uB85C\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4."
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL \uBC30\uD3EC\uD310 \uC7AC\uC815\uC758",
+      desc: "\uC120\uD0DD\uC801 \uACE0\uAE09 \uC7AC\uC815\uC758\uC785\uB2C8\uB2E4. \uBE44\uC6CC \uB450\uBA74 \uAC00\uB2A5\uD55C \uACBD\uC6B0 WSL \uC791\uC5C5\uACF5\uAC04 \uACBD\uB85C\uC5D0\uC11C \uBC30\uD3EC\uD310\uC744 \uCD94\uB860\uD558\uACE0, \uADF8\uB807\uC9C0 \uC54A\uC73C\uBA74 \uAE30\uBCF8 WSL \uBC30\uD3EC\uD310\uC744 \uC0AC\uC6A9\uD569\uB2C8\uB2E4."
+    },
+    safeMode: {
+      workspaceWrite: "\uC791\uC5C5\uACF5\uAC04 \uC4F0\uAE30",
+      readOnly: "\uC77D\uAE30 \uC804\uC6A9"
+    },
+    customModels: {
+      name: "\uC0AC\uC6A9\uC790 \uC9C0\uC815 \uBAA8\uB378",
+      desc: "\uCD94\uAC00 Codex \uBAA8\uB378 ID\uB97C \uD55C \uC904\uC5D0 \uD558\uB098\uC529 \uC120\uD0DD\uAE30\uC5D0 \uCD94\uAC00\uD569\uB2C8\uB2E4. `OPENAI_MODEL`\uC774 \uC124\uC815\uB418\uC5B4 \uC788\uC73C\uBA74 \uACC4\uC18D \uC6B0\uC120 \uC801\uC6A9\uB429\uB2C8\uB2E4.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "\uCD94\uB860 \uC694\uC57D",
+      desc: "\uC0DD\uAC01 \uBE14\uB85D\uC5D0 \uBAA8\uB378\uC758 \uCD94\uB860 \uACFC\uC815 \uC694\uC57D\uC744 \uD45C\uC2DC\uD569\uB2C8\uB2E4.",
+      auto: "\uC790\uB3D9",
+      concise: "\uAC04\uACB0",
+      detailed: "\uC0C1\uC138",
+      off: "\uB044\uAE30"
+    },
+    skills: {
+      name: "Codex \uC2A4\uD0AC",
+      desc: ".codex/skills/ \uB610\uB294 .agents/skills/\uC5D0 \uC800\uC7A5\uB41C vault \uC218\uC900 Codex \uC2A4\uD0AC\uC744 \uAD00\uB9AC\uD569\uB2C8\uB2E4. \uD648 \uC218\uC900 \uC2A4\uD0AC\uC740 \uC5EC\uAE30\uC5D0\uC11C \uC81C\uC678\uB429\uB2C8\uB2E4.",
+      hiddenName: "\uC228\uAE34 \uC2A4\uD0AC",
+      hiddenDesc: "\uB4DC\uB86D\uB2E4\uC6B4\uC5D0\uC11C \uD2B9\uC815 Codex \uC2A4\uD0AC\uC744 \uC228\uAE41\uB2C8\uB2E4. \uC55E\uC758 $ \uC5C6\uC774 \uC2A4\uD0AC \uC774\uB984\uC744 \uD55C \uC904\uC5D0 \uD558\uB098\uC529 \uC785\uB825\uD558\uC138\uC694.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8",
+      desc: ".codex/agents/\uC5D0 \uC800\uC7A5\uB41C vault \uC218\uC900 Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8\uB97C \uAD00\uB9AC\uD569\uB2C8\uB2E4. \uAC01 TOML \uD30C\uC77C\uC740 \uC0AC\uC6A9\uC790 \uC9C0\uC815 \uC5D0\uC774\uC804\uD2B8 \uD558\uB098\uB97C \uC815\uC758\uD569\uB2C8\uB2E4."
+    },
+    mcp: {
+      descBeforeCommand: "Codex\uB294 \uC790\uCCB4 CLI\uB85C MCP \uC11C\uBC84\uB97C \uAD00\uB9AC\uD569\uB2C8\uB2E4. ",
+      descAfterCommand: " \uBA85\uB839\uC73C\uB85C \uAD6C\uC131\uD558\uBA74 Claudian\uC5D0\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. ",
+      learnMore: "\uC790\uC138\uD788 \uC54C\uC544\uBCF4\uAE30"
+    },
+    environment: {
+      name: "Codex \uD658\uACBD",
+      desc: "Codex \uC804\uC6A9 \uB7F0\uD0C0\uC784 \uBCC0\uC218\uB9CC \uC785\uB825\uD558\uC138\uC694. OPENAI_* \uBC0F CODEX_* \uC124\uC815\uC5D0 \uC0AC\uC6A9\uD569\uB2C8\uB2E4. Codex \uC790\uB3D9 \uAC10\uC9C0\uC5D0 \uB3C4\uC6C0\uC774 \uD544\uC694\uD558\uBA74 \uC774 \uACF5\uAE09\uC790 \uC139\uC158 \uB300\uC2E0 \uACF5\uC720 PATH\uC5D0 \uC124\uCE58 \uB514\uB809\uD130\uB9AC\uB97C \uCD94\uAC00\uD558\uC138\uC694."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Codex \uC2A4\uD0AC \uD3B8\uC9D1",
+      titleAdd: "Codex \uC2A4\uD0AC \uCD94\uAC00",
+      directory: "\uB514\uB809\uD130\uB9AC",
+      directoryDesc: "\uC2A4\uD0AC\uC744 \uC800\uC7A5\uD560 \uC704\uCE58",
+      skillName: "\uC2A4\uD0AC \uC774\uB984",
+      skillNameDesc: '$ \uB4A4\uC5D0 \uC0AC\uC6A9\uD560 \uC774\uB984\uC785\uB2C8\uB2E4(\uC608: $analyze\uC758 \uACBD\uC6B0 "analyze")',
+      description: "\uC124\uBA85",
+      descriptionDesc: "\uB4DC\uB86D\uB2E4\uC6B4\uC5D0 \uD45C\uC2DC\uD560 \uC120\uD0DD\uC801 \uC124\uBA85",
+      instructions: "\uC9C0\uCE68",
+      instructionsDesc: "\uC2A4\uD0AC \uC9C0\uCE68(SKILL.md \uB0B4\uC6A9)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "\uC9C0\uCE68\uC740 \uD544\uC218\uC785\uB2C8\uB2E4",
+    saveFailed: "Codex \uC2A4\uD0AC \uC800\uC7A5 \uC2E4\uD328",
+    header: "Codex \uC2A4\uD0AC",
+    noSkills: "Vault\uC5D0 Codex \uC2A4\uD0AC\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. +\uB97C \uD074\uB9AD\uD574 \uB9CC\uB4DC\uC138\uC694.",
+    skillBadge: "\uC2A4\uD0AC",
+    deleted: 'Codex \uC2A4\uD0AC "{name}" \uC0AD\uC81C\uB428',
+    deleteFailed: "Codex \uC2A4\uD0AC \uC0AD\uC81C \uC2E4\uD328",
+    created: 'Codex \uC2A4\uD0AC "{name}" \uC0DD\uC131\uB428',
+    updated: 'Codex \uC2A4\uD0AC "{name}" \uC5C5\uB370\uC774\uD2B8\uB428'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8 \uD3B8\uC9D1",
+      titleAdd: "Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8 \uCD94\uAC00",
+      nameDesc: "Codex\uAC00 \uC0DD\uC131\uD560 \uB54C \uC0AC\uC6A9\uD558\uB294 \uC5D0\uC774\uC804\uD2B8 \uC774\uB984(\uC18C\uBB38\uC790, \uD558\uC774\uD508, \uBC11\uC904)",
+      descriptionDesc: "Codex\uAC00 \uC774 \uC5D0\uC774\uC804\uD2B8\uB97C \uC0AC\uC6A9\uD574\uC57C \uD558\uB294 \uC2DC\uC810",
+      modelDesc: "\uBAA8\uB378 \uC7AC\uC815\uC758(\uBE44\uC6CC \uB450\uBA74 \uC0C1\uC18D)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "\uCD94\uB860 \uAC15\uB3C4",
+      desc: "\uBAA8\uB378 \uCD94\uB860 \uAC15\uB3C4 \uC218\uC900",
+      inherit: "\uC0C1\uC18D",
+      low: "\uB0AE\uC74C",
+      medium: "\uC911\uAC04",
+      high: "\uB192\uC74C",
+      xhigh: "\uB9E4\uC6B0 \uB192\uC74C"
+    },
+    sandboxMode: {
+      name: "\uC0CC\uB4DC\uBC15\uC2A4 \uBAA8\uB4DC",
+      desc: "\uC774 \uC5D0\uC774\uC804\uD2B8\uC758 \uC0CC\uB4DC\uBC15\uC2A4 \uC81C\uD55C",
+      inherit: "\uC0C1\uC18D",
+      readOnly: "\uC77D\uAE30 \uC804\uC6A9",
+      dangerFullAccess: "\uC804\uCCB4 \uC561\uC138\uC2A4",
+      workspaceWrite: "\uC791\uC5C5\uACF5\uAC04 \uC4F0\uAE30"
+    },
+    nicknameCandidates: {
+      name: "\uB2C9\uB124\uC784 \uD6C4\uBCF4",
+      desc: "\uD45C\uC2DC \uB2C9\uB124\uC784\uC744 \uC27C\uD45C\uB85C \uAD6C\uBD84\uD569\uB2C8\uB2E4(\uC608: atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "\uAC1C\uBC1C\uC790 \uC9C0\uCE68",
+      desc: "\uC5D0\uC774\uC804\uD2B8 \uB3D9\uC791\uC744 \uC815\uC758\uD558\uB294 \uD575\uC2EC \uC9C0\uCE68",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "\uAC1C\uBC1C\uC790 \uC9C0\uCE68\uC740 \uD544\uC218\uC785\uB2C8\uB2E4"
+    },
+    validation: {
+      nameRequired: "\uD558\uC704 \uC5D0\uC774\uC804\uD2B8 \uC774\uB984\uC740 \uD544\uC218\uC785\uB2C8\uB2E4",
+      nameTooLong: "\uD558\uC704 \uC5D0\uC774\uC804\uD2B8 \uC774\uB984\uC740 {count}\uC790 \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4",
+      nameInvalid: "\uD558\uC704 \uC5D0\uC774\uC804\uD2B8 \uC774\uB984\uC740 \uC18C\uBB38\uC790, \uC22B\uC790, \uD558\uC774\uD508, \uBC11\uC904\uB9CC \uD3EC\uD568\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4",
+      nicknameInvalid: "\uB2C9\uB124\uC784 \uD6C4\uBCF4\uB294 ASCII \uBB38\uC790, \uC22B\uC790, \uACF5\uBC31, \uD558\uC774\uD508, \uBC11\uC904\uB9CC \uD3EC\uD568\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4",
+      nicknameDuplicate: "\uB2C9\uB124\uC784 \uD6C4\uBCF4\uB294 \uACE0\uC720\uD574\uC57C \uD569\uB2C8\uB2E4"
+    },
+    header: "Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8",
+    noAgents: "Vault\uC5D0 Codex \uD558\uC704 \uC5D0\uC774\uC804\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4. +\uB97C \uD074\uB9AD\uD574 \uB9CC\uB4DC\uC138\uC694."
   }
 };
 var ko_default = {
@@ -52220,12 +53495,12 @@ var settings7 = {
     desc: "Carrega ~/.claude/settings.json. Quando habilitado, as regras de permiss\xE3o do usu\xE1rio podem ignorar o modo seguro."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "Modo seguro",
+    desc: "Modo de permiss\xE3o usado quando o controle Safe est\xE1 ativo."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "Modo seguro",
+    desc: "Modo de sandbox usado quando o controle Safe est\xE1 ativo."
   },
   environment: "Ambiente",
   customVariables: {
@@ -52233,7 +53508,7 @@ var settings7 = {
     desc: "Vari\xE1veis de ambiente para Claude SDK (formato KEY=VALUE, uma por linha). Prefixo export suportado."
   },
   envSnippets: {
-    name: "Snippets",
+    name: "Trechos",
     addBtn: "Adicionar snippet",
     noSnippets: "Nenhum snippet de ambiente salvo. Clique em + para salvar sua configura\xE7\xE3o atual.",
     nameRequired: "Por favor, insira um nome para o snippet",
@@ -52256,25 +53531,17 @@ var settings7 = {
     desc: "Defina aliases no seletor de modelos e tamanhos de janela de contexto para modelos personalizados."
   },
   customModelAliases: {
-    placeholder: "Alias"
+    placeholder: "Apelido"
   },
   customContextLimits: {
     name: "Limites de contexto personalizados",
     desc: "Defina tamanhos de janela de contexto para seus modelos personalizados. Deixe vazio para usar o padr\xE3o (200k tokens).",
     invalid: "Formato inv\xE1lido. Use: 256k, 1m ou n\xFAmero exato (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "Janela de contexto Opus 1M",
-    desc: "Mostrar Opus 1M no seletor de modelos. Inclu\xEDdo nos planos Max, Team e Enterprise. Usu\xE1rios de API e Pro precisam de uso adicional."
-  },
-  enableSonnet1M: {
-    name: "Janela de contexto Sonnet 1M",
-    desc: "Mostrar Sonnet 1M no seletor de modelos. Requer uso adicional nos planos Max, Team e Enterprise. Usu\xE1rios de API e Pro precisam de uso adicional."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "Modelos personalizados",
+    desc: "Adicione IDs de modelos Claude ao seletor, um por linha. Substitui\xE7\xF5es de modelo por ambiente continuam substituindo o seletor.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "Habilitar extens\xE3o do Chrome",
@@ -52324,6 +53591,138 @@ var settings7 = {
   language: {
     name: "Idioma",
     desc: "Alterar o idioma de exibi\xE7\xE3o da interface do plugin"
+  },
+  codex: {
+    enableProvider: {
+      name: "Ativar provedor Codex",
+      desc: "Quando ativado, modelos Codex aparecem no seletor de modelos para novas conversas. Sess\xF5es Codex existentes s\xE3o preservadas."
+    },
+    installationMethod: {
+      name: "M\xE9todo de instala\xE7\xE3o",
+      desc: "Como o Claudian deve iniciar o Codex no Windows. Windows nativo usa um caminho de execut\xE1vel do Windows. WSL inicia a CLI Linux dentro de uma distro selecionada.",
+      nativeWindows: "Windows nativo",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Caminho da CLI do Codex",
+      descUnix: "Caminho personalizado para a CLI local do Codex. Deixe vazio para preferir instala\xE7\xF5es conhecidas do Codex e depois PATH.",
+      descWindows: "Caminho personalizado para a CLI local do Codex. Deixe vazio para detectar automaticamente pelo PATH. Use o caminho do execut\xE1vel nativo do Windows, geralmente `codex.exe`.",
+      descWsl: "Comando Codex do lado Linux ou caminho absoluto para executar dentro do WSL. Deixe vazio para procurar no PATH dentro da distro selecionada.",
+      validation: {
+        wslWindowsPath: "O modo WSL espera um comando Linux ou caminho absoluto Linux, n\xE3o um caminho de execut\xE1vel do Windows."
+      }
+    },
+    wslDistroOverride: {
+      name: "Substitui\xE7\xE3o de distro WSL",
+      desc: "Substitui\xE7\xE3o avan\xE7ada opcional. Deixe vazio para inferir a distro a partir de um caminho de workspace WSL quando poss\xEDvel; caso contr\xE1rio, usa a distro WSL padr\xE3o."
+    },
+    safeMode: {
+      workspaceWrite: "Grava\xE7\xE3o no workspace",
+      readOnly: "Somente leitura"
+    },
+    customModels: {
+      name: "Modelos personalizados",
+      desc: "Adicione IDs de modelos Codex ao seletor, um por linha. `OPENAI_MODEL` continua tendo preced\xEAncia quando definido.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "Resumo de racioc\xEDnio",
+      desc: "Mostra um resumo do processo de racioc\xEDnio do modelo no bloco de pensamento.",
+      auto: "Autom\xE1tico",
+      concise: "Conciso",
+      detailed: "Detalhado",
+      off: "Desativado"
+    },
+    skills: {
+      name: "Habilidades Codex",
+      desc: "Gerencie habilidades Codex de n\xEDvel vault armazenadas em .codex/skills/ ou .agents/skills/. Habilidades de n\xEDvel home s\xE3o exclu\xEDdas aqui.",
+      hiddenName: "Habilidades ocultas",
+      hiddenDesc: "Oculte habilidades Codex espec\xEDficas do menu. Insira nomes sem o $ inicial, um por linha.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Subagentes Codex",
+      desc: "Gerencie subagentes Codex de n\xEDvel vault armazenados em .codex/agents/. Cada arquivo TOML define um agente personalizado."
+    },
+    mcp: {
+      descBeforeCommand: "O Codex gerencia servidores MCP por sua pr\xF3pria CLI. Configure com ",
+      descAfterCommand: " e eles ficar\xE3o dispon\xEDveis no Claudian. ",
+      learnMore: "Saiba mais"
+    },
+    environment: {
+      name: "Ambiente do Codex",
+      desc: "Somente vari\xE1veis de runtime pertencentes ao Codex. Use isto para configura\xE7\xF5es OPENAI_* e CODEX_*. Se a autodetec\xE7\xE3o do Codex precisar de ajuda, adicione o diret\xF3rio de instala\xE7\xE3o ao PATH compartilhado em vez desta se\xE7\xE3o do provedor."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "Editar habilidade Codex",
+      titleAdd: "Adicionar habilidade Codex",
+      directory: "Diret\xF3rio",
+      directoryDesc: "Onde armazenar a habilidade",
+      skillName: "Nome da habilidade",
+      skillNameDesc: 'O nome usado ap\xF3s $ (ex.: "analyze" para $analyze)',
+      description: "Descri\xE7\xE3o",
+      descriptionDesc: "Descri\xE7\xE3o opcional exibida no menu",
+      instructions: "Instru\xE7\xF5es",
+      instructionsDesc: "Instru\xE7\xF5es da habilidade (conte\xFAdo de SKILL.md)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "Instru\xE7\xF5es s\xE3o obrigat\xF3rias",
+    saveFailed: "Falha ao salvar habilidade Codex",
+    header: "Habilidades Codex",
+    noSkills: "N\xE3o h\xE1 habilidades Codex no vault. Clique em + para criar uma.",
+    skillBadge: "habilidade",
+    deleted: 'Habilidade Codex "{name}" exclu\xEDda',
+    deleteFailed: "Falha ao excluir habilidade Codex",
+    created: 'Habilidade Codex "{name}" criada',
+    updated: 'Habilidade Codex "{name}" atualizada'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "Editar subagente Codex",
+      titleAdd: "Adicionar subagente Codex",
+      nameDesc: "Nome do agente que o Codex usa ao iniciar (min\xFAsculas, hifens e underscores)",
+      descriptionDesc: "Quando o Codex deve usar este agente",
+      modelDesc: "Substitui\xE7\xE3o de modelo (vazio = herdar)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "Esfor\xE7o de racioc\xEDnio",
+      desc: "N\xEDvel de esfor\xE7o de racioc\xEDnio do modelo",
+      inherit: "Herdar",
+      low: "Baixo",
+      medium: "M\xE9dio",
+      high: "Alto",
+      xhigh: "Muito alto"
+    },
+    sandboxMode: {
+      name: "Modo sandbox",
+      desc: "Restri\xE7\xE3o de sandbox para este agente",
+      inherit: "Herdar",
+      readOnly: "Somente leitura",
+      dangerFullAccess: "Acesso total",
+      workspaceWrite: "Grava\xE7\xE3o no workspace"
+    },
+    nicknameCandidates: {
+      name: "Candidatos de apelido",
+      desc: "Apelidos exibidos separados por v\xEDrgula (ex.: atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "Instru\xE7\xF5es de desenvolvedor",
+      desc: "Instru\xE7\xF5es centrais que definem o comportamento do agente",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "Instru\xE7\xF5es de desenvolvedor s\xE3o obrigat\xF3rias"
+    },
+    validation: {
+      nameRequired: "Nome do subagente \xE9 obrigat\xF3rio",
+      nameTooLong: "Nome do subagente deve ter {count} caracteres ou menos",
+      nameInvalid: "Nome do subagente s\xF3 pode conter letras min\xFAsculas, n\xFAmeros, hifens e underscores",
+      nicknameInvalid: "Candidatos de apelido s\xF3 podem conter letras ASCII, n\xFAmeros, espa\xE7os, hifens e underscores",
+      nicknameDuplicate: "Candidatos de apelido devem ser \xFAnicos"
+    },
+    header: "Subagentes Codex",
+    noAgents: "N\xE3o h\xE1 subagentes Codex no vault. Clique em + para criar um."
   }
 };
 var pt_default = {
@@ -52554,12 +53953,12 @@ var settings8 = {
     desc: "\u0417\u0430\u0433\u0440\u0443\u0436\u0430\u0435\u0442 ~/.claude/settings.json. \u041F\u0440\u0438 \u0432\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0438 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0439 Claude Code \u043C\u043E\u0433\u0443\u0442 \u043E\u0431\u0445\u043E\u0434\u0438\u0442\u044C \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u044B\u0439 \u0440\u0435\u0436\u0438\u043C."
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u044B\u0439 \u0440\u0435\u0436\u0438\u043C",
+    desc: "\u0420\u0435\u0436\u0438\u043C \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0439, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u044B\u0439, \u043A\u043E\u0433\u0434\u0430 \u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0430\u0442\u0435\u043B\u044C Safe \u0430\u043A\u0442\u0438\u0432\u0435\u043D."
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u044B\u0439 \u0440\u0435\u0436\u0438\u043C",
+    desc: "\u0420\u0435\u0436\u0438\u043C \u043F\u0435\u0441\u043E\u0447\u043D\u0438\u0446\u044B, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u044B\u0439, \u043A\u043E\u0433\u0434\u0430 \u043F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0430\u0442\u0435\u043B\u044C Safe \u0430\u043A\u0442\u0438\u0432\u0435\u043D."
   },
   environment: "\u041E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u0435",
   customVariables: {
@@ -52597,18 +53996,10 @@ var settings8 = {
     desc: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0440\u0430\u0437\u043C\u0435\u0440\u044B \u043E\u043A\u043D\u0430 \u043A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u0430 \u0434\u043B\u044F \u0432\u0430\u0448\u0438\u0445 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0445 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (200k \u0442\u043E\u043A\u0435\u043D\u043E\u0432).",
     invalid: "\u041D\u0435\u0432\u0435\u0440\u043D\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435: 256k, 1m \u0438\u043B\u0438 \u0442\u043E\u0447\u043D\u043E\u0435 \u0447\u0438\u0441\u043B\u043E (1000-10000000)."
   },
-  enableOpus1M: {
-    name: "\u041A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u043D\u043E\u0435 \u043E\u043A\u043D\u043E Opus 1M",
-    desc: "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C Opus 1M \u0432 \u0441\u0435\u043B\u0435\u043A\u0442\u043E\u0440\u0435 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u0412\u043A\u043B\u044E\u0447\u0435\u043D\u043E \u0432 \u043F\u043B\u0430\u043D\u044B Max, Team \u0438 Enterprise. \u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\u043C API \u0438 Pro \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435."
-  },
-  enableSonnet1M: {
-    name: "\u041A\u043E\u043D\u0442\u0435\u043A\u0441\u0442\u043D\u043E\u0435 \u043E\u043A\u043D\u043E Sonnet 1M",
-    desc: "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C Sonnet 1M \u0432 \u0441\u0435\u043B\u0435\u043A\u0442\u043E\u0440\u0435 \u043C\u043E\u0434\u0435\u043B\u0435\u0439. \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u0432 \u043F\u043B\u0430\u043D\u0430\u0445 Max, Team \u0438 Enterprise. \u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\u043C API \u0438 Pro \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435."
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043C\u043E\u0434\u0435\u043B\u0438",
+    desc: "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 ID \u043C\u043E\u0434\u0435\u043B\u0435\u0439 Claude \u0432 \u0441\u043F\u0438\u0441\u043E\u043A \u0432\u044B\u0431\u043E\u0440\u0430, \u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443. \u041F\u0435\u0440\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F \u043C\u043E\u0434\u0435\u043B\u0438 \u0438\u0437 \u043E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u044F \u043F\u043E-\u043F\u0440\u0435\u0436\u043D\u0435\u043C\u0443 \u0437\u0430\u043C\u0435\u043D\u044F\u044E\u0442 \u0441\u043F\u0438\u0441\u043E\u043A.",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435 Chrome",
@@ -52658,6 +54049,138 @@ var settings8 = {
   language: {
     name: "\u042F\u0437\u044B\u043A",
     desc: "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u044F\u0437\u044B\u043A \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430 \u043F\u043B\u0430\u0433\u0438\u043D\u0430"
+  },
+  codex: {
+    enableProvider: {
+      name: "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043F\u0440\u043E\u0432\u0430\u0439\u0434\u0435\u0440\u0430 Codex",
+      desc: "\u041A\u043E\u0433\u0434\u0430 \u0432\u043A\u043B\u044E\u0447\u0435\u043D\u043E, \u043C\u043E\u0434\u0435\u043B\u0438 Codex \u043F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u0432 \u0432\u044B\u0431\u043E\u0440\u0435 \u043C\u043E\u0434\u0435\u043B\u0435\u0439 \u0434\u043B\u044F \u043D\u043E\u0432\u044B\u0445 \u0431\u0435\u0441\u0435\u0434. \u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0435 \u0441\u0435\u0430\u043D\u0441\u044B Codex \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u044E\u0442\u0441\u044F."
+    },
+    installationMethod: {
+      name: "\u0421\u043F\u043E\u0441\u043E\u0431 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438",
+      desc: "\u041A\u0430\u043A Claudian \u0434\u043E\u043B\u0436\u0435\u043D \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u0442\u044C Codex \u0432 Windows. \u041D\u0430\u0442\u0438\u0432\u043D\u044B\u0439 Windows \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u043F\u0443\u0442\u044C \u043A Windows-\u0438\u0441\u043F\u043E\u043B\u043D\u044F\u0435\u043C\u043E\u043C\u0443 \u0444\u0430\u0439\u043B\u0443. WSL \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u0435\u0442 Linux CLI \u0432\u043D\u0443\u0442\u0440\u0438 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u0443\u0442\u0438\u0432\u0430.",
+      nativeWindows: "\u041D\u0430\u0442\u0438\u0432\u043D\u044B\u0439 Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "\u041F\u0443\u0442\u044C \u043A Codex CLI",
+      descUnix: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u043F\u0443\u0442\u044C \u043A \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u043E\u043C\u0443 Codex CLI. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C, \u0447\u0442\u043E\u0431\u044B \u0441\u043D\u0430\u0447\u0430\u043B\u0430 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C \u0438\u0437\u0432\u0435\u0441\u0442\u043D\u044B\u0435 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438 Codex, \u0437\u0430\u0442\u0435\u043C PATH.",
+      descWindows: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0439 \u043F\u0443\u0442\u044C \u043A \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u043E\u043C\u0443 Codex CLI. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F \u0447\u0435\u0440\u0435\u0437 PATH. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u043F\u0443\u0442\u044C \u043A \u043D\u0430\u0442\u0438\u0432\u043D\u043E\u043C\u0443 Windows-\u0438\u0441\u043F\u043E\u043B\u043D\u044F\u0435\u043C\u043E\u043C\u0443 \u0444\u0430\u0439\u043B\u0443, \u043E\u0431\u044B\u0447\u043D\u043E `codex.exe`.",
+      descWsl: "Linux-\u043A\u043E\u043C\u0430\u043D\u0434\u0430 Codex \u0438\u043B\u0438 \u0430\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u044B\u0439 \u043F\u0443\u0442\u044C \u0434\u043B\u044F \u0437\u0430\u043F\u0443\u0441\u043A\u0430 \u0432\u043D\u0443\u0442\u0440\u0438 WSL. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043F\u043E\u0438\u0441\u043A\u0430 \u0432 PATH \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u0443\u0442\u0438\u0432\u0430.",
+      validation: {
+        wslWindowsPath: "\u0412 \u0440\u0435\u0436\u0438\u043C\u0435 WSL \u043E\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044F Linux-\u043A\u043E\u043C\u0430\u043D\u0434\u0430 \u0438\u043B\u0438 \u0430\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u044B\u0439 Linux-\u043F\u0443\u0442\u044C, \u0430 \u043D\u0435 \u043F\u0443\u0442\u044C \u043A Windows-\u0438\u0441\u043F\u043E\u043B\u043D\u044F\u0435\u043C\u043E\u043C\u0443 \u0444\u0430\u0439\u043B\u0443."
+      }
+    },
+    wslDistroOverride: {
+      name: "\u041F\u0435\u0440\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u0435 \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u0443\u0442\u0438\u0432\u0430 WSL",
+      desc: "\u041D\u0435\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u043E\u0435 \u043F\u0435\u0440\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u0435. \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C, \u0447\u0442\u043E\u0431\u044B \u043F\u043E \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0438 \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u0442\u044C \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u0443\u0442\u0438\u0432 \u0438\u0437 \u043F\u0443\u0442\u0438 \u0440\u0430\u0431\u043E\u0447\u0435\u0439 \u043E\u0431\u043B\u0430\u0441\u0442\u0438 WSL, \u0438\u043D\u0430\u0447\u0435 \u0431\u0443\u0434\u0435\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D \u0434\u0438\u0441\u0442\u0440\u0438\u0431\u0443\u0442\u0438\u0432 WSL \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E."
+    },
+    safeMode: {
+      workspaceWrite: "\u0417\u0430\u043F\u0438\u0441\u044C \u0432 \u0440\u0430\u0431\u043E\u0447\u0443\u044E \u043E\u0431\u043B\u0430\u0441\u0442\u044C",
+      readOnly: "\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435"
+    },
+    customModels: {
+      name: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u0435 \u043C\u043E\u0434\u0435\u043B\u0438",
+      desc: "\u0414\u043E\u0431\u0430\u0432\u044C\u0442\u0435 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 ID \u043C\u043E\u0434\u0435\u043B\u0435\u0439 Codex \u0432 \u0441\u043F\u0438\u0441\u043E\u043A \u0432\u044B\u0431\u043E\u0440\u0430, \u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443. `OPENAI_MODEL` \u043F\u043E-\u043F\u0440\u0435\u0436\u043D\u0435\u043C\u0443 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442, \u0435\u0441\u043B\u0438 \u0437\u0430\u0434\u0430\u043D.",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "\u0421\u0432\u043E\u0434\u043A\u0430 \u0440\u0430\u0441\u0441\u0443\u0436\u0434\u0435\u043D\u0438\u0439",
+      desc: "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0434\u043A\u0443 \u043F\u0440\u043E\u0446\u0435\u0441\u0441\u0430 \u0440\u0430\u0441\u0441\u0443\u0436\u0434\u0435\u043D\u0438\u0439 \u043C\u043E\u0434\u0435\u043B\u0438 \u0432 \u0431\u043B\u043E\u043A\u0435 \u0440\u0430\u0437\u043C\u044B\u0448\u043B\u0435\u043D\u0438\u0439.",
+      auto: "\u0410\u0432\u0442\u043E",
+      concise: "\u041A\u0440\u0430\u0442\u043A\u043E",
+      detailed: "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u043E",
+      off: "\u0412\u044B\u043A\u043B."
+    },
+    skills: {
+      name: "\u041D\u0430\u0432\u044B\u043A\u0438 Codex",
+      desc: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u043D\u0430\u0432\u044B\u043A\u0430\u043C\u0438 Codex \u0443\u0440\u043E\u0432\u043D\u044F vault, \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043D\u044B\u043C\u0438 \u0432 .codex/skills/ \u0438\u043B\u0438 .agents/skills/. \u041D\u0430\u0432\u044B\u043A\u0438 \u0443\u0440\u043E\u0432\u043D\u044F home \u0437\u0434\u0435\u0441\u044C \u0438\u0441\u043A\u043B\u044E\u0447\u0435\u043D\u044B.",
+      hiddenName: "\u0421\u043A\u0440\u044B\u0442\u044B\u0435 \u043D\u0430\u0432\u044B\u043A\u0438",
+      hiddenDesc: "\u0421\u043A\u0440\u044B\u0442\u044C \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u044B\u0435 \u043D\u0430\u0432\u044B\u043A\u0438 Codex \u0438\u0437 \u0441\u043F\u0438\u0441\u043A\u0430. \u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043C\u0435\u043D\u0430 \u043D\u0430\u0432\u044B\u043A\u043E\u0432 \u0431\u0435\u0437 \u043D\u0430\u0447\u0430\u043B\u044C\u043D\u043E\u0433\u043E $, \u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443.",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "\u0421\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u044B Codex",
+      desc: "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u0439\u0442\u0435 \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430\u043C\u0438 Codex \u0443\u0440\u043E\u0432\u043D\u044F vault, \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043D\u044B\u043C\u0438 \u0432 .codex/agents/. \u041A\u0430\u0436\u0434\u044B\u0439 TOML-\u0444\u0430\u0439\u043B \u0437\u0430\u0434\u0430\u0435\u0442 \u043E\u0434\u043D\u043E\u0433\u043E \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0433\u043E \u0430\u0433\u0435\u043D\u0442\u0430."
+    },
+    mcp: {
+      descBeforeCommand: "Codex \u0443\u043F\u0440\u0430\u0432\u043B\u044F\u0435\u0442 MCP-\u0441\u0435\u0440\u0432\u0435\u0440\u0430\u043C\u0438 \u0447\u0435\u0440\u0435\u0437 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 CLI. \u041D\u0430\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0447\u0435\u0440\u0435\u0437 ",
+      descAfterCommand: ", \u0438 \u043E\u043D\u0438 \u0431\u0443\u0434\u0443\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B \u0432 Claudian. ",
+      learnMore: "\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435"
+    },
+    environment: {
+      name: "\u041E\u043A\u0440\u0443\u0436\u0435\u043D\u0438\u0435 Codex",
+      desc: "\u0422\u043E\u043B\u044C\u043A\u043E \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u0441\u0440\u0435\u0434\u044B \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F, \u043F\u0440\u0438\u043D\u0430\u0434\u043B\u0435\u0436\u0430\u0449\u0438\u0435 Codex. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u043B\u044F \u043D\u0430\u0441\u0442\u0440\u043E\u0435\u043A OPENAI_* \u0438 CODEX_*. \u0415\u0441\u043B\u0438 \u0430\u0432\u0442\u043E\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044E Codex \u043D\u0443\u0436\u043D\u0430 \u043F\u043E\u043C\u043E\u0449\u044C, \u0434\u043E\u0431\u0430\u0432\u044C\u0442\u0435 \u043A\u0430\u0442\u0430\u043B\u043E\u0433 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438 \u0432 \u043E\u0431\u0449\u0438\u0439 PATH, \u0430 \u043D\u0435 \u0432 \u044D\u0442\u043E\u0442 \u0440\u0430\u0437\u0434\u0435\u043B \u043F\u0440\u043E\u0432\u0430\u0439\u0434\u0435\u0440\u0430."
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0432\u044B\u043A Codex",
+      titleAdd: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430\u0432\u044B\u043A Codex",
+      directory: "\u041A\u0430\u0442\u0430\u043B\u043E\u0433",
+      directoryDesc: "\u0413\u0434\u0435 \u0445\u0440\u0430\u043D\u0438\u0442\u044C \u043D\u0430\u0432\u044B\u043A",
+      skillName: "\u0418\u043C\u044F \u043D\u0430\u0432\u044B\u043A\u0430",
+      skillNameDesc: '\u0418\u043C\u044F, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u043C\u043E\u0435 \u043F\u043E\u0441\u043B\u0435 $ (\u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, "analyze" \u0434\u043B\u044F $analyze)',
+      description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435",
+      descriptionDesc: "\u041D\u0435\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435, \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0435\u043C\u043E\u0435 \u0432 \u0441\u043F\u0438\u0441\u043A\u0435",
+      instructions: "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438",
+      instructionsDesc: "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043D\u0430\u0432\u044B\u043A\u0430 (\u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u0435 SKILL.md)",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B",
+    saveFailed: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u043D\u0430\u0432\u044B\u043A Codex",
+    header: "\u041D\u0430\u0432\u044B\u043A\u0438 Codex",
+    noSkills: "\u0412 vault \u043D\u0435\u0442 \u043D\u0430\u0432\u044B\u043A\u043E\u0432 Codex. \u041D\u0430\u0436\u043C\u0438\u0442\u0435 +, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u0430\u0432\u044B\u043A.",
+    skillBadge: "\u043D\u0430\u0432\u044B\u043A",
+    deleted: '\u041D\u0430\u0432\u044B\u043A Codex "{name}" \u0443\u0434\u0430\u043B\u0435\u043D',
+    deleteFailed: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043D\u0430\u0432\u044B\u043A Codex",
+    created: '\u041D\u0430\u0432\u044B\u043A Codex "{name}" \u0441\u043E\u0437\u0434\u0430\u043D',
+    updated: '\u041D\u0430\u0432\u044B\u043A Codex "{name}" \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D'
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430 Codex",
+      titleAdd: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430 Codex",
+      nameDesc: "\u0418\u043C\u044F \u0430\u0433\u0435\u043D\u0442\u0430, \u043A\u043E\u0442\u043E\u0440\u043E\u0435 Codex \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u043F\u0440\u0438 \u0437\u0430\u043F\u0443\u0441\u043A\u0435 (\u0441\u0442\u0440\u043E\u0447\u043D\u044B\u0435 \u0431\u0443\u043A\u0432\u044B, \u0434\u0435\u0444\u0438\u0441\u044B, \u043F\u043E\u0434\u0447\u0435\u0440\u043A\u0438\u0432\u0430\u043D\u0438\u044F)",
+      descriptionDesc: "\u041A\u043E\u0433\u0434\u0430 Codex \u0434\u043E\u043B\u0436\u0435\u043D \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C \u044D\u0442\u043E\u0433\u043E \u0430\u0433\u0435\u043D\u0442\u0430",
+      modelDesc: "\u041F\u0435\u0440\u0435\u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u0435 \u043C\u043E\u0434\u0435\u043B\u0438 (\u043F\u0443\u0441\u0442\u043E = \u043D\u0430\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u044C)",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "\u0423\u0441\u0438\u043B\u0438\u0435 \u0440\u0430\u0441\u0441\u0443\u0436\u0434\u0435\u043D\u0438\u044F",
+      desc: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u0443\u0441\u0438\u043B\u0438\u044F \u0440\u0430\u0441\u0441\u0443\u0436\u0434\u0435\u043D\u0438\u044F \u043C\u043E\u0434\u0435\u043B\u0438",
+      inherit: "\u041D\u0430\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u044C",
+      low: "\u041D\u0438\u0437\u043A\u0438\u0439",
+      medium: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439",
+      high: "\u0412\u044B\u0441\u043E\u043A\u0438\u0439",
+      xhigh: "\u041E\u0447\u0435\u043D\u044C \u0432\u044B\u0441\u043E\u043A\u0438\u0439"
+    },
+    sandboxMode: {
+      name: "\u0420\u0435\u0436\u0438\u043C \u043F\u0435\u0441\u043E\u0447\u043D\u0438\u0446\u044B",
+      desc: "\u041E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0435 \u043F\u0435\u0441\u043E\u0447\u043D\u0438\u0446\u044B \u0434\u043B\u044F \u044D\u0442\u043E\u0433\u043E \u0430\u0433\u0435\u043D\u0442\u0430",
+      inherit: "\u041D\u0430\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u044C",
+      readOnly: "\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435",
+      dangerFullAccess: "\u041F\u043E\u043B\u043D\u044B\u0439 \u0434\u043E\u0441\u0442\u0443\u043F",
+      workspaceWrite: "\u0417\u0430\u043F\u0438\u0441\u044C \u0432 \u0440\u0430\u0431\u043E\u0447\u0443\u044E \u043E\u0431\u043B\u0430\u0441\u0442\u044C"
+    },
+    nicknameCandidates: {
+      name: "\u0412\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u043F\u0441\u0435\u0432\u0434\u043E\u043D\u0438\u043C\u043E\u0432",
+      desc: "\u041E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0435\u043C\u044B\u0435 \u043F\u0441\u0435\u0432\u0434\u043E\u043D\u0438\u043C\u044B \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043F\u044F\u0442\u0443\u044E (\u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440: atlas, delta, echo)"
+    },
+    developerInstructions: {
+      name: "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430",
+      desc: "\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438, \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u044E\u0449\u0438\u0435 \u043F\u043E\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0430\u0433\u0435\u043D\u0442\u0430",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0430 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B"
+    },
+    validation: {
+      nameRequired: "\u0418\u043C\u044F \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E",
+      nameTooLong: "\u0418\u043C\u044F \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430 \u0434\u043E\u043B\u0436\u043D\u043E \u0431\u044B\u0442\u044C \u043D\u0435 \u0434\u043B\u0438\u043D\u043D\u0435\u0435 {count} \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432",
+      nameInvalid: "\u0418\u043C\u044F \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u0430 \u043C\u043E\u0436\u0435\u0442 \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E \u0441\u0442\u0440\u043E\u0447\u043D\u044B\u0435 \u0431\u0443\u043A\u0432\u044B, \u0446\u0438\u0444\u0440\u044B, \u0434\u0435\u0444\u0438\u0441\u044B \u0438 \u043F\u043E\u0434\u0447\u0435\u0440\u043A\u0438\u0432\u0430\u043D\u0438\u044F",
+      nicknameInvalid: "\u0412\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u043F\u0441\u0435\u0432\u0434\u043E\u043D\u0438\u043C\u043E\u0432 \u043C\u043E\u0433\u0443\u0442 \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E ASCII-\u0431\u0443\u043A\u0432\u044B, \u0446\u0438\u0444\u0440\u044B, \u043F\u0440\u043E\u0431\u0435\u043B\u044B, \u0434\u0435\u0444\u0438\u0441\u044B \u0438 \u043F\u043E\u0434\u0447\u0435\u0440\u043A\u0438\u0432\u0430\u043D\u0438\u044F",
+      nicknameDuplicate: "\u0412\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u043F\u0441\u0435\u0432\u0434\u043E\u043D\u0438\u043C\u043E\u0432 \u0434\u043E\u043B\u0436\u043D\u044B \u0431\u044B\u0442\u044C \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u043C\u0438"
+    },
+    header: "\u0421\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u044B Codex",
+    noAgents: "\u0412 vault \u043D\u0435\u0442 \u0441\u0443\u0431\u0430\u0433\u0435\u043D\u0442\u043E\u0432 Codex. \u041D\u0430\u0436\u043C\u0438\u0442\u0435 +, \u0447\u0442\u043E\u0431\u044B \u0441\u043E\u0437\u0434\u0430\u0442\u044C \u043E\u0434\u043D\u043E\u0433\u043E."
   }
 };
 var ru_default = {
@@ -52888,12 +54411,12 @@ var settings9 = {
     desc: "\u52A0\u8F7D ~/.claude/settings.json\u3002\u542F\u7528\u540E\uFF0C\u7528\u6237\u7684 Claude Code \u6743\u9650\u89C4\u5219\u53EF\u80FD\u7ED5\u8FC7\u5B89\u5168\u6A21\u5F0F\u3002"
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "\u5B89\u5168\u6A21\u5F0F",
+    desc: "\u542F\u7528 Safe \u5F00\u5173\u65F6\u4F7F\u7528\u7684\u6743\u9650\u6A21\u5F0F\u3002"
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "\u5B89\u5168\u6A21\u5F0F",
+    desc: "\u542F\u7528 Safe \u5F00\u5173\u65F6\u4F7F\u7528\u7684\u6C99\u76D2\u6A21\u5F0F\u3002"
   },
   environment: "\u73AF\u5883",
   customVariables: {
@@ -52931,18 +54454,10 @@ var settings9 = {
     desc: "\u4E3A\u60A8\u7684\u81EA\u5B9A\u4E49\u6A21\u578B\u8BBE\u7F6E\u4E0A\u4E0B\u6587\u7A97\u53E3\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9ED8\u8BA4\u503C\uFF08200k \u4EE4\u724C\uFF09\u3002",
     invalid: "\u683C\u5F0F\u65E0\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u786E\u6570\u91CF\uFF081000-10000000\uFF09\u3002"
   },
-  enableOpus1M: {
-    name: "Opus 1M \u4E0A\u4E0B\u6587\u7A97\u53E3",
-    desc: "\u5728\u6A21\u578B\u9009\u62E9\u5668\u4E2D\u663E\u793A Opus 1M\u3002Max\u3001Team \u548C Enterprise \u8BA1\u5212\u5DF2\u5305\u542B\u3002API \u548C Pro \u7528\u6237\u9700\u8981\u989D\u5916\u7528\u91CF\u3002"
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M \u4E0A\u4E0B\u6587\u7A97\u53E3",
-    desc: "\u5728\u6A21\u578B\u9009\u62E9\u5668\u4E2D\u663E\u793A Sonnet 1M\u3002Max\u3001Team \u548C Enterprise \u8BA1\u5212\u9700\u8981\u989D\u5916\u7528\u91CF\u3002API \u548C Pro \u7528\u6237\u9700\u8981\u989D\u5916\u7528\u91CF\u3002"
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "\u81EA\u5B9A\u4E49\u6A21\u578B",
+    desc: "\u5411\u9009\u62E9\u5668\u8FFD\u52A0\u989D\u5916\u7684 Claude \u6A21\u578B ID\uFF0C\u6BCF\u884C\u4E00\u4E2A\u3002\u73AF\u5883\u4E2D\u7684\u6A21\u578B\u8986\u76D6\u4ECD\u4F1A\u66FF\u6362\u9009\u62E9\u5668\u3002",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "\u542F\u7528 Chrome \u6269\u5C55",
@@ -52992,6 +54507,138 @@ var settings9 = {
   language: {
     name: "\u8BED\u8A00",
     desc: "\u66F4\u6539\u63D2\u4EF6\u754C\u9762\u7684\u663E\u793A\u8BED\u8A00"
+  },
+  codex: {
+    enableProvider: {
+      name: "\u542F\u7528 Codex \u63D0\u4F9B\u5546",
+      desc: "\u542F\u7528\u540E\uFF0CCodex \u6A21\u578B\u4F1A\u51FA\u73B0\u5728\u65B0\u5BF9\u8BDD\u7684\u6A21\u578B\u9009\u62E9\u5668\u4E2D\u3002\u73B0\u6709 Codex \u4F1A\u8BDD\u4F1A\u4FDD\u7559\u3002"
+    },
+    installationMethod: {
+      name: "\u5B89\u88C5\u65B9\u5F0F",
+      desc: "Claudian \u5728 Windows \u4E0A\u542F\u52A8 Codex \u7684\u65B9\u5F0F\u3002\u539F\u751F Windows \u4F7F\u7528 Windows \u53EF\u6267\u884C\u6587\u4EF6\u8DEF\u5F84\uFF1BWSL \u4F1A\u5728\u6240\u9009\u53D1\u884C\u7248\u5185\u542F\u52A8 Linux CLI\u3002",
+      nativeWindows: "\u539F\u751F Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex CLI \u8DEF\u5F84",
+      descUnix: "\u672C\u673A Codex CLI \u7684\u81EA\u5B9A\u4E49\u8DEF\u5F84\u3002\u7559\u7A7A\u4F1A\u4F18\u5148\u4F7F\u7528\u5DF2\u77E5 Codex \u5B89\u88C5\uFF0C\u7136\u540E\u67E5\u627E PATH\u3002",
+      descWindows: "\u672C\u673A Codex CLI \u7684\u81EA\u5B9A\u4E49\u8DEF\u5F84\u3002\u7559\u7A7A\u4F1A\u4ECE PATH \u81EA\u52A8\u68C0\u6D4B\u3002\u8BF7\u4F7F\u7528\u539F\u751F Windows \u53EF\u6267\u884C\u6587\u4EF6\u8DEF\u5F84\uFF0C\u901A\u5E38\u4E3A `codex.exe`\u3002",
+      descWsl: "\u5728 WSL \u5185\u8FD0\u884C\u7684 Linux \u7AEF Codex \u547D\u4EE4\u6216\u7EDD\u5BF9\u8DEF\u5F84\u3002\u7559\u7A7A\u4F1A\u5728\u6240\u9009\u53D1\u884C\u7248\u5185\u67E5\u627E PATH\u3002",
+      validation: {
+        wslWindowsPath: "WSL \u6A21\u5F0F\u9700\u8981 Linux \u547D\u4EE4\u6216 Linux \u7EDD\u5BF9\u8DEF\u5F84\uFF0C\u800C\u4E0D\u662F Windows \u53EF\u6267\u884C\u6587\u4EF6\u8DEF\u5F84\u3002"
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL \u53D1\u884C\u7248\u8986\u76D6",
+      desc: "\u53EF\u9009\u9AD8\u7EA7\u8986\u76D6\u3002\u7559\u7A7A\u65F6\u4F1A\u5C3D\u53EF\u80FD\u4ECE WSL \u5DE5\u4F5C\u533A\u8DEF\u5F84\u63A8\u65AD\u53D1\u884C\u7248\uFF0C\u5426\u5219\u4F7F\u7528\u9ED8\u8BA4 WSL \u53D1\u884C\u7248\u3002"
+    },
+    safeMode: {
+      workspaceWrite: "\u5DE5\u4F5C\u533A\u53EF\u5199",
+      readOnly: "\u53EA\u8BFB"
+    },
+    customModels: {
+      name: "\u81EA\u5B9A\u4E49\u6A21\u578B",
+      desc: "\u5411\u9009\u62E9\u5668\u8FFD\u52A0\u989D\u5916\u7684 Codex \u6A21\u578B ID\uFF0C\u6BCF\u884C\u4E00\u4E2A\u3002\u8BBE\u7F6E `OPENAI_MODEL` \u65F6\u4ECD\u4F18\u5148\u751F\u6548\u3002",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "\u63A8\u7406\u6458\u8981",
+      desc: "\u5728\u601D\u8003\u5757\u4E2D\u663E\u793A\u6A21\u578B\u63A8\u7406\u8FC7\u7A0B\u7684\u6458\u8981\u3002",
+      auto: "\u81EA\u52A8",
+      concise: "\u7B80\u6D01",
+      detailed: "\u8BE6\u7EC6",
+      off: "\u5173\u95ED"
+    },
+    skills: {
+      name: "Codex \u6280\u80FD",
+      desc: "\u7BA1\u7406\u5B58\u50A8\u5728 .codex/skills/ \u6216 .agents/skills/ \u4E2D\u7684 Vault \u7EA7 Codex \u6280\u80FD\u3002\u6B64\u5904\u4E0D\u5305\u542B\u4E3B\u76EE\u5F55\u7EA7\u6280\u80FD\u3002",
+      hiddenName: "\u9690\u85CF\u6280\u80FD",
+      hiddenDesc: "\u4ECE\u4E0B\u62C9\u83DC\u5355\u4E2D\u9690\u85CF\u7279\u5B9A Codex \u6280\u80FD\u3002\u6BCF\u884C\u8F93\u5165\u4E00\u4E2A\u6280\u80FD\u540D\u79F0\uFF0C\u4E0D\u5E26\u524D\u5BFC $\u3002",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex \u5B50\u4EE3\u7406",
+      desc: "\u7BA1\u7406\u5B58\u50A8\u5728 .codex/agents/ \u4E2D\u7684 Vault \u7EA7 Codex \u5B50\u4EE3\u7406\u3002\u6BCF\u4E2A TOML \u6587\u4EF6\u5B9A\u4E49\u4E00\u4E2A\u81EA\u5B9A\u4E49\u4EE3\u7406\u3002"
+    },
+    mcp: {
+      descBeforeCommand: "Codex \u901A\u8FC7\u81EA\u5DF1\u7684 CLI \u7BA1\u7406 MCP \u670D\u52A1\u5668\u3002\u8BF7\u4F7F\u7528 ",
+      descAfterCommand: " \u8FDB\u884C\u914D\u7F6E\uFF0C\u5B83\u4EEC\u4F1A\u5728 Claudian \u4E2D\u53EF\u7528\u3002",
+      learnMore: "\u4E86\u89E3\u66F4\u591A"
+    },
+    environment: {
+      name: "Codex \u73AF\u5883",
+      desc: "\u4EC5\u9650 Codex \u62E5\u6709\u7684\u8FD0\u884C\u65F6\u53D8\u91CF\u3002\u7528\u4E8E OPENAI_* \u548C CODEX_* \u8BBE\u7F6E\u3002\u5982\u679C Codex \u81EA\u52A8\u68C0\u6D4B\u9700\u8981\u5E2E\u52A9\uFF0C\u8BF7\u628A\u5B89\u88C5\u76EE\u5F55\u6DFB\u52A0\u5230\u5171\u4EAB PATH\uFF0C\u800C\u4E0D\u662F\u6B64\u63D0\u4F9B\u5546\u73AF\u5883\u3002"
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "\u7F16\u8F91 Codex \u6280\u80FD",
+      titleAdd: "\u6DFB\u52A0 Codex \u6280\u80FD",
+      directory: "\u76EE\u5F55",
+      directoryDesc: "\u6280\u80FD\u7684\u5B58\u50A8\u4F4D\u7F6E",
+      skillName: "\u6280\u80FD\u540D\u79F0",
+      skillNameDesc: "\u5728 $ \u540E\u4F7F\u7528\u7684\u540D\u79F0\uFF08\u4F8B\u5982 $analyze \u7684\u540D\u79F0\u4E3A \u201Canalyze\u201D\uFF09",
+      description: "\u63CF\u8FF0",
+      descriptionDesc: "\u4E0B\u62C9\u83DC\u5355\u4E2D\u663E\u793A\u7684\u53EF\u9009\u63CF\u8FF0",
+      instructions: "\u6307\u4EE4",
+      instructionsDesc: "\u6280\u80FD\u6307\u4EE4\uFF08SKILL.md \u5185\u5BB9\uFF09",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "\u6307\u4EE4\u4E3A\u5FC5\u586B\u9879",
+    saveFailed: "\u4FDD\u5B58 Codex \u6280\u80FD\u5931\u8D25",
+    header: "Codex \u6280\u80FD",
+    noSkills: "Vault \u4E2D\u6CA1\u6709 Codex \u6280\u80FD\u3002\u70B9\u51FB + \u521B\u5EFA\u4E00\u4E2A\u3002",
+    skillBadge: "\u6280\u80FD",
+    deleted: "\u5DF2\u5220\u9664 Codex \u6280\u80FD\u201C{name}\u201D",
+    deleteFailed: "\u5220\u9664 Codex \u6280\u80FD\u5931\u8D25",
+    created: "\u5DF2\u521B\u5EFA Codex \u6280\u80FD\u201C{name}\u201D",
+    updated: "\u5DF2\u66F4\u65B0 Codex \u6280\u80FD\u201C{name}\u201D"
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "\u7F16\u8F91 Codex \u5B50\u4EE3\u7406",
+      titleAdd: "\u6DFB\u52A0 Codex \u5B50\u4EE3\u7406",
+      nameDesc: "Codex \u6D3E\u751F\u4EE3\u7406\u65F6\u4F7F\u7528\u7684\u4EE3\u7406\u540D\u79F0\uFF08\u5C0F\u5199\u3001\u8FDE\u5B57\u7B26\u3001\u4E0B\u5212\u7EBF\uFF09",
+      descriptionDesc: "Codex \u5E94\u5728\u4F55\u65F6\u4F7F\u7528\u8BE5\u4EE3\u7406",
+      modelDesc: "\u6A21\u578B\u8986\u76D6\uFF08\u7559\u7A7A\u8868\u793A\u7EE7\u627F\uFF09",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "\u63A8\u7406\u5F3A\u5EA6",
+      desc: "\u6A21\u578B\u63A8\u7406\u5F3A\u5EA6\u7EA7\u522B",
+      inherit: "\u7EE7\u627F",
+      low: "\u4F4E",
+      medium: "\u4E2D",
+      high: "\u9AD8",
+      xhigh: "\u6781\u9AD8"
+    },
+    sandboxMode: {
+      name: "\u6C99\u76D2\u6A21\u5F0F",
+      desc: "\u8BE5\u4EE3\u7406\u7684\u6C99\u76D2\u9650\u5236",
+      inherit: "\u7EE7\u627F",
+      readOnly: "\u53EA\u8BFB",
+      dangerFullAccess: "\u5B8C\u5168\u8BBF\u95EE",
+      workspaceWrite: "\u5DE5\u4F5C\u533A\u53EF\u5199"
+    },
+    nicknameCandidates: {
+      name: "\u6635\u79F0\u5019\u9009",
+      desc: "\u663E\u793A\u6635\u79F0\uFF0C\u4F7F\u7528\u9017\u53F7\u5206\u9694\uFF08\u4F8B\u5982 atlas, delta, echo\uFF09"
+    },
+    developerInstructions: {
+      name: "\u5F00\u53D1\u8005\u6307\u4EE4",
+      desc: "\u5B9A\u4E49\u4EE3\u7406\u884C\u4E3A\u7684\u6838\u5FC3\u6307\u4EE4",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "\u5F00\u53D1\u8005\u6307\u4EE4\u4E3A\u5FC5\u586B\u9879"
+    },
+    validation: {
+      nameRequired: "\u5B50\u4EE3\u7406\u540D\u79F0\u4E3A\u5FC5\u586B\u9879",
+      nameTooLong: "\u5B50\u4EE3\u7406\u540D\u79F0\u5FC5\u987B\u4E0D\u8D85\u8FC7 {count} \u4E2A\u5B57\u7B26",
+      nameInvalid: "\u5B50\u4EE3\u7406\u540D\u79F0\u53EA\u80FD\u5305\u542B\u5C0F\u5199\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u8FDE\u5B57\u7B26\u548C\u4E0B\u5212\u7EBF",
+      nicknameInvalid: "\u6635\u79F0\u5019\u9009\u53EA\u80FD\u5305\u542B ASCII \u5B57\u6BCD\u3001\u6570\u5B57\u3001\u7A7A\u683C\u3001\u8FDE\u5B57\u7B26\u548C\u4E0B\u5212\u7EBF",
+      nicknameDuplicate: "\u6635\u79F0\u5019\u9009\u5FC5\u987B\u552F\u4E00"
+    },
+    header: "Codex \u5B50\u4EE3\u7406",
+    noAgents: "Vault \u4E2D\u6CA1\u6709 Codex \u5B50\u4EE3\u7406\u3002\u70B9\u51FB + \u521B\u5EFA\u4E00\u4E2A\u3002"
   }
 };
 var zh_CN_default = {
@@ -53222,12 +54869,12 @@ var settings10 = {
     desc: "\u8F09\u5165 ~/.claude/settings.json\u3002\u555F\u7528\u5F8C\uFF0C\u4F7F\u7528\u8005\u7684 Claude Code \u6B0A\u9650\u898F\u5247\u53EF\u80FD\u7E5E\u904E\u5B89\u5168\u6A21\u5F0F\u3002"
   },
   claudeSafeMode: {
-    name: "Safe mode",
-    desc: "Permission mode used when the Safe toggle is active."
+    name: "\u5B89\u5168\u6A21\u5F0F",
+    desc: "\u555F\u7528 Safe \u958B\u95DC\u6642\u4F7F\u7528\u7684\u6B0A\u9650\u6A21\u5F0F\u3002"
   },
   codexSafeMode: {
-    name: "Safe mode",
-    desc: "Sandbox mode used when the Safe toggle is active."
+    name: "\u5B89\u5168\u6A21\u5F0F",
+    desc: "\u555F\u7528 Safe \u958B\u95DC\u6642\u4F7F\u7528\u7684\u6C99\u76D2\u6A21\u5F0F\u3002"
   },
   environment: "\u74B0\u5883",
   customVariables: {
@@ -53265,18 +54912,10 @@ var settings10 = {
     desc: "\u70BA\u60A8\u7684\u81EA\u8A02\u6A21\u578B\u8A2D\u5B9A\u4E0A\u4E0B\u6587\u8996\u7A97\u5927\u5C0F\u3002\u7559\u7A7A\u4F7F\u7528\u9810\u8A2D\u503C\uFF08200k \u6B0A\u6756\uFF09\u3002",
     invalid: "\u683C\u5F0F\u7121\u6548\u3002\u4F7F\u7528\uFF1A256k\u30011m \u6216\u7CBE\u78BA\u6578\u91CF\uFF081000-10000000\uFF09\u3002"
   },
-  enableOpus1M: {
-    name: "Opus 1M \u4E0A\u4E0B\u6587\u8996\u7A97",
-    desc: "\u5728\u6A21\u578B\u9078\u64C7\u5668\u4E2D\u986F\u793A Opus 1M\u3002Max\u3001Team \u548C Enterprise \u65B9\u6848\u5DF2\u5305\u542B\u3002API \u548C Pro \u4F7F\u7528\u8005\u9700\u8981\u984D\u5916\u7528\u91CF\u3002"
-  },
-  enableSonnet1M: {
-    name: "Sonnet 1M \u4E0A\u4E0B\u6587\u8996\u7A97",
-    desc: "\u5728\u6A21\u578B\u9078\u64C7\u5668\u4E2D\u986F\u793A Sonnet 1M\u3002Max\u3001Team \u548C Enterprise \u65B9\u6848\u9700\u8981\u984D\u5916\u7528\u91CF\u3002API \u548C Pro \u4F7F\u7528\u8005\u9700\u8981\u984D\u5916\u7528\u91CF\u3002"
-  },
   customModels: {
-    name: "Custom models",
-    desc: "Append additional Claude model IDs to the picker, one per line. Environment model overrides still replace the picker.",
-    placeholder: "claude-opus-4-6\nclaude-opus-4-6[1m]\nclaude-opus-4-5-20251101"
+    name: "\u81EA\u8A02\u6A21\u578B",
+    desc: "\u5411\u9078\u64C7\u5668\u8FFD\u52A0\u984D\u5916\u7684 Claude \u6A21\u578B ID\uFF0C\u6BCF\u884C\u4E00\u500B\u3002\u74B0\u5883\u4E2D\u7684\u6A21\u578B\u8986\u5BEB\u4ECD\u6703\u53D6\u4EE3\u9078\u64C7\u5668\u3002",
+    placeholder: "claude-opus-4-6\nclaude-opus-4-5-20251101"
   },
   enableChrome: {
     name: "\u555F\u7528 Chrome \u64F4\u5145\u529F\u80FD",
@@ -53326,6 +54965,138 @@ var settings10 = {
   language: {
     name: "\u8A9E\u8A00",
     desc: "\u66F4\u6539\u63D2\u4EF6\u4ECB\u9762\u7684\u986F\u793A\u8A9E\u8A00"
+  },
+  codex: {
+    enableProvider: {
+      name: "\u555F\u7528 Codex \u63D0\u4F9B\u8005",
+      desc: "\u555F\u7528\u5F8C\uFF0CCodex \u6A21\u578B\u6703\u51FA\u73FE\u5728\u65B0\u5C0D\u8A71\u7684\u6A21\u578B\u9078\u64C7\u5668\u4E2D\u3002\u73FE\u6709 Codex \u5DE5\u4F5C\u968E\u6BB5\u6703\u4FDD\u7559\u3002"
+    },
+    installationMethod: {
+      name: "\u5B89\u88DD\u65B9\u5F0F",
+      desc: "Claudian \u5728 Windows \u4E0A\u555F\u52D5 Codex \u7684\u65B9\u5F0F\u3002\u539F\u751F Windows \u4F7F\u7528 Windows \u53EF\u57F7\u884C\u6A94\u8DEF\u5F91\uFF1BWSL \u6703\u5728\u6240\u9078\u767C\u884C\u7248\u5167\u555F\u52D5 Linux CLI\u3002",
+      nativeWindows: "\u539F\u751F Windows",
+      wsl: "WSL"
+    },
+    cliPath: {
+      name: "Codex CLI \u8DEF\u5F91",
+      descUnix: "\u672C\u6A5F Codex CLI \u7684\u81EA\u8A02\u8DEF\u5F91\u3002\u7559\u7A7A\u6703\u512A\u5148\u4F7F\u7528\u5DF2\u77E5 Codex \u5B89\u88DD\uFF0C\u7136\u5F8C\u67E5\u627E PATH\u3002",
+      descWindows: "\u672C\u6A5F Codex CLI \u7684\u81EA\u8A02\u8DEF\u5F91\u3002\u7559\u7A7A\u6703\u5F9E PATH \u81EA\u52D5\u5075\u6E2C\u3002\u8ACB\u4F7F\u7528\u539F\u751F Windows \u53EF\u57F7\u884C\u6A94\u8DEF\u5F91\uFF0C\u901A\u5E38\u70BA `codex.exe`\u3002",
+      descWsl: "\u5728 WSL \u5167\u57F7\u884C\u7684 Linux \u7AEF Codex \u547D\u4EE4\u6216\u7D55\u5C0D\u8DEF\u5F91\u3002\u7559\u7A7A\u6703\u5728\u6240\u9078\u767C\u884C\u7248\u5167\u67E5\u627E PATH\u3002",
+      validation: {
+        wslWindowsPath: "WSL \u6A21\u5F0F\u9700\u8981 Linux \u547D\u4EE4\u6216 Linux \u7D55\u5C0D\u8DEF\u5F91\uFF0C\u800C\u4E0D\u662F Windows \u53EF\u57F7\u884C\u6A94\u8DEF\u5F91\u3002"
+      }
+    },
+    wslDistroOverride: {
+      name: "WSL \u767C\u884C\u7248\u8986\u5BEB",
+      desc: "\u53EF\u9078\u9032\u968E\u8986\u5BEB\u3002\u7559\u7A7A\u6642\u6703\u76E1\u53EF\u80FD\u5F9E WSL \u5DE5\u4F5C\u5340\u8DEF\u5F91\u63A8\u65B7\u767C\u884C\u7248\uFF0C\u5426\u5247\u4F7F\u7528\u9810\u8A2D WSL \u767C\u884C\u7248\u3002"
+    },
+    safeMode: {
+      workspaceWrite: "\u5DE5\u4F5C\u5340\u53EF\u5BEB",
+      readOnly: "\u552F\u8B80"
+    },
+    customModels: {
+      name: "\u81EA\u8A02\u6A21\u578B",
+      desc: "\u5411\u9078\u64C7\u5668\u8FFD\u52A0\u984D\u5916\u7684 Codex \u6A21\u578B ID\uFF0C\u6BCF\u884C\u4E00\u500B\u3002\u8A2D\u5B9A `OPENAI_MODEL` \u6642\u4ECD\u512A\u5148\u751F\u6548\u3002",
+      placeholder: "gpt-5.4\ngpt-5.3-codex-spark"
+    },
+    reasoningSummary: {
+      name: "\u63A8\u7406\u6458\u8981",
+      desc: "\u5728\u601D\u8003\u5340\u584A\u4E2D\u986F\u793A\u6A21\u578B\u63A8\u7406\u904E\u7A0B\u7684\u6458\u8981\u3002",
+      auto: "\u81EA\u52D5",
+      concise: "\u7C21\u6F54",
+      detailed: "\u8A73\u7D30",
+      off: "\u95DC\u9589"
+    },
+    skills: {
+      name: "Codex \u6280\u80FD",
+      desc: "\u7BA1\u7406\u5132\u5B58\u5728 .codex/skills/ \u6216 .agents/skills/ \u4E2D\u7684 Vault \u5C64\u7D1A Codex \u6280\u80FD\u3002\u6B64\u8655\u4E0D\u5305\u542B\u4E3B\u76EE\u9304\u5C64\u7D1A\u6280\u80FD\u3002",
+      hiddenName: "\u96B1\u85CF\u6280\u80FD",
+      hiddenDesc: "\u5F9E\u4E0B\u62C9\u9078\u55AE\u4E2D\u96B1\u85CF\u7279\u5B9A Codex \u6280\u80FD\u3002\u6BCF\u884C\u8F38\u5165\u4E00\u500B\u6280\u80FD\u540D\u7A31\uFF0C\u4E0D\u5E36\u524D\u5C0E $\u3002",
+      hiddenPlaceholder: "analyze\nexplain\nfix"
+    },
+    subagents: {
+      name: "Codex \u5B50\u4EE3\u7406",
+      desc: "\u7BA1\u7406\u5132\u5B58\u5728 .codex/agents/ \u4E2D\u7684 Vault \u5C64\u7D1A Codex \u5B50\u4EE3\u7406\u3002\u6BCF\u500B TOML \u6A94\u6848\u5B9A\u7FA9\u4E00\u500B\u81EA\u8A02\u4EE3\u7406\u3002"
+    },
+    mcp: {
+      descBeforeCommand: "Codex \u900F\u904E\u81EA\u5DF1\u7684 CLI \u7BA1\u7406 MCP \u4F3A\u670D\u5668\u3002\u8ACB\u4F7F\u7528 ",
+      descAfterCommand: " \u9032\u884C\u8A2D\u5B9A\uFF0C\u5B83\u5011\u6703\u5728 Claudian \u4E2D\u53EF\u7528\u3002",
+      learnMore: "\u4E86\u89E3\u66F4\u591A"
+    },
+    environment: {
+      name: "Codex \u74B0\u5883",
+      desc: "\u50C5\u9650 Codex \u64C1\u6709\u7684\u57F7\u884C\u968E\u6BB5\u8B8A\u6578\u3002\u7528\u65BC OPENAI_* \u548C CODEX_* \u8A2D\u5B9A\u3002\u5982\u679C Codex \u81EA\u52D5\u5075\u6E2C\u9700\u8981\u5354\u52A9\uFF0C\u8ACB\u628A\u5B89\u88DD\u76EE\u9304\u65B0\u589E\u5230\u5171\u4EAB PATH\uFF0C\u800C\u4E0D\u662F\u6B64\u63D0\u4F9B\u8005\u74B0\u5883\u3002"
+    }
+  },
+  codexSkills: {
+    modal: {
+      titleEdit: "\u7DE8\u8F2F Codex \u6280\u80FD",
+      titleAdd: "\u65B0\u589E Codex \u6280\u80FD",
+      directory: "\u76EE\u9304",
+      directoryDesc: "\u6280\u80FD\u7684\u5132\u5B58\u4F4D\u7F6E",
+      skillName: "\u6280\u80FD\u540D\u7A31",
+      skillNameDesc: "\u5728 $ \u5F8C\u4F7F\u7528\u7684\u540D\u7A31\uFF08\u4F8B\u5982 $analyze \u7684\u540D\u7A31\u70BA\u300Canalyze\u300D\uFF09",
+      description: "\u63CF\u8FF0",
+      descriptionDesc: "\u4E0B\u62C9\u9078\u55AE\u4E2D\u986F\u793A\u7684\u53EF\u9078\u63CF\u8FF0",
+      instructions: "\u6307\u4EE4",
+      instructionsDesc: "\u6280\u80FD\u6307\u4EE4\uFF08SKILL.md \u5167\u5BB9\uFF09",
+      instructionsPlaceholder: "Analyze the code for..."
+    },
+    instructionsRequired: "\u6307\u4EE4\u70BA\u5FC5\u586B\u9805",
+    saveFailed: "\u5132\u5B58 Codex \u6280\u80FD\u5931\u6557",
+    header: "Codex \u6280\u80FD",
+    noSkills: "Vault \u4E2D\u6C92\u6709 Codex \u6280\u80FD\u3002\u9EDE\u64CA + \u5EFA\u7ACB\u4E00\u500B\u3002",
+    skillBadge: "\u6280\u80FD",
+    deleted: "\u5DF2\u522A\u9664 Codex \u6280\u80FD\u300C{name}\u300D",
+    deleteFailed: "\u522A\u9664 Codex \u6280\u80FD\u5931\u6557",
+    created: "\u5DF2\u5EFA\u7ACB Codex \u6280\u80FD\u300C{name}\u300D",
+    updated: "\u5DF2\u66F4\u65B0 Codex \u6280\u80FD\u300C{name}\u300D"
+  },
+  codexSubagents: {
+    modal: {
+      titleEdit: "\u7DE8\u8F2F Codex \u5B50\u4EE3\u7406",
+      titleAdd: "\u65B0\u589E Codex \u5B50\u4EE3\u7406",
+      nameDesc: "Codex \u884D\u751F\u4EE3\u7406\u6642\u4F7F\u7528\u7684\u4EE3\u7406\u540D\u7A31\uFF08\u5C0F\u5BEB\u3001\u9023\u5B57\u7B26\u3001\u5E95\u7DDA\uFF09",
+      descriptionDesc: "Codex \u61C9\u5728\u4F55\u6642\u4F7F\u7528\u8A72\u4EE3\u7406",
+      modelDesc: "\u6A21\u578B\u8986\u5BEB\uFF08\u7559\u7A7A\u8868\u793A\u7E7C\u627F\uFF09",
+      namePlaceholder: "code_reviewer"
+    },
+    reasoningEffort: {
+      name: "\u63A8\u7406\u5F37\u5EA6",
+      desc: "\u6A21\u578B\u63A8\u7406\u5F37\u5EA6\u7D1A\u5225",
+      inherit: "\u7E7C\u627F",
+      low: "\u4F4E",
+      medium: "\u4E2D",
+      high: "\u9AD8",
+      xhigh: "\u6975\u9AD8"
+    },
+    sandboxMode: {
+      name: "\u6C99\u76D2\u6A21\u5F0F",
+      desc: "\u8A72\u4EE3\u7406\u7684\u6C99\u76D2\u9650\u5236",
+      inherit: "\u7E7C\u627F",
+      readOnly: "\u552F\u8B80",
+      dangerFullAccess: "\u5B8C\u6574\u5B58\u53D6",
+      workspaceWrite: "\u5DE5\u4F5C\u5340\u53EF\u5BEB"
+    },
+    nicknameCandidates: {
+      name: "\u66B1\u7A31\u5019\u9078",
+      desc: "\u986F\u793A\u66B1\u7A31\uFF0C\u4F7F\u7528\u9017\u865F\u5206\u9694\uFF08\u4F8B\u5982 atlas, delta, echo\uFF09"
+    },
+    developerInstructions: {
+      name: "\u958B\u767C\u8005\u6307\u4EE4",
+      desc: "\u5B9A\u7FA9\u4EE3\u7406\u884C\u70BA\u7684\u6838\u5FC3\u6307\u4EE4",
+      placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage.",
+      required: "\u958B\u767C\u8005\u6307\u4EE4\u70BA\u5FC5\u586B\u9805"
+    },
+    validation: {
+      nameRequired: "\u5B50\u4EE3\u7406\u540D\u7A31\u70BA\u5FC5\u586B\u9805",
+      nameTooLong: "\u5B50\u4EE3\u7406\u540D\u7A31\u5FC5\u9808\u4E0D\u8D85\u904E {count} \u500B\u5B57\u5143",
+      nameInvalid: "\u5B50\u4EE3\u7406\u540D\u7A31\u53EA\u80FD\u5305\u542B\u5C0F\u5BEB\u5B57\u6BCD\u3001\u6578\u5B57\u3001\u9023\u5B57\u7B26\u548C\u5E95\u7DDA",
+      nicknameInvalid: "\u66B1\u7A31\u5019\u9078\u53EA\u80FD\u5305\u542B ASCII \u5B57\u6BCD\u3001\u6578\u5B57\u3001\u7A7A\u683C\u3001\u9023\u5B57\u7B26\u548C\u5E95\u7DDA",
+      nicknameDuplicate: "\u66B1\u7A31\u5019\u9078\u5FC5\u9808\u552F\u4E00"
+    },
+    header: "Codex \u5B50\u4EE3\u7406",
+    noAgents: "Vault \u4E2D\u6C92\u6709 Codex \u5B50\u4EE3\u7406\u3002\u9EDE\u64CA + \u5EFA\u7ACB\u4E00\u500B\u3002"
   }
 };
 var zh_TW_default = {
@@ -53422,8 +55193,15 @@ function getLocaleDisplayName(locale) {
   return names[locale] || locale;
 }
 
+// src/shared/settings/EnvironmentSettingsSection.ts
+var import_obsidian8 = require("obsidian");
+
+// src/shared/settings/EnvSnippetManager.ts
+var import_obsidian7 = require("obsidian");
+init_env();
+
 // src/shared/modals/ConfirmModal.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 function confirmDelete(app, message) {
   return new Promise((resolve8) => {
     new ConfirmModal(app, message, resolve8).open();
@@ -53434,7 +55212,7 @@ function confirm(app, message, confirmText) {
     new ConfirmModal(app, message, resolve8, confirmText).open();
   });
 }
-var ConfirmModal = class extends import_obsidian4.Modal {
+var ConfirmModal = class extends import_obsidian6.Modal {
   constructor(app, message, resolve8, confirmText) {
     super(app);
     this.resolved = false;
@@ -53446,7 +55224,7 @@ var ConfirmModal = class extends import_obsidian4.Modal {
     this.setTitle(t10("common.confirm"));
     this.modalEl.addClass("claudian-confirm-modal");
     this.contentEl.createEl("p", { text: this.message });
-    new import_obsidian4.Setting(this.contentEl).addButton(
+    new import_obsidian6.Setting(this.contentEl).addButton(
       (btn) => btn.setButtonText(t10("common.cancel")).onClick(() => this.close())
     ).addButton(
       (btn) => btn.setButtonText(this.confirmText).setWarning().onClick(() => {
@@ -53464,9 +55242,8 @@ var ConfirmModal = class extends import_obsidian4.Modal {
   }
 };
 
-// src/features/settings/ui/EnvSnippetManager.ts
-init_env();
-var EnvSnippetModal = class extends import_obsidian5.Modal {
+// src/shared/settings/EnvSnippetManager.ts
+var EnvSnippetModal = class extends import_obsidian7.Modal {
   constructor(app, plugin, snippet, scope, onSave) {
     super(app);
     this.plugin = plugin;
@@ -53497,7 +55274,7 @@ var EnvSnippetModal = class extends import_obsidian5.Modal {
       var _a5, _b3, _c2;
       const name = nameEl.value.trim();
       if (!name) {
-        new import_obsidian5.Notice(t10("settings.envSnippets.nameRequired"));
+        new import_obsidian7.Notice(t10("settings.envSnippets.nameRequired"));
         return;
       }
       const contextLimits = {};
@@ -53578,19 +55355,19 @@ var EnvSnippetModal = class extends import_obsidian5.Modal {
         contextLimitInputs.set(modelId, input);
       }
     };
-    new import_obsidian5.Setting(contentEl).setName(t10("settings.envSnippets.modal.name")).setDesc(t10("settings.envSnippets.modal.namePlaceholder")).addText((text) => {
+    new import_obsidian7.Setting(contentEl).setName(t10("settings.envSnippets.modal.name")).setDesc(t10("settings.envSnippets.modal.namePlaceholder")).addText((text) => {
       var _a5;
       nameEl = text.inputEl;
       text.setValue(((_a5 = this.snippet) == null ? void 0 : _a5.name) || "");
       text.inputEl.addEventListener("keydown", handleKeyDown);
     });
-    new import_obsidian5.Setting(contentEl).setName(t10("settings.envSnippets.modal.description")).setDesc(t10("settings.envSnippets.modal.descPlaceholder")).addText((text) => {
+    new import_obsidian7.Setting(contentEl).setName(t10("settings.envSnippets.modal.description")).setDesc(t10("settings.envSnippets.modal.descPlaceholder")).addText((text) => {
       var _a5;
       descEl = text.inputEl;
       text.setValue(((_a5 = this.snippet) == null ? void 0 : _a5.description) || "");
       text.inputEl.addEventListener("keydown", handleKeyDown);
     });
-    const envVarsSetting = new import_obsidian5.Setting(contentEl).setName(t10("settings.envSnippets.modal.envVars")).setDesc(t10("settings.envSnippets.modal.envVarsPlaceholder")).addTextArea((text) => {
+    const envVarsSetting = new import_obsidian7.Setting(contentEl).setName(t10("settings.envSnippets.modal.envVars")).setDesc(t10("settings.envSnippets.modal.envVarsPlaceholder")).addTextArea((text) => {
       var _a5, _b3;
       envVarsEl = text.inputEl;
       const envVarsToShow = (_b3 = (_a5 = this.snippet) == null ? void 0 : _a5.envVars) != null ? _b3 : this.plugin.getEnvironmentVariablesForScope(this.snippetScope);
@@ -53636,7 +55413,7 @@ var EnvSnippetManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t10("settings.envSnippets.addBtn") }
     });
-    (0, import_obsidian5.setIcon)(saveBtn, "plus");
+    (0, import_obsidian7.setIcon)(saveBtn, "plus");
     saveBtn.addEventListener("click", () => {
       void this.saveCurrentEnv();
     });
@@ -53661,13 +55438,13 @@ var EnvSnippetManager = class {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Insert" }
       });
-      (0, import_obsidian5.setIcon)(restoreBtn, "clipboard-paste");
+      (0, import_obsidian7.setIcon)(restoreBtn, "clipboard-paste");
       restoreBtn.addEventListener("click", () => {
         void (async () => {
           try {
             await this.insertSnippet(snippet);
           } catch (e2) {
-            new import_obsidian5.Notice("Failed to insert snippet");
+            new import_obsidian7.Notice("Failed to insert snippet");
           }
         })();
       });
@@ -53675,7 +55452,7 @@ var EnvSnippetManager = class {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Edit" }
       });
-      (0, import_obsidian5.setIcon)(editBtn, "pencil");
+      (0, import_obsidian7.setIcon)(editBtn, "pencil");
       editBtn.addEventListener("click", () => {
         this.editSnippet(snippet);
       });
@@ -53683,7 +55460,7 @@ var EnvSnippetManager = class {
         cls: "claudian-settings-action-btn claudian-settings-delete-btn",
         attr: { "aria-label": "Delete" }
       });
-      (0, import_obsidian5.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian7.setIcon)(deleteBtn, "trash-2");
       deleteBtn.addEventListener("click", () => {
         void (async () => {
           try {
@@ -53691,7 +55468,7 @@ var EnvSnippetManager = class {
               await this.deleteSnippet(snippet);
             }
           } catch (e2) {
-            new import_obsidian5.Notice("Failed to delete snippet");
+            new import_obsidian7.Notice("Failed to delete snippet");
           }
         })();
       });
@@ -53705,17 +55482,18 @@ var EnvSnippetManager = class {
       this.scope,
       (snippet) => {
         void (async () => {
-          this.plugin.settings.envSnippets.push(snippet);
-          await this.plugin.saveSettings();
+          await this.plugin.mutateSettings((settings11) => {
+            settings11.envSnippets.push(snippet);
+          });
           this.render();
-          new import_obsidian5.Notice(`Environment snippet "${snippet.name}" saved`);
+          new import_obsidian7.Notice(`Environment snippet "${snippet.name}" saved`);
         })();
       }
     );
     modal.open();
   }
   async insertSnippet(snippet) {
-    var _a5, _b3, _c2, _d, _e2;
+    var _a5, _b3, _c2, _d;
     const snippetContent = snippet.envVars.trim();
     const updates = getEnvironmentScopeUpdates(
       snippetContent,
@@ -53731,29 +55509,31 @@ var EnvSnippetManager = class {
       }
       await this.plugin.applyEnvironmentVariablesBatch(updates);
     }
-    if (snippet.contextLimits) {
-      this.plugin.settings.customContextLimits = {
-        ...this.plugin.settings.customContextLimits,
-        ...snippet.contextLimits
-      };
-    }
-    if (snippet.modelAliases) {
-      const modelIds = ProviderRegistry.getCustomModelIds(parseEnvironmentVariables(snippet.envVars));
-      const nextAliases = { ...(_b3 = this.plugin.settings.customModelAliases) != null ? _b3 : {} };
-      for (const modelId of modelIds) {
-        const alias = (_c2 = snippet.modelAliases[modelId]) == null ? void 0 : _c2.trim();
-        if (alias) {
-          nextAliases[modelId] = alias;
-        } else {
-          delete nextAliases[modelId];
-        }
+    await this.plugin.mutateSettings((settings11) => {
+      var _a6, _b4;
+      if (snippet.contextLimits) {
+        settings11.customContextLimits = {
+          ...settings11.customContextLimits,
+          ...snippet.contextLimits
+        };
       }
-      this.plugin.settings.customModelAliases = nextAliases;
-    }
-    await this.plugin.saveSettings();
-    (_d = this.onContextLimitsChange) == null ? void 0 : _d.call(this);
-    const view = (_e2 = this.plugin.app.workspace.getLeavesOfType("claudian-view")[0]) == null ? void 0 : _e2.view;
-    view == null ? void 0 : view.refreshModelSelector();
+      if (snippet.modelAliases) {
+        const modelIds = ProviderRegistry.getCustomModelIds(parseEnvironmentVariables(snippet.envVars));
+        const nextAliases = { ...(_a6 = settings11.customModelAliases) != null ? _a6 : {} };
+        for (const modelId of modelIds) {
+          const alias = (_b4 = snippet.modelAliases[modelId]) == null ? void 0 : _b4.trim();
+          if (alias) {
+            nextAliases[modelId] = alias;
+          } else {
+            delete nextAliases[modelId];
+          }
+        }
+        settings11.customModelAliases = nextAliases;
+      }
+    });
+    (_b3 = this.onContextLimitsChange) == null ? void 0 : _b3.call(this);
+    const view = (_c2 = this.plugin.app.workspace.getLeavesOfType("claudian-view")[0]) == null ? void 0 : _c2.view;
+    (_d = view == null ? void 0 : view.refreshModelSelector) == null ? void 0 : _d.call(view);
   }
   editSnippet(snippet) {
     const modal = new EnvSnippetModal(
@@ -53763,12 +55543,16 @@ var EnvSnippetManager = class {
       this.scope,
       (updatedSnippet) => {
         void (async () => {
-          const index = this.plugin.settings.envSnippets.findIndex((s2) => s2.id === snippet.id);
-          if (index !== -1) {
-            this.plugin.settings.envSnippets[index] = updatedSnippet;
-            await this.plugin.saveSettings();
+          const exists = this.plugin.settings.envSnippets.some((s2) => s2.id === snippet.id);
+          if (exists) {
+            await this.plugin.mutateSettings((settings11) => {
+              const index = settings11.envSnippets.findIndex((s2) => s2.id === snippet.id);
+              if (index !== -1) {
+                settings11.envSnippets[index] = updatedSnippet;
+              }
+            });
             this.render();
-            new import_obsidian5.Notice(`Environment snippet "${updatedSnippet.name}" updated`);
+            new import_obsidian7.Notice(`Environment snippet "${updatedSnippet.name}" updated`);
           }
         })();
       }
@@ -53776,10 +55560,11 @@ var EnvSnippetManager = class {
     modal.open();
   }
   async deleteSnippet(snippet) {
-    this.plugin.settings.envSnippets = this.plugin.settings.envSnippets.filter((s2) => s2.id !== snippet.id);
-    await this.plugin.saveSettings();
+    await this.plugin.mutateSettings((settings11) => {
+      settings11.envSnippets = settings11.envSnippets.filter((s2) => s2.id !== snippet.id);
+    });
     this.render();
-    new import_obsidian5.Notice(`Environment snippet "${snippet.name}" deleted`);
+    new import_obsidian7.Notice(`Environment snippet "${snippet.name}" deleted`);
   }
   refresh() {
     this.render();
@@ -53800,7 +55585,7 @@ var EnvSnippetManager = class {
   }
 };
 
-// src/features/settings/ui/EnvironmentSettingsSection.ts
+// src/shared/settings/EnvironmentSettingsSection.ts
 function renderEnvironmentSettingsSection(options) {
   const {
     container,
@@ -53813,7 +55598,7 @@ function renderEnvironmentSettingsSection(options) {
     renderCustomContextLimits
   } = options;
   if (heading) {
-    new import_obsidian6.Setting(container).setName(heading).setHeading();
+    new import_obsidian8.Setting(container).setName(heading).setHeading();
   }
   let envTextarea = null;
   const reviewEl = container.createDiv({
@@ -53830,7 +55615,7 @@ function renderEnvironmentSettingsSection(options) {
     reviewEl.setText(`Review environment ownership for: ${reviewKeys.join(", ")}`);
     reviewEl.toggleClass("claudian-hidden", false);
   };
-  new import_obsidian6.Setting(container).setName(name).setDesc(desc).addTextArea((text) => {
+  new import_obsidian8.Setting(container).setName(name).setDesc(desc).addTextArea((text) => {
     text.setPlaceholder(placeholder).setValue(plugin.getEnvironmentVariablesForScope(scope));
     text.inputEl.rows = 6;
     text.inputEl.cols = 50;
@@ -53855,20 +55640,20 @@ function renderEnvironmentSettingsSection(options) {
   });
 }
 
-// src/features/settings/ui/McpSettingsManager.ts
-var import_obsidian9 = require("obsidian");
+// src/shared/settings/McpSettingsManager.ts
+var import_obsidian11 = require("obsidian");
 
 // src/core/mcp/McpConfigParser.ts
-function isRecord4(value) {
+function isRecord6(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 function parseClipboardConfig(json2) {
   try {
     const parsed = JSON.parse(json2);
-    if (!isRecord4(parsed)) {
+    if (!isRecord6(parsed)) {
       throw new Error("Invalid JSON object");
     }
-    if (isRecord4(parsed.mcpServers)) {
+    if (isRecord6(parsed.mcpServers)) {
       const servers2 = [];
       for (const [name, config2] of Object.entries(parsed.mcpServers)) {
         if (isValidMcpServerConfig(config2)) {
@@ -54284,8 +56069,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path28, errorMaps, issueData } = params;
-  const fullPath = [...path28, ...issueData.path || []];
+  const { data, path: path32, errorMaps, issueData } = params;
+  const fullPath = [...path32, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -54400,11 +56185,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path28, key) {
+  constructor(parent, value, path32, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path28;
+    this._path = path32;
     this._key = key;
   }
   get path() {
@@ -60715,9 +62500,9 @@ async function testMcpServer(server) {
   }
 }
 
-// src/features/settings/ui/McpServerModal.ts
-var import_obsidian7 = require("obsidian");
-var McpServerModal = class extends import_obsidian7.Modal {
+// src/shared/settings/McpServerModal.ts
+var import_obsidian9 = require("obsidian");
+var McpServerModal = class extends import_obsidian9.Modal {
   constructor(app, existingServer, onSave, initialType, prefillConfig) {
     super(app);
     this.serverName = "";
@@ -60766,7 +62551,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
     this.setTitle(this.existingServer ? "Edit MCP Server" : "Add MCP Server");
     this.modalEl.addClass("claudian-mcp-modal");
     const { contentEl } = this;
-    new import_obsidian7.Setting(contentEl).setName("Server name").setDesc("Unique identifier for this server").addText((text) => {
+    new import_obsidian9.Setting(contentEl).setName("Server name").setDesc("Unique identifier for this server").addText((text) => {
       this.nameInputEl = text.inputEl;
       text.setValue(this.serverName);
       text.setPlaceholder("My-mcp-server");
@@ -60775,7 +62560,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
       });
       text.inputEl.addEventListener("keydown", (e2) => this.handleKeyDown(e2));
     });
-    new import_obsidian7.Setting(contentEl).setName("Type").setDesc("Server connection type").addDropdown((dropdown) => {
+    new import_obsidian9.Setting(contentEl).setName("Type").setDesc("Server connection type").addDropdown((dropdown) => {
       dropdown.addOption("stdio", "Stdio (local command)");
       dropdown.addOption("sse", "Sse (server-sent events)");
       dropdown.addOption("http", "HTTP (HTTP endpoint)");
@@ -60787,13 +62572,13 @@ var McpServerModal = class extends import_obsidian7.Modal {
     });
     this.typeFieldsEl = contentEl.createDiv({ cls: "claudian-mcp-type-fields" });
     this.renderTypeFields();
-    new import_obsidian7.Setting(contentEl).setName("Enabled").setDesc("Whether this server is active").addToggle((toggle) => {
+    new import_obsidian9.Setting(contentEl).setName("Enabled").setDesc("Whether this server is active").addToggle((toggle) => {
       toggle.setValue(this.enabled);
       toggle.onChange((value) => {
         this.enabled = value;
       });
     });
-    new import_obsidian7.Setting(contentEl).setName("Context-saving mode").setDesc("Hide tools from agent unless @-mentioned (saves context window)").addToggle((toggle) => {
+    new import_obsidian9.Setting(contentEl).setName("Context-saving mode").setDesc("Hide tools from agent unless @-mentioned (saves context window)").addToggle((toggle) => {
       toggle.setValue(this.contextSaving);
       toggle.onChange((value) => {
         this.contextSaving = value;
@@ -60822,7 +62607,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
   }
   renderStdioFields() {
     if (!this.typeFieldsEl) return;
-    const cmdSetting = new import_obsidian7.Setting(this.typeFieldsEl).setName("Command").setDesc("Full command with arguments");
+    const cmdSetting = new import_obsidian9.Setting(this.typeFieldsEl).setName("Command").setDesc("Full command with arguments");
     cmdSetting.settingEl.addClass("claudian-mcp-cmd-setting");
     const cmdTextarea = cmdSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-cmd-textarea"
@@ -60833,7 +62618,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
     cmdTextarea.addEventListener("input", () => {
       this.command = cmdTextarea.value;
     });
-    const envSetting = new import_obsidian7.Setting(this.typeFieldsEl).setName("Environment variables").setDesc("Key=value per line (optional)");
+    const envSetting = new import_obsidian9.Setting(this.typeFieldsEl).setName("Environment variables").setDesc("Key=value per line (optional)");
     envSetting.settingEl.addClass("claudian-mcp-env-setting");
     const envTextarea = envSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-env-textarea"
@@ -60847,7 +62632,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
   }
   renderUrlFields() {
     if (!this.typeFieldsEl) return;
-    new import_obsidian7.Setting(this.typeFieldsEl).setName("URL").setDesc(this.serverType === "sse" ? "SSE endpoint URL" : "HTTP endpoint URL").addText((text) => {
+    new import_obsidian9.Setting(this.typeFieldsEl).setName("URL").setDesc(this.serverType === "sse" ? "SSE endpoint URL" : "HTTP endpoint URL").addText((text) => {
       text.setValue(this.url);
       text.setPlaceholder("HTTP://localhost:3000/sse");
       text.onChange((value) => {
@@ -60855,7 +62640,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
       });
       text.inputEl.addEventListener("keydown", (e2) => this.handleKeyDown(e2));
     });
-    const headersSetting = new import_obsidian7.Setting(this.typeFieldsEl).setName("Headers").setDesc("HTTP headers (key=value per line)");
+    const headersSetting = new import_obsidian9.Setting(this.typeFieldsEl).setName("Headers").setDesc("HTTP headers (key=value per line)");
     headersSetting.settingEl.addClass("claudian-mcp-env-setting");
     const headersTextarea = headersSetting.controlEl.createEl("textarea", {
       cls: "claudian-mcp-env-textarea"
@@ -60880,12 +62665,12 @@ var McpServerModal = class extends import_obsidian7.Modal {
     var _a5, _b3, _c2;
     const name = this.serverName.trim();
     if (!name) {
-      new import_obsidian7.Notice("Please enter a server name");
+      new import_obsidian9.Notice("Please enter a server name");
       (_a5 = this.nameInputEl) == null ? void 0 : _a5.focus();
       return;
     }
     if (!/^[a-zA-Z0-9._-]+$/.test(name)) {
-      new import_obsidian7.Notice("Server name can only contain letters, numbers, dots, hyphens, and underscores");
+      new import_obsidian9.Notice("Server name can only contain letters, numbers, dots, hyphens, and underscores");
       (_b3 = this.nameInputEl) == null ? void 0 : _b3.focus();
       return;
     }
@@ -60893,7 +62678,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
     if (this.serverType === "stdio") {
       const fullCommand = this.command.trim();
       if (!fullCommand) {
-        new import_obsidian7.Notice("Please enter a command");
+        new import_obsidian9.Notice("Please enter a command");
         return;
       }
       const { cmd, args } = parseCommand(fullCommand);
@@ -60909,7 +62694,7 @@ var McpServerModal = class extends import_obsidian7.Modal {
     } else {
       const url2 = this.url.trim();
       if (!url2) {
-        new import_obsidian7.Notice("Please enter a URL");
+        new import_obsidian9.Notice("Please enter a URL");
         return;
       }
       if (this.serverType === "sse") {
@@ -60963,8 +62748,8 @@ var McpServerModal = class extends import_obsidian7.Modal {
   }
 };
 
-// src/features/settings/ui/McpTestModal.ts
-var import_obsidian8 = require("obsidian");
+// src/shared/settings/McpTestModal.ts
+var import_obsidian10 = require("obsidian");
 function formatToggleError(error48) {
   if (!(error48 instanceof Error)) return "Failed to update tool setting";
   const msg = error48.message.toLowerCase();
@@ -60986,15 +62771,15 @@ function appendSpinnerSvg(container) {
   svg.setAttribute("fill", "none");
   svg.setAttribute("stroke", "currentColor");
   svg.setAttribute("stroke-width", "2");
-  const path28 = container.ownerDocument.createElementNS(SVG_NS, "path");
-  path28.setAttribute(
+  const path32 = container.ownerDocument.createElementNS(SVG_NS, "path");
+  path32.setAttribute(
     "d",
     "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
   );
-  svg.appendChild(path28);
+  svg.appendChild(path32);
   container.appendChild(svg);
 }
-var McpTestModal = class extends import_obsidian8.Modal {
+var McpTestModal = class extends import_obsidian10.Modal {
   constructor(app, serverName, initialDisabledTools, onToolToggle, onBulkToggle) {
     super(app);
     this.result = null;
@@ -61045,10 +62830,10 @@ var McpTestModal = class extends import_obsidian8.Modal {
     const statusEl = this.contentEl_.createDiv({ cls: "claudian-mcp-test-status" });
     const iconEl = statusEl.createSpan({ cls: "claudian-mcp-test-icon" });
     if (this.result.success) {
-      (0, import_obsidian8.setIcon)(iconEl, "check-circle");
+      (0, import_obsidian10.setIcon)(iconEl, "check-circle");
       iconEl.addClass("success");
     } else {
-      (0, import_obsidian8.setIcon)(iconEl, "x-circle");
+      (0, import_obsidian10.setIcon)(iconEl, "x-circle");
       iconEl.addClass("error");
     }
     const textEl = statusEl.createSpan({ cls: "claudian-mcp-test-text" });
@@ -61102,7 +62887,7 @@ var McpTestModal = class extends import_obsidian8.Modal {
     const toolEl = container.createDiv({ cls: "claudian-mcp-test-tool" });
     const headerEl = toolEl.createDiv({ cls: "claudian-mcp-test-tool-header" });
     const iconEl = headerEl.createSpan({ cls: "claudian-mcp-test-tool-icon" });
-    (0, import_obsidian8.setIcon)(iconEl, "wrench");
+    (0, import_obsidian10.setIcon)(iconEl, "wrench");
     const nameEl = headerEl.createSpan({ cls: "claudian-mcp-test-tool-name" });
     nameEl.setText(tool.name);
     const toggleEl = headerEl.createDiv({ cls: "claudian-mcp-test-tool-toggle" });
@@ -61160,7 +62945,9 @@ var McpTestModal = class extends import_obsidian8.Modal {
       container.toggleClass("is-enabled", !wasDisabled);
       this.updateToolState(toolEl, !wasDisabled);
       this.updateToggleAllButton();
-      new import_obsidian8.Notice(formatToggleError(error48));
+      if (!isNotifiedMutationError(error48)) {
+        new import_obsidian10.Notice(formatToggleError(error48));
+      }
     } finally {
       checkbox.disabled = false;
     }
@@ -61215,7 +63002,9 @@ var McpTestModal = class extends import_obsidian8.Modal {
         this.updateToolState(toolEl, isEnabled);
       }
       this.updateToggleAllButton();
-      new import_obsidian8.Notice(formatToggleError(error48));
+      if (!isNotifiedMutationError(error48)) {
+        new import_obsidian10.Notice(formatToggleError(error48));
+      }
     }
     for (const { checkbox } of this.toolToggles.values()) {
       checkbox.disabled = false;
@@ -61228,7 +63017,7 @@ var McpTestModal = class extends import_obsidian8.Modal {
   }
 };
 
-// src/features/settings/ui/McpSettingsManager.ts
+// src/shared/settings/McpSettingsManager.ts
 var McpSettingsManager = class {
   constructor(containerEl, deps) {
     this.servers = [];
@@ -61252,24 +63041,24 @@ var McpSettingsManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Add" }
     });
-    (0, import_obsidian9.setIcon)(addBtn, "plus");
+    (0, import_obsidian11.setIcon)(addBtn, "plus");
     const dropdown = addContainer.createDiv({ cls: "claudian-mcp-add-dropdown" });
     const stdioOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian9.setIcon)(stdioOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "terminal");
+    (0, import_obsidian11.setIcon)(stdioOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "terminal");
     stdioOption.createSpan({ text: "stdio (local command)" });
     stdioOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
       this.openModal(null, "stdio");
     });
     const httpOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian9.setIcon)(httpOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "globe");
+    (0, import_obsidian11.setIcon)(httpOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "globe");
     httpOption.createSpan({ text: "http / sse (remote)" });
     httpOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
       this.openModal(null, "http");
     });
     const importOption = dropdown.createDiv({ cls: "claudian-mcp-add-option" });
-    (0, import_obsidian9.setIcon)(importOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "clipboard-paste");
+    (0, import_obsidian11.setIcon)(importOption.createSpan({ cls: "claudian-mcp-add-option-icon" }), "clipboard-paste");
     importOption.createSpan({ text: "Import from clipboard" });
     importOption.addEventListener("click", () => {
       dropdown.removeClass("is-visible");
@@ -61324,7 +63113,7 @@ var McpSettingsManager = class {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": "Verify (show tools)" }
     });
-    (0, import_obsidian9.setIcon)(testBtn, "zap");
+    (0, import_obsidian11.setIcon)(testBtn, "zap");
     testBtn.addEventListener("click", () => {
       void this.testServer(server);
     });
@@ -61332,23 +63121,27 @@ var McpSettingsManager = class {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": server.enabled ? "Disable" : "Enable" }
     });
-    (0, import_obsidian9.setIcon)(toggleBtn, server.enabled ? "toggle-right" : "toggle-left");
+    (0, import_obsidian11.setIcon)(toggleBtn, server.enabled ? "toggle-right" : "toggle-left");
     toggleBtn.addEventListener("click", () => {
-      void this.toggleServer(server);
+      void this.toggleServer(server).catch((error48) => {
+        this.showMutationError(error48, "Failed to update MCP server");
+      });
     });
     const editBtn = actionsEl.createEl("button", {
       cls: "claudian-mcp-action-btn",
       attr: { "aria-label": "Edit" }
     });
-    (0, import_obsidian9.setIcon)(editBtn, "pencil");
+    (0, import_obsidian11.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => this.openModal(server));
     const deleteBtn = actionsEl.createEl("button", {
       cls: "claudian-mcp-action-btn claudian-mcp-delete-btn",
       attr: { "aria-label": "Delete" }
     });
-    (0, import_obsidian9.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian11.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", () => {
-      void this.deleteServer(server);
+      void this.deleteServer(server).catch((error48) => {
+        this.showMutationError(error48, "Failed to delete MCP server");
+      });
     });
   }
   async testServer(server) {
@@ -61384,7 +63177,7 @@ var McpSettingsManager = class {
     try {
       await this.broadcastMcpReload();
     } catch (e2) {
-      new import_obsidian9.Notice("Setting saved but reload failed. Changes will apply on next session.");
+      new import_obsidian11.Notice("Setting saved but reload failed. Changes will apply on next session.");
     }
   }
   async updateDisabledTool(server, toolName, enabled) {
@@ -61423,7 +63216,7 @@ var McpSettingsManager = class {
       existing,
       (server) => {
         void this.saveServer(server, existing).catch((error48) => {
-          new import_obsidian9.Notice(error48 instanceof Error ? error48.message : "Failed to save MCP server");
+          this.showMutationError(error48, "Failed to save MCP server");
         });
       },
       initialType
@@ -61434,12 +63227,12 @@ var McpSettingsManager = class {
     try {
       const text = await navigator.clipboard.readText();
       if (!text.trim()) {
-        new import_obsidian9.Notice("Clipboard is empty");
+        new import_obsidian11.Notice("Clipboard is empty");
         return;
       }
       const parsed = tryParseClipboardConfig(text);
       if (!parsed || parsed.servers.length === 0) {
-        new import_obsidian9.Notice("No valid mcp configuration found in clipboard");
+        new import_obsidian11.Notice("No valid mcp configuration found in clipboard");
         return;
       }
       if (parsed.needsName || parsed.servers.length === 1) {
@@ -61450,7 +63243,7 @@ var McpSettingsManager = class {
           null,
           (savedServer) => {
             void this.saveServer(savedServer, null).catch((error48) => {
-              new import_obsidian9.Notice(error48 instanceof Error ? error48.message : "Failed to save MCP server");
+              this.showMutationError(error48, "Failed to save MCP server");
             });
           },
           type,
@@ -61459,23 +63252,26 @@ var McpSettingsManager = class {
         );
         modal.open();
         if (parsed.needsName) {
-          new import_obsidian9.Notice("Enter a name for the server");
+          new import_obsidian11.Notice("Enter a name for the server");
         }
         return;
       }
       await this.importServers(parsed.servers);
-    } catch (e2) {
-      new import_obsidian9.Notice("Failed to read clipboard");
+    } catch (error48) {
+      if (!isNotifiedMutationError(error48)) {
+        new import_obsidian11.Notice("Failed to read clipboard");
+      }
     }
   }
   async saveServer(server, existing) {
+    const previousServers = [...this.servers];
     if (existing) {
       const index = this.servers.findIndex((s2) => s2.name === existing.name);
       if (index !== -1) {
         if (server.name !== existing.name) {
           const conflict = this.servers.find((s2) => s2.name === server.name);
           if (conflict) {
-            new import_obsidian9.Notice(`Server "${server.name}" already exists`);
+            new import_obsidian11.Notice(`Server "${server.name}" already exists`);
             return;
           }
         }
@@ -61484,17 +63280,23 @@ var McpSettingsManager = class {
     } else {
       const conflict = this.servers.find((s2) => s2.name === server.name);
       if (conflict) {
-        new import_obsidian9.Notice(`Server "${server.name}" already exists`);
+        new import_obsidian11.Notice(`Server "${server.name}" already exists`);
         return;
       }
       this.servers.push(server);
     }
-    await this.mcpStorage.save(this.servers);
+    try {
+      await this.mcpStorage.save(this.servers);
+    } catch (error48) {
+      this.servers = previousServers;
+      throw error48;
+    }
     await this.broadcastMcpReload();
     this.render();
-    new import_obsidian9.Notice(existing ? `MCP server "${server.name}" updated` : `MCP server "${server.name}" added`);
+    new import_obsidian11.Notice(existing ? `MCP server "${server.name}" updated` : `MCP server "${server.name}" added`);
   }
   async importServers(servers) {
+    const previousServers = [...this.servers];
     const added = [];
     const skipped = [];
     for (const server of servers) {
@@ -61517,38 +63319,61 @@ var McpSettingsManager = class {
       added.push(name);
     }
     if (added.length === 0) {
-      new import_obsidian9.Notice("No new mcp servers imported");
+      new import_obsidian11.Notice("No new mcp servers imported");
       return;
     }
-    await this.mcpStorage.save(this.servers);
+    try {
+      await this.mcpStorage.save(this.servers);
+    } catch (error48) {
+      this.servers = previousServers;
+      throw error48;
+    }
     await this.broadcastMcpReload();
     this.render();
     let message = `Imported ${added.length} MCP server${added.length > 1 ? "s" : ""}`;
     if (skipped.length > 0) {
       message += ` (${skipped.length} skipped)`;
     }
-    new import_obsidian9.Notice(message);
+    new import_obsidian11.Notice(message);
   }
   async toggleServer(server) {
+    const previousEnabled = server.enabled;
     server.enabled = !server.enabled;
-    await this.mcpStorage.save(this.servers);
+    try {
+      await this.mcpStorage.save(this.servers);
+    } catch (error48) {
+      server.enabled = previousEnabled;
+      throw error48;
+    }
     await this.broadcastMcpReload();
     this.render();
-    new import_obsidian9.Notice(`MCP server "${server.name}" ${server.enabled ? "enabled" : "disabled"}`);
+    new import_obsidian11.Notice(`MCP server "${server.name}" ${server.enabled ? "enabled" : "disabled"}`);
   }
   async deleteServer(server) {
     if (!await confirmDelete(this.app, `Delete MCP server "${server.name}"?`)) {
       return;
     }
+    const previousServers = this.servers;
     this.servers = this.servers.filter((s2) => s2.name !== server.name);
-    await this.mcpStorage.save(this.servers);
+    try {
+      await this.mcpStorage.save(this.servers);
+    } catch (error48) {
+      this.servers = previousServers;
+      throw error48;
+    }
     await this.broadcastMcpReload();
     this.render();
-    new import_obsidian9.Notice(`MCP server "${server.name}" deleted`);
+    new import_obsidian11.Notice(`MCP server "${server.name}" deleted`);
   }
   /** Refresh the server list (call after external changes). */
   refresh() {
     void this.loadAndRender();
+  }
+  showMutationError(error48, fallback) {
+    if (isNotifiedMutationError(error48)) {
+      return;
+    }
+    new import_obsidian11.Notice(error48 instanceof Error ? error48.message : fallback);
   }
 };
 
@@ -61686,9 +63511,7 @@ function toClaudeRuntimeModelId(modelId) {
 var DEFAULT_CLAUDE_MODELS = [
   { value: "haiku", label: "Haiku", description: "Fast and efficient" },
   { value: "sonnet", label: "Sonnet", description: "Balanced performance" },
-  { value: "sonnet[1m]", label: "Sonnet 1M", description: "Balanced performance (1M context window)" },
   { value: "opus", label: "Opus", description: "Most capable" },
-  { value: "opus[1m]", label: "Opus 1M", description: "Most capable (1M context window)" },
   { value: "claude-fable-5", label: "Fable 5 ($$$)", description: "Anthropic's most capable model \u2014 premium pricing above Opus" }
 ];
 var EFFORT_LEVELS = [
@@ -61699,24 +63522,28 @@ var EFFORT_LEVELS = [
   { value: "max", label: "Max" }
 ];
 var DEFAULT_EFFORT_LEVEL = {
-  "haiku": "high",
-  "sonnet": "high",
-  "sonnet[1m]": "high",
-  "opus": "high",
-  "opus[1m]": "high",
-  "claude-fable-5": "high"
+  "haiku": DEFAULT_REASONING_VALUE,
+  "sonnet": DEFAULT_REASONING_VALUE,
+  "opus": DEFAULT_REASONING_VALUE,
+  "claude-fable-5": DEFAULT_REASONING_VALUE
 };
 var ONE_M_SUFFIX = "[1m]";
 var DEFAULT_MODEL_VALUES = new Set(DEFAULT_CLAUDE_MODELS.map((m4) => m4.value.toLowerCase()));
 function normalizeModelId(model) {
   return toClaudeRuntimeModelId(model).trim().toLowerCase();
 }
-function has1MContextSuffix(model) {
-  return normalizeModelId(model).endsWith(ONE_M_SUFFIX);
-}
 function isBuiltInFamilyVariant(model, family) {
   const normalized = normalizeModelId(model);
   return normalized === family || normalized === `${family}${ONE_M_SUFFIX}`;
+}
+function normalizeLegacy1MModelAlias(model) {
+  if (isBuiltInFamilyVariant(model, "sonnet")) {
+    return "sonnet";
+  }
+  if (isBuiltInFamilyVariant(model, "opus")) {
+    return "opus";
+  }
+  return model;
 }
 function isFableModel(model) {
   return /claude-fable-\d+/.test(normalizeModelId(model));
@@ -61737,7 +63564,7 @@ function resolveCustomContextLimit(model, customLimits) {
   return matchingLimits.length === 1 ? matchingLimits[0] : null;
 }
 function isDefaultClaudeModel(model) {
-  return DEFAULT_MODEL_VALUES.has(normalizeModelId(model));
+  return DEFAULT_MODEL_VALUES.has(normalizeModelId(normalizeLegacy1MModelAlias(model)));
 }
 function supportsXHighEffort(model) {
   const normalized = normalizeModelId(model);
@@ -61755,39 +63582,34 @@ function normalizeEffortLevel(model, effortLevel) {
   if (isSupported) {
     return effortLevel;
   }
-  return (_a5 = DEFAULT_EFFORT_LEVEL[normalizeModelId(model)]) != null ? _a5 : "high";
+  return (_a5 = DEFAULT_EFFORT_LEVEL[normalizeModelId(model)]) != null ? _a5 : DEFAULT_REASONING_VALUE;
 }
 function resolveEffortLevel(model, effortLevel) {
   return normalizeEffortLevel(model, effortLevel);
 }
 var CONTEXT_WINDOW_STANDARD = 2e5;
 var CONTEXT_WINDOW_1M = 1e6;
-function filterVisibleModelOptions(models, enableOpus1M, enableSonnet1M) {
-  return models.filter((model) => {
-    if (isBuiltInFamilyVariant(model.value, "opus")) {
-      return enableOpus1M ? has1MContextSuffix(model.value) : normalizeModelId(model.value) === "opus";
-    }
-    if (isBuiltInFamilyVariant(model.value, "sonnet")) {
-      return enableSonnet1M ? has1MContextSuffix(model.value) : normalizeModelId(model.value) === "sonnet";
-    }
+function isCurrentOneMillionContextModel(model) {
+  const normalized = normalizeModelId(normalizeLegacy1MModelAlias(model));
+  if (normalized === "opus" || normalized === "sonnet" || isFableModel(normalized)) {
     return true;
-  });
-}
-function normalizeVisibleModelVariant(model, enableOpus1M, enableSonnet1M) {
-  if (isBuiltInFamilyVariant(model, "opus")) {
-    return enableOpus1M ? "opus[1m]" : "opus";
   }
-  if (isBuiltInFamilyVariant(model, "sonnet")) {
-    return enableSonnet1M ? "sonnet[1m]" : "sonnet";
+  const canonicalStart = normalized.indexOf("claude-");
+  const canonical = canonicalStart >= 0 ? normalized.slice(canonicalStart) : normalized;
+  const versionMatch = canonical.match(/^claude-(opus|sonnet)-(\d+)(?:-(\d+))?/);
+  if (!versionMatch) {
+    return false;
   }
-  return model;
+  const major = Number(versionMatch[2]);
+  const minor = versionMatch[3] === void 0 ? 0 : Number(versionMatch[3]);
+  return major > 4 || major === 4 && minor >= 6;
 }
 function getContextWindowSize(model, customLimits) {
   const customLimit = resolveCustomContextLimit(model, customLimits);
   if (customLimit !== null) {
     return customLimit;
   }
-  if (has1MContextSuffix(model) || isFableModel(model)) {
+  if (isCurrentOneMillionContextModel(model)) {
     return CONTEXT_WINDOW_1M;
   }
   return CONTEXT_WINDOW_STANDARD;
@@ -61838,11 +63660,7 @@ function getClaudeModelOptions(settings11) {
     }));
   }
   const claudeSettings = getClaudeProviderSettings(settings11);
-  const models = filterVisibleModelOptions(
-    [...DEFAULT_CLAUDE_MODELS],
-    claudeSettings.enableOpus1M,
-    claudeSettings.enableSonnet1M
-  );
+  const models = [...DEFAULT_CLAUDE_MODELS];
   const seenModelIds = new Set(models.map((model) => toClaudeRuntimeModelId(model.value)));
   for (const configuredModelId of parseConfiguredCustomModelIds(claudeSettings.customModels)) {
     const modelId = toClaudeRuntimeModelId(configuredModelId);
@@ -61862,7 +63680,7 @@ function resolveClaudeModelSelection(settings11, currentModel) {
   var _a5, _b3;
   const modelOptions = getClaudeModelOptions(settings11);
   if (currentModel) {
-    const currentRuntimeModel = toClaudeRuntimeModelId(currentModel);
+    const currentRuntimeModel = normalizeLegacy1MModelAlias(toClaudeRuntimeModelId(currentModel));
     const currentOption = modelOptions.find(
       (option) => option.value === currentModel || toClaudeRuntimeModelId(option.value) === currentRuntimeModel
     );
@@ -61872,7 +63690,7 @@ function resolveClaudeModelSelection(settings11, currentModel) {
   }
   const lastModel = getClaudeProviderSettings(settings11).lastModel;
   if (lastModel) {
-    const lastRuntimeModel = toClaudeRuntimeModelId(lastModel);
+    const lastRuntimeModel = normalizeLegacy1MModelAlias(toClaudeRuntimeModelId(lastModel));
     const lastOption = modelOptions.find(
       (option) => option.value === lastModel || toClaudeRuntimeModelId(option.value) === lastRuntimeModel
     );
@@ -61884,14 +63702,14 @@ function resolveClaudeModelSelection(settings11, currentModel) {
 }
 
 // src/providers/claude/ui/AgentSettings.ts
-var import_obsidian10 = require("obsidian");
+var import_obsidian12 = require("obsidian");
 var MODEL_OPTIONS = [
   { value: "inherit", label: "Inherit" },
   { value: "sonnet", label: "Sonnet" },
   { value: "opus", label: "Opus" },
   { value: "haiku", label: "Haiku" }
 ];
-var AgentModal = class extends import_obsidian10.Modal {
+var AgentModal = class extends import_obsidian12.Modal {
   constructor(app, existingAgent, getAvailableAgents, onSave) {
     super(app);
     this.existingAgent = existingAgent;
@@ -61911,12 +63729,12 @@ var AgentModal = class extends import_obsidian10.Modal {
     let toolsInput;
     let disallowedToolsInput;
     let skillsInput;
-    new import_obsidian10.Setting(contentEl).setName(t10("settings.subagents.modal.name")).setDesc(t10("settings.subagents.modal.nameDesc")).addText((text) => {
+    new import_obsidian12.Setting(contentEl).setName(t10("settings.subagents.modal.name")).setDesc(t10("settings.subagents.modal.nameDesc")).addText((text) => {
       var _a6;
       nameInput = text.inputEl;
       text.setValue(((_a6 = this.existingAgent) == null ? void 0 : _a6.name) || "").setPlaceholder(t10("settings.subagents.modal.namePlaceholder"));
     });
-    new import_obsidian10.Setting(contentEl).setName(t10("settings.subagents.modal.description")).setDesc(t10("settings.subagents.modal.descriptionDesc")).addText((text) => {
+    new import_obsidian12.Setting(contentEl).setName(t10("settings.subagents.modal.description")).setDesc(t10("settings.subagents.modal.descriptionDesc")).addText((text) => {
       var _a6;
       descInput = text.inputEl;
       text.setValue(((_a6 = this.existingAgent) == null ? void 0 : _a6.description) || "").setPlaceholder(t10("settings.subagents.modal.descriptionPlaceholder"));
@@ -61929,7 +63747,7 @@ var AgentModal = class extends import_obsidian10.Modal {
     if (((_c2 = this.existingAgent) == null ? void 0 : _c2.model) && this.existingAgent.model !== "inherit" || ((_e2 = (_d = this.existingAgent) == null ? void 0 : _d.tools) == null ? void 0 : _e2.length) || ((_g = (_f2 = this.existingAgent) == null ? void 0 : _f2.disallowedTools) == null ? void 0 : _g.length) || ((_i = (_h2 = this.existingAgent) == null ? void 0 : _h2.skills) == null ? void 0 : _i.length)) {
       details.open = true;
     }
-    new import_obsidian10.Setting(details).setName(t10("settings.subagents.modal.model")).setDesc(t10("settings.subagents.modal.modelDesc")).addDropdown((dropdown) => {
+    new import_obsidian12.Setting(details).setName(t10("settings.subagents.modal.model")).setDesc(t10("settings.subagents.modal.modelDesc")).addDropdown((dropdown) => {
       for (const opt of MODEL_OPTIONS) {
         dropdown.addOption(opt.value, opt.label);
       }
@@ -61937,22 +63755,22 @@ var AgentModal = class extends import_obsidian10.Modal {
         modelValue = value;
       });
     });
-    new import_obsidian10.Setting(details).setName(t10("settings.subagents.modal.tools")).setDesc(t10("settings.subagents.modal.toolsDesc")).addText((text) => {
+    new import_obsidian12.Setting(details).setName(t10("settings.subagents.modal.tools")).setDesc(t10("settings.subagents.modal.toolsDesc")).addText((text) => {
       var _a6, _b4;
       toolsInput = text.inputEl;
       text.setValue(((_b4 = (_a6 = this.existingAgent) == null ? void 0 : _a6.tools) == null ? void 0 : _b4.join(", ")) || "");
     });
-    new import_obsidian10.Setting(details).setName(t10("settings.subagents.modal.disallowedTools")).setDesc(t10("settings.subagents.modal.disallowedToolsDesc")).addText((text) => {
+    new import_obsidian12.Setting(details).setName(t10("settings.subagents.modal.disallowedTools")).setDesc(t10("settings.subagents.modal.disallowedToolsDesc")).addText((text) => {
       var _a6, _b4;
       disallowedToolsInput = text.inputEl;
       text.setValue(((_b4 = (_a6 = this.existingAgent) == null ? void 0 : _a6.disallowedTools) == null ? void 0 : _b4.join(", ")) || "");
     });
-    new import_obsidian10.Setting(details).setName(t10("settings.subagents.modal.skills")).setDesc(t10("settings.subagents.modal.skillsDesc")).addText((text) => {
+    new import_obsidian12.Setting(details).setName(t10("settings.subagents.modal.skills")).setDesc(t10("settings.subagents.modal.skillsDesc")).addText((text) => {
       var _a6, _b4;
       skillsInput = text.inputEl;
       text.setValue(((_b4 = (_a6 = this.existingAgent) == null ? void 0 : _a6.skills) == null ? void 0 : _b4.join(", ")) || "");
     });
-    new import_obsidian10.Setting(contentEl).setName(t10("settings.subagents.modal.prompt")).setDesc(t10("settings.subagents.modal.promptDesc"));
+    new import_obsidian12.Setting(contentEl).setName(t10("settings.subagents.modal.prompt")).setDesc(t10("settings.subagents.modal.promptDesc"));
     const contentArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
@@ -61977,17 +63795,17 @@ var AgentModal = class extends import_obsidian10.Modal {
         const name = nameInput.value.trim();
         const nameError = validateAgentName(name);
         if (nameError) {
-          new import_obsidian10.Notice(nameError);
+          new import_obsidian12.Notice(nameError);
           return;
         }
         const description = descInput.value.trim();
         if (!description) {
-          new import_obsidian10.Notice(t10("settings.subagents.descriptionRequired"));
+          new import_obsidian12.Notice(t10("settings.subagents.descriptionRequired"));
           return;
         }
         const prompt = contentArea.value;
         if (!prompt.trim()) {
-          new import_obsidian10.Notice(t10("settings.subagents.promptRequired"));
+          new import_obsidian12.Notice(t10("settings.subagents.promptRequired"));
           return;
         }
         const allAgents = this.getAvailableAgents();
@@ -61998,7 +63816,7 @@ var AgentModal = class extends import_obsidian10.Modal {
           }
         );
         if (duplicate) {
-          new import_obsidian10.Notice(t10("settings.subagents.duplicateName", { name }));
+          new import_obsidian12.Notice(t10("settings.subagents.duplicateName", { name }));
           return;
         }
         const parseList = (input) => {
@@ -62025,7 +63843,7 @@ var AgentModal = class extends import_obsidian10.Modal {
           await this.onSave(agent);
         } catch (err) {
           const message = err instanceof Error ? err.message : "Unknown error";
-          new import_obsidian10.Notice(t10("settings.subagents.saveFailed", { message }));
+          new import_obsidian12.Notice(t10("settings.subagents.saveFailed", { message }));
           return;
         }
         this.close();
@@ -62053,7 +63871,7 @@ var AgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t10("common.refresh") }
     });
-    (0, import_obsidian10.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian12.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => {
       void this.refreshAgents();
     });
@@ -62061,7 +63879,7 @@ var AgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t10("common.add") }
     });
-    (0, import_obsidian10.setIcon)(addBtn, "plus");
+    (0, import_obsidian12.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => {
       void this.openAgentModal(null);
     });
@@ -62092,7 +63910,7 @@ var AgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": t10("common.edit") }
     });
-    (0, import_obsidian10.setIcon)(editBtn, "pencil");
+    (0, import_obsidian12.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => {
       void this.openAgentModal(agent);
     });
@@ -62100,7 +63918,7 @@ var AgentSettings = class {
       cls: "claudian-settings-action-btn claudian-settings-delete-btn",
       attr: { "aria-label": t10("common.delete") }
     });
-    (0, import_obsidian10.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian12.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", () => {
       void (async () => {
         const confirmed = await confirmDelete(
@@ -62112,7 +63930,7 @@ var AgentSettings = class {
           await this.deleteAgent(agent);
         } catch (err) {
           const message = err instanceof Error ? err.message : "Unknown error";
-          new import_obsidian10.Notice(t10("settings.subagents.deleteFailed", { message }));
+          new import_obsidian12.Notice(t10("settings.subagents.deleteFailed", { message }));
         }
       })();
     });
@@ -62123,7 +63941,7 @@ var AgentSettings = class {
       this.render();
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unknown error";
-      new import_obsidian10.Notice(t10("settings.subagents.refreshFailed", { message }));
+      new import_obsidian12.Notice(t10("settings.subagents.refreshFailed", { message }));
     }
   }
   async openAgentModal(existingAgent) {
@@ -62134,7 +63952,7 @@ var AgentSettings = class {
         fresh = (_a5 = await this.agentStorage.load(existingAgent)) != null ? _a5 : existingAgent;
       } catch (err) {
         const message = err instanceof Error ? err.message : "Unknown error";
-        new import_obsidian10.Notice(`Failed to load subagent "${existingAgent.name}": ${message}`);
+        new import_obsidian12.Notice(`Failed to load subagent "${existingAgent.name}": ${message}`);
         return;
       }
     } else {
@@ -62153,7 +63971,7 @@ var AgentSettings = class {
       try {
         await this.agentStorage.delete(existing);
       } catch (e2) {
-        new import_obsidian10.Notice(t10("settings.subagents.renameCleanupFailed", { name: existing.name }));
+        new import_obsidian12.Notice(t10("settings.subagents.renameCleanupFailed", { name: existing.name }));
       }
     } else {
       await this.agentStorage.save(agent);
@@ -62163,7 +63981,7 @@ var AgentSettings = class {
     } catch (e2) {
     }
     this.render();
-    new import_obsidian10.Notice(
+    new import_obsidian12.Notice(
       existing ? t10("settings.subagents.updated", { name: agent.name }) : t10("settings.subagents.created", { name: agent.name })
     );
   }
@@ -62174,7 +63992,7 @@ var AgentSettings = class {
     } catch (e2) {
     }
     this.render();
-    new import_obsidian10.Notice(t10("settings.subagents.deleted", { name: agent.name }));
+    new import_obsidian12.Notice(t10("settings.subagents.deleted", { name: agent.name }));
   }
 };
 
@@ -62199,9 +64017,9 @@ function appendMcpIcon(container) {
   title.textContent = "MCP";
   svg.appendChild(title);
   for (const pathData of MCP_ICON_PATHS) {
-    const path28 = createSvgElement(container.ownerDocument, "path");
-    path28.setAttribute("d", pathData);
-    svg.appendChild(path28);
+    const path32 = createSvgElement(container.ownerDocument, "path");
+    path32.setAttribute("d", pathData);
+    svg.appendChild(path32);
   }
   container.appendChild(svg);
 }
@@ -62304,10 +64122,10 @@ function createProviderIconSvg(icon, options = {}) {
     }
     return svg;
   }
-  const path28 = ownerDocument.createElementNS(SVG_NS2, "path");
-  path28.setAttribute("d", icon.path);
-  path28.setAttribute("fill", "currentColor");
-  svg.appendChild(path28);
+  const path32 = ownerDocument.createElementNS(SVG_NS2, "path");
+  path32.setAttribute("d", icon.path);
+  path32.setAttribute("fill", "currentColor");
+  svg.appendChild(path32);
   return svg;
 }
 function createProviderSvgChild(child, ownerDocument) {
@@ -62352,21 +64170,21 @@ var claudeChatUIConfig = {
   },
   getDefaultReasoningValue(model, _settings) {
     var _a5;
-    return (_a5 = DEFAULT_EFFORT_LEVEL[toClaudeRuntimeModelId(model)]) != null ? _a5 : "high";
+    return (_a5 = DEFAULT_EFFORT_LEVEL[toClaudeRuntimeModelId(model)]) != null ? _a5 : DEFAULT_REASONING_VALUE;
   },
   getContextWindowSize(model, customLimits) {
     return getContextWindowSize(toClaudeRuntimeModelId(model), customLimits);
   },
   isDefaultModel(model) {
-    const runtimeModel = toClaudeRuntimeModelId(model);
+    const runtimeModel = normalizeLegacy1MModelAlias(toClaudeRuntimeModelId(model));
     return DEFAULT_CLAUDE_MODELS.some((m4) => m4.value === runtimeModel);
   },
   applyModelDefaults(model, settings11) {
     var _a5;
     const target = settings11;
-    const runtimeModel = toClaudeRuntimeModelId(model);
+    const runtimeModel = normalizeLegacy1MModelAlias(toClaudeRuntimeModelId(model));
     if (DEFAULT_CLAUDE_MODELS.some((m4) => m4.value === runtimeModel)) {
-      target.effortLevel = (_a5 = DEFAULT_EFFORT_LEVEL[runtimeModel]) != null ? _a5 : "high";
+      target.effortLevel = (_a5 = DEFAULT_EFFORT_LEVEL[runtimeModel]) != null ? _a5 : DEFAULT_REASONING_VALUE;
       updateClaudeProviderSettings(target, { lastModel: runtimeModel });
     } else {
       target.lastCustomModel = model;
@@ -62375,12 +64193,7 @@ var claudeChatUIConfig = {
   },
   normalizeModelVariant(model, settings11) {
     var _a5;
-    const claudeSettings = getClaudeProviderSettings(settings11);
-    const normalizedRuntimeModel = normalizeVisibleModelVariant(
-      toClaudeRuntimeModelId(model),
-      claudeSettings.enableOpus1M,
-      claudeSettings.enableSonnet1M
-    );
+    const normalizedRuntimeModel = normalizeLegacy1MModelAlias(toClaudeRuntimeModelId(model));
     const option = getClaudeModelOptions(settings11).find(
       (candidate) => candidate.value === normalizedRuntimeModel || toClaudeRuntimeModelId(candidate.value) === normalizedRuntimeModel
     );
@@ -62401,7 +64214,7 @@ var claudeChatUIConfig = {
 };
 
 // src/providers/claude/ui/PluginSettingsManager.ts
-var import_obsidian11 = require("obsidian");
+var import_obsidian13 = require("obsidian");
 var PluginSettingsManager = class {
   constructor(containerEl, deps) {
     this.containerEl = containerEl;
@@ -62418,7 +64231,7 @@ var PluginSettingsManager = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Refresh" }
     });
-    (0, import_obsidian11.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian13.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => {
       void this.refreshPlugins();
     });
@@ -62466,7 +64279,7 @@ var PluginSettingsManager = class {
       cls: "claudian-plugin-action-btn",
       attr: { "aria-label": plugin.enabled ? "Disable" : "Enable" }
     });
-    (0, import_obsidian11.setIcon)(toggleBtn, plugin.enabled ? "toggle-right" : "toggle-left");
+    (0, import_obsidian13.setIcon)(toggleBtn, plugin.enabled ? "toggle-right" : "toggle-left");
     toggleBtn.addEventListener("click", () => {
       void this.togglePlugin(plugin.id);
     });
@@ -62475,19 +64288,33 @@ var PluginSettingsManager = class {
     var _a5;
     const plugin = this.pluginManager.getPlugins().find((p) => p.id === pluginId);
     const wasEnabled = (_a5 = plugin == null ? void 0 : plugin.enabled) != null ? _a5 : false;
+    let didPersistToggle = false;
     try {
       await this.pluginManager.togglePlugin(pluginId);
+      didPersistToggle = true;
       await this.agentManager.loadAgents();
       try {
         await this.restartTabs();
       } catch (e2) {
-        new import_obsidian11.Notice("Plugin toggled, but some tabs failed to restart.");
+        new import_obsidian13.Notice("Plugin toggled, but some tabs failed to restart.");
       }
-      new import_obsidian11.Notice(`Plugin "${pluginId}" ${wasEnabled ? "disabled" : "enabled"}`);
+      new import_obsidian13.Notice(`Plugin "${pluginId}" ${wasEnabled ? "disabled" : "enabled"}`);
     } catch (err) {
-      await this.pluginManager.togglePlugin(pluginId);
-      const message = err instanceof Error ? err.message : "Unknown error";
-      new import_obsidian11.Notice(`Failed to toggle plugin: ${message}`);
+      if (didPersistToggle) {
+        try {
+          await this.pluginManager.togglePlugin(pluginId);
+        } catch (rollbackError) {
+          if (!isNotifiedMutationError(rollbackError)) {
+            const message = rollbackError instanceof Error ? rollbackError.message : "Unknown error";
+            new import_obsidian13.Notice(`Failed to roll back plugin toggle: ${message}`);
+          }
+          return;
+        }
+      }
+      if (!isNotifiedMutationError(err)) {
+        const message = err instanceof Error ? err.message : "Unknown error";
+        new import_obsidian13.Notice(`Failed to toggle plugin: ${message}`);
+      }
     } finally {
       this.render();
     }
@@ -62496,10 +64323,10 @@ var PluginSettingsManager = class {
     try {
       await this.pluginManager.loadPlugins();
       await this.agentManager.loadAgents();
-      new import_obsidian11.Notice("Plugin list refreshed");
+      new import_obsidian13.Notice("Plugin list refreshed");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unknown error";
-      new import_obsidian11.Notice(`Failed to refresh plugins: ${message}`);
+      new import_obsidian13.Notice(`Failed to refresh plugins: ${message}`);
     } finally {
       this.render();
     }
@@ -62510,7 +64337,7 @@ var PluginSettingsManager = class {
 };
 
 // src/providers/claude/ui/SlashCommandSettings.ts
-var import_obsidian12 = require("obsidian");
+var import_obsidian14 = require("obsidian");
 function resolveAllowedTools(inputValue, parsedTools) {
   const trimmed = inputValue.trim();
   if (trimmed) {
@@ -62524,7 +64351,7 @@ function resolveAllowedTools(inputValue, parsedTools) {
 function isSkillEntry(entry) {
   return entry.kind === "skill";
 }
-var SlashCommandModal = class extends import_obsidian12.Modal {
+var SlashCommandModal = class extends import_obsidian14.Modal {
   constructor(app, entries, existingEntry, onSave) {
     super(app);
     this.entries = entries;
@@ -62559,7 +64386,7 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
         disableUserToggle.setValue(false);
       }
     };
-    new import_obsidian12.Setting(contentEl).setName("Type").setDesc("Command or skill").addDropdown((dropdown) => {
+    new import_obsidian14.Setting(contentEl).setName("Type").setDesc("Command or skill").addDropdown((dropdown) => {
       dropdown.addOption("command", "Command").addOption("skill", "Skill").setValue(selectedType).onChange((value) => {
         selectedType = value;
         this.setTitle(this.existingEntry ? `Edit ${typeLabel()}` : `Add ${typeLabel()}`);
@@ -62569,12 +64396,12 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
         dropdown.setDisabled(true);
       }
     });
-    new import_obsidian12.Setting(contentEl).setName("Command name").setDesc('The name used after / (e.g., "review" for /review)').addText((text) => {
+    new import_obsidian14.Setting(contentEl).setName("Command name").setDesc('The name used after / (e.g., "review" for /review)').addText((text) => {
       var _a6;
       nameInput = text.inputEl;
       text.setValue(((_a6 = this.existingEntry) == null ? void 0 : _a6.name) || "").setPlaceholder("Review-code");
     });
-    new import_obsidian12.Setting(contentEl).setName("Description").setDesc("Optional description shown in dropdown").addText((text) => {
+    new import_obsidian14.Setting(contentEl).setName("Description").setDesc("Optional description shown in dropdown").addText((text) => {
       var _a6;
       descInput = text.inputEl;
       text.setValue(((_a6 = this.existingEntry) == null ? void 0 : _a6.description) || "");
@@ -62587,46 +64414,46 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
     if (((_f2 = this.existingEntry) == null ? void 0 : _f2.argumentHint) || ((_g = this.existingEntry) == null ? void 0 : _g.model) || ((_i = (_h2 = this.existingEntry) == null ? void 0 : _h2.allowedTools) == null ? void 0 : _i.length) || ((_j = this.existingEntry) == null ? void 0 : _j.disableModelInvocation) || ((_k3 = this.existingEntry) == null ? void 0 : _k3.userInvocable) === false || ((_l2 = this.existingEntry) == null ? void 0 : _l2.context) || ((_m = this.existingEntry) == null ? void 0 : _m.agent)) {
       details.open = true;
     }
-    new import_obsidian12.Setting(details).setName("Argument hint").setDesc('Placeholder text for arguments (e.g., "[file] [focus]")').addText((text) => {
+    new import_obsidian14.Setting(details).setName("Argument hint").setDesc('Placeholder text for arguments (e.g., "[file] [focus]")').addText((text) => {
       var _a6;
       hintInput = text.inputEl;
       text.setValue(((_a6 = this.existingEntry) == null ? void 0 : _a6.argumentHint) || "");
     });
-    new import_obsidian12.Setting(details).setName("Model override").setDesc("Optional model to use for this command").addText((text) => {
+    new import_obsidian14.Setting(details).setName("Model override").setDesc("Optional model to use for this command").addText((text) => {
       var _a6;
       modelInput = text.inputEl;
       text.setValue(((_a6 = this.existingEntry) == null ? void 0 : _a6.model) || "").setPlaceholder("Claude-sonnet-4-5");
     });
-    new import_obsidian12.Setting(details).setName("Allowed tools").setDesc("Comma-separated list of tools to allow (empty = all)").addText((text) => {
+    new import_obsidian14.Setting(details).setName("Allowed tools").setDesc("Comma-separated list of tools to allow (empty = all)").addText((text) => {
       var _a6, _b4;
       toolsInput = text.inputEl;
       text.setValue(((_b4 = (_a6 = this.existingEntry) == null ? void 0 : _a6.allowedTools) == null ? void 0 : _b4.join(", ")) || "");
     });
-    new import_obsidian12.Setting(details).setName("Disable model invocation").setDesc("Prevent the model from invoking this command itself").addToggle((toggle) => {
+    new import_obsidian14.Setting(details).setName("Disable model invocation").setDesc("Prevent the model from invoking this command itself").addToggle((toggle) => {
       toggle.setValue(disableModelToggle).onChange((value) => {
         disableModelToggle = value;
       });
     });
-    disableUserSetting = new import_obsidian12.Setting(details).setName("Disable user invocation").setDesc("Prevent the user from invoking this skill directly").addToggle((toggle) => {
+    disableUserSetting = new import_obsidian14.Setting(details).setName("Disable user invocation").setDesc("Prevent the user from invoking this skill directly").addToggle((toggle) => {
       disableUserToggle = toggle;
       toggle.setValue(disableUserInvocation).onChange((value) => {
         disableUserInvocation = value;
       });
     });
     updateSkillOnlyFields();
-    new import_obsidian12.Setting(details).setName("Context").setDesc("Run in a subagent (fork)").addToggle((toggle) => {
+    new import_obsidian14.Setting(details).setName("Context").setDesc("Run in a subagent (fork)").addToggle((toggle) => {
       toggle.setValue(contextValue === "fork").onChange((value) => {
         contextValue = value ? "fork" : "";
         agentSetting.settingEl.toggleClass("claudian-hidden", !value);
       });
     });
-    const agentSetting = new import_obsidian12.Setting(details).setName("Agent").setDesc("Subagent type when context is fork").addText((text) => {
+    const agentSetting = new import_obsidian14.Setting(details).setName("Agent").setDesc("Subagent type when context is fork").addText((text) => {
       var _a6;
       agentInput = text.inputEl;
       text.setValue(((_a6 = this.existingEntry) == null ? void 0 : _a6.agent) || "").setPlaceholder("Code-reviewer");
     });
     agentSetting.settingEl.toggleClass("claudian-hidden", contextValue !== "fork");
-    new import_obsidian12.Setting(contentEl).setName("Prompt template").setDesc("Use $ARGUMENTS, $1, $2, @file, !`bash`");
+    new import_obsidian14.Setting(contentEl).setName("Prompt template").setDesc("Use $ARGUMENTS, $1, $2, @file, !`bash`");
     const contentArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
@@ -62652,12 +64479,12 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
         const name = nameInput.value.trim();
         const nameError = validateCommandName(name);
         if (nameError) {
-          new import_obsidian12.Notice(nameError);
+          new import_obsidian14.Notice(nameError);
           return;
         }
         const content = contentArea.value;
         if (!content.trim()) {
-          new import_obsidian12.Notice("Prompt template is required");
+          new import_obsidian14.Notice("Prompt template is required");
           return;
         }
         const existing = this.entries.find(
@@ -62667,7 +64494,7 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
           }
         );
         if (existing) {
-          new import_obsidian12.Notice(`A command named "/${name}" already exists`);
+          new import_obsidian14.Notice(`A command named "/${name}" already exists`);
           return;
         }
         const parsed = parseSlashCommandContent(content);
@@ -62700,7 +64527,7 @@ var SlashCommandModal = class extends import_obsidian12.Modal {
           await this.onSave(entry);
         } catch (e2) {
           const label = isSkillType ? "skill" : "slash command";
-          new import_obsidian12.Notice(`Failed to save ${label}`);
+          new import_obsidian14.Notice(`Failed to save ${label}`);
           return;
         }
         this.close();
@@ -62748,7 +64575,7 @@ var SlashCommandSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Add" }
     });
-    (0, import_obsidian12.setIcon)(addBtn, "plus");
+    (0, import_obsidian14.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => this.openCommandModal(null));
     if (this.commands.length === 0) {
       const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
@@ -62783,7 +64610,7 @@ var SlashCommandSettings = class {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Edit" }
       });
-      (0, import_obsidian12.setIcon)(editBtn, "pencil");
+      (0, import_obsidian14.setIcon)(editBtn, "pencil");
       editBtn.addEventListener("click", () => this.openCommandModal(cmd));
     }
     if (!isSkillEntry(cmd) && cmd.isEditable) {
@@ -62791,13 +64618,13 @@ var SlashCommandSettings = class {
         cls: "claudian-settings-action-btn",
         attr: { "aria-label": "Convert to skill" }
       });
-      (0, import_obsidian12.setIcon)(convertBtn, "package");
+      (0, import_obsidian14.setIcon)(convertBtn, "package");
       convertBtn.addEventListener("click", () => {
         void (async () => {
           try {
             await this.transformToSkill(cmd);
           } catch (e2) {
-            new import_obsidian12.Notice("Failed to convert to skill");
+            new import_obsidian14.Notice("Failed to convert to skill");
           }
         })();
       });
@@ -62807,14 +64634,14 @@ var SlashCommandSettings = class {
         cls: "claudian-settings-action-btn claudian-settings-delete-btn",
         attr: { "aria-label": "Delete" }
       });
-      (0, import_obsidian12.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian14.setIcon)(deleteBtn, "trash-2");
       deleteBtn.addEventListener("click", () => {
         void (async () => {
           try {
             await this.deleteCommand(cmd);
           } catch (e2) {
             const label = isSkillEntry(cmd) ? "skill" : "slash command";
-            new import_obsidian12.Notice(`Failed to delete ${label}`);
+            new import_obsidian14.Notice(`Failed to delete ${label}`);
           }
         })();
       });
@@ -62842,7 +64669,7 @@ var SlashCommandSettings = class {
     await this.reloadCommands();
     this.render();
     const label = isSkillEntry(cmd) ? "Skill" : "Slash command";
-    new import_obsidian12.Notice(`${label} "/${cmd.name}" ${existing ? "updated" : "created"}`);
+    new import_obsidian14.Notice(`${label} "/${cmd.name}" ${existing ? "updated" : "created"}`);
   }
   async deleteCommand(cmd) {
     if (!this.catalog) {
@@ -62852,7 +64679,7 @@ var SlashCommandSettings = class {
     await this.reloadCommands();
     this.render();
     const label = isSkillEntry(cmd) ? "Skill" : "Slash command";
-    new import_obsidian12.Notice(`${label} "/${cmd.name}" deleted`);
+    new import_obsidian14.Notice(`${label} "/${cmd.name}" deleted`);
   }
   async transformToSkill(cmd) {
     if (!this.catalog) {
@@ -62863,7 +64690,7 @@ var SlashCommandSettings = class {
       (entry) => isSkillEntry(entry) && entry.name === skillName
     );
     if (existingSkill) {
-      new import_obsidian12.Notice(`A skill named "/${skillName}" already exists`);
+      new import_obsidian14.Notice(`A skill named "/${skillName}" already exists`);
       return;
     }
     const skill = {
@@ -62883,7 +64710,7 @@ var SlashCommandSettings = class {
     await this.catalog.deleteVaultEntry(cmd);
     await this.reloadCommands();
     this.render();
-    new import_obsidian12.Notice(`Converted "/${cmd.name}" to skill`);
+    new import_obsidian14.Notice(`Converted "/${cmd.name}" to skill`);
   }
   async reloadCommands() {
     if (!this.catalog) {
@@ -62903,24 +64730,24 @@ var claudeSettingsTabRenderer = {
     const claudeWorkspace = getClaudeWorkspaceServices();
     const settingsBag = context.plugin.settings;
     const claudeSettings = getClaudeProviderSettings(settingsBag);
-    const reconcileActiveClaudeModelSelection = () => {
-      const activeProvider = settingsBag.settingsProvider;
+    const reconcileActiveClaudeModelSelection = (settings11) => {
+      const activeProvider = settings11.settingsProvider;
       if (activeProvider !== void 0 && activeProvider !== "claude") {
         return;
       }
-      const currentModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-      const nextModel = resolveClaudeModelSelection(settingsBag, currentModel);
+      const currentModel = typeof settings11.model === "string" ? settings11.model : "";
+      const nextModel = resolveClaudeModelSelection(settings11, currentModel);
       if (!nextModel || nextModel === currentModel) {
         return;
       }
-      settingsBag.model = nextModel;
-      claudeChatUIConfig.applyModelDefaults(nextModel, settingsBag);
+      settings11.model = nextModel;
+      claudeChatUIConfig.applyModelDefaults(nextModel, settings11);
     };
-    new import_obsidian13.Setting(container).setName(t10("settings.setup")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.setup")).setHeading();
     const hostnameKey = getHostnameKey();
     const platformDesc = process.platform === "win32" ? t10("settings.cliPath.descWindows") : t10("settings.cliPath.descUnix");
     const cliPathDescription = `${t10("settings.cliPath.desc")} ${platformDesc}`;
-    const cliPathSetting = new import_obsidian13.Setting(container).setName(t10("settings.cliPath.name")).setDesc(cliPathDescription);
+    const cliPathSetting = new import_obsidian15.Setting(container).setName(t10("settings.cliPath.name")).setDesc(cliPathDescription);
     const validationEl = container.createDiv({
       cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
     });
@@ -62957,7 +64784,7 @@ var claudeSettingsTabRenderer = {
     const cliPathsByHost = { ...claudeSettings.cliPathsByHost };
     let cliPathInputEl = null;
     const persistCliPath = async (value) => {
-      var _a5;
+      var _a5, _b3;
       const isValid2 = updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0);
       if (!isValid2) {
         return false;
@@ -62968,13 +64795,11 @@ var claudeSettingsTabRenderer = {
       } else {
         delete cliPathsByHost[hostnameKey];
       }
-      updateClaudeProviderSettings(settingsBag, { cliPathsByHost: { ...cliPathsByHost } });
-      await context.plugin.saveSettings();
+      await context.plugin.mutateSettings((settings11) => {
+        updateClaudeProviderSettings(settings11, { cliPathsByHost: { ...cliPathsByHost } });
+      });
       claudeWorkspace.cliResolver.reset();
-      const view = context.plugin.getView();
-      await ((_a5 = view == null ? void 0 : view.getTabManager()) == null ? void 0 : _a5.broadcastToAllTabs(
-        (service) => Promise.resolve(service.cleanup())
-      ));
+      await ((_b3 = (_a5 = context.plugin).recycleProviderRuntimes) == null ? void 0 : _b3.call(_a5, "claude"));
       return true;
     };
     cliPathSetting.addText((text) => {
@@ -62986,63 +64811,42 @@ var claudeSettingsTabRenderer = {
       cliPathInputEl = text.inputEl;
       updateCliPathValidation(currentValue, text.inputEl);
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.safety")).setHeading();
-    new import_obsidian13.Setting(container).setName(t10("settings.claudeSafeMode.name")).setDesc(t10("settings.claudeSafeMode.desc")).addDropdown((dropdown) => {
+    new import_obsidian15.Setting(container).setName(t10("settings.safety")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.claudeSafeMode.name")).setDesc(t10("settings.claudeSafeMode.desc")).addDropdown((dropdown) => {
       for (const mode of CLAUDE_SAFE_MODES) {
         dropdown.addOption(mode, mode);
       }
       dropdown.setValue(claudeSettings.safeMode).onChange(async (value) => {
-        updateClaudeProviderSettings(
-          settingsBag,
-          { safeMode: value }
-        );
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateClaudeProviderSettings(
+            settings11,
+            { safeMode: value }
+          );
+        });
       });
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.loadUserSettings.name")).setDesc(t10("settings.loadUserSettings.desc")).addToggle(
+    new import_obsidian15.Setting(container).setName(t10("settings.loadUserSettings.name")).setDesc(t10("settings.loadUserSettings.desc")).addToggle(
       (toggle) => toggle.setValue(claudeSettings.loadUserSettings).onChange(async (value) => {
-        updateClaudeProviderSettings(settingsBag, { loadUserSettings: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateClaudeProviderSettings(settings11, { loadUserSettings: value });
+        });
       })
     );
-    new import_obsidian13.Setting(container).setName(t10("settings.models")).setHeading();
-    new import_obsidian13.Setting(container).setName(t10("settings.enableOpus1M.name")).setDesc(t10("settings.enableOpus1M.desc")).addToggle(
-      (toggle) => toggle.setValue(claudeSettings.enableOpus1M).onChange(async (value) => {
-        updateClaudeProviderSettings(settingsBag, { enableOpus1M: value });
-        context.plugin.normalizeModelVariantSettings();
-        await context.plugin.saveSettings();
-        context.refreshModelSelectors();
-      })
-    );
-    new import_obsidian13.Setting(container).setName(t10("settings.enableSonnet1M.name")).setDesc(t10("settings.enableSonnet1M.desc")).addToggle(
-      (toggle) => toggle.setValue(claudeSettings.enableSonnet1M).onChange(async (value) => {
-        updateClaudeProviderSettings(settingsBag, { enableSonnet1M: value });
-        context.plugin.normalizeModelVariantSettings();
-        await context.plugin.saveSettings();
-        context.refreshModelSelectors();
-      })
-    );
-    new import_obsidian13.Setting(container).setName(t10("settings.customModels.name")).setDesc(t10("settings.customModels.desc")).addTextArea((text) => {
+    new import_obsidian15.Setting(container).setName(t10("settings.models")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.customModels.name")).setDesc(t10("settings.customModels.desc")).addTextArea((text) => {
       let pendingCustomModels = claudeSettings.customModels;
       let savedCustomModels = claudeSettings.customModels;
       const commitCustomModels = async () => {
-        const previousCustomModels = savedCustomModels;
-        const previousModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-        const previousTitleModel = typeof settingsBag.titleGenerationModel === "string" ? settingsBag.titleGenerationModel : "";
-        if (pendingCustomModels !== savedCustomModels) {
-          updateClaudeProviderSettings(settingsBag, { customModels: pendingCustomModels });
-          savedCustomModels = pendingCustomModels;
-        }
-        reconcileActiveClaudeModelSelection();
-        const didReconcileTitleModel = ProviderSettingsCoordinator.reconcileTitleGenerationModelSelection(settingsBag);
-        const nextModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-        const nextTitleModel = typeof settingsBag.titleGenerationModel === "string" ? settingsBag.titleGenerationModel : "";
-        const didModelSelectionChange = previousModel !== nextModel;
-        const didCustomModelsChange = previousCustomModels !== savedCustomModels;
-        if (!didCustomModelsChange && !didModelSelectionChange && !didReconcileTitleModel && previousTitleModel === nextTitleModel) {
+        if (pendingCustomModels === savedCustomModels) {
           return;
         }
-        await context.plugin.saveSettings();
+        const nextCustomModels = pendingCustomModels;
+        await context.plugin.mutateSettings((settings11) => {
+          updateClaudeProviderSettings(settings11, { customModels: nextCustomModels });
+          reconcileActiveClaudeModelSelection(settings11);
+          ProviderSettingsCoordinator.reconcileTitleGenerationModelSelection(settings11);
+        });
+        savedCustomModels = nextCustomModels;
         context.refreshModelSelectors();
       };
       text.setPlaceholder(t10("settings.customModels.placeholder")).setValue(claudeSettings.customModels).onChange((value) => {
@@ -63054,7 +64858,7 @@ var claudeSettingsTabRenderer = {
         void commitCustomModels();
       });
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.slashCommands.name")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.slashCommands.name")).setHeading();
     const slashCommandsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
     const descP = slashCommandsDesc.createEl("p", { cls: "setting-item-description" });
     descP.appendText(t10("settings.slashCommands.desc") + " ");
@@ -63073,7 +64877,7 @@ var claudeSettingsTabRenderer = {
       desc: t10("settings.hiddenSlashCommands.desc"),
       placeholder: t10("settings.hiddenSlashCommands.placeholder")
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.subagents.name")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.subagents.name")).setHeading();
     const agentsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
     agentsDesc.createEl("p", {
       text: t10("settings.subagents.desc"),
@@ -63085,7 +64889,7 @@ var claudeSettingsTabRenderer = {
       agentManager: claudeWorkspace.agentManager,
       agentStorage: claudeWorkspace.agentStorage
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.mcpServers.name")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.mcpServers.name")).setHeading();
     const mcpDesc = container.createDiv({ cls: "claudian-mcp-settings-desc" });
     mcpDesc.createEl("p", {
       text: t10("settings.mcpServers.desc"),
@@ -63096,15 +64900,14 @@ var claudeSettingsTabRenderer = {
       app: context.plugin.app,
       mcpStorage: claudeWorkspace.mcpStorage,
       broadcastMcpReload: async () => {
-        var _a5;
-        for (const view of context.plugin.getAllViews()) {
-          await ((_a5 = view.getTabManager()) == null ? void 0 : _a5.broadcastToAllTabs(
-            (service) => service.reloadMcpServers()
-          ));
-        }
+        var _a5, _b3;
+        await ((_b3 = (_a5 = context.plugin).broadcastToAllViewRuntimes) == null ? void 0 : _b3.call(
+          _a5,
+          (service) => service.reloadMcpServers()
+        ));
       }
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.plugins.name")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.plugins.name")).setHeading();
     const pluginsDesc = container.createDiv({ cls: "claudian-plugin-settings-desc" });
     pluginsDesc.createEl("p", {
       text: t10("settings.plugins.desc"),
@@ -63115,16 +64918,13 @@ var claudeSettingsTabRenderer = {
       pluginManager: claudeWorkspace.pluginManager,
       agentManager: claudeWorkspace.agentManager,
       restartTabs: async () => {
-        const view = context.plugin.getView();
-        const tabManager = view == null ? void 0 : view.getTabManager();
-        if (!tabManager) {
-          return;
-        }
-        await tabManager.broadcastToAllTabs(
+        var _a5, _b3;
+        await ((_b3 = (_a5 = context.plugin).broadcastToActiveViewRuntimes) == null ? void 0 : _b3.call(
+          _a5,
           async (service) => {
             await service.ensureReady({ force: true });
           }
-        );
+        ));
       }
     });
     renderEnvironmentSettingsSection({
@@ -63137,14 +64937,15 @@ var claudeSettingsTabRenderer = {
       placeholder: "ANTHROPIC_API_KEY=your-key\nANTHROPIC_BASE_URL=https://api.example.com\nANTHROPIC_MODEL=custom-model\nCLAUDE_CODE_USE_BEDROCK=1",
       renderCustomContextLimits: (target) => context.renderCustomContextLimits(target, "claude")
     });
-    new import_obsidian13.Setting(container).setName(t10("settings.experimental")).setHeading();
-    new import_obsidian13.Setting(container).setName(t10("settings.enableChrome.name")).setDesc(t10("settings.enableChrome.desc")).addToggle(
+    new import_obsidian15.Setting(container).setName(t10("settings.experimental")).setHeading();
+    new import_obsidian15.Setting(container).setName(t10("settings.enableChrome.name")).setDesc(t10("settings.enableChrome.desc")).addToggle(
       (toggle) => toggle.setValue(claudeSettings.enableChrome).onChange(async (value) => {
-        updateClaudeProviderSettings(settingsBag, { enableChrome: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateClaudeProviderSettings(settings11, { enableChrome: value });
+        });
       })
     );
-    new import_obsidian13.Setting(container).setName(t10("settings.enableBangBash.name")).setDesc(t10("settings.enableBangBash.desc")).addToggle(
+    new import_obsidian15.Setting(container).setName(t10("settings.enableBangBash.name")).setDesc(t10("settings.enableBangBash.desc")).addToggle(
       (toggle) => toggle.setValue(claudeSettings.enableBangBash).onChange(async (value) => {
         bangBashValidationEl.toggleClass("claudian-hidden", true);
         if (value) {
@@ -63157,8 +64958,9 @@ var claudeSettingsTabRenderer = {
             return;
           }
         }
-        updateClaudeProviderSettings(settingsBag, { enableBangBash: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateClaudeProviderSettings(settings11, { enableBangBash: value });
+        });
       })
     );
     const bangBashValidationEl = container.createDiv({
@@ -63534,6 +65336,106 @@ Then after user clarifies "river bank":
 <replacement>La orilla era empinada.</replacement>`;
 }
 
+// src/core/providers/conversationModel.ts
+function trimModel(model) {
+  return typeof model === "string" ? model.trim() : "";
+}
+function findModelOption(providerId, model, settings11) {
+  var _a5;
+  const runtimeModel = toProviderRuntimeModelId(providerId, model);
+  const option = ProviderRegistry.getChatUIConfig(providerId).getModelOptions(settings11).find(
+    (candidate) => candidate.value === model || toProviderRuntimeModelId(providerId, candidate.value) === runtimeModel
+  );
+  return (_a5 = option == null ? void 0 : option.value) != null ? _a5 : null;
+}
+function normalizeProviderModelSelection(providerId, settings11, model) {
+  const rawModel = trimModel(model);
+  if (!rawModel) {
+    return null;
+  }
+  const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
+  const baseSettings = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    settings11,
+    providerId
+  );
+  const rawSettings = {
+    ...baseSettings,
+    model: rawModel
+  };
+  const rawOption = findModelOption(providerId, rawModel, rawSettings);
+  if (rawOption) {
+    return rawOption;
+  }
+  if (uiConfig.ownsModel(rawModel, rawSettings)) {
+    return rawModel;
+  }
+  const normalizedModel = trimModel(uiConfig.normalizeModelVariant(rawModel, rawSettings));
+  if (!normalizedModel) {
+    return null;
+  }
+  const normalizedSettings = {
+    ...baseSettings,
+    model: normalizedModel
+  };
+  const normalizedOption = findModelOption(providerId, normalizedModel, normalizedSettings);
+  if (normalizedOption) {
+    return normalizedOption;
+  }
+  return normalizedModel === rawModel && uiConfig.ownsModel(normalizedModel, normalizedSettings) ? normalizedModel : null;
+}
+function resolveConversationModel(settings11, providerId, conversation) {
+  var _a5, _b3;
+  const selectedModel = normalizeProviderModelSelection(
+    providerId,
+    settings11,
+    conversation == null ? void 0 : conversation.selectedModel
+  );
+  if (selectedModel) {
+    return {
+      model: selectedModel,
+      source: "selected",
+      shouldPersist: selectedModel !== (conversation == null ? void 0 : conversation.selectedModel)
+    };
+  }
+  const usageModel = normalizeProviderModelSelection(
+    providerId,
+    settings11,
+    (_a5 = conversation == null ? void 0 : conversation.usage) == null ? void 0 : _a5.model
+  );
+  if (usageModel) {
+    return {
+      model: usageModel,
+      source: "usage",
+      shouldPersist: true
+    };
+  }
+  const providerSettings = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    settings11,
+    providerId
+  );
+  const defaultModel = (_b3 = normalizeProviderModelSelection(
+    providerId,
+    settings11,
+    providerSettings.model
+  )) != null ? _b3 : trimModel(providerSettings.model);
+  return {
+    model: defaultModel,
+    source: "default",
+    shouldPersist: false
+  };
+}
+function getProviderSettingsSnapshotWithModel(settings11, providerId, model) {
+  const snapshot = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    settings11,
+    providerId
+  );
+  const normalizedModel = normalizeProviderModelSelection(providerId, snapshot, model);
+  if (normalizedModel) {
+    ProviderSettingsCoordinator.projectModelSelection(snapshot, providerId, normalizedModel);
+  }
+  return snapshot;
+}
+
 // src/core/tools/toolNames.ts
 var TOOL_AGENT_OUTPUT = "TaskOutput";
 var TOOL_ASK_USER_QUESTION = "AskUserQuestion";
@@ -63750,10 +65652,15 @@ var InlineEditService = class {
     this.plugin = plugin;
   }
   getScopedSettings() {
-    return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    return getProviderSettingsSnapshotWithModel(
       this.plugin.settings,
-      "claude"
+      "claude",
+      this.modelOverride
     );
+  }
+  setModelOverride(model) {
+    const trimmed = model == null ? void 0 : model.trim();
+    this.modelOverride = trimmed ? trimmed : void 0;
   }
   resetConversation() {
     this.sessionId = null;
@@ -64087,6 +65994,28 @@ var CLAUDE_PROVIDER_CAPABILITIES = Object.freeze({
 
 // src/providers/claude/env/ClaudeSettingsReconciler.ts
 init_env();
+
+// src/providers/claude/types/providerState.ts
+function getClaudeState(providerState) {
+  return providerState != null ? providerState : {};
+}
+function clearClaudeResumeState(conversation) {
+  var _a5;
+  const providerState = { ...(_a5 = conversation.providerState) != null ? _a5 : {} };
+  const hadResumeState = conversation.sessionId != null || conversation.resumeAtMessageId != null || typeof providerState.providerSessionId === "string" || Array.isArray(providerState.previousProviderSessionIds) || providerState.forkSource !== void 0;
+  if (!hadResumeState) {
+    return false;
+  }
+  conversation.sessionId = null;
+  delete conversation.resumeAtMessageId;
+  delete providerState.providerSessionId;
+  delete providerState.previousProviderSessionIds;
+  delete providerState.forkSource;
+  conversation.providerState = Object.keys(providerState).length > 0 ? providerState : void 0;
+  return true;
+}
+
+// src/providers/claude/env/ClaudeSettingsReconciler.ts
 var ENV_HASH_MODEL_KEYS = [
   "ANTHROPIC_MODEL",
   "ANTHROPIC_DEFAULT_OPUS_MODEL",
@@ -64109,8 +66038,7 @@ var claudeSettingsReconciler = {
     }
     const invalidatedConversations = [];
     for (const conv of conversations) {
-      if (conv.sessionId) {
-        conv.sessionId = null;
+      if (conv.providerId === "claude" && clearClaudeResumeState(conv)) {
         invalidatedConversations.push(conv);
       }
     }
@@ -64150,11 +66078,6 @@ var claudeSettingsReconciler = {
     return changed;
   }
 };
-
-// src/providers/claude/types/providerState.ts
-function getClaudeState(providerState) {
-  return providerState != null ? providerState : {};
-}
 
 // src/providers/claude/history/sdkAsyncSubagent.ts
 function extractAgentIdFromToolUseResult(toolUseResult) {
@@ -65275,13 +67198,81 @@ function getSDKSessionPath(vaultPath, sessionId) {
   const encodedVault = encodeVaultPathForSDK(vaultPath);
   return path7.join(projectsPath, encodedVault, `${sessionId}.jsonl`);
 }
-function sdkSessionExists(vaultPath, sessionId) {
-  try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
-    return (0, import_fs9.existsSync)(sessionPath);
-  } catch (e2) {
-    return false;
+function hasFileSystemErrorCode(error48, code) {
+  return !!error48 && typeof error48 === "object" && "code" in error48 && error48.code === code;
+}
+async function locateSDKSessions(vaultPath, sessionIds) {
+  const locations = /* @__PURE__ */ new Map();
+  const currentPaths = /* @__PURE__ */ new Map();
+  const unresolvedIds = /* @__PURE__ */ new Set();
+  await Promise.all([...new Set(sessionIds)].map(async (sessionId) => {
+    let sessionPath;
+    try {
+      sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    } catch (e2) {
+      locations.set(sessionId, { availability: "unknown" });
+      return;
+    }
+    currentPaths.set(sessionId, sessionPath);
+    try {
+      await fs9.access(sessionPath);
+      locations.set(sessionId, { availability: "available", sessionPath });
+    } catch (error48) {
+      if (hasFileSystemErrorCode(error48, "ENOENT")) {
+        unresolvedIds.add(sessionId);
+      } else {
+        locations.set(sessionId, { availability: "unknown" });
+      }
+    }
+  }));
+  if (unresolvedIds.size === 0) {
+    return locations;
   }
+  const targetIdsByFileName = new Map(
+    [...unresolvedIds].map((sessionId) => [`${sessionId}.jsonl`, sessionId])
+  );
+  const pendingDirectories = [getSDKProjectsPath()];
+  let rootExists = true;
+  let scanComplete = true;
+  while (pendingDirectories.length > 0 && unresolvedIds.size > 0) {
+    const directory = pendingDirectories.shift();
+    let entries;
+    try {
+      entries = await fs9.readdir(directory, { withFileTypes: true });
+    } catch (error48) {
+      if (directory === getSDKProjectsPath() && hasFileSystemErrorCode(error48, "ENOENT")) {
+        rootExists = false;
+      } else if (!hasFileSystemErrorCode(error48, "ENOENT")) {
+        scanComplete = false;
+      }
+      continue;
+    }
+    for (const entry of entries) {
+      const entryPath = path7.join(directory, entry.name);
+      if (entry.isFile()) {
+        const sessionId = targetIdsByFileName.get(entry.name);
+        if (sessionId && unresolvedIds.has(sessionId)) {
+          const availability = entryPath === currentPaths.get(sessionId) ? "available" : "relocated";
+          locations.set(sessionId, { availability, sessionPath: entryPath });
+          unresolvedIds.delete(sessionId);
+        }
+      } else if (entry.isDirectory() && entry.name !== "subagents") {
+        pendingDirectories.push(entryPath);
+      } else if (!entry.isDirectory()) {
+        scanComplete = false;
+      }
+    }
+  }
+  for (const sessionId of unresolvedIds) {
+    locations.set(sessionId, {
+      availability: rootExists && scanComplete ? "missing" : "unknown"
+    });
+  }
+  return locations;
+}
+async function locateSDKSession(vaultPath, sessionId) {
+  var _a5;
+  return (_a5 = (await locateSDKSessions(vaultPath, [sessionId])).get(sessionId)) != null ? _a5 : { availability: "unknown" };
 }
 async function deleteSDKSession(vaultPath, sessionId) {
   try {
@@ -65299,14 +67290,21 @@ async function readSDKSession(vaultPath, sessionId) {
     if (!(0, import_fs9.existsSync)(sessionPath)) {
       return { messages: [], skippedLines: 0 };
     }
+    return readSDKSessionFile(sessionPath);
+  } catch (error48) {
+    const errorMsg = error48 instanceof Error ? error48.message : String(error48);
+    return { messages: [], skippedLines: 0, error: errorMsg };
+  }
+}
+async function readSDKSessionFile(sessionPath) {
+  try {
     const content = await fs9.readFile(sessionPath, "utf-8");
     const lines = content.split("\n").filter((line) => line.trim());
     const messages = [];
     let skippedLines = 0;
     for (const line of lines) {
       try {
-        const msg = JSON.parse(line);
-        messages.push(msg);
+        messages.push(JSON.parse(line));
       } catch (e2) {
         skippedLines++;
       }
@@ -65463,21 +67461,20 @@ function buildToolCallsFromSubagentEvents(events) {
   }
   return Array.from(toolsById.values()).filter((entry) => entry.hasToolUse).sort((a, b2) => a.timestamp - b2.timestamp).map((entry) => entry.toolCall);
 }
-function getSubagentSidecarPath(vaultPath, sessionId, agentId) {
+function getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath) {
   if (!isValidSessionId(sessionId) || !isValidAgentId(agentId)) {
     return null;
   }
-  const encodedVault = encodeVaultPathForSDK(vaultPath);
+  const projectPath = sessionPath ? path8.dirname(sessionPath) : path8.join(getSDKProjectsPath(), encodeVaultPathForSDK(vaultPath));
   return path8.join(
-    getSDKProjectsPath(),
-    encodedVault,
+    projectPath,
     sessionId,
     "subagents",
     `agent-${agentId}.jsonl`
   );
 }
-async function loadSubagentToolCalls(vaultPath, sessionId, agentId) {
-  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId);
+async function loadSubagentToolCalls(vaultPath, sessionId, agentId, sessionPath) {
+  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath);
   if (!subagentFilePath) {
     return [];
   }
@@ -65513,8 +67510,8 @@ async function loadSubagentToolCalls(vaultPath, sessionId, agentId) {
     return [];
   }
 }
-async function loadSubagentFinalResult(vaultPath, sessionId, agentId) {
-  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId);
+async function loadSubagentFinalResult(vaultPath, sessionId, agentId, sessionPath) {
+  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath);
   if (!subagentFilePath) {
     return null;
   }
@@ -65530,9 +67527,9 @@ async function loadSubagentFinalResult(vaultPath, sessionId, agentId) {
 }
 
 // src/providers/claude/history/ClaudeHistoryStore.ts
-async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId) {
+async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId, sessionPath) {
   var _a5, _b3, _c2;
-  const result = await readSDKSession(vaultPath, sessionId);
+  const result = sessionPath ? await readSDKSessionFile(sessionPath) : await readSDKSession(vaultPath, sessionId);
   if (result.error) {
     return { messages: [], skippedLines: result.skippedLines, error: result.error };
   }
@@ -65596,7 +67593,12 @@ async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId) {
           if (subagent.agentId && isValidAgentId(subagent.agentId)) {
             sidecarLoads.push({
               subagent,
-              promise: loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId)
+              promise: loadSubagentToolCalls(
+                vaultPath,
+                sessionId,
+                subagent.agentId,
+                sessionPath
+              )
             });
           }
         }
@@ -65769,7 +67771,7 @@ function dedupeMessages(messages) {
   }
   return result;
 }
-async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds) {
+async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds, relocatedSessionPaths) {
   var _a5, _b3;
   const uniqueSessionIds = [...new Set(sessionIds)];
   if (uniqueSessionIds.length === 0) return;
@@ -65782,7 +67784,8 @@ async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds)
       const cacheKey = `${sessionId}:${subagent.agentId}`;
       let loader = loaderCache.get(cacheKey);
       if (!loader) {
-        loader = loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId);
+        const relocatedSessionPath = relocatedSessionPaths.get(sessionId);
+        loader = relocatedSessionPath ? loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId, relocatedSessionPath) : loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId);
         loaderCache.set(cacheKey, loader);
       }
       const recoveredToolCalls = await loader;
@@ -65885,6 +67888,111 @@ function sanitizeProviderState(providerState) {
 var ClaudeConversationHistoryService = class {
   constructor() {
     this.hydratedConversationIds = /* @__PURE__ */ new Set();
+    this.pendingSessionLocationsByConversation = /* @__PURE__ */ new Map();
+    this.relocatedSessionPathsByConversation = /* @__PURE__ */ new Map();
+  }
+  getConversationSessionIds(conversation) {
+    var _a5;
+    const state = getClaudeState(conversation.providerState);
+    if (this.isPendingForkConversation(conversation)) {
+      return [state.forkSource.sessionId];
+    }
+    return [...new Set([
+      ...state.previousProviderSessionIds || [],
+      (_a5 = state.providerSessionId) != null ? _a5 : conversation.sessionId
+    ].filter((id) => !!id))];
+  }
+  async getConversationSessionAvailability(conversation, vaultPath) {
+    var _a5, _b3;
+    const sessionId = this.resolveSessionIdForConversation(conversation);
+    if (!vaultPath || !sessionId) {
+      return "unknown";
+    }
+    const location = await locateSDKSession(vaultPath, sessionId);
+    this.pendingSessionLocationsByConversation.set(
+      conversation.id,
+      /* @__PURE__ */ new Map([[sessionId, location]])
+    );
+    if (location.availability === "relocated" && location.sessionPath) {
+      const relocatedSessionPaths = new Map(
+        (_a5 = this.relocatedSessionPathsByConversation.get(conversation.id)) != null ? _a5 : []
+      );
+      relocatedSessionPaths.set(sessionId, location.sessionPath);
+      this.relocatedSessionPathsByConversation.set(
+        conversation.id,
+        relocatedSessionPaths
+      );
+    } else if (location.availability !== "unknown") {
+      const relocatedSessionPaths = new Map(
+        (_b3 = this.relocatedSessionPathsByConversation.get(conversation.id)) != null ? _b3 : []
+      );
+      relocatedSessionPaths.delete(sessionId);
+      if (relocatedSessionPaths.size > 0) {
+        this.relocatedSessionPathsByConversation.set(
+          conversation.id,
+          relocatedSessionPaths
+        );
+      } else {
+        this.relocatedSessionPathsByConversation.delete(conversation.id);
+      }
+    }
+    return location.availability;
+  }
+  async prepareRelocatedConversationSession(conversation, vaultPath) {
+    var _a5;
+    const sessionId = this.resolveSessionIdForConversation(conversation);
+    if (!vaultPath || !sessionId) {
+      return false;
+    }
+    await this.hydrateConversationHistory(conversation, vaultPath);
+    if (!this.hydratedConversationIds.has(conversation.id)) {
+      return false;
+    }
+    const state = { ...getClaudeState(conversation.providerState) };
+    state.previousProviderSessionIds = [
+      .../* @__PURE__ */ new Set([...state.previousProviderSessionIds || [], sessionId])
+    ];
+    delete state.providerSessionId;
+    if (((_a5 = state.forkSource) == null ? void 0 : _a5.sessionId) === sessionId) {
+      conversation.resumeAtMessageId = state.forkSource.resumeAt;
+      delete state.forkSource;
+    }
+    conversation.sessionId = null;
+    conversation.providerState = sanitizeProviderState(state);
+    return true;
+  }
+  async resolveMissingConversationSession(conversation, vaultPath, missingProviderSessionId) {
+    var _a5;
+    const currentSessionId = this.resolveSessionIdForConversation(conversation);
+    if (!vaultPath || !currentSessionId || missingProviderSessionId && missingProviderSessionId.toLowerCase() !== currentSessionId.toLowerCase()) {
+      return "preserve";
+    }
+    const sessionIds = this.getConversationSessionIds(conversation);
+    const locations = await locateSDKSessions(vaultPath, sessionIds);
+    const preservedSessionIds = sessionIds.filter(
+      (sessionId) => {
+        var _a6;
+        return ((_a6 = locations.get(sessionId)) == null ? void 0 : _a6.availability) !== "missing";
+      }
+    );
+    if (preservedSessionIds.length === 0) {
+      this.pendingSessionLocationsByConversation.delete(conversation.id);
+      this.relocatedSessionPathsByConversation.delete(conversation.id);
+      this.hydratedConversationIds.delete(conversation.id);
+      return "delete";
+    }
+    const state = { ...getClaudeState(conversation.providerState) };
+    state.previousProviderSessionIds = preservedSessionIds;
+    delete state.providerSessionId;
+    if (((_a5 = state.forkSource) == null ? void 0 : _a5.sessionId) === currentSessionId) {
+      conversation.resumeAtMessageId = state.forkSource.resumeAt;
+      delete state.forkSource;
+    }
+    conversation.sessionId = null;
+    conversation.providerState = sanitizeProviderState(state);
+    this.pendingSessionLocationsByConversation.delete(conversation.id);
+    this.hydratedConversationIds.delete(conversation.id);
+    return "reset";
   }
   isPendingForkConversation(conversation) {
     const state = getClaudeState(conversation.providerState);
@@ -65915,32 +68023,58 @@ var ClaudeConversationHistoryService = class {
     return sanitizeProviderState(providerState);
   }
   async hydrateConversationHistory(conversation, vaultPath) {
-    var _a5, _b3;
+    var _a5, _b3, _c2, _d;
     if (!vaultPath || this.hydratedConversationIds.has(conversation.id)) {
       return;
     }
     const state = getClaudeState(conversation.providerState);
     const isPendingFork = this.isPendingForkConversation(conversation);
-    const allSessionIds = isPendingFork ? [state.forkSource.sessionId] : [
-      ...state.previousProviderSessionIds || [],
-      (_a5 = state.providerSessionId) != null ? _a5 : conversation.sessionId
-    ].filter((id) => !!id);
+    const allSessionIds = this.getConversationSessionIds(conversation);
     if (allSessionIds.length === 0) {
       return;
     }
     const allSdkMessages = [];
     let missingSessionCount = 0;
+    let unknownSessionCount = 0;
     let errorCount = 0;
     let successCount = 0;
-    const currentSessionId = isPendingFork ? state.forkSource.sessionId : (_b3 = state.providerSessionId) != null ? _b3 : conversation.sessionId;
+    const relocatedSessionPaths = new Map(
+      (_a5 = this.relocatedSessionPathsByConversation.get(conversation.id)) != null ? _a5 : []
+    );
+    const cachedLocations = new Map(
+      (_b3 = this.pendingSessionLocationsByConversation.get(conversation.id)) != null ? _b3 : []
+    );
+    this.pendingSessionLocationsByConversation.delete(conversation.id);
+    const unresolvedSessionIds = allSessionIds.filter(
+      (id) => !relocatedSessionPaths.has(id) && !cachedLocations.has(id)
+    );
+    const locatedSessions = await locateSDKSessions(vaultPath, unresolvedSessionIds);
+    const resolvedLocations = new Map([...cachedLocations, ...locatedSessions]);
+    for (const [sessionId, location] of locatedSessions) {
+      if (location.availability === "relocated" && location.sessionPath) {
+        relocatedSessionPaths.set(sessionId, location.sessionPath);
+      }
+    }
+    if (relocatedSessionPaths.size > 0) {
+      this.relocatedSessionPathsByConversation.set(conversation.id, relocatedSessionPaths);
+    }
+    const resumableSessionId = isPendingFork ? state.forkSource.sessionId : (_c2 = state.providerSessionId) != null ? _c2 : conversation.sessionId;
+    const checkpointSessionId = resumableSessionId != null ? resumableSessionId : conversation.resumeAtMessageId ? allSessionIds[allSessionIds.length - 1] : null;
     for (const sessionId of allSessionIds) {
-      if (!sdkSessionExists(vaultPath, sessionId)) {
-        missingSessionCount++;
+      const relocatedSessionPath = relocatedSessionPaths.get(sessionId);
+      const location = relocatedSessionPath ? { availability: "relocated", sessionPath: relocatedSessionPath } : (_d = resolvedLocations.get(sessionId)) != null ? _d : { availability: "unknown" };
+      if (!location.sessionPath) {
+        if (location.availability === "missing") {
+          missingSessionCount++;
+        } else {
+          unknownSessionCount++;
+        }
         continue;
       }
-      const isCurrentSession = sessionId === currentSessionId;
-      const truncateAt = isCurrentSession ? isPendingFork ? state.forkSource.resumeAt : conversation.resumeAtMessageId : void 0;
-      const result = await loadSDKSessionMessages(vaultPath, sessionId, truncateAt);
+      const isCheckpointSession = sessionId === checkpointSessionId;
+      const truncateAt = isCheckpointSession ? isPendingFork ? state.forkSource.resumeAt : conversation.resumeAtMessageId : void 0;
+      const sessionPathOverride = relocatedSessionPaths.get(sessionId);
+      const result = sessionPathOverride ? await loadSDKSessionMessages(vaultPath, sessionId, truncateAt, sessionPathOverride) : await loadSDKSessionMessages(vaultPath, sessionId, truncateAt);
       if (result.error) {
         errorCount++;
         continue;
@@ -65949,8 +68083,7 @@ var ClaudeConversationHistoryService = class {
       allSdkMessages.push(...result.messages);
     }
     const allSessionsMissing = missingSessionCount === allSessionIds.length;
-    const hasLoadErrors = errorCount > 0 && successCount === 0 && !allSessionsMissing;
-    if (hasLoadErrors) {
+    if (successCount === 0 || allSessionsMissing) {
       return;
     }
     const filteredSdkMessages = allSdkMessages.filter((msg) => !msg.isRebuiltContext);
@@ -65962,15 +68095,21 @@ var ClaudeConversationHistoryService = class {
       await enrichAsyncSubagentToolCalls(
         state.subagentData,
         vaultPath,
-        allSessionIds
+        allSessionIds,
+        relocatedSessionPaths
       );
       applySubagentData(merged, state.subagentData);
     }
     conversation.messages = merged;
-    this.hydratedConversationIds.add(conversation.id);
+    if (errorCount === 0 && unknownSessionCount === 0) {
+      this.hydratedConversationIds.add(conversation.id);
+    }
   }
   async deleteConversationSession(conversation, vaultPath) {
     var _a5;
+    this.pendingSessionLocationsByConversation.delete(conversation.id);
+    this.relocatedSessionPathsByConversation.delete(conversation.id);
+    this.hydratedConversationIds.delete(conversation.id);
     const state = getClaudeState(conversation.providerState);
     const sessionId = (_a5 = state.providerSessionId) != null ? _a5 : conversation.sessionId;
     if (!vaultPath || !sessionId) {
@@ -65981,7 +68120,7 @@ var ClaudeConversationHistoryService = class {
 };
 
 // src/providers/claude/runtime/ClaudeChatRuntime.ts
-var import_obsidian14 = require("obsidian");
+var import_obsidian16 = require("obsidian");
 init_env();
 init_path();
 
@@ -65989,10 +68128,21 @@ init_path();
 var SESSION_ERROR_PATTERNS = [
   "session expired",
   "session not found",
+  "no conversation found with session id",
   "invalid session",
   "session invalid",
   "process exited with code"
 ];
+function getMissingSessionId(error48) {
+  var _a5;
+  const message = error48 instanceof Error ? error48.message : "";
+  const match = message.match(/no conversation found with session id:\s*([a-z0-9_-]+)/i);
+  return (_a5 = match == null ? void 0 : match[1]) != null ? _a5 : null;
+}
+function isSessionMissingError(error48, expectedSessionId) {
+  const missingSessionId = getMissingSessionId(error48);
+  return !!missingSessionId && (!expectedSessionId || missingSessionId.toLowerCase() === expectedSessionId.toLowerCase());
+}
 var SESSION_ERROR_COMPOUND_PATTERNS = [
   { includes: ["session", "expired"] },
   { includes: ["resume", "failed"] },
@@ -66326,11 +68476,11 @@ function isBlockedMessage(message) {
 
 // src/providers/claude/stream/toolInputStreamState.ts
 var MAIN_AGENT_STREAM = "__main__";
-function isRecord5(value) {
+function isRecord7(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 function normalizeToolInput(value) {
-  return isRecord5(value) ? value : {};
+  return isRecord7(value) ? value : {};
 }
 function getContentBlockKey(parentToolUseId, index) {
   return `${parentToolUseId != null ? parentToolUseId : MAIN_AGENT_STREAM}:${index}`;
@@ -66764,7 +68914,8 @@ function samePromptUsage(a, b2) {
 function buildUsageInfo(promptUsage, options) {
   var _a5;
   const model = (_a5 = options == null ? void 0 : options.intendedModel) != null ? _a5 : "sonnet";
-  const contextWindow = getContextWindowSize(model, options == null ? void 0 : options.customContextLimits);
+  const hasAuthoritativeContextWindow = typeof (options == null ? void 0 : options.authoritativeContextWindow) === "number" && options.authoritativeContextWindow > 0 && Number.isFinite(options.authoritativeContextWindow);
+  const contextWindow = hasAuthoritativeContextWindow ? options.authoritativeContextWindow : getContextWindowSize(model, options == null ? void 0 : options.customContextLimits);
   const percentage = Math.min(100, Math.max(0, Math.round(promptUsage.contextTokens / contextWindow * 100)));
   return {
     model,
@@ -66772,6 +68923,7 @@ function buildUsageInfo(promptUsage, options) {
     cacheCreationInputTokens: promptUsage.cacheCreationInputTokens,
     cacheReadInputTokens: promptUsage.cacheReadInputTokens,
     contextWindow,
+    ...hasAuthoritativeContextWindow ? { contextWindowIsAuthoritative: true } : {},
     contextTokens: promptUsage.contextTokens,
     percentage
   };
@@ -67054,8 +69206,22 @@ function buildPermissionUpdates(toolName, input, decision, suggestions) {
   if (suggestions) {
     for (const suggestion of suggestions) {
       if (suggestion.type === "addRules" || suggestion.type === "replaceRules") {
-        hasRuleUpdate = true;
-        processed.push({ ...suggestion, behavior: "allow", destination });
+        if (decision === "allow-always") {
+          const scopedRules = suggestion.rules.filter(hasNonEmptyRuleScope);
+          if (scopedRules.length === 0) {
+            continue;
+          }
+          hasRuleUpdate = true;
+          processed.push({
+            ...suggestion,
+            rules: scopedRules,
+            behavior: "allow",
+            destination
+          });
+        } else {
+          hasRuleUpdate = true;
+          processed.push({ ...suggestion, behavior: "allow", destination });
+        }
       } else {
         processed.push(suggestion);
       }
@@ -67063,6 +69229,9 @@ function buildPermissionUpdates(toolName, input, decision, suggestions) {
   }
   if (!hasRuleUpdate) {
     const pattern = getActionPattern(toolName, input);
+    if (decision === "allow-always" && !isNonEmptyDerivedScope(pattern)) {
+      return [];
+    }
     const ruleValue = { toolName };
     if (pattern && !pattern.startsWith("{")) {
       ruleValue.ruleContent = pattern;
@@ -67075,6 +69244,16 @@ function buildPermissionUpdates(toolName, input, decision, suggestions) {
     });
   }
   return processed;
+}
+function hasNonEmptyRuleScope(rule) {
+  return typeof rule.toolName === "string" && rule.toolName.trim().length > 0 && typeof rule.ruleContent === "string" && rule.ruleContent.trim().length > 0;
+}
+function isNonEmptyDerivedScope(pattern) {
+  if (typeof pattern !== "string") {
+    return false;
+  }
+  const scope = pattern.trim();
+  return scope.length > 0 && !scope.startsWith("{");
 }
 
 // src/providers/claude/runtime/ClaudeApprovalHandler.ts
@@ -67165,6 +69344,10 @@ function createClaudeApprovalCallback(deps) {
           decision,
           options.suggestions
         );
+        if (decision === "allow-always" && updatedPermissions.length === 0) {
+          deps.notifyAlwaysAppliedOnce();
+          return { behavior: "allow", updatedInput: input };
+        }
         return { behavior: "allow", updatedInput: input, updatedPermissions };
       }
       return { behavior: "deny", message: "User denied this action.", interrupt: false };
@@ -68168,6 +70351,7 @@ var ClaudianService = class {
     this.permissionModeSyncCallback = null;
     this.vaultPath = null;
     this.currentExternalContextPaths = [];
+    this.currentConversationModel = null;
     this.readyStateListeners = /* @__PURE__ */ new Set();
     // Modular components
     this.sessionManager = new SessionManager();
@@ -68180,6 +70364,8 @@ var ClaudianService = class {
     this.shuttingDown = false;
     // Tracked configuration for detecting changes that require restart
     this.currentConfig = null;
+    this.authoritativeContextWindow = null;
+    this.contextWindowDiscovery = null;
     // Current allowed tools for canUseTool enforcement (null = no restriction)
     this.currentAllowedTools = null;
     this.pendingForkSession = false;
@@ -68215,6 +70401,19 @@ var ClaudianService = class {
     this.pluginManager = (_e2 = legacyPlugin.pluginManager) != null ? _e2 : null;
     this.agentManager = (_f2 = legacyPlugin.agentManager) != null ? _f2 : null;
   }
+  toProviderSessionMissingChunk(error48) {
+    var _a5, _b3;
+    if (!isSessionMissingError(error48, (_a5 = this.sessionManager.getSessionId()) != null ? _a5 : void 0)) {
+      return null;
+    }
+    this.sessionManager.invalidateSession();
+    return {
+      type: "error",
+      content: error48 instanceof Error ? error48.message : "Provider session not found",
+      code: "provider_session_missing",
+      providerSessionId: (_b3 = getMissingSessionId(error48)) != null ? _b3 : void 0
+    };
+  }
   getLegacyPluginDeps() {
     return this.plugin;
   }
@@ -68229,6 +70428,9 @@ var ClaudianService = class {
     this.turnMetadata = {};
     this.bufferedUsageChunk = null;
     return metadata;
+  }
+  getAuxiliaryModel() {
+    return this.currentConversationModel;
   }
   onReadyStateChange(listener) {
     this.readyStateListeners.add(listener);
@@ -68288,6 +70490,58 @@ var ClaudianService = class {
     this.bufferedUsageChunk = nextChunk;
     return nextChunk;
   }
+  refreshAuthoritativeContextWindow() {
+    var _a5, _b3, _c2;
+    const query = this.persistentQuery;
+    const model = (_a5 = this.currentConfig) == null ? void 0 : _a5.model;
+    if (!query || !model || typeof query.getContextUsage !== "function") {
+      return Promise.resolve();
+    }
+    if (((_b3 = this.authoritativeContextWindow) == null ? void 0 : _b3.query) === query && this.authoritativeContextWindow.model === model) {
+      return Promise.resolve();
+    }
+    if (((_c2 = this.contextWindowDiscovery) == null ? void 0 : _c2.query) === query && this.contextWindowDiscovery.model === model) {
+      return this.contextWindowDiscovery.promise;
+    }
+    let request;
+    try {
+      request = query.getContextUsage();
+    } catch (e2) {
+      return Promise.resolve();
+    }
+    const promise2 = request.then((contextUsage) => {
+      var _a6;
+      if (this.persistentQuery !== query || ((_a6 = this.currentConfig) == null ? void 0 : _a6.model) !== model) {
+        return;
+      }
+      const contextWindow = contextUsage.rawMaxTokens;
+      if (typeof contextWindow !== "number" || contextWindow <= 0 || !Number.isFinite(contextWindow)) {
+        return;
+      }
+      this.authoritativeContextWindow = { query, model, contextWindow };
+    }).catch(() => {
+    }).finally(() => {
+      var _a6;
+      if (((_a6 = this.contextWindowDiscovery) == null ? void 0 : _a6.promise) === promise2) {
+        this.contextWindowDiscovery = null;
+      }
+    });
+    this.contextWindowDiscovery = { query, model, promise: promise2 };
+    return promise2;
+  }
+  rememberResultContextWindow(contextWindow) {
+    var _a5;
+    const query = this.persistentQuery;
+    const model = (_a5 = this.currentConfig) == null ? void 0 : _a5.model;
+    if (!query || !model || contextWindow <= 0 || !Number.isFinite(contextWindow)) {
+      return;
+    }
+    this.authoritativeContextWindow = { query, model, contextWindow };
+  }
+  setCurrentConversationModel(model) {
+    const selectedModel = typeof model === "string" ? model.trim() : "";
+    this.currentConversationModel = selectedModel || null;
+  }
   setPendingResumeAt(uuid3) {
     this.pendingResumeAt = uuid3;
   }
@@ -68309,11 +70563,13 @@ var ClaudianService = class {
   }
   syncConversationState(conversation, externalContextPaths) {
     if (!conversation) {
+      this.currentConversationModel = null;
       this.pendingForkSession = false;
       this.pendingResumeAt = void 0;
       this.setSessionId(null, externalContextPaths);
       return;
     }
+    this.setCurrentConversationModel(conversation.selectedModel);
     const resolvedSessionId = this.applyForkState(conversation);
     this.setSessionId(resolvedSessionId, externalContextPaths);
   }
@@ -68509,6 +70765,8 @@ var ClaudianService = class {
     this.responseConsumerRunning = false;
     this.responseConsumerPromise = null;
     this.currentConfig = null;
+    this.authoritativeContextWindow = null;
+    this.contextWindowDiscovery = null;
     this.cachedSdkCommands = [];
     this.streamTransformState.clearAll();
     this.usageTransformState.clear();
@@ -68539,10 +70797,14 @@ var ClaudianService = class {
    * Builds the base query options context from current state.
    */
   getScopedSettings() {
-    return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    const settings11 = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       this.providerId
     );
+    if (this.currentConversationModel) {
+      settings11.model = this.currentConversationModel;
+    }
+    return settings11;
   }
   buildQueryOptionsContext(vaultPath, cliPath) {
     const customEnv = parseEnvironmentVariables(this.plugin.getActiveEnvironmentVariables(this.providerId));
@@ -68625,6 +70887,12 @@ var ClaudianService = class {
           const handler = this.responseHandlers[this.responseHandlers.length - 1];
           const errorInstance = error48 instanceof Error ? error48 : new Error(String(error48));
           const messageToReplay = this.lastSentMessage;
+          const missingSessionChunk = this.toProviderSessionMissingChunk(errorInstance);
+          if (missingSessionChunk) {
+            handler == null ? void 0 : handler.onError(errorInstance);
+            this.closePersistentQuery("provider session missing", { preserveHandlers: true });
+            return;
+          }
           if (!this.crashRecoveryAttempted && messageToReplay && handler && !handler.sawAnyChunk) {
             this.crashRecoveryAttempted = true;
             try {
@@ -68668,10 +70936,14 @@ var ClaudianService = class {
   }
   /** @param modelOverride - Optional model override for cold-start queries */
   getTransformOptions(modelOverride, streamState = this.streamTransformState, usageState = this.usageTransformState) {
+    var _a5;
     const settings11 = this.getScopedSettings();
+    const intendedModel = toClaudeRuntimeModelId(modelOverride != null ? modelOverride : settings11.model);
+    const authoritativeContextWindow = ((_a5 = this.authoritativeContextWindow) == null ? void 0 : _a5.query) === this.persistentQuery && this.authoritativeContextWindow.model === intendedModel ? this.authoritativeContextWindow.contextWindow : void 0;
     return {
-      intendedModel: toClaudeRuntimeModelId(modelOverride != null ? modelOverride : settings11.model),
+      intendedModel,
       customContextLimits: settings11.customContextLimits,
+      authoritativeContextWindow,
       streamState,
       usageState
     };
@@ -68727,6 +70999,7 @@ var ClaudianService = class {
         }
         void this.fetchAndCacheCommands(this.persistentQuery);
       } else if (isContextWindowEvent(event)) {
+        this.rememberResultContextWindow(event.contextWindow);
         const usageChunk = this.updateBufferedUsageContextWindow(event.contextWindow);
         if (!usageChunk) {
           continue;
@@ -68797,7 +71070,7 @@ var ClaudianService = class {
     try {
       await ((_a5 = this._autoTurnCallback) == null ? void 0 : _a5.call(this, { chunks, metadata }));
     } catch (e2) {
-      new import_obsidian14.Notice("Background task completed, but the result could not be rendered.");
+      new import_obsidian16.Notice("Background task completed, but the result could not be rendered.");
     }
   }
   registerResponseHandler(handler) {
@@ -68872,6 +71145,9 @@ var ClaudianService = class {
     const images = normalized.request.images;
     const conversationHistory = normalized.conversationHistory;
     const queryOptions = normalized.queryOptions;
+    if (queryOptions == null ? void 0 : queryOptions.model) {
+      this.setCurrentConversationModel(queryOptions.model);
+    }
     const vaultPath = getVaultPath(this.plugin.app);
     if (!vaultPath) {
       yield { type: "error", content: "Could not determine vault path" };
@@ -68941,12 +71217,20 @@ var ClaudianService = class {
                 effectiveQueryOptions
               );
             } catch (retryError) {
-              const msg = retryError instanceof Error ? retryError.message : "Unknown error";
-              yield { type: "error", content: msg };
+              const missingSessionChunk2 = this.toProviderSessionMissingChunk(retryError);
+              yield missingSessionChunk2 != null ? missingSessionChunk2 : {
+                type: "error",
+                content: retryError instanceof Error ? retryError.message : "Unknown error"
+              };
             } finally {
               this.coldStartInProgress = false;
               this.abortController = null;
             }
+            return;
+          }
+          const missingSessionChunk = this.toProviderSessionMissingChunk(error48);
+          if (missingSessionChunk) {
+            yield missingSessionChunk;
             return;
           }
           throw error48;
@@ -68971,9 +71255,17 @@ var ClaudianService = class {
             effectiveQueryOptions
           );
         } catch (retryError) {
-          const msg2 = retryError instanceof Error ? retryError.message : "Unknown error";
-          yield { type: "error", content: msg2 };
+          const missingSessionChunk2 = this.toProviderSessionMissingChunk(retryError);
+          yield missingSessionChunk2 != null ? missingSessionChunk2 : {
+            type: "error",
+            content: retryError instanceof Error ? retryError.message : "Unknown error"
+          };
         }
+        return;
+      }
+      const missingSessionChunk = this.toProviderSessionMissingChunk(error48);
+      if (missingSessionChunk) {
+        yield missingSessionChunk;
         return;
       }
       const msg = error48 instanceof Error ? error48.message : "Unknown error";
@@ -69020,6 +71312,7 @@ var ClaudianService = class {
       yield* this.queryViaSDK(prompt, vaultPath, cliPath, images, queryOptions);
       return;
     }
+    void this.refreshAuthoritativeContextWindow();
     const message = this.buildSDKUserMessage(prompt, images);
     const state = {
       chunks: [],
@@ -69135,7 +71428,7 @@ var ClaudianService = class {
           this.currentExternalContextPaths = paths;
         },
         notifyFailure: (message) => {
-          new import_obsidian14.Notice(message);
+          new import_obsidian16.Notice(message);
         }
       },
       queryOptions,
@@ -69405,6 +71698,9 @@ var ClaudianService = class {
           this.currentConfig.permissionMode = mode;
           this.currentConfig.sdkPermissionMode = sdkMode;
         }
+      },
+      notifyAlwaysAppliedOnce: () => {
+        new import_obsidian16.Notice("Always approval could only be applied once because no permission scope was available.");
       }
     });
   }
@@ -69546,7 +71842,9 @@ var ClaudeTaskResultInterpreter = class {
 };
 
 // src/providers/claude/registration.ts
+var LEGACY_CLAUDE_1M_SETTINGS = ["enableOpus1M", "enableSonnet1M"];
 var claudeProviderRegistration = {
+  id: "claude",
   displayName: "Claude",
   blankTabOrder: 20,
   isEnabled: () => true,
@@ -69554,6 +71852,27 @@ var claudeProviderRegistration = {
   environmentKeyPatterns: [/^ANTHROPIC_/i, /^CLAUDE_/i],
   chatUIConfig: claudeChatUIConfig,
   settingsReconciler: claudeSettingsReconciler,
+  settingsStorage: {
+    hostScopedFields: ["cliPathsByHost"],
+    legacyTopLevelFields: [
+      "claudeSafeMode",
+      "claudeCliPath",
+      "claudeCliPathsByHost",
+      "loadUserClaudeSettings",
+      "lastClaudeModel",
+      "enableChrome",
+      "enableBangBash",
+      ...LEGACY_CLAUDE_1M_SETTINGS,
+      "environmentVariables",
+      "lastEnvHash"
+    ],
+    normalizeStored(target, stored) {
+      const storedConfig = getProviderConfig(stored, "claude");
+      const removedLegacy1MSettings = LEGACY_CLAUDE_1M_SETTINGS.some((key) => key in storedConfig);
+      updateClaudeProviderSettings(target, getClaudeProviderSettings(stored));
+      return removedLegacy1MSettings;
+    }
+  },
   createRuntime: ({ plugin }) => {
     const workspace = getClaudeWorkspaceServices();
     const resolvedMcpManager = workspace == null ? void 0 : workspace.mcpManager;
@@ -69570,7 +71889,8 @@ var claudeProviderRegistration = {
   createInstructionRefineService: (plugin) => new InstructionRefineService(plugin),
   createInlineEditService: (plugin) => new InlineEditService(plugin),
   historyService: new ClaudeConversationHistoryService(),
-  taskResultInterpreter: new ClaudeTaskResultInterpreter()
+  taskResultInterpreter: new ClaudeTaskResultInterpreter(),
+  workspace: claudeWorkspaceRegistration
 };
 
 // src/providers/codex/app/CodexWorkspaceServices.ts
@@ -69601,6 +71921,7 @@ var CodexAgentMentionProvider = class {
 // src/providers/codex/runtime/CodexAppServerProcess.ts
 var import_child_process7 = require("child_process");
 var SIGKILL_TIMEOUT_MS = 3e3;
+var FINAL_SHUTDOWN_TIMEOUT_MS = 3e3;
 var STDERR_BUFFER_LIMIT = 8192;
 var CodexAppServerProcess = class {
   constructor(launchSpec) {
@@ -69671,16 +71992,28 @@ var CodexAppServerProcess = class {
   async shutdown() {
     if (!this.proc || !this.alive) return;
     return new Promise((resolve8) => {
-      const onExit = () => {
-        window.clearTimeout(killTimer);
+      let killTimer = null;
+      let finalTimer = null;
+      const cleanup = () => {
+        var _a5;
+        if (killTimer !== null) window.clearTimeout(killTimer);
+        if (finalTimer !== null) window.clearTimeout(finalTimer);
+        (_a5 = this.proc) == null ? void 0 : _a5.off("exit", onExit);
+      };
+      const finish = () => {
+        cleanup();
         resolve8();
+      };
+      const onExit = () => {
+        finish();
       };
       this.proc.once("exit", onExit);
       this.killProc("SIGTERM");
-      const killTimer = window.setTimeout(() => {
+      killTimer = window.setTimeout(() => {
         if (this.alive) {
           this.killProc("SIGKILL");
         }
+        finalTimer = window.setTimeout(finish, FINAL_SHUTDOWN_TIMEOUT_MS);
       }, SIGKILL_TIMEOUT_MS);
     });
   }
@@ -69718,9 +72051,38 @@ function inferWslDistroFromWindowsPath(hostPath) {
   const match = normalized.match(/^\\\\wsl\$\\([^\\]+)(?:\\|$)/i);
   return (match == null ? void 0 : match[1]) || void 0;
 }
+function looksLikeUtf16Le(output) {
+  const sampleLength = Math.min(output.length - output.length % 2, 512);
+  if (sampleLength < 4) {
+    return false;
+  }
+  let evenNullBytes = 0;
+  let oddNullBytes = 0;
+  for (let index = 0; index < sampleLength; index += 2) {
+    if (output[index] === 0) {
+      evenNullBytes += 1;
+    }
+    if (output[index + 1] === 0) {
+      oddNullBytes += 1;
+    }
+  }
+  const bytePairs = sampleLength / 2;
+  return oddNullBytes / bytePairs >= 0.2 && oddNullBytes > evenNullBytes * 2;
+}
+function decodeWslListOutput(output) {
+  if (typeof output === "string") {
+    return output;
+  }
+  const hasUtf16LeBom = output.length >= 2 && output[0] === 255 && output[1] === 254;
+  if (hasUtf16LeBom || looksLikeUtf16Le(output)) {
+    return output.toString("utf16le");
+  }
+  return output.toString("utf8");
+}
 function parseDefaultWslDistroListOutput(output) {
   var _a5;
-  for (const line of output.replace(/\uFEFF/g, "").split(/\r?\n/)) {
+  const decodedOutput = decodeWslListOutput(output);
+  for (const line of decodedOutput.replace(/\uFEFF/g, "").split(/\r?\n/)) {
     const trimmed = line.trimStart();
     if (!trimmed.startsWith("*")) {
       continue;
@@ -69735,7 +72097,6 @@ function parseDefaultWslDistroListOutput(output) {
 function resolveDefaultWslDistroName() {
   try {
     const output = (0, import_child_process8.execFileSync)("wsl.exe", ["--list", "--verbose"], {
-      encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
       windowsHide: true
     });
@@ -69896,15 +72257,15 @@ function createCodexPathMapper(target) {
 // src/providers/codex/runtime/CodexLaunchSpecBuilder.ts
 var CODEX_APP_SERVER_ARGS = Object.freeze(["app-server", "--listen", "stdio://"]);
 function buildCodexLaunchSpec(options) {
-  var _a5, _b3;
-  const target = resolveCodexExecutionTarget({
+  var _a5, _b3, _c2;
+  const target = (_a5 = options.executionTarget) != null ? _a5 : resolveCodexExecutionTarget({
     settings: options.settings,
     hostPlatform: options.hostPlatform,
     hostVaultPath: options.hostVaultPath,
     resolveDefaultWslDistro: options.resolveDefaultWslDistro
   });
   const pathMapper = createCodexPathMapper(target);
-  const spawnCwd = (_a5 = options.hostVaultPath) != null ? _a5 : process.cwd();
+  const spawnCwd = (_b3 = options.hostVaultPath) != null ? _b3 : process.cwd();
   const workspaceDistro = inferWslDistroFromWindowsPath(options.hostVaultPath);
   if (target.method === "wsl" && target.distroName && workspaceDistro && target.distroName.toLowerCase() !== workspaceDistro.toLowerCase()) {
     throw new Error(
@@ -69920,7 +72281,7 @@ function buildCodexLaunchSpec(options) {
   if (!targetCwd) {
     throw new Error("WSL mode only supports Windows drive paths and \\\\wsl$ workspace paths");
   }
-  const resolvedCliCommand = ((_b3 = options.resolvedCliCommand) == null ? void 0 : _b3.trim()) || "codex";
+  const resolvedCliCommand = ((_c2 = options.resolvedCliCommand) == null ? void 0 : _c2.trim()) || "codex";
   if (target.method === "wsl") {
     const args = [
       ...target.distroName ? ["--distribution", target.distroName] : [],
@@ -69972,11 +72333,17 @@ function buildCodexAppServerEnvironment(plugin, providerId = "codex") {
   };
 }
 function resolveCodexAppServerLaunchSpec(plugin, providerId = "codex") {
+  const hostVaultPath = getCodexAppServerWorkingDirectory(plugin);
+  const executionTarget = resolveCodexExecutionTarget({
+    settings: plugin.settings,
+    hostVaultPath
+  });
   return buildCodexLaunchSpec({
     settings: plugin.settings,
-    resolvedCliCommand: plugin.getResolvedProviderCliPath(providerId),
-    hostVaultPath: getCodexAppServerWorkingDirectory(plugin),
-    env: buildCodexAppServerEnvironment(plugin, providerId)
+    resolvedCliCommand: plugin.getResolvedProviderCliPath(providerId, { executionTarget }),
+    hostVaultPath,
+    env: buildCodexAppServerEnvironment(plugin, providerId),
+    executionTarget
   });
 }
 async function initializeCodexAppServerTransport(transport) {
@@ -70008,6 +72375,9 @@ var CodexRpcTransport = class {
     });
   }
   request(method, params, timeoutMs = DEFAULT_TIMEOUT_MS) {
+    if (this.disposed) {
+      return Promise.reject(new Error("Transport disposed"));
+    }
     const id = this.nextId++;
     const msg = { jsonrpc: "2.0", id, method, params };
     return new Promise((resolve8, reject) => {
@@ -70049,12 +72419,16 @@ var CodexRpcTransport = class {
     this.proc.stdin.write(JSON.stringify(msg) + "\n");
   }
   handleLine(line) {
-    let msg;
+    let parsed;
     try {
-      msg = JSON.parse(line);
+      parsed = JSON.parse(line);
     } catch (e2) {
       return;
     }
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return;
+    }
+    const msg = parsed;
     const id = msg.id;
     const method = msg.method;
     if (typeof id === "number" && !method) {
@@ -70084,7 +72458,11 @@ var CodexRpcTransport = class {
   }
   handleNotification(method, params) {
     const handler = this.notificationHandlers.get(method);
-    if (handler) handler(params);
+    if (!handler) return;
+    try {
+      handler(params);
+    } catch (e2) {
+    }
   }
   handleServerRequest(id, method, params) {
     const handler = this.serverRequestHandlers.get(method);
@@ -70096,7 +72474,7 @@ var CodexRpcTransport = class {
       });
       return;
     }
-    handler(id, params).then(
+    Promise.resolve().then(() => handler(id, params)).then(
       (result) => {
         this.sendRaw({ jsonrpc: "2.0", id, result });
       },
@@ -70753,7 +73131,8 @@ function stripSurroundingQuotes3(value) {
 function resolveCodexCliPath(hostnamePath, legacyPath, envText, options = {}) {
   var _a5;
   const hostPlatform = (_a5 = options.hostPlatform) != null ? _a5 : process.platform;
-  if (hostPlatform === "win32" && options.installationMethod === "wsl") {
+  const isWslTarget = options.executionTarget ? options.executionTarget.method === "wsl" : hostPlatform === "win32" && options.installationMethod === "wsl";
+  if (isWslTarget) {
     const configuredCommand = [hostnamePath, legacyPath].map((value) => (value != null ? value : "").trim()).find((value) => value.length > 0 && !isWindowsStyleCliReference(value));
     return configuredCommand || "codex";
   }
@@ -70776,25 +73155,26 @@ var CodexCliResolver = class {
     this.lastHostnamePath = "";
     this.lastLegacyPath = "";
     this.lastEnvText = "";
-    this.lastInstallationMethod = "";
+    this.lastExecutionTargetKey = "";
     this.cachedHostname = getHostnameKey();
   }
-  resolveFromSettings(settings11) {
-    var _a5;
+  resolveFromSettings(settings11, context = {}) {
+    var _a5, _b3;
     const codexSettings = getCodexProviderSettings(settings11);
     const hostnamePath = ((_a5 = codexSettings.cliPathsByHost[this.cachedHostname]) != null ? _a5 : "").trim();
     const legacyPath = codexSettings.cliPath.trim();
     const envText = getRuntimeEnvironmentText(settings11, "codex");
-    const installationMethod = codexSettings.installationMethod;
-    if (this.resolvedPath && hostnamePath === this.lastHostnamePath && legacyPath === this.lastLegacyPath && envText === this.lastEnvText && installationMethod === this.lastInstallationMethod) {
+    const executionTarget = (_b3 = getCodexExecutionTargetFromContext(context)) != null ? _b3 : resolveCodexExecutionTarget({ settings: settings11 });
+    const executionTargetKey = getCodexExecutionTargetCacheKey(executionTarget);
+    if (this.resolvedPath && hostnamePath === this.lastHostnamePath && legacyPath === this.lastLegacyPath && envText === this.lastEnvText && executionTargetKey === this.lastExecutionTargetKey) {
       return this.resolvedPath;
     }
     this.lastHostnamePath = hostnamePath;
     this.lastLegacyPath = legacyPath;
     this.lastEnvText = envText;
-    this.lastInstallationMethod = installationMethod;
+    this.lastExecutionTargetKey = executionTargetKey;
     this.resolvedPath = resolveCodexCliPath(hostnamePath, legacyPath, envText, {
-      installationMethod
+      executionTarget
     });
     return this.resolvedPath;
   }
@@ -70809,7 +73189,82 @@ var CodexCliResolver = class {
     this.lastHostnamePath = "";
     this.lastLegacyPath = "";
     this.lastEnvText = "";
-    this.lastInstallationMethod = "";
+    this.lastExecutionTargetKey = "";
+  }
+};
+function isCodexExecutionTarget(value) {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+  const candidate = value;
+  return candidate.method === "host-native" || candidate.method === "native-windows" || candidate.method === "wsl";
+}
+function getCodexExecutionTargetFromContext(context) {
+  return isCodexExecutionTarget(context.executionTarget) ? context.executionTarget : null;
+}
+function getCodexExecutionTargetCacheKey(target) {
+  var _a5;
+  return [
+    target.method,
+    target.platformFamily,
+    target.platformOs,
+    (_a5 = target.distroName) != null ? _a5 : ""
+  ].join(":");
+}
+
+// src/providers/codex/runtime/CodexModelDiscoveryService.ts
+var MODEL_LIST_PAGE_SIZE = 100;
+var CodexModelDiscoveryService = class {
+  constructor(plugin) {
+    this.plugin = plugin;
+  }
+  async discoverModels() {
+    var _a5;
+    let process4 = null;
+    let transport = null;
+    try {
+      const launchSpec = resolveCodexAppServerLaunchSpec(this.plugin, "codex");
+      process4 = new CodexAppServerProcess(launchSpec);
+      process4.start();
+      transport = new CodexRpcTransport(process4);
+      transport.start();
+      await initializeCodexAppServerTransport(transport);
+      const entries = [];
+      const seenCursors = /* @__PURE__ */ new Set();
+      let cursor = null;
+      do {
+        const result = await transport.request("model/list", {
+          ...cursor ? { cursor } : {},
+          includeHidden: false,
+          limit: MODEL_LIST_PAGE_SIZE
+        });
+        entries.push(...result.data);
+        const nextCursor = typeof result.nextCursor === "string" && result.nextCursor.trim() ? result.nextCursor : null;
+        if (nextCursor && seenCursors.has(nextCursor)) {
+          throw new Error("Codex model/list returned a repeated cursor");
+        }
+        if (nextCursor) {
+          seenCursors.add(nextCursor);
+        }
+        cursor = nextCursor;
+      } while (cursor);
+      return { models: normalizeCodexDiscoveredModels(entries) };
+    } catch (error48) {
+      const message = error48 instanceof Error ? error48.message : "Codex model discovery failed";
+      const stderr = (_a5 = process4 == null ? void 0 : process4.getStderrSnapshot()) != null ? _a5 : "";
+      return {
+        diagnostics: stderr ? `${message}
+
+${stderr}` : message,
+        models: []
+      };
+    } finally {
+      transport == null ? void 0 : transport.dispose();
+      if (process4) {
+        await process4.shutdown().catch(() => {
+        });
+      }
+    }
   }
 };
 
@@ -71817,86 +74272,437 @@ function serializeSubagentToml(agent) {
 
 // src/providers/codex/ui/CodexSettingsTab.ts
 var fs14 = __toESM(require("fs"));
-var import_obsidian17 = require("obsidian");
+var import_obsidian21 = require("obsidian");
 init_env();
 init_path();
 
-// src/providers/codex/modelOptions.ts
-function createCustomCodexModelOption(modelId, description) {
-  const runtimeModelId = toCodexRuntimeModelId(modelId);
-  return {
-    value: encodeCodexModelSelectionId(runtimeModelId),
-    label: formatCodexModelLabel(runtimeModelId),
-    description
+// src/providers/codex/ui/CodexModelPicker.ts
+var import_obsidian18 = require("obsidian");
+
+// src/shared/settings/ProviderModelPicker.ts
+var import_obsidian17 = require("obsidian");
+var ALL_PROVIDERS_KEY = "all";
+function renderProviderModelPicker(options) {
+  var _a5, _b3;
+  new import_obsidian17.Setting(options.container).setName("Visible models").setDesc(options.settingDescription);
+  const pickerEl = options.container.createDiv({
+    cls: `claudian-provider-model-picker claudian-provider-model-picker--${options.modifier}`
+  });
+  let searchQuery = "";
+  let providerFilter = ALL_PROVIDERS_KEY;
+  let loadingCatalog = false;
+  let catalogLoadFailed = false;
+  const summaryEl = pickerEl.createDiv({ cls: "claudian-provider-model-picker-summary" });
+  const selectedEl = pickerEl.createDiv({ cls: "claudian-provider-model-picker-selected" });
+  const catalogEl = pickerEl.createEl("details", { cls: "claudian-provider-model-picker-catalog" });
+  catalogEl.open = (_a5 = options.initiallyOpen) != null ? _a5 : options.getState().selectedIds.length === 0;
+  const catalogSummaryEl = catalogEl.createEl("summary", {
+    cls: "claudian-provider-model-picker-catalog-summary"
+  });
+  catalogSummaryEl.createSpan({
+    cls: "claudian-provider-model-picker-catalog-caret",
+    text: "\u25B8"
+  });
+  catalogSummaryEl.createSpan({
+    cls: "claudian-provider-model-picker-catalog-title",
+    text: "Browse models"
+  });
+  const catalogSummaryCountEl = catalogSummaryEl.createSpan({
+    cls: "claudian-provider-model-picker-catalog-count"
+  });
+  const controlsEl = catalogEl.createDiv({ cls: "claudian-provider-model-picker-controls" });
+  const searchInput = controlsEl.createEl("input", {
+    cls: "claudian-provider-model-picker-search",
+    type: "search"
+  });
+  searchInput.placeholder = (_b3 = options.searchPlaceholder) != null ? _b3 : "Filter by model, provider, or ID...";
+  searchInput.addEventListener("input", () => {
+    searchQuery = searchInput.value.trim().toLowerCase();
+    renderList();
+  });
+  const providerSelectEl = controlsEl.createEl("select", {
+    cls: "claudian-provider-model-picker-provider"
+  });
+  providerSelectEl.addEventListener("change", () => {
+    providerFilter = providerSelectEl.value;
+    renderList();
+  });
+  const catalogActionEl = controlsEl.createEl("button", {
+    cls: "claudian-provider-model-picker-action",
+    text: "Discover"
+  });
+  catalogActionEl.setAttribute("type", "button");
+  catalogActionEl.addEventListener("click", async () => {
+    await loadCatalog(true);
+  });
+  const listEl = catalogEl.createDiv({ cls: "claudian-provider-model-picker-list" });
+  const renderSummary = () => {
+    summaryEl.empty();
+    const state = options.getState();
+    const providerCount = new Set(
+      state.models.map((model) => model.providerKey).filter((key) => Boolean(key))
+    ).size;
+    summaryEl.createSpan({ text: "Visible: " });
+    summaryEl.createSpan({
+      cls: "claudian-provider-model-picker-summary-value",
+      text: String(state.selectedIds.length)
+    });
+    summaryEl.createSpan({
+      text: providerCount > 0 ? ` of ${state.discoveredCount} discovered | ${providerCount} ${providerCount === 1 ? "provider" : "providers"}` : ` of ${state.discoveredCount} discovered`
+    });
+    catalogSummaryCountEl.setText(
+      loadingCatalog ? "Loading models..." : state.discoveredCount > 0 ? `${state.discoveredCount} available` : "No models discovered yet"
+    );
+    catalogActionEl.disabled = loadingCatalog;
+    catalogActionEl.setText(
+      loadingCatalog ? "Loading..." : state.discoveredCount > 0 ? "Refresh" : "Discover"
+    );
   };
-}
-function getConfiguredEnvModel(settings11) {
-  var _a5;
-  const modelId = (_a5 = getRuntimeEnvironmentVariables(settings11, "codex").OPENAI_MODEL) == null ? void 0 : _a5.trim();
-  return modelId ? modelId : null;
-}
-function getConfiguredEnvCustomModel(settings11) {
-  const modelId = getConfiguredEnvModel(settings11);
-  return modelId && !DEFAULT_CODEX_MODEL_SET.has(modelId) ? modelId : null;
-}
-function parseConfiguredCustomModelIds2(value) {
-  const modelIds = [];
-  const seen = /* @__PURE__ */ new Set();
-  for (const line of value.split(/\r?\n/)) {
-    const modelId = line.trim();
-    if (!modelId || seen.has(modelId)) {
-      continue;
+  const persistAlias = async (modelId, value) => {
+    var _a6;
+    const state = options.getState();
+    const existing = (_a6 = state.aliases[modelId]) != null ? _a6 : "";
+    const next = value.trim();
+    if (next === existing) {
+      return;
     }
-    seen.add(modelId);
-    modelIds.push(modelId);
-  }
-  return modelIds;
-}
-function getCodexModelOptions(settings11) {
-  const models = [...DEFAULT_CODEX_MODELS];
-  const seenModelIds = new Set(models.map((model) => toCodexRuntimeModelId(model.value)));
-  const envModel = getConfiguredEnvCustomModel(settings11);
-  if (envModel) {
-    seenModelIds.add(envModel);
-    models.unshift(createCustomCodexModelOption(envModel, "Custom (env)"));
-  }
-  const codexSettings = getCodexProviderSettings(settings11);
-  for (const configuredModelId of parseConfiguredCustomModelIds2(codexSettings.customModels)) {
-    const modelId = toCodexRuntimeModelId(configuredModelId);
-    if (seenModelIds.has(modelId)) {
-      continue;
+    const aliases = { ...state.aliases };
+    if (next) {
+      aliases[modelId] = next;
+    } else {
+      delete aliases[modelId];
     }
-    seenModelIds.add(modelId);
-    models.push(createCustomCodexModelOption(modelId, "Custom model"));
+    await options.onAliasesChange(aliases);
+    renderSelected();
+  };
+  const renderSelected = () => {
+    var _a6, _b4, _c2;
+    selectedEl.empty();
+    const state = options.getState();
+    if (state.selectedIds.length === 0) {
+      selectedEl.toggleClass("claudian-hidden", true);
+      return;
+    }
+    selectedEl.toggleClass("claudian-hidden", false);
+    const modelsById = new Map(state.models.map((model) => [model.id, model]));
+    const headerEl = selectedEl.createDiv({ cls: "claudian-provider-model-picker-selected-header" });
+    headerEl.createEl("span", {
+      cls: "claudian-provider-model-picker-selected-label",
+      text: `Selected (${state.selectedIds.length})`
+    });
+    const clearAllButton = headerEl.createEl("button", {
+      cls: "claudian-provider-model-picker-selected-clear",
+      text: "Clear all"
+    });
+    clearAllButton.setAttribute("type", "button");
+    clearAllButton.setAttribute("aria-label", `Clear all selected ${options.providerName} models`);
+    clearAllButton.addEventListener("click", async () => {
+      await persistSelectedIds([]);
+    });
+    const rowsEl = selectedEl.createDiv({ cls: "claudian-provider-model-picker-selected-rows" });
+    for (const modelId of state.selectedIds) {
+      const model = (_a6 = modelsById.get(modelId)) != null ? _a6 : {
+        id: modelId,
+        isAvailable: false,
+        name: modelId
+      };
+      const defaultLabel = (_b4 = model.aliasPlaceholder) != null ? _b4 : model.providerLabel ? `${model.providerLabel}/${model.name}` : model.name;
+      const rowEl = rowsEl.createDiv({ cls: "claudian-provider-model-picker-selected-row" });
+      if (model.isAvailable === false) {
+        rowEl.classList.add("claudian-provider-model-picker-selected-row--unavailable");
+      }
+      const infoEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-selected-info" });
+      const titleEl = infoEl.createDiv({ cls: "claudian-provider-model-picker-selected-title" });
+      if (model.providerLabel) {
+        titleEl.createEl("span", {
+          cls: "claudian-provider-model-picker-selected-badge",
+          text: model.providerLabel
+        });
+      }
+      titleEl.createEl("span", {
+        cls: "claudian-provider-model-picker-selected-name",
+        text: model.name
+      });
+      if (model.isAvailable === false && model.unavailableMessage) {
+        infoEl.createEl("div", {
+          cls: "claudian-provider-model-picker-selected-unavailable",
+          text: model.unavailableMessage
+        });
+      }
+      infoEl.createEl("div", {
+        cls: "claudian-provider-model-picker-selected-id",
+        text: model.id
+      });
+      const rowControlsEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-selected-controls" });
+      const aliasInput = rowControlsEl.createEl("input", {
+        cls: "claudian-provider-model-picker-selected-alias",
+        type: "text"
+      });
+      aliasInput.placeholder = defaultLabel;
+      aliasInput.value = (_c2 = state.aliases[model.id]) != null ? _c2 : "";
+      aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
+      aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
+      aliasInput.addEventListener("blur", async () => {
+        await persistAlias(model.id, aliasInput.value);
+      });
+      aliasInput.addEventListener("keydown", (event) => {
+        var _a7;
+        if (event.key === "Enter") {
+          event.preventDefault();
+          aliasInput.blur();
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          aliasInput.value = (_a7 = options.getState().aliases[model.id]) != null ? _a7 : "";
+          aliasInput.blur();
+        }
+      });
+      const removeButton = rowControlsEl.createEl("button", {
+        cls: "claudian-provider-model-picker-selected-remove",
+        text: "\xD7"
+      });
+      removeButton.setAttribute("type", "button");
+      removeButton.setAttribute("aria-label", `Remove ${defaultLabel}`);
+      removeButton.addEventListener("click", async () => {
+        await persistSelectedIds(options.getState().selectedIds.filter((id) => id !== model.id));
+      });
+    }
+  };
+  const renderProviderSelect = () => {
+    const providers = /* @__PURE__ */ new Map();
+    const models = options.getState().models;
+    for (const model of models) {
+      if (!model.providerKey || !model.providerLabel) {
+        continue;
+      }
+      const existing = providers.get(model.providerKey);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        providers.set(model.providerKey, { count: 1, label: model.providerLabel });
+      }
+    }
+    providerSelectEl.toggleClass("claudian-hidden", providers.size === 0);
+    providerSelectEl.empty();
+    providerSelectEl.createEl("option", {
+      text: `All providers (${models.length})`,
+      value: ALL_PROVIDERS_KEY
+    });
+    for (const [key, { count, label }] of Array.from(providers.entries()).sort(([, left], [, right]) => left.label.localeCompare(right.label))) {
+      providerSelectEl.createEl("option", {
+        text: `${label} (${count})`,
+        value: key
+      });
+    }
+    if (providerFilter !== ALL_PROVIDERS_KEY && !providers.has(providerFilter)) {
+      providerFilter = ALL_PROVIDERS_KEY;
+    }
+    providerSelectEl.value = providerFilter;
+  };
+  const matchesFilter = (model) => {
+    var _a6, _b4;
+    if (providerFilter !== ALL_PROVIDERS_KEY && model.providerKey !== providerFilter) {
+      return false;
+    }
+    if (!searchQuery) {
+      return true;
+    }
+    return [model.id, model.name, (_a6 = model.providerLabel) != null ? _a6 : "", (_b4 = model.description) != null ? _b4 : ""].some((value) => value.toLowerCase().includes(searchQuery));
+  };
+  const persistSelectedIds = async (selectedIds) => {
+    await options.onSelectedIdsChange(selectedIds);
+    renderAll();
+  };
+  const renderList = () => {
+    var _a6, _b4;
+    listEl.empty();
+    const state = options.getState();
+    const selectedIds = new Set(state.selectedIds);
+    const models = state.models.filter(matchesFilter);
+    if (models.length === 0) {
+      listEl.createDiv({
+        cls: "claudian-provider-model-picker-empty",
+        text: loadingCatalog ? options.loadingCatalogText : catalogLoadFailed ? options.failedCatalogText : state.models.length === 0 ? options.emptyCatalogText : "No models match your filter."
+      });
+      return;
+    }
+    for (const model of models) {
+      const rowEl = listEl.createEl("label", { cls: "claudian-provider-model-picker-row" });
+      const isSelected = selectedIds.has(model.id);
+      if (isSelected) {
+        rowEl.classList.add("claudian-provider-model-picker-row--selected");
+      }
+      rowEl.title = model.id;
+      const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
+      checkboxEl.checked = isSelected;
+      checkboxEl.addEventListener("change", async () => {
+        var _a7;
+        const selecting = checkboxEl.checked;
+        const currentIds = options.getState().selectedIds;
+        const nextIds = selecting ? [...currentIds, model.id] : currentIds.filter((id) => id !== model.id);
+        await persistSelectedIds(nextIds);
+        if (selecting) {
+          await ((_a7 = options.onModelSelected) == null ? void 0 : _a7.call(options, model));
+        }
+      });
+      const textEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-row-text" });
+      const headerEl = textEl.createDiv({ cls: "claudian-provider-model-picker-row-header" });
+      headerEl.createEl("span", {
+        cls: "claudian-provider-model-picker-row-name",
+        text: model.name
+      });
+      const badgeLabel = model.isAvailable === false ? "Unavailable" : (_a6 = model.catalogBadge) != null ? _a6 : model.providerLabel;
+      if (badgeLabel) {
+        const badgeEl = headerEl.createEl("span", {
+          cls: "claudian-provider-model-picker-row-badge",
+          text: badgeLabel
+        });
+        if (model.isAvailable === false) {
+          badgeEl.classList.add("claudian-provider-model-picker-row-badge--unavailable");
+          badgeEl.title = (_b4 = model.unavailableTitle) != null ? _b4 : `Configured model not currently reported by ${options.providerName}`;
+        }
+      }
+      textEl.createDiv({
+        cls: "claudian-provider-model-picker-row-meta",
+        text: model.id
+      });
+      if (model.description) {
+        textEl.createDiv({
+          cls: "claudian-provider-model-picker-row-desc",
+          text: model.description
+        });
+      }
+    }
+  };
+  const renderAll = () => {
+    renderSummary();
+    renderSelected();
+    renderProviderSelect();
+    renderList();
+  };
+  const loadCatalog = async (force) => {
+    if (loadingCatalog || !force && options.getState().discoveredCount > 0) {
+      return;
+    }
+    loadingCatalog = true;
+    catalogLoadFailed = false;
+    renderAll();
+    try {
+      catalogLoadFailed = await options.loadCatalog(force) === "failed";
+    } catch (e2) {
+      catalogLoadFailed = true;
+    } finally {
+      loadingCatalog = false;
+      renderAll();
+    }
+  };
+  renderAll();
+  catalogEl.addEventListener("toggle", async () => {
+    if (catalogEl.open) {
+      await loadCatalog(false);
+    }
+  });
+  if (options.loadCatalogOnRender) {
+    void loadCatalog(false);
   }
-  return models;
 }
-function resolveCodexModelSelection(settings11, currentModel) {
-  var _a5, _b3, _c2;
-  const modelOptions = getCodexModelOptions(settings11);
-  const envModel = getConfiguredEnvModel(settings11);
-  if (envModel) {
-    const envRuntimeModel = toCodexRuntimeModelId(envModel);
-    const envOption = modelOptions.find(
-      (option) => option.value === envModel || toCodexRuntimeModelId(option.value) === envRuntimeModel
+
+// src/providers/codex/ui/CodexModelPicker.ts
+function sameVisibleModels(left, right) {
+  if (left === null || right === null) {
+    return left === right;
+  }
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+function renderCodexModelPicker(container, context, workspace) {
+  const settingsBag = context.plugin.settings;
+  const getState = () => {
+    const current = getCodexProviderSettings(settingsBag);
+    const pickerOrderedModels = getCodexModelsInPickerOrder(current.discoveredModels);
+    const visibleModelIds = getVisibleCodexModelIds(
+      current.visibleModels,
+      current.discoveredModels
     );
-    return (_a5 = envOption == null ? void 0 : envOption.value) != null ? _a5 : envModel;
-  }
-  if (currentModel) {
-    const currentRuntimeModel = toCodexRuntimeModelId(currentModel);
-    const currentOption = modelOptions.find(
-      (option) => option.value === currentModel || toCodexRuntimeModelId(option.value) === currentRuntimeModel
-    );
-    if (currentOption) {
-      return currentOption.value;
+    const visibleModelIdSet = new Set(visibleModelIds);
+    const selectedIds = pickerOrderedModels.map((model) => model.model).filter((modelId) => visibleModelIdSet.has(modelId));
+    for (const modelId of visibleModelIds) {
+      if (!selectedIds.includes(modelId)) {
+        selectedIds.push(modelId);
+      }
     }
-  }
-  return (_c2 = (_b3 = modelOptions[0]) == null ? void 0 : _b3.value) != null ? _c2 : DEFAULT_CODEX_PRIMARY_MODEL;
+    const models = pickerOrderedModels.map((model) => ({
+      ...model.isDefault ? { catalogBadge: "Default" } : {},
+      description: model.description,
+      id: model.model,
+      isAvailable: true,
+      name: model.displayName
+    }));
+    const discoveredIds = new Set(models.map((model) => model.id));
+    for (const modelId of visibleModelIds) {
+      if (!discoveredIds.has(modelId)) {
+        models.push({
+          description: "Selected model",
+          id: modelId,
+          isAvailable: false,
+          name: modelId,
+          unavailableMessage: "Not currently reported by Codex"
+        });
+      }
+    }
+    return {
+      aliases: current.modelAliases,
+      discoveredCount: current.discoveredModels.length,
+      models,
+      selectedIds
+    };
+  };
+  const persistVisibleModels = async (modelIds) => {
+    const current = getCodexProviderSettings(settingsBag);
+    const nextVisibleModels = createCodexVisibleModelFilter(modelIds, current.discoveredModels);
+    if (sameVisibleModels(current.visibleModels, nextVisibleModels)) {
+      return;
+    }
+    await context.plugin.mutateSettings((settings11) => {
+      updateCodexProviderSettings(settings11, { visibleModels: nextVisibleModels });
+      ProviderSettingsCoordinator.normalizeAllModelVariants(settings11);
+    });
+    context.refreshModelSelectors();
+  };
+  renderProviderModelPicker({
+    container,
+    emptyCatalogText: "No Codex models discovered yet. Click Discover to query app-server.",
+    failedCatalogText: "Could not load models from Codex app-server. Check the CLI path and login state, then try again.",
+    getState,
+    initiallyOpen: getCodexProviderSettings(settingsBag).discoveredModels.length === 0,
+    async loadCatalog() {
+      if (!workspace.refreshModelCatalog) {
+        return "failed";
+      }
+      const result = await workspace.refreshModelCatalog();
+      if (result.diagnostics) {
+        new import_obsidian18.Notice(`Codex model discovery failed: ${result.diagnostics}`);
+        return "failed";
+      }
+      context.refreshModelSelectors();
+      return getCodexProviderSettings(settingsBag).discoveredModels.length > 0 ? "loaded" : "empty";
+    },
+    loadingCatalogText: "Loading the Codex model catalog...",
+    modifier: "codex",
+    async onAliasesChange(modelAliases) {
+      await context.plugin.mutateSettings((settings11) => {
+        updateCodexProviderSettings(settings11, { modelAliases });
+      });
+      context.refreshModelSelectors();
+    },
+    onSelectedIdsChange: persistVisibleModels,
+    providerName: "Codex",
+    searchPlaceholder: "Filter by model name, description, or ID...",
+    settingDescription: "Choose which app-server models appear in the Codex selector. Existing session models stay pinned even when hidden here."
+  });
 }
 
 // src/providers/codex/ui/CodexSkillSettings.ts
-var import_obsidian15 = require("obsidian");
-var CodexSkillModal = class extends import_obsidian15.Modal {
+var import_obsidian19 = require("obsidian");
+var CodexSkillModal = class extends import_obsidian19.Modal {
   constructor(app, existing, onSave) {
     var _a5, _b3;
     super(app);
@@ -71918,10 +74724,10 @@ var CodexSkillModal = class extends import_obsidian15.Modal {
   }
   onOpen() {
     var _a5;
-    this.setTitle(this.existing ? "Edit Codex Skill" : "Add Codex Skill");
+    this.setTitle(this.existing ? t10("settings.codexSkills.modal.titleEdit") : t10("settings.codexSkills.modal.titleAdd"));
     this.modalEl.addClass("claudian-sp-modal");
     const { contentEl } = this;
-    new import_obsidian15.Setting(contentEl).setName("Directory").setDesc("Where to store the skill").addDropdown((dropdown) => {
+    new import_obsidian19.Setting(contentEl).setName(t10("settings.codexSkills.modal.directory")).setDesc(t10("settings.codexSkills.modal.directoryDesc")).addDropdown((dropdown) => {
       for (const opt of CODEX_SKILL_ROOT_OPTIONS) {
         dropdown.addOption(opt.id, opt.label);
       }
@@ -71930,20 +74736,20 @@ var CodexSkillModal = class extends import_obsidian15.Modal {
         this._selectedRootId = value;
       });
     });
-    new import_obsidian15.Setting(contentEl).setName("Skill name").setDesc('The name used after $ (e.g., "analyze" for $analyze)').addText((text) => {
+    new import_obsidian19.Setting(contentEl).setName(t10("settings.codexSkills.modal.skillName")).setDesc(t10("settings.codexSkills.modal.skillNameDesc")).addText((text) => {
       var _a6;
       this._nameInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.name) || "").setPlaceholder("Analyze-code");
     });
-    new import_obsidian15.Setting(contentEl).setName("Description").setDesc("Optional description shown in dropdown").addText((text) => {
+    new import_obsidian19.Setting(contentEl).setName(t10("settings.codexSkills.modal.description")).setDesc(t10("settings.codexSkills.modal.descriptionDesc")).addText((text) => {
       var _a6;
       this._descInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.description) || "");
     });
-    new import_obsidian15.Setting(contentEl).setName("Instructions").setDesc("The skill instructions (SKILL.md content)");
+    new import_obsidian19.Setting(contentEl).setName(t10("settings.codexSkills.modal.instructions")).setDesc(t10("settings.codexSkills.modal.instructionsDesc"));
     const contentArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
-      attr: { rows: "10", placeholder: "Analyze the code for..." }
+      attr: { rows: "10", placeholder: t10("settings.codexSkills.modal.instructionsPlaceholder") }
     });
     contentArea.value = ((_a5 = this.existing) == null ? void 0 : _a5.content) || "";
     this._contentArea = contentArea;
@@ -71952,12 +74758,12 @@ var CodexSkillModal = class extends import_obsidian15.Modal {
       const name = this._nameInput.value.trim();
       const nameError = validateCommandName(name);
       if (nameError) {
-        new import_obsidian15.Notice(nameError);
+        new import_obsidian19.Notice(nameError);
         return;
       }
       const content = this._contentArea.value;
       if (!content.trim()) {
-        new import_obsidian15.Notice("Instructions are required");
+        new import_obsidian19.Notice(t10("settings.codexSkills.instructionsRequired"));
         return;
       }
       const entry = {
@@ -71981,7 +74787,7 @@ var CodexSkillModal = class extends import_obsidian15.Modal {
       try {
         await this.onSave(entry);
       } catch (e2) {
-        new import_obsidian15.Notice("Failed to save Codex skill");
+        new import_obsidian19.Notice(t10("settings.codexSkills.saveFailed"));
         return;
       }
       this.close();
@@ -71989,12 +74795,12 @@ var CodexSkillModal = class extends import_obsidian15.Modal {
     this._triggerSave = doSave;
     const buttonContainer = contentEl.createDiv({ cls: "claudian-sp-modal-buttons" });
     const cancelBtn = buttonContainer.createEl("button", {
-      text: "Cancel",
+      text: t10("common.cancel"),
       cls: "claudian-cancel-btn"
     });
     cancelBtn.addEventListener("click", () => this.close());
     const saveBtn = buttonContainer.createEl("button", {
-      text: "Save",
+      text: t10("common.save"),
       cls: "claudian-save-btn"
     });
     saveBtn.addEventListener("click", () => {
@@ -72029,25 +74835,25 @@ var CodexSkillSettings = class {
       this.entries = [];
     }
     const headerEl = this.containerEl.createDiv({ cls: "claudian-sp-header" });
-    headerEl.createSpan({ text: "Codex Skills", cls: "claudian-sp-label" });
+    headerEl.createSpan({ text: t10("settings.codexSkills.header"), cls: "claudian-sp-label" });
     const actionsEl = headerEl.createDiv({ cls: "claudian-sp-header-actions" });
     const refreshBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Refresh" }
+      attr: { "aria-label": t10("common.refresh") }
     });
-    (0, import_obsidian15.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian19.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => {
       void this.refresh();
     });
     const addBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Add" }
+      attr: { "aria-label": t10("common.add") }
     });
-    (0, import_obsidian15.setIcon)(addBtn, "plus");
+    (0, import_obsidian19.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => this.openModal(null));
     if (this.entries.length === 0) {
       const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
-      emptyEl.setText("No Codex skills in vault. Click + to create one.");
+      emptyEl.setText(t10("settings.codexSkills.noSkills"));
       return;
     }
     const listEl = this.containerEl.createDiv({ cls: "claudian-sp-list" });
@@ -72061,7 +74867,7 @@ var CodexSkillSettings = class {
     const headerRow = infoEl.createDiv({ cls: "claudian-sp-item-header" });
     const nameEl = headerRow.createSpan({ cls: "claudian-sp-item-name" });
     nameEl.setText(`$${entry.name}`);
-    headerRow.createSpan({ text: "skill", cls: "claudian-slash-item-badge" });
+    headerRow.createSpan({ text: t10("settings.codexSkills.skillBadge"), cls: "claudian-slash-item-badge" });
     if (entry.description) {
       const descEl = infoEl.createDiv({ cls: "claudian-sp-item-desc" });
       descEl.setText(entry.description);
@@ -72070,24 +74876,24 @@ var CodexSkillSettings = class {
     if (entry.isEditable) {
       const editBtn = actionsEl.createEl("button", {
         cls: "claudian-settings-action-btn",
-        attr: { "aria-label": "Edit" }
+        attr: { "aria-label": t10("common.edit") }
       });
-      (0, import_obsidian15.setIcon)(editBtn, "pencil");
+      (0, import_obsidian19.setIcon)(editBtn, "pencil");
       editBtn.addEventListener("click", () => this.openModal(entry));
     }
     if (entry.isDeletable) {
       const deleteBtn = actionsEl.createEl("button", {
         cls: "claudian-settings-action-btn claudian-settings-delete-btn",
-        attr: { "aria-label": "Delete" }
+        attr: { "aria-label": t10("common.delete") }
       });
-      (0, import_obsidian15.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian19.setIcon)(deleteBtn, "trash-2");
       deleteBtn.addEventListener("click", () => {
         void (async () => {
           try {
             await this.deleteEntry(entry);
-            new import_obsidian15.Notice(`Codex skill "$${entry.name}" deleted`);
+            new import_obsidian19.Notice(t10("settings.codexSkills.deleted", { name: entry.name }));
           } catch (e2) {
-            new import_obsidian15.Notice("Failed to delete Codex skill");
+            new import_obsidian19.Notice(t10("settings.codexSkills.deleteFailed"));
           }
         })();
       });
@@ -72101,7 +74907,7 @@ var CodexSkillSettings = class {
       async (entry) => {
         await this.catalog.saveVaultEntry(entry);
         await this.render();
-        new import_obsidian15.Notice(`Codex skill "$${entry.name}" ${existing ? "updated" : "created"}`);
+        new import_obsidian19.Notice(t10(existing ? "settings.codexSkills.updated" : "settings.codexSkills.created", { name: entry.name }));
       }
     );
     modal.open();
@@ -72109,27 +74915,34 @@ var CodexSkillSettings = class {
 };
 
 // src/providers/codex/ui/CodexSubagentSettings.ts
-var import_obsidian16 = require("obsidian");
-var REASONING_EFFORT_OPTIONS = [
-  { value: "", label: "Inherit" },
-  { value: "low", label: "Low" },
-  { value: "medium", label: "Medium" },
-  { value: "high", label: "High" },
-  { value: "xhigh", label: "Extra High" }
-];
-var SANDBOX_MODE_OPTIONS = [
-  { value: "", label: "Inherit" },
-  { value: "read-only", label: "Read only" },
-  { value: "danger-full-access", label: "Danger full access" },
-  { value: "workspace-write", label: "Workspace write" }
-];
+var import_obsidian20 = require("obsidian");
+function getCodexSubagentReasoningEffortOptions() {
+  return [
+    { value: "", label: t10("settings.codexSubagents.reasoningEffort.inherit") },
+    { value: "low", label: t10("settings.codexSubagents.reasoningEffort.low") },
+    { value: "medium", label: t10("settings.codexSubagents.reasoningEffort.medium") },
+    { value: "high", label: t10("settings.codexSubagents.reasoningEffort.high") },
+    { value: "xhigh", label: t10("settings.codexSubagents.reasoningEffort.xhigh") },
+    { value: "max", label: "Max" }
+  ];
+}
+function getSandboxModeOptions() {
+  return [
+    { value: "", label: t10("settings.codexSubagents.sandboxMode.inherit") },
+    { value: "read-only", label: t10("settings.codexSubagents.sandboxMode.readOnly") },
+    { value: "danger-full-access", label: t10("settings.codexSubagents.sandboxMode.dangerFullAccess") },
+    { value: "workspace-write", label: t10("settings.codexSubagents.sandboxMode.workspaceWrite") }
+  ];
+}
 var MAX_NAME_LENGTH = 64;
 var CODEX_AGENT_NAME_PATTERN = /^[a-z0-9_-]+$/;
 var CODEX_NICKNAME_PATTERN = /^[A-Za-z0-9 _-]+$/;
 function validateCodexSubagentName(name) {
-  if (!name) return "Subagent name is required";
-  if (name.length > MAX_NAME_LENGTH) return `Subagent name must be ${MAX_NAME_LENGTH} characters or fewer`;
-  if (!CODEX_AGENT_NAME_PATTERN.test(name)) return "Subagent name can only contain lowercase letters, numbers, hyphens, and underscores";
+  if (!name) return t10("settings.codexSubagents.validation.nameRequired");
+  if (name.length > MAX_NAME_LENGTH) {
+    return t10("settings.codexSubagents.validation.nameTooLong", { count: MAX_NAME_LENGTH });
+  }
+  if (!CODEX_AGENT_NAME_PATTERN.test(name)) return t10("settings.codexSubagents.validation.nameInvalid");
   return null;
 }
 function validateCodexNicknameCandidates(candidates) {
@@ -72138,17 +74951,17 @@ function validateCodexNicknameCandidates(candidates) {
   const seen = /* @__PURE__ */ new Set();
   for (const candidate of normalized) {
     if (!CODEX_NICKNAME_PATTERN.test(candidate)) {
-      return "Nickname candidates can only contain ASCII letters, numbers, spaces, hyphens, and underscores";
+      return t10("settings.codexSubagents.validation.nicknameInvalid");
     }
     const dedupeKey = candidate.toLowerCase();
     if (seen.has(dedupeKey)) {
-      return "Nickname candidates must be unique";
+      return t10("settings.codexSubagents.validation.nicknameDuplicate");
     }
     seen.add(dedupeKey);
   }
   return null;
 }
-var CodexSubagentModal = class extends import_obsidian16.Modal {
+var CodexSubagentModal = class extends import_obsidian20.Modal {
   constructor(app, existing, allAgents, onSave) {
     var _a5, _b3;
     super(app);
@@ -72178,34 +74991,34 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
   }
   onOpen() {
     var _a5, _b3, _c2, _d, _e2, _f2, _g;
-    this.setTitle(this.existing ? "Edit Codex Subagent" : "Add Codex Subagent");
+    this.setTitle(this.existing ? t10("settings.codexSubagents.modal.titleEdit") : t10("settings.codexSubagents.modal.titleAdd"));
     this.modalEl.addClass("claudian-sp-modal");
     const { contentEl } = this;
-    new import_obsidian16.Setting(contentEl).setName("Name").setDesc("Agent name Codex uses when spawning (lowercase, hyphens, underscores)").addText((text) => {
+    new import_obsidian20.Setting(contentEl).setName(t10("settings.subagents.modal.name")).setDesc(t10("settings.codexSubagents.modal.nameDesc")).addText((text) => {
       var _a6, _b4;
       this._nameInput = text.inputEl;
-      text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.name) != null ? _b4 : "").setPlaceholder("Code_reviewer");
+      text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.name) != null ? _b4 : "").setPlaceholder(t10("settings.codexSubagents.modal.namePlaceholder"));
     });
-    new import_obsidian16.Setting(contentEl).setName("Description").setDesc("When Codex should use this agent").addText((text) => {
+    new import_obsidian20.Setting(contentEl).setName(t10("settings.subagents.modal.description")).setDesc(t10("settings.codexSubagents.modal.descriptionDesc")).addText((text) => {
       var _a6, _b4;
       this._descInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.description) != null ? _b4 : "").setPlaceholder("Reviews code for correctness and security");
     });
     const details = contentEl.createEl("details", { cls: "claudian-sp-advanced-section" });
     details.createEl("summary", {
-      text: "Advanced options",
+      text: t10("settings.subagents.modal.advancedOptions"),
       cls: "claudian-sp-advanced-summary"
     });
     if (((_a5 = this.existing) == null ? void 0 : _a5.model) || ((_b3 = this.existing) == null ? void 0 : _b3.modelReasoningEffort) || ((_c2 = this.existing) == null ? void 0 : _c2.sandboxMode) || ((_e2 = (_d = this.existing) == null ? void 0 : _d.nicknameCandidates) == null ? void 0 : _e2.length)) {
       details.open = true;
     }
-    new import_obsidian16.Setting(details).setName("Model").setDesc("Model override (leave empty to inherit)").addText((text) => {
+    new import_obsidian20.Setting(details).setName(t10("settings.subagents.modal.model")).setDesc(t10("settings.codexSubagents.modal.modelDesc")).addText((text) => {
       var _a6, _b4;
       this._modelInput = text.inputEl;
-      text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.model) != null ? _b4 : "").setPlaceholder(DEFAULT_CODEX_PRIMARY_MODEL);
+      text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.model) != null ? _b4 : "").setPlaceholder("Model ID");
     });
-    new import_obsidian16.Setting(details).setName("Reasoning effort").setDesc("Model reasoning effort level").addDropdown((dropdown) => {
-      for (const opt of REASONING_EFFORT_OPTIONS) {
+    new import_obsidian20.Setting(details).setName(t10("settings.codexSubagents.reasoningEffort.name")).setDesc(t10("settings.codexSubagents.reasoningEffort.desc")).addDropdown((dropdown) => {
+      for (const opt of getCodexSubagentReasoningEffortOptions()) {
         dropdown.addOption(opt.value, opt.label);
       }
       dropdown.setValue(this._reasoningEffort);
@@ -72213,8 +75026,8 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
         this._reasoningEffort = v2;
       });
     });
-    new import_obsidian16.Setting(details).setName("Sandbox mode").setDesc("Sandbox restriction for this agent").addDropdown((dropdown) => {
-      for (const opt of SANDBOX_MODE_OPTIONS) {
+    new import_obsidian20.Setting(details).setName(t10("settings.codexSubagents.sandboxMode.name")).setDesc(t10("settings.codexSubagents.sandboxMode.desc")).addDropdown((dropdown) => {
+      for (const opt of getSandboxModeOptions()) {
         dropdown.addOption(opt.value, opt.label);
       }
       dropdown.setValue(this._sandboxMode);
@@ -72222,17 +75035,17 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
         this._sandboxMode = v2;
       });
     });
-    new import_obsidian16.Setting(details).setName("Nickname candidates").setDesc("Comma-separated display nicknames (e.g., atlas, delta, echo)").addText((text) => {
+    new import_obsidian20.Setting(details).setName(t10("settings.codexSubagents.nicknameCandidates.name")).setDesc(t10("settings.codexSubagents.nicknameCandidates.desc")).addText((text) => {
       var _a6, _b4, _c3;
       this._nicknamesInput = text.inputEl;
       text.setValue((_c3 = (_b4 = (_a6 = this.existing) == null ? void 0 : _a6.nicknameCandidates) == null ? void 0 : _b4.join(", ")) != null ? _c3 : "");
     });
-    new import_obsidian16.Setting(contentEl).setName("Developer instructions").setDesc("Core instructions that define the agent's behavior");
+    new import_obsidian20.Setting(contentEl).setName(t10("settings.codexSubagents.developerInstructions.name")).setDesc(t10("settings.codexSubagents.developerInstructions.desc"));
     const instructionsArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
         rows: "10",
-        placeholder: "Review code like an owner.\nPrioritize correctness, security, and missing test coverage."
+        placeholder: t10("settings.codexSubagents.developerInstructions.placeholder")
       }
     });
     instructionsArea.value = (_g = (_f2 = this.existing) == null ? void 0 : _f2.developerInstructions) != null ? _g : "";
@@ -72242,23 +75055,23 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
       const name = this._nameInput.value.trim();
       const nameError = validateCodexSubagentName(name);
       if (nameError) {
-        new import_obsidian16.Notice(nameError);
+        new import_obsidian20.Notice(nameError);
         return;
       }
       const description = this._descInput.value.trim();
       if (!description) {
-        new import_obsidian16.Notice("Description is required");
+        new import_obsidian20.Notice(t10("settings.subagents.descriptionRequired"));
         return;
       }
       const developerInstructions = this._instructionsArea.value;
       if (!developerInstructions.trim()) {
-        new import_obsidian16.Notice("Developer instructions are required");
+        new import_obsidian20.Notice(t10("settings.codexSubagents.developerInstructions.required"));
         return;
       }
       const nicknameCandidates = this._nicknamesInput.value.split(",").map((s2) => s2.trim()).filter(Boolean);
       const nicknameError = validateCodexNicknameCandidates(nicknameCandidates);
       if (nicknameError) {
-        new import_obsidian16.Notice(nicknameError);
+        new import_obsidian20.Notice(nicknameError);
         return;
       }
       const duplicate = this.allAgents.find(
@@ -72268,7 +75081,7 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
         }
       );
       if (duplicate) {
-        new import_obsidian16.Notice(`A subagent named "${name}" already exists`);
+        new import_obsidian20.Notice(t10("settings.subagents.duplicateName", { name }));
         return;
       }
       const agent = {
@@ -72286,7 +75099,7 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
         await this.onSave(agent);
       } catch (err) {
         const message = err instanceof Error ? err.message : "Unknown error";
-        new import_obsidian16.Notice(`Failed to save subagent: ${message}`);
+        new import_obsidian20.Notice(t10("settings.subagents.saveFailed", { message }));
         return;
       }
       this.close();
@@ -72294,12 +75107,12 @@ var CodexSubagentModal = class extends import_obsidian16.Modal {
     this._triggerSave = doSave;
     const buttonContainer = contentEl.createDiv({ cls: "claudian-sp-modal-buttons" });
     const cancelBtn = buttonContainer.createEl("button", {
-      text: "Cancel",
+      text: t10("common.cancel"),
       cls: "claudian-cancel-btn"
     });
     cancelBtn.addEventListener("click", () => this.close());
     const saveBtn = buttonContainer.createEl("button", {
-      text: "Save",
+      text: t10("common.save"),
       cls: "claudian-save-btn"
     });
     saveBtn.addEventListener("click", () => {
@@ -72327,25 +75140,25 @@ var CodexSubagentSettings = class {
       this.agents = [];
     }
     const headerEl = this.containerEl.createDiv({ cls: "claudian-sp-header" });
-    headerEl.createSpan({ text: "Codex Subagents", cls: "claudian-sp-label" });
+    headerEl.createSpan({ text: t10("settings.codexSubagents.header"), cls: "claudian-sp-label" });
     const actionsEl = headerEl.createDiv({ cls: "claudian-sp-header-actions" });
     const refreshBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Refresh" }
+      attr: { "aria-label": t10("common.refresh") }
     });
-    (0, import_obsidian16.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian20.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => {
       void this.render();
     });
     const addBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Add" }
+      attr: { "aria-label": t10("common.add") }
     });
-    (0, import_obsidian16.setIcon)(addBtn, "plus");
+    (0, import_obsidian20.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => this.openModal(null));
     if (this.agents.length === 0) {
       const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
-      emptyEl.setText("No Codex subagents in vault. Click + to create one.");
+      emptyEl.setText(t10("settings.codexSubagents.noAgents"));
       return;
     }
     const listEl = this.containerEl.createDiv({ cls: "claudian-sp-list" });
@@ -72369,31 +75182,32 @@ var CodexSubagentSettings = class {
     const actionsEl = itemEl.createDiv({ cls: "claudian-sp-item-actions" });
     const editBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn",
-      attr: { "aria-label": "Edit" }
+      attr: { "aria-label": t10("common.edit") }
     });
-    (0, import_obsidian16.setIcon)(editBtn, "pencil");
+    (0, import_obsidian20.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => this.openModal(agent));
     const deleteBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn claudian-settings-delete-btn",
-      attr: { "aria-label": "Delete" }
+      attr: { "aria-label": t10("common.delete") }
     });
-    (0, import_obsidian16.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian20.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", () => {
       void (async () => {
         var _a5;
         if (!this.app) return;
         const confirmed = await confirmDelete(
           this.app,
-          `Delete subagent "${agent.name}"?`
+          t10("settings.subagents.deleteConfirm", { name: agent.name })
         );
         if (!confirmed) return;
         try {
           await this.storage.delete(agent);
           await this.render();
           (_a5 = this.onChanged) == null ? void 0 : _a5.call(this);
-          new import_obsidian16.Notice(`Subagent "${agent.name}" deleted`);
-        } catch (e2) {
-          new import_obsidian16.Notice("Failed to delete subagent");
+          new import_obsidian20.Notice(t10("settings.subagents.deleted", { name: agent.name }));
+        } catch (err) {
+          const message = err instanceof Error ? err.message : "Unknown error";
+          new import_obsidian20.Notice(t10("settings.subagents.deleteFailed", { message }));
         }
       })();
     });
@@ -72409,8 +75223,8 @@ var CodexSubagentSettings = class {
         await this.storage.save(agent, existing);
         await this.render();
         (_a5 = this.onChanged) == null ? void 0 : _a5.call(this);
-        new import_obsidian16.Notice(
-          existing ? `Subagent "${agent.name}" updated` : `Subagent "${agent.name}" created`
+        new import_obsidian20.Notice(
+          existing ? t10("settings.subagents.updated", { name: agent.name }) : t10("settings.subagents.created", { name: agent.name })
         );
       }
     );
@@ -72421,62 +75235,65 @@ var CodexSubagentSettings = class {
 // src/providers/codex/ui/CodexSettingsTab.ts
 var codexSettingsTabRenderer = {
   render(container, context) {
+    var _a5, _b3;
     const codexWorkspace = getCodexWorkspaceServices();
     const settingsBag = context.plugin.settings;
     const codexSettings = getCodexProviderSettings(settingsBag);
     const hostnameKey = getHostnameKey();
     const isWindowsHost = process.platform === "win32";
     let installationMethod = codexSettings.installationMethod;
-    const reconcileActiveCodexModelSelection = () => {
-      const activeProvider = settingsBag.settingsProvider;
-      if (activeProvider !== "codex") {
-        return;
+    const environmentModelPlaceholder = (_b3 = (_a5 = getDefaultCodexModel(codexSettings.discoveredModels)) == null ? void 0 : _a5.model) != null ? _b3 : "model-id";
+    const refreshCodexModelCatalog = async () => {
+      var _a6;
+      const result = await ((_a6 = codexWorkspace.refreshModelCatalog) == null ? void 0 : _a6.call(codexWorkspace));
+      if (result == null ? void 0 : result.diagnostics) {
+        new import_obsidian21.Notice(`Codex model discovery failed: ${result.diagnostics}`);
       }
-      const currentModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-      const nextModel = resolveCodexModelSelection(settingsBag, currentModel);
-      if (!nextModel || nextModel === currentModel) {
-        return;
-      }
-      settingsBag.model = nextModel;
     };
-    new import_obsidian17.Setting(container).setName(t10("settings.setup")).setHeading();
-    new import_obsidian17.Setting(container).setName("Enable Codex provider").setDesc("When enabled, Codex models appear in the model selector for new conversations. Existing Codex sessions are preserved.").addToggle(
+    new import_obsidian21.Setting(container).setName(t10("settings.setup")).setHeading();
+    new import_obsidian21.Setting(container).setName(t10("settings.codex.enableProvider.name")).setDesc(t10("settings.codex.enableProvider.desc")).addToggle(
       (toggle) => toggle.setValue(codexSettings.enabled).onChange(async (value) => {
-        updateCodexProviderSettings(settingsBag, { enabled: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateCodexProviderSettings(settings11, { enabled: value });
+        });
+        if (value) {
+          await refreshCodexModelCatalog();
+        }
         context.refreshModelSelectors();
       })
     );
     if (isWindowsHost) {
-      new import_obsidian17.Setting(container).setName("Installation method").setDesc("How Claudian should launch Codex on Windows. Native Windows uses a Windows executable path. WSL launches the Linux CLI inside a selected distro.").addDropdown((dropdown) => {
-        dropdown.addOption("native-windows", "Native Windows").addOption("wsl", "WSL").setValue(installationMethod).onChange(async (value) => {
+      new import_obsidian21.Setting(container).setName(t10("settings.codex.installationMethod.name")).setDesc(t10("settings.codex.installationMethod.desc")).addDropdown((dropdown) => {
+        dropdown.addOption("native-windows", t10("settings.codex.installationMethod.nativeWindows")).addOption("wsl", t10("settings.codex.installationMethod.wsl")).setValue(installationMethod).onChange(async (value) => {
           installationMethod = value === "wsl" ? "wsl" : "native-windows";
-          updateCodexProviderSettings(settingsBag, { installationMethod });
+          await context.plugin.mutateSettings((settings11) => {
+            updateCodexProviderSettings(settings11, { installationMethod });
+          });
           refreshInstallationMethodUI();
-          await context.plugin.saveSettings();
+          await refreshCodexModelCatalog();
         });
       });
     }
     const getCliPathCopy = () => {
       if (!isWindowsHost) {
         return {
-          desc: "Custom path to the local Codex CLI. Leave empty to prefer known Codex installs, then PATH.",
+          desc: t10("settings.codex.cliPath.descUnix"),
           placeholder: "/usr/local/bin/codex"
         };
       }
       if (installationMethod === "wsl") {
         return {
-          desc: "Linux-side Codex command or absolute path to run inside WSL. Leave empty for PATH lookup inside the selected distro.",
+          desc: t10("settings.codex.cliPath.descWsl"),
           placeholder: "codex"
         };
       }
       return {
-        desc: "Custom path to the local Codex CLI. Leave empty to auto-detect from PATH. Use the native Windows executable path, usually `codex.exe`.",
+        desc: t10("settings.codex.cliPath.descWindows"),
         placeholder: "C:\\Users\\you\\AppData\\Roaming\\npm\\codex.exe"
       };
     };
     const shouldValidateCliPathAsFile = () => !isWindowsHost || installationMethod !== "wsl";
-    const cliPathSetting = new import_obsidian17.Setting(container).setName("Codex CLI path").setDesc(getCliPathCopy().desc);
+    const cliPathSetting = new import_obsidian21.Setting(container).setName(t10("settings.codex.cliPath.name")).setDesc(getCliPathCopy().desc);
     const validationEl = container.createDiv({
       cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
     });
@@ -72485,7 +75302,7 @@ var codexSettingsTabRenderer = {
       if (!trimmed) return null;
       if (!shouldValidateCliPathAsFile()) {
         if (isWindowsStyleCliReference(trimmed)) {
-          return "WSL mode expects a Linux command or Linux absolute path, not a Windows executable path.";
+          return t10("settings.codex.cliPath.validation.wslWindowsPath");
         }
         return null;
       }
@@ -72534,7 +75351,7 @@ var codexSettingsTabRenderer = {
       }
     };
     const persistCliPath = async (value) => {
-      var _a5;
+      var _a6, _b4;
       const isValid2 = updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0);
       if (!isValid2) {
         return false;
@@ -72545,12 +75362,10 @@ var codexSettingsTabRenderer = {
       } else {
         delete cliPathsByHost[hostnameKey];
       }
-      updateCodexProviderSettings(settingsBag, { cliPathsByHost: { ...cliPathsByHost } });
-      await context.plugin.saveSettings();
-      const view = context.plugin.getView();
-      await ((_a5 = view == null ? void 0 : view.getTabManager()) == null ? void 0 : _a5.broadcastToAllTabs(
-        (service) => Promise.resolve(service.cleanup())
-      ));
+      await context.plugin.mutateSettings((settings11) => {
+        updateCodexProviderSettings(settings11, { cliPathsByHost: { ...cliPathsByHost } });
+      });
+      await ((_b4 = (_a6 = context.plugin).recycleProviderRuntimes) == null ? void 0 : _b4.call(_a6, "codex"));
       return true;
     };
     const currentValue = codexSettings.cliPathsByHost[hostnameKey] || "";
@@ -72563,12 +75378,13 @@ var codexSettingsTabRenderer = {
       updateCliPathValidation(currentValue, text.inputEl);
     });
     if (isWindowsHost) {
-      const wslDistroSetting = new import_obsidian17.Setting(container).setName("WSL distro override").setDesc("Optional advanced override. Leave empty to infer the distro from a WSL workspace path when possible, otherwise use the default WSL distro.");
+      const wslDistroSetting = new import_obsidian21.Setting(container).setName(t10("settings.codex.wslDistroOverride.name")).setDesc(t10("settings.codex.wslDistroOverride.desc"));
       wslDistroSettingEl = wslDistroSetting.settingEl;
       wslDistroSetting.addText((text) => {
         text.setPlaceholder("Ubuntu").setValue(codexSettings.wslDistroOverride).onChange(async (value) => {
-          updateCodexProviderSettings(settingsBag, { wslDistroOverride: value });
-          await context.plugin.saveSettings();
+          await context.plugin.mutateSettings((settings11) => {
+            updateCodexProviderSettings(settings11, { wslDistroOverride: value });
+          });
         });
         text.inputEl.addClass("claudian-settings-cli-path-input");
         text.inputEl.disabled = installationMethod !== "wsl";
@@ -72576,127 +75392,74 @@ var codexSettingsTabRenderer = {
       });
     }
     refreshInstallationMethodUI();
-    new import_obsidian17.Setting(container).setName(t10("settings.safety")).setHeading();
-    new import_obsidian17.Setting(container).setName(t10("settings.codexSafeMode.name")).setDesc(t10("settings.codexSafeMode.desc")).addDropdown((dropdown) => {
-      dropdown.addOption("workspace-write", "Workspace write").addOption("read-only", "Read only").setValue(codexSettings.safeMode).onChange(async (value) => {
-        updateCodexProviderSettings(
-          settingsBag,
-          { safeMode: value }
-        );
-        await context.plugin.saveSettings();
+    new import_obsidian21.Setting(container).setName(t10("settings.safety")).setHeading();
+    new import_obsidian21.Setting(container).setName(t10("settings.codexSafeMode.name")).setDesc(t10("settings.codexSafeMode.desc")).addDropdown((dropdown) => {
+      dropdown.addOption("workspace-write", t10("settings.codex.safeMode.workspaceWrite")).addOption("read-only", t10("settings.codex.safeMode.readOnly")).setValue(codexSettings.safeMode).onChange(async (value) => {
+        await context.plugin.mutateSettings((settings11) => {
+          updateCodexProviderSettings(
+            settings11,
+            { safeMode: value }
+          );
+        });
       });
     });
-    new import_obsidian17.Setting(container).setName(t10("settings.models")).setHeading();
+    new import_obsidian21.Setting(container).setName(t10("settings.models")).setHeading();
+    renderCodexModelPicker(container, context, codexWorkspace);
     const SUMMARY_OPTIONS = [
-      { value: "auto", label: "Auto" },
-      { value: "concise", label: "Concise" },
-      { value: "detailed", label: "Detailed" },
-      { value: "none", label: "Off" }
+      { value: "auto", label: t10("settings.codex.reasoningSummary.auto") },
+      { value: "concise", label: t10("settings.codex.reasoningSummary.concise") },
+      { value: "detailed", label: t10("settings.codex.reasoningSummary.detailed") },
+      { value: "none", label: t10("settings.codex.reasoningSummary.off") }
     ];
-    new import_obsidian17.Setting(container).setName("Custom models").setDesc("Append additional Codex model ids to the picker, one per line. `OPENAI_MODEL` still takes precedence when set.").addTextArea((text) => {
-      let pendingCustomModels = codexSettings.customModels;
-      let savedCustomModels = codexSettings.customModels;
-      const reconcileInactiveCodexProjection = (previousCustomModels) => {
-        if (settingsBag.settingsProvider === "codex") {
-          return false;
-        }
-        const savedProviderModel = settingsBag.savedProviderModel && typeof settingsBag.savedProviderModel === "object" ? settingsBag.savedProviderModel : {};
-        const currentSavedModel = typeof savedProviderModel.codex === "string" ? savedProviderModel.codex : "";
-        if (!currentSavedModel) {
-          return false;
-        }
-        const previousCustomModelIds = new Set(parseConfiguredCustomModelIds2(previousCustomModels));
-        if (!previousCustomModelIds.has(toCodexRuntimeModelId(currentSavedModel))) {
-          return false;
-        }
-        const nextSavedModel = resolveCodexModelSelection(settingsBag, currentSavedModel);
-        if (!nextSavedModel || nextSavedModel === currentSavedModel) {
-          return false;
-        }
-        settingsBag.savedProviderModel = {
-          ...savedProviderModel,
-          codex: nextSavedModel
-        };
-        return true;
-      };
-      const commitCustomModels = async () => {
-        const previousCustomModels = savedCustomModels;
-        const previousModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-        const previousTitleModel = typeof settingsBag.titleGenerationModel === "string" ? settingsBag.titleGenerationModel : "";
-        if (pendingCustomModels !== savedCustomModels) {
-          updateCodexProviderSettings(settingsBag, { customModels: pendingCustomModels });
-          savedCustomModels = pendingCustomModels;
-        }
-        reconcileActiveCodexModelSelection();
-        const didReconcileInactiveProjection = reconcileInactiveCodexProjection(previousCustomModels);
-        const didReconcileTitleModel = ProviderSettingsCoordinator.reconcileTitleGenerationModelSelection(settingsBag);
-        const nextModel = typeof settingsBag.model === "string" ? settingsBag.model : "";
-        const nextTitleModel = typeof settingsBag.titleGenerationModel === "string" ? settingsBag.titleGenerationModel : "";
-        const didModelSelectionChange = previousModel !== nextModel;
-        const didCustomModelsChange = previousCustomModels !== savedCustomModels;
-        if (!didCustomModelsChange && !didModelSelectionChange && !didReconcileInactiveProjection && !didReconcileTitleModel && previousTitleModel === nextTitleModel) {
-          return;
-        }
-        await context.plugin.saveSettings();
-        context.refreshModelSelectors();
-      };
-      text.setPlaceholder("gpt-5.4\ngpt-5.3-codex-spark").setValue(codexSettings.customModels).onChange((value) => {
-        pendingCustomModels = value;
-      });
-      text.inputEl.rows = 4;
-      text.inputEl.cols = 40;
-      text.inputEl.addEventListener("blur", () => {
-        void commitCustomModels();
-      });
-    });
-    new import_obsidian17.Setting(container).setName("Reasoning summary").setDesc("Show a summary of the model's reasoning process in the thinking block.").addDropdown((dropdown) => {
+    new import_obsidian21.Setting(container).setName(t10("settings.codex.reasoningSummary.name")).setDesc(t10("settings.codex.reasoningSummary.desc")).addDropdown((dropdown) => {
       for (const opt of SUMMARY_OPTIONS) {
         dropdown.addOption(opt.value, opt.label);
       }
       dropdown.setValue(codexSettings.reasoningSummary);
       dropdown.onChange(async (value) => {
-        updateCodexProviderSettings(
-          settingsBag,
-          { reasoningSummary: value }
-        );
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateCodexProviderSettings(
+            settings11,
+            { reasoningSummary: value }
+          );
+        });
       });
     });
     const codexCatalog = codexWorkspace.commandCatalog;
     if (codexCatalog) {
-      new import_obsidian17.Setting(container).setName("Codex skills").setHeading();
+      new import_obsidian21.Setting(container).setName(t10("settings.codex.skills.name")).setHeading();
       const skillsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
       skillsDesc.createEl("p", {
         cls: "setting-item-description",
-        text: "Manage vault-level Codex skills stored in .codex/skills/ or .agents/skills/. Home-level skills are excluded here."
+        text: t10("settings.codex.skills.desc")
       });
       const skillsContainer = container.createDiv({ cls: "claudian-slash-commands-container" });
       new CodexSkillSettings(skillsContainer, codexCatalog, context.plugin.app);
     }
     context.renderHiddenProviderCommandSetting(container, "codex", {
-      name: "Hidden Skills",
-      desc: "Hide specific Codex skills from the dropdown. Enter skill names without the leading $, one per line.",
-      placeholder: "analyze\nexplain\nfix"
+      name: t10("settings.codex.skills.hiddenName"),
+      desc: t10("settings.codex.skills.hiddenDesc"),
+      placeholder: t10("settings.codex.skills.hiddenPlaceholder")
     });
-    new import_obsidian17.Setting(container).setName("Codex subagents").setHeading();
+    new import_obsidian21.Setting(container).setName(t10("settings.codex.subagents.name")).setHeading();
     const subagentDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
     subagentDesc.createEl("p", {
       cls: "setting-item-description",
-      text: "Manage vault-level Codex subagents stored in .codex/agents/. Each TOML file defines one custom agent."
+      text: t10("settings.codex.subagents.desc")
     });
     const subagentContainer = container.createDiv({ cls: "claudian-slash-commands-container" });
     new CodexSubagentSettings(subagentContainer, codexWorkspace.subagentStorage, context.plugin.app, () => {
-      var _a5;
-      void ((_a5 = codexWorkspace.refreshAgentMentions) == null ? void 0 : _a5.call(codexWorkspace));
+      var _a6;
+      void ((_a6 = codexWorkspace.refreshAgentMentions) == null ? void 0 : _a6.call(codexWorkspace));
     });
-    new import_obsidian17.Setting(container).setName(t10("settings.mcpServers.name")).setHeading();
+    new import_obsidian21.Setting(container).setName(t10("settings.mcpServers.name")).setHeading();
     const mcpNotice = container.createDiv({ cls: "claudian-mcp-settings-desc" });
     const mcpDesc = mcpNotice.createEl("p", { cls: "setting-item-description" });
-    mcpDesc.appendText("Codex manages MCP servers via its own CLI. Configure with ");
+    mcpDesc.appendText(t10("settings.codex.mcp.descBeforeCommand"));
     mcpDesc.createEl("code").appendText("codex mcp");
-    mcpDesc.appendText(" and they will be available in Claudian. ");
+    mcpDesc.appendText(t10("settings.codex.mcp.descAfterCommand"));
     mcpDesc.createEl("a", {
-      text: "Learn more",
+      text: t10("settings.codex.mcp.learnMore"),
       href: "https://developers.openai.com/codex/mcp"
     });
     renderEnvironmentSettingsSection({
@@ -72704,11 +75467,11 @@ var codexSettingsTabRenderer = {
       plugin: context.plugin,
       scope: "provider:codex",
       heading: t10("settings.environment"),
-      name: "Codex environment",
-      desc: "Codex-owned runtime variables only. Use this for OPENAI_* and CODEX_* settings. If Codex auto-detection needs help, add its install directory to shared PATH instead of this provider section.",
+      name: t10("settings.codex.environment.name"),
+      desc: t10("settings.codex.environment.desc"),
       placeholder: `OPENAI_API_KEY=your-key
 OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_MODEL=${DEFAULT_CODEX_PRIMARY_MODEL}
+OPENAI_MODEL=${environmentModelPlaceholder}
 CODEX_SANDBOX=workspace-write`,
       renderCustomContextLimits: (target) => context.renderCustomContextLimits(target, "codex")
     });
@@ -72716,6 +75479,9 @@ CODEX_SANDBOX=workspace-write`,
 };
 
 // src/providers/codex/app/CodexWorkspaceServices.ts
+function sameCatalog(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
 function createCodexCliResolver() {
   return new CodexCliResolver();
 }
@@ -72724,6 +75490,7 @@ async function createCodexWorkspaceServices(plugin, vaultAdapter, homeAdapter) {
   const agentMentionProvider = new CodexAgentMentionProvider(subagentStorage);
   await agentMentionProvider.loadAgents();
   const skillListProvider = new CodexSkillListingService(plugin);
+  const modelDiscovery = new CodexModelDiscoveryService(plugin);
   const commandCatalog = new CodexSkillCatalog(
     new CodexSkillStorage(
       vaultAdapter,
@@ -72732,7 +75499,7 @@ async function createCodexWorkspaceServices(plugin, vaultAdapter, homeAdapter) {
     skillListProvider,
     getVaultPath(plugin.app)
   );
-  return {
+  const services = {
     subagentStorage,
     commandCatalog,
     agentMentionProvider,
@@ -72740,8 +75507,46 @@ async function createCodexWorkspaceServices(plugin, vaultAdapter, homeAdapter) {
     settingsTabRenderer: codexSettingsTabRenderer,
     refreshAgentMentions: async () => {
       await agentMentionProvider.loadAgents();
+    },
+    refreshModelCatalog: async () => {
+      const result = await modelDiscovery.discoverModels();
+      if (result.diagnostics) {
+        return { changed: false, diagnostics: result.diagnostics };
+      }
+      if (result.models.length === 0) {
+        return { changed: false, diagnostics: "Codex app-server returned no visible models" };
+      }
+      let refreshResult = { changed: false, persistedSettingsChanged: false };
+      await plugin.mutateSettingsConditionally((settings11) => {
+        const currentSettings = getCodexProviderSettings(settings11);
+        const currentModels = currentSettings.discoveredModels;
+        const visibleModels = normalizeCodexVisibleModels(
+          currentSettings.visibleModels,
+          result.models
+        );
+        const catalogChanged = !sameCatalog(currentModels, result.models);
+        const visibilityChanged = !sameCatalog(currentSettings.visibleModels, visibleModels);
+        if (catalogChanged || visibilityChanged) {
+          updateCodexProviderSettings(settings11, {
+            discoveredModels: result.models,
+            visibleModels
+          });
+        }
+        const selectionChanged = ProviderSettingsCoordinator.normalizeAllModelVariants(settings11);
+        const persistedSettingsChanged = visibilityChanged || selectionChanged;
+        refreshResult = {
+          changed: catalogChanged || persistedSettingsChanged,
+          persistedSettingsChanged
+        };
+        return persistedSettingsChanged;
+      });
+      return refreshResult;
     }
   };
+  if (getCodexProviderSettings(plugin.settings).enabled) {
+    await services.refreshModelCatalog();
+  }
+  return services;
 }
 var codexWorkspaceRegistration = {
   initialize: async ({ plugin, vaultAdapter, homeAdapter }) => createCodexWorkspaceServices(
@@ -72819,15 +75624,15 @@ var CodexAuxQueryRunner = class {
     this.launchSpec = null;
   }
   async query(config2, prompt) {
-    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2;
     if (!this.process || !this.transport) {
       await this.startProcess();
     }
     if (!this.threadId) {
-      const model = toCodexRuntimeModelId((_a5 = config2.model) != null ? _a5 : this.resolveProviderModel());
+      const model = config2.model ? toCodexRuntimeModelId(config2.model) : this.resolveProviderModel();
       const result = await this.transport.request("thread/start", {
-        model,
-        cwd: (_c2 = (_b3 = this.launchSpec) == null ? void 0 : _b3.targetCwd) != null ? _c2 : process.cwd(),
+        ...model ? { model } : {},
+        cwd: (_b3 = (_a5 = this.launchSpec) == null ? void 0 : _a5.targetCwd) != null ? _b3 : process.cwd(),
         approvalPolicy: "never",
         sandbox: "read-only",
         baseInstructions: config2.systemPrompt,
@@ -72878,10 +75683,10 @@ var CodexAuxQueryRunner = class {
       }
       resolveWait == null ? void 0 : resolveWait();
     };
-    (_d = config2.abortController) == null ? void 0 : _d.signal.addEventListener("abort", abortHandler, { once: true });
-    if ((_e2 = config2.abortController) == null ? void 0 : _e2.signal.aborted) {
+    (_c2 = config2.abortController) == null ? void 0 : _c2.signal.addEventListener("abort", abortHandler, { once: true });
+    if ((_d = config2.abortController) == null ? void 0 : _d.signal.aborted) {
       config2.abortController.signal.removeEventListener("abort", abortHandler);
-      (_f2 = this.process) == null ? void 0 : _f2.offExit(exitHandler);
+      (_e2 = this.process) == null ? void 0 : _e2.offExit(exitHandler);
       throw new Error("Cancelled");
     }
     const turnResult = await this.transport.request("turn/start", {
@@ -72893,10 +75698,10 @@ var CodexAuxQueryRunner = class {
     try {
       await donePromise;
     } finally {
-      (_g = config2.abortController) == null ? void 0 : _g.signal.removeEventListener("abort", abortHandler);
-      (_h2 = this.process) == null ? void 0 : _h2.offExit(exitHandler);
+      (_f2 = config2.abortController) == null ? void 0 : _f2.signal.removeEventListener("abort", abortHandler);
+      (_g = this.process) == null ? void 0 : _g.offExit(exitHandler);
     }
-    if ((_i = config2.abortController) == null ? void 0 : _i.signal.aborted) {
+    if ((_h2 = config2.abortController) == null ? void 0 : _h2.signal.aborted) {
       throw new Error("Cancelled");
     }
     if (turnError) {
@@ -72918,12 +75723,16 @@ var CodexAuxQueryRunner = class {
     }
   }
   resolveProviderModel() {
+    var _a5;
     const providerSettings = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       "codex"
     );
     const model = providerSettings.model;
-    return typeof model === "string" ? toCodexRuntimeModelId(model) : DEFAULT_CODEX_PRIMARY_MODEL;
+    if (typeof model === "string" && model.trim()) {
+      return toCodexRuntimeModelId(model);
+    }
+    return (_a5 = getDefaultCodexModel(getCodexProviderSettings(providerSettings).discoveredModels)) == null ? void 0 : _a5.model;
   }
   async startProcess() {
     this.launchSpec = resolveCodexAppServerLaunchSpec(this.plugin, "codex");
@@ -73083,13 +75892,182 @@ var QueryBackedTitleGenerationService = class {
   }
 };
 
+// src/providers/codex/modelOptions.ts
+function createCustomCodexModelOption(modelId, description) {
+  const runtimeModelId = toCodexRuntimeModelId(modelId);
+  return {
+    value: encodeCodexModelSelectionId(runtimeModelId),
+    label: formatCodexModelLabel(runtimeModelId),
+    description
+  };
+}
+function getConfiguredEnvModel(settings11) {
+  var _a5;
+  const modelId = (_a5 = getRuntimeEnvironmentVariables(settings11, "codex").OPENAI_MODEL) == null ? void 0 : _a5.trim();
+  return modelId ? modelId : null;
+}
+function getConfiguredEnvCustomModel(settings11) {
+  const modelId = getConfiguredEnvModel(settings11);
+  const discoveredModels = getCodexProviderSettings(settings11).discoveredModels;
+  return modelId && !discoveredModels.some((model) => model.model === modelId) ? modelId : null;
+}
+function parseConfiguredCustomModelIds2(value) {
+  const modelIds = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const line of value.split(/\r?\n/)) {
+    const modelId = line.trim();
+    if (!modelId || seen.has(modelId)) {
+      continue;
+    }
+    seen.add(modelId);
+    modelIds.push(modelId);
+  }
+  return modelIds;
+}
+function getCodexModelOptions(settings11) {
+  const codexSettings = getCodexProviderSettings(settings11);
+  const getModelLabel = (modelId, fallback) => {
+    var _a5;
+    return (_a5 = codexSettings.modelAliases[modelId]) != null ? _a5 : fallback;
+  };
+  const visibleModelIds = new Set(getVisibleCodexModelIds(
+    codexSettings.visibleModels,
+    codexSettings.discoveredModels
+  ));
+  const savedProviderModel = settings11.savedProviderModel && typeof settings11.savedProviderModel === "object" && !Array.isArray(settings11.savedProviderModel) ? settings11.savedProviderModel : null;
+  const pinnedModelIds = /* @__PURE__ */ new Set();
+  for (const value of [
+    settings11.model,
+    savedProviderModel == null ? void 0 : savedProviderModel.codex,
+    getConfiguredEnvModel(settings11)
+  ]) {
+    if (typeof value === "string" && value.trim()) {
+      pinnedModelIds.add(toCodexRuntimeModelId(value));
+    }
+  }
+  const absentPinnedSelections = [];
+  const currentModel = typeof settings11.model === "string" ? settings11.model.trim() : "";
+  if (codexSettings.discoveredModels.length === 0 && currentModel && (isCodexModelSelectionId(currentModel) || looksLikeCodexModel(toCodexRuntimeModelId(currentModel)))) {
+    absentPinnedSelections.push(currentModel);
+  }
+  const savedCodexModel = typeof (savedProviderModel == null ? void 0 : savedProviderModel.codex) === "string" ? savedProviderModel.codex.trim() : "";
+  if (codexSettings.discoveredModels.length === 0 && savedCodexModel) {
+    absentPinnedSelections.push(savedCodexModel);
+  }
+  const pickerOrderedModels = getCodexModelsInPickerOrder(codexSettings.discoveredModels);
+  const visibleDiscoveredModels = pickerOrderedModels.filter((model) => visibleModelIds.has(model.model));
+  const pinnedDiscoveredModels = pickerOrderedModels.filter(
+    (model) => !visibleModelIds.has(model.model) && pinnedModelIds.has(model.model)
+  );
+  const models = visibleDiscoveredModels.map((model) => ({
+    value: model.model,
+    label: getModelLabel(model.model, model.displayName),
+    description: model.description || void 0
+  }));
+  const seenModelIds = new Set(visibleDiscoveredModels.map((model) => model.model));
+  const persistedVisibleModels = codexSettings.visibleModels === null ? [] : [...codexSettings.visibleModels].reverse();
+  for (const modelId of persistedVisibleModels) {
+    if (seenModelIds.has(modelId)) {
+      continue;
+    }
+    seenModelIds.add(modelId);
+    models.push({
+      value: modelId,
+      label: getModelLabel(modelId, formatCodexModelLabel(modelId)),
+      description: "Selected model"
+    });
+  }
+  for (const model of pinnedDiscoveredModels) {
+    seenModelIds.add(model.model);
+    models.push({
+      value: model.model,
+      label: getModelLabel(model.model, model.displayName),
+      description: model.description || void 0
+    });
+  }
+  for (const selection of absentPinnedSelections) {
+    const modelId = toCodexRuntimeModelId(selection);
+    if (seenModelIds.has(modelId)) {
+      continue;
+    }
+    seenModelIds.add(modelId);
+    const fallbackOption = isCodexModelSelectionId(selection) || !looksLikeCodexModel(modelId) ? createCustomCodexModelOption(modelId, "Selected model") : {
+      value: modelId,
+      label: formatCodexModelLabel(modelId),
+      description: "Selected model"
+    };
+    models.push({
+      ...fallbackOption,
+      label: getModelLabel(modelId, fallbackOption.label)
+    });
+  }
+  const envModel = getConfiguredEnvCustomModel(settings11);
+  if (envModel) {
+    const runtimeModelId = toCodexRuntimeModelId(envModel);
+    const existingIndex = models.findIndex(
+      (option) => toCodexRuntimeModelId(option.value) === runtimeModelId
+    );
+    if (existingIndex >= 0) {
+      models.splice(existingIndex, 1);
+    }
+    seenModelIds.add(runtimeModelId);
+    models.unshift(createCustomCodexModelOption(envModel, "Custom (env)"));
+  }
+  for (const configuredModelId of parseConfiguredCustomModelIds2(codexSettings.customModels)) {
+    const modelId = toCodexRuntimeModelId(configuredModelId);
+    if (seenModelIds.has(modelId)) {
+      continue;
+    }
+    seenModelIds.add(modelId);
+    models.push(createCustomCodexModelOption(modelId, "Custom model"));
+  }
+  return models;
+}
+function resolveCodexModelSelection(settings11, currentModel) {
+  var _a5, _b3, _c2, _d;
+  const modelOptions = getCodexModelOptions(settings11);
+  const envModel = getConfiguredEnvModel(settings11);
+  if (envModel) {
+    const envRuntimeModel = toCodexRuntimeModelId(envModel);
+    const envOption = modelOptions.find(
+      (option) => option.value === envModel || toCodexRuntimeModelId(option.value) === envRuntimeModel
+    );
+    return (_a5 = envOption == null ? void 0 : envOption.value) != null ? _a5 : envModel;
+  }
+  if (currentModel) {
+    const currentRuntimeModel = toCodexRuntimeModelId(currentModel);
+    const currentOption = modelOptions.find(
+      (option) => option.value === currentModel || toCodexRuntimeModelId(option.value) === currentRuntimeModel
+    );
+    if (currentOption) {
+      return currentOption.value;
+    }
+  }
+  const codexSettings = getCodexProviderSettings(settings11);
+  const visibleModelIds = new Set(getVisibleCodexModelIds(
+    codexSettings.visibleModels,
+    codexSettings.discoveredModels
+  ));
+  const defaultModel = getDefaultCodexModel(
+    codexSettings.discoveredModels.filter((model) => visibleModelIds.has(model.model))
+  );
+  return (_d = (_c2 = defaultModel == null ? void 0 : defaultModel.model) != null ? _c2 : (_b3 = modelOptions[0]) == null ? void 0 : _b3.value) != null ? _d : null;
+}
+
 // src/providers/codex/ui/CodexChatUIConfig.ts
 var EFFORT_LEVELS2 = [
   { value: "low", label: "Low" },
   { value: "medium", label: "Medium" },
   { value: "high", label: "High" },
-  { value: "xhigh", label: "XHigh" }
+  { value: "xhigh", label: "XHigh" },
+  { value: "max", label: "Max" }
 ];
+function formatEffortLabel(value) {
+  if (value.toLowerCase() === "xhigh") {
+    return "XHigh";
+  }
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
 var CODEX_PERMISSION_MODE_TOGGLE = {
   inactiveValue: "normal",
   inactiveLabel: "Safe",
@@ -73098,20 +76076,24 @@ var CODEX_PERMISSION_MODE_TOGGLE = {
   planValue: "plan",
   planLabel: "Plan"
 };
-var CODEX_SERVICE_TIER_TOGGLE = {
-  inactiveValue: "default",
-  inactiveLabel: "Standard",
-  activeValue: "fast",
-  activeLabel: "Fast",
-  description: FAST_TIER_CODEX_DESCRIPTION
-};
+var DEFAULT_SERVICE_TIER_VALUE = "default";
+var DEFAULT_SERVICE_TIER_LABEL = "Standard";
 var DEFAULT_CONTEXT_WINDOW = 2e5;
-function looksLikeCodexModel(model) {
-  return /^gpt-/i.test(model) || /^o\d/i.test(model);
+function getVisibleDiscoveredModels(settings11) {
+  const codexSettings = getCodexProviderSettings(settings11);
+  const visibleModelIds = new Set(getVisibleCodexModelIds(
+    codexSettings.visibleModels,
+    codexSettings.discoveredModels
+  ));
+  return codexSettings.discoveredModels.filter((model) => visibleModelIds.has(model.model));
 }
 var codexChatUIConfig = {
   getModelOptions(settings11) {
     return getCodexModelOptions(settings11);
+  },
+  getDefaultModel(settings11) {
+    var _a5, _b3;
+    return (_b3 = (_a5 = getDefaultCodexModel(getVisibleDiscoveredModels(settings11))) == null ? void 0 : _a5.model) != null ? _b3 : null;
   },
   ownsModel(model, settings11) {
     if (isCodexModelSelectionId(model)) {
@@ -73128,17 +76110,32 @@ var codexChatUIConfig = {
   isAdaptiveReasoningModel(_model, _settings) {
     return true;
   },
-  getReasoningOptions(_model, _settings) {
-    return [...EFFORT_LEVELS2];
+  getReasoningOptions(modelId, settings11) {
+    const model = findCodexModel(
+      getCodexProviderSettings(settings11).discoveredModels,
+      modelId
+    );
+    if (!model) {
+      return [...EFFORT_LEVELS2];
+    }
+    return model.supportedReasoningEfforts.map((option) => ({
+      value: option.value,
+      label: formatEffortLabel(option.value),
+      ...option.description ? { description: option.description } : {}
+    }));
   },
-  getDefaultReasoningValue(_model, _settings) {
-    return "medium";
+  getDefaultReasoningValue(modelId, settings11) {
+    const model = findCodexModel(
+      getCodexProviderSettings(settings11).discoveredModels,
+      modelId
+    );
+    return model ? getCodexDefaultReasoningEffort(model) : DEFAULT_REASONING_VALUE;
   },
   getContextWindowSize() {
     return DEFAULT_CONTEXT_WINDOW;
   },
   isDefaultModel(model) {
-    return DEFAULT_CODEX_MODEL_SET.has(model);
+    return looksLikeCodexModel(toCodexRuntimeModelId(model)) && !isCodexModelSelectionId(model);
   },
   applyModelDefaults(model, settings11) {
     if (!settings11 || typeof settings11 !== "object") {
@@ -73147,6 +76144,7 @@ var codexChatUIConfig = {
     applyCodexModelDefaults(toCodexRuntimeModelId(model), settings11);
   },
   normalizeModelVariant(model, settings11) {
+    var _a5, _b3;
     const runtimeModel = toCodexRuntimeModelId(model);
     const option = getCodexModelOptions(settings11).find(
       (candidate) => candidate.value === model || toCodexRuntimeModelId(candidate.value) === runtimeModel
@@ -73154,11 +76152,16 @@ var codexChatUIConfig = {
     if (option) {
       return option.value;
     }
-    return DEFAULT_CODEX_PRIMARY_MODEL;
+    const codexSettings = getCodexProviderSettings(settings11);
+    const discoveredModels = codexSettings.discoveredModels;
+    if (discoveredModels.length === 0) {
+      return model;
+    }
+    return (_b3 = (_a5 = getDefaultCodexModel(getVisibleDiscoveredModels(settings11))) == null ? void 0 : _a5.model) != null ? _b3 : model;
   },
   getCustomModelIds(envVars) {
     const ids = /* @__PURE__ */ new Set();
-    if (envVars.OPENAI_MODEL && !DEFAULT_CODEX_MODEL_SET.has(envVars.OPENAI_MODEL)) {
+    if (envVars.OPENAI_MODEL && !looksLikeCodexModel(envVars.OPENAI_MODEL)) {
       ids.add(envVars.OPENAI_MODEL);
     }
     return ids;
@@ -73167,7 +76170,25 @@ var codexChatUIConfig = {
     return CODEX_PERMISSION_MODE_TOGGLE;
   },
   getServiceTierToggle(settings11) {
-    return settings11.model === FAST_TIER_CODEX_MODEL ? CODEX_SERVICE_TIER_TOGGLE : null;
+    var _a5;
+    const model = findCodexModel(
+      getCodexProviderSettings(settings11).discoveredModels,
+      typeof settings11.model === "string" ? settings11.model : void 0
+    );
+    if (!model) {
+      return null;
+    }
+    const tier = getCodexFastServiceTier(model);
+    if (!tier) {
+      return null;
+    }
+    return {
+      inactiveValue: (_a5 = model.defaultServiceTier) != null ? _a5 : DEFAULT_SERVICE_TIER_VALUE,
+      inactiveLabel: DEFAULT_SERVICE_TIER_LABEL,
+      activeValue: tier.id,
+      activeLabel: tier.name,
+      description: tier.description || void 0
+    };
   },
   getProviderIcon() {
     return OPENAI_PROVIDER_ICON;
@@ -73258,18 +76279,116 @@ var codexSettingsReconciler = {
 };
 
 // src/providers/codex/history/CodexConversationHistoryService.ts
-var fs16 = __toESM(require("fs"));
+var fs17 = __toESM(require("node:fs/promises"));
+
+// src/providers/codex/history/CodexHistoryPathResolver.ts
+var os11 = __toESM(require("node:os"));
+var path17 = __toESM(require("node:path"));
+
+// src/core/storage/pathContainment.ts
+var fs15 = __toESM(require("node:fs"));
+var path15 = __toESM(require("node:path"));
+function getPathModule(value) {
+  return value.includes("\\") || /^[A-Za-z]:/.test(value) ? path15.win32 : path15.posix;
+}
+function isHostPath(pathModule) {
+  return process.platform === "win32" ? pathModule === path15.win32 : pathModule === path15.posix;
+}
+function resolveExistingPath(value, pathModule) {
+  if (!isHostPath(pathModule)) {
+    return pathModule.resolve(value);
+  }
+  try {
+    return fs15.realpathSync.native(value);
+  } catch (e2) {
+    return pathModule.resolve(value);
+  }
+}
+function isPathWithinRoot(candidate, root) {
+  if (!candidate.trim() || !root.trim()) {
+    return false;
+  }
+  const pathModule = getPathModule(root);
+  if (getPathModule(candidate) !== pathModule) {
+    return false;
+  }
+  const normalizedRoot = resolveExistingPath(root, pathModule);
+  const normalizedCandidate = resolveExistingPath(candidate, pathModule);
+  const relative4 = pathModule.relative(normalizedRoot, normalizedCandidate);
+  return relative4 === "" || relative4 !== ".." && !relative4.startsWith(`..${pathModule.sep}`) && !pathModule.isAbsolute(relative4);
+}
+function isSamePath(left, right) {
+  return isPathWithinRoot(left, right) && isPathWithinRoot(right, left);
+}
 
 // src/providers/codex/history/CodexHistoryStore.ts
-var fs15 = __toESM(require("fs"));
+var fsp = __toESM(require("node:fs/promises"));
+var fs16 = __toESM(require("fs"));
 var os10 = __toESM(require("os"));
-var path15 = __toESM(require("path"));
+var path16 = __toESM(require("path"));
 
 // src/providers/codex/codexUserText.ts
 var CODEX_IMAGE_OPEN_TAG_PATTERN = /^<image\b[^>]*>$/i;
 var CODEX_IMAGE_CLOSE_TAG_PATTERN = /^<\/image>$/i;
 var CODEX_EMPTY_IMAGE_TAG_PATTERN = /^<image\b[^>]*>\s*<\/image>$/i;
 var CODEX_EMPTY_IMAGE_TAG_PATTERN_GLOBAL = /<image\b[^>]*>\s*<\/image>\s*/gi;
+var CODEX_CONTROL_BLOCK_TAGS = [
+  "recommended_plugins",
+  "system_instruction",
+  "environment_context",
+  "turn_aborted",
+  "user-preferences",
+  "subagent_notification",
+  "skill"
+];
+var CODEX_AGENTS_INSTRUCTIONS_PREFIX = "# AGENTS.md instructions";
+var CODEX_AGENTS_INSTRUCTIONS_CLOSE_TAG = "</INSTRUCTIONS>";
+function stripLeadingTaggedBlock(text, tagName) {
+  const openTag = `<${tagName}>`;
+  if (!text.startsWith(openTag)) {
+    return null;
+  }
+  const closeTag = `</${tagName}>`;
+  const closeIndex = text.indexOf(closeTag, openTag.length);
+  if (closeIndex === -1) {
+    return "";
+  }
+  return text.slice(closeIndex + closeTag.length);
+}
+function stripLeadingAgentsInstructions(text) {
+  if (!text.startsWith(CODEX_AGENTS_INSTRUCTIONS_PREFIX)) {
+    return null;
+  }
+  const closeIndex = text.indexOf(CODEX_AGENTS_INSTRUCTIONS_CLOSE_TAG);
+  if (closeIndex === -1) {
+    return "";
+  }
+  return text.slice(closeIndex + CODEX_AGENTS_INSTRUCTIONS_CLOSE_TAG.length);
+}
+function stripLeadingCodexControlMetadata(text) {
+  let remaining = text.trimStart();
+  while (remaining) {
+    const withoutAgentsInstructions = stripLeadingAgentsInstructions(remaining);
+    if (withoutAgentsInstructions !== null) {
+      remaining = withoutAgentsInstructions.trimStart();
+      continue;
+    }
+    let strippedTaggedBlock = false;
+    for (const tagName of CODEX_CONTROL_BLOCK_TAGS) {
+      const next = stripLeadingTaggedBlock(remaining, tagName);
+      if (next === null) {
+        continue;
+      }
+      remaining = next.trimStart();
+      strippedTaggedBlock = true;
+      break;
+    }
+    if (!strippedTaggedBlock) {
+      break;
+    }
+  }
+  return remaining;
+}
 function stripCodexImagePlaceholderText(text) {
   const trimmed = text.trim();
   if (!trimmed) {
@@ -73282,6 +76401,13 @@ function stripCodexImagePlaceholderText(text) {
 }
 function joinCodexUserTextParts(parts, separator = "") {
   return parts.map(stripCodexImagePlaceholderText).filter((text) => text.length > 0).join(separator);
+}
+function extractCodexUserVisibleText(text) {
+  const withoutImagePlaceholders = stripCodexImagePlaceholderText(text);
+  const visible = stripCodexImagePlaceholderText(
+    stripLeadingCodexControlMetadata(withoutImagePlaceholders)
+  ).trim();
+  return visible ? visible : null;
 }
 
 // src/providers/codex/normalization/codexToolNormalization.ts
@@ -73312,6 +76438,195 @@ function normalizeCodexToolName(rawName) {
   if (!rawName) return "tool";
   if (NATIVE_TOOLS.has(rawName)) return rawName;
   return (_a5 = TOOL_NAME_MAP[rawName]) != null ? _a5 : rawName;
+}
+function normalizeCodexToolCall(rawName, rawInput) {
+  var _a5, _b3;
+  const nestedCall = rawName === "exec" ? decodeExecEnvelope(rawInput) : null;
+  const effectiveName = (_a5 = nestedCall == null ? void 0 : nestedCall.name) != null ? _a5 : rawName;
+  const effectiveInput = (_b3 = nestedCall == null ? void 0 : nestedCall.input) != null ? _b3 : rawInput;
+  return {
+    name: normalizeCodexToolName(effectiveName),
+    input: normalizeCodexToolInput(effectiveName, effectiveInput)
+  };
+}
+function decodeExecEnvelope(input) {
+  const source = firstNonEmptyString(input.raw, input.value);
+  if (!source) return null;
+  const tokens = tokenizeExecEnvelope(source);
+  if (!tokens) return null;
+  const calls = findExecEnvelopeToolCalls(tokens);
+  if (!calls || calls.length !== 1) return null;
+  const call = calls[0];
+  if (!call) return null;
+  if (call.name === "exec_command") {
+    const command = extractExecCommand(tokens, call);
+    return command ? { name: call.name, input: { cmd: command } } : null;
+  }
+  if (call.name === "apply_patch") {
+    const patch = extractApplyPatch(tokens, call);
+    return patch ? { name: call.name, input: { patch } } : null;
+  }
+  return null;
+}
+function tokenizeExecEnvelope(source) {
+  var _a5, _b3, _c2;
+  const tokens = [];
+  for (let index = 0; index < source.length; ) {
+    const char = (_a5 = source[index]) != null ? _a5 : "";
+    const next = (_b3 = source[index + 1]) != null ? _b3 : "";
+    if (/\s/.test(char)) {
+      index += 1;
+      continue;
+    }
+    if (char === "/" && next === "/") {
+      const lineEnd = source.indexOf("\n", index + 2);
+      index = lineEnd === -1 ? source.length : lineEnd + 1;
+      continue;
+    }
+    if (char === "/" && next === "*") {
+      const commentEnd = source.indexOf("*/", index + 2);
+      if (commentEnd === -1) return null;
+      index = commentEnd + 2;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      const stringToken = readJavaScriptStringToken(source, index);
+      if (!stringToken) return null;
+      tokens.push({ kind: "string", value: stringToken.value });
+      index = stringToken.end;
+      continue;
+    }
+    if (char === "`" || char === "/") {
+      return null;
+    }
+    if (/[A-Za-z_$]/.test(char)) {
+      let end = index + 1;
+      while (end < source.length && /[\w$]/.test((_c2 = source[end]) != null ? _c2 : "")) {
+        end += 1;
+      }
+      tokens.push({ kind: "identifier", value: source.slice(index, end) });
+      index = end;
+      continue;
+    }
+    tokens.push({ kind: "punctuation", value: char });
+    index += 1;
+  }
+  return tokens;
+}
+function readJavaScriptStringToken(source, startIndex) {
+  const quote = source[startIndex];
+  if (quote !== '"' && quote !== "'") return null;
+  for (let index = startIndex + 1; index < source.length; index += 1) {
+    if (source[index] === "\\") {
+      index += 1;
+      continue;
+    }
+    if (source[index] !== quote) continue;
+    const literal2 = source.slice(startIndex, index + 1);
+    if (quote === '"') {
+      try {
+        const parsed = JSON.parse(literal2);
+        return typeof parsed === "string" ? { value: parsed, end: index + 1 } : null;
+      } catch (e2) {
+        return null;
+      }
+    }
+    return {
+      value: decodeSingleQuotedString(literal2.slice(1, -1)),
+      end: index + 1
+    };
+  }
+  return null;
+}
+function findExecEnvelopeToolCalls(tokens) {
+  const calls = [];
+  for (let index = 0; index < tokens.length; index += 1) {
+    const toolsToken = tokens[index];
+    const previousToken = tokens[index - 1];
+    if ((toolsToken == null ? void 0 : toolsToken.kind) !== "identifier" || toolsToken.value !== "tools" || (previousToken == null ? void 0 : previousToken.value) === ".") {
+      continue;
+    }
+    const dotToken = tokens[index + 1];
+    const nameToken = tokens[index + 2];
+    const openParenToken = tokens[index + 3];
+    if ((dotToken == null ? void 0 : dotToken.value) !== "." || (nameToken == null ? void 0 : nameToken.kind) !== "identifier" || (openParenToken == null ? void 0 : openParenToken.value) !== "(") {
+      return null;
+    }
+    calls.push({
+      name: nameToken.value,
+      toolTokenIndex: index,
+      openParenTokenIndex: index + 3
+    });
+  }
+  return calls;
+}
+function extractExecCommand(tokens, call) {
+  var _a5, _b3, _c2, _d, _e2;
+  const closeParenTokenIndex = findMatchingToken(tokens, call.openParenTokenIndex, "(", ")");
+  if (closeParenTokenIndex === null) return null;
+  if (((_a5 = tokens[call.openParenTokenIndex + 1]) == null ? void 0 : _a5.value) !== "{") return null;
+  let objectDepth = 0;
+  for (let index = call.openParenTokenIndex + 1; index < closeParenTokenIndex; index += 1) {
+    const token = tokens[index];
+    if ((token == null ? void 0 : token.value) === "{") {
+      objectDepth += 1;
+      continue;
+    }
+    if ((token == null ? void 0 : token.value) === "}") {
+      objectDepth -= 1;
+      continue;
+    }
+    if (objectDepth === 1 && (token == null ? void 0 : token.value) === "cmd" && ((_b3 = tokens[index + 1]) == null ? void 0 : _b3.value) === ":" && ((_c2 = tokens[index + 2]) == null ? void 0 : _c2.kind) === "string") {
+      return (_e2 = (_d = tokens[index + 2]) == null ? void 0 : _d.value) != null ? _e2 : null;
+    }
+  }
+  return null;
+}
+function extractApplyPatch(tokens, call) {
+  var _a5, _b3, _c2, _d, _e2;
+  const argumentToken = tokens[call.openParenTokenIndex + 1];
+  if ((argumentToken == null ? void 0 : argumentToken.kind) === "string") return argumentToken.value;
+  if ((argumentToken == null ? void 0 : argumentToken.kind) !== "identifier") return null;
+  let patch = null;
+  for (let index = 0; index <= call.toolTokenIndex - 4; index += 1) {
+    const declarationToken = tokens[index];
+    if ((declarationToken == null ? void 0 : declarationToken.kind) === "identifier" && (declarationToken.value === "const" || declarationToken.value === "let" || declarationToken.value === "var") && ((_a5 = tokens[index + 1]) == null ? void 0 : _a5.value) === argumentToken.value && ((_b3 = tokens[index + 2]) == null ? void 0 : _b3.value) === "=" && ((_c2 = tokens[index + 3]) == null ? void 0 : _c2.kind) === "string") {
+      patch = (_e2 = (_d = tokens[index + 3]) == null ? void 0 : _d.value) != null ? _e2 : null;
+    }
+  }
+  return patch;
+}
+function findMatchingToken(tokens, openTokenIndex, open, close) {
+  var _a5;
+  let depth = 0;
+  for (let index = openTokenIndex; index < tokens.length; index += 1) {
+    const value = (_a5 = tokens[index]) == null ? void 0 : _a5.value;
+    if (value === open) {
+      depth += 1;
+    } else if (value === close) {
+      depth -= 1;
+      if (depth === 0) return index;
+    }
+  }
+  return null;
+}
+function decodeSingleQuotedString(value) {
+  return value.replace(/\\([\\'"nrtbfv0])/g, (_match, escaped) => {
+    var _a5;
+    const escapes = {
+      "\\": "\\",
+      "'": "'",
+      '"': '"',
+      n: "\n",
+      r: "\r",
+      t: "	",
+      b: "\b",
+      f: "\f",
+      v: "\v",
+      0: "\0"
+    };
+    return (_a5 = escapes[escaped]) != null ? _a5 : escaped;
+  });
 }
 function normalizeCodexToolInput(rawName, input) {
   var _a5, _b3, _c2;
@@ -73500,6 +76815,43 @@ function normalizeCodexToolResult(normalizedName, rawResult) {
   if (!TERMINAL_RESULT_TOOLS.has(normalizedName)) return rawResult;
   return unwrapTerminalResult(rawResult);
 }
+function stringifyCodexToolOutput(value) {
+  if (typeof value === "string") return value;
+  if (value === void 0) return "";
+  if (Array.isArray(value)) {
+    const textParts = value.map((part) => {
+      if (!part || typeof part !== "object" || Array.isArray(part)) return "";
+      const text = part.text;
+      return typeof text === "string" ? text : "";
+    }).filter(Boolean);
+    if (textParts.length > 0) return textParts.join("");
+  }
+  try {
+    const result = JSON.stringify(value);
+    return typeof result === "string" ? result : String(value);
+  } catch (e2) {
+    return String(value);
+  }
+}
+function extractCodexExecCellId(output) {
+  var _a5;
+  const match = output.trimStart().match(/^Script running with cell ID\s+([^\n]+)/i);
+  return ((_a5 = match == null ? void 0 : match[1]) == null ? void 0 : _a5.trim()) || void 0;
+}
+function readCodexExecCellIdArgument(input) {
+  var _a5;
+  const value = (_a5 = input.cell_id) != null ? _a5 : input.cellId;
+  if (typeof value === "string" && value) return value;
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  return void 0;
+}
+function appendCodexCommandOutput(previous, next) {
+  if (!next) return previous != null ? previous : "";
+  if (!previous) return next;
+  if (previous.endsWith("\n") || next.startsWith("\n")) return previous + next;
+  return `${previous}
+${next}`;
+}
 function unwrapTerminalResult(raw) {
   let result = raw;
   const trimmed = result.trim();
@@ -73581,6 +76933,8 @@ function createPersistedParseContext() {
     suppressedToolOutputIds: /* @__PURE__ */ new Set(),
     terminalSessionToCommandId: /* @__PURE__ */ new Map(),
     stdinCallToCommandId: /* @__PURE__ */ new Map(),
+    execCellToCommandId: /* @__PURE__ */ new Map(),
+    waitCallToCommand: /* @__PURE__ */ new Map(),
     turnCounter: 0
   };
 }
@@ -73722,57 +77076,6 @@ function parseSessionRecord(line) {
     event: parsed.event,
     payload: parsed.payload
   };
-}
-var CODEX_SYSTEM_MESSAGE_PREFIXES = [
-  "# AGENTS.md instructions"
-];
-var CODEX_CONTROL_BLOCK_TAGS = [
-  "system_instruction",
-  "environment_context",
-  "turn_aborted",
-  "user-preferences",
-  "subagent_notification",
-  "skill"
-];
-function stripLeadingTaggedBlock(text, tagName) {
-  const openTag = `<${tagName}>`;
-  if (!text.startsWith(openTag)) {
-    return null;
-  }
-  const closeTag = `</${tagName}>`;
-  const closeIndex = text.indexOf(closeTag, openTag.length);
-  if (closeIndex === -1) {
-    return "";
-  }
-  return text.slice(closeIndex + closeTag.length);
-}
-function stripLeadingCodexControlBlocks(text) {
-  let remaining = text.trimStart();
-  let stripped = true;
-  while (stripped) {
-    stripped = false;
-    for (const tagName of CODEX_CONTROL_BLOCK_TAGS) {
-      const next = stripLeadingTaggedBlock(remaining, tagName);
-      if (next === null) {
-        continue;
-      }
-      remaining = next.trimStart();
-      stripped = true;
-      break;
-    }
-  }
-  return remaining;
-}
-function extractCodexUserVisibleText(text) {
-  const trimmed = stripCodexImagePlaceholderText(text).trimStart();
-  if (!trimmed) {
-    return null;
-  }
-  if (CODEX_SYSTEM_MESSAGE_PREFIXES.some((prefix) => trimmed.startsWith(prefix))) {
-    return null;
-  }
-  const visible = stripCodexImagePlaceholderText(stripLeadingCodexControlBlocks(trimmed)).trim();
-  return visible ? visible : null;
 }
 function extractMessageText(content) {
   if (!Array.isArray(content)) {
@@ -73944,13 +77247,23 @@ function nextTurnId(ctx) {
   return `turn-${ctx.turnCounter}`;
 }
 function processPersistedToolCall(payload, timestamp, ctx) {
-  var _a5, _b3;
+  var _a5;
   const callId = payload.call_id;
   if (!callId) return;
-  if (payload.name === "write_stdin") {
-    const parsedArgs2 = parseCodexArguments((_a5 = payload.arguments) != null ? _a5 : payload.input);
-    if (isSilentWriteStdinInput(parsedArgs2)) {
-      const terminalSessionId = readTerminalSessionIdArgument(parsedArgs2);
+  const rawArgs = (_a5 = payload.arguments) != null ? _a5 : payload.input;
+  const parsedArgs = parseCodexArguments(rawArgs);
+  const normalized = normalizeCodexToolCall(payload.name, parsedArgs);
+  if (normalized.name === "wait") {
+    const cellId = readCodexExecCellIdArgument(normalized.input);
+    const commandCallId = cellId ? ctx.execCellToCommandId.get(cellId) : void 0;
+    if (cellId && commandCallId) {
+      ctx.waitCallToCommand.set(callId, { commandCallId, cellId });
+      return;
+    }
+  }
+  if (normalized.name === "write_stdin") {
+    if (isSilentWriteStdinInput(parsedArgs)) {
+      const terminalSessionId = readTerminalSessionIdArgument(parsedArgs);
       const parentCallId = terminalSessionId ? ctx.terminalSessionToCommandId.get(terminalSessionId) : void 0;
       if (parentCallId) {
         ctx.stdinCallToCommandId.set(callId, parentCallId);
@@ -73961,14 +77274,10 @@ function processPersistedToolCall(payload, timestamp, ctx) {
   }
   const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
   const bubble = ensureAssistantBubble(turn, timestamp);
-  const rawArgs = (_b3 = payload.arguments) != null ? _b3 : payload.input;
-  const parsedArgs = parseCodexArguments(rawArgs);
-  const normalizedName = normalizeCodexToolName(payload.name);
-  const normalizedInput = normalizeCodexToolInput(payload.name, parsedArgs);
   const toolCall = {
     id: callId,
-    name: normalizedName,
-    input: normalizedInput,
+    name: normalized.name,
+    input: normalized.input,
     status: "running"
   };
   pushToolInvocation(bubble, toolCall);
@@ -73980,7 +77289,17 @@ function processPersistedToolCall(payload, timestamp, ctx) {
 function processPersistedToolOutput(payload, timestamp, ctx) {
   const callId = payload.call_id;
   if (!callId) return;
-  const rawOutput = typeof payload.output === "string" ? payload.output : Array.isArray(payload.output) ? JSON.stringify(payload.output) : "";
+  const rawOutput = stringifyCodexToolOutput(payload.output);
+  const waitCall = ctx.waitCallToCommand.get(callId);
+  if (waitCall) {
+    const parentToolCall = findPersistedToolCallById(ctx, waitCall.commandCallId);
+    ctx.execCellToCommandId.delete(waitCall.cellId);
+    if (parentToolCall) {
+      applyPersistedToolOutput(parentToolCall, payload.output, rawOutput, ctx);
+    }
+    ctx.waitCallToCommand.delete(callId);
+    return;
+  }
   const parentCommandId = ctx.stdinCallToCommandId.get(callId);
   if (parentCommandId) {
     const parentToolCall = findPersistedToolCallById(ctx, parentCommandId);
@@ -74044,31 +77363,29 @@ function readTerminalSessionIdArgument(input) {
 function isSilentWriteStdinInput(input) {
   return typeof input.chars !== "string" || input.chars.length === 0;
 }
-function appendCommandOutput(previous, next) {
-  if (!next) return previous != null ? previous : "";
-  if (!previous) return next;
-  if (previous.endsWith("\n") || next.startsWith("\n")) return previous + next;
-  return `${previous}
-${next}`;
-}
 function readPersistedCommandToolResult(rawOutputText) {
   var _a5, _b3;
   const output = normalizeCodexToolResult("Bash", rawOutputText);
   const exitCodeMatch = rawOutputText.match(/(?:Exit code:|Process exited with code)\s*(-?\d+)/i);
   const runningMatch = rawOutputText.match(/Process running with session ID\s*([^\n]+)/i);
+  const execCellId = extractCodexExecCellId(rawOutputText);
   return {
     output,
-    status: exitCodeMatch ? "completed" : runningMatch ? "running" : "unknown",
+    status: exitCodeMatch ? "completed" : runningMatch || execCellId ? "running" : "unknown",
     ...exitCodeMatch ? { exitCode: Number((_a5 = exitCodeMatch[1]) != null ? _a5 : 0) } : {},
-    ...runningMatch ? { terminalSessionId: ((_b3 = runningMatch[1]) != null ? _b3 : "").trim() } : {}
+    ...runningMatch ? { terminalSessionId: ((_b3 = runningMatch[1]) != null ? _b3 : "").trim() } : {},
+    ...execCellId ? { execCellId } : {}
   };
 }
 function applyPersistedToolOutput(toolCall, rawOutputValue, rawOutputText, ctx, options = {}) {
   if (toolCall.name === "Bash") {
     const commandResult = readPersistedCommandToolResult(rawOutputText);
-    toolCall.result = appendCommandOutput(toolCall.result, commandResult.output);
+    toolCall.result = appendCodexCommandOutput(toolCall.result, commandResult.output);
     if (commandResult.terminalSessionId) {
       ctx.terminalSessionToCommandId.set(commandResult.terminalSessionId, toolCall.id);
+    }
+    if (commandResult.execCellId) {
+      ctx.execCellToCommandId.set(commandResult.execCellId, toolCall.id);
     }
     if (commandResult.status === "running") {
       toolCall.status = "running";
@@ -74366,7 +77683,7 @@ function flushBubbleTurnMessages(turn, msgIndex) {
 }
 var SAFE_SESSION_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 function getPathModuleForSessionPath(sessionPath) {
-  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path15.win32 : path15.posix;
+  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path16.win32 : path16.posix;
 }
 function deriveCodexSessionsRootFromSessionPath(sessionFilePath) {
   if (!sessionFilePath) {
@@ -74391,12 +77708,12 @@ function deriveCodexMemoriesDirFromSessionsRoot(sessionsDir) {
   const pathModule = getPathModuleForSessionPath(sessionsDir);
   return pathModule.join(pathModule.dirname(sessionsDir), "memories");
 }
-function findCodexSessionFile(threadId, root = path15.join(os10.homedir(), ".codex", "sessions")) {
-  if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId) || !fs15.existsSync(root)) {
+function findCodexSessionFile(threadId, root = path16.join(os10.homedir(), ".codex", "sessions")) {
+  if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId) || !fs16.existsSync(root)) {
     return null;
   }
-  const directPath = path15.join(root, `${threadId}.jsonl`);
-  if (fs15.existsSync(directPath)) {
+  const directPath = path16.join(root, `${threadId}.jsonl`);
+  if (fs16.existsSync(directPath)) {
     return directPath;
   }
   const stack = [root];
@@ -74407,12 +77724,12 @@ function findCodexSessionFile(threadId, root = path15.join(os10.homedir(), ".cod
     }
     let entries;
     try {
-      entries = fs15.readdirSync(current, { withFileTypes: true });
+      entries = fs16.readdirSync(current, { withFileTypes: true });
     } catch (e2) {
       continue;
     }
     for (const entry of entries) {
-      const fullPath = path15.join(current, entry.name);
+      const fullPath = path16.join(current, entry.name);
       if (entry.isDirectory()) {
         stack.push(fullPath);
         continue;
@@ -74424,14 +77741,89 @@ function findCodexSessionFile(threadId, root = path15.join(os10.homedir(), ".cod
   }
   return null;
 }
-function parseCodexSessionFile(filePath) {
-  let content;
+async function findCodexSessionFileAsync(threadId, root = path16.join(os10.homedir(), ".codex", "sessions"), timeoutMs = 1e4, dependencies = {}) {
+  var _a5, _b3;
+  if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId)) {
+    return null;
+  }
+  const deadline = Date.now() + Math.max(0, timeoutMs);
+  const pathExists = (_a5 = dependencies.pathExists) != null ? _a5 : defaultPathExists;
+  const readDirectory = (_b3 = dependencies.readDirectory) != null ? _b3 : ((value) => fsp.readdir(value, { withFileTypes: true }));
   try {
-    content = fs15.readFileSync(filePath, "utf-8");
+    if (!await runBeforeDeadline(() => pathExists(root), deadline)) {
+      return null;
+    }
+    const directPath = path16.join(root, `${threadId}.jsonl`);
+    if (await runBeforeDeadline(() => pathExists(directPath), deadline)) {
+      return directPath;
+    }
+  } catch (e2) {
+    return null;
+  }
+  const stack = [root];
+  while (stack.length > 0 && Date.now() <= deadline) {
+    const current = stack.pop();
+    if (!current) continue;
+    let entries;
+    try {
+      entries = await runBeforeDeadline(() => readDirectory(current), deadline);
+    } catch (e2) {
+      if (Date.now() >= deadline) {
+        return null;
+      }
+      continue;
+    }
+    for (const entry of entries) {
+      const fullPath = path16.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith(`-${threadId}.jsonl`)) {
+        return fullPath;
+      }
+    }
+  }
+  return null;
+}
+async function runBeforeDeadline(operation, deadline) {
+  const remainingMs = deadline - Date.now();
+  if (remainingMs <= 0) {
+    throw new Error("Codex history lookup deadline exceeded.");
+  }
+  return new Promise((resolve8, reject) => {
+    const timer = window.setTimeout(() => {
+      reject(new Error("Codex history lookup deadline exceeded."));
+    }, remainingMs);
+    operation().then(
+      (value) => {
+        window.clearTimeout(timer);
+        resolve8(value);
+      },
+      (error48) => {
+        window.clearTimeout(timer);
+        reject(error48);
+      }
+    );
+  });
+}
+async function defaultPathExists(value) {
+  try {
+    await fsp.access(value);
+    return true;
+  } catch (e2) {
+    return false;
+  }
+}
+async function parseCodexSessionFileAsync(filePath, timeoutMs = 1e4) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const content = await fsp.readFile(filePath, { encoding: "utf-8", signal: controller.signal });
+    return parseCodexSessionContent(content);
   } catch (e2) {
     return [];
+  } finally {
+    window.clearTimeout(timer);
   }
-  return parseCodexSessionContent(content);
 }
 function parseCodexSessionContent(content) {
   const turns = parseCodexSessionTurns(content);
@@ -74730,31 +78122,156 @@ function processLegacyEventInModernContext(event, timestamp, ctx) {
   }
 }
 
+// src/providers/codex/history/CodexHistoryPathResolver.ts
+var CODEX_HISTORY_LOOKUP_TIMEOUT_MS = 1e4;
+function isAbsolutePath(value) {
+  return path17.posix.isAbsolute(value) || path17.win32.isAbsolute(value);
+}
+function isWindowsPath(value) {
+  return value.includes("\\") || /^[A-Za-z]:/.test(value);
+}
+function joinSessionsRoot(home) {
+  const pathModule = isWindowsPath(home) ? path17.win32 : path17.posix;
+  return pathModule.join(home, "sessions");
+}
+function parseStandardWslSessionsRoot(value) {
+  const normalized = path17.win32.normalize(value);
+  const match = normalized.match(
+    /^(\\\\wsl\$\\([^\\]+)\\home\\[^\\]+\\\.codex\\sessions)(?:\\|$)/i
+  );
+  return match ? { distroName: match[2], root: match[1] } : null;
+}
+function getWslDistroConstraint(context) {
+  var _a5;
+  if (((_a5 = context.hostPlatform) != null ? _a5 : process.platform) !== "win32" || !context.settings) {
+    return void 0;
+  }
+  const settings11 = getCodexProviderSettings(context.settings);
+  if (settings11.installationMethod !== "wsl") {
+    return void 0;
+  }
+  return settings11.wslDistroOverride || inferWslDistroFromWindowsPath(context.vaultPath) || null;
+}
+function getTrustedWslRoot(value, context) {
+  if (!value) {
+    return null;
+  }
+  const distroConstraint = getWslDistroConstraint(context);
+  if (distroConstraint === void 0) {
+    return null;
+  }
+  const parsed = parseStandardWslSessionsRoot(value);
+  if (!parsed || distroConstraint && parsed.distroName.toLowerCase() !== distroConstraint.toLowerCase()) {
+    return null;
+  }
+  return parsed;
+}
+function getTrustedSessionRoots(context, hints = []) {
+  var _a5, _b3, _c2;
+  const roots = [];
+  const configuredHome = (_a5 = context.environment.CODEX_HOME) == null ? void 0 : _a5.trim();
+  if (configuredHome && isAbsolutePath(configuredHome)) {
+    roots.push(joinSessionsRoot(configuredHome));
+    const distroConstraint = getWslDistroConstraint(context);
+    if (distroConstraint !== void 0 && path17.posix.isAbsolute(configuredHome)) {
+      const hintedDistro = hints.map((hint) => inferWslDistroFromWindowsPath(hint)).find((distro) => !!distro);
+      const pathMapper = createCodexPathMapper({
+        distroName: distroConstraint || hintedDistro,
+        method: "wsl",
+        platformFamily: "unix",
+        platformOs: "linux"
+      });
+      const hostSessionsRoot = pathMapper.toHostPath(
+        path17.posix.join(configuredHome, "sessions")
+      );
+      if (hostSessionsRoot) {
+        roots.push(hostSessionsRoot);
+      }
+    }
+  }
+  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os11.homedir();
+  const homePathModule = isWindowsPath(home) ? path17.win32 : path17.posix;
+  roots.push(homePathModule.join(home, ".codex", "sessions"));
+  for (const hint of hints) {
+    const wslRoot = getTrustedWslRoot(hint, context);
+    if (wslRoot) {
+      roots.push(wslRoot.root);
+    }
+  }
+  return [...new Set(roots)];
+}
+function resolveCodexTranscriptRootHint(persistedRoot, context) {
+  if (!persistedRoot) {
+    return null;
+  }
+  if (!context) {
+    return persistedRoot;
+  }
+  return getTrustedSessionRoots(context, [persistedRoot]).find((root) => isPathWithinRoot(persistedRoot, root)) ? persistedRoot : null;
+}
+async function resolveCodexSessionFileHint(persistedPath, logicalSessionId, context, deadline = Date.now() + CODEX_HISTORY_LOOKUP_TIMEOUT_MS) {
+  if (!context) {
+    return persistedPath != null ? persistedPath : logicalSessionId ? findCodexSessionFileAsync(logicalSessionId, void 0, Math.max(0, deadline - Date.now())) : null;
+  }
+  const roots = getTrustedSessionRoots(context, [persistedPath]);
+  if (persistedPath && roots.some((root) => isPathWithinRoot(persistedPath, root))) {
+    return persistedPath;
+  }
+  if (!logicalSessionId) {
+    return null;
+  }
+  for (const root of roots) {
+    const remainingMs = Math.max(0, deadline - Date.now());
+    if (remainingMs === 0) {
+      return null;
+    }
+    const resolved = await findCodexSessionFileAsync(logicalSessionId, root, remainingMs);
+    if (resolved) {
+      return resolved;
+    }
+  }
+  return null;
+}
+
 // src/providers/codex/history/CodexConversationHistoryService.ts
-function readSessionTurns(sessionFilePath) {
-  let content;
+async function readSessionTurns(sessionFilePath) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 1e4);
   try {
-    content = fs16.readFileSync(sessionFilePath, "utf-8");
+    const content = await fs17.readFile(sessionFilePath, {
+      encoding: "utf-8",
+      signal: controller.signal
+    });
+    return parseCodexSessionTurns(content);
   } catch (e2) {
     return [];
+  } finally {
+    window.clearTimeout(timer);
   }
-  return parseCodexSessionTurns(content);
 }
 var CodexConversationHistoryService = class {
   constructor() {
     this.hydratedConversationPaths = /* @__PURE__ */ new Map();
   }
-  async hydrateConversationHistory(conversation, _vaultPath) {
+  async hydrateConversationHistory(conversation, _vaultPath, pathContext) {
     var _a5, _b3, _c2, _d, _e2, _f2, _g;
+    const lookupDeadline = Date.now() + CODEX_HISTORY_LOOKUP_TIMEOUT_MS;
     const state = getCodexState(conversation.providerState);
-    const transcriptRootPath = (_a5 = state.transcriptRootPath) != null ? _a5 : deriveCodexSessionsRootFromSessionPath(state.sessionFilePath);
+    const transcriptRootPath = resolveCodexTranscriptRootHint(
+      (_a5 = state.transcriptRootPath) != null ? _a5 : deriveCodexSessionsRootFromSessionPath(state.sessionFilePath),
+      pathContext
+    );
     if (this.isPendingForkConversation(conversation) && conversation.messages.length > 0) {
       return;
     }
     if (this.isPendingForkConversation(conversation)) {
-      const sourceSessionFile = this.resolveSourceSessionFile(state);
+      const sourceSessionFile = await this.resolveSourceSessionFile(
+        state,
+        pathContext,
+        lookupDeadline
+      );
       if (!sourceSessionFile) return;
-      const turns = readSessionTurns(sourceSessionFile);
+      const turns = await readSessionTurns(sourceSessionFile);
       const resumeAt = state.forkSource.resumeAt;
       const truncated = this.truncateTurnsAtCheckpoint(turns, resumeAt);
       if (!truncated) {
@@ -74765,11 +78282,24 @@ var CodexConversationHistoryService = class {
       return;
     }
     if (state.forkSource && state.threadId) {
-      const sourceSessionFile = this.resolveSourceSessionFile(state);
-      const forkSessionFile = (_b3 = state.sessionFilePath) != null ? _b3 : state.threadId ? findCodexSessionFile(state.threadId, transcriptRootPath != null ? transcriptRootPath : void 0) : null;
+      const sourceSessionFile = await this.resolveSourceSessionFile(
+        state,
+        pathContext,
+        lookupDeadline
+      );
+      const forkSessionFile = (_b3 = await resolveCodexSessionFileHint(
+        state.sessionFilePath,
+        state.threadId,
+        pathContext,
+        lookupDeadline
+      )) != null ? _b3 : state.threadId && transcriptRootPath ? await findCodexSessionFileAsync(
+        state.threadId,
+        transcriptRootPath,
+        Math.max(0, lookupDeadline - Date.now())
+      ) : null;
       if (sourceSessionFile && forkSessionFile) {
-        const sourceTurns = readSessionTurns(sourceSessionFile);
-        const forkTurns = readSessionTurns(forkSessionFile);
+        const sourceTurns = await readSessionTurns(sourceSessionFile);
+        const forkTurns = await readSessionTurns(forkSessionFile);
         const resumeAt = state.forkSource.resumeAt;
         const sourcePrefix = this.truncateTurnsAtCheckpoint(sourceTurns, resumeAt);
         if (!sourcePrefix) {
@@ -74792,7 +78322,16 @@ var CodexConversationHistoryService = class {
       }
     }
     const threadId = (_d = (_c2 = state.threadId) != null ? _c2 : conversation.sessionId) != null ? _d : null;
-    const sessionFilePath = (_e2 = state.sessionFilePath) != null ? _e2 : threadId ? findCodexSessionFile(threadId, transcriptRootPath != null ? transcriptRootPath : void 0) : null;
+    const sessionFilePath = (_e2 = await resolveCodexSessionFileHint(
+      state.sessionFilePath,
+      threadId,
+      pathContext,
+      lookupDeadline
+    )) != null ? _e2 : threadId && transcriptRootPath ? await findCodexSessionFileAsync(
+      threadId,
+      transcriptRootPath,
+      Math.max(0, lookupDeadline - Date.now())
+    ) : null;
     const resolvedTranscriptRootPath = transcriptRootPath != null ? transcriptRootPath : deriveCodexSessionsRootFromSessionPath(sessionFilePath);
     if (!sessionFilePath) {
       this.hydratedConversationPaths.delete(conversation.id);
@@ -74816,7 +78355,7 @@ var CodexConversationHistoryService = class {
         transcriptRootPath: resolvedTranscriptRootPath
       };
     }
-    const sdkMessages = parseCodexSessionFile(sessionFilePath);
+    const sdkMessages = await parseCodexSessionFileAsync(sessionFilePath);
     if (sdkMessages.length === 0) {
       this.hydratedConversationPaths.delete(conversation.id);
       return;
@@ -74854,11 +78393,23 @@ var CodexConversationHistoryService = class {
   // ---------------------------------------------------------------------------
   // Private helpers
   // ---------------------------------------------------------------------------
-  resolveSourceSessionFile(state) {
+  async resolveSourceSessionFile(state, pathContext, lookupDeadline = Date.now() + CODEX_HISTORY_LOOKUP_TIMEOUT_MS) {
     var _a5, _b3;
     if (!state.forkSource) return null;
-    const sourceTranscriptRootPath = (_a5 = state.forkSourceTranscriptRootPath) != null ? _a5 : deriveCodexSessionsRootFromSessionPath(state.forkSourceSessionFilePath);
-    return (_b3 = state.forkSourceSessionFilePath) != null ? _b3 : findCodexSessionFile(state.forkSource.sessionId, sourceTranscriptRootPath != null ? sourceTranscriptRootPath : void 0);
+    const sourceTranscriptRootPath = resolveCodexTranscriptRootHint(
+      (_a5 = state.forkSourceTranscriptRootPath) != null ? _a5 : deriveCodexSessionsRootFromSessionPath(state.forkSourceSessionFilePath),
+      pathContext
+    );
+    return (_b3 = await resolveCodexSessionFileHint(
+      state.forkSourceSessionFilePath,
+      state.forkSource.sessionId,
+      pathContext,
+      lookupDeadline
+    )) != null ? _b3 : sourceTranscriptRootPath ? findCodexSessionFileAsync(
+      state.forkSource.sessionId,
+      sourceTranscriptRootPath,
+      Math.max(0, lookupDeadline - Date.now())
+    ) : null;
   }
   truncateTurnsAtCheckpoint(turns, resumeAt) {
     const checkpointIndex = turns.findIndex((turn) => turn.turnId === resumeAt);
@@ -75029,9 +78580,9 @@ var codexSubagentLifecycleAdapter = {
 };
 
 // src/providers/codex/runtime/CodexChatRuntime.ts
-var fs17 = __toESM(require("fs"));
-var os11 = __toESM(require("os"));
-var path16 = __toESM(require("path"));
+var fs18 = __toESM(require("fs"));
+var os12 = __toESM(require("os"));
+var path18 = __toESM(require("path"));
 init_path();
 
 // src/providers/codex/prompt/encodeCodexTurn.ts
@@ -75118,6 +78669,10 @@ var CodexNotificationRouter = class {
     this.rawToolNamesByCallId = /* @__PURE__ */ new Map();
     this.rawToolInputsByCallId = /* @__PURE__ */ new Map();
     this.rawToolOutputsByCallId = /* @__PURE__ */ new Map();
+    this.immediateRawOutputCallIds = /* @__PURE__ */ new Set();
+    this.wrappedCommandCallIdsByCellId = /* @__PURE__ */ new Map();
+    this.wrappedCommandOutputByCallId = /* @__PURE__ */ new Map();
+    this.wrappedWaitCallsByCallId = /* @__PURE__ */ new Map();
     this.suppressedRawCallIds = /* @__PURE__ */ new Set();
     this.fileChangeInputsById = /* @__PURE__ */ new Map();
   }
@@ -75167,6 +78722,10 @@ var CodexNotificationRouter = class {
     this.rawToolNamesByCallId.clear();
     this.rawToolInputsByCallId.clear();
     this.rawToolOutputsByCallId.clear();
+    this.immediateRawOutputCallIds.clear();
+    this.wrappedCommandCallIdsByCellId.clear();
+    this.wrappedCommandOutputByCallId.clear();
+    this.wrappedWaitCallsByCallId.clear();
     this.suppressedRawCallIds.clear();
     this.fileChangeInputsById.clear();
   }
@@ -75181,6 +78740,10 @@ var CodexNotificationRouter = class {
     this.rawToolNamesByCallId.clear();
     this.rawToolInputsByCallId.clear();
     this.rawToolOutputsByCallId.clear();
+    this.immediateRawOutputCallIds.clear();
+    this.wrappedCommandCallIdsByCellId.clear();
+    this.wrappedCommandOutputByCallId.clear();
+    this.wrappedWaitCallsByCallId.clear();
     this.suppressedRawCallIds.clear();
     this.fileChangeInputsById.clear();
   }
@@ -75374,6 +78937,14 @@ var CodexNotificationRouter = class {
       return;
     }
     const rawArguments = parseRawArguments(item);
+    if (rawName === "wait") {
+      const cellId = readCodexExecCellIdArgument(rawArguments);
+      const commandCallId = cellId ? this.wrappedCommandCallIdsByCellId.get(cellId) : void 0;
+      if (cellId && commandCallId) {
+        this.wrappedWaitCallsByCallId.set(callId, { commandCallId, cellId });
+        return;
+      }
+    }
     if (rawName === "write_stdin" && isSilentWriteStdinInput2(rawArguments)) {
       this.suppressedRawCallIds.add(callId);
       return;
@@ -75393,30 +78964,39 @@ var CodexNotificationRouter = class {
       this.resetAssistantSegmentText();
       return;
     }
+    this.immediateRawOutputCallIds.add(callId);
     this.emitRawToolUse(callId, rawName, item);
   }
   emitRawToolUse(callId, rawName, item, rawArguments) {
-    const normalizedName = normalizeCodexToolName(rawName);
-    const input = normalizeCodexToolInput(rawName, rawArguments != null ? rawArguments : parseRawArguments(item));
+    const normalized = normalizeCodexToolCall(
+      rawName,
+      rawArguments != null ? rawArguments : parseRawArguments(item)
+    );
     if (this.rawStartedCallIds.has(callId)) {
-      this.rawToolNamesByCallId.set(callId, normalizedName);
-      this.rawToolInputsByCallId.set(callId, input);
+      this.rawToolNamesByCallId.set(callId, normalized.name);
+      this.rawToolInputsByCallId.set(callId, normalized.input);
       return;
     }
     this.rawStartedCallIds.add(callId);
-    this.rawToolNamesByCallId.set(callId, normalizedName);
-    this.rawToolInputsByCallId.set(callId, input);
+    this.rawToolNamesByCallId.set(callId, normalized.name);
+    this.rawToolInputsByCallId.set(callId, normalized.input);
     this.resetAssistantSegmentText();
     this.emit({
       type: "tool_use",
       id: callId,
-      name: normalizedName,
-      input
+      name: normalized.name,
+      input: normalized.input
     });
   }
   handleRawToolOutput(item) {
     const callId = readRawCallId(item);
     if (!callId) {
+      return;
+    }
+    const wrappedWaitCall = this.wrappedWaitCallsByCallId.get(callId);
+    if (wrappedWaitCall) {
+      this.wrappedWaitCallsByCallId.delete(callId);
+      this.handleWrappedWaitOutput(wrappedWaitCall, item.output);
       return;
     }
     if (this.suppressedRawCallIds.delete(callId)) {
@@ -75427,15 +79007,63 @@ var CodexNotificationRouter = class {
       return;
     }
     const rawOutput = item.output;
+    const rawOutputText = stringifyCodexToolOutput(rawOutput);
     const content = normalizeRawToolOutput(
       normalizedName,
       rawOutput,
       this.rawToolInputsByCallId.get(callId)
     );
-    this.rawToolOutputsByCallId.set(callId, {
+    const result = {
       content,
-      isError: isCodexToolOutputError(stringifyRawOutput(rawOutput))
+      isError: isCodexToolOutputError(rawOutputText)
+    };
+    if (this.immediateRawOutputCallIds.delete(callId)) {
+      const execCellId = normalizedName === "Bash" ? extractCodexExecCellId(rawOutputText) : void 0;
+      if (execCellId) {
+        this.wrappedCommandCallIdsByCellId.set(execCellId, callId);
+        this.appendWrappedCommandOutput(callId, content);
+        return;
+      }
+      this.emit({ type: "tool_result", id: callId, ...result });
+      return;
+    }
+    this.rawToolOutputsByCallId.set(callId, result);
+  }
+  handleWrappedWaitOutput(waitCall, rawOutput) {
+    const rawOutputText = stringifyCodexToolOutput(rawOutput);
+    const content = normalizeRawToolOutput(
+      "Bash",
+      rawOutput,
+      this.rawToolInputsByCallId.get(waitCall.commandCallId)
+    );
+    const nextCellId = extractCodexExecCellId(rawOutputText);
+    if (nextCellId) {
+      this.wrappedCommandCallIdsByCellId.delete(waitCall.cellId);
+      this.wrappedCommandCallIdsByCellId.set(nextCellId, waitCall.commandCallId);
+      this.appendWrappedCommandOutput(waitCall.commandCallId, content);
+      return;
+    }
+    const previousOutput = this.wrappedCommandOutputByCallId.get(waitCall.commandCallId);
+    const completeOutput = appendCodexCommandOutput(previousOutput, content);
+    this.wrappedCommandOutputByCallId.delete(waitCall.commandCallId);
+    this.wrappedCommandCallIdsByCellId.delete(waitCall.cellId);
+    this.emit({
+      type: "tool_result",
+      id: waitCall.commandCallId,
+      content: completeOutput,
+      isError: isCodexToolOutputError(rawOutputText)
     });
+  }
+  appendWrappedCommandOutput(callId, content) {
+    var _a5;
+    if (!content) return;
+    const previousOutput = this.wrappedCommandOutputByCallId.get(callId);
+    const completeOutput = appendCodexCommandOutput(previousOutput, content);
+    const delta = completeOutput.slice((_a5 = previousOutput == null ? void 0 : previousOutput.length) != null ? _a5 : 0);
+    this.wrappedCommandOutputByCallId.set(callId, completeOutput);
+    if (delta) {
+      this.emit({ type: "tool_output", id: callId, content: delta });
+    }
   }
   emitMissingRawAgentMessageText(item) {
     const text = item.type === "message" ? readAssistantMessageText(item) : firstString2(item.text, item.message);
@@ -75651,11 +79279,16 @@ var CodexNotificationRouter = class {
     if (this.startedUserMessageIds.has(item.id)) {
       return;
     }
+    const rawContent = this.extractUserMessageText(item.content);
+    const visibleContent = extractCodexUserVisibleText(rawContent);
     this.startedUserMessageIds.add(item.id);
+    if (visibleContent === null && rawContent.trim()) {
+      return;
+    }
     this.emit({
       type: "user_message_start",
       itemId: item.id,
-      content: this.extractUserMessageText(item.content)
+      content: visibleContent != null ? visibleContent : rawContent
     });
   }
   emitAgentMessageBoundary(item) {
@@ -75774,21 +79407,7 @@ function normalizeRawToolOutput(normalizedName, rawOutput, input) {
       return filePath;
     }
   }
-  return normalizeCodexToolResult(normalizedName, stringifyRawOutput(rawOutput));
-}
-function stringifyRawOutput(value) {
-  if (typeof value === "string") {
-    return value;
-  }
-  if (value === void 0) {
-    return "";
-  }
-  try {
-    const result = JSON.stringify(value);
-    return typeof result === "string" ? result : String(value);
-  } catch (e2) {
-    return String(value);
-  }
+  return normalizeCodexToolResult(normalizedName, stringifyCodexToolOutput(rawOutput));
 }
 function buildFileChangeInput(changes) {
   return { changes: normalizeFileChanges(changes) };
@@ -75815,15 +79434,15 @@ function normalizeFileChanges(changes) {
 function normalizeFileChange(change) {
   var _a5;
   const record2 = asRecord(change);
-  const path28 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path28) {
+  const path32 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path32) {
     return null;
   }
   const kindInfo = normalizeFileChangeKind((_a5 = record2.kind) != null ? _a5 : record2.type);
   const diff = firstString2(record2.diff);
   return {
     ...record2,
-    path: path28,
+    path: path32,
     kind: kindInfo.kind,
     type: kindInfo.kind,
     ...kindInfo.movePath ? { movePath: kindInfo.movePath } : {},
@@ -75870,12 +79489,12 @@ function fileChangeKey(change) {
 }
 function formatFileChangeSummary(change) {
   const record2 = asRecord(change);
-  const path28 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path28) {
+  const path32 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path32) {
     return "";
   }
   const kind = firstString2(record2.kind, record2.type) || "change";
-  return `${kind}: ${path28}`;
+  return `${kind}: ${path32}`;
 }
 function readContentText(value) {
   if (!Array.isArray(value)) {
@@ -76204,18 +79823,22 @@ function resolveCodexSandboxConfig(permissionMode, codexSafeMode = "workspace-wr
   }
   return { approvalPolicy: "on-request", sandbox: codexSafeMode };
 }
-function resolveCodexServiceTier(serviceTier, model) {
-  if (model !== FAST_TIER_CODEX_MODEL) {
+function resolveCodexServiceTier(serviceTier, modelId, settings11) {
+  var _a5, _b3;
+  const model = findCodexModel(getCodexProviderSettings(settings11).discoveredModels, modelId);
+  if (!model) {
     return null;
   }
-  return serviceTier === "fast" ? "fast" : null;
+  if (typeof serviceTier === "string") {
+    if (model.serviceTiers.some((tier) => tier.id === serviceTier)) {
+      return serviceTier;
+    }
+    if (serviceTier === "fast") {
+      return (_b3 = (_a5 = model.serviceTiers.find((tier) => tier.name.toLowerCase() === "fast")) == null ? void 0 : _a5.id) != null ? _b3 : null;
+    }
+  }
+  return model.defaultServiceTier;
 }
-var EFFORT_MAP = {
-  low: "low",
-  medium: "medium",
-  high: "high",
-  xhigh: "xhigh"
-};
 var CodexChatRuntime = class {
   constructor(plugin) {
     this.providerId = "codex";
@@ -76227,6 +79850,9 @@ var CodexChatRuntime = class {
     this.notificationRouter = null;
     this.serverRequestRouter = new CodexServerRequestRouter();
     this.ready = false;
+    this.readinessFlight = null;
+    this.disposed = false;
+    this.lifecycleGeneration = 0;
     this.readyListeners = /* @__PURE__ */ new Set();
     this.clientConfigKey = null;
     this.currentTurnId = null;
@@ -76245,6 +79871,7 @@ var CodexChatRuntime = class {
     this.subagentHookProvider = null;
     this.autoTurnCallback = null;
     this.activeInputBundles = /* @__PURE__ */ new Set();
+    this.currentConversationModel = null;
     // Fork state
     this.pendingFork = null;
     // Cancellation
@@ -76275,12 +79902,14 @@ var CodexChatRuntime = class {
   syncConversationState(conversation, _externalContextPaths) {
     var _a5, _b3;
     if (!conversation) {
+      this.currentConversationModel = null;
       this.session.reset();
       this.loadedThreadId = null;
       this.currentThreadPath = null;
       this.pendingFork = null;
       return;
     }
+    this.setCurrentConversationModel(conversation.selectedModel);
     const state = getCodexState(conversation.providerState);
     if (state.forkSource && !state.threadId && !conversation.sessionId) {
       this.pendingFork = state.forkSource;
@@ -76302,6 +79931,29 @@ var CodexChatRuntime = class {
   async reloadMcpServers() {
   }
   async ensureReady(options) {
+    if (this.disposed) {
+      throw new Error("Codex runtime has been disposed.");
+    }
+    const key = JSON.stringify(options != null ? options : {});
+    if (this.readinessFlight) {
+      if (this.readinessFlight.key === key) {
+        return this.readinessFlight.promise;
+      }
+      await this.readinessFlight.promise.catch(() => void 0);
+      return this.ensureReady(options);
+    }
+    const generation = this.lifecycleGeneration;
+    const promise2 = this.ensureReadyInternal(options, generation);
+    this.readinessFlight = { key, promise: promise2 };
+    return promise2.finally(() => {
+      var _a5;
+      if (((_a5 = this.readinessFlight) == null ? void 0 : _a5.promise) === promise2) {
+        this.readinessFlight = null;
+      }
+    });
+  }
+  async ensureReadyInternal(options, generation) {
+    this.assertLifecycleCurrent(generation);
     const promptSettings = this.getSystemPromptSettings();
     const promptKey = computeSystemPromptKey(promptSettings);
     const launchSpec = resolveCodexAppServerLaunchSpec(this.plugin, this.providerId);
@@ -76315,13 +79967,22 @@ var CodexChatRuntime = class {
     const shouldRebuild = !this.process || !this.transport || !this.process.isAlive() || (options == null ? void 0 : options.force) === true || this.clientConfigKey !== clientConfigKey;
     if (shouldRebuild) {
       await this.shutdownProcess();
+      this.assertLifecycleCurrent(generation);
       await this.startAppServer(launchSpec, clientConfigKey);
+      if (!this.isLifecycleCurrent(generation)) {
+        await this.shutdownProcess();
+        this.assertLifecycleCurrent(generation);
+      }
     }
+    this.assertLifecycleCurrent(generation);
     this.setReady(true);
     return shouldRebuild;
   }
   async *query(originalTurn, _conversationHistory, queryOptions) {
-    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3;
+    if (queryOptions == null ? void 0 : queryOptions.model) {
+      this.setCurrentConversationModel(queryOptions.model);
+    }
     this.resetTurnMetadata();
     let turn = originalTurn;
     await this.ensureReady();
@@ -76331,7 +79992,8 @@ var CodexChatRuntime = class {
     this.chunkResolve = null;
     this.currentQueryThreadId = null;
     this.pendingTurnNotifications = [];
-    const model = this.resolveModel(queryOptions);
+    const providerSettings = this.getProviderSettings();
+    const model = this.resolveModel(queryOptions, providerSettings);
     const promptSettings = this.getSystemPromptSettings();
     const promptText = buildSystemPrompt(promptSettings);
     const enqueueChunk = (chunk) => {
@@ -76375,10 +80037,10 @@ var CodexChatRuntime = class {
         const permissionMode = this.resolveSandboxConfig();
         await this.transport.request("thread/resume", {
           threadId,
-          model: model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL,
+          ...model ? { model } : {},
           approvalPolicy: permissionMode.approvalPolicy,
           sandbox: permissionMode.sandbox,
-          serviceTier: resolveCodexServiceTier(this.getProviderSettings().serviceTier, model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL),
+          serviceTier: resolveCodexServiceTier(providerSettings.serviceTier, model, providerSettings),
           baseInstructions: promptText,
           experimentalRawEvents: true,
           persistExtendedHistory: true
@@ -76412,10 +80074,10 @@ User: ${turn.prompt}`
         const permissionMode = this.resolveSandboxConfig();
         const resumeResult = await this.transport.request("thread/resume", {
           threadId: existingThreadId,
-          model: model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL,
+          ...model ? { model } : {},
           approvalPolicy: permissionMode.approvalPolicy,
           sandbox: permissionMode.sandbox,
-          serviceTier: resolveCodexServiceTier(this.getProviderSettings().serviceTier, model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL),
+          serviceTier: resolveCodexServiceTier(providerSettings.serviceTier, model, providerSettings),
           baseInstructions: promptText,
           experimentalRawEvents: true,
           persistExtendedHistory: true
@@ -76429,11 +80091,11 @@ User: ${turn.prompt}`
       } else {
         const permissionMode = this.resolveSandboxConfig();
         const startResult = await this.transport.request("thread/start", {
-          model: model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL,
+          ...model ? { model } : {},
           cwd: (_f2 = (_e2 = (_d = this.launchSpec) == null ? void 0 : _d.targetCwd) != null ? _e2 : getVaultPath(this.plugin.app)) != null ? _f2 : void 0,
           approvalPolicy: permissionMode.approvalPolicy,
           sandbox: permissionMode.sandbox,
-          serviceTier: resolveCodexServiceTier(this.getProviderSettings().serviceTier, model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL),
+          serviceTier: resolveCodexServiceTier(providerSettings.serviceTier, model, providerSettings),
           baseInstructions: promptText,
           experimentalRawEvents: true,
           persistExtendedHistory: true
@@ -76461,35 +80123,35 @@ User: ${turn.prompt}`
         const skillInputs = await this.resolveSkillInputs(turn.request.text);
         const turnInputBundle = this.buildInput(turn.prompt, turn.request.images, skillInputs);
         this.registerActiveInputBundle(turnInputBundle);
-        const providerSettings = this.getProviderSettings();
-        const effort = (_k3 = EFFORT_MAP[providerSettings.effortLevel]) != null ? _k3 : "medium";
-        const resolvedModel = model != null ? model : DEFAULT_CODEX_PRIMARY_MODEL;
+        const selectedEffort = typeof providerSettings.effortLevel === "string" ? providerSettings.effortLevel.trim() : "";
+        const effort = selectedEffort || "medium";
+        const resolvedModel = model;
         const isPlanMode = providerSettings.permissionMode === "plan";
         const externalContextPaths = this.resolveExternalContextPaths(turn, queryOptions);
         const permissionMode = this.resolveSandboxConfig();
-        const transcriptRootTarget = (_n = (_m = (_l2 = this.runtimeContext) == null ? void 0 : _l2.sessionsDirTarget) != null ? _m : deriveCodexSessionsRootFromSessionPath(threadTargetPath)) != null ? _n : this.resolveTranscriptRootTarget(sessionFilePathHint);
+        const transcriptRootTarget = (_m = (_l2 = (_k3 = this.runtimeContext) == null ? void 0 : _k3.sessionsDirTarget) != null ? _l2 : deriveCodexSessionsRootFromSessionPath(threadTargetPath)) != null ? _m : this.resolveTranscriptRootTarget(sessionFilePathHint);
         const sandboxPolicy = this.buildTurnSandboxPolicy(
           externalContextPaths,
           permissionMode.sandbox,
           transcriptRootTarget,
           sessionFilePathHint
         );
-        const collaborationMode = {
+        const collaborationMode = resolvedModel ? {
           mode: isPlanMode ? "plan" : "default",
           settings: {
             model: resolvedModel,
             reasoning_effort: effort,
             developer_instructions: null
           }
-        };
+        } : void 0;
         const summary = getEffectiveCodexReasoningSummary(providerSettings, resolvedModel);
-        const serviceTier = resolveCodexServiceTier(providerSettings.serviceTier, resolvedModel);
-        (_o = this.notificationRouter) == null ? void 0 : _o.beginTurn({ isPlanTurn: isPlanMode });
+        const serviceTier = resolveCodexServiceTier(providerSettings.serviceTier, resolvedModel, providerSettings);
+        (_n = this.notificationRouter) == null ? void 0 : _n.beginTurn({ isPlanTurn: isPlanMode });
         const turnResult = await this.transport.request("turn/start", {
           threadId,
           input: turnInputBundle.input,
           approvalPolicy: permissionMode.approvalPolicy,
-          model: resolvedModel,
+          ...resolvedModel ? { model: resolvedModel } : {},
           serviceTier,
           effort,
           summary,
@@ -76540,7 +80202,7 @@ User: ${turn.prompt}`
       yield { type: "done" };
       return;
     } finally {
-      (_p = this.notificationRouter) == null ? void 0 : _p.endTurn();
+      (_o = this.notificationRouter) == null ? void 0 : _o.endTurn();
       this.cleanupActiveInputBundles();
       this.currentTurnId = null;
       this.currentQueryThreadId = null;
@@ -76550,7 +80212,7 @@ User: ${turn.prompt}`
         if (threadId) {
           const sessionFilePath = findCodexSessionFile(
             threadId,
-            (_r = this.resolveTranscriptRootHost((_q3 = this.session.getSessionFilePath()) != null ? _q3 : this.currentThreadPath)) != null ? _r : void 0
+            (_q3 = this.resolveTranscriptRootHost((_p = this.session.getSessionFilePath()) != null ? _p : this.currentThreadPath)) != null ? _q3 : void 0
           );
           if (sessionFilePath) {
             this.session.setThread(threadId, sessionFilePath);
@@ -76626,6 +80288,11 @@ User: ${turn.prompt}`
     return [];
   }
   cleanup() {
+    if (this.disposed) {
+      return;
+    }
+    this.disposed = true;
+    this.lifecycleGeneration += 1;
     this.cancel();
     this.teardownState();
     this.readyListeners.clear();
@@ -76738,6 +80405,14 @@ User: ${turn.prompt}`
       listener(ready);
     }
   }
+  isLifecycleCurrent(generation) {
+    return !this.disposed && generation === this.lifecycleGeneration;
+  }
+  assertLifecycleCurrent(generation) {
+    if (!this.isLifecycleCurrent(generation)) {
+      throw new Error("Codex runtime has been disposed.");
+    }
+  }
   getSystemPromptSettings() {
     var _a5;
     const settings11 = this.plugin.settings;
@@ -76749,20 +80424,30 @@ User: ${turn.prompt}`
     };
   }
   getProviderSettings() {
-    return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    return this.currentConversationModel ? getProviderSettingsSnapshotWithModel(
+      this.plugin.settings,
+      this.providerId,
+      this.currentConversationModel
+    ) : ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       this.providerId
     );
   }
   getAuxiliaryModel() {
-    var _a5;
-    return (_a5 = this.resolveModel()) != null ? _a5 : null;
+    var _a5, _b3;
+    return (_b3 = (_a5 = this.currentConversationModel) != null ? _a5 : this.resolveModel()) != null ? _b3 : null;
   }
-  resolveModel(queryOptions) {
-    var _a5;
-    const providerSettings = this.getProviderSettings();
+  setCurrentConversationModel(model) {
+    const selectedModel = typeof model === "string" ? model.trim() : "";
+    this.currentConversationModel = selectedModel || null;
+  }
+  resolveModel(queryOptions, providerSettings = this.getProviderSettings()) {
+    var _a5, _b3;
     const model = (_a5 = queryOptions == null ? void 0 : queryOptions.model) != null ? _a5 : providerSettings.model;
-    return model ? toCodexRuntimeModelId(model) : void 0;
+    if (model) {
+      return toCodexRuntimeModelId(model);
+    }
+    return (_b3 = getDefaultCodexModel(getCodexProviderSettings(providerSettings).discoveredModels)) == null ? void 0 : _b3.model;
   }
   resolveSandboxConfig() {
     const providerSettings = this.getProviderSettings();
@@ -76871,12 +80556,12 @@ User: ${turn.prompt}`
       externalContextPaths,
       "external context path"
     );
-    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path16.join(os11.homedir(), ".codex", "memories");
+    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path18.join(os12.homedir(), ".codex", "memories");
     const writableRoots = [
       (_e2 = (_d = this.launchSpec) == null ? void 0 : _d.targetCwd) != null ? _e2 : getVaultPath(this.plugin.app),
       ...mappedExternalContextPaths,
       memoriesDirTarget,
-      this.mapHostPathToTarget(os11.tmpdir()),
+      this.mapHostPathToTarget(os12.tmpdir()),
       ((_f2 = this.launchSpec) == null ? void 0 : _f2.target.platformFamily) === "unix" ? "/tmp" : null,
       this.mapHostPathToTarget(process.env.TMPDIR)
     ].filter((value) => typeof value === "string" && value.trim().length > 0);
@@ -77008,19 +80693,19 @@ User: ${turn.prompt}`
         return;
       }
       try {
-        fs17.rmSync(tempDir, { recursive: true, force: true });
+        fs18.rmSync(tempDir, { recursive: true, force: true });
       } catch (e2) {
       }
     };
     try {
       if (images && images.length > 0) {
-        tempDir = fs17.mkdtempSync(path16.join(os11.tmpdir(), "claudian-codex-images-"));
+        tempDir = fs18.mkdtempSync(path18.join(os12.tmpdir(), "claudian-codex-images-"));
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
           if (!img.mediaType.startsWith("image/")) continue;
           const filename = toAttachmentFilename(img, i);
-          const filePath = path16.join(tempDir, `${i + 1}-${filename}`);
-          fs17.writeFileSync(filePath, Buffer.from(img.data, "base64"));
+          const filePath = path18.join(tempDir, `${i + 1}-${filename}`);
+          fs18.writeFileSync(filePath, Buffer.from(img.data, "base64"));
           const targetFilePath = this.mapHostPathToTarget(filePath);
           if (!targetFilePath) {
             throw new Error(`Codex cannot access image attachment path from the selected target: ${filePath}`);
@@ -77119,6 +80804,7 @@ function toAttachmentFilename(attachment, index) {
 
 // src/providers/codex/registration.ts
 var codexProviderRegistration = {
+  id: "codex",
   displayName: "Codex",
   blankTabOrder: 15,
   isEnabled: (settings11) => getCodexProviderSettings(settings11).enabled,
@@ -77126,13 +80812,33 @@ var codexProviderRegistration = {
   environmentKeyPatterns: [/^OPENAI_/i, /^CODEX_/i],
   chatUIConfig: codexChatUIConfig,
   settingsReconciler: codexSettingsReconciler,
+  settingsStorage: {
+    hostScopedFields: ["cliPathsByHost", "installationMethodsByHost", "wslDistroOverridesByHost"],
+    legacyTopLevelFields: [
+      "codexSafeMode",
+      "codexCliPath",
+      "codexCliPathsByHost",
+      "codexReasoningSummary",
+      "codexEnabled",
+      "lastCodexEnvHash"
+    ],
+    runtimeOnlyFields: ["discoveredModels"],
+    normalizeStored(target, stored) {
+      var _a5;
+      const normalization = normalizeCodexStoredConfig(stored);
+      (_a5 = target.providerConfigs) != null ? _a5 : target.providerConfigs = {};
+      target.providerConfigs.codex = normalization.config;
+      return normalization.changed;
+    }
+  },
   createRuntime: ({ plugin }) => new CodexChatRuntime(plugin),
   createTitleGenerationService: (plugin) => new CodexTitleGenerationService(plugin),
   createInstructionRefineService: (plugin) => new CodexInstructionRefineService(plugin),
   createInlineEditService: (plugin) => new CodexInlineEditService(plugin),
   historyService: new CodexConversationHistoryService(),
   taskResultInterpreter: new CodexTaskResultInterpreter(),
-  subagentLifecycleAdapter: codexSubagentLifecycleAdapter
+  subagentLifecycleAdapter: codexSubagentLifecycleAdapter,
+  workspace: codexWorkspaceRegistration
 };
 
 // src/providers/opencode/agents/OpencodeAgentMentionProvider.ts
@@ -77283,7 +80989,7 @@ var OpencodeCliResolver = class {
 };
 
 // src/providers/opencode/storage/OpencodeAgentStorage.ts
-var path17 = __toESM(require("node:path"));
+var path19 = __toESM(require("node:path"));
 
 // src/providers/opencode/types/agent.ts
 var OPENCODE_AGENT_KNOWN_KEYS = /* @__PURE__ */ new Set([
@@ -77354,7 +81060,7 @@ var OpencodeAgentStorage = class {
   async save(agent, previous) {
     const filePath = this.resolveTargetPath(agent, previous);
     const previousPath = previous ? this.resolveCurrentPath(previous) : null;
-    await this.vaultAdapter.ensureFolder(path17.posix.dirname(filePath));
+    await this.vaultAdapter.ensureFolder(path19.posix.dirname(filePath));
     const content = serializeOpencodeAgentMarkdown(agent);
     await this.vaultAdapter.write(filePath, content);
     if (previousPath && previousPath !== filePath) {
@@ -77454,7 +81160,7 @@ function parseOpencodeAgentMarkdown(content, filePath) {
   if (isBooleanRecord(frontmatter.tools)) {
     result.tools = { ...frontmatter.tools };
   }
-  if (isRecord(frontmatter.options)) {
+  if (isRecord2(frontmatter.options)) {
     result.options = { ...frontmatter.options };
   }
   if (frontmatter.permission !== void 0) {
@@ -77546,7 +81252,7 @@ function normalizePositiveInteger(value) {
   return typeof value === "number" && Number.isInteger(value) && value > 0 ? value : void 0;
 }
 function isBooleanRecord(value) {
-  if (!isRecord(value)) {
+  if (!isRecord2(value)) {
     return false;
   }
   return Object.values(value).every((entry) => typeof entry === "boolean");
@@ -77571,14 +81277,14 @@ function isSupportedAgentFilePath(filePath) {
 }
 
 // src/providers/opencode/ui/OpencodeSettingsTab.ts
-var fs21 = __toESM(require("fs"));
-var import_obsidian19 = require("obsidian");
+var fs22 = __toESM(require("fs"));
+var import_obsidian23 = require("obsidian");
 init_env();
 init_path();
 
 // src/providers/opencode/runtime/OpencodeChatRuntime.ts
-var fs20 = __toESM(require("node:fs/promises"));
-var path20 = __toESM(require("node:path"));
+var fs21 = __toESM(require("node:fs/promises"));
+var path22 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -77786,12 +81492,16 @@ var AcpJsonRpcTransport = class {
     if (line.trim().length === 0) {
       return;
     }
-    let message;
+    let parsed;
     try {
-      message = JSON.parse(line);
+      parsed = JSON.parse(line);
     } catch (e2) {
       return;
     }
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return;
+    }
+    const message = parsed;
     if ("id" in message && !("method" in message)) {
       this.handleResponse(message);
       return;
@@ -77831,7 +81541,7 @@ var AcpJsonRpcTransport = class {
       return;
     }
     for (const handler of handlers) {
-      void Promise.resolve(handler(message.params)).catch(() => {
+      void Promise.resolve().then(() => handler(message.params)).catch(() => {
       });
     }
   }
@@ -77848,7 +81558,7 @@ var AcpJsonRpcTransport = class {
       });
       return;
     }
-    void Promise.resolve(handler(message.params)).then(
+    void Promise.resolve().then(() => handler(message.params)).then(
       (result) => {
         this.trySendRaw({ id: message.id, jsonrpc: "2.0", result });
       },
@@ -78486,6 +82196,7 @@ function parseIsoDate(value) {
 // src/providers/acp/AcpSubprocess.ts
 var import_node_child_process = require("node:child_process");
 var SIGKILL_TIMEOUT_MS2 = 3e3;
+var FINAL_SHUTDOWN_TIMEOUT_MS2 = 3e3;
 var STDERR_BUFFER_LIMIT2 = 8e3;
 var AcpSubprocess = class {
   constructor(launchSpec) {
@@ -78558,15 +82269,19 @@ var AcpSubprocess = class {
     }
     await new Promise((resolve8) => {
       const proc = this.proc;
+      let killTimer = null;
+      let finalTimer = null;
       const onClose = () => {
         cleanup();
         resolve8();
       };
-      const killTimer = window.setTimeout(() => {
+      killTimer = window.setTimeout(() => {
         this.killProc(proc, "SIGKILL");
+        finalTimer = window.setTimeout(onClose, FINAL_SHUTDOWN_TIMEOUT_MS2);
       }, SIGKILL_TIMEOUT_MS2);
       const cleanup = () => {
-        window.clearTimeout(killTimer);
+        if (killTimer !== null) window.clearTimeout(killTimer);
+        if (finalTimer !== null) window.clearTimeout(finalTimer);
         proc.off("exit", onClose);
       };
       proc.once("exit", onClose);
@@ -79069,14 +82784,14 @@ function buildOpencodePromptBlocks(request, conversationHistory = []) {
 }
 
 // src/providers/opencode/runtime/OpencodeLaunchArtifacts.ts
-var fs19 = __toESM(require("node:fs/promises"));
-var path19 = __toESM(require("node:path"));
+var fs20 = __toESM(require("node:fs/promises"));
+var path21 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/runtime/OpencodePaths.ts
-var fs18 = __toESM(require("node:fs"));
-var os12 = __toESM(require("node:os"));
-var path18 = __toESM(require("node:path"));
+var fs19 = __toESM(require("node:fs"));
+var os13 = __toESM(require("node:os"));
+var path20 = __toESM(require("node:path"));
 var OPENCODE_APP_NAME = "opencode";
 var DEFAULT_DATABASE_NAME = "opencode.db";
 var DATABASE_NAME_PATTERN = /^opencode(?:-[a-z0-9._-]+)?\.db$/i;
@@ -79084,27 +82799,27 @@ function resolveOpencodeDataDir(env = process.env) {
   var _a5;
   const xdgDataHome = (_a5 = env.XDG_DATA_HOME) == null ? void 0 : _a5.trim();
   if (xdgDataHome) {
-    return path18.join(xdgDataHome, OPENCODE_APP_NAME);
+    return path20.join(xdgDataHome, OPENCODE_APP_NAME);
   }
-  const home = env.HOME || os12.homedir();
+  const home = env.HOME || os13.homedir();
   if (process.platform === "win32") {
-    const appData = env.APPDATA || env.LOCALAPPDATA || path18.join(home, "AppData", "Roaming");
-    return path18.join(appData, OPENCODE_APP_NAME);
+    const appData = env.APPDATA || env.LOCALAPPDATA || path20.join(home, "AppData", "Roaming");
+    return path20.join(appData, OPENCODE_APP_NAME);
   }
-  return path18.join(home, ".local", "share", OPENCODE_APP_NAME);
+  return path20.join(home, ".local", "share", OPENCODE_APP_NAME);
 }
 function resolveOpencodeDatabasePath(env = process.env) {
   var _a5, _b3;
   const override = (_a5 = env.OPENCODE_DB) == null ? void 0 : _a5.trim();
   if (override) {
-    if (override === ":memory:" || path18.isAbsolute(override)) {
+    if (override === ":memory:" || path20.isAbsolute(override)) {
       return override;
     }
-    return path18.join(resolveOpencodeDataDir(env), override);
+    return path20.join(resolveOpencodeDataDir(env), override);
   }
   const candidates = getOpencodeDatabasePathCandidates(env);
   for (const candidate of candidates) {
-    if (fs18.existsSync(candidate)) {
+    if (fs19.existsSync(candidate)) {
       return candidate;
     }
   }
@@ -79116,12 +82831,12 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
     if (preferred === ":memory:") {
       return preferred;
     }
-    if (fs18.existsSync(preferred)) {
+    if (fs19.existsSync(preferred)) {
       return preferred;
     }
   }
   const resolved = resolveOpencodeDatabasePath(env);
-  if (resolved && (resolved === ":memory:" || fs18.existsSync(resolved))) {
+  if (resolved && (resolved === ":memory:" || fs19.existsSync(resolved))) {
     return resolved;
   }
   return preferred != null ? preferred : resolved;
@@ -79129,21 +82844,21 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
 function getOpencodeDatabasePathCandidates(env) {
   const candidates = [];
   const seen = /* @__PURE__ */ new Set();
-  const home = env.HOME || os12.homedir();
+  const home = env.HOME || os13.homedir();
   const dataDirs = [
     resolveOpencodeDataDir(env),
-    path18.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
+    path20.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
   ];
   for (const dataDir of dataDirs) {
-    pushCandidate(candidates, seen, path18.join(dataDir, DEFAULT_DATABASE_NAME));
+    pushCandidate(candidates, seen, path20.join(dataDir, DEFAULT_DATABASE_NAME));
     try {
-      const matches = fs18.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
+      const matches = fs19.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
         if (left === DEFAULT_DATABASE_NAME) return -1;
         if (right === DEFAULT_DATABASE_NAME) return 1;
         return left.localeCompare(right);
       });
       for (const entry of matches) {
-        pushCandidate(candidates, seen, path18.join(dataDir, entry));
+        pushCandidate(candidates, seen, path20.join(dataDir, entry));
       }
     } catch (e2) {
     }
@@ -79187,13 +82902,13 @@ var DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS = [
 ];
 async function prepareOpencodeLaunchArtifacts(params) {
   var _a5, _b3, _c2, _d, _e2, _f2;
-  const artifactsDir = path19.join(
+  const artifactsDir = path21.join(
     params.workspaceRoot,
     CLAUDIAN_STORAGE_PATH,
     (_a5 = params.artifactsSubdir) != null ? _a5 : "opencode"
   );
-  const systemPromptPath = path19.join(artifactsDir, "system.md");
-  const configPath = path19.join(artifactsDir, "config.json");
+  const systemPromptPath = path21.join(artifactsDir, "system.md");
+  const configPath = path21.join(artifactsDir, "config.json");
   const systemPrompt = normalizeSystemPrompt(
     (_b3 = params.systemPromptText) != null ? _b3 : buildSystemPrompt(requireSettings(params))
   );
@@ -79215,7 +82930,7 @@ async function prepareOpencodeLaunchArtifacts(params) {
   )}
 `;
   const databasePath = resolveOpencodeDatabasePath(params.runtimeEnv);
-  await fs19.mkdir(artifactsDir, { recursive: true });
+  await fs20.mkdir(artifactsDir, { recursive: true });
   await ensureOpencodeDatabaseDirectory(databasePath);
   await writeIfChanged(systemPromptPath, systemPrompt);
   await writeIfChanged(configPath, configContent);
@@ -79236,7 +82951,7 @@ async function ensureOpencodeDatabaseDirectory(databasePath) {
   if (!databasePath || databasePath === ":memory:") {
     return;
   }
-  await fs19.mkdir(path19.dirname(databasePath), { recursive: true });
+  await fs20.mkdir(path21.dirname(databasePath), { recursive: true });
 }
 function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, managedAgents = DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS, defaultAgentId) {
   const config2 = {
@@ -79268,13 +82983,13 @@ function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, mana
 }
 async function writeIfChanged(filePath, content) {
   try {
-    const existing = await fs19.readFile(filePath, "utf-8");
+    const existing = await fs20.readFile(filePath, "utf-8");
     if (existing === content) {
       return;
     }
   } catch (e2) {
   }
-  await fs19.writeFile(filePath, content, "utf-8");
+  await fs20.writeFile(filePath, content, "utf-8");
 }
 async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
   const trimmedPath = configuredPath == null ? void 0 : configuredPath.trim();
@@ -79282,9 +82997,9 @@ async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
     return {};
   }
   const expandedPath = expandHomePath(trimmedPath);
-  const resolvedPath = path19.isAbsolute(expandedPath) ? expandedPath : path19.resolve(workspaceRoot, expandedPath);
+  const resolvedPath = path21.isAbsolute(expandedPath) ? expandedPath : path21.resolve(workspaceRoot, expandedPath);
   try {
-    const rawConfig = await fs19.readFile(resolvedPath, "utf8");
+    const rawConfig = await fs20.readFile(resolvedPath, "utf8");
     const parsedConfig = JSON.parse(rawConfig);
     return isPlainObject6(parsedConfig) ? parsedConfig : {};
   } catch (e2) {
@@ -79327,6 +83042,9 @@ var StreamChunkQueue = class {
     this.waiters = [];
   }
   push(chunk) {
+    if (this.closed) {
+      return;
+    }
     const waiter = this.waiters.shift();
     if (waiter) {
       waiter(chunk);
@@ -79364,6 +83082,9 @@ var OpencodeChatRuntime = class {
     this.activeTurn = null;
     this.approvalCallback = null;
     this.connection = null;
+    this.connectionGeneration = 0;
+    this.conversationId = null;
+    this.conversationGeneration = 0;
     this.contextUsage = null;
     this.currentDatabasePath = null;
     this.currentLaunchKey = null;
@@ -79371,6 +83092,7 @@ var OpencodeChatRuntime = class {
     this.currentSessionEffortValue = null;
     this.currentSessionEffortValues = /* @__PURE__ */ new Set();
     this.currentSessionModelId = null;
+    this.currentConversationModel = null;
     this.currentSessionModeId = null;
     this.currentTurnMetadata = {};
     this.loadedSessionId = null;
@@ -79379,6 +83101,10 @@ var OpencodeChatRuntime = class {
     this.promptUsage = null;
     this.readyListeners = [];
     this.ready = false;
+    this.readinessFlight = null;
+    this.disposed = false;
+    this.lifecycleGeneration = 0;
+    this.restartRequiredAfterCancel = false;
     this.sessionInvalidated = false;
     this.supportedCommandWaiters = [];
     this.supportedCommands = [];
@@ -79414,9 +83140,14 @@ var OpencodeChatRuntime = class {
   setResumeCheckpoint(_checkpointId) {
   }
   syncConversationState(conversation) {
-    var _a5;
+    var _a5, _b3, _c2;
+    this.setCurrentConversationModel(conversation == null ? void 0 : conversation.selectedModel);
     const previousSessionId = this.sessionId;
-    const nextSessionId = (_a5 = conversation == null ? void 0 : conversation.sessionId) != null ? _a5 : null;
+    const nextConversationId = (_a5 = conversation == null ? void 0 : conversation.id) != null ? _a5 : null;
+    const nextSessionId = (_b3 = conversation == null ? void 0 : conversation.sessionId) != null ? _b3 : null;
+    const state = getOpencodeState(conversation == null ? void 0 : conversation.providerState);
+    const nextDatabasePath = (_c2 = state.databasePath) != null ? _c2 : !nextSessionId || nextSessionId !== previousSessionId ? null : this.currentDatabasePath;
+    const targetChanged = nextConversationId !== this.conversationId || nextSessionId !== this.sessionId || nextDatabasePath !== this.currentDatabasePath;
     if (this.sessionId !== nextSessionId) {
       this.currentSessionEffortConfigId = null;
       this.currentSessionEffortValue = null;
@@ -79426,19 +83157,20 @@ var OpencodeChatRuntime = class {
       this.sessionInvalidated = false;
       this.setSupportedCommands([]);
     }
+    this.conversationId = nextConversationId;
     this.sessionId = nextSessionId;
-    const state = getOpencodeState(conversation == null ? void 0 : conversation.providerState);
-    if (state.databasePath) {
-      this.currentDatabasePath = state.databasePath;
-      return;
-    }
-    if (!nextSessionId || nextSessionId !== previousSessionId) {
-      this.currentDatabasePath = null;
+    this.currentDatabasePath = nextDatabasePath;
+    if (targetChanged) {
+      this.conversationGeneration += 1;
+      if (this.readinessFlight) {
+        void this.shutdownProcess();
+      }
     }
   }
   async reloadMcpServers() {
   }
   async warmModelMetadata(model) {
+    const conversationGeneration = this.conversationGeneration;
     const selectedRawModelId = decodeOpencodeModelId(model);
     if (!selectedRawModelId) {
       return false;
@@ -79446,7 +83178,7 @@ var OpencodeChatRuntime = class {
     if (!await this.ensureReady({ allowSessionCreation: true })) {
       return false;
     }
-    if (!this.connection || !this.sessionId) {
+    if (!this.connection || !this.sessionId || !this.isConversationCurrent(conversationGeneration)) {
       return false;
     }
     const discoveredModels = getOpencodeProviderSettings(this.plugin.settings).discoveredModels;
@@ -79464,13 +83196,43 @@ var OpencodeChatRuntime = class {
       type: "select",
       value: selectedBaseRawModelId
     });
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return false;
+    }
     this.currentSessionModelId = selectedBaseRawModelId;
     await this.syncSessionModelState({
       configOptions: response.configOptions
-    });
-    return true;
+    }, conversationGeneration);
+    return this.isConversationCurrent(conversationGeneration);
   }
   async ensureReady(options) {
+    if (this.disposed) {
+      return false;
+    }
+    const conversationGeneration = this.conversationGeneration;
+    const key = JSON.stringify({ conversationGeneration, options: options != null ? options : {} });
+    if (this.readinessFlight) {
+      if (this.readinessFlight.key === key) {
+        return this.readinessFlight.promise;
+      }
+      await this.readinessFlight.promise.catch(() => void 0);
+      return this.ensureReady(options);
+    }
+    const lifecycleGeneration = this.lifecycleGeneration;
+    const promise2 = this.ensureReadyInternal(
+      options,
+      lifecycleGeneration,
+      conversationGeneration
+    );
+    this.readinessFlight = { key, promise: promise2 };
+    return promise2.finally(() => {
+      var _a5;
+      if (((_a5 = this.readinessFlight) == null ? void 0 : _a5.promise) === promise2) {
+        this.readinessFlight = null;
+      }
+    });
+  }
+  async ensureReadyInternal(options, lifecycleGeneration, conversationGeneration) {
     var _a5, _b3;
     const settings11 = getOpencodeProviderSettings(this.plugin.settings);
     if (!settings11.enabled) {
@@ -79490,6 +83252,9 @@ var OpencodeChatRuntime = class {
       settings: promptSettings,
       workspaceRoot: cwd
     });
+    if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+      return false;
+    }
     this.currentDatabasePath = artifacts.databasePath;
     const nextLaunchKey = JSON.stringify({
       command: resolvedCliPath,
@@ -79498,21 +83263,34 @@ var OpencodeChatRuntime = class {
       promptKey: computeSystemPromptKey(promptSettings),
       artifactKey: artifacts.launchKey
     });
-    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || this.transport.isClosed || (options == null ? void 0 : options.force) === true || this.currentLaunchKey !== nextLaunchKey;
+    const shouldRestart = !this.process || !this.transport || !this.connection || !this.process.isAlive() || this.transport.isClosed || (options == null ? void 0 : options.force) === true || this.restartRequiredAfterCancel || this.currentLaunchKey !== nextLaunchKey;
     if (shouldRestart) {
       await this.shutdownProcess();
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
       await this.startProcess({
         command: resolvedCliPath,
         configPath: artifacts.configPath,
         cwd,
         runtimeEnv
       });
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
+      this.restartRequiredAfterCancel = false;
       this.currentLaunchKey = nextLaunchKey;
       this.loadedSessionId = null;
+      this.setReady(true);
     }
     if (targetSessionId) {
       if (this.loadedSessionId !== targetSessionId) {
-        const loaded = await this.loadSession(targetSessionId, cwd);
+        const loaded = await this.loadSession(targetSessionId, cwd, conversationGeneration);
+        if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+          await this.shutdownProcess();
+          return false;
+        }
         if (!loaded) {
           this.sessionInvalidated = true;
           this.clearActiveSession();
@@ -79524,17 +83302,36 @@ var OpencodeChatRuntime = class {
       if ((options == null ? void 0 : options.allowSessionCreation) === false) {
         return true;
       }
-      return Boolean(await this.createSession(cwd));
+      const sessionId = await this.createSession(cwd, conversationGeneration);
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
+      return Boolean(sessionId);
     }
     return true;
   }
   async *query(turn, conversationHistory, queryOptions) {
-    var _a5, _b3;
+    var _a5;
+    if (this.activeTurn) {
+      yield { type: "error", content: "OpenCode does not support overlapping turns." };
+      yield { type: "done" };
+      return;
+    }
+    if (queryOptions == null ? void 0 : queryOptions.model) {
+      this.setCurrentConversationModel(queryOptions.model);
+    }
+    const conversationGeneration = this.conversationGeneration;
     const previousMessages = conversationHistory != null ? conversationHistory : [];
     const expectedSessionId = this.sessionId;
     let shouldBootstrapHistory = previousMessages.length > 0 && (!expectedSessionId || this.sessionInvalidated);
     if (!await this.ensureReady()) {
       yield { type: "error", content: "Failed to start OpenCode. Check the CLI path and login state." };
+      yield { type: "done" };
+      return;
+    }
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      yield { type: "error", content: "OpenCode conversation changed before the turn started." };
       yield { type: "done" };
       return;
     }
@@ -79548,7 +83345,7 @@ var OpencodeChatRuntime = class {
       shouldBootstrapHistory = previousMessages.length > 0;
     }
     if (!this.sessionId) {
-      const sessionId2 = await this.createSession(cwd);
+      const sessionId2 = await this.createSession(cwd, conversationGeneration);
       if (!sessionId2) {
         yield { type: "error", content: "Failed to create an OpenCode session." };
         yield { type: "done" };
@@ -79556,8 +83353,8 @@ var OpencodeChatRuntime = class {
       }
     }
     const sessionId = this.sessionId;
-    (_b3 = this.activeTurn) == null ? void 0 : _b3.queue.close();
     this.activeTurn = {
+      cancelled: false,
       queue: new StreamChunkQueue(),
       sessionId
     };
@@ -79568,9 +83365,12 @@ var OpencodeChatRuntime = class {
     this.toolStreamAdapter.reset();
     const activeTurn = this.activeTurn;
     try {
-      await this.applySelectedMode(sessionId);
-      await this.applySelectedModel(sessionId, queryOptions);
-      await this.applySelectedEffort(sessionId);
+      await this.applySelectedMode(sessionId, conversationGeneration);
+      await this.applySelectedModel(sessionId, queryOptions, conversationGeneration);
+      await this.applySelectedEffort(sessionId, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        throw new Error("OpenCode conversation changed before the turn started.");
+      }
     } catch (error48) {
       yield {
         type: "error",
@@ -79623,7 +83423,9 @@ var OpencodeChatRuntime = class {
         }
         yield chunk;
       }
-      await promptPromise;
+      if (!activeTurn.cancelled) {
+        await promptPromise;
+      }
     } finally {
       if (this.activeTurn === activeTurn) {
         this.activeTurn = null;
@@ -79631,9 +83433,15 @@ var OpencodeChatRuntime = class {
     }
   }
   cancel() {
+    const activeTurn = this.activeTurn;
+    if (!activeTurn || activeTurn.cancelled) {
+      return;
+    }
     if (this.connection && this.sessionId) {
       this.connection.cancel({ sessionId: this.sessionId });
     }
+    this.restartRequiredAfterCancel = true;
+    this.settleActiveTurn();
   }
   resetSession() {
     this.clearActiveSession();
@@ -79673,6 +83481,11 @@ var OpencodeChatRuntime = class {
   }
   cleanup() {
     var _a5;
+    if (this.disposed) {
+      return;
+    }
+    this.disposed = true;
+    this.lifecycleGeneration += 1;
     (_a5 = this.activeTurn) == null ? void 0 : _a5.queue.close();
     void this.shutdownProcess();
   }
@@ -79736,7 +83549,7 @@ var OpencodeChatRuntime = class {
       OPENCODE_CONFIG: params.configPath,
       PATH: getEnhancedPath(
         params.runtimeEnv.PATH,
-        path20.isAbsolute(params.command) ? params.command : void 0
+        path22.isAbsolute(params.command) ? params.command : void 0
       )
     };
     this.process = new AcpSubprocess({
@@ -79752,11 +83565,13 @@ var OpencodeChatRuntime = class {
       output: this.process.stdin
     });
     const transport = this.transport;
-    this.unregisterTransportClose = transport.onClose(() => {
+    this.unregisterTransportClose = transport.onClose((error48) => {
       if (this.transport === transport) {
         this.setReady(false);
+        this.settleActiveTurn(error48 != null ? error48 : new Error("OpenCode runtime closed"));
       }
     });
+    const connectionGeneration = ++this.connectionGeneration;
     this.connection = new AcpClientConnection({
       clientInfo: {
         name: "claudian",
@@ -79767,28 +83582,30 @@ var OpencodeChatRuntime = class {
           readTextFile: (request) => this.readTextFile(request),
           writeTextFile: (request) => this.writeTextFile(request)
         },
-        onSessionNotification: (notification) => this.handleSessionNotification(notification),
+        onSessionNotification: (notification) => this.handleSessionNotification(
+          notification,
+          connectionGeneration
+        ),
         requestPermission: (request) => this.handlePermissionRequest(request)
       },
       transport: this.transport
     });
     this.transport.start();
     await this.connection.initialize();
-    this.setReady(true);
   }
   async shutdownProcess() {
-    var _a5, _b3, _c2, _d;
+    var _a5, _b3, _c2;
+    this.connectionGeneration += 1;
     this.setReady(false);
-    (_a5 = this.activeTurn) == null ? void 0 : _a5.queue.close();
-    this.activeTurn = null;
+    this.settleActiveTurn();
     this.currentSessionModelId = null;
     this.currentSessionModeId = null;
     this.setSupportedCommands([]);
-    (_b3 = this.unregisterTransportClose) == null ? void 0 : _b3.call(this);
+    (_a5 = this.unregisterTransportClose) == null ? void 0 : _a5.call(this);
     this.unregisterTransportClose = null;
-    (_c2 = this.connection) == null ? void 0 : _c2.dispose();
+    (_b3 = this.connection) == null ? void 0 : _b3.dispose();
     this.connection = null;
-    (_d = this.transport) == null ? void 0 : _d.dispose();
+    (_c2 = this.transport) == null ? void 0 : _c2.dispose();
     this.transport = null;
     if (this.process) {
       await this.process.shutdown().catch(() => {
@@ -79804,6 +83621,15 @@ var OpencodeChatRuntime = class {
     for (const listener of this.readyListeners) {
       listener(ready);
     }
+  }
+  isLifecycleCurrent(generation) {
+    return !this.disposed && generation === this.lifecycleGeneration;
+  }
+  isConversationCurrent(generation) {
+    return generation === this.conversationGeneration;
+  }
+  isReadinessCurrent(lifecycleGeneration, conversationGeneration) {
+    return this.isLifecycleCurrent(lifecycleGeneration) && this.isConversationCurrent(conversationGeneration);
   }
   getSystemPromptSettings(vaultPath) {
     return {
@@ -79821,10 +83647,14 @@ var OpencodeChatRuntime = class {
     );
   }
   getProviderSettings() {
-    return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    const settings11 = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       this.providerId
     );
+    if (this.currentConversationModel) {
+      settings11.model = this.currentConversationModel;
+    }
+    return settings11;
   }
   resolveSelectedRawModelId(queryOptions) {
     const providerSettings = this.getProviderSettings();
@@ -79848,8 +83678,12 @@ var OpencodeChatRuntime = class {
     return normalizedBaseRawModelId;
   }
   getAuxiliaryModel() {
-    var _a5;
-    return (_a5 = this.getActiveDisplayModel()) != null ? _a5 : null;
+    var _a5, _b3;
+    return (_b3 = (_a5 = this.currentConversationModel) != null ? _a5 : this.getActiveDisplayModel()) != null ? _b3 : null;
+  }
+  setCurrentConversationModel(model) {
+    const selectedModel = typeof model === "string" ? model.trim() : "";
+    this.currentConversationModel = selectedModel || null;
   }
   getActiveDisplayModel(queryOptions) {
     const providerSettings = this.getProviderSettings();
@@ -79879,7 +83713,7 @@ var OpencodeChatRuntime = class {
     }
     return ((_a5 = availableModes[0]) == null ? void 0 : _a5.id) || null;
   }
-  async applySelectedMode(sessionId) {
+  async applySelectedMode(sessionId, conversationGeneration = this.conversationGeneration) {
     if (!this.connection) {
       return;
     }
@@ -79893,12 +83727,15 @@ var OpencodeChatRuntime = class {
       type: "select",
       value: selectedModeId
     });
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     this.currentSessionModeId = selectedModeId;
     await this.syncSessionModeState({
       configOptions: response.configOptions
-    });
+    }, conversationGeneration);
   }
-  async applySelectedModel(sessionId, queryOptions) {
+  async applySelectedModel(sessionId, queryOptions, conversationGeneration = this.conversationGeneration) {
     if (!this.connection) {
       return;
     }
@@ -79912,10 +83749,13 @@ var OpencodeChatRuntime = class {
       type: "select",
       value: selectedRawModelId
     });
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     this.currentSessionModelId = selectedRawModelId;
     await this.syncSessionModelState({
       configOptions: response.configOptions
-    });
+    }, conversationGeneration);
   }
   resolveSelectedEffortValue() {
     const providerSettings = this.getProviderSettings();
@@ -79925,7 +83765,7 @@ var OpencodeChatRuntime = class {
     }
     return this.currentSessionEffortValues.has(selectedEffort) ? selectedEffort : null;
   }
-  async applySelectedEffort(sessionId) {
+  async applySelectedEffort(sessionId, conversationGeneration = this.conversationGeneration) {
     if (!this.connection || !this.currentSessionEffortConfigId) {
       return;
     }
@@ -79939,13 +83779,19 @@ var OpencodeChatRuntime = class {
       type: "select",
       value: selectedEffort
     });
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     this.currentSessionEffortValue = selectedEffort;
     await this.syncSessionModelState({
       configOptions: response.configOptions
-    });
+    }, conversationGeneration);
   }
-  async syncSessionModelState(params) {
+  async syncSessionModelState(params, conversationGeneration) {
     var _a5;
+    if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     const acpState = extractAcpSessionModelState(params);
     const currentRawModelId = (_a5 = acpState.currentModelId) != null ? _a5 : this.currentSessionModelId;
     const discoveredModels = normalizeOpencodeDiscoveredModels(
@@ -79961,6 +83807,7 @@ var OpencodeChatRuntime = class {
     const settingsBag = this.plugin.settings;
     const currentSettings = getOpencodeProviderSettings(settingsBag);
     const currentBaseRawModelId = currentRawModelId ? resolveOpencodeBaseModelRawId(currentRawModelId, discoveredModels) : null;
+    const currentPreferredThinking = currentBaseRawModelId ? currentSettings.preferredThinkingByModel[currentBaseRawModelId] : "";
     const thoughtLevelState = extractAcpSessionThoughtLevelState(params);
     const currentThinkingOptions = normalizeOpencodeModelVariants(
       thoughtLevelState.availableLevels.map((level) => ({
@@ -79970,6 +83817,11 @@ var OpencodeChatRuntime = class {
       }))
     );
     const currentThinkingLevel = thoughtLevelState.currentLevel;
+    const defaultThinkingLevel = currentThinkingOptions.length > 0 ? resolveOpencodeDefaultThinkingLevel(
+      currentThinkingOptions,
+      currentPreferredThinking,
+      currentThinkingLevel != null ? currentThinkingLevel : void 0
+    ) : currentThinkingLevel;
     this.currentSessionEffortConfigId = currentThinkingOptions.length > 0 ? thoughtLevelState.configId : null;
     this.currentSessionEffortValue = currentThinkingOptions.length > 0 ? currentThinkingLevel : null;
     this.currentSessionEffortValues = new Set(currentThinkingOptions.map((option) => option.value));
@@ -79982,11 +83834,10 @@ var OpencodeChatRuntime = class {
       }
     }
     const nextVisibleModels = currentSettings.visibleModels.length === 0 && currentBaseRawModelId ? [currentBaseRawModelId] : currentSettings.visibleModels;
-    const currentPreferredThinking = currentBaseRawModelId ? currentSettings.preferredThinkingByModel[currentBaseRawModelId] : "";
-    const shouldSeedCurrentThinking = currentBaseRawModelId && currentThinkingLevel && (!currentPreferredThinking || currentThinkingOptions.length > 0 && !this.currentSessionEffortValues.has(currentPreferredThinking));
-    const nextPreferredThinkingByModel = shouldSeedCurrentThinking && currentBaseRawModelId && currentThinkingLevel ? {
+    const shouldSeedCurrentThinking = currentBaseRawModelId && defaultThinkingLevel && (!currentPreferredThinking || currentThinkingOptions.length > 0 && !this.currentSessionEffortValues.has(currentPreferredThinking));
+    const nextPreferredThinkingByModel = shouldSeedCurrentThinking && currentBaseRawModelId && defaultThinkingLevel ? {
       ...currentSettings.preferredThinkingByModel,
-      [currentBaseRawModelId]: currentThinkingLevel
+      [currentBaseRawModelId]: defaultThinkingLevel
     } : currentSettings.preferredThinkingByModel;
     const shouldSeedVisibleModels = !sameStringList(currentSettings.visibleModels, nextVisibleModels);
     const shouldSeedPreferredThinking = !sameStringMap(
@@ -80001,25 +83852,48 @@ var OpencodeChatRuntime = class {
     const discoveryChanged = shouldUpdateDiscoveredModels && updateOpencodeDiscoveryState(settingsBag, { discoveredModels });
     let changed = shouldSeedVisibleModels || shouldSeedPreferredThinking;
     if (currentBaseRawModelId) {
+      const probeSettings = {
+        ...settingsBag,
+        savedProviderEffort: {
+          ...settingsBag.savedProviderEffort
+        },
+        savedProviderModel: {
+          ...settingsBag.savedProviderModel
+        }
+      };
       const seeded = this.seedActiveModelSelection(
-        settingsBag,
+        probeSettings,
         encodeOpencodeModelId(currentBaseRawModelId),
-        currentThinkingLevel
+        defaultThinkingLevel
       );
       changed = changed || seeded;
-    }
-    if (shouldUpdateThinkingOptions || shouldSeedPreferredThinking || shouldSeedVisibleModels) {
-      updateOpencodeProviderSettings(settingsBag, {
-        ...shouldSeedPreferredThinking ? { preferredThinkingByModel: nextPreferredThinkingByModel } : {},
-        ...shouldUpdateThinkingOptions ? { thinkingOptionsByModel: nextThinkingOptionsByModel } : {},
-        ...shouldSeedVisibleModels ? { visibleModels: nextVisibleModels } : {}
-      });
     }
     if (!changed && !discoveryChanged && !shouldUpdateThinkingOptions) {
       return;
     }
     if (changed || shouldUpdateThinkingOptions) {
-      await this.plugin.saveSettings();
+      await this.plugin.mutateSettings((settings11) => {
+        if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+          return;
+        }
+        if (currentBaseRawModelId) {
+          this.seedActiveModelSelection(
+            settings11,
+            encodeOpencodeModelId(currentBaseRawModelId),
+            defaultThinkingLevel
+          );
+        }
+        if (shouldUpdateThinkingOptions || shouldSeedPreferredThinking || shouldSeedVisibleModels) {
+          updateOpencodeProviderSettings(settings11, {
+            ...shouldSeedPreferredThinking ? { preferredThinkingByModel: nextPreferredThinkingByModel } : {},
+            ...shouldUpdateThinkingOptions ? { thinkingOptionsByModel: nextThinkingOptionsByModel } : {},
+            ...shouldSeedVisibleModels ? { visibleModels: nextVisibleModels } : {}
+          });
+        }
+      });
+    }
+    if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+      return;
     }
     this.refreshModelSelectors();
   }
@@ -80034,7 +83908,7 @@ var OpencodeChatRuntime = class {
     if (thinkingLevel) {
       const savedProviderEffort = ensureProviderProjectionMap(settingsBag, "savedProviderEffort");
       const savedEffort = typeof savedProviderEffort.opencode === "string" ? savedProviderEffort.opencode.trim() : "";
-      if (!savedEffort || savedEffort === OPENCODE_DEFAULT_THINKING_LEVEL) {
+      if (!savedEffort || savedEffort === OPENCODE_DEFAULT_THINKING_LEVEL || !this.currentSessionEffortValues.has(savedEffort)) {
         savedProviderEffort.opencode = thinkingLevel;
         changed = true;
       }
@@ -80049,15 +83923,18 @@ var OpencodeChatRuntime = class {
     }
     if (thinkingLevel) {
       const activeEffort = typeof settingsBag.effortLevel === "string" ? settingsBag.effortLevel : "";
-      if (!activeEffort || activeEffort === OPENCODE_DEFAULT_THINKING_LEVEL) {
+      if (!activeEffort || activeEffort === OPENCODE_DEFAULT_THINKING_LEVEL || !this.currentSessionEffortValues.has(activeEffort)) {
         settingsBag.effortLevel = thinkingLevel;
         changed = true;
       }
     }
     return changed;
   }
-  async syncSessionModeState(params) {
+  async syncSessionModeState(params, conversationGeneration) {
     var _a5;
+    if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     const acpState = extractAcpSessionModeState(params);
     const availableModes = normalizeOpencodeAvailableModes(acpState.availableModes);
     const currentModeId = (_a5 = params.currentModeId) != null ? _a5 : acpState.currentModeId;
@@ -80073,15 +83950,21 @@ var OpencodeChatRuntime = class {
       return;
     }
     if (shouldSeedSelectedMode && currentModeId) {
-      updateOpencodeProviderSettings(settingsBag, { selectedMode: currentModeId });
-      await this.plugin.saveSettings();
+      await this.plugin.mutateSettings((settings11) => {
+        if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+          return;
+        }
+        updateOpencodeProviderSettings(settings11, { selectedMode: currentModeId });
+      });
+    }
+    if (conversationGeneration !== void 0 && !this.isConversationCurrent(conversationGeneration)) {
+      return;
     }
     this.refreshModelSelectors();
   }
   refreshModelSelectors() {
-    for (const view of this.plugin.getAllViews()) {
-      view.refreshModelSelector();
-    }
+    var _a5, _b3;
+    (_b3 = (_a5 = this.plugin).refreshModelSelectors) == null ? void 0 : _b3.call(_a5);
   }
   emitPermissionModeSync(modeId) {
     const permissionMode = resolvePermissionModeForManagedOpencodeMode(modeId);
@@ -80093,7 +83976,22 @@ var OpencodeChatRuntime = class {
     } catch (e2) {
     }
   }
-  async createSession(cwd) {
+  settleActiveTurn(error48) {
+    const activeTurn = this.activeTurn;
+    if (!activeTurn || activeTurn.cancelled) {
+      return;
+    }
+    activeTurn.cancelled = true;
+    if (error48) {
+      activeTurn.queue.push({ type: "error", content: this.formatRuntimeError(error48) });
+    }
+    activeTurn.queue.push({ type: "done" });
+    activeTurn.queue.close();
+    if (this.activeTurn === activeTurn) {
+      this.activeTurn = null;
+    }
+  }
+  async createSession(cwd, conversationGeneration = this.conversationGeneration) {
     var _a5, _b3, _c2, _d;
     if (!this.connection) {
       return null;
@@ -80104,23 +84002,32 @@ var OpencodeChatRuntime = class {
         cwd,
         mcpServers: []
       });
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return null;
+      }
       this.loadedSessionId = response.sessionId;
       this.sessionId = response.sessionId;
       this.sessionCwds.set(response.sessionId, cwd);
       await this.syncSessionModelState({
         configOptions: (_a5 = response.configOptions) != null ? _a5 : null,
         models: (_b3 = response.models) != null ? _b3 : null
-      });
+      }, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return null;
+      }
       await this.syncSessionModeState({
         configOptions: (_c2 = response.configOptions) != null ? _c2 : null,
         modes: (_d = response.modes) != null ? _d : null
-      });
+      }, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return null;
+      }
       return response.sessionId;
     } catch (e2) {
       return null;
     }
   }
-  async loadSession(sessionId, cwd) {
+  async loadSession(sessionId, cwd, conversationGeneration = this.conversationGeneration) {
     var _a5, _b3, _c2, _d;
     if (!this.connection) {
       return false;
@@ -80132,6 +84039,9 @@ var OpencodeChatRuntime = class {
         mcpServers: [],
         sessionId
       });
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return false;
+      }
       this.sessionInvalidated = false;
       this.loadedSessionId = response.sessionId;
       this.sessionId = response.sessionId;
@@ -80139,17 +84049,26 @@ var OpencodeChatRuntime = class {
       await this.syncSessionModelState({
         configOptions: (_a5 = response.configOptions) != null ? _a5 : null,
         models: (_b3 = response.models) != null ? _b3 : null
-      });
+      }, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return false;
+      }
       await this.syncSessionModeState({
         configOptions: (_c2 = response.configOptions) != null ? _c2 : null,
         modes: (_d = response.modes) != null ? _d : null
-      });
+      }, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return false;
+      }
       return true;
     } catch (e2) {
       return false;
     }
   }
-  async handleSessionNotification(notification) {
+  async handleSessionNotification(notification, connectionGeneration = this.connectionGeneration) {
+    if (connectionGeneration !== this.connectionGeneration) {
+      return;
+    }
     if (notification.sessionId !== this.sessionId) {
       return;
     }
@@ -80264,7 +84183,7 @@ var OpencodeChatRuntime = class {
   async readTextFile(request) {
     var _a5;
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    const content = await fs20.readFile(resolvedPath, "utf-8");
+    const content = await fs21.readFile(resolvedPath, "utf-8");
     if (request.line === void 0 && request.limit === void 0) {
       return { content };
     }
@@ -80277,17 +84196,17 @@ var OpencodeChatRuntime = class {
   }
   async writeTextFile(request) {
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    await fs20.mkdir(path20.dirname(resolvedPath), { recursive: true });
-    await fs20.writeFile(resolvedPath, request.content, "utf-8");
+    await fs21.mkdir(path22.dirname(resolvedPath), { recursive: true });
+    await fs21.writeFile(resolvedPath, request.content, "utf-8");
     return {};
   }
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
-    if (path20.isAbsolute(rawPath)) {
+    if (path22.isAbsolute(rawPath)) {
       return rawPath;
     }
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    return path20.resolve(cwd, rawPath);
+    return path22.resolve(cwd, rawPath);
   }
   formatRuntimeError(error48) {
     var _a5;
@@ -80515,7 +84434,7 @@ function selectPermissionOption(options, preferredKinds) {
 }
 
 // src/providers/opencode/ui/OpencodeAgentSettings.ts
-var import_obsidian18 = require("obsidian");
+var import_obsidian22 = require("obsidian");
 var OPENCODE_AGENT_INVALID_SEGMENT_PATTERN = /[<>:"\\|?*]/;
 function validateOpencodeAgentName(name) {
   if (!name) return "Agent name is required";
@@ -80546,7 +84465,7 @@ function findOpencodeAgentNameConflict(agents, name, currentPersistenceKey) {
     (agent) => agent.name.toLowerCase() === normalizedName && agent.persistenceKey !== currentPersistenceKey
   )) != null ? _a5 : null;
 }
-var OpencodeAgentModal = class extends import_obsidian18.Modal {
+var OpencodeAgentModal = class extends import_obsidian22.Modal {
   constructor(app, existing, allAgents, onSave) {
     super(app);
     this.existing = existing;
@@ -80571,12 +84490,12 @@ var OpencodeAgentModal = class extends import_obsidian18.Modal {
     let toolsInput;
     let permissionInput;
     let optionsInput;
-    new import_obsidian18.Setting(contentEl).setName("Name").setDesc("OpenCode agent name. Use slash-separated segments for nested agents.").addText((text) => {
+    new import_obsidian22.Setting(contentEl).setName("Name").setDesc("OpenCode agent name. Use slash-separated segments for nested agents.").addText((text) => {
       var _a6, _b4;
       nameInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.name) != null ? _b4 : "").setPlaceholder("Review");
     });
-    new import_obsidian18.Setting(contentEl).setName("Description").setDesc("When OpenCode should use this subagent").addText((text) => {
+    new import_obsidian22.Setting(contentEl).setName("Description").setDesc("When OpenCode should use this subagent").addText((text) => {
       var _a6, _b4;
       descriptionInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.description) != null ? _b4 : "").setPlaceholder("Reviews code for correctness and maintainability");
@@ -80589,62 +84508,62 @@ var OpencodeAgentModal = class extends import_obsidian18.Modal {
     if (((_e2 = this.existing) == null ? void 0 : _e2.model) || ((_f2 = this.existing) == null ? void 0 : _f2.variant) || ((_g = this.existing) == null ? void 0 : _g.temperature) !== void 0 || ((_h2 = this.existing) == null ? void 0 : _h2.topP) !== void 0 || ((_i = this.existing) == null ? void 0 : _i.color) || ((_j = this.existing) == null ? void 0 : _j.steps) !== void 0 || ((_k3 = this.existing) == null ? void 0 : _k3.hidden) || ((_l2 = this.existing) == null ? void 0 : _l2.disable) || ((_m = this.existing) == null ? void 0 : _m.tools) || ((_n = this.existing) == null ? void 0 : _n.permission) !== void 0 || ((_o = this.existing) == null ? void 0 : _o.options)) {
       details.open = true;
     }
-    new import_obsidian18.Setting(details).setName("Model").setDesc("Model override in provider/model format").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Model").setDesc("Model override in provider/model format").addText((text) => {
       var _a6, _b4;
       modelInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.model) != null ? _b4 : "").setPlaceholder("Anthropic/Claude-sonnet-4-20250514");
     });
-    new import_obsidian18.Setting(details).setName("Variant").setDesc("Model variant override").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Variant").setDesc("Model variant override").addText((text) => {
       var _a6, _b4;
       variantInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.variant) != null ? _b4 : "").setPlaceholder("High");
     });
-    new import_obsidian18.Setting(details).setName("Temperature").setDesc("Optional sampling temperature").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Temperature").setDesc("Optional sampling temperature").addText((text) => {
       var _a6;
       temperatureInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.temperature) !== void 0 ? String(this.existing.temperature) : "").setPlaceholder("0.1");
     });
-    new import_obsidian18.Setting(details).setName("Top p").setDesc("Optional nucleus sampling value").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Top p").setDesc("Optional nucleus sampling value").addText((text) => {
       var _a6;
       topPInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.topP) !== void 0 ? String(this.existing.topP) : "").setPlaceholder("0.9");
     });
-    new import_obsidian18.Setting(details).setName("Color").setDesc("Hex color or theme token").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Color").setDesc("Hex color or theme token").addText((text) => {
       var _a6, _b4;
       colorInput = text.inputEl;
       text.setValue((_b4 = (_a6 = this.existing) == null ? void 0 : _a6.color) != null ? _b4 : "").setPlaceholder("#Ff5733");
     });
-    new import_obsidian18.Setting(details).setName("Steps").setDesc("Maximum agentic iterations before forcing text-only output").addText((text) => {
+    new import_obsidian22.Setting(details).setName("Steps").setDesc("Maximum agentic iterations before forcing text-only output").addText((text) => {
       var _a6;
       stepsInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.steps) !== void 0 ? String(this.existing.steps) : "").setPlaceholder("10");
     });
-    new import_obsidian18.Setting(details).setName("Hide from @mention").setDesc("Hide this subagent from the @ autocomplete menu").addToggle((toggle) => {
+    new import_obsidian22.Setting(details).setName("Hide from @mention").setDesc("Hide this subagent from the @ autocomplete menu").addToggle((toggle) => {
       toggle.setValue(hiddenValue).onChange((value) => {
         hiddenValue = value;
       });
     });
-    new import_obsidian18.Setting(details).setName("Disable agent").setDesc("Disable the agent without deleting the file").addToggle((toggle) => {
+    new import_obsidian22.Setting(details).setName("Disable agent").setDesc("Disable the agent without deleting the file").addToggle((toggle) => {
       toggle.setValue(disableValue).onChange((value) => {
         disableValue = value;
       });
     });
-    new import_obsidian18.Setting(details).setName("Enabled tools (JSON)").setDesc('Optional deprecated tools map, e.g. {"write":false,"edit":false}').addTextArea((text) => {
+    new import_obsidian22.Setting(details).setName("Enabled tools (JSON)").setDesc('Optional deprecated tools map, e.g. {"write":false,"edit":false}').addTextArea((text) => {
       var _a6;
       toolsInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.tools) ? JSON.stringify(this.existing.tools, null, 2) : "").setPlaceholder('{\n  "write": false,\n  "edit": false\n}');
     });
-    new import_obsidian18.Setting(details).setName("Permission (JSON)").setDesc('Optional permission config, e.g. {"edit":"deny","bash":"allow"}').addTextArea((text) => {
+    new import_obsidian22.Setting(details).setName("Permission (JSON)").setDesc('Optional permission config, e.g. {"edit":"deny","bash":"allow"}').addTextArea((text) => {
       var _a6;
       permissionInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.permission) !== void 0 ? JSON.stringify(this.existing.permission, null, 2) : "").setPlaceholder('{\n  "edit": "deny"\n}');
     });
-    new import_obsidian18.Setting(details).setName("Options (JSON)").setDesc("Optional custom agent options").addTextArea((text) => {
+    new import_obsidian22.Setting(details).setName("Options (JSON)").setDesc("Optional custom agent options").addTextArea((text) => {
       var _a6;
       optionsInput = text.inputEl;
       text.setValue(((_a6 = this.existing) == null ? void 0 : _a6.options) ? JSON.stringify(this.existing.options, null, 2) : "").setPlaceholder('{\n  "focus": "security"\n}');
     });
-    new import_obsidian18.Setting(contentEl).setName("Prompt").setDesc("Markdown body used as the agent prompt");
+    new import_obsidian22.Setting(contentEl).setName("Prompt").setDesc("Markdown body used as the agent prompt");
     const promptArea = contentEl.createEl("textarea", {
       cls: "claudian-sp-content-area",
       attr: {
@@ -80669,17 +84588,17 @@ var OpencodeAgentModal = class extends import_obsidian18.Modal {
         const name = nameInput.value.trim();
         const nameError = validateOpencodeAgentName(name);
         if (nameError) {
-          new import_obsidian18.Notice(nameError);
+          new import_obsidian22.Notice(nameError);
           return;
         }
         const description = descriptionInput.value.trim();
         if (!description) {
-          new import_obsidian18.Notice("Description is required");
+          new import_obsidian22.Notice("Description is required");
           return;
         }
         const prompt = promptArea.value;
         if (!prompt.trim()) {
-          new import_obsidian18.Notice("Prompt is required");
+          new import_obsidian22.Notice("Prompt is required");
           return;
         }
         const duplicate = findOpencodeAgentNameConflict(
@@ -80688,37 +84607,37 @@ var OpencodeAgentModal = class extends import_obsidian18.Modal {
           (_a6 = this.existing) == null ? void 0 : _a6.persistenceKey
         );
         if (duplicate) {
-          new import_obsidian18.Notice(`A subagent named "${name}" already exists`);
+          new import_obsidian22.Notice(`A subagent named "${name}" already exists`);
           return;
         }
         const temperature = parseOptionalNumber(temperatureInput.value, "Temperature");
         if (temperature.error) {
-          new import_obsidian18.Notice(temperature.error);
+          new import_obsidian22.Notice(temperature.error);
           return;
         }
         const topP = parseOptionalNumber(topPInput.value, "Top P");
         if (topP.error) {
-          new import_obsidian18.Notice(topP.error);
+          new import_obsidian22.Notice(topP.error);
           return;
         }
         const steps = parseOptionalPositiveInteger(stepsInput.value, "Steps");
         if (steps.error) {
-          new import_obsidian18.Notice(steps.error);
+          new import_obsidian22.Notice(steps.error);
           return;
         }
         const tools = parseOptionalJsonObjectOfBooleans(toolsInput.value, "Enabled Tools");
         if (tools.error) {
-          new import_obsidian18.Notice(tools.error);
+          new import_obsidian22.Notice(tools.error);
           return;
         }
         const permission = parseOptionalJson(permissionInput.value, "Permission");
         if (permission.error) {
-          new import_obsidian18.Notice(permission.error);
+          new import_obsidian22.Notice(permission.error);
           return;
         }
         const options = parseOptionalJsonObject(optionsInput.value, "Options");
         if (options.error) {
-          new import_obsidian18.Notice(options.error);
+          new import_obsidian22.Notice(options.error);
           return;
         }
         const agent = {
@@ -80744,7 +84663,7 @@ var OpencodeAgentModal = class extends import_obsidian18.Modal {
           await this.onSave(agent);
         } catch (error48) {
           const message = error48 instanceof Error ? error48.message : "Unknown error";
-          new import_obsidian18.Notice(`Failed to save subagent: ${message}`);
+          new import_obsidian22.Notice(`Failed to save subagent: ${message}`);
           return;
         }
         this.close();
@@ -80779,7 +84698,7 @@ var OpencodeAgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Refresh" }
     });
-    (0, import_obsidian18.setIcon)(refreshBtn, "refresh-cw");
+    (0, import_obsidian22.setIcon)(refreshBtn, "refresh-cw");
     refreshBtn.addEventListener("click", () => {
       void this.render();
     });
@@ -80787,7 +84706,7 @@ var OpencodeAgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Add" }
     });
-    (0, import_obsidian18.setIcon)(addBtn, "plus");
+    (0, import_obsidian22.setIcon)(addBtn, "plus");
     addBtn.addEventListener("click", () => this.openModal(null));
     if (visibleAgents.length === 0) {
       const emptyEl = this.containerEl.createDiv({ cls: "claudian-sp-empty-state" });
@@ -80821,13 +84740,13 @@ var OpencodeAgentSettings = class {
       cls: "claudian-settings-action-btn",
       attr: { "aria-label": "Edit" }
     });
-    (0, import_obsidian18.setIcon)(editBtn, "pencil");
+    (0, import_obsidian22.setIcon)(editBtn, "pencil");
     editBtn.addEventListener("click", () => this.openModal(agent));
     const deleteBtn = actionsEl.createEl("button", {
       cls: "claudian-settings-action-btn claudian-settings-delete-btn",
       attr: { "aria-label": "Delete" }
     });
-    (0, import_obsidian18.setIcon)(deleteBtn, "trash-2");
+    (0, import_obsidian22.setIcon)(deleteBtn, "trash-2");
     deleteBtn.addEventListener("click", () => {
       void (async () => {
         var _a5;
@@ -80841,9 +84760,9 @@ var OpencodeAgentSettings = class {
           await this.storage.delete(agent);
           await this.render();
           await ((_a5 = this.onChanged) == null ? void 0 : _a5.call(this));
-          new import_obsidian18.Notice(`Subagent "${agent.name}" deleted`);
+          new import_obsidian22.Notice(`Subagent "${agent.name}" deleted`);
         } catch (e2) {
-          new import_obsidian18.Notice("Failed to delete subagent");
+          new import_obsidian22.Notice("Failed to delete subagent");
         }
       })();
     });
@@ -80859,7 +84778,7 @@ var OpencodeAgentSettings = class {
         await this.storage.save(agent, existing);
         await this.render();
         await ((_a5 = this.onChanged) == null ? void 0 : _a5.call(this));
-        new import_obsidian18.Notice(
+        new import_obsidian22.Notice(
           existing ? `Subagent "${agent.name}" updated` : `Subagent "${agent.name}" created`
         );
       }
@@ -80925,7 +84844,6 @@ function isJsonObject(value) {
 }
 
 // src/providers/opencode/ui/OpencodeSettingsTab.ts
-var ALL_PROVIDERS_KEY = "all";
 var OPENCODE_METADATA_WARMUP_DB = ":memory:";
 var opencodeSettingsTabRenderer = {
   render(container, context) {
@@ -80933,56 +84851,41 @@ var opencodeSettingsTabRenderer = {
     const settingsBag = context.plugin.settings;
     const opencodeSettings = getOpencodeProviderSettings(settingsBag);
     const hostnameKey = getHostnameKey();
-    new import_obsidian19.Setting(container).setName("Setup").setHeading();
-    new import_obsidian19.Setting(container).setName("Enable OpenCode").setDesc("Launch `opencode acp` as a provider.").addToggle(
+    new import_obsidian23.Setting(container).setName("Setup").setHeading();
+    new import_obsidian23.Setting(container).setName("Enable OpenCode").setDesc("Launch `opencode acp` as a provider.").addToggle(
       (toggle) => toggle.setValue(opencodeSettings.enabled).onChange(async (value) => {
-        updateOpencodeProviderSettings(settingsBag, { enabled: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updateOpencodeProviderSettings(settings11, { enabled: value });
+        });
         context.refreshModelSelectors();
       })
     );
-    const cliPathSetting = new import_obsidian19.Setting(container).setName("CLI path").setDesc("Optional absolute path to the OpenCode CLI for this computer. Leave empty to use `opencode` from PATH.");
+    const cliPathSetting = new import_obsidian23.Setting(container).setName("CLI path").setDesc("Optional absolute path to the OpenCode CLI for this computer. Leave empty to use `opencode` from PATH.");
     const validationEl = container.createDiv({
       cls: "claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden"
     });
-    const validatePath = (value) => {
-      const trimmed = value.trim();
-      if (!trimmed) {
-        return null;
-      }
-      const expandedPath = expandHomePath(trimmed);
-      if (!fs21.existsSync(expandedPath)) {
-        return "Path does not exist";
-      }
-      const stat = fs21.statSync(expandedPath);
-      if (!stat.isFile()) {
-        return "Path must point to a file";
-      }
-      return null;
-    };
-    const updateCliPathValidation = (value, inputEl) => {
-      const error48 = validatePath(value);
-      if (error48) {
-        validationEl.setText(error48);
-        validationEl.toggleClass("claudian-hidden", false);
-        if (inputEl) {
-          inputEl.toggleClass("claudian-input-error", true);
-        }
-        return false;
-      }
-      validationEl.toggleClass("claudian-hidden", true);
-      if (inputEl) {
-        inputEl.toggleClass("claudian-input-error", false);
-      }
-      return true;
-    };
     const cliPathsByHost = { ...opencodeSettings.cliPathsByHost };
     const currentValue = opencodeSettings.cliPathsByHost[hostnameKey] || "";
     let cliPathInputEl = null;
+    const updateCliPathValidation = (value, inputEl) => {
+      const error48 = validateCliPath(value);
+      if (error48) {
+        validationEl.setText(error48);
+        validationEl.toggleClass("claudian-hidden", false);
+        inputEl == null ? void 0 : inputEl.toggleClass("claudian-input-error", true);
+        return false;
+      }
+      validationEl.toggleClass("claudian-hidden", true);
+      inputEl == null ? void 0 : inputEl.toggleClass("claudian-input-error", false);
+      return true;
+    };
+    const recycleOpencodeRuntime = async () => {
+      var _a5, _b3;
+      await ((_b3 = (_a5 = context.plugin).recycleProviderRuntimes) == null ? void 0 : _b3.call(_a5, "opencode"));
+    };
     const persistCliPath = async (value) => {
       var _a5;
-      const isValid2 = updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0);
-      if (!isValid2) {
+      if (!updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0)) {
         return false;
       }
       const trimmed = value.trim();
@@ -80991,27 +84894,13 @@ var opencodeSettingsTabRenderer = {
       } else {
         delete cliPathsByHost[hostnameKey];
       }
-      updateOpencodeProviderSettings(settingsBag, { cliPathsByHost: { ...cliPathsByHost } });
-      clearOpencodeDiscoveryState(settingsBag);
-      await context.plugin.saveSettings();
+      await context.plugin.mutateSettings((settings11) => {
+        updateOpencodeProviderSettings(settings11, { cliPathsByHost: { ...cliPathsByHost } });
+        clearOpencodeDiscoveryState(settings11);
+      });
       (_a5 = opencodeWorkspace == null ? void 0 : opencodeWorkspace.cliResolver) == null ? void 0 : _a5.reset();
       await recycleOpencodeRuntime();
       return true;
-    };
-    const recycleOpencodeRuntime = async () => {
-      var _a5, _b3;
-      for (const view of context.plugin.getAllViews()) {
-        const tabManager = view.getTabManager();
-        if (tabManager == null ? void 0 : tabManager.broadcastToProviderTabs) {
-          await tabManager.broadcastToProviderTabs("opencode", (service) => Promise.resolve(service.cleanup()));
-        } else {
-          await (tabManager == null ? void 0 : tabManager.broadcastToAllTabs(
-            (service) => Promise.resolve(service.cleanup())
-          ));
-        }
-        (_a5 = view.invalidateProviderCommandCaches) == null ? void 0 : _a5.call(view, ["opencode"]);
-        (_b3 = view.refreshModelSelector) == null ? void 0 : _b3.call(view);
-      }
     };
     cliPathSetting.addText((text) => {
       text.setPlaceholder(process.platform === "win32" ? "C:\\Users\\you\\AppData\\Roaming\\npm\\opencode.cmd" : "/usr/local/bin/opencode").setValue(currentValue).onChange(async (value) => {
@@ -81021,365 +84910,9 @@ var opencodeSettingsTabRenderer = {
       cliPathInputEl = text.inputEl;
       updateCliPathValidation(currentValue, text.inputEl);
     });
-    new import_obsidian19.Setting(container).setName("Models").setHeading();
-    new import_obsidian19.Setting(container).setName("Visible models").setDesc("Choose which OpenCode models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.");
-    const pickerEl = container.createDiv({ cls: "claudian-opencode-model-picker" });
-    let searchQuery = "";
-    let providerFilter = ALL_PROVIDERS_KEY;
-    const summaryEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-summary" });
-    const selectedEl = pickerEl.createDiv({ cls: "claudian-opencode-model-picker-selected" });
-    const catalogEl = pickerEl.createEl("details", { cls: "claudian-opencode-model-picker-catalog" });
-    catalogEl.open = getOpencodeProviderSettings(settingsBag).visibleModels.length === 0;
-    const catalogSummaryEl = catalogEl.createEl("summary", {
-      cls: "claudian-opencode-model-picker-catalog-summary"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-caret",
-      text: "\u25B8"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-title",
-      text: "Browse models"
-    });
-    const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-      cls: "claudian-opencode-model-picker-catalog-count"
-    });
-    const controlsEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-controls" });
-    const searchInput = controlsEl.createEl("input", {
-      cls: "claudian-opencode-model-picker-search",
-      type: "search"
-    });
-    searchInput.placeholder = "Filter by model, provider, or ID\u2026";
-    searchInput.addEventListener("input", () => {
-      searchQuery = searchInput.value.trim().toLowerCase();
-      renderList();
-    });
-    const providerSelectEl = controlsEl.createEl("select", {
-      cls: "claudian-opencode-model-picker-provider"
-    });
-    providerSelectEl.addEventListener("change", () => {
-      providerFilter = providerSelectEl.value;
-      renderList();
-    });
-    const listEl = catalogEl.createDiv({ cls: "claudian-opencode-model-picker-list" });
-    let loadingModelCatalog = false;
-    let modelCatalogLoadFailed = false;
-    const getEnrichedModels = () => {
-      const current = getOpencodeProviderSettings(settingsBag);
-      return buildEnrichedModels(current.discoveredModels, current.visibleModels);
-    };
-    const filterModels = (models) => {
-      return models.filter((model) => {
-        if (providerFilter !== ALL_PROVIDERS_KEY && model.providerKey !== providerFilter) {
-          return false;
-        }
-        if (!searchQuery) {
-          return true;
-        }
-        return model.rawId.toLowerCase().includes(searchQuery) || model.modelLabel.toLowerCase().includes(searchQuery) || model.providerLabel.toLowerCase().includes(searchQuery) || model.description.toLowerCase().includes(searchQuery);
-      });
-    };
-    const persistVisibleModels = async (visibleModels) => {
-      const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
-      const normalized = normalizeOpencodeVisibleModels(
-        visibleModels,
-        getOpencodeProviderSettings(settingsBag).discoveredModels
-      );
-      if (sameStringList(currentVisibleModels, normalized)) {
-        return;
-      }
-      updateOpencodeProviderSettings(settingsBag, { visibleModels: normalized });
-      await context.plugin.saveSettings();
-      renderAll();
-      context.refreshModelSelectors();
-    };
-    const persistModelMetadata = async (rawId) => {
-      const runtime = new OpencodeChatRuntime(context.plugin);
-      try {
-        runtime.syncConversationState({
-          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
-          sessionId: null
-        });
-        const loaded = await runtime.warmModelMetadata(encodeOpencodeModelId(rawId));
-        if (loaded) {
-          context.refreshModelSelectors();
-        }
-      } catch (e2) {
-      } finally {
-        runtime.cleanup();
-      }
-    };
-    const persistModelAliases = async (modelAliases) => {
-      updateOpencodeProviderSettings(settingsBag, { modelAliases });
-      await context.plugin.saveSettings();
-      renderSelected();
-      context.refreshModelSelectors();
-    };
-    const renderSummary = () => {
-      summaryEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      const enriched = getEnrichedModels();
-      const providerCount = new Set(enriched.map((model) => model.providerKey)).size;
-      const providerWord = providerCount === 1 ? "provider" : "providers";
-      summaryEl.createSpan({ text: "Visible: " });
-      summaryEl.createSpan({
-        cls: "claudian-opencode-model-picker-summary-value",
-        text: String(current.visibleModels.length)
-      });
-      summaryEl.createSpan({
-        text: ` of ${current.discoveredModels.length} discovered \u2022 ${providerCount} ${providerWord}`
-      });
-      let catalogSummary = "No models discovered yet";
-      if (loadingModelCatalog) {
-        catalogSummary = "Loading models...";
-      } else if (current.discoveredModels.length > 0) {
-        catalogSummary = `${current.discoveredModels.length} available`;
-      }
-      catalogSummaryCountEl.setText(catalogSummary);
-    };
-    const renderSelected = () => {
-      var _a5;
-      selectedEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      if (current.visibleModels.length === 0) {
-        selectedEl.toggleClass("claudian-hidden", true);
-        return;
-      }
-      selectedEl.toggleClass("claudian-hidden", false);
-      const enrichedByRawId = new Map(
-        getEnrichedModels().map((model) => [model.rawId, model])
-      );
-      const headerEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-header" });
-      headerEl.createEl("span", {
-        cls: "claudian-opencode-model-picker-selected-label",
-        text: `Selected (${current.visibleModels.length})`
-      });
-      const clearAllBtn = headerEl.createEl("button", {
-        cls: "claudian-opencode-model-picker-selected-clear",
-        text: "Clear all"
-      });
-      clearAllBtn.setAttribute("aria-label", "Clear all selected models");
-      clearAllBtn.addEventListener("click", () => {
-        void persistVisibleModels([]);
-      });
-      const rowsEl = selectedEl.createDiv({ cls: "claudian-opencode-model-picker-selected-rows" });
-      for (const rawId of current.visibleModels) {
-        const enriched = enrichedByRawId.get(rawId);
-        const defaultLabel = enriched ? `${enriched.providerLabel}/${enriched.modelLabel}` : rawId;
-        const rowEl = rowsEl.createDiv({ cls: "claudian-opencode-model-picker-selected-row" });
-        if (enriched && !enriched.isAvailable) {
-          rowEl.classList.add("claudian-opencode-model-picker-selected-row--unavailable");
-        }
-        const infoEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-info" });
-        const titleEl = infoEl.createDiv({ cls: "claudian-opencode-model-picker-selected-title" });
-        if (enriched) {
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-badge",
-            text: enriched.providerLabel
-          });
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-name",
-            text: enriched.modelLabel
-          });
-        } else {
-          titleEl.createEl("span", {
-            cls: "claudian-opencode-model-picker-selected-name",
-            text: rawId
-          });
-        }
-        if (enriched && !enriched.isAvailable) {
-          infoEl.createEl("div", {
-            cls: "claudian-opencode-model-picker-selected-unavailable",
-            text: "Not currently reported by OpenCode"
-          });
-        }
-        infoEl.createEl("div", {
-          cls: "claudian-opencode-model-picker-selected-id",
-          text: rawId
-        });
-        const controlsEl2 = rowEl.createDiv({ cls: "claudian-opencode-model-picker-selected-controls" });
-        const aliasInput = controlsEl2.createEl("input", {
-          cls: "claudian-opencode-model-picker-selected-alias",
-          type: "text"
-        });
-        aliasInput.placeholder = defaultLabel;
-        aliasInput.value = (_a5 = current.modelAliases[rawId]) != null ? _a5 : "";
-        aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
-        aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
-        const commitAlias = () => {
-          var _a6;
-          const latest = getOpencodeProviderSettings(settingsBag);
-          const existing = (_a6 = latest.modelAliases[rawId]) != null ? _a6 : "";
-          const next = aliasInput.value.trim();
-          if (next === existing) {
-            aliasInput.value = existing;
-            return;
-          }
-          const nextAliases = { ...latest.modelAliases };
-          if (next) {
-            nextAliases[rawId] = next;
-          } else {
-            delete nextAliases[rawId];
-          }
-          void persistModelAliases(nextAliases);
-        };
-        aliasInput.addEventListener("blur", commitAlias);
-        aliasInput.addEventListener("keydown", (event) => {
-          var _a6;
-          if (event.key === "Enter") {
-            event.preventDefault();
-            aliasInput.blur();
-          } else if (event.key === "Escape") {
-            event.preventDefault();
-            aliasInput.value = (_a6 = getOpencodeProviderSettings(settingsBag).modelAliases[rawId]) != null ? _a6 : "";
-            aliasInput.blur();
-          }
-        });
-        const removeBtn = controlsEl2.createEl("button", {
-          cls: "claudian-opencode-model-picker-selected-remove",
-          text: "\xD7"
-        });
-        removeBtn.setAttribute("aria-label", `Remove ${defaultLabel}`);
-        removeBtn.addEventListener("click", () => {
-          void persistVisibleModels(current.visibleModels.filter((entry) => entry !== rawId));
-        });
-      }
-    };
-    const renderProviderSelect = () => {
-      const enriched = getEnrichedModels();
-      const providers = /* @__PURE__ */ new Map();
-      for (const model of enriched) {
-        const existing = providers.get(model.providerKey);
-        if (existing) {
-          existing.count += 1;
-        } else {
-          providers.set(model.providerKey, { count: 1, label: model.providerLabel });
-        }
-      }
-      providerSelectEl.empty();
-      providerSelectEl.createEl("option", {
-        text: `All providers (${enriched.length})`,
-        value: ALL_PROVIDERS_KEY
-      });
-      const sortedProviders = Array.from(providers.entries()).sort(([, left], [, right]) => left.label.localeCompare(right.label));
-      for (const [key, { count, label }] of sortedProviders) {
-        providerSelectEl.createEl("option", {
-          text: `${label} (${count})`,
-          value: key
-        });
-      }
-      if (providerFilter !== ALL_PROVIDERS_KEY && !providers.has(providerFilter)) {
-        providerFilter = ALL_PROVIDERS_KEY;
-      }
-      providerSelectEl.value = providerFilter;
-    };
-    const renderList = () => {
-      listEl.empty();
-      const current = getOpencodeProviderSettings(settingsBag);
-      const selectedIds = new Set(current.visibleModels);
-      const enriched = getEnrichedModels();
-      const filtered = filterModels(enriched);
-      if (filtered.length === 0) {
-        const emptyEl = listEl.createDiv({ cls: "claudian-opencode-model-picker-empty" });
-        let emptyText = "No models match your filter.";
-        if (loadingModelCatalog) {
-          emptyText = "Loading OpenCode model catalog...";
-        } else if (modelCatalogLoadFailed) {
-          emptyText = "Could not load the OpenCode model catalog. Check the CLI path and login state, then expand this section again.";
-        } else if (enriched.length === 0) {
-          emptyText = "Start OpenCode once to load its model catalog. Claudian will then let you pick visible models.";
-        }
-        emptyEl.setText(emptyText);
-        return;
-      }
-      for (const model of filtered) {
-        const rowEl = listEl.createEl("label", { cls: "claudian-opencode-model-picker-row" });
-        const isSelected = selectedIds.has(model.rawId);
-        if (isSelected) {
-          rowEl.classList.add("claudian-opencode-model-picker-row--selected");
-        }
-        rowEl.title = model.rawId;
-        const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
-        checkboxEl.checked = isSelected;
-        checkboxEl.addEventListener("change", () => {
-          const currentVisibleModels = getOpencodeProviderSettings(settingsBag).visibleModels;
-          const next = checkboxEl.checked ? [...currentVisibleModels, model.rawId] : currentVisibleModels.filter((id) => id !== model.rawId);
-          void (async () => {
-            await persistVisibleModels(next);
-            if (checkboxEl.checked) {
-              await persistModelMetadata(model.rawId);
-            }
-          })();
-        });
-        const textEl = rowEl.createDiv({ cls: "claudian-opencode-model-picker-row-text" });
-        const headerEl = textEl.createDiv({ cls: "claudian-opencode-model-picker-row-header" });
-        headerEl.createEl("span", {
-          cls: "claudian-opencode-model-picker-row-name",
-          text: model.modelLabel
-        });
-        const badgeEl = headerEl.createEl("span", {
-          cls: "claudian-opencode-model-picker-row-badge",
-          text: model.providerLabel
-        });
-        if (!model.isAvailable) {
-          badgeEl.classList.add("claudian-opencode-model-picker-row-badge--unavailable");
-          badgeEl.setText("Unavailable");
-          badgeEl.title = "Configured model not currently reported by OpenCode";
-        }
-        textEl.createDiv({
-          cls: "claudian-opencode-model-picker-row-meta",
-          text: model.rawId
-        });
-        if (model.description) {
-          textEl.createDiv({
-            cls: "claudian-opencode-model-picker-row-desc",
-            text: model.description
-          });
-        }
-      }
-    };
-    const renderAll = () => {
-      renderSummary();
-      renderSelected();
-      renderProviderSelect();
-      renderList();
-    };
-    renderAll();
-    const loadModelCatalog = async () => {
-      if (loadingModelCatalog || getOpencodeProviderSettings(settingsBag).discoveredModels.length > 0) {
-        return;
-      }
-      loadingModelCatalog = true;
-      modelCatalogLoadFailed = false;
-      renderAll();
-      const runtime = new OpencodeChatRuntime(context.plugin);
-      try {
-        runtime.syncConversationState({
-          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
-          sessionId: null
-        });
-        const loaded = await runtime.ensureReady({ allowSessionCreation: true });
-        modelCatalogLoadFailed = !loaded || getOpencodeProviderSettings(settingsBag).discoveredModels.length === 0;
-        if (!modelCatalogLoadFailed) {
-          context.refreshModelSelectors();
-        }
-      } catch (e2) {
-        modelCatalogLoadFailed = true;
-      } finally {
-        loadingModelCatalog = false;
-        runtime.cleanup();
-        renderAll();
-      }
-    };
-    catalogEl.addEventListener("toggle", () => {
-      if (catalogEl.open) {
-        void loadModelCatalog();
-      }
-    });
-    if (catalogEl.open) {
-      void loadModelCatalog();
-    }
-    new import_obsidian19.Setting(container).setName("Commands and skills").setHeading();
+    new import_obsidian23.Setting(container).setName("Models").setHeading();
+    renderOpencodeModelPicker(container, context, settingsBag);
+    new import_obsidian23.Setting(container).setName("Commands and skills").setHeading();
     const commandsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
     commandsDesc.createEl("p", {
       cls: "setting-item-description",
@@ -81391,7 +84924,7 @@ var opencodeSettingsTabRenderer = {
       placeholder: "compact\nreview\nfix"
     });
     if (opencodeWorkspace == null ? void 0 : opencodeWorkspace.agentStorage) {
-      new import_obsidian19.Setting(container).setName("Subagents").setHeading();
+      new import_obsidian23.Setting(container).setName("Subagents").setHeading();
       const subagentsDesc = container.createDiv({ cls: "claudian-sp-settings-desc" });
       subagentsDesc.createEl("p", {
         cls: "setting-item-description",
@@ -81422,21 +84955,112 @@ OPENCODE_DB=/path/to/opencode.db`,
     });
   }
 };
-function buildEnrichedModels(discoveredModels, visibleModels) {
+function renderOpencodeModelPicker(container, context, settingsBag) {
+  const getState = () => {
+    const current = getOpencodeProviderSettings(settingsBag);
+    return {
+      aliases: current.modelAliases,
+      discoveredCount: current.discoveredModels.length,
+      models: buildOpencodePickerModels(current.discoveredModels, current.visibleModels),
+      selectedIds: current.visibleModels
+    };
+  };
+  const warmModelMetadata = async (rawId) => {
+    const runtime = new OpencodeChatRuntime(context.plugin);
+    try {
+      runtime.syncConversationState({
+        providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
+        sessionId: null
+      });
+      if (await runtime.warmModelMetadata(encodeOpencodeModelId(rawId))) {
+        context.refreshModelSelectors();
+      }
+    } catch (e2) {
+    } finally {
+      runtime.cleanup();
+    }
+  };
+  renderProviderModelPicker({
+    container,
+    emptyCatalogText: "Start OpenCode once to load its model catalog. Claudian will then let you pick visible models.",
+    failedCatalogText: "Could not load the OpenCode model catalog. Check the CLI path and login state, then try again.",
+    getState,
+    async loadCatalog() {
+      const runtime = new OpencodeChatRuntime(context.plugin);
+      try {
+        runtime.syncConversationState({
+          providerState: { databasePath: OPENCODE_METADATA_WARMUP_DB },
+          sessionId: null
+        });
+        const loaded = await runtime.ensureReady({ allowSessionCreation: true });
+        const discoveredCount = getOpencodeProviderSettings(settingsBag).discoveredModels.length;
+        if (!loaded) {
+          return "failed";
+        }
+        if (discoveredCount > 0) {
+          context.refreshModelSelectors();
+          return "loaded";
+        }
+        return "empty";
+      } catch (e2) {
+        return "failed";
+      } finally {
+        runtime.cleanup();
+      }
+    },
+    loadCatalogOnRender: true,
+    loadingCatalogText: "Loading OpenCode model catalog...",
+    modifier: "opencode",
+    async onAliasesChange(modelAliases) {
+      await context.plugin.mutateSettings((settings11) => {
+        updateOpencodeProviderSettings(settings11, { modelAliases });
+      });
+      context.refreshModelSelectors();
+    },
+    onModelSelected: async (model) => warmModelMetadata(model.id),
+    async onSelectedIdsChange(visibleModels) {
+      const current = getOpencodeProviderSettings(settingsBag);
+      const normalized = normalizeOpencodeVisibleModels(visibleModels, current.discoveredModels);
+      if (sameStringList(current.visibleModels, normalized)) {
+        return;
+      }
+      await context.plugin.mutateSettings((settings11) => {
+        updateOpencodeProviderSettings(settings11, { visibleModels: normalized });
+      });
+      context.refreshModelSelectors();
+    },
+    providerName: "OpenCode",
+    settingDescription: "Choose which OpenCode models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here."
+  });
+}
+function validateCliPath(value) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+  const expandedPath = expandHomePath(trimmed);
+  if (!fs22.existsSync(expandedPath)) {
+    return "Path does not exist";
+  }
+  if (!fs22.statSync(expandedPath).isFile()) {
+    return "Path must point to a file";
+  }
+  return null;
+}
+function buildOpencodePickerModels(discoveredModels, visibleModels) {
   var _a5;
-  const enriched = [];
+  const models = [];
   const discoveredIds = /* @__PURE__ */ new Set();
-  const baseModels = buildOpencodeBaseModels(discoveredModels);
-  for (const model of baseModels) {
+  for (const model of buildOpencodeBaseModels(discoveredModels)) {
     const { modelLabel, providerLabel } = splitOpencodeModelLabel(model.label || model.rawId);
     discoveredIds.add(model.rawId);
-    enriched.push({
+    models.push({
       description: (_a5 = model.description) != null ? _a5 : "",
+      id: model.rawId,
       isAvailable: true,
-      modelLabel,
+      name: modelLabel,
       providerKey: providerLabel.toLowerCase(),
-      providerLabel,
-      rawId: model.rawId
+      providerLabel
     });
   }
   for (const rawId of visibleModels) {
@@ -81444,21 +85068,22 @@ function buildEnrichedModels(discoveredModels, visibleModels) {
       continue;
     }
     const { modelLabel, providerLabel } = splitOpencodeModelLabel(rawId);
-    enriched.push({
-      description: "",
+    models.push({
+      id: rawId,
       isAvailable: false,
-      modelLabel,
+      name: modelLabel,
       providerKey: providerLabel.toLowerCase(),
       providerLabel,
-      rawId
+      unavailableMessage: "Not currently reported by OpenCode"
     });
   }
-  return enriched.sort((left, right) => {
-    const providerCmp = left.providerLabel.localeCompare(right.providerLabel);
+  return models.sort((left, right) => {
+    var _a6, _b3;
+    const providerCmp = ((_a6 = left.providerLabel) != null ? _a6 : "").localeCompare((_b3 = right.providerLabel) != null ? _b3 : "");
     if (providerCmp !== 0) {
       return providerCmp;
     }
-    return left.modelLabel.localeCompare(right.modelLabel);
+    return left.name.localeCompare(right.name);
   });
 }
 
@@ -81532,8 +85157,8 @@ function maybeGetOpencodeWorkspaceServices() {
 }
 
 // src/providers/opencode/runtime/OpencodeAuxQueryRunner.ts
-var fs22 = __toESM(require("node:fs/promises"));
-var path21 = __toESM(require("node:path"));
+var fs23 = __toESM(require("node:fs/promises"));
+var path23 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/ui/OpencodeChatUIConfig.ts
@@ -81742,16 +85367,12 @@ var opencodeChatUIConfig = {
   }
 };
 function getDefaultThinkingLevelForModel(baseRawId, settings11) {
-  var _a5, _b3, _c2, _d;
+  var _a5;
   const opencodeSettings = getOpencodeProviderSettings(settings11);
-  const preferred = opencodeSettings.preferredThinkingByModel[baseRawId];
-  const supportedValues = new Set(
-    ((_a5 = opencodeSettings.thinkingOptionsByModel[baseRawId]) != null ? _a5 : []).map((variant) => variant.value)
+  return resolveOpencodeDefaultThinkingLevel(
+    (_a5 = opencodeSettings.thinkingOptionsByModel[baseRawId]) != null ? _a5 : [],
+    opencodeSettings.preferredThinkingByModel[baseRawId]
   );
-  if (preferred && supportedValues.has(preferred)) {
-    return preferred;
-  }
-  return (_d = (_c2 = (_b3 = opencodeSettings.thinkingOptionsByModel[baseRawId]) == null ? void 0 : _b3[0]) == null ? void 0 : _c2.value) != null ? _d : OPENCODE_DEFAULT_THINKING_LEVEL;
 }
 function getOpencodeThinkingOptions(model, settings11) {
   var _a5;
@@ -81995,7 +85616,7 @@ ${stderr}` : message,
   async readTextFile(request) {
     var _a5;
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    const content = await fs22.readFile(resolvedPath, "utf-8");
+    const content = await fs23.readFile(resolvedPath, "utf-8");
     if (request.line === void 0 && request.limit === void 0) {
       return { content };
     }
@@ -82045,9 +85666,9 @@ ${stderr}` : message,
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    const resolvedPath = path21.isAbsolute(rawPath) ? path21.resolve(rawPath) : path21.resolve(cwd, rawPath);
-    const relative4 = path21.relative(cwd, resolvedPath);
-    if (relative4 === "" || !relative4.startsWith("..") && !path21.isAbsolute(relative4)) {
+    const resolvedPath = path23.isAbsolute(rawPath) ? path23.resolve(rawPath) : path23.resolve(cwd, rawPath);
+    const relative4 = path23.relative(cwd, resolvedPath);
+    if (relative4 === "" || !relative4.startsWith("..") && !path23.isAbsolute(relative4)) {
       return resolvedPath;
     }
     throw new Error("OpenCode aux read access is limited to the current workspace.");
@@ -82277,8 +85898,30 @@ var opencodeSettingsReconciler = {
   }
 };
 
+// src/providers/opencode/history/OpencodeHistoryPathResolver.ts
+var os14 = __toESM(require("node:os"));
+var path24 = __toESM(require("node:path"));
+function resolveOpencodeDatabasePathHint(persistedPath, context) {
+  var _a5, _b3;
+  if (!context) {
+    return resolveExistingOpencodeDatabasePath(persistedPath);
+  }
+  const env = context.environment;
+  const configuredPath = resolveOpencodeDatabasePath(env);
+  const home = ((_a5 = env.HOME) == null ? void 0 : _a5.trim()) || ((_b3 = env.USERPROFILE) == null ? void 0 : _b3.trim()) || os14.homedir();
+  const trustedRoots = [
+    resolveOpencodeDataDir(env),
+    path24.join(home, "Library", "Application Support", "opencode")
+  ];
+  const isTrustedHint = !!persistedPath && (!!configuredPath && isSamePath(persistedPath, configuredPath) || trustedRoots.some((root) => isPathWithinRoot(persistedPath, root)));
+  return resolveExistingOpencodeDatabasePath(
+    isTrustedHint ? persistedPath : void 0,
+    env
+  );
+}
+
 // src/providers/opencode/history/OpencodeHistoryStore.ts
-var fs23 = __toESM(require("node:fs"));
+var fs24 = __toESM(require("node:fs"));
 
 // src/providers/opencode/history/OpencodeSqliteReader.ts
 var import_node_child_process2 = require("node:child_process");
@@ -82309,11 +85952,11 @@ async function loadOpencodeSessionRows(databasePath, sessionId, dependencies = {
   if (viaCurrentProcess) {
     return viaCurrentProcess;
   }
-  const viaNodeProcess = loadSessionRowsWithNodeProcess(
+  const viaNodeProcess = await loadSessionRowsWithNodeProcess(
     databasePath,
     sessionId,
     resolvedDependencies.findNodeExecutable,
-    resolvedDependencies.spawnSync
+    resolvedDependencies.spawn
   );
   if (viaNodeProcess) {
     return viaNodeProcess;
@@ -82321,14 +85964,14 @@ async function loadOpencodeSessionRows(databasePath, sessionId, dependencies = {
   return loadSessionRowsWithSqliteCli(
     databasePath,
     sessionId,
-    resolvedDependencies.spawnSync
+    resolvedDependencies.spawn
   );
 }
 function resolveDependencies(dependencies) {
   return {
     findNodeExecutable,
     requireSqliteModule,
-    spawnSync: import_node_child_process2.spawnSync,
+    spawn: import_node_child_process2.spawn,
     ...dependencies
   };
 }
@@ -82363,12 +86006,12 @@ function loadSessionRowsWithCurrentProcessSqlite(databasePath, sessionId, requir
     db2 == null ? void 0 : db2.close();
   }
 }
-function loadSessionRowsWithNodeProcess(databasePath, sessionId, findNode, spawnSync) {
+async function loadSessionRowsWithNodeProcess(databasePath, sessionId, findNode, spawn6) {
   const nodePath2 = findNode();
   if (!nodePath2) {
     return null;
   }
-  const result = spawnSync(
+  const stdout = await runBufferedChild(
     nodePath2,
     [
       "-e",
@@ -82378,48 +86021,77 @@ function loadSessionRowsWithNodeProcess(databasePath, sessionId, findNode, spawn
       OPENCODE_MESSAGE_ROW_SQL,
       OPENCODE_PART_ROW_SQL
     ],
-    {
-      encoding: "utf8",
-      maxBuffer: OPENCODE_SQLITE_QUERY_MAX_BUFFER,
-      windowsHide: true
-    }
+    spawn6
   );
-  if (result.error || result.status !== 0) {
-    return null;
-  }
-  return parseStoredSessionRows(getSpawnStdout(result.stdout));
+  return stdout === null ? null : parseStoredSessionRows(stdout);
 }
-function loadSessionRowsWithSqliteCli(databasePath, sessionId, spawnSync) {
+async function loadSessionRowsWithSqliteCli(databasePath, sessionId, spawn6) {
   const escapedSessionId = escapeSqlLiteral(sessionId);
-  const messageRows = runSqlite3JsonQuery(
+  const messageRows = await runSqlite3JsonQuery(
     databasePath,
     buildOpencodeMessageRowsSql(`'${escapedSessionId}'`),
-    spawnSync
+    spawn6
   );
-  const partRows = runSqlite3JsonQuery(
+  const partRows = await runSqlite3JsonQuery(
     databasePath,
     buildOpencodePartRowsSql(`'${escapedSessionId}'`),
-    spawnSync
+    spawn6
   );
   if (!messageRows || !partRows) {
     return null;
   }
   return { messageRows, partRows };
 }
-function runSqlite3JsonQuery(databasePath, sql, spawnSync) {
-  const result = spawnSync(
+async function runSqlite3JsonQuery(databasePath, sql, spawn6) {
+  const stdout = await runBufferedChild(
     "sqlite3",
     ["-json", databasePath, sql],
-    {
-      encoding: "utf8",
-      maxBuffer: OPENCODE_SQLITE_QUERY_MAX_BUFFER,
-      windowsHide: true
-    }
+    spawn6
   );
-  if (result.error || result.status !== 0) {
-    return null;
-  }
-  return parseStoredRows(getSpawnStdout(result.stdout));
+  return stdout === null ? null : parseStoredRows(stdout);
+}
+function runBufferedChild(command, args, spawn6) {
+  return new Promise((resolve8) => {
+    var _a5;
+    let settled = false;
+    let size = 0;
+    let timer = null;
+    const chunks = [];
+    let child;
+    try {
+      child = spawn6(command, args, {
+        stdio: ["ignore", "pipe", "ignore"],
+        windowsHide: true
+      });
+    } catch (e2) {
+      resolve8(null);
+      return;
+    }
+    const finish = (value) => {
+      if (settled) return;
+      settled = true;
+      if (timer !== null) window.clearTimeout(timer);
+      resolve8(value);
+    };
+    (_a5 = child.stdout) == null ? void 0 : _a5.on("data", (chunk) => {
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      size += buffer.length;
+      if (size > OPENCODE_SQLITE_QUERY_MAX_BUFFER) {
+        child.kill("SIGKILL");
+        finish(null);
+        return;
+      }
+      chunks.push(buffer);
+    });
+    child.once("error", () => finish(null));
+    child.once("close", (code) => {
+      finish(code === 0 ? Buffer.concat(chunks).toString("utf8") : null);
+    });
+    timer = window.setTimeout(() => {
+      child.kill("SIGKILL");
+      finish(null);
+    }, 1e4);
+  });
 }
 function parseStoredSessionRows(value) {
   try {
@@ -82443,10 +86115,6 @@ function parseStoredRows(value) {
 }
 function parseStoredRowsValue(value) {
   return Array.isArray(value) ? value.filter((row) => isPlainObject7(row)) : null;
-}
-function getSpawnStdout(stdout) {
-  var _a5;
-  return typeof stdout === "string" ? stdout : (_a5 = stdout == null ? void 0 : stdout.toString("utf8")) != null ? _a5 : "";
 }
 function escapeSqlLiteral(value) {
   return value.replaceAll("'", "''");
@@ -82487,7 +86155,7 @@ order by message_id asc, id asc;`.trim();
 var OPENCODE_HYDRATION_DIAGNOSTIC_ID_PREFIX = "opencode-hydration-error";
 async function loadOpencodeSessionMessages(sessionId, providerState) {
   const databasePath = resolveExistingOpencodeDatabasePath(providerState == null ? void 0 : providerState.databasePath);
-  if (!databasePath || databasePath === ":memory:" || !fs23.existsSync(databasePath)) {
+  if (!databasePath || databasePath === ":memory:" || !fs24.existsSync(databasePath)) {
     return [];
   }
   const rows = await loadOpencodeSessionRows(databasePath, sessionId);
@@ -82867,19 +86535,28 @@ var OpencodeConversationHistoryService = class {
   constructor() {
     this.hydratedKeys = /* @__PURE__ */ new Map();
   }
-  async hydrateConversationHistory(conversation, _vaultPath) {
-    var _a5;
+  async hydrateConversationHistory(conversation, _vaultPath, pathContext) {
+    const state = getOpencodeState(conversation.providerState);
+    const databasePath = resolveOpencodeDatabasePathHint(state.databasePath, pathContext);
+    if (state.databasePath && state.databasePath !== databasePath) {
+      const providerState = { ...conversation.providerState };
+      if (databasePath) {
+        providerState.databasePath = databasePath;
+      } else {
+        delete providerState.databasePath;
+      }
+      conversation.providerState = Object.keys(providerState).length > 0 ? providerState : void 0;
+    }
     const sessionId = conversation.sessionId;
     if (!sessionId) {
       this.hydratedKeys.delete(conversation.id);
       return;
     }
-    const state = getOpencodeState(conversation.providerState);
-    const hydrationKey = `${sessionId}::${(_a5 = state.databasePath) != null ? _a5 : ""}`;
+    const hydrationKey = `${sessionId}::${databasePath != null ? databasePath : ""}`;
     if (conversation.messages.length > 0 && this.hydratedKeys.get(conversation.id) === hydrationKey) {
       return;
     }
-    const messages = await loadOpencodeSessionMessages(sessionId, state);
+    const messages = await loadOpencodeSessionMessages(sessionId, { databasePath: databasePath != null ? databasePath : void 0 });
     if (messages.length === 0) {
       this.hydratedKeys.delete(conversation.id);
       return;
@@ -82914,6 +86591,7 @@ var OpencodeConversationHistoryService = class {
 
 // src/providers/opencode/registration.ts
 var opencodeProviderRegistration = {
+  id: "opencode",
   blankTabOrder: 10,
   capabilities: OPENCODE_PROVIDER_CAPABILITIES,
   chatUIConfig: opencodeChatUIConfig,
@@ -82926,7 +86604,15 @@ var opencodeProviderRegistration = {
   historyService: new OpencodeConversationHistoryService(),
   isEnabled: (settings11) => getOpencodeProviderSettings(settings11).enabled,
   settingsReconciler: opencodeSettingsReconciler,
-  taskResultInterpreter: new OpencodeTaskResultInterpreter()
+  settingsStorage: {
+    hostScopedFields: ["cliPathsByHost"],
+    normalizeStored(target, stored) {
+      updateOpencodeProviderSettings(target, getOpencodeProviderSettings(stored));
+      return false;
+    }
+  },
+  taskResultInterpreter: new OpencodeTaskResultInterpreter(),
+  workspace: opencodeWorkspaceRegistration
 };
 
 // src/providers/pi/commands/PiCommandCatalog.ts
@@ -83047,8 +86733,8 @@ var PiCliResolver = class {
 };
 
 // src/providers/pi/ui/PiSettingsTab.ts
-var fs24 = __toESM(require("node:fs"));
-var import_obsidian20 = require("obsidian");
+var fs25 = __toESM(require("node:fs"));
+var import_obsidian24 = require("obsidian");
 init_env();
 init_path();
 
@@ -83336,9 +87022,10 @@ function isPlainObject9(value) {
 
 // src/providers/pi/runtime/PiSubprocess.ts
 var import_node_child_process3 = require("node:child_process");
-var path22 = __toESM(require("node:path"));
+var path25 = __toESM(require("node:path"));
 init_env();
 var SIGKILL_TIMEOUT_MS3 = 3e3;
+var FINAL_SHUTDOWN_TIMEOUT_MS3 = 3e3;
 var STDERR_BUFFER_LIMIT3 = 8e3;
 var PiSubprocess = class {
   constructor(launchSpec) {
@@ -83374,7 +87061,7 @@ var PiSubprocess = class {
         ...this.launchSpec.env,
         PATH: getEnhancedPath(
           this.launchSpec.env.PATH,
-          path22.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
+          path25.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
         )
       },
       stdio: "pipe",
@@ -83414,15 +87101,19 @@ var PiSubprocess = class {
     }
     await new Promise((resolve8) => {
       const proc = this.proc;
+      let killTimer = null;
+      let finalTimer = null;
       const onClose = () => {
         cleanup();
         resolve8();
       };
-      const killTimer = window.setTimeout(() => {
+      killTimer = window.setTimeout(() => {
         this.killProc(proc, "SIGKILL");
+        finalTimer = window.setTimeout(onClose, FINAL_SHUTDOWN_TIMEOUT_MS3);
       }, SIGKILL_TIMEOUT_MS3);
       const cleanup = () => {
-        window.clearTimeout(killTimer);
+        if (killTimer !== null) window.clearTimeout(killTimer);
+        if (finalTimer !== null) window.clearTimeout(finalTimer);
         proc.off("exit", onClose);
       };
       proc.once("exit", onClose);
@@ -83535,18 +87226,18 @@ function extractModels(response) {
 }
 
 // src/providers/pi/ui/PiSettingsTab.ts
-var ALL_PROVIDERS_KEY2 = "all";
 var piSettingsTabRenderer = {
   render(container, context) {
     const settingsBag = context.plugin.settings;
     const piSettings = getPiProviderSettings(settingsBag);
     const hostnameKey = getHostnameKey();
     const workspace = maybeGetPiWorkspaceServices();
-    new import_obsidian20.Setting(container).setName("Setup").setHeading();
-    new import_obsidian20.Setting(container).setName("Enable Pi").setDesc("Launch `pi --mode rpc` as a provider.").addToggle(
+    new import_obsidian24.Setting(container).setName("Setup").setHeading();
+    new import_obsidian24.Setting(container).setName("Enable Pi").setDesc("Launch `pi --mode rpc` as a provider.").addToggle(
       (toggle) => toggle.setValue(piSettings.enabled).onChange(async (value) => {
-        updatePiProviderSettings(settingsBag, { enabled: value });
-        await context.plugin.saveSettings();
+        await context.plugin.mutateSettings((settings11) => {
+          updatePiProviderSettings(settings11, { enabled: value });
+        });
         context.refreshModelSelectors();
       })
     );
@@ -83556,7 +87247,7 @@ var piSettingsTabRenderer = {
     const cliPathsByHost = { ...piSettings.cliPathsByHost };
     let cliPathInputEl = null;
     const updateCliPathValidation = (value, inputEl) => {
-      const error48 = validateCliPath(value);
+      const error48 = validateCliPath2(value);
       if (error48) {
         validationEl.setText(error48);
         validationEl.toggleClass("claudian-hidden", false);
@@ -83568,7 +87259,6 @@ var piSettingsTabRenderer = {
       return true;
     };
     const persistCliPath = async (value) => {
-      var _a5;
       if (!updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0)) {
         return;
       }
@@ -83578,15 +87268,17 @@ var piSettingsTabRenderer = {
       } else {
         delete cliPathsByHost[hostnameKey];
       }
-      updatePiProviderSettings(settingsBag, {
-        cliPathsByHost: { ...cliPathsByHost },
-        discoveredModels: []
+      await context.plugin.mutateSettings((settings11) => {
+        var _a5;
+        updatePiProviderSettings(settings11, {
+          cliPathsByHost: { ...cliPathsByHost },
+          discoveredModels: []
+        });
+        (_a5 = workspace == null ? void 0 : workspace.cliResolver) == null ? void 0 : _a5.reset();
       });
-      (_a5 = workspace == null ? void 0 : workspace.cliResolver) == null ? void 0 : _a5.reset();
-      await context.plugin.saveSettings();
       context.refreshModelSelectors();
     };
-    new import_obsidian20.Setting(container).setName("CLI path").setDesc("Optional absolute path to the Pi CLI for this computer. Leave empty to use `pi` from PATH.").addText((text) => {
+    new import_obsidian24.Setting(container).setName("CLI path").setDesc("Optional absolute path to the Pi CLI for this computer. Leave empty to use `pi` from PATH.").addText((text) => {
       const currentValue = piSettings.cliPathsByHost[hostnameKey] || "";
       text.setPlaceholder(process.platform === "win32" ? "C:\\Users\\you\\AppData\\Roaming\\npm\\pi.cmd" : "/usr/local/bin/pi").setValue(currentValue).onChange((value) => {
         void persistCliPath(value);
@@ -83594,351 +87286,8 @@ var piSettingsTabRenderer = {
       cliPathInputEl = text.inputEl;
       updateCliPathValidation(currentValue, text.inputEl);
     });
-    new import_obsidian20.Setting(container).setName("Models").setHeading();
-    new import_obsidian20.Setting(container).setName("Visible models").setDesc("Choose which Pi models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.");
-    const pickerEl = container.createDiv({ cls: "claudian-provider-model-picker claudian-provider-model-picker--pi" });
-    let searchQuery = "";
-    let providerFilter = ALL_PROVIDERS_KEY2;
-    let loadingModelCatalog = false;
-    let modelCatalogLoadFailed = false;
-    const summaryEl = pickerEl.createDiv({ cls: "claudian-provider-model-picker-summary" });
-    const selectedEl = pickerEl.createDiv({ cls: "claudian-provider-model-picker-selected" });
-    const catalogEl = pickerEl.createEl("details", { cls: "claudian-provider-model-picker-catalog" });
-    catalogEl.open = getPiProviderSettings(settingsBag).visibleModels.length === 0;
-    const catalogSummaryEl = catalogEl.createEl("summary", {
-      cls: "claudian-provider-model-picker-catalog-summary"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-provider-model-picker-catalog-caret",
-      text: "\u25B8"
-    });
-    catalogSummaryEl.createSpan({
-      cls: "claudian-provider-model-picker-catalog-title",
-      text: "Browse models"
-    });
-    const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-      cls: "claudian-provider-model-picker-catalog-count"
-    });
-    const controlsEl = catalogEl.createDiv({ cls: "claudian-provider-model-picker-controls" });
-    const searchInput = controlsEl.createEl("input", {
-      cls: "claudian-provider-model-picker-search",
-      type: "search"
-    });
-    searchInput.placeholder = "Filter by model, provider, or ID...";
-    searchInput.addEventListener("input", () => {
-      searchQuery = searchInput.value.trim().toLowerCase();
-      renderList();
-    });
-    const providerSelectEl = controlsEl.createEl("select", {
-      cls: "claudian-provider-model-picker-provider"
-    });
-    providerSelectEl.addEventListener("change", () => {
-      providerFilter = providerSelectEl.value;
-      renderList();
-    });
-    const discoverButtonEl = controlsEl.createEl("button", {
-      cls: "claudian-provider-model-picker-action",
-      text: "Discover"
-    });
-    discoverButtonEl.setAttribute("type", "button");
-    discoverButtonEl.addEventListener("click", () => {
-      void loadModelCatalog({ force: true });
-    });
-    const listEl = catalogEl.createDiv({ cls: "claudian-provider-model-picker-list" });
-    const getEnrichedModels = () => {
-      const current = getPiProviderSettings(settingsBag);
-      return buildEnrichedPiModels(current.discoveredModels, current.visibleModels);
-    };
-    const filterModels = (models) => {
-      return models.filter((model) => {
-        if (providerFilter !== ALL_PROVIDERS_KEY2 && model.providerKey !== providerFilter) {
-          return false;
-        }
-        if (!searchQuery) {
-          return true;
-        }
-        return model.encodedId.toLowerCase().includes(searchQuery) || model.modelLabel.toLowerCase().includes(searchQuery) || model.providerLabel.toLowerCase().includes(searchQuery) || model.description.toLowerCase().includes(searchQuery);
-      });
-    };
-    const persistVisibleModels = async (visibleModels) => {
-      const current = getPiProviderSettings(settingsBag);
-      const normalized = normalizePiVisibleModels(visibleModels, current.discoveredModels);
-      if (sameStringList2(current.visibleModels, normalized)) {
-        return;
-      }
-      updatePiProviderSettings(settingsBag, { visibleModels: normalized });
-      await context.plugin.saveSettings();
-      renderAll();
-      context.refreshModelSelectors();
-    };
-    const persistModelAliases = async (modelAliases) => {
-      updatePiProviderSettings(settingsBag, { modelAliases });
-      await context.plugin.saveSettings();
-      renderSelected();
-      context.refreshModelSelectors();
-    };
-    const renderSummary = () => {
-      summaryEl.empty();
-      const current = getPiProviderSettings(settingsBag);
-      const enriched = getEnrichedModels();
-      const providerCount = new Set(enriched.map((model) => model.providerKey)).size;
-      const providerWord = providerCount === 1 ? "provider" : "providers";
-      summaryEl.createSpan({ text: "Visible: " });
-      summaryEl.createSpan({
-        cls: "claudian-provider-model-picker-summary-value",
-        text: String(current.visibleModels.length)
-      });
-      summaryEl.createSpan({
-        text: ` of ${current.discoveredModels.length} discovered | ${providerCount} ${providerWord}`
-      });
-      let catalogSummary = "No models discovered yet";
-      if (loadingModelCatalog) {
-        catalogSummary = "Loading models...";
-      } else if (current.discoveredModels.length > 0) {
-        catalogSummary = `${current.discoveredModels.length} available`;
-      }
-      catalogSummaryCountEl.setText(catalogSummary);
-      discoverButtonEl.disabled = loadingModelCatalog;
-      discoverButtonEl.setText(loadingModelCatalog ? "Loading..." : current.discoveredModels.length > 0 ? "Refresh" : "Discover");
-    };
-    const renderSelected = () => {
-      var _a5;
-      selectedEl.empty();
-      const current = getPiProviderSettings(settingsBag);
-      if (current.visibleModels.length === 0) {
-        selectedEl.toggleClass("claudian-hidden", true);
-        return;
-      }
-      selectedEl.toggleClass("claudian-hidden", false);
-      const enrichedById = new Map(
-        getEnrichedModels().map((model) => [model.encodedId, model])
-      );
-      const headerEl = selectedEl.createDiv({ cls: "claudian-provider-model-picker-selected-header" });
-      headerEl.createEl("span", {
-        cls: "claudian-provider-model-picker-selected-label",
-        text: `Selected (${current.visibleModels.length})`
-      });
-      const clearAllBtn = headerEl.createEl("button", {
-        cls: "claudian-provider-model-picker-selected-clear",
-        text: "Clear all"
-      });
-      clearAllBtn.setAttribute("aria-label", "Clear all selected Pi models");
-      clearAllBtn.addEventListener("click", () => {
-        void persistVisibleModels([]);
-      });
-      const rowsEl = selectedEl.createDiv({ cls: "claudian-provider-model-picker-selected-rows" });
-      for (const encodedId of current.visibleModels) {
-        const enriched = enrichedById.get(encodedId);
-        const defaultLabel = enriched ? `${enriched.providerLabel}/${enriched.modelLabel}` : encodedId;
-        const rowEl = rowsEl.createDiv({ cls: "claudian-provider-model-picker-selected-row" });
-        if (enriched && !enriched.isAvailable) {
-          rowEl.classList.add("claudian-provider-model-picker-selected-row--unavailable");
-        }
-        const infoEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-selected-info" });
-        const titleEl = infoEl.createDiv({ cls: "claudian-provider-model-picker-selected-title" });
-        if (enriched) {
-          titleEl.createEl("span", {
-            cls: "claudian-provider-model-picker-selected-badge",
-            text: enriched.providerLabel
-          });
-          titleEl.createEl("span", {
-            cls: "claudian-provider-model-picker-selected-name",
-            text: enriched.modelLabel
-          });
-        } else {
-          titleEl.createEl("span", {
-            cls: "claudian-provider-model-picker-selected-name",
-            text: encodedId
-          });
-        }
-        if (enriched && !enriched.isAvailable) {
-          infoEl.createEl("div", {
-            cls: "claudian-provider-model-picker-selected-unavailable",
-            text: "Not currently reported by Pi"
-          });
-        }
-        infoEl.createEl("div", {
-          cls: "claudian-provider-model-picker-selected-id",
-          text: encodedId
-        });
-        const rowControlsEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-selected-controls" });
-        const aliasInput = rowControlsEl.createEl("input", {
-          cls: "claudian-provider-model-picker-selected-alias",
-          type: "text"
-        });
-        aliasInput.placeholder = defaultLabel;
-        aliasInput.value = (_a5 = current.modelAliases[encodedId]) != null ? _a5 : "";
-        aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
-        aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
-        const commitAlias = () => {
-          var _a6;
-          const latest = getPiProviderSettings(settingsBag);
-          const existing = (_a6 = latest.modelAliases[encodedId]) != null ? _a6 : "";
-          const next = aliasInput.value.trim();
-          if (next === existing) {
-            aliasInput.value = existing;
-            return;
-          }
-          const nextAliases = { ...latest.modelAliases };
-          if (next) {
-            nextAliases[encodedId] = next;
-          } else {
-            delete nextAliases[encodedId];
-          }
-          void persistModelAliases(nextAliases);
-        };
-        aliasInput.addEventListener("blur", commitAlias);
-        aliasInput.addEventListener("keydown", (event) => {
-          var _a6;
-          if (event.key === "Enter") {
-            event.preventDefault();
-            aliasInput.blur();
-          } else if (event.key === "Escape") {
-            event.preventDefault();
-            aliasInput.value = (_a6 = getPiProviderSettings(settingsBag).modelAliases[encodedId]) != null ? _a6 : "";
-            aliasInput.blur();
-          }
-        });
-        const removeBtn = rowControlsEl.createEl("button", {
-          cls: "claudian-provider-model-picker-selected-remove",
-          text: "\xD7"
-        });
-        removeBtn.setAttribute("aria-label", `Remove ${defaultLabel}`);
-        removeBtn.addEventListener("click", () => {
-          void persistVisibleModels(getPiProviderSettings(settingsBag).visibleModels.filter((entry) => entry !== encodedId));
-        });
-      }
-    };
-    const renderProviderSelect = () => {
-      const enriched = getEnrichedModels();
-      const providers = /* @__PURE__ */ new Map();
-      for (const model of enriched) {
-        const existing = providers.get(model.providerKey);
-        if (existing) {
-          existing.count += 1;
-        } else {
-          providers.set(model.providerKey, { count: 1, label: model.providerLabel });
-        }
-      }
-      providerSelectEl.empty();
-      providerSelectEl.createEl("option", {
-        text: `All providers (${enriched.length})`,
-        value: ALL_PROVIDERS_KEY2
-      });
-      const sortedProviders = Array.from(providers.entries()).sort(([, left], [, right]) => left.label.localeCompare(right.label));
-      for (const [key, { count, label }] of sortedProviders) {
-        providerSelectEl.createEl("option", {
-          text: `${label} (${count})`,
-          value: key
-        });
-      }
-      if (providerFilter !== ALL_PROVIDERS_KEY2 && !providers.has(providerFilter)) {
-        providerFilter = ALL_PROVIDERS_KEY2;
-      }
-      providerSelectEl.value = providerFilter;
-    };
-    const renderList = () => {
-      listEl.empty();
-      const current = getPiProviderSettings(settingsBag);
-      const selectedIds = new Set(current.visibleModels);
-      const enriched = getEnrichedModels();
-      const filtered = filterModels(enriched);
-      if (filtered.length === 0) {
-        const emptyEl = listEl.createDiv({ cls: "claudian-provider-model-picker-empty" });
-        let emptyText = "No models match your filter.";
-        if (loadingModelCatalog) {
-          emptyText = "Loading Pi model catalog...";
-        } else if (modelCatalogLoadFailed) {
-          emptyText = "Could not load the Pi model catalog. Check the CLI path and login state, then try again.";
-        } else if (enriched.length === 0) {
-          emptyText = "No Pi models discovered yet. Click Discover to load models from Pi.";
-        }
-        emptyEl.setText(emptyText);
-        return;
-      }
-      for (const model of filtered) {
-        const rowEl = listEl.createEl("label", { cls: "claudian-provider-model-picker-row" });
-        const isSelected = selectedIds.has(model.encodedId);
-        if (isSelected) {
-          rowEl.classList.add("claudian-provider-model-picker-row--selected");
-        }
-        rowEl.title = model.encodedId;
-        const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
-        checkboxEl.checked = isSelected;
-        checkboxEl.addEventListener("change", () => {
-          const currentVisibleModels = getPiProviderSettings(settingsBag).visibleModels;
-          const next = checkboxEl.checked ? [...currentVisibleModels, model.encodedId] : currentVisibleModels.filter((id) => id !== model.encodedId);
-          void persistVisibleModels(next);
-        });
-        const textEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-row-text" });
-        const headerEl = textEl.createDiv({ cls: "claudian-provider-model-picker-row-header" });
-        headerEl.createEl("span", {
-          cls: "claudian-provider-model-picker-row-name",
-          text: model.modelLabel
-        });
-        const badgeEl = headerEl.createEl("span", {
-          cls: "claudian-provider-model-picker-row-badge",
-          text: model.providerLabel
-        });
-        if (!model.isAvailable) {
-          badgeEl.classList.add("claudian-provider-model-picker-row-badge--unavailable");
-          badgeEl.setText("Unavailable");
-          badgeEl.title = "Configured model not currently reported by Pi";
-        }
-        textEl.createDiv({
-          cls: "claudian-provider-model-picker-row-meta",
-          text: model.encodedId
-        });
-        if (model.description) {
-          textEl.createDiv({
-            cls: "claudian-provider-model-picker-row-desc",
-            text: model.description
-          });
-        }
-      }
-    };
-    const renderAll = () => {
-      renderSummary();
-      renderSelected();
-      renderProviderSelect();
-      renderList();
-    };
-    const loadModelCatalog = async ({ force = false } = {}) => {
-      if (loadingModelCatalog || !force && getPiProviderSettings(settingsBag).discoveredModels.length > 0) {
-        return;
-      }
-      loadingModelCatalog = true;
-      modelCatalogLoadFailed = false;
-      renderAll();
-      try {
-        const result = await new PiModelDiscoveryService(context.plugin).discoverModels();
-        if (result.diagnostics) {
-          modelCatalogLoadFailed = true;
-          new import_obsidian20.Notice(`Pi discovery failed: ${result.diagnostics}`);
-          return;
-        }
-        const current = getPiProviderSettings(settingsBag);
-        const normalizedVisibleModels = normalizePiVisibleModels(current.visibleModels, result.models);
-        const shouldPersist = result.models.length > 0 || current.discoveredModels.length > 0 || !sameStringList2(current.visibleModels, normalizedVisibleModels);
-        if (shouldPersist) {
-          updatePiProviderSettings(settingsBag, {
-            discoveredModels: result.models,
-            visibleModels: normalizedVisibleModels
-          });
-          await context.plugin.saveSettings();
-          context.refreshModelSelectors();
-        }
-      } finally {
-        loadingModelCatalog = false;
-        renderAll();
-      }
-    };
-    renderAll();
-    catalogEl.addEventListener("toggle", () => {
-      if (catalogEl.open) {
-        void loadModelCatalog();
-      }
-    });
+    new import_obsidian24.Setting(container).setName("Models").setHeading();
+    renderPiModelPicker(container, context, settingsBag);
     renderEnvironmentSettingsSection({
       container,
       desc: "Environment variables passed only to Pi.",
@@ -83950,31 +87299,89 @@ var piSettingsTabRenderer = {
     });
   }
 };
-function validateCliPath(value) {
+function renderPiModelPicker(container, context, settingsBag) {
+  const getState = () => {
+    const current = getPiProviderSettings(settingsBag);
+    return {
+      aliases: current.modelAliases,
+      discoveredCount: current.discoveredModels.length,
+      models: buildPiPickerModels(current.discoveredModels, current.visibleModels),
+      selectedIds: current.visibleModels
+    };
+  };
+  renderProviderModelPicker({
+    container,
+    emptyCatalogText: "No Pi models discovered yet. Click Discover to load models from Pi.",
+    failedCatalogText: "Could not load the Pi model catalog. Check the CLI path and login state, then try again.",
+    getState,
+    async loadCatalog() {
+      const result = await new PiModelDiscoveryService(context.plugin).discoverModels();
+      if (result.diagnostics) {
+        new import_obsidian24.Notice(`Pi discovery failed: ${result.diagnostics}`);
+        return "failed";
+      }
+      const current = getPiProviderSettings(settingsBag);
+      const normalizedVisibleModels = normalizePiVisibleModels(current.visibleModels, result.models);
+      const shouldPersist = result.models.length > 0 || current.discoveredModels.length > 0 || !sameStringList2(current.visibleModels, normalizedVisibleModels);
+      if (shouldPersist) {
+        await context.plugin.mutateSettings((settings11) => {
+          updatePiProviderSettings(settings11, {
+            discoveredModels: result.models,
+            visibleModels: normalizedVisibleModels
+          });
+        });
+        context.refreshModelSelectors();
+      }
+      return result.models.length > 0 ? "loaded" : "empty";
+    },
+    loadingCatalogText: "Loading Pi model catalog...",
+    modifier: "pi",
+    async onAliasesChange(modelAliases) {
+      await context.plugin.mutateSettings((settings11) => {
+        updatePiProviderSettings(settings11, { modelAliases });
+      });
+      context.refreshModelSelectors();
+    },
+    async onSelectedIdsChange(visibleModels) {
+      const current = getPiProviderSettings(settingsBag);
+      const normalized = normalizePiVisibleModels(visibleModels, current.discoveredModels);
+      if (sameStringList2(current.visibleModels, normalized)) {
+        return;
+      }
+      await context.plugin.mutateSettings((settings11) => {
+        updatePiProviderSettings(settings11, { visibleModels: normalized });
+      });
+      context.refreshModelSelectors();
+    },
+    providerName: "Pi",
+    settingDescription: "Choose which Pi models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here."
+  });
+}
+function validateCliPath2(value) {
   const trimmed = value.trim();
   if (!trimmed) {
     return null;
   }
   const expandedPath = expandHomePath(trimmed);
-  if (!fs24.existsSync(expandedPath)) {
+  if (!fs25.existsSync(expandedPath)) {
     return "Path does not exist";
   }
-  if (!fs24.statSync(expandedPath).isFile()) {
+  if (!fs25.statSync(expandedPath).isFile()) {
     return "Path must point to a file";
   }
   return null;
 }
-function buildEnrichedPiModels(discoveredModels, visibleModels) {
+function buildPiPickerModels(discoveredModels, visibleModels) {
   var _a5, _b3;
-  const enriched = [];
+  const models = [];
   const discoveredIds = /* @__PURE__ */ new Set();
   for (const model of discoveredModels) {
     discoveredIds.add(model.encodedId);
-    enriched.push({
+    models.push({
       description: buildPiModelDescription(model),
-      encodedId: model.encodedId,
+      id: model.encodedId,
       isAvailable: true,
-      modelLabel: model.label || model.id,
+      name: model.label || model.id,
       providerKey: model.provider.toLowerCase(),
       providerLabel: formatProviderLabel(model.provider)
     });
@@ -83985,21 +87392,23 @@ function buildEnrichedPiModels(discoveredModels, visibleModels) {
     }
     const decoded = decodePiModelId(encodedId);
     const provider = (_a5 = decoded == null ? void 0 : decoded.provider) != null ? _a5 : "pi";
-    enriched.push({
+    models.push({
       description: "Configured model",
-      encodedId,
+      id: encodedId,
       isAvailable: false,
-      modelLabel: (_b3 = decoded == null ? void 0 : decoded.modelId) != null ? _b3 : encodedId,
+      name: (_b3 = decoded == null ? void 0 : decoded.modelId) != null ? _b3 : encodedId,
       providerKey: provider.toLowerCase(),
-      providerLabel: formatProviderLabel(provider)
+      providerLabel: formatProviderLabel(provider),
+      unavailableMessage: "Not currently reported by Pi"
     });
   }
-  return enriched.sort((left, right) => {
-    const providerCmp = left.providerLabel.localeCompare(right.providerLabel);
+  return models.sort((left, right) => {
+    var _a6, _b4;
+    const providerCmp = ((_a6 = left.providerLabel) != null ? _a6 : "").localeCompare((_b4 = right.providerLabel) != null ? _b4 : "");
     if (providerCmp !== 0) {
       return providerCmp;
     }
-    return left.modelLabel.localeCompare(right.modelLabel);
+    return left.name.localeCompare(right.name);
   });
 }
 function buildPiModelDescription(model) {
@@ -84036,8 +87445,8 @@ function formatProviderLabel(provider) {
 }
 
 // src/providers/pi/runtime/PiChatRuntime.ts
-var fsp2 = __toESM(require("node:fs/promises"));
-var path24 = __toESM(require("node:path"));
+var fsp3 = __toESM(require("node:fs/promises"));
+var path27 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -84059,10 +87468,10 @@ var PI_PROVIDER_CAPABILITIES = Object.freeze({
 
 // src/providers/pi/history/PiHistoryStore.ts
 var import_node_crypto = require("node:crypto");
-var fs25 = __toESM(require("node:fs"));
-var fsp = __toESM(require("node:fs/promises"));
-var os13 = __toESM(require("node:os"));
-var path23 = __toESM(require("node:path"));
+var fs26 = __toESM(require("node:fs"));
+var fsp2 = __toESM(require("node:fs/promises"));
+var os15 = __toESM(require("node:os"));
+var path26 = __toESM(require("node:path"));
 
 // src/providers/pi/normalizations/piToolNormalization.ts
 var PI_BUILT_IN_TOOL_NAMES = {
@@ -84275,7 +87684,7 @@ function includePiLinearPathEntries(entries, activePath) {
 }
 async function createPiForkSessionFile(sourceSessionFile, resumeAt, options = {}) {
   var _a5, _b3, _c2, _d, _e2;
-  const sourceContent = await fsp.readFile(sourceSessionFile, "utf-8");
+  const sourceContent = await fsp2.readFile(sourceSessionFile, "utf-8");
   const parsed = parsePiSessionEntries(sourceContent);
   const branchEntries = resolvePiEntryPath(parsed.entries, resumeAt);
   if (branchEntries.length === 0) {
@@ -84284,8 +87693,8 @@ async function createPiForkSessionFile(sourceSessionFile, resumeAt, options = {}
   const timestamp = (_a5 = options.now) != null ? _a5 : /* @__PURE__ */ new Date();
   const timestampText = timestamp.toISOString();
   const sessionId = (_b3 = options.sessionId) != null ? _b3 : (0, import_node_crypto.randomUUID)();
-  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path23.dirname(sourceSessionFile);
-  const sessionFile = path23.join(
+  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path26.dirname(sourceSessionFile);
+  const sessionFile = path26.join(
     sessionDir,
     `${timestampText.replace(/[:.]/g, "-")}_${sessionId}.jsonl`
   );
@@ -84302,8 +87711,8 @@ async function createPiForkSessionFile(sourceSessionFile, resumeAt, options = {}
     JSON.stringify(header),
     ...branchEntries.map((entry) => JSON.stringify(entry.raw))
   ];
-  await fsp.mkdir(sessionDir, { recursive: true });
-  await fsp.writeFile(sessionFile, `${lines.join("\n")}
+  await fsp2.mkdir(sessionDir, { recursive: true });
+  await fsp2.writeFile(sessionFile, `${lines.join("\n")}
 `, { flag: "wx" });
   return {
     leafEntryId: resumeAt,
@@ -84317,16 +87726,16 @@ function findPiSessionFile(sessionIdOrFile, cwd, sessionDir) {
   if (!trimmed) {
     return null;
   }
-  if (path23.isAbsolute(trimmed) && fileExists(trimmed)) {
+  if (path26.isAbsolute(trimmed) && fileExists(trimmed)) {
     return trimmed;
   }
   const roots = [
     sessionDir,
-    cwd ? path23.join(cwd, ".pi", "agent", "sessions") : null,
-    path23.join(os13.homedir(), ".pi", "agent", "sessions")
+    cwd ? path26.join(cwd, ".pi", "agent", "sessions") : null,
+    path26.join(os15.homedir(), ".pi", "agent", "sessions")
   ].filter((root) => !!root);
   for (const root of roots) {
-    const direct = path23.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
+    const direct = path26.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
     if (fileExists(direct)) {
       return direct;
     }
@@ -84336,6 +87745,17 @@ function findPiSessionFile(sessionIdOrFile, cwd, sessionDir) {
     }
   }
   return null;
+}
+function findPiSessionFileInRoot(sessionId, root) {
+  const trimmed = sessionId.trim();
+  if (!trimmed || path26.isAbsolute(trimmed) || /[\\/]/.test(trimmed)) {
+    return null;
+  }
+  const direct = path26.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
+  if (fileExists(direct)) {
+    return direct;
+  }
+  return findSessionFileInRoot(root, trimmed);
 }
 function mapPiSessionEntries(entries) {
   const messages = [];
@@ -84602,9 +88022,9 @@ function extractTextContent2(value) {
 }
 function findSessionFileInRoot(root, sessionId) {
   try {
-    const entries = fs25.readdirSync(root, { withFileTypes: true });
+    const entries = fs26.readdirSync(root, { withFileTypes: true });
     for (const entry of entries) {
-      const candidate = path23.join(root, entry.name);
+      const candidate = path26.join(root, entry.name);
       if (entry.isDirectory()) {
         const nested = findSessionFileInRoot(candidate, sessionId);
         if (nested) {
@@ -84621,7 +88041,7 @@ function findSessionFileInRoot(root, sessionId) {
 }
 function fileExists(filePath) {
   try {
-    return fs25.existsSync(filePath) && fs25.statSync(filePath).isFile();
+    return fs26.existsSync(filePath) && fs26.statSync(filePath).isFile();
   } catch (e2) {
     return false;
   }
@@ -85069,7 +88489,10 @@ var PiChatRuntime = class {
     this.options = options;
     this.providerId = "pi";
     this.activeTurn = null;
+    this.conversationId = null;
+    this.conversationGeneration = 0;
     this.currentLaunchKey = null;
+    this.currentConversationModel = null;
     this.currentModel = null;
     this.currentSessionTarget = null;
     this.currentThinkingLevel = null;
@@ -85081,10 +88504,14 @@ var PiChatRuntime = class {
     this.pendingForkSourceSessionFile = null;
     this.process = null;
     this.ready = false;
+    this.readinessFlight = null;
+    this.disposed = false;
+    this.lifecycleGeneration = 0;
     this.readyListeners = /* @__PURE__ */ new Set();
     this.sessionFile = null;
     this.sessionId = null;
     this.sessionInvalidated = false;
+    this.sessionResetPromise = null;
     this.supportedCommands = [];
     this.shutdownPromise = null;
     this.transport = null;
@@ -85114,43 +88541,85 @@ var PiChatRuntime = class {
   setResumeCheckpoint(_checkpointId) {
   }
   syncConversationState(conversation) {
-    var _a5, _b3, _c2, _d, _e2, _f2;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2;
+    this.setCurrentConversationModel(conversation == null ? void 0 : conversation.selectedModel);
+    const nextConversationId = (_a5 = conversation == null ? void 0 : conversation.id) != null ? _a5 : null;
+    const state = getPiState(conversation == null ? void 0 : conversation.providerState);
+    const isPendingFork = !!conversation && !!state.forkSource && !state.sessionId && !state.sessionFile && !conversation.sessionId;
+    const nextSessionId = isPendingFork ? null : (_c2 = (_b3 = state.sessionId) != null ? _b3 : conversation == null ? void 0 : conversation.sessionId) != null ? _c2 : null;
+    const nextSessionFile = isPendingFork ? null : (_d = state.sessionFile) != null ? _d : null;
+    const nextPendingFork = isPendingFork ? (_e2 = state.forkSource) != null ? _e2 : null : null;
+    const nextPendingForkSourceSessionFile = isPendingFork ? (_f2 = state.forkSourceSessionFile) != null ? _f2 : null : null;
+    const currentTargetKey = JSON.stringify({
+      conversationId: this.conversationId,
+      pendingFork: this.pendingFork,
+      pendingForkSourceSessionFile: this.pendingForkSourceSessionFile,
+      sessionFile: this.sessionFile,
+      sessionId: this.sessionId
+    });
+    const nextTargetKey = JSON.stringify({
+      conversationId: nextConversationId,
+      pendingFork: nextPendingFork,
+      pendingForkSourceSessionFile: nextPendingForkSourceSessionFile,
+      sessionFile: nextSessionFile,
+      sessionId: nextSessionId
+    });
     if (!conversation) {
-      this.sessionId = null;
-      this.sessionFile = null;
-      this.leafEntryId = null;
-      this.parentSession = null;
-      this.pendingFork = null;
-      this.pendingForkSourceSessionFile = null;
-      this.sessionInvalidated = false;
-      return;
+      this.currentConversationModel = null;
     }
-    const state = getPiState(conversation.providerState);
-    if (state.forkSource && !state.sessionId && !state.sessionFile && !conversation.sessionId) {
-      this.sessionId = null;
-      this.sessionFile = null;
-      this.leafEntryId = null;
-      this.parentSession = null;
-      this.pendingFork = state.forkSource;
-      this.pendingForkSourceSessionFile = (_a5 = state.forkSourceSessionFile) != null ? _a5 : null;
-      this.sessionInvalidated = false;
-      return;
-    }
-    this.sessionId = (_c2 = (_b3 = state.sessionId) != null ? _b3 : conversation.sessionId) != null ? _c2 : null;
-    this.sessionFile = (_d = state.sessionFile) != null ? _d : null;
-    this.leafEntryId = (_e2 = state.leafEntryId) != null ? _e2 : null;
-    this.parentSession = (_f2 = state.parentSession) != null ? _f2 : null;
-    this.pendingFork = null;
-    this.pendingForkSourceSessionFile = null;
+    this.conversationId = nextConversationId;
+    this.sessionId = nextSessionId;
+    this.sessionFile = nextSessionFile;
+    this.leafEntryId = isPendingFork ? null : (_g = state.leafEntryId) != null ? _g : null;
+    this.parentSession = isPendingFork ? null : (_h2 = state.parentSession) != null ? _h2 : null;
+    this.pendingFork = nextPendingFork;
+    this.pendingForkSourceSessionFile = nextPendingForkSourceSessionFile;
     this.sessionInvalidated = false;
+    if (currentTargetKey !== nextTargetKey) {
+      this.conversationGeneration += 1;
+      if (this.readinessFlight) {
+        void this.shutdownProcess();
+      }
+    }
   }
   async reloadMcpServers() {
   }
   async ensureReady(options) {
+    if (this.disposed) {
+      return false;
+    }
+    const conversationGeneration = this.conversationGeneration;
+    const key = JSON.stringify({ conversationGeneration, options: options != null ? options : {} });
+    if (this.readinessFlight) {
+      if (this.readinessFlight.key === key) {
+        return this.readinessFlight.promise;
+      }
+      await this.readinessFlight.promise.catch(() => void 0);
+      return this.ensureReady(options);
+    }
+    const lifecycleGeneration = this.lifecycleGeneration;
+    const promise2 = this.ensureReadyInternal(
+      options,
+      lifecycleGeneration,
+      conversationGeneration
+    );
+    this.readinessFlight = { key, promise: promise2 };
+    return promise2.finally(() => {
+      var _a5;
+      if (((_a5 = this.readinessFlight) == null ? void 0 : _a5.promise) === promise2) {
+        this.readinessFlight = null;
+      }
+    });
+  }
+  async ensureReadyInternal(options, lifecycleGeneration, conversationGeneration) {
     var _a5, _b3, _c2, _d;
     const settings11 = getPiProviderSettings(this.plugin.settings);
     if (!settings11.enabled) {
       this.setReady(false);
+      return false;
+    }
+    await this.sessionResetPromise;
+    if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
       return false;
     }
     const allowSessionCreation = (options == null ? void 0 : options.allowSessionCreation) !== false;
@@ -85158,7 +88627,14 @@ var PiChatRuntime = class {
     const resolvedCliPath = (_b3 = this.plugin.getResolvedProviderCliPath("pi")) != null ? _b3 : "pi";
     const runtimeEnvText = getRuntimeEnvironmentText(this.plugin.settings, "pi");
     if (allowSessionCreation) {
-      await this.materializePendingFork(cwd, runtimeEnvText);
+      const materialized = await this.materializePendingFork(
+        cwd,
+        runtimeEnvText,
+        conversationGeneration
+      );
+      if (!materialized || !this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
     }
     const hasSessionTarget = Boolean(this.sessionId || this.sessionFile);
     const promptSettings = this.getSystemPromptSettings(cwd);
@@ -85190,20 +88666,45 @@ var PiChatRuntime = class {
     const shouldRestart = !this.process || !this.transport || !this.process.isAlive() || this.transport.isClosed || (options == null ? void 0 : options.force) === true || this.currentLaunchKey !== nextLaunchKey || unSwitchableSessionTargetChanged;
     if (shouldRestart) {
       await this.shutdownProcess();
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
       await this.startProcess(launchSpec);
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
       this.currentLaunchKey = nextLaunchKey;
       this.currentSessionTarget = sessionTarget;
     } else if (canSwitchSessionTarget && this.sessionFile) {
-      await this.switchSession(this.sessionFile, launchSpec, nextLaunchKey);
+      const switched = await this.switchSession(
+        this.sessionFile,
+        launchSpec,
+        nextLaunchKey,
+        lifecycleGeneration,
+        conversationGeneration
+      );
+      if (!switched || !this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
     }
     if (allowSessionCreation || hasSessionTarget) {
-      await this.refreshStateAndSessionTarget();
+      await this.refreshStateAndSessionTarget(conversationGeneration);
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
     }
     this.setReady(true);
     return true;
   }
   async *query(turn, conversationHistory, queryOptions) {
     var _a5, _b3;
+    if (queryOptions == null ? void 0 : queryOptions.model) {
+      this.setCurrentConversationModel(queryOptions.model);
+    }
+    const conversationGeneration = this.conversationGeneration;
     this.currentTurnMetadata = {};
     let isReady;
     try {
@@ -85215,6 +88716,11 @@ var PiChatRuntime = class {
     }
     if (!isReady) {
       yield { type: "error", content: "Failed to start Pi. Check the CLI path and login state." };
+      yield { type: "done" };
+      return;
+    }
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      yield { type: "error", content: "Pi conversation changed before the turn started." };
       yield { type: "done" };
       return;
     }
@@ -85237,7 +88743,8 @@ var PiChatRuntime = class {
       turn,
       promptText,
       images,
-      queryOptions
+      queryOptions,
+      conversationGeneration
     );
     try {
       while (true) {
@@ -85280,9 +88787,22 @@ var PiChatRuntime = class {
   }
   cancel() {
     var _a5;
+    const activeTurn = this.activeTurn;
     (_a5 = this.transport) == null ? void 0 : _a5.send({ type: "abort" });
+    if (!activeTurn || activeTurn.cancelled) {
+      return;
+    }
+    activeTurn.cancel(new Error("Pi turn cancelled"));
+    activeTurn.queue.push({ type: "done" });
+    activeTurn.queue.close();
+    void this.shutdownProcess();
   }
   resetSession() {
+    this.conversationGeneration += 1;
+    const conversationGeneration = this.conversationGeneration;
+    if (this.readinessFlight) {
+      void this.shutdownProcess();
+    }
     this.sessionInvalidated = true;
     this.sessionId = null;
     this.sessionFile = null;
@@ -85292,12 +88812,21 @@ var PiChatRuntime = class {
     this.pendingForkSourceSessionFile = null;
     this.currentSessionTarget = null;
     if (this.transport && !this.transport.isClosed) {
-      void this.transport.request("new_session").then((response) => {
+      const resetPromise = this.transport.request("new_session").then((response) => {
         var _a5, _b3;
+        if (!this.isConversationCurrent(conversationGeneration)) {
+          return;
+        }
         this.applyStateResponse(response);
         this.currentSessionTarget = (_b3 = (_a5 = this.sessionFile) != null ? _a5 : this.sessionId) != null ? _b3 : null;
       }).catch(() => {
+      }).then(() => void 0);
+      const trackedResetPromise = resetPromise.finally(() => {
+        if (this.sessionResetPromise === trackedResetPromise) {
+          this.sessionResetPromise = null;
+        }
       });
+      this.sessionResetPromise = trackedResetPromise;
     }
   }
   getSessionId() {
@@ -85327,10 +88856,16 @@ var PiChatRuntime = class {
     }
   }
   getAuxiliaryModel() {
-    return this.currentModel;
+    var _a5;
+    return (_a5 = this.currentConversationModel) != null ? _a5 : this.currentModel;
   }
   cleanup() {
     var _a5, _b3;
+    if (this.disposed) {
+      return;
+    }
+    this.disposed = true;
+    this.lifecycleGeneration += 1;
     (_a5 = this.activeTurn) == null ? void 0 : _a5.queue.close();
     (_b3 = this.extensionBridge) == null ? void 0 : _b3.cleanup();
     void this.shutdownProcess();
@@ -85415,11 +88950,14 @@ var PiChatRuntime = class {
     };
     return activeTurn;
   }
-  async runTurn(activeTurn, turn, promptText, images, queryOptions) {
+  async runTurn(activeTurn, turn, promptText, images, queryOptions, conversationGeneration = this.conversationGeneration) {
     try {
-      const turnStartLeafId = await this.resolveCurrentLeafEntryId();
-      await this.applySelectedModel(queryOptions);
-      await this.applySelectedThinkingLevel(queryOptions);
+      const turnStartLeafId = await this.resolveCurrentLeafEntryId(conversationGeneration);
+      await this.applySelectedModel(queryOptions, conversationGeneration);
+      await this.applySelectedThinkingLevel(queryOptions, conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        throw new Error("Pi conversation changed before the turn started.");
+      }
       if (activeTurn.cancelled) {
         throw new Error("Pi turn cancelled");
       }
@@ -85441,8 +88979,11 @@ var PiChatRuntime = class {
         this.currentTurnMetadata.wasSent = true;
         await activeTurn.terminalPromise;
       }
-      await this.refreshStateAndSessionTarget();
-      await this.updateTurnMetadataFromSessionFile(turnStartLeafId);
+      await this.refreshStateAndSessionTarget(conversationGeneration);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        throw new Error("Pi conversation changed before the turn completed.");
+      }
+      await this.updateTurnMetadataFromSessionFile(turnStartLeafId, conversationGeneration);
       const usage = await this.fetchUsage(queryOptions).catch(() => null);
       if (usage) {
         activeTurn.queue.push({ sessionId: this.sessionId, type: "usage", usage });
@@ -85553,7 +89094,7 @@ var PiChatRuntime = class {
     }
     return this.normalizationState;
   }
-  async applySelectedModel(queryOptions) {
+  async applySelectedModel(queryOptions, conversationGeneration = this.conversationGeneration) {
     if (!this.transport) {
       return;
     }
@@ -85563,10 +89104,13 @@ var PiChatRuntime = class {
       return;
     }
     await this.transport.request("set_model", payload);
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return;
+    }
     this.currentModel = selectedModel;
     this.currentThinkingLevel = null;
   }
-  async applySelectedThinkingLevel(queryOptions) {
+  async applySelectedThinkingLevel(queryOptions, conversationGeneration = this.conversationGeneration) {
     if (!this.transport) {
       return;
     }
@@ -85578,21 +89122,33 @@ var PiChatRuntime = class {
     await this.transport.request("set_thinking_level", {
       level: selectedThinkingLevel
     });
-    this.currentThinkingLevel = selectedThinkingLevel;
-  }
-  async refreshState() {
-    if (!this.transport || this.transport.isClosed) {
+    if (!this.isConversationCurrent(conversationGeneration)) {
       return;
     }
-    const response = await this.transport.request("get_state", {}, 1e4);
-    this.applyStateResponse(response);
+    this.currentThinkingLevel = selectedThinkingLevel;
   }
-  async refreshStateAndSessionTarget() {
+  async refreshState(conversationGeneration = this.conversationGeneration) {
+    if (!this.transport || this.transport.isClosed) {
+      return this.isConversationCurrent(conversationGeneration);
+    }
+    const response = await this.transport.request("get_state", {}, 1e4);
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return false;
+    }
+    this.applyStateResponse(response);
+    return true;
+  }
+  async refreshStateAndSessionTarget(conversationGeneration = this.conversationGeneration) {
     var _a5, _b3;
     try {
-      await this.refreshState();
+      const refreshed = await this.refreshState(conversationGeneration);
+      if (refreshed === false || !this.isConversationCurrent(conversationGeneration)) {
+        return false;
+      }
       this.currentSessionTarget = (_b3 = (_a5 = this.sessionFile) != null ? _a5 : this.sessionId) != null ? _b3 : null;
+      return true;
     } catch (e2) {
+      return this.isConversationCurrent(conversationGeneration);
     }
   }
   applyStateResponse(response) {
@@ -85614,25 +89170,29 @@ var PiChatRuntime = class {
     const response = await this.transport.request("get_session_stats", {}, 1e4);
     return buildPiUsageInfo(response, selectedModel, fallbackContextWindow);
   }
-  async materializePendingFork(cwd, runtimeEnvText) {
+  async materializePendingFork(cwd, runtimeEnvText, conversationGeneration = this.conversationGeneration) {
     var _a5;
-    if (!this.pendingFork) {
-      return;
+    const pendingFork = this.pendingFork;
+    if (!pendingFork) {
+      return true;
     }
     const env = parseEnvironmentVariables(runtimeEnvText);
     const sourceSessionFile = (_a5 = this.pendingForkSourceSessionFile) != null ? _a5 : findPiSessionFile(
-      this.pendingFork.sessionId,
+      pendingFork.sessionId,
       cwd,
       typeof env.PI_CODING_AGENT_SESSION_DIR === "string" ? env.PI_CODING_AGENT_SESSION_DIR : null
     );
     if (!sourceSessionFile) {
-      throw new Error(`Pi fork source session not found: ${this.pendingFork.sessionId}`);
+      throw new Error(`Pi fork source session not found: ${pendingFork.sessionId}`);
     }
     const forkedSession = await createPiForkSessionFile(
       sourceSessionFile,
-      this.pendingFork.resumeAt,
+      pendingFork.resumeAt,
       { targetCwd: cwd }
     );
+    if (!this.isConversationCurrent(conversationGeneration)) {
+      return false;
+    }
     this.sessionId = forkedSession.sessionId;
     this.sessionFile = forkedSession.sessionFile;
     this.leafEntryId = forkedSession.leafEntryId;
@@ -85641,8 +89201,9 @@ var PiChatRuntime = class {
     this.pendingForkSourceSessionFile = null;
     this.sessionInvalidated = false;
     this.currentSessionTarget = null;
+    return true;
   }
-  async resolveCurrentLeafEntryId() {
+  async resolveCurrentLeafEntryId(conversationGeneration = this.conversationGeneration) {
     if (this.leafEntryId) {
       return this.leafEntryId;
     }
@@ -85650,26 +89211,29 @@ var PiChatRuntime = class {
       return null;
     }
     try {
-      const content = await fsp2.readFile(this.sessionFile, "utf-8");
+      const content = await fsp3.readFile(this.sessionFile, "utf-8");
       const entries = parsePiSessionEntries(content).entries;
       const activePath = resolvePiActivePath(entries);
       const leafEntryId = getLastPiEntryId(activePath);
+      if (!this.isConversationCurrent(conversationGeneration)) {
+        return null;
+      }
       this.leafEntryId = leafEntryId;
       return leafEntryId;
     } catch (e2) {
       return null;
     }
   }
-  async updateTurnMetadataFromSessionFile(previousLeafEntryId) {
+  async updateTurnMetadataFromSessionFile(previousLeafEntryId, conversationGeneration = this.conversationGeneration) {
     var _a5;
     if (!this.sessionFile) {
       return;
     }
     try {
-      const content = await fsp2.readFile(this.sessionFile, "utf-8");
+      const content = await fsp3.readFile(this.sessionFile, "utf-8");
       const entries = parsePiSessionEntries(content).entries;
       const activePath = resolvePiActivePath(entries);
-      if (activePath.length === 0) {
+      if (activePath.length === 0 || !this.isConversationCurrent(conversationGeneration)) {
         return;
       }
       this.leafEntryId = (_a5 = getLastPiEntryId(activePath)) != null ? _a5 : this.leafEntryId;
@@ -85695,10 +89259,18 @@ var PiChatRuntime = class {
     };
   }
   getProviderSettings() {
-    return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    const settings11 = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       this.providerId
     );
+    if (this.currentConversationModel) {
+      settings11.model = this.currentConversationModel;
+    }
+    return settings11;
+  }
+  setCurrentConversationModel(model) {
+    const selectedModel = typeof model === "string" ? model.trim() : "";
+    this.currentConversationModel = selectedModel || null;
   }
   resolveSelectedModel(providerSettings, queryOptions) {
     const selectedModel = typeof (queryOptions == null ? void 0 : queryOptions.model) === "string" ? queryOptions.model : typeof providerSettings.model === "string" ? providerSettings.model : "";
@@ -85749,6 +89321,15 @@ var PiChatRuntime = class {
       listener(ready);
     }
   }
+  isLifecycleCurrent(generation) {
+    return !this.disposed && generation === this.lifecycleGeneration;
+  }
+  isConversationCurrent(generation) {
+    return generation === this.conversationGeneration;
+  }
+  isReadinessCurrent(lifecycleGeneration, conversationGeneration) {
+    return this.isLifecycleCurrent(lifecycleGeneration) && this.isConversationCurrent(conversationGeneration);
+  }
   formatRuntimeError(error48) {
     var _a5;
     const message = error48 instanceof Error ? error48.message : "Pi request failed";
@@ -85758,21 +89339,35 @@ var PiChatRuntime = class {
 ${stderr}` : message;
   }
   isSwitchableSessionFile(sessionFile) {
-    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path24.isAbsolute(sessionFile);
+    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path27.isAbsolute(sessionFile);
   }
-  async switchSession(sessionFile, launchSpec, nextLaunchKey) {
+  async switchSession(sessionFile, launchSpec, nextLaunchKey, lifecycleGeneration = this.lifecycleGeneration, conversationGeneration = this.conversationGeneration) {
     var _a5, _b3;
     try {
       await this.transport.request("switch_session", { sessionPath: sessionFile });
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
       this.currentLaunchKey = nextLaunchKey;
       this.currentSessionTarget = sessionFile;
       this.sessionInvalidated = false;
     } catch (e2) {
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
       await this.shutdownProcess();
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        return false;
+      }
       await this.startProcess(launchSpec);
+      if (!this.isReadinessCurrent(lifecycleGeneration, conversationGeneration)) {
+        await this.shutdownProcess();
+        return false;
+      }
       this.currentLaunchKey = nextLaunchKey;
       this.currentSessionTarget = (_b3 = (_a5 = this.sessionFile) != null ? _a5 : this.sessionId) != null ? _b3 : null;
     }
+    return true;
   }
 };
 function stripCompactCommand(text) {
@@ -86446,25 +90041,91 @@ function getDefaultPiEffortForSelection(selection, piSettings) {
 }
 
 // src/providers/pi/history/PiConversationHistoryService.ts
-var fs26 = __toESM(require("node:fs/promises"));
+var fs27 = __toESM(require("node:fs/promises"));
+
+// src/providers/pi/history/PiHistoryPathResolver.ts
+var os16 = __toESM(require("node:os"));
+var path28 = __toESM(require("node:path"));
+function getConfiguredSessionDir(context) {
+  var _a5;
+  const configured = (_a5 = context.environment.PI_CODING_AGENT_SESSION_DIR) == null ? void 0 : _a5.trim();
+  return configured && path28.isAbsolute(configured) ? configured : null;
+}
+function getTrustedRoots(vaultPath, context) {
+  var _a5, _b3, _c2;
+  const roots = [];
+  const configuredSessionDir = getConfiguredSessionDir(context);
+  if (configuredSessionDir) {
+    roots.push(configuredSessionDir);
+  }
+  const configuredAgentDir = (_a5 = context.environment.PI_CODING_AGENT_DIR) == null ? void 0 : _a5.trim();
+  if (configuredAgentDir && path28.isAbsolute(configuredAgentDir)) {
+    roots.push(path28.join(configuredAgentDir, "sessions"));
+  }
+  if (vaultPath) {
+    const vaultSessionRoot = path28.join(vaultPath, ".pi", "agent", "sessions");
+    if (isPathWithinRoot(vaultSessionRoot, vaultPath)) {
+      roots.push(vaultSessionRoot);
+    }
+  }
+  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os16.homedir();
+  roots.push(path28.join(home, ".pi", "agent", "sessions"));
+  return [...new Set(roots)];
+}
+function isLogicalSessionId(value) {
+  return typeof value === "string" && value.trim().length > 0 && !path28.isAbsolute(value) && !/[\\/]/.test(value);
+}
+function resolvePiSessionFileHint(persistedPath, logicalSessionId, vaultPath, context) {
+  if (!context) {
+    const target = persistedPath != null ? persistedPath : logicalSessionId;
+    return target ? findPiSessionFile(target, vaultPath) : null;
+  }
+  const roots = getTrustedRoots(vaultPath, context);
+  if (persistedPath && roots.some((root) => isPathWithinRoot(persistedPath, root))) {
+    return persistedPath;
+  }
+  if (!isLogicalSessionId(logicalSessionId)) {
+    return null;
+  }
+  for (const root of roots) {
+    const resolved = findPiSessionFileInRoot(logicalSessionId, root);
+    if (resolved && isPathWithinRoot(resolved, root)) {
+      return resolved;
+    }
+  }
+  return null;
+}
+
+// src/providers/pi/history/PiConversationHistoryService.ts
 var PiConversationHistoryService = class {
   constructor() {
     this.hydratedKeys = /* @__PURE__ */ new Map();
   }
-  async hydrateConversationHistory(conversation, vaultPath) {
-    var _a5, _b3, _c2, _d, _e2;
+  async hydrateConversationHistory(conversation, vaultPath, pathContext) {
+    var _a5, _b3;
     const state = getPiState(conversation.providerState);
     if (this.isPendingForkConversation(conversation)) {
+      const sourceSessionFile = resolvePiSessionFileHint(
+        state.forkSourceSessionFile,
+        state.forkSource.sessionId,
+        vaultPath,
+        pathContext
+      );
+      this.replaceResolvedPath(
+        conversation,
+        "forkSourceSessionFile",
+        state.forkSourceSessionFile,
+        sourceSessionFile
+      );
       if (conversation.messages.length > 0) {
         return;
       }
-      const sourceSessionFile = (_a5 = state.forkSourceSessionFile) != null ? _a5 : findPiSessionFile(state.forkSource.sessionId, vaultPath);
       if (!sourceSessionFile) {
         this.hydratedKeys.delete(conversation.id);
         return;
       }
       try {
-        const content = await fs26.readFile(sourceSessionFile, "utf-8");
+        const content = await fs27.readFile(sourceSessionFile, "utf-8");
         const messages = parsePiSessionContent(content, {
           leafEntryId: state.forkSource.resumeAt,
           requireLeafEntryId: true
@@ -86480,22 +90141,33 @@ var PiConversationHistoryService = class {
       }
       return;
     }
-    const sessionTarget = (_c2 = (_b3 = state.sessionFile) != null ? _b3 : state.sessionId) != null ? _c2 : conversation.sessionId;
-    if (!sessionTarget) {
+    const sessionTarget = (_a5 = state.sessionId) != null ? _a5 : conversation.sessionId;
+    if (!state.sessionFile && !sessionTarget) {
       this.hydratedKeys.delete(conversation.id);
       return;
     }
-    const sessionFile = (_d = state.sessionFile) != null ? _d : findPiSessionFile(sessionTarget, vaultPath);
+    const sessionFile = resolvePiSessionFileHint(
+      state.sessionFile,
+      sessionTarget,
+      vaultPath,
+      pathContext
+    );
+    this.replaceResolvedPath(
+      conversation,
+      "sessionFile",
+      state.sessionFile,
+      sessionFile
+    );
     if (!sessionFile) {
       this.hydratedKeys.delete(conversation.id);
       return;
     }
-    const hydrationKey = `${sessionFile}::${(_e2 = state.leafEntryId) != null ? _e2 : ""}`;
+    const hydrationKey = `${sessionFile}::${(_b3 = state.leafEntryId) != null ? _b3 : ""}`;
     if (conversation.messages.length > 0 && this.hydratedKeys.get(conversation.id) === hydrationKey) {
       return;
     }
     try {
-      const content = await fs26.readFile(sessionFile, "utf-8");
+      const content = await fs27.readFile(sessionFile, "utf-8");
       const messages = parsePiSessionContent(content, {
         leafEntryId: state.leafEntryId
       });
@@ -86532,10 +90204,22 @@ var PiConversationHistoryService = class {
   buildPersistedProviderState(conversation) {
     return buildPersistedPiState(getPiState(conversation.providerState));
   }
+  replaceResolvedPath(conversation, field, persistedPath, resolvedPath) {
+    if (!persistedPath || persistedPath === resolvedPath) {
+      return;
+    }
+    const nextState = { ...getPiState(conversation.providerState) };
+    if (resolvedPath) {
+      nextState[field] = resolvedPath;
+    } else {
+      delete nextState[field];
+    }
+    conversation.providerState = buildPersistedPiState(nextState);
+  }
 };
 
 // src/providers/pi/ui/ObsidianPiExtensionUiRenderer.ts
-var import_obsidian21 = require("obsidian");
+var import_obsidian25 = require("obsidian");
 var ObsidianPiExtensionUiRenderer = class {
   constructor(app) {
     this.app = app;
@@ -86553,7 +90237,7 @@ var ObsidianPiExtensionUiRenderer = class {
     return new PiTextModal(this.app, request, signal, true).openAndWait();
   }
   notify(request) {
-    new import_obsidian21.Notice(getDisplayText(request));
+    new import_obsidian25.Notice(getDisplayText(request));
   }
   setStatus(_request) {
   }
@@ -86590,7 +90274,7 @@ function getSelectOptions(request) {
     return value ? [{ label, value }] : [];
   });
 }
-var PiExtensionModal = class extends import_obsidian21.Modal {
+var PiExtensionModal = class extends import_obsidian25.Modal {
   constructor(app, request, signal) {
     super(app);
     this.request = request;
@@ -86715,6 +90399,7 @@ var PiTextModal = class extends PiExtensionModal {
 
 // src/providers/pi/registration.ts
 var piProviderRegistration = {
+  id: "pi",
   blankTabOrder: 11,
   capabilities: PI_PROVIDER_CAPABILITIES,
   chatUIConfig: piChatUIConfig,
@@ -86729,33 +90414,386 @@ var piProviderRegistration = {
   historyService: new PiConversationHistoryService(),
   isEnabled: (settings11) => getPiProviderSettings(settings11).enabled,
   settingsReconciler: piSettingsReconciler,
-  taskResultInterpreter: new PiTaskResultInterpreter()
+  settingsStorage: {
+    hostScopedFields: ["cliPathsByHost"],
+    normalizeStored(target, stored) {
+      updatePiProviderSettings(target, getPiProviderSettings(stored));
+      return false;
+    }
+  },
+  taskResultInterpreter: new PiTaskResultInterpreter(),
+  workspace: piWorkspaceRegistration
 };
 
 // src/providers/index.ts
 var builtInProvidersRegistered = false;
+var BUILT_IN_PROVIDER_MODULES = [
+  claudeProviderRegistration,
+  codexProviderRegistration,
+  opencodeProviderRegistration,
+  piProviderRegistration
+];
 function registerBuiltInProviders() {
   if (builtInProvidersRegistered) {
     return;
   }
-  ProviderRegistry.register("claude", claudeProviderRegistration);
-  ProviderRegistry.register("codex", codexProviderRegistration);
-  ProviderRegistry.register("opencode", opencodeProviderRegistration);
-  ProviderRegistry.register("pi", piProviderRegistration);
-  ProviderWorkspaceRegistry.register("claude", claudeWorkspaceRegistration);
-  ProviderWorkspaceRegistry.register("codex", codexWorkspaceRegistration);
-  ProviderWorkspaceRegistry.register("opencode", opencodeWorkspaceRegistration);
-  ProviderWorkspaceRegistry.register("pi", piWorkspaceRegistration);
+  for (const providerModule of BUILT_IN_PROVIDER_MODULES) {
+    ProviderRegistry.register(providerModule.id, providerModule);
+    ProviderWorkspaceRegistry.register(providerModule.id, providerModule.workspace);
+  }
   builtInProvidersRegistered = true;
 }
 registerBuiltInProviders();
 
 // src/main.ts
-var import_obsidian50 = require("obsidian");
+var import_obsidian54 = require("obsidian");
+
+// src/app/conversations/ConversationRepository.ts
+var ConversationRepository = class {
+  constructor(deps) {
+    this.deps = deps;
+    this.conversations = [];
+  }
+  replaceAll(conversations) {
+    this.conversations = conversations;
+  }
+  getAll() {
+    return this.conversations;
+  }
+  backfillResponseTimestamps() {
+    const updated = [];
+    for (const conversation of this.conversations) {
+      if (conversation.lastResponseAt != null || conversation.messages.length === 0) {
+        continue;
+      }
+      for (let index = conversation.messages.length - 1; index >= 0; index -= 1) {
+        const message = conversation.messages[index];
+        if (message.role === "assistant") {
+          conversation.lastResponseAt = message.timestamp;
+          updated.push(conversation);
+          break;
+        }
+      }
+    }
+    return updated;
+  }
+  async create(options) {
+    var _a5, _b3, _c2;
+    const settings11 = this.deps.getSettings();
+    const providerId = (_a5 = options == null ? void 0 : options.providerId) != null ? _a5 : DEFAULT_CHAT_PROVIDER_ID;
+    const sessionId = options == null ? void 0 : options.sessionId;
+    const providerSettings = ProviderSettingsCoordinator.getProviderSettingsSnapshot(settings11, providerId);
+    const selectedModel = (_c2 = normalizeProviderModelSelection(
+      providerId,
+      settings11,
+      (_b3 = options == null ? void 0 : options.selectedModel) != null ? _b3 : providerSettings.model
+    )) != null ? _c2 : void 0;
+    const conversation = {
+      id: sessionId != null ? sessionId : this.generateId(),
+      providerId,
+      title: this.generateDefaultTitle(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      sessionId: sessionId != null ? sessionId : null,
+      selectedModel,
+      messages: []
+    };
+    this.conversations.unshift(conversation);
+    await this.save(conversation);
+    return conversation;
+  }
+  async switchTo(id) {
+    const conversation = this.getSync(id);
+    if (!conversation) return null;
+    await this.reconcileProviderSession(conversation);
+    await this.ensureSelectedModel(conversation);
+    await this.hydrate(conversation);
+    return conversation;
+  }
+  async delete(id, options = {}) {
+    const index = this.conversations.findIndex((conversation2) => conversation2.id === id);
+    if (index === -1) return;
+    const conversation = this.conversations[index];
+    this.conversations.splice(index, 1);
+    if (options.deleteProviderSession !== false) {
+      await ProviderRegistry.getConversationHistoryService(conversation.providerId).deleteConversationSession(conversation, this.deps.getVaultPath());
+    }
+    await this.deps.sessions.deleteMetadata(id);
+    await this.deps.onConversationDeleted(id);
+  }
+  async handleMissingProviderSession(id, missingProviderSessionId) {
+    const conversation = this.getSync(id);
+    if (!conversation) return "not_found";
+    const historyService = ProviderRegistry.getConversationHistoryService(conversation.providerId);
+    if (!historyService.resolveMissingConversationSession) return "preserved";
+    const previousSessionId = conversation.sessionId;
+    const previousProviderState = conversation.providerState;
+    const previousResumeAtMessageId = conversation.resumeAtMessageId;
+    try {
+      const resolution = await historyService.resolveMissingConversationSession(
+        conversation,
+        this.deps.getVaultPath(),
+        missingProviderSessionId
+      );
+      if (resolution === "delete") {
+        await this.delete(id, { deleteProviderSession: false });
+        return "deleted";
+      }
+      if (resolution === "reset") {
+        await this.save(conversation);
+        return "reset";
+      }
+      return "preserved";
+    } catch (e2) {
+      conversation.sessionId = previousSessionId;
+      conversation.providerState = previousProviderState;
+      conversation.resumeAtMessageId = previousResumeAtMessageId;
+      return "preserved";
+    }
+  }
+  async rename(id, title) {
+    const conversation = this.getSync(id);
+    if (!conversation) return;
+    conversation.title = title.trim() || this.generateDefaultTitle();
+    conversation.updatedAt = Date.now();
+    await this.save(conversation);
+  }
+  async update(id, updates) {
+    const conversation = this.getSync(id);
+    if (!conversation) return;
+    const safeUpdates = { ...updates };
+    delete safeUpdates.providerId;
+    if ("selectedModel" in safeUpdates) {
+      const selectedModel = normalizeProviderModelSelection(
+        conversation.providerId,
+        this.deps.getSettings(),
+        safeUpdates.selectedModel
+      );
+      if (selectedModel) {
+        safeUpdates.selectedModel = selectedModel;
+      } else {
+        delete safeUpdates.selectedModel;
+      }
+    }
+    Object.assign(conversation, safeUpdates, { updatedAt: Date.now() });
+    await this.save(conversation);
+  }
+  async getById(id) {
+    const conversation = this.getSync(id);
+    if (conversation) {
+      await this.reconcileProviderSession(conversation);
+      await this.ensureSelectedModel(conversation);
+      await this.hydrate(conversation);
+    }
+    return conversation;
+  }
+  getSync(id) {
+    var _a5;
+    return (_a5 = this.conversations.find((conversation) => conversation.id === id)) != null ? _a5 : null;
+  }
+  findEmpty() {
+    var _a5;
+    return (_a5 = this.conversations.find((conversation) => conversation.messages.length === 0)) != null ? _a5 : null;
+  }
+  list() {
+    return this.conversations.map((conversation) => ({
+      id: conversation.id,
+      providerId: conversation.providerId,
+      title: conversation.title,
+      createdAt: conversation.createdAt,
+      updatedAt: conversation.updatedAt,
+      lastResponseAt: conversation.lastResponseAt,
+      messageCount: conversation.messages.length,
+      preview: this.getPreview(conversation),
+      titleGenerationStatus: conversation.titleGenerationStatus
+    }));
+  }
+  async reconcileProviderSession(conversation) {
+    const historyService = ProviderRegistry.getConversationHistoryService(conversation.providerId);
+    if (!historyService.getConversationSessionAvailability) return;
+    let availability;
+    try {
+      availability = await historyService.getConversationSessionAvailability(
+        conversation,
+        this.deps.getVaultPath()
+      );
+    } catch (e2) {
+      return;
+    }
+    if (availability !== "relocated" || !historyService.prepareRelocatedConversationSession) return;
+    const previousSessionId = conversation.sessionId;
+    const previousProviderState = conversation.providerState;
+    const previousResumeAtMessageId = conversation.resumeAtMessageId;
+    try {
+      if (await historyService.prepareRelocatedConversationSession(conversation, this.deps.getVaultPath())) {
+        await this.save(conversation);
+      }
+    } catch (e2) {
+      conversation.sessionId = previousSessionId;
+      conversation.providerState = previousProviderState;
+      conversation.resumeAtMessageId = previousResumeAtMessageId;
+    }
+  }
+  async ensureSelectedModel(conversation) {
+    const resolved = resolveConversationModel(
+      this.deps.getSettings(),
+      conversation.providerId,
+      conversation
+    );
+    if (!resolved.shouldPersist || !resolved.model || conversation.selectedModel === resolved.model) return;
+    conversation.selectedModel = resolved.model;
+    await this.save(conversation);
+  }
+  async hydrate(conversation) {
+    const settings11 = this.deps.getSettings();
+    const vaultPath = this.deps.getVaultPath();
+    await ProviderRegistry.getConversationHistoryService(conversation.providerId).hydrateConversationHistory(conversation, vaultPath, {
+      environment: {
+        ...process.env,
+        ...getRuntimeEnvironmentVariables(settings11, conversation.providerId)
+      },
+      hostPlatform: process.platform,
+      settings: settings11,
+      vaultPath
+    });
+  }
+  save(conversation) {
+    return this.deps.sessions.saveMetadata(this.deps.sessions.toSessionMetadata(conversation));
+  }
+  generateId() {
+    return `conv-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+  }
+  generateDefaultTitle() {
+    const now = /* @__PURE__ */ new Date();
+    return now.toLocaleString(void 0, {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+  getPreview(conversation) {
+    var _a5, _b3;
+    const firstUserMessage = conversation.messages.find((message) => message.role === "user");
+    if (!firstUserMessage) return "New conversation";
+    const previewText = (_b3 = (_a5 = firstUserMessage.displayContent) != null ? _a5 : extractUserDisplayContent(firstUserMessage.content)) != null ? _b3 : firstUserMessage.content;
+    return previewText.substring(0, 50) + (previewText.length > 50 ? "..." : "");
+  }
+};
+
+// src/app/providers/ClaudianProviderHost.ts
+var ClaudianProviderHost = class {
+  constructor(plugin) {
+    this.plugin = plugin;
+  }
+  get app() {
+    return this.plugin.app;
+  }
+  get settings() {
+    return this.plugin.settings;
+  }
+  get storage() {
+    return this.plugin.storage;
+  }
+  get manifest() {
+    return this.plugin.manifest;
+  }
+  saveSettings() {
+    return this.plugin.saveSettings();
+  }
+  mutateSettings(mutation) {
+    return this.plugin.mutateSettings(mutation);
+  }
+  mutateSettingsConditionally(mutation) {
+    return this.plugin.mutateSettingsConditionally(mutation);
+  }
+  loadData() {
+    return this.plugin.loadData();
+  }
+  saveData(data) {
+    return this.plugin.saveData(data);
+  }
+  normalizeModelVariantSettings() {
+    return this.plugin.normalizeModelVariantSettings();
+  }
+  getActiveEnvironmentVariables(providerId) {
+    return this.plugin.getActiveEnvironmentVariables(providerId);
+  }
+  getEnvironmentVariablesForScope(scope) {
+    return this.plugin.getEnvironmentVariablesForScope(scope);
+  }
+  applyEnvironmentVariables(scope, envText) {
+    return this.plugin.applyEnvironmentVariables(scope, envText);
+  }
+  applyEnvironmentVariablesBatch(updates) {
+    return this.plugin.applyEnvironmentVariablesBatch(updates);
+  }
+  getResolvedProviderCliPath(providerId, context) {
+    return this.plugin.getResolvedProviderCliPath(providerId, context);
+  }
+  refreshModelSelectors() {
+    for (const view of this.plugin.getAllViews()) {
+      view.refreshModelSelector();
+    }
+  }
+  async broadcastToActiveViewRuntimes(action) {
+    var _a5, _b3;
+    await ((_b3 = (_a5 = this.plugin.getView()) == null ? void 0 : _a5.getTabManager()) == null ? void 0 : _b3.broadcastToAllTabs(
+      (runtime) => Promise.resolve(action(runtime))
+    ));
+  }
+  async broadcastToAllViewRuntimes(action) {
+    var _a5;
+    for (const view of this.plugin.getAllViews()) {
+      await ((_a5 = view.getTabManager()) == null ? void 0 : _a5.broadcastToAllTabs(
+        (runtime) => Promise.resolve(action(runtime))
+      ));
+    }
+  }
+  async recycleProviderRuntimes(providerId) {
+    var _a5, _b3;
+    for (const view of this.plugin.getAllViews()) {
+      const tabManager = view.getTabManager();
+      await (tabManager == null ? void 0 : tabManager.recycleProviderRuntimes(providerId));
+      (_a5 = view.invalidateProviderCommandCaches) == null ? void 0 : _a5.call(view, [providerId]);
+      (_b3 = view.refreshModelSelector) == null ? void 0 : _b3.call(view);
+    }
+  }
+};
+
+// src/app/settings/SettingsCoordinator.ts
+var SettingsCoordinator = class {
+  constructor(settings11, persist) {
+    this.settings = settings11;
+    this.persist = persist;
+    this.tail = Promise.resolve();
+  }
+  mutate(mutation) {
+    return this.enqueue(async () => {
+      await mutation(this.settings);
+      await this.persist(this.settings);
+    });
+  }
+  mutateConditionally(mutation) {
+    return this.enqueue(async () => {
+      if (await mutation(this.settings)) {
+        await this.persist(this.settings);
+      }
+    });
+  }
+  persistCurrent() {
+    return this.enqueue(() => this.persist(this.settings));
+  }
+  enqueue(operation) {
+    const result = this.tail.then(operation);
+    this.tail = result.catch(() => void 0);
+    return result;
+  }
+};
 
 // src/app/storage/SharedStorageService.ts
-var import_obsidian22 = require("obsidian");
-function isRecord6(value) {
+var import_obsidian26 = require("obsidian");
+function isRecord8(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 var SharedStorageService = class {
@@ -86776,20 +90814,20 @@ var SharedStorageService = class {
   async setTabManagerState(state) {
     try {
       const loaded = await this.plugin.loadData();
-      const data = isRecord6(loaded) ? loaded : {};
+      const data = isRecord8(loaded) ? loaded : {};
       data.tabManagerState = state;
       await this.plugin.saveData(data);
     } catch (e2) {
-      new import_obsidian22.Notice("Failed to save tab layout");
+      new import_obsidian26.Notice("Failed to save tab layout");
     }
   }
   async getTabManagerState() {
     try {
       const data = await this.plugin.loadData();
-      if (!isRecord6(data) || !data.tabManagerState) {
+      if (!isRecord8(data) || !data.tabManagerState) {
         return null;
       }
-      return this.validateTabManagerState(data.tabManagerState);
+      return normalizeTabManagerState(data.tabManagerState);
     } catch (e2) {
       return null;
     }
@@ -86801,38 +90839,10 @@ var SharedStorageService = class {
     await this.adapter.ensureFolder(CLAUDIAN_STORAGE_PATH);
     await this.adapter.ensureFolder(SESSIONS_PATH);
   }
-  validateTabManagerState(data) {
-    if (!data || typeof data !== "object") {
-      return null;
-    }
-    const state = data;
-    if (!Array.isArray(state.openTabs)) {
-      return null;
-    }
-    const validatedTabs = [];
-    for (const tab of state.openTabs) {
-      if (!tab || typeof tab !== "object") {
-        continue;
-      }
-      const tabObj = tab;
-      if (typeof tabObj.tabId !== "string") {
-        continue;
-      }
-      validatedTabs.push({
-        tabId: tabObj.tabId,
-        conversationId: typeof tabObj.conversationId === "string" ? tabObj.conversationId : null,
-        ...typeof tabObj.draftModel === "string" ? { draftModel: tabObj.draftModel } : {}
-      });
-    }
-    return {
-      openTabs: validatedTabs,
-      activeTabId: typeof state.activeTabId === "string" ? state.activeTabId : null
-    };
-  }
 };
 
 // src/features/chat/ClaudianView.ts
-var import_obsidian46 = require("obsidian");
+var import_obsidian50 = require("obsidian");
 
 // src/utils/animationFrame.ts
 function getRendererWindow() {
@@ -86868,8 +90878,28 @@ function cancelScheduledAnimationFrame(frame) {
   targetWindow.clearTimeout(frame.id);
 }
 
+// src/features/chat/services/MentionCacheCoordinator.ts
+var MentionCacheCoordinator = class {
+  constructor(getRegistrations) {
+    this.getRegistrations = getRegistrations;
+  }
+  markStructureDirty() {
+    var _a5, _b3;
+    for (const registration of this.getRegistrations()) {
+      (_a5 = registration.fileContextManager) == null ? void 0 : _a5.markFileCacheDirty();
+      (_b3 = registration.fileContextManager) == null ? void 0 : _b3.markFolderCacheDirty();
+    }
+  }
+  markFilesDirty() {
+    var _a5;
+    for (const registration of this.getRegistrations()) {
+      (_a5 = registration.fileContextManager) == null ? void 0 : _a5.markFileCacheDirty();
+    }
+  }
+};
+
 // src/features/chat/tabs/Tab.ts
-var import_obsidian43 = require("obsidian");
+var import_obsidian47 = require("obsidian");
 
 // src/core/providers/modelRouting.ts
 function getProviderForModel(model, settings11) {
@@ -87619,7 +91649,7 @@ var CanvasSelectionController = class {
 };
 
 // src/features/chat/controllers/ConversationController.ts
-var import_obsidian23 = require("obsidian");
+var import_obsidian27 = require("obsidian");
 
 // src/features/chat/rendering/collapsible.ts
 function setupCollapsible(wrapperEl, headerEl, contentEl, state, options = {}) {
@@ -87756,7 +91786,7 @@ function findRewindContext(messages, userIndex) {
 // src/features/chat/controllers/ConversationController.ts
 function runConversationAction(action, failureMessage) {
   void action().catch(() => {
-    new import_obsidian23.Notice(failureMessage);
+    new import_obsidian27.Notice(failureMessage);
   });
 }
 var ConversationController = class {
@@ -87919,27 +91949,27 @@ var ConversationController = class {
     const { plugin, state, renderer } = this.deps;
     const agentServiceForCheck = this.getAgentService();
     if (agentServiceForCheck && !agentServiceForCheck.getCapabilities().supportsRewind) {
-      new import_obsidian23.Notice(t10("chat.rewind.failed", { error: "Rewind is not supported by this provider." }));
+      new import_obsidian27.Notice(t10("chat.rewind.failed", { error: "Rewind is not supported by this provider." }));
       return;
     }
     if (state.isStreaming) {
-      new import_obsidian23.Notice(t10("chat.rewind.unavailableStreaming"));
+      new import_obsidian27.Notice(t10("chat.rewind.unavailableStreaming"));
       return;
     }
     const msgs = state.messages;
     const userIdx = msgs.findIndex((m4) => m4.id === userMessageId);
     if (userIdx === -1) {
-      new import_obsidian23.Notice(t10("chat.rewind.failed", { error: "Message not found" }));
+      new import_obsidian27.Notice(t10("chat.rewind.failed", { error: "Message not found" }));
       return;
     }
     const userMsg = msgs[userIdx];
     if (!userMsg.userMessageId) {
-      new import_obsidian23.Notice(t10("chat.rewind.unavailableNoUuid"));
+      new import_obsidian27.Notice(t10("chat.rewind.unavailableNoUuid"));
       return;
     }
     const rewindCtx = findRewindContext(msgs, userIdx);
     if (!rewindCtx.hasResponse) {
-      new import_obsidian23.Notice(t10("chat.rewind.unavailableNoUuid"));
+      new import_obsidian27.Notice(t10("chat.rewind.unavailableNoUuid"));
       return;
     }
     const prevAssistantUuid = rewindCtx.prevAssistantUuid;
@@ -87950,23 +91980,23 @@ var ConversationController = class {
     );
     if (!confirmed) return;
     if (state.isStreaming) {
-      new import_obsidian23.Notice(t10("chat.rewind.unavailableStreaming"));
+      new import_obsidian27.Notice(t10("chat.rewind.unavailableStreaming"));
       return;
     }
     const agentService = this.getAgentService();
     if (!agentService) {
-      new import_obsidian23.Notice(t10("chat.rewind.failed", { error: "Agent service not available" }));
+      new import_obsidian27.Notice(t10("chat.rewind.failed", { error: "Agent service not available" }));
       return;
     }
     let result;
     try {
       result = await agentService.rewind(userMsg.userMessageId, prevAssistantUuid, mode);
     } catch (e2) {
-      new import_obsidian23.Notice(t10("chat.rewind.failed", { error: e2 instanceof Error ? e2.message : "Unknown error" }));
+      new import_obsidian27.Notice(t10("chat.rewind.failed", { error: e2 instanceof Error ? e2.message : "Unknown error" }));
       return;
     }
     if (!result.canRewind) {
-      new import_obsidian23.Notice(t10("chat.rewind.cannot", { error: (_a5 = result.error) != null ? _a5 : "Unknown error" }));
+      new import_obsidian27.Notice(t10("chat.rewind.cannot", { error: (_a5 = result.error) != null ? _a5 : "Unknown error" }));
       return;
     }
     state.truncateAt(userMessageId);
@@ -87987,12 +92017,12 @@ var ConversationController = class {
       saveError = e2 instanceof Error ? e2.message : "Failed to save";
     }
     if (saveError) {
-      new import_obsidian23.Notice(
+      new import_obsidian27.Notice(
         mode === "conversation" ? t10("chat.rewind.noticeConversationOnlySaveFailed", { error: saveError }) : t10("chat.rewind.noticeSaveFailed", { count: String(filesChanged), error: saveError })
       );
       return;
     }
-    new import_obsidian23.Notice(
+    new import_obsidian27.Notice(
       mode === "conversation" ? t10("chat.rewind.noticeConversationOnly") : t10("chat.rewind.notice", { count: String(filesChanged) })
     );
   }
@@ -88006,7 +92036,7 @@ var ConversationController = class {
    * only metadata is saved - the SDK handles message persistence.
    */
   async save(updateLastResponse = false, options) {
-    var _a5, _b3, _c2, _d, _e2;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2;
     const { plugin, state } = this.deps;
     if (!state.currentConversationId && state.messages.length === 0) {
       return;
@@ -88015,16 +92045,18 @@ var ConversationController = class {
     const sessionInvalidated = (_b3 = (_a5 = agentService == null ? void 0 : agentService.consumeSessionInvalidation) == null ? void 0 : _a5.call(agentService)) != null ? _b3 : false;
     if (!state.currentConversationId && state.messages.length > 0) {
       const initialSessionId = (_c2 = agentService == null ? void 0 : agentService.getSessionId()) != null ? _c2 : void 0;
+      const selectedModel = (_f2 = (_e2 = (_d = this.deps).getSelectedModel) == null ? void 0 : _e2.call(_d)) != null ? _f2 : void 0;
       const conversation2 = await plugin.createConversation({
         providerId: agentService == null ? void 0 : agentService.providerId,
-        sessionId: initialSessionId
+        sessionId: initialSessionId,
+        ...selectedModel ? { selectedModel } : {}
       });
       state.currentConversationId = conversation2.id;
     }
     const fileCtx = this.deps.getFileContextManager();
     const currentNote = (fileCtx == null ? void 0 : fileCtx.getCurrentNotePath()) || void 0;
     const externalContextSelector = this.deps.getExternalContextSelector();
-    const externalContextPaths = (_d = externalContextSelector == null ? void 0 : externalContextSelector.getExternalContexts()) != null ? _d : [];
+    const externalContextPaths = (_g = externalContextSelector == null ? void 0 : externalContextSelector.getExternalContexts()) != null ? _g : [];
     const mcpServerSelector = this.deps.getMcpServerSelector();
     const enabledMcpServers = mcpServerSelector ? Array.from(mcpServerSelector.getEnabledServers()) : [];
     const conversation = plugin.getConversationSync(state.currentConversationId);
@@ -88034,7 +92066,7 @@ var ConversationController = class {
       messages: state.messages,
       currentNote,
       externalContextPaths: externalContextPaths.length > 0 ? externalContextPaths : void 0,
-      usage: (_e2 = state.usage) != null ? _e2 : void 0,
+      usage: (_h2 = state.usage) != null ? _h2 : void 0,
       enabledMcpServers: enabledMcpServers.length > 0 ? enabledMcpServers : void 0
     };
     if (updateLastResponse) {
@@ -88168,7 +92200,7 @@ var ConversationController = class {
         item.setAttribute("data-tab-index", String(conversationStatus.tabIndex));
       }
       const iconEl = item.createDiv({ cls: "claudian-history-item-icon" });
-      (0, import_obsidian23.setIcon)(iconEl, this.getHistoryItemIcon(openState, isRunning));
+      (0, import_obsidian27.setIcon)(iconEl, this.getHistoryItemIcon(openState, isRunning));
       const content = item.createDiv({ cls: "claudian-history-item-content" });
       const titleEl = content.createDiv({ cls: "claudian-history-item-title", text: conv.title });
       titleEl.setAttribute("title", conv.title);
@@ -88227,11 +92259,11 @@ var ConversationController = class {
       const actions = item.createDiv({ cls: "claudian-history-item-actions" });
       if (conv.titleGenerationStatus === "pending") {
         const loadingEl = actions.createEl("span", { cls: "claudian-action-btn claudian-action-loading" });
-        (0, import_obsidian23.setIcon)(loadingEl, "loader-2");
+        (0, import_obsidian27.setIcon)(loadingEl, "loader-2");
         loadingEl.setAttribute("aria-label", "Generating title...");
       } else if (conv.titleGenerationStatus === "failed") {
         const regenerateBtn = actions.createEl("button", { cls: "claudian-action-btn" });
-        (0, import_obsidian23.setIcon)(regenerateBtn, "refresh-cw");
+        (0, import_obsidian27.setIcon)(regenerateBtn, "refresh-cw");
         regenerateBtn.setAttribute("aria-label", "Regenerate title");
         regenerateBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
@@ -88245,7 +92277,7 @@ var ConversationController = class {
         const openInNewTabBtn = actions.createEl("button", {
           cls: "claudian-action-btn claudian-open-new-tab-btn"
         });
-        (0, import_obsidian23.setIcon)(openInNewTabBtn, "square-plus");
+        (0, import_obsidian27.setIcon)(openInNewTabBtn, "square-plus");
         openInNewTabBtn.setAttribute("aria-label", "Open in new tab");
         openInNewTabBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
@@ -88262,14 +92294,14 @@ var ConversationController = class {
         });
       }
       const renameBtn = actions.createEl("button", { cls: "claudian-action-btn" });
-      (0, import_obsidian23.setIcon)(renameBtn, "pencil");
+      (0, import_obsidian27.setIcon)(renameBtn, "pencil");
       renameBtn.setAttribute("aria-label", "Rename");
       renameBtn.addEventListener("click", (e2) => {
         e2.stopPropagation();
         this.showRenameInput(item, conv.id, conv.title);
       });
       const deleteBtn = actions.createEl("button", { cls: "claudian-action-btn claudian-delete-btn" });
-      (0, import_obsidian23.setIcon)(deleteBtn, "trash-2");
+      (0, import_obsidian27.setIcon)(deleteBtn, "trash-2");
       deleteBtn.setAttribute("aria-label", "Delete");
       deleteBtn.addEventListener("click", (e2) => {
         e2.stopPropagation();
@@ -88333,11 +92365,11 @@ var ConversationController = class {
     try {
       await action();
     } catch (e2) {
-      new import_obsidian23.Notice(errorMessage);
+      new import_obsidian27.Notice(errorMessage);
     }
   }
   showHistoryContextMenu(item, conversationId, title, isCurrent, options, event) {
-    const menu = new import_obsidian23.Menu();
+    const menu = new import_obsidian27.Menu();
     const fallbackOpenState = isCurrent ? "current" : "closed";
     const { openState } = this.getHistoryConversationStatus(conversationId, fallbackOpenState, options);
     if (openState !== "current") {
@@ -88407,7 +92439,7 @@ var ConversationController = class {
         await this.deps.plugin.renameConversation(convId, newTitle);
         this.updateHistoryDropdown();
       } catch (e2) {
-        new import_obsidian23.Notice("Failed to rename conversation");
+        new import_obsidian27.Notice("Failed to rename conversation");
       }
     };
     input.addEventListener("blur", () => {
@@ -88563,7 +92595,7 @@ var ConversationController = class {
 };
 
 // src/features/chat/controllers/InputController.ts
-var import_obsidian28 = require("obsidian");
+var import_obsidian32 = require("obsidian");
 
 // src/core/runtime/QueuedTurn.ts
 function cloneChatTurnRequest(request) {
@@ -88625,7 +92657,7 @@ function mergeSets(first, second) {
 }
 
 // src/shared/components/ResumeSessionDropdown.ts
-var import_obsidian24 = require("obsidian");
+var import_obsidian28 = require("obsidian");
 var ResumeSessionDropdown = class {
   constructor(containerEl, inputEl, conversations, currentConversationId, callbacks) {
     this.selectedIndex = 0;
@@ -88728,7 +92760,7 @@ var ResumeSessionDropdown = class {
       if (isCurrent) item.addClass("current");
       if (i === this.selectedIndex) item.addClass("selected");
       const iconEl = item.createDiv({ cls: "claudian-resume-item-icon" });
-      (0, import_obsidian24.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
+      (0, import_obsidian28.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
       const content = item.createDiv({ cls: "claudian-resume-item-content" });
       const titleEl = content.createDiv({ cls: "claudian-resume-item-title", text: conv.title });
       titleEl.setAttribute("title", conv.title);
@@ -88760,8 +92792,8 @@ var ResumeSessionDropdown = class {
 };
 
 // src/shared/modals/InstructionConfirmModal.ts
-var import_obsidian25 = require("obsidian");
-var InstructionModal = class extends import_obsidian25.Modal {
+var import_obsidian29 = require("obsidian");
+var InstructionModal = class extends import_obsidian29.Modal {
   constructor(app, rawInstruction, callbacks) {
     super(app);
     this.state = "loading";
@@ -88805,7 +92837,7 @@ var InstructionModal = class extends import_obsidian25.Modal {
     const responseSection = this.clarificationEl.createDiv({ cls: "claudian-instruction-section" });
     const responseLabel = responseSection.createDiv({ cls: "claudian-instruction-label" });
     responseLabel.setText("Your response:");
-    this.responseTextarea = new import_obsidian25.TextAreaComponent(responseSection);
+    this.responseTextarea = new import_obsidian29.TextAreaComponent(responseSection);
     this.responseTextarea.inputEl.addClass("claudian-instruction-response-textarea");
     this.responseTextarea.inputEl.rows = 3;
     this.responseTextarea.inputEl.placeholder = "Provide more details...";
@@ -88823,7 +92855,7 @@ var InstructionModal = class extends import_obsidian25.Modal {
     this.refinedDisplayEl = refinedSection.createDiv({ cls: "claudian-instruction-refined" });
     this.editContainerEl = refinedSection.createDiv({ cls: "claudian-instruction-edit-container" });
     this.editContainerEl.addClass("claudian-hidden");
-    this.editTextarea = new import_obsidian25.TextAreaComponent(this.editContainerEl);
+    this.editTextarea = new import_obsidian29.TextAreaComponent(this.editContainerEl);
     this.editTextarea.inputEl.addClass("claudian-instruction-edit-textarea");
     this.editTextarea.inputEl.rows = 4;
     this.buttonsEl = contentEl.createDiv({ cls: "claudian-instruction-buttons" });
@@ -89675,7 +93707,7 @@ var InlineAskUserQuestion = class {
 };
 
 // src/features/chat/rendering/InlineExitPlanMode.ts
-var fs27 = __toESM(require("fs"));
+var fs28 = __toESM(require("fs"));
 var nodePath = __toESM(require("path"));
 var HINTS_TEXT2 = "Arrow keys to navigate \xB7 Enter to select \xB7 Esc to cancel";
 var InlineExitPlanMode = class {
@@ -89790,7 +93822,7 @@ var InlineExitPlanMode = class {
       return null;
     }
     try {
-      const content = fs27.readFileSync(planFilePath, "utf-8");
+      const content = fs28.readFileSync(planFilePath, "utf-8");
       return content.trim() || null;
     } catch (err) {
       this.planReadError = err instanceof Error ? err.message : "unknown error";
@@ -90056,7 +94088,7 @@ var InlinePlanApproval = class {
 };
 
 // src/features/chat/rendering/ToolCallRenderer.ts
-var import_obsidian27 = require("obsidian");
+var import_obsidian31 = require("obsidian");
 
 // src/core/tools/toolIcons.ts
 var TOOL_ICONS = {
@@ -90191,7 +94223,7 @@ function renderDiffContent(containerEl, diffLines, contextLines = 3) {
 }
 
 // src/features/chat/rendering/todoUtils.ts
-var import_obsidian26 = require("obsidian");
+var import_obsidian30 = require("obsidian");
 function getTodoStatusIcon(status) {
   return status === "completed" ? "check" : "dot";
 }
@@ -90204,7 +94236,7 @@ function renderTodoItems(container, todos) {
     const item = container.createDiv({ cls: `claudian-todo-item claudian-todo-${todo.status}` });
     const icon = item.createSpan({ cls: "claudian-todo-status-icon" });
     icon.setAttribute("aria-hidden", "true");
-    (0, import_obsidian26.setIcon)(icon, getTodoStatusIcon(todo.status));
+    (0, import_obsidian30.setIcon)(icon, getTodoStatusIcon(todo.status));
     const text = item.createSpan({ cls: "claudian-todo-text" });
     text.setText(getTodoDisplayText(todo));
   }
@@ -90216,7 +94248,7 @@ function setToolIcon(el2, name) {
   if (icon === MCP_ICON_MARKER) {
     appendMcpIcon(el2);
   } else {
-    (0, import_obsidian27.setIcon)(el2, icon);
+    (0, import_obsidian31.setIcon)(el2, icon);
   }
 }
 function stringifyToolValue(value) {
@@ -90456,7 +94488,7 @@ function appendToolLink(parent, title, url2) {
   linkEl.setAttribute("target", "_blank");
   linkEl.setAttribute("rel", "noopener noreferrer");
   const iconEl = linkEl.createSpan({ cls: "claudian-tool-link-icon" });
-  (0, import_obsidian27.setIcon)(iconEl, "external-link");
+  (0, import_obsidian31.setIcon)(iconEl, "external-link");
   linkEl.createSpan({ cls: "claudian-tool-link-title", text: title });
 }
 function isPlaceholderWebSearchResult(result) {
@@ -90632,10 +94664,10 @@ function renderApplyPatchExpanded(container, input, result) {
     for (const change of changes) {
       if (!change || typeof change !== "object" || Array.isArray(change)) continue;
       const changeRecord = change;
-      const path28 = typeof changeRecord.path === "string" ? changeRecord.path : "";
-      if (!path28) continue;
+      const path32 = typeof changeRecord.path === "string" ? changeRecord.path : "";
+      if (!path32) continue;
       const movedTo = readMoveTarget(changeRecord.kind);
-      const pathText = movedTo ? `${path28} -> ${movedTo}` : path28;
+      const pathText = movedTo ? `${path32} -> ${movedTo}` : path32;
       linesEl.createDiv({ cls: "claudian-tool-line", text: pathText });
     }
     return;
@@ -90805,12 +94837,12 @@ function setTodoWriteStatus(statusEl, input) {
   const status = isComplete ? "completed" : "running";
   const ariaLabel = isComplete ? "Status: completed" : "Status: in progress";
   resetStatusElement(statusEl, `status-${status}`, ariaLabel);
-  if (isComplete) (0, import_obsidian27.setIcon)(statusEl, "check");
+  if (isComplete) (0, import_obsidian31.setIcon)(statusEl, "check");
 }
 function setToolStatus(statusEl, status) {
   resetStatusElement(statusEl, `status-${status}`, `Status: ${status}`);
   const icon = STATUS_ICONS[status];
-  if (icon) (0, import_obsidian27.setIcon)(statusEl, icon);
+  if (icon) (0, import_obsidian31.setIcon)(statusEl, icon);
 }
 function setApplyPatchHeaderRight(statusEl, toolCall) {
   const isError = toolCall.status === "error" || toolCall.status === "blocked";
@@ -91093,6 +95125,30 @@ function renderStoredToolCall(parentEl, toolCall, options = {}) {
   return toolEl;
 }
 
+// src/features/chat/controllers/TurnCoordinator.ts
+var TurnCoordinator = class {
+  constructor(executeTurn, owner) {
+    this.executeTurn = executeTurn;
+    this.owner = owner;
+    this.activeTurn = null;
+  }
+  get current() {
+    return this.activeTurn;
+  }
+  async run(request) {
+    var _a5;
+    const execution = this.executeTurn(request);
+    this.activeTurn = execution;
+    if (this.owner) this.owner.activeTurn = execution;
+    try {
+      await execution;
+    } finally {
+      if (this.activeTurn === execution) this.activeTurn = null;
+      if (((_a5 = this.owner) == null ? void 0 : _a5.activeTurn) === execution) this.owner.activeTurn = null;
+    }
+  }
+};
+
 // src/features/chat/controllers/InputController.ts
 var APPROVAL_OPTION_MAP = {
   "Deny": "deny",
@@ -91123,6 +95179,10 @@ var InputController = class {
     this.sawInitialProviderUserMessage = false;
     this.awaitingProviderAssistantStart = false;
     this.deps = deps;
+    this.turnCoordinator = new TurnCoordinator(
+      (options) => this.executeSendMessage(options),
+      deps.turnOwner
+    );
   }
   getAgentService() {
     var _a5, _b3, _c2;
@@ -91168,6 +95228,9 @@ var InputController = class {
   // Message Sending
   // ============================================
   async sendMessage(options) {
+    await this.turnCoordinator.run(options);
+  }
+  async executeSendMessage(options) {
     var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n;
     const {
       plugin,
@@ -91256,6 +95319,8 @@ var InputController = class {
       canvasContextOverride: options == null ? void 0 : options.canvasContextOverride
     });
     const { displayContent, turnRequest } = turnSubmission;
+    const messagesBeforeTurn = state.messages;
+    const hadPendingConversationSave = state.hasPendingConversationSave;
     fileContextManager == null ? void 0 : fileContextManager.markCurrentNoteSent();
     const userMsg = {
       id: this.deps.generateId(),
@@ -91269,7 +95334,13 @@ var InputController = class {
     state.addMessage(userMsg);
     state.hasPendingConversationSave = true;
     renderer.addMessage(userMsg);
-    await this.triggerTitleGeneration();
+    try {
+      await this.triggerTitleGeneration();
+    } catch (error48) {
+      this.restoreMessageToInput(this.createQueuedMessage(displayContent, turnRequest));
+      this.rollbackFailedTurn(messagesBeforeTurn, hadPendingConversationSave);
+      throw error48;
+    }
     const assistantMsg = {
       id: this.deps.generateId(),
       role: "assistant",
@@ -91299,9 +95370,9 @@ var InputController = class {
     if (this.deps.ensureServiceInitialized) {
       const ready = await this.deps.ensureServiceInitialized();
       if (!ready) {
-        new import_obsidian28.Notice("Failed to initialize agent service. Please try again.");
-        streamController.hideThinkingIndicator();
-        state.isStreaming = false;
+        new import_obsidian32.Notice("Failed to initialize agent service. Please try again.");
+        this.restoreMessageToInput(this.createQueuedMessage(displayContent, turnRequest));
+        this.rollbackFailedTurn(messagesBeforeTurn, hadPendingConversationSave);
         this.activeStreamingAssistantMessage = null;
         this.resetProviderMessageBoundaryState();
         return;
@@ -91309,7 +95380,9 @@ var InputController = class {
     }
     const agentService = this.getAgentService();
     if (!agentService) {
-      new import_obsidian28.Notice("Agent service not available. Please reload the plugin.");
+      new import_obsidian32.Notice("Agent service not available. Please reload the plugin.");
+      this.restoreMessageToInput(this.createQueuedMessage(displayContent, turnRequest));
+      this.rollbackFailedTurn(messagesBeforeTurn, hadPendingConversationSave);
       this.activeStreamingAssistantMessage = null;
       this.resetProviderMessageBoundaryState();
       return;
@@ -91333,13 +95406,44 @@ var InputController = class {
       userMsg.content = preparedTurn.persistedContent;
       userMsg.currentNote = preparedTurn.isCompact ? void 0 : preparedTurn.request.currentNotePath;
       const previousMessages = state.messages.slice(0, -2);
-      for await (const chunk of agentService.query(preparedTurn, previousMessages)) {
+      const selectedModel = this.getAuxiliaryModel();
+      const queryOptions = selectedModel ? { model: selectedModel } : void 0;
+      for await (const chunk of agentService.query(preparedTurn, previousMessages, queryOptions)) {
         if (state.streamGeneration !== streamGeneration) {
           wasInvalidated = true;
           break;
         }
         if (state.cancelRequested) {
           wasInterrupted = true;
+          break;
+        }
+        if (chunk.type === "error" && chunk.code === "provider_session_missing") {
+          const retryMessage = this.createQueuedMessage(displayContent, {
+            ...turnRequest,
+            images: imagesForMessage != null ? imagesForMessage : turnRequest.images
+          });
+          const pendingMessagesToRestore = this.mergePendingMessages(
+            this.pendingSteerMessage,
+            state.queuedMessage
+          );
+          const composerDraftToRestore = this.captureComposerDraft();
+          const staleConversationId = state.currentConversationId;
+          const resolution = staleConversationId ? await plugin.handleMissingProviderSession(
+            staleConversationId,
+            chunk.providerSessionId
+          ) : "not_found";
+          if (resolution === "deleted") {
+            this.restoreMessageToInput(composerDraftToRestore, { mergeWithComposer: true });
+            this.restoreMessageToInput(pendingMessagesToRestore, { mergeWithComposer: true });
+            this.restoreMessageToInput(retryMessage, { mergeWithComposer: true });
+          } else {
+            this.restoreMessageToInput(retryMessage, { mergeWithComposer: true });
+            this.restorePendingSteerMessageToQueue();
+            this.rollbackFailedTurn(messagesBeforeTurn, hadPendingConversationSave);
+          }
+          const notice = resolution === "deleted" ? "The provider session no longer exists. Its Claudian record was removed; send again to start a new session." : resolution === "reset" ? "The provider session no longer exists. Claudian preserved the recoverable history; send again to rebuild the session." : resolution === "preserved" ? "The provider session no longer exists. Claudian preserved its record because the remaining history could not be verified." : "The provider session no longer exists. Send again to start a new session.";
+          new import_obsidian32.Notice(notice);
+          wasInvalidated = true;
           break;
         }
         if (await this.handleProviderMessageBoundaryChunk(chunk)) {
@@ -91413,13 +95517,13 @@ var InputController = class {
           if (state.streamGeneration !== streamGeneration || invalidated) {
             planApprovalInvalidated = true;
           } else if ((decision == null ? void 0 : decision.type) === "implement") {
-            (_l2 = (_k3 = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _l2.call(_k3);
+            await ((_l2 = (_k3 = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _l2.call(_k3));
             planAutoSendContent = "Implement the plan.";
           } else if ((decision == null ? void 0 : decision.type) === "revise") {
             this.deps.getInputEl().value = decision.text;
             shouldProcessQueuedMessage = false;
           } else {
-            (_n = (_m = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _n.call(_m);
+            await ((_n = (_m = this.deps).restorePrePlanPermissionModeIfNeeded) == null ? void 0 : _n.call(_m));
           }
         }
         if (!planApprovalInvalidated) {
@@ -91541,6 +95645,19 @@ var InputController = class {
     this.deps.resetInputHeight();
     inputEl.focus();
   }
+  captureComposerDraft() {
+    var _a5, _b3;
+    const content = this.deps.getInputEl().value;
+    const attachedImages = (_b3 = (_a5 = this.deps.getImageContextManager()) == null ? void 0 : _a5.getAttachedImages()) != null ? _b3 : [];
+    const images = attachedImages.length > 0 ? [...attachedImages] : void 0;
+    if (!content.trim() && !images) {
+      return null;
+    }
+    return this.createQueuedMessage(content, {
+      text: content,
+      images
+    });
+  }
   restorePendingMessagesToInput() {
     const { state } = this.deps;
     const combinedMessage = this.mergePendingMessages(
@@ -91624,7 +95741,7 @@ var InputController = class {
         type: "button"
       }
     });
-    (0, import_obsidian28.setIcon)(button, icon);
+    (0, import_obsidian32.setIcon)(button, icon);
     return button;
   }
   canSteerQueuedMessage() {
@@ -91740,7 +95857,7 @@ var InputController = class {
       });
     } catch (e2) {
       this.restoreQueuedMessageAfterSteerFailure(queuedMessage);
-      new import_obsidian28.Notice("Failed to steer the queued Codex message. It is still available.");
+      new import_obsidian32.Notice("Failed to steer the queued Codex message. It is still available.");
     }
   }
   restoreQueuedMessageAfterSteerFailure(message) {
@@ -91877,6 +95994,30 @@ var InputController = class {
     state.currentTextContent = "";
     state.currentThinkingState = null;
   }
+  rollbackFailedTurn(messagesBeforeTurn, hadPendingConversationSave) {
+    var _a5;
+    const { state, renderer, streamController } = this.deps;
+    const retainedMessageIds = new Set(messagesBeforeTurn.map((message) => message.id));
+    for (const message of state.messages) {
+      if (!retainedMessageIds.has(message.id)) {
+        renderer.removeMessage(message.id);
+      }
+    }
+    state.messages = messagesBeforeTurn;
+    state.hasPendingConversationSave = hadPendingConversationSave;
+    streamController.hideThinkingIndicator();
+    state.isStreaming = false;
+    state.cancelRequested = false;
+    state.currentContentEl = null;
+    state.currentTextEl = null;
+    state.currentTextContent = "";
+    state.currentThinkingState = null;
+    state.responseStartTime = null;
+    this.deps.getSubagentManager().resetStreamingState();
+    if (messagesBeforeTurn.length === 0) {
+      (_a5 = this.deps.getWelcomeEl()) == null ? void 0 : _a5.removeClass("claudian-hidden");
+    }
+  }
   // ============================================
   // Title Generation
   // ============================================
@@ -91885,16 +96026,18 @@ var InputController = class {
    * Handles setting fallback title, firing async generation, and updating UI.
    */
   async triggerTitleGeneration() {
-    var _a5, _b3, _c2, _d;
+    var _a5, _b3, _c2, _d, _e2;
     const { plugin, state, conversationController } = this.deps;
     if (state.messages.length !== 1) {
       return;
     }
     if (!state.currentConversationId) {
       const sessionId = (_b3 = (_a5 = this.getAgentService()) == null ? void 0 : _a5.getSessionId()) != null ? _b3 : void 0;
+      const selectedModel = (_c2 = this.getAuxiliaryModel()) != null ? _c2 : void 0;
       const conversation = await plugin.createConversation({
         providerId: this.getActiveProviderId(),
-        sessionId
+        sessionId,
+        ...selectedModel ? { selectedModel } : {}
       });
       state.currentConversationId = conversation.id;
     }
@@ -91902,7 +96045,7 @@ var InputController = class {
     if (!firstUserMsg) {
       return;
     }
-    const userContent = (_d = (_c2 = firstUserMsg.displayContent) != null ? _c2 : extractUserDisplayContent(firstUserMsg.content)) != null ? _d : firstUserMsg.content;
+    const userContent = (_e2 = (_d = firstUserMsg.displayContent) != null ? _d : extractUserDisplayContent(firstUserMsg.content)) != null ? _e2 : firstUserMsg.content;
     const fallbackTitle = conversationController.generateFallbackTitle(userContent);
     await plugin.renameConversation(state.currentConversationId, fallbackTitle);
     if (!plugin.settings.enableAutoTitleGeneration) {
@@ -91979,10 +96122,13 @@ var InputController = class {
         {
           onAccept: (finalInstruction) => {
             void (async () => {
-              const currentPrompt = plugin.settings.systemPrompt;
-              plugin.settings.systemPrompt = appendMarkdownSnippet(currentPrompt, finalInstruction);
-              await plugin.saveSettings();
-              new import_obsidian28.Notice("Instruction added to custom system prompt");
+              await plugin.mutateSettings((settings11) => {
+                settings11.systemPrompt = appendMarkdownSnippet(
+                  settings11.systemPrompt,
+                  finalInstruction
+                );
+              });
+              new import_obsidian32.Notice("Instruction added to custom system prompt");
               instructionModeManager == null ? void 0 : instructionModeManager.clear();
             })();
           },
@@ -92001,7 +96147,7 @@ var InputController = class {
               if (result2.error === "Cancelled") {
                 return;
               }
-              new import_obsidian28.Notice(result2.error || "Failed to process response");
+              new import_obsidian32.Notice(result2.error || "Failed to process response");
               modal == null ? void 0 : modal.showError(result2.error || "Failed to process response");
               return;
             }
@@ -92028,7 +96174,7 @@ var InputController = class {
           instructionModeManager == null ? void 0 : instructionModeManager.clear();
           return;
         }
-        new import_obsidian28.Notice(result.error || "Failed to refine instruction");
+        new import_obsidian32.Notice(result.error || "Failed to refine instruction");
         modal.showError(result.error || "Failed to refine instruction");
         instructionModeManager == null ? void 0 : instructionModeManager.clear();
         return;
@@ -92038,13 +96184,13 @@ var InputController = class {
       } else if (result.refinedInstruction) {
         modal.showConfirmation(result.refinedInstruction);
       } else {
-        new import_obsidian28.Notice("No instruction received");
+        new import_obsidian32.Notice("No instruction received");
         modal.showError("No instruction received");
         instructionModeManager == null ? void 0 : instructionModeManager.clear();
       }
     } catch (error48) {
       const errorMsg = error48 instanceof Error ? error48.message : "Unknown error";
-      new import_obsidian28.Notice(`Error: ${errorMsg}`);
+      new import_obsidian32.Notice(`Error: ${errorMsg}`);
       modal == null ? void 0 : modal.showError(errorMsg);
       instructionModeManager == null ? void 0 : instructionModeManager.clear();
     }
@@ -92112,7 +96258,7 @@ var InputController = class {
     const selected = Object.values(result)[0];
     const selectedValue = Array.isArray(selected) ? selected[0] : selected;
     if (typeof selectedValue !== "string") {
-      new import_obsidian28.Notice(`Unexpected approval selection: "${String(selectedValue)}"`);
+      new import_obsidian32.Notice(`Unexpected approval selection: "${String(selectedValue)}"`);
       return "cancel";
     }
     const decision = optionDecisionMap.get(selectedValue);
@@ -92283,7 +96429,7 @@ var InputController = class {
     const { conversationController } = this.deps;
     const capabilities = this.getActiveCapabilities();
     if (!isBuiltInCommandSupported(command, capabilities)) {
-      new import_obsidian28.Notice(`/${command.name} is not supported by this provider.`);
+      new import_obsidian32.Notice(`/${command.name} is not supported by this provider.`);
       return;
     }
     switch (command.action) {
@@ -92293,14 +96439,14 @@ var InputController = class {
       case "add-dir": {
         const externalContextSelector = this.deps.getExternalContextSelector();
         if (!externalContextSelector) {
-          new import_obsidian28.Notice("External context selector not available.");
+          new import_obsidian32.Notice("External context selector not available.");
           return;
         }
         const result = externalContextSelector.addExternalContext(args);
         if (result.success) {
-          new import_obsidian28.Notice(`Added external context: ${result.normalizedPath}`);
+          new import_obsidian32.Notice(`Added external context: ${result.normalizedPath}`);
         } else {
-          new import_obsidian28.Notice(result.error);
+          new import_obsidian32.Notice(result.error);
         }
         break;
       }
@@ -92309,11 +96455,11 @@ var InputController = class {
         break;
       case "fork": {
         if (!this.getActiveCapabilities().supportsFork) {
-          new import_obsidian28.Notice("Fork is not supported by this provider.");
+          new import_obsidian32.Notice("Fork is not supported by this provider.");
           return;
         }
         if (!this.deps.onForkAll) {
-          new import_obsidian28.Notice("Fork not available.");
+          new import_obsidian32.Notice("Fork not available.");
           return;
         }
         await this.deps.onForkAll();
@@ -92321,7 +96467,7 @@ var InputController = class {
       }
       default: {
         const unknownAction = typeof command.action === "string" ? command.action : "unknown";
-        new import_obsidian28.Notice(`Unknown command: ${unknownAction}`);
+        new import_obsidian32.Notice(`Unknown command: ${unknownAction}`);
         break;
       }
     }
@@ -92350,7 +96496,7 @@ var InputController = class {
     this.destroyResumeDropdown();
     const conversations = plugin.getConversationList();
     if (conversations.length === 0) {
-      new import_obsidian28.Notice("No conversations to resume");
+      new import_obsidian32.Notice("No conversations to resume");
       return;
     }
     const openConversation = (_a5 = this.deps.openConversation) != null ? _a5 : ((id) => conversationController.switchTo(id));
@@ -92364,7 +96510,7 @@ var InputController = class {
           this.destroyResumeDropdown();
           openConversation(id).catch((err) => {
             const msg = err instanceof Error ? err.message : String(err);
-            new import_obsidian28.Notice(`Failed to open conversation: ${msg}`);
+            new import_obsidian32.Notice(`Failed to open conversation: ${msg}`);
           });
         },
         onDismiss: () => {
@@ -92510,7 +96656,7 @@ var NavigationController = class {
 };
 
 // src/features/chat/controllers/SelectionController.ts
-var import_obsidian29 = require("obsidian");
+var import_obsidian33 = require("obsidian");
 
 // src/shared/components/SelectionHighlight.ts
 var import_state = require("@codemirror/state");
@@ -92626,7 +96772,7 @@ var SelectionController = class {
   // ============================================
   poll() {
     var _a5;
-    const view = this.app.workspace.getActiveViewOfType(import_obsidian29.MarkdownView);
+    const view = this.app.workspace.getActiveViewOfType(import_obsidian33.MarkdownView);
     if (!view) {
       this.clearWhenMarkdownContextIsUnavailable();
       return;
@@ -92887,7 +97033,7 @@ var SelectionController = class {
 };
 
 // src/features/chat/controllers/StreamController.ts
-var import_obsidian32 = require("obsidian");
+var import_obsidian36 = require("obsidian");
 
 // src/core/tools/todo.ts
 function isValidTodoItem(item) {
@@ -93027,7 +97173,7 @@ function adapterOwnsTool(adapter, toolName) {
 }
 
 // src/features/chat/rendering/SubagentRenderer.ts
-var import_obsidian30 = require("obsidian");
+var import_obsidian34 = require("obsidian");
 var SUBAGENT_TOOL_STATUS_ICONS = {
   completed: "check",
   error: "x",
@@ -93086,7 +97232,7 @@ function setSubagentToolStatus(view, status) {
   view.statusEl.setAttribute("aria-label", `Status: ${status}`);
   const statusIcon = SUBAGENT_TOOL_STATUS_ICONS[status];
   if (statusIcon) {
-    (0, import_obsidian30.setIcon)(view.statusEl, statusIcon);
+    (0, import_obsidian34.setIcon)(view.statusEl, statusIcon);
   }
 }
 function updateSubagentToolView(view, toolCall) {
@@ -93191,7 +97337,7 @@ function createSubagentBlock(parentEl, taskToolId, taskInput) {
   headerEl.setAttribute("role", "button");
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian30.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian34.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(description));
   const statusEl = headerEl.createDiv({ cls: "claudian-subagent-status status-running" });
@@ -93266,11 +97412,11 @@ function finalizeSubagentBlock(state, result, isError) {
   state.statusEl.addClass(`status-${state.info.status}`);
   state.statusEl.empty();
   if (state.info.status === "completed") {
-    (0, import_obsidian30.setIcon)(state.statusEl, "check");
+    (0, import_obsidian34.setIcon)(state.statusEl, "check");
     state.wrapperEl.removeClass("error");
     state.wrapperEl.addClass("done");
   } else {
-    (0, import_obsidian30.setIcon)(state.statusEl, "x");
+    (0, import_obsidian34.setIcon)(state.statusEl, "x");
     state.wrapperEl.removeClass("done");
     state.wrapperEl.addClass("error");
   }
@@ -93392,7 +97538,7 @@ function createAsyncSubagentBlock(parentEl, taskToolId, taskInput) {
   headerEl.setAttribute("aria-label", `Background task: ${description} - Initializing - click to expand`);
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian30.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian34.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(description));
   const statusTextEl = headerEl.createDiv({ cls: "claudian-subagent-status-text" });
@@ -93431,9 +97577,9 @@ function finalizeAsyncSubagent(state, result, isError) {
   state.statusEl.addClass(`status-${isError ? "error" : "completed"}`);
   state.statusEl.empty();
   if (isError) {
-    (0, import_obsidian30.setIcon)(state.statusEl, "x");
+    (0, import_obsidian34.setIcon)(state.statusEl, "x");
   } else {
-    (0, import_obsidian30.setIcon)(state.statusEl, "check");
+    (0, import_obsidian34.setIcon)(state.statusEl, "check");
   }
   if (isError) {
     state.wrapperEl.addClass("error");
@@ -93451,7 +97597,7 @@ function markAsyncSubagentOrphaned(state) {
   state.statusTextEl.setText("Orphaned");
   state.statusEl.className = "claudian-subagent-status status-error";
   state.statusEl.empty();
-  (0, import_obsidian30.setIcon)(state.statusEl, "alert-circle");
+  (0, import_obsidian34.setIcon)(state.statusEl, "alert-circle");
   state.wrapperEl.addClass("error");
   state.wrapperEl.addClass("orphaned");
   renderAsyncContentLikeSync(state.contentEl, state.info, "orphaned");
@@ -93478,7 +97624,7 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
   );
   const iconEl = headerEl.createDiv({ cls: "claudian-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian30.setIcon)(iconEl, getToolIcon(TOOL_TASK));
+  (0, import_obsidian34.setIcon)(iconEl, getToolIcon(TOOL_TASK));
   const labelEl = headerEl.createDiv({ cls: "claudian-subagent-label" });
   labelEl.setText(truncateDescription(subagent.description));
   const statusTextEl = headerEl.createDiv({ cls: "claudian-subagent-status-text" });
@@ -93499,13 +97645,13 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
   statusEl.setAttribute("aria-label", `Status: ${statusAriaLabel}`);
   switch (displayStatus) {
     case "completed":
-      (0, import_obsidian30.setIcon)(statusEl, "check");
+      (0, import_obsidian34.setIcon)(statusEl, "check");
       break;
     case "error":
-      (0, import_obsidian30.setIcon)(statusEl, "x");
+      (0, import_obsidian34.setIcon)(statusEl, "x");
       break;
     case "orphaned":
-      (0, import_obsidian30.setIcon)(statusEl, "alert-circle");
+      (0, import_obsidian34.setIcon)(statusEl, "alert-circle");
       break;
   }
   const contentEl = wrapperEl.createDiv({ cls: "claudian-subagent-content" });
@@ -93516,7 +97662,7 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
 }
 
 // src/features/chat/rendering/WriteEditRenderer.ts
-var import_obsidian31 = require("obsidian");
+var import_obsidian35 = require("obsidian");
 function shortenPath2(filePath, maxLength = 40) {
   if (!filePath) return "file";
   const normalized = filePath.replace(/\\/g, "/");
@@ -93545,7 +97691,7 @@ function createWriteEditBlock(parentEl, toolCall, options = {}) {
   headerEl.setAttribute("role", "button");
   const iconEl = headerEl.createDiv({ cls: "claudian-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian31.setIcon)(iconEl, getToolIcon(toolName));
+  (0, import_obsidian35.setIcon)(iconEl, getToolIcon(toolName));
   const nameEl = headerEl.createDiv({ cls: "claudian-write-edit-name" });
   nameEl.setText(toolName);
   const summaryEl = headerEl.createDiv({ cls: "claudian-write-edit-summary" });
@@ -93589,7 +97735,7 @@ function finalizeWriteEditBlock(state, isError) {
   state.statusEl.empty();
   if (isError) {
     state.statusEl.addClass("status-error");
-    (0, import_obsidian31.setIcon)(state.statusEl, "x");
+    (0, import_obsidian35.setIcon)(state.statusEl, "x");
     state.statusEl.setAttribute("aria-label", "Status: error");
     if (!state.diffLines) {
       state.contentEl.empty();
@@ -93627,7 +97773,7 @@ function renderStoredWriteEdit(parentEl, toolCall, options = {}) {
   headerEl.setAttribute("role", "button");
   const iconEl = headerEl.createDiv({ cls: "claudian-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
-  (0, import_obsidian31.setIcon)(iconEl, getToolIcon(toolName));
+  (0, import_obsidian35.setIcon)(iconEl, getToolIcon(toolName));
   const nameEl = headerEl.createDiv({ cls: "claudian-write-edit-name" });
   nameEl.setText(toolName);
   const summaryEl = headerEl.createDiv({ cls: "claudian-write-edit-summary" });
@@ -93639,7 +97785,7 @@ function renderStoredWriteEdit(parentEl, toolCall, options = {}) {
   const statusEl = headerEl.createDiv({ cls: "claudian-write-edit-status" });
   if (isError) {
     statusEl.addClass("status-error");
-    (0, import_obsidian31.setIcon)(statusEl, "x");
+    (0, import_obsidian35.setIcon)(statusEl, "x");
   }
   const contentEl = wrapperEl.createDiv({ cls: "claudian-write-edit-content" });
   const row = contentEl.createDiv({ cls: "claudian-write-edit-diff-row" });
@@ -93867,7 +98013,20 @@ var _StreamController = class _StreamController {
   }
   getActiveProviderModel() {
     var _a5, _b3, _c2;
-    const providerId = (_c2 = (_b3 = (_a5 = this.deps).getAgentService) == null ? void 0 : _b3.call(_a5)) == null ? void 0 : _c2.providerId;
+    const conversation = this.deps.state.currentConversationId ? this.deps.plugin.getConversationSync(this.deps.state.currentConversationId) : null;
+    if (conversation) {
+      return resolveConversationModel(
+        this.deps.plugin.settings,
+        conversation.providerId,
+        conversation
+      ).model;
+    }
+    const service = (_b3 = (_a5 = this.deps).getAgentService) == null ? void 0 : _b3.call(_a5);
+    const serviceModel = (_c2 = service == null ? void 0 : service.getAuxiliaryModel) == null ? void 0 : _c2.call(service);
+    if (serviceModel) {
+      return serviceModel;
+    }
+    const providerId = service == null ? void 0 : service.providerId;
     if (!providerId) {
       return void 0;
     }
@@ -94727,7 +98886,7 @@ var _StreamController = class _StreamController {
     window.setTimeout(() => {
       const { vault } = this.deps.plugin.app;
       const file2 = vault.getAbstractFileByPath(relativePath);
-      if (file2 instanceof import_obsidian32.TFile) {
+      if (file2 instanceof import_obsidian36.TFile) {
         vault.trigger("modify", file2);
       } else {
         const parentDir = relativePath.includes("/") ? relativePath.substring(0, relativePath.lastIndexOf("/")) : "";
@@ -94822,7 +98981,7 @@ _StreamController.THINKING_INDICATOR_DELAY = 400;
 var StreamController = _StreamController;
 
 // src/features/chat/rendering/MessageRenderer.ts
-var import_obsidian33 = require("obsidian");
+var import_obsidian37 = require("obsidian");
 
 // src/utils/obsidianCompat.ts
 function getVaultFileByPath(app, filePath) {
@@ -95024,9 +99183,9 @@ var IMAGE_EXTENSIONS2 = /* @__PURE__ */ new Set([
   "ico"
 ]);
 var IMAGE_EMBED_PATTERN = /!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
-function isImagePath(path28) {
+function isImagePath(path32) {
   var _a5;
-  const ext = (_a5 = path28.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
+  const ext = (_a5 = path32.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
   return ext ? IMAGE_EXTENSIONS2.has(ext) : false;
 }
 function resolveImageFile(app, imagePath, options) {
@@ -95611,7 +99770,7 @@ var MessageRenderer = class {
         this.app,
         { mediaFolder: this.plugin.settings.mediaFolder }
       );
-      await import_obsidian33.MarkdownRenderer.render(
+      await import_obsidian37.MarkdownRenderer.render(
         this.app,
         processedMarkdown,
         el2,
@@ -95674,7 +99833,7 @@ var MessageRenderer = class {
    */
   addTextCopyButton(textEl, markdown) {
     const copyBtn = textEl.createSpan({ cls: "claudian-text-copy-btn" });
-    (0, import_obsidian33.setIcon)(copyBtn, "copy");
+    (0, import_obsidian37.setIcon)(copyBtn, "copy");
     let feedbackTimeout = null;
     copyBtn.addEventListener("click", (e2) => {
       e2.stopPropagation();
@@ -95692,7 +99851,7 @@ var MessageRenderer = class {
         copyBtn.classList.add("copied");
         feedbackTimeout = window.setTimeout(() => {
           copyBtn.empty();
-          (0, import_obsidian33.setIcon)(copyBtn, "copy");
+          (0, import_obsidian37.setIcon)(copyBtn, "copy");
           copyBtn.classList.remove("copied");
           feedbackTimeout = null;
         }, 1500);
@@ -95729,7 +99888,7 @@ var MessageRenderer = class {
   addUserCopyButton(msgEl, content) {
     const toolbar = this.getOrCreateActionsToolbar(msgEl);
     const copyBtn = toolbar.createSpan({ cls: "claudian-user-msg-copy-btn" });
-    (0, import_obsidian33.setIcon)(copyBtn, "copy");
+    (0, import_obsidian37.setIcon)(copyBtn, "copy");
     copyBtn.setAttribute("aria-label", "Copy message");
     let feedbackTimeout = null;
     copyBtn.addEventListener("click", (e2) => {
@@ -95746,7 +99905,7 @@ var MessageRenderer = class {
         copyBtn.classList.add("copied");
         feedbackTimeout = window.setTimeout(() => {
           copyBtn.empty();
-          (0, import_obsidian33.setIcon)(copyBtn, "copy");
+          (0, import_obsidian37.setIcon)(copyBtn, "copy");
           copyBtn.classList.remove("copied");
           feedbackTimeout = null;
         }, 1500);
@@ -95758,7 +99917,7 @@ var MessageRenderer = class {
     const toolbar = this.getOrCreateActionsToolbar(msgEl);
     const btn = toolbar.createSpan({ cls: "claudian-message-rewind-btn" });
     if (toolbar.firstChild !== btn) toolbar.insertBefore(btn, toolbar.firstChild);
-    (0, import_obsidian33.setIcon)(btn, "rotate-ccw");
+    (0, import_obsidian37.setIcon)(btn, "rotate-ccw");
     btn.setAttribute("aria-label", t10("chat.rewind.ariaLabel"));
     btn.addEventListener("click", (e2) => {
       e2.stopPropagation();
@@ -95766,7 +99925,7 @@ var MessageRenderer = class {
     });
   }
   showRewindMenu(event, messageId) {
-    const menu = new import_obsidian33.Menu();
+    const menu = new import_obsidian37.Menu();
     this.addRewindMenuItem(menu, messageId, "conversation");
     this.addRewindMenuItem(menu, messageId, "code-and-conversation");
     menu.showAtMouseEvent(event);
@@ -95781,7 +99940,7 @@ var MessageRenderer = class {
           try {
             await ((_a5 = this.rewindCallback) == null ? void 0 : _a5.call(this, messageId, mode));
           } catch (err) {
-            new import_obsidian33.Notice(t10("chat.rewind.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
+            new import_obsidian37.Notice(t10("chat.rewind.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
           }
         });
       });
@@ -95792,7 +99951,7 @@ var MessageRenderer = class {
     const toolbar = this.getOrCreateActionsToolbar(msgEl);
     const btn = toolbar.createSpan({ cls: "claudian-message-fork-btn" });
     if (toolbar.firstChild !== btn) toolbar.insertBefore(btn, toolbar.firstChild);
-    (0, import_obsidian33.setIcon)(btn, "git-fork");
+    (0, import_obsidian37.setIcon)(btn, "git-fork");
     btn.setAttribute("aria-label", t10("chat.fork.ariaLabel"));
     btn.addEventListener("click", (e2) => {
       e2.stopPropagation();
@@ -95801,7 +99960,7 @@ var MessageRenderer = class {
         try {
           await ((_a5 = this.forkCallback) == null ? void 0 : _a5.call(this, messageId));
         } catch (err) {
-          new import_obsidian33.Notice(t10("chat.fork.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
+          new import_obsidian37.Notice(t10("chat.fork.failed", { error: err instanceof Error ? err.message : "Unknown error" }));
         }
       });
     });
@@ -95869,13 +100028,13 @@ var BangBashService = class {
 var import_fs11 = require("fs");
 var import_os6 = require("os");
 var import_path42 = require("path");
-function isRecord7(value) {
+function isRecord9(value) {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 function parseJsonRecord(value) {
   try {
     const parsed = JSON.parse(value);
-    return isRecord7(parsed) ? parsed : null;
+    return isRecord9(parsed) ? parsed : null;
   } catch (e2) {
     return null;
   }
@@ -96339,7 +100498,7 @@ var _SubagentManager = class _SubagentManager {
         return directAgentId;
       }
       const taskRecord = parsed.task;
-      if (isRecord7(taskRecord)) {
+      if (isRecord9(taskRecord)) {
         return this.extractAgentIdFromRecord(taskRecord);
       }
     }
@@ -96434,13 +100593,13 @@ var _SubagentManager = class _SubagentManager {
     const parsed = parseJsonRecord(payload);
     if (parsed) {
       const status = (_a5 = parsed.retrieval_status) != null ? _a5 : parsed.status;
-      const agents = isRecord7(parsed.agents) ? parsed.agents : null;
+      const agents = isRecord9(parsed.agents) ? parsed.agents : null;
       const hasAgents = agents !== null && Object.keys(agents).length > 0;
       if (status === "not_ready" || status === "running" || status === "pending") {
         return true;
       }
       if (hasAgents && agents) {
-        const agentStatuses = Object.values(agents).map((agent) => isRecord7(agent) && typeof agent.status === "string" ? agent.status.toLowerCase() : "");
+        const agentStatuses = Object.values(agents).map((agent) => isRecord9(agent) && typeof agent.status === "string" ? agent.status.toLowerCase() : "");
         const anyRunning = agentStatuses.some(
           (s2) => s2 === "running" || s2 === "pending" || s2 === "not_ready"
         );
@@ -96481,9 +100640,9 @@ var _SubagentManager = class _SubagentManager {
       if (taskResult) {
         return taskResult;
       }
-      const agents = isRecord7(parsed.agents) ? parsed.agents : null;
+      const agents = isRecord9(parsed.agents) ? parsed.agents : null;
       const agentData = agents && agentId ? agents[agentId] : null;
-      if (isRecord7(agentData)) {
+      if (isRecord9(agentData)) {
         const parsedResult2 = this.extractResultFromCandidateString(agentData.result);
         if (parsedResult2) {
           return parsedResult2;
@@ -96498,7 +100657,7 @@ var _SubagentManager = class _SubagentManager {
         const agentIds = Object.keys(agents);
         if (agentIds.length > 0) {
           const firstAgent = agents[agentIds[0]];
-          if (isRecord7(firstAgent)) {
+          if (isRecord9(firstAgent)) {
             const parsedResult2 = this.extractResultFromCandidateString(firstAgent.result);
             if (parsedResult2) {
               return parsedResult2;
@@ -96573,7 +100732,7 @@ var _SubagentManager = class _SubagentManager {
         return agentId;
       }
       const data = parsed.data;
-      if (isRecord7(data) && typeof data.agent_id === "string") {
+      if (isRecord9(data) && typeof data.agent_id === "string") {
         return data.agent_id;
       }
       if (parsed.id && typeof parsed.id === "string") {
@@ -96586,7 +100745,7 @@ var _SubagentManager = class _SubagentManager {
     var _a5;
     const parsed = parseJsonRecord(result);
     if (parsed) {
-      const agents = isRecord7(parsed.agents) ? parsed.agents : null;
+      const agents = isRecord9(parsed.agents) ? parsed.agents : null;
       if (agents) {
         return (_a5 = Object.keys(agents)[0]) != null ? _a5 : null;
       }
@@ -96597,9 +100756,9 @@ var _SubagentManager = class _SubagentManager {
     const parsed = parseJsonValue(raw);
     if (parsed !== null) {
       if (Array.isArray(parsed)) {
-        const textBlock = parsed.find((block) => isRecord7(block) && typeof block.text === "string");
-        if (isRecord7(textBlock) && typeof textBlock.text === "string") return textBlock.text;
-      } else if (isRecord7(parsed) && typeof parsed.text === "string") {
+        const textBlock = parsed.find((block) => isRecord9(block) && typeof block.text === "string");
+        if (isRecord9(textBlock) && typeof textBlock.text === "string") return textBlock.text;
+      } else if (isRecord9(parsed) && typeof parsed.text === "string") {
         return parsed.text;
       }
     }
@@ -97042,7 +101201,7 @@ var ChatState = class {
 };
 
 // src/features/chat/ui/BangBashModeManager.ts
-var import_obsidian34 = require("obsidian");
+var import_obsidian38 = require("obsidian");
 var BangBashModeManager = class {
   constructor(inputEl, callbacks) {
     this.state = { active: false, rawCommand: "" };
@@ -97112,7 +101271,7 @@ var BangBashModeManager = class {
       this.clear();
       await this.callbacks.onSubmit(rawCommand);
     } catch (e2) {
-      new import_obsidian34.Notice(`Command failed: ${e2 instanceof Error ? e2.message : String(e2)}`);
+      new import_obsidian38.Notice(`Command failed: ${e2 instanceof Error ? e2.message : String(e2)}`);
     } finally {
       this.isSubmitting = false;
     }
@@ -97129,13 +101288,13 @@ var BangBashModeManager = class {
 };
 
 // src/features/chat/ui/FileContext.ts
-var import_obsidian38 = require("obsidian");
+var import_obsidian42 = require("obsidian");
 
 // src/shared/mention/MentionDropdownController.ts
-var import_obsidian35 = require("obsidian");
+var import_obsidian39 = require("obsidian");
 
 // src/utils/externalContext.ts
-var fs28 = __toESM(require("fs"));
+var fs29 = __toESM(require("fs"));
 init_path();
 function normalizePathForComparison3(p) {
   return normalizePathForComparison(p);
@@ -97195,7 +101354,7 @@ function buildExternalContextDisplayEntries(externalContexts) {
 }
 function validateDirectoryPath(p) {
   try {
-    const stats = fs28.statSync(p);
+    const stats = fs29.statSync(p);
     if (!stats.isDirectory()) {
       return { valid: false, error: "Path exists but is not a directory" };
     }
@@ -97223,8 +101382,8 @@ function isDuplicatePath(newPath, existingPaths) {
 }
 
 // src/utils/externalContextScanner.ts
-var fs29 = __toESM(require("fs"));
-var path25 = __toESM(require("path"));
+var fs30 = __toESM(require("fs"));
+var path29 = __toESM(require("path"));
 init_path();
 var CACHE_TTL_MS = 3e4;
 var MAX_FILES_PER_PATH = 1e3;
@@ -97270,25 +101429,25 @@ var ExternalContextScanner = class {
     if (depth > MAX_DEPTH) return [];
     const files = [];
     try {
-      if (!fs29.existsSync(dir)) return [];
-      const stat = fs29.statSync(dir);
+      if (!fs30.existsSync(dir)) return [];
+      const stat = fs30.statSync(dir);
       if (!stat.isDirectory()) return [];
-      const entries = fs29.readdirSync(dir, { withFileTypes: true });
+      const entries = fs30.readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
         if (entry.name.startsWith(".")) continue;
         if (SKIP_DIRECTORIES.has(entry.name)) continue;
         if (entry.isSymbolicLink()) continue;
-        const fullPath = path25.join(dir, entry.name);
+        const fullPath = path29.join(dir, entry.name);
         if (entry.isDirectory()) {
           const subFiles = this.scanDirectory(fullPath, contextRoot, depth + 1);
           files.push(...subFiles);
         } else if (entry.isFile()) {
           try {
-            const fileStat = fs29.statSync(fullPath);
+            const fileStat = fs30.statSync(fullPath);
             files.push({
               path: fullPath,
               name: entry.name,
-              relativePath: path25.relative(contextRoot, fullPath),
+              relativePath: path29.relative(contextRoot, fullPath),
               contextRoot,
               mtime: fileStat.mtimeMs
             });
@@ -97753,17 +101912,17 @@ var MentionDropdownController = class {
             break;
           case "agent":
           case "agent-folder":
-            (0, import_obsidian35.setIcon)(iconEl, "bot");
+            (0, import_obsidian39.setIcon)(iconEl, "bot");
             break;
           case "context-file":
-            (0, import_obsidian35.setIcon)(iconEl, "folder-open");
+            (0, import_obsidian39.setIcon)(iconEl, "folder-open");
             break;
           case "folder":
           case "context-folder":
-            (0, import_obsidian35.setIcon)(iconEl, "folder");
+            (0, import_obsidian39.setIcon)(iconEl, "folder");
             break;
           default:
-            (0, import_obsidian35.setIcon)(iconEl, "file-text");
+            (0, import_obsidian39.setIcon)(iconEl, "file-text");
         }
         const textEl = itemEl.createSpan({ cls: "claudian-mention-text" });
         switch (item.type) {
@@ -97909,7 +102068,7 @@ var MentionDropdownController = class {
 };
 
 // src/shared/mention/VaultMentionCache.ts
-var import_obsidian36 = require("obsidian");
+var import_obsidian40 = require("obsidian");
 var VaultFileCache = class {
   constructor(app, options = {}) {
     this.app = app;
@@ -97988,7 +102147,7 @@ var VaultFolderCache = class {
     }
   }
   loadFolders() {
-    return this.app.vault.getAllLoadedFiles().filter((file2) => file2 instanceof import_obsidian36.TFolder && isVisibleFolder(file2));
+    return this.app.vault.getAllLoadedFiles().filter((file2) => file2 instanceof import_obsidian40.TFolder && isVisibleFolder(file2));
   }
 };
 
@@ -98173,11 +102332,11 @@ var FileContextState = class {
       this.attachedFiles.add(file2);
     }
   }
-  attachFile(path28) {
-    this.attachedFiles.add(path28);
+  attachFile(path32) {
+    this.attachedFiles.add(path32);
   }
-  detachFile(path28) {
-    this.attachedFiles.delete(path28);
+  detachFile(path32) {
+    this.attachedFiles.delete(path32);
   }
   clearAttachments() {
     this.attachedFiles.clear();
@@ -98201,7 +102360,7 @@ var FileContextState = class {
 };
 
 // src/features/chat/ui/file-context/view/FileChipsView.ts
-var import_obsidian37 = require("obsidian");
+var import_obsidian41 = require("obsidian");
 var FileChipsView = class {
   constructor(containerEl, callbacks) {
     this.containerEl = containerEl;
@@ -98231,7 +102390,7 @@ var FileChipsView = class {
   renderFileChip(filePath, onRemove) {
     const chipEl = this.fileIndicatorEl.createDiv({ cls: "claudian-file-chip" });
     const iconEl = chipEl.createSpan({ cls: "claudian-file-chip-icon" });
-    (0, import_obsidian37.setIcon)(iconEl, "file-text");
+    (0, import_obsidian41.setIcon)(iconEl, "file-text");
     const normalizedPath = filePath.replace(/\\/g, "/");
     const filename = normalizedPath.split("/").pop() || filePath;
     const nameEl = chipEl.createSpan({ cls: "claudian-file-chip-name" });
@@ -98279,14 +102438,14 @@ var FileContextManager = class {
       onOpenFile: (filePath) => {
         void (async () => {
           const file2 = this.app.vault.getAbstractFileByPath(filePath);
-          if (!(file2 instanceof import_obsidian38.TFile)) {
-            new import_obsidian38.Notice(`Could not open file: ${filePath}`);
+          if (!(file2 instanceof import_obsidian42.TFile)) {
+            new import_obsidian42.Notice(`Could not open file: ${filePath}`);
             return;
           }
           try {
             await this.app.workspace.getLeaf().openFile(file2);
           } catch (error48) {
-            new import_obsidian38.Notice(`Failed to open file: ${error48 instanceof Error ? error48.message : String(error48)}`);
+            new import_obsidian42.Notice(`Failed to open file: ${error48 instanceof Error ? error48.message : String(error48)}`);
           }
         })();
       }
@@ -98317,10 +102476,10 @@ var FileContextManager = class {
       }
     );
     this.deleteEventRef = this.app.vault.on("delete", (file2) => {
-      if (file2 instanceof import_obsidian38.TFile) this.handleFileDeleted(file2.path);
+      if (file2 instanceof import_obsidian42.TFile) this.handleFileDeleted(file2.path);
     });
     this.renameEventRef = this.app.vault.on("rename", (file2, oldPath) => {
-      if (file2 instanceof import_obsidian38.TFile) this.handleFileRenamed(oldPath, file2.path);
+      if (file2 instanceof import_obsidian42.TFile) this.handleFileRenamed(oldPath, file2.path);
     });
   }
   /** Returns the current note path (shown as chip). */
@@ -98544,8 +102703,8 @@ var FileContextManager = class {
 };
 
 // src/features/chat/ui/ImageContext.ts
-var import_obsidian39 = require("obsidian");
-var path26 = __toESM(require("path"));
+var import_obsidian43 = require("obsidian");
+var path30 = __toESM(require("path"));
 var MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 var IMAGE_EXTENSIONS3 = {
   ".jpg": "image/jpeg",
@@ -98697,12 +102856,12 @@ var ImageContextManager = class {
     return file2.type.startsWith("image/") && this.getMediaType(file2.name) !== null;
   }
   getMediaType(filename) {
-    const ext = path26.extname(filename).toLowerCase();
+    const ext = path30.extname(filename).toLowerCase();
     return IMAGE_EXTENSIONS3[ext] || null;
   }
   async addImageFromFile(file2, source) {
     if (!this.enabled) {
-      new import_obsidian39.Notice("Image attachments are not supported by this provider.");
+      new import_obsidian43.Notice("Image attachments are not supported by this provider.");
       return false;
     }
     if (file2.size > MAX_IMAGE_SIZE) {
@@ -98815,7 +102974,7 @@ var ImageContextManager = class {
   }
   truncateName(name, maxLen) {
     if (name.length <= maxLen) return name;
-    const ext = path26.extname(name);
+    const ext = path30.extname(name);
     const base = name.slice(0, name.length - ext.length);
     const truncatedBase = base.slice(0, maxLen - ext.length - 3);
     return `${truncatedBase}...${ext}`;
@@ -98834,18 +102993,18 @@ var ImageContextManager = class {
         userMessage = `${message} (Permission denied)`;
       }
     }
-    new import_obsidian39.Notice(userMessage);
+    new import_obsidian43.Notice(userMessage);
   }
 };
 
 // src/features/chat/ui/InputToolbar.ts
-var import_obsidian40 = require("obsidian");
-var os14 = __toESM(require("os"));
-var path27 = __toESM(require("path"));
+var import_obsidian44 = require("obsidian");
+var os17 = __toESM(require("os"));
+var path31 = __toESM(require("path"));
 init_path();
 function runToolbarAction(action, failureMessage) {
   void action().catch(() => {
-    new import_obsidian40.Notice(failureMessage);
+    new import_obsidian44.Notice(failureMessage);
   });
 }
 var ModelSelector = class {
@@ -99032,6 +103191,9 @@ var ThinkingBudgetSelector = class {
     for (const effort of [...options].reverse()) {
       const gearEl = optionsEl.createDiv({ cls: "claudian-thinking-gear" });
       gearEl.setText(effort.label);
+      if (effort.description) {
+        gearEl.setAttribute("title", effort.description);
+      }
       if (effort.value === currentEffort) {
         gearEl.addClass("selected");
       }
@@ -99185,7 +103347,7 @@ var ServiceTierToggle = class {
     this.container.empty();
     this.buttonEl = this.container.createDiv({ cls: "claudian-service-tier-button" });
     this.iconEl = this.buttonEl.createSpan({ cls: "claudian-service-tier-icon" });
-    (0, import_obsidian40.setIcon)(this.iconEl, "zap");
+    (0, import_obsidian44.setIcon)(this.iconEl, "zap");
     this.updateDisplay();
     this.buttonEl.addEventListener("click", () => {
       runToolbarAction(() => this.toggle(), "Failed to change service tier");
@@ -99264,28 +103426,28 @@ var ExternalContextSelector = class {
     this.renderDropdown();
     if (invalidPaths.length > 0) {
       const pathNames = invalidPaths.map((p) => this.shortenPath(p)).join(", ");
-      new import_obsidian40.Notice(`Removed ${invalidPaths.length} invalid external context path(s): ${pathNames}`, 5e3);
+      new import_obsidian44.Notice(`Removed ${invalidPaths.length} invalid external context path(s): ${pathNames}`, 5e3);
       (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     }
   }
-  togglePersistence(path28) {
+  togglePersistence(path32) {
     var _a5;
-    if (this.persistentPaths.has(path28)) {
-      this.persistentPaths.delete(path28);
+    if (this.persistentPaths.has(path32)) {
+      this.persistentPaths.delete(path32);
     } else {
-      if (!isValidDirectoryPath(path28)) {
-        new import_obsidian40.Notice(`Cannot persist "${this.shortenPath(path28)}" - directory no longer exists`, 4e3);
+      if (!isValidDirectoryPath(path32)) {
+        new import_obsidian44.Notice(`Cannot persist "${this.shortenPath(path32)}" - directory no longer exists`, 4e3);
         return;
       }
-      this.persistentPaths.add(path28);
+      this.persistentPaths.add(path32);
     }
     (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     this.renderDropdown();
   }
   mergePersistentPaths() {
     const pathSet = new Set(this.externalContextPaths);
-    for (const path28 of this.persistentPaths) {
-      pathSet.add(path28);
+    for (const path32 of this.persistentPaths) {
+      pathSet.add(path32);
     }
     this.externalContextPaths = [...pathSet];
   }
@@ -99332,7 +103494,7 @@ var ExternalContextSelector = class {
     }
     const expandedPath = expandHomePath(cleanPath);
     const normalizedPath = normalizePathForFilesystem(expandedPath);
-    if (!path27.isAbsolute(normalizedPath)) {
+    if (!path31.isAbsolute(normalizedPath)) {
       return { success: false, error: "Path must be absolute. Usage: /add-dir /absolute/path" };
     }
     const validation = validateDirectoryPath(normalizedPath);
@@ -99370,7 +103532,7 @@ var ExternalContextSelector = class {
     this.container.empty();
     const iconWrapper = this.container.createDiv({ cls: "claudian-external-context-icon-wrapper" });
     this.iconEl = iconWrapper.createDiv({ cls: "claudian-external-context-icon" });
-    (0, import_obsidian40.setIcon)(this.iconEl, "folder");
+    (0, import_obsidian44.setIcon)(this.iconEl, "folder");
     this.badgeEl = iconWrapper.createDiv({ cls: "claudian-external-context-badge" });
     this.updateDisplay();
     iconWrapper.addEventListener("click", (e2) => {
@@ -99394,12 +103556,12 @@ var ExternalContextSelector = class {
       if (!result.canceled && result.filePaths.length > 0) {
         const selectedPath = result.filePaths[0];
         if (isDuplicatePath(selectedPath, this.externalContextPaths)) {
-          new import_obsidian40.Notice("This folder is already added as an external context.", 3e3);
+          new import_obsidian44.Notice("This folder is already added as an external context.", 3e3);
           return;
         }
         const conflict = findConflictingPath(selectedPath, this.externalContextPaths);
         if (conflict) {
-          new import_obsidian40.Notice(this.formatConflictMessage(selectedPath, conflict), 5e3);
+          new import_obsidian44.Notice(this.formatConflictMessage(selectedPath, conflict), 5e3);
           return;
         }
         this.externalContextPaths = [...this.externalContextPaths, selectedPath];
@@ -99408,7 +103570,7 @@ var ExternalContextSelector = class {
         this.renderDropdown();
       }
     } catch (e2) {
-      new import_obsidian40.Notice("Unable to open folder picker.", 5e3);
+      new import_obsidian44.Notice("Unable to open folder picker.", 5e3);
     }
   }
   /** Formats a conflict error message for display. */
@@ -99438,14 +103600,14 @@ var ExternalContextSelector = class {
         if (isPersistent) {
           lockBtn.addClass("locked");
         }
-        (0, import_obsidian40.setIcon)(lockBtn, isPersistent ? "lock" : "unlock");
+        (0, import_obsidian44.setIcon)(lockBtn, isPersistent ? "lock" : "unlock");
         lockBtn.setAttribute("title", isPersistent ? "Persistent (click to make session-only)" : "Session-only (click to persist)");
         lockBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
           this.togglePersistence(pathStr);
         });
         const removeBtn = itemEl.createSpan({ cls: "claudian-external-context-remove" });
-        (0, import_obsidian40.setIcon)(removeBtn, "x");
+        (0, import_obsidian44.setIcon)(removeBtn, "x");
         removeBtn.setAttribute("title", "Remove path");
         removeBtn.addEventListener("click", (e2) => {
           e2.stopPropagation();
@@ -99457,7 +103619,7 @@ var ExternalContextSelector = class {
   /** Shorten path for display (replace home dir with ~) */
   shortenPath(fullPath) {
     try {
-      const homeDir = os14.homedir();
+      const homeDir = os17.homedir();
       const normalize3 = (value) => value.replace(/\\/g, "/");
       const normalizedFull = normalize3(fullPath);
       const normalizedHome = normalize3(homeDir);
@@ -99895,7 +104057,7 @@ var InstructionModeManager = class {
 };
 
 // src/features/chat/ui/NavigationSidebar.ts
-var import_obsidian41 = require("obsidian");
+var import_obsidian45 = require("obsidian");
 var NavigationSidebar = class {
   constructor(parentEl, messagesEl) {
     this.parentEl = parentEl;
@@ -99918,7 +104080,7 @@ var NavigationSidebar = class {
   }
   createButton(cls, icon, label) {
     const btn = this.container.createDiv({ cls: `claudian-nav-btn ${cls}` });
-    (0, import_obsidian41.setIcon)(btn, icon);
+    (0, import_obsidian45.setIcon)(btn, icon);
     btn.setAttribute("aria-label", label);
     return btn;
   }
@@ -100120,7 +104282,7 @@ var NavigationSidebar = class {
 };
 
 // src/features/chat/ui/StatusPanel.ts
-var import_obsidian42 = require("obsidian");
+var import_obsidian46 = require("obsidian");
 var MAX_BASH_OUTPUTS = 50;
 var StatusPanel = class {
   constructor() {
@@ -100285,7 +104447,7 @@ var StatusPanel = class {
     const ownerDocument = (_a5 = this.todoHeaderEl.ownerDocument) != null ? _a5 : window.document;
     const icon = ownerDocument.createElement("span");
     icon.className = "claudian-status-panel-icon";
-    (0, import_obsidian42.setIcon)(icon, getToolIcon(TOOL_TODO_WRITE));
+    (0, import_obsidian46.setIcon)(icon, getToolIcon(TOOL_TODO_WRITE));
     this.todoHeaderEl.appendChild(icon);
     const label = ownerDocument.createElement("span");
     label.className = "claudian-status-panel-label";
@@ -100295,7 +104457,7 @@ var StatusPanel = class {
       if (completedCount === totalCount && totalCount > 0) {
         const status = ownerDocument.createElement("span");
         status.className = "claudian-status-panel-status status-completed";
-        (0, import_obsidian42.setIcon)(status, "check");
+        (0, import_obsidian46.setIcon)(status, "check");
         this.todoHeaderEl.appendChild(status);
       }
       if (currentTask) {
@@ -100398,7 +104560,7 @@ var StatusPanel = class {
     const headerIconEl = ownerDocument.createElement("span");
     headerIconEl.className = "claudian-tool-icon";
     headerIconEl.setAttribute("aria-hidden", "true");
-    (0, import_obsidian42.setIcon)(headerIconEl, "terminal");
+    (0, import_obsidian46.setIcon)(headerIconEl, "terminal");
     this.bashHeaderEl.appendChild(headerIconEl);
     const latest = Array.from(this.currentBashOutputs.values()).at(-1);
     const headerLabelEl = ownerDocument.createElement("span");
@@ -100418,8 +104580,8 @@ var StatusPanel = class {
     if (!this.isBashExpanded && latest) {
       summaryStatusEl.classList.add(`status-${latest.status}`);
       summaryStatusEl.setAttribute("aria-label", t10("chat.bangBash.statusLabel", { status: latest.status }));
-      if (latest.status === "completed") (0, import_obsidian42.setIcon)(summaryStatusEl, "check");
-      if (latest.status === "error") (0, import_obsidian42.setIcon)(summaryStatusEl, "x");
+      if (latest.status === "completed") (0, import_obsidian46.setIcon)(summaryStatusEl, "check");
+      if (latest.status === "error") (0, import_obsidian46.setIcon)(summaryStatusEl, "x");
     } else {
       summaryStatusEl.classList.add("claudian-hidden");
     }
@@ -100457,7 +104619,7 @@ var StatusPanel = class {
     const entryIconEl = ownerDocument.createElement("span");
     entryIconEl.className = "claudian-tool-icon";
     entryIconEl.setAttribute("aria-hidden", "true");
-    (0, import_obsidian42.setIcon)(entryIconEl, "dollar-sign");
+    (0, import_obsidian46.setIcon)(entryIconEl, "dollar-sign");
     entryHeaderEl.appendChild(entryIconEl);
     const entryLabelEl = ownerDocument.createElement("span");
     entryLabelEl.className = "claudian-tool-label";
@@ -100467,8 +104629,8 @@ var StatusPanel = class {
     entryStatusEl.className = "claudian-tool-status";
     entryStatusEl.classList.add(`status-${info.status}`);
     entryStatusEl.setAttribute("aria-label", t10("chat.bangBash.statusLabel", { status: info.status }));
-    if (info.status === "completed") (0, import_obsidian42.setIcon)(entryStatusEl, "check");
-    if (info.status === "error") (0, import_obsidian42.setIcon)(entryStatusEl, "x");
+    if (info.status === "completed") (0, import_obsidian46.setIcon)(entryStatusEl, "check");
+    if (info.status === "error") (0, import_obsidian46.setIcon)(entryStatusEl, "x");
     entryHeaderEl.appendChild(entryStatusEl);
     entryEl.appendChild(entryHeaderEl);
     const contentEl = ownerDocument.createElement("div");
@@ -100512,7 +104674,7 @@ ${output}` : `$ ${latest.command}`;
     try {
       await navigator.clipboard.writeText(text);
     } catch (e2) {
-      new import_obsidian42.Notice(t10("chat.bangBash.copyFailed"));
+      new import_obsidian46.Notice(t10("chat.bangBash.copyFailed"));
     }
   }
   appendActionButton(parent, name, ariaLabel, icon, action) {
@@ -100522,7 +104684,7 @@ ${output}` : `$ ${latest.command}`;
     el2.setAttribute("role", "button");
     el2.setAttribute("tabindex", "0");
     el2.setAttribute("aria-label", ariaLabel);
-    (0, import_obsidian42.setIcon)(el2, icon);
+    (0, import_obsidian46.setIcon)(el2, icon);
     el2.addEventListener("click", (e2) => {
       e2.stopPropagation();
       action();
@@ -100651,6 +104813,62 @@ function getTabProviderId(tab, plugin, conversation) {
   return (_a5 = conversation == null ? void 0 : conversation.providerId) != null ? _a5 : getStoredConversationProviderId(tab, plugin);
 }
 
+// src/features/chat/tabs/RuntimeSupervisor.ts
+var RuntimeSupervisor = class {
+  constructor(runtime = null) {
+    this.runtime = runtime;
+  }
+  get current() {
+    return this.runtime;
+  }
+  setCurrent(runtime) {
+    this.runtime = runtime;
+  }
+  cleanup() {
+    const runtime = this.runtime;
+    runtime == null ? void 0 : runtime.cleanup();
+    if (this.runtime === runtime) {
+      this.runtime = null;
+    }
+  }
+};
+
+// src/features/chat/tabs/TabSession.ts
+var TabSession = class {
+  constructor(state) {
+    this.state = state;
+    this.runtimeSupervisor = new RuntimeSupervisor();
+    this.activeTurn = null;
+  }
+  get id() {
+    return this.state.id;
+  }
+  get lifecycleState() {
+    return this.state.lifecycleState;
+  }
+  set lifecycleState(value) {
+    this.state.lifecycleState = value;
+  }
+  get providerId() {
+    return this.state.providerId;
+  }
+  set providerId(value) {
+    this.state.providerId = value;
+  }
+  get conversationId() {
+    return this.state.conversationId;
+  }
+  set conversationId(value) {
+    this.state.conversationId = value;
+  }
+  get draftModel() {
+    return this.state.draftModel;
+  }
+  set draftModel(value) {
+    this.state.draftModel = value;
+  }
+};
+
 // src/features/chat/tabs/types.ts
 var DEFAULT_MAX_TABS = 3;
 var MIN_TABS = 3;
@@ -100695,10 +104913,33 @@ function getTabChatUIConfig(tab, plugin, conversation) {
   return ProviderRegistry.getChatUIConfig(getTabProviderId(tab, plugin, conversation));
 }
 function getTabSettingsSnapshot(tab, plugin) {
-  return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+  const providerId = getTabProviderId(tab, plugin);
+  return getProviderSettingsSnapshotWithModel(
     plugin.settings,
+    providerId,
+    getTabSelectedModel(tab, plugin)
+  );
+}
+function getWritableTabSettingsSnapshot(tab, plugin, settings11 = plugin.settings) {
+  return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    settings11,
     getTabProviderId(tab, plugin)
   );
+}
+function getTabConversation(tab, plugin) {
+  return tab.conversationId ? plugin.getConversationSync(tab.conversationId) : null;
+}
+function getTabSelectedModel(tab, plugin) {
+  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2;
+  const providerId = getTabProviderId(tab, plugin);
+  if (tab.lifecycleState === "blank") {
+    return (_e2 = (_d = (_c2 = normalizeProviderModelSelection(providerId, plugin.settings, tab.draftModel)) != null ? _c2 : (_b3 = (_a5 = tab.service) == null ? void 0 : _a5.getAuxiliaryModel) == null ? void 0 : _b3.call(_a5)) != null ? _d : tab.draftModel) != null ? _e2 : null;
+  }
+  const conversation = getTabConversation(tab, plugin);
+  if (conversation) {
+    return resolveConversationModel(plugin.settings, providerId, conversation).model;
+  }
+  return (_h2 = (_g = (_f2 = tab.service) == null ? void 0 : _f2.getAuxiliaryModel) == null ? void 0 : _g.call(_f2)) != null ? _h2 : null;
 }
 function getTabPermissionMode(tab, plugin) {
   const permissionMode = getTabSettingsSnapshot(tab, plugin).permissionMode;
@@ -100717,7 +104958,7 @@ function isEnterWithoutShiftOrComposition(e2) {
   return true;
 }
 function hasPlatformSendModifier(e2) {
-  if (import_obsidian43.Platform.isMacOS) {
+  if (import_obsidian47.Platform.isMacOS) {
     return e2.metaKey === true && !e2.ctrlKey && !e2.altKey;
   }
   return e2.ctrlKey === true && !e2.metaKey && !e2.altKey;
@@ -100790,14 +105031,16 @@ function syncSlashCommandDropdownForProvider(tab, plugin, getProviderCatalogConf
 }
 async function updateTabProviderSettings(tab, plugin, update) {
   const providerId = getTabProviderId(tab, plugin);
-  const snapshot = getTabSettingsSnapshot(tab, plugin);
-  update(snapshot);
-  ProviderSettingsCoordinator.commitProviderSettingsSnapshot(
-    plugin.settings,
-    providerId,
-    snapshot
-  );
-  await plugin.saveSettings();
+  let snapshot;
+  await plugin.mutateSettings((settings11) => {
+    snapshot = getWritableTabSettingsSnapshot(tab, plugin, settings11);
+    update(snapshot);
+    ProviderSettingsCoordinator.commitProviderSettingsSnapshot(
+      settings11,
+      providerId,
+      snapshot
+    );
+  });
   return snapshot;
 }
 function refreshTabProviderUI(tab, plugin) {
@@ -100838,7 +105081,10 @@ function syncTabProviderServices(tab, plugin) {
   var _a5, _b3, _c2, _d;
   (_a5 = tab.services.instructionRefineService) == null ? void 0 : _a5.cancel();
   (_b3 = tab.services.instructionRefineService) == null ? void 0 : _b3.resetConversation();
-  tab.services.instructionRefineService = ProviderRegistry.createInstructionRefineService(plugin, tab.providerId);
+  tab.services.instructionRefineService = ProviderRegistry.createInstructionRefineService(
+    plugin.providerHost,
+    tab.providerId
+  );
   (_d = (_c2 = tab.services.subagentManager).setTaskResultInterpreter) == null ? void 0 : _d.call(
     _c2,
     ProviderRegistry.getTaskResultInterpreter(tab.providerId)
@@ -100846,7 +105092,9 @@ function syncTabProviderServices(tab, plugin) {
 }
 function ensureTitleGenerationService(tab, plugin) {
   if (!tab.services.titleGenerationService) {
-    tab.services.titleGenerationService = ProviderRegistry.createTitleGenerationService(plugin);
+    tab.services.titleGenerationService = ProviderRegistry.createTitleGenerationService(
+      plugin.providerHost
+    );
   }
 }
 function cleanupTabRuntime(tab) {
@@ -100912,13 +105160,50 @@ function createTab(options) {
   const restoredDraftModel = typeof options.draftModel === "string" ? options.draftModel.trim() : "";
   const draftModel = isBound ? null : restoredDraftModel || resolveBlankTabModel(plugin, options.defaultProviderId);
   const initialProviderId = (_a5 = conversation == null ? void 0 : conversation.providerId) != null ? _a5 : draftModel ? getEnabledProviderForModel(draftModel, plugin.settings) : DEFAULT_CHAT_PROVIDER_ID;
-  const tab = {
+  const session = new TabSession({
     id,
     lifecycleState: isBound ? "bound_cold" : "blank",
     draftModel,
     providerId: initialProviderId,
-    conversationId: (_b3 = conversation == null ? void 0 : conversation.id) != null ? _b3 : null,
-    service: null,
+    conversationId: (_b3 = conversation == null ? void 0 : conversation.id) != null ? _b3 : null
+  });
+  const runtimeSupervisor = session.runtimeSupervisor;
+  const tab = {
+    session,
+    get id() {
+      return session.id;
+    },
+    get lifecycleState() {
+      return session.lifecycleState;
+    },
+    set lifecycleState(value) {
+      session.lifecycleState = value;
+    },
+    get draftModel() {
+      return session.draftModel;
+    },
+    set draftModel(value) {
+      session.draftModel = value;
+    },
+    get providerId() {
+      return session.providerId;
+    },
+    set providerId(value) {
+      session.providerId = value;
+    },
+    get conversationId() {
+      return session.conversationId;
+    },
+    set conversationId(value) {
+      session.conversationId = value;
+    },
+    get service() {
+      return runtimeSupervisor.current;
+    },
+    set service(runtime) {
+      runtimeSupervisor.setCurrent(runtime);
+    },
+    runtimeSupervisor,
     serviceInitialized: false,
     state,
     controllers: {
@@ -101002,6 +105287,7 @@ async function initializeTabService(tab, plugin, argOrOverride, maybeOverride) {
   const conversationOverride = isConversationLike(argOrOverride) ? argOrOverride : argOrOverride === null ? null : maybeOverride;
   const conversation = conversationOverride != null ? conversationOverride : tab.conversationId ? await plugin.getConversationById(tab.conversationId) : null;
   const providerId = getTabProviderId(tab, plugin, conversation);
+  const selectedModel = conversation ? resolveConversationModel(plugin.settings, providerId, conversation).model : getTabSelectedModel(tab, plugin);
   if (tab.serviceInitialized && ((_a5 = tab.service) == null ? void 0 : _a5.providerId) === providerId) {
     return;
   }
@@ -101014,16 +105300,18 @@ async function initializeTabService(tab, plugin, argOrOverride, maybeOverride) {
     }
     tab.service = null;
     tab.serviceInitialized = false;
-    const runtime = ProviderRegistry.createChatRuntime({ plugin, providerId });
+    const runtime = ProviderRegistry.createChatRuntime({
+      plugin: plugin.providerHost,
+      providerId
+    });
     service = runtime;
     unsubscribeReadyState = runtime.onReadyStateChange(() => {
     });
     tab.dom.eventCleanups.push(() => unsubscribeReadyState == null ? void 0 : unsubscribeReadyState());
-    if (conversation) {
-      const hasMessages = conversation.messages.length > 0;
-      const externalContextPaths = hasMessages ? conversation.externalContextPaths || [] : plugin.settings.persistentExternalContextPaths || [];
-      runtime.syncConversationState(conversation, externalContextPaths);
-    }
+    const hasMessages = conversation ? conversation.messages.length > 0 : false;
+    const externalContextPaths = conversation && hasMessages ? conversation.externalContextPaths || [] : plugin.settings.persistentExternalContextPaths || [];
+    const runtimeConversationState = conversation != null ? conversation : selectedModel ? { sessionId: null, selectedModel } : null;
+    runtime.syncConversationState(runtimeConversationState, externalContextPaths);
     if (isClosingLifecycleState(tab.lifecycleState)) {
       unsubscribeReadyState == null ? void 0 : unsubscribeReadyState();
       service == null ? void 0 : service.cleanup();
@@ -101176,7 +105464,7 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
     getSettings: () => getTabSettingsSnapshot(tab, plugin),
     getEnvironmentVariables: () => plugin.getActiveEnvironmentVariables(),
     onModelChange: async (model) => {
-      var _a6, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m;
+      var _a6, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r, _s;
       if (tab.lifecycleState === "blank") {
         const previousProvider = tab.providerId;
         tab.draftModel = model;
@@ -101194,14 +105482,15 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
         }
         syncSlashCommandDropdownForProvider(tab, plugin, getProviderCatalogConfig);
         const uiConfig2 = ProviderRegistry.getChatUIConfig(newProvider);
-        await updateTabProviderSettings(tab, plugin, (settings11) => {
-          settings11.model = model;
-          uiConfig2.applyModelDefaults(model, settings11);
-        });
         if (didProviderChange) {
           await (onProviderChanged == null ? void 0 : onProviderChanged(newProvider));
         }
-        await ((_a6 = uiConfig2.prepareModelMetadata) == null ? void 0 : _a6.call(uiConfig2, model, plugin.settings, { plugin }));
+        await ((_a6 = uiConfig2.prepareModelMetadata) == null ? void 0 : _a6.call(
+          uiConfig2,
+          model,
+          getProviderSettingsSnapshotWithModel(plugin.settings, newProvider, model),
+          { plugin: plugin.providerHost }
+        ));
         (_b3 = tab.ui.thinkingBudgetSelector) == null ? void 0 : _b3.updateDisplay();
         (_c2 = tab.ui.serviceTierToggle) == null ? void 0 : _c2.updateDisplay();
         (_d = tab.ui.modelSelector) == null ? void 0 : _d.updateDisplay();
@@ -101214,28 +105503,46 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
       const boundProvider = tab.providerId;
       const modelProvider = getProviderForModel(model, plugin.settings);
       if (modelProvider !== boundProvider) {
-        new import_obsidian43.Notice("Cannot switch provider on a bound session. Start a new tab instead.");
+        new import_obsidian47.Notice("Cannot switch provider on a bound session. Start a new tab instead.");
         (_h2 = tab.ui.modelSelector) == null ? void 0 : _h2.updateDisplay();
         return;
       }
       const uiConfig = getTabChatUIConfig(tab, plugin);
-      const providerSettings = await updateTabProviderSettings(tab, plugin, (settings11) => {
-        settings11.model = model;
-        uiConfig.applyModelDefaults(model, settings11);
-      });
-      await ((_i = uiConfig.prepareModelMetadata) == null ? void 0 : _i.call(uiConfig, model, plugin.settings, { plugin }));
-      (_j = tab.ui.thinkingBudgetSelector) == null ? void 0 : _j.updateDisplay();
-      (_k3 = tab.ui.serviceTierToggle) == null ? void 0 : _k3.updateDisplay();
-      (_l2 = tab.ui.modelSelector) == null ? void 0 : _l2.updateDisplay();
-      (_m = tab.ui.modelSelector) == null ? void 0 : _m.renderOptions();
+      const normalizedModel = (_i = normalizeProviderModelSelection(boundProvider, plugin.settings, model)) != null ? _i : model;
+      const providerSettings = getProviderSettingsSnapshotWithModel(
+        plugin.settings,
+        boundProvider,
+        normalizedModel
+      );
+      if (tab.conversationId) {
+        await plugin.updateConversation(tab.conversationId, {
+          selectedModel: normalizedModel
+        });
+        const updatedConversation = plugin.getConversationSync(tab.conversationId);
+        if (updatedConversation && ((_j = tab.service) == null ? void 0 : _j.providerId) === boundProvider) {
+          const hasMessages = updatedConversation.messages.length > 0;
+          const externalContextPaths = (_n = (_k3 = tab.ui.externalContextSelector) == null ? void 0 : _k3.getExternalContexts()) != null ? _n : hasMessages ? (_l2 = updatedConversation.externalContextPaths) != null ? _l2 : [] : (_m = plugin.settings.persistentExternalContextPaths) != null ? _m : [];
+          tab.service.syncConversationState(updatedConversation, externalContextPaths);
+        }
+      }
+      await ((_o = uiConfig.prepareModelMetadata) == null ? void 0 : _o.call(
+        uiConfig,
+        normalizedModel,
+        providerSettings,
+        { plugin: plugin.providerHost }
+      ));
+      (_p = tab.ui.thinkingBudgetSelector) == null ? void 0 : _p.updateDisplay();
+      (_q3 = tab.ui.serviceTierToggle) == null ? void 0 : _q3.updateDisplay();
+      (_r = tab.ui.modelSelector) == null ? void 0 : _r.updateDisplay();
+      (_s = tab.ui.modelSelector) == null ? void 0 : _s.renderOptions();
       const currentUsage = tab.state.usage;
       if (currentUsage) {
         const newContextWindow = uiConfig.getContextWindowSize(
-          model,
+          normalizedModel,
           providerSettings.customContextLimits,
           providerSettings
         );
-        tab.state.usage = recalculateUsageForModel(currentUsage, model, newContextWindow);
+        tab.state.usage = recalculateUsageForModel(currentUsage, normalizedModel, newContextWindow);
       }
     },
     onModeChange: async (mode) => {
@@ -101249,16 +105556,18 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
     },
     onThinkingBudgetChange: async (budget) => {
       await updateTabProviderSettings(tab, plugin, (settings11) => {
-        var _a6, _b3;
+        var _a6, _b3, _c2;
+        const model = (_a6 = getTabSelectedModel(tab, plugin)) != null ? _a6 : settings11.model;
         settings11.thinkingBudget = budget;
-        (_b3 = (_a6 = getTabChatUIConfig(tab, plugin)).applyReasoningSelection) == null ? void 0 : _b3.call(_a6, settings11.model, budget, settings11);
+        (_c2 = (_b3 = getTabChatUIConfig(tab, plugin)).applyReasoningSelection) == null ? void 0 : _c2.call(_b3, model, budget, settings11);
       });
     },
     onEffortLevelChange: async (effort) => {
       await updateTabProviderSettings(tab, plugin, (settings11) => {
-        var _a6, _b3;
+        var _a6, _b3, _c2;
+        const model = (_a6 = getTabSelectedModel(tab, plugin)) != null ? _a6 : settings11.model;
         settings11.effortLevel = effort;
-        (_b3 = (_a6 = getTabChatUIConfig(tab, plugin)).applyReasoningSelection) == null ? void 0 : _b3.call(_a6, settings11.model, effort, settings11);
+        (_c2 = (_b3 = getTabChatUIConfig(tab, plugin)).applyReasoningSelection) == null ? void 0 : _c2.call(_b3, model, effort, settings11);
       });
     },
     onServiceTierChange: async (serviceTier) => {
@@ -101306,8 +105615,9 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
     plugin.settings.persistentExternalContextPaths || []
   );
   tab.ui.externalContextSelector.setOnPersistenceChange((paths) => {
-    plugin.settings.persistentExternalContextPaths = paths;
-    void plugin.saveSettings();
+    void plugin.mutateSettings((settings11) => {
+      settings11.persistentExternalContextPaths = paths;
+    });
   });
   refreshTabProviderUI(tab, plugin);
   applyProviderUIGating(tab, plugin);
@@ -101368,17 +105678,19 @@ function countUserMessagesForForkTitle(messages) {
   return messages.filter((m4) => m4.role === "user" && !m4.isInterrupt && !m4.isRebuiltContext).length;
 }
 function resolveForkSource(tab, plugin) {
-  var _a5;
+  var _a5, _b3;
   const conversation = tab.conversationId ? plugin.getConversationSync(tab.conversationId) : null;
   const sourceSessionId = tab.service ? tab.service.resolveSessionIdForFork(conversation != null ? conversation : null) : ProviderRegistry.getConversationHistoryService((_a5 = conversation == null ? void 0 : conversation.providerId) != null ? _a5 : tab.providerId).resolveSessionIdForConversation(conversation);
   if (!sourceSessionId) {
-    new import_obsidian43.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorNoSession") }));
+    new import_obsidian47.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorNoSession") }));
     return null;
   }
+  const providerId = getTabProviderId(tab, plugin, conversation);
   return {
-    providerId: getTabProviderId(tab, plugin, conversation),
+    providerId,
     sourceSessionId,
     sourceProviderState: conversation == null ? void 0 : conversation.providerState,
+    sourceSelectedModel: conversation ? resolveConversationModel(plugin.settings, providerId, conversation).model : (_b3 = getTabSelectedModel(tab, plugin)) != null ? _b3 : void 0,
     sourceTitle: conversation == null ? void 0 : conversation.title,
     currentNote: conversation == null ? void 0 : conversation.currentNote
   };
@@ -101386,26 +105698,26 @@ function resolveForkSource(tab, plugin) {
 async function handleForkRequest(tab, plugin, userMessageId, forkRequestCallback) {
   const { state } = tab;
   if (!getTabCapabilities(tab, plugin).supportsFork) {
-    new import_obsidian43.Notice("Fork is not supported by this provider.");
+    new import_obsidian47.Notice("Fork is not supported by this provider.");
     return;
   }
   if (state.isStreaming) {
-    new import_obsidian43.Notice(t10("chat.fork.unavailableStreaming"));
+    new import_obsidian47.Notice(t10("chat.fork.unavailableStreaming"));
     return;
   }
   const msgs = state.messages;
   const userIdx = msgs.findIndex((m4) => m4.id === userMessageId);
   if (userIdx === -1) {
-    new import_obsidian43.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorMessageNotFound") }));
+    new import_obsidian47.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorMessageNotFound") }));
     return;
   }
   if (!msgs[userIdx].userMessageId) {
-    new import_obsidian43.Notice(t10("chat.fork.unavailableNoUuid"));
+    new import_obsidian47.Notice(t10("chat.fork.unavailableNoUuid"));
     return;
   }
   const rewindCtx = findRewindContext(msgs, userIdx);
   if (!rewindCtx.hasResponse || !rewindCtx.prevAssistantUuid) {
-    new import_obsidian43.Notice(t10("chat.fork.unavailableNoResponse"));
+    new import_obsidian47.Notice(t10("chat.fork.unavailableNoResponse"));
     return;
   }
   const source = resolveForkSource(tab, plugin);
@@ -101415,6 +105727,7 @@ async function handleForkRequest(tab, plugin, userMessageId, forkRequestCallback
     providerId: source.providerId,
     sourceSessionId: source.sourceSessionId,
     sourceProviderState: source.sourceProviderState,
+    sourceSelectedModel: source.sourceSelectedModel,
     resumeAt: rewindCtx.prevAssistantUuid,
     sourceTitle: source.sourceTitle,
     forkAtUserMessage: countUserMessagesForForkTitle(msgs.slice(0, userIdx + 1)),
@@ -101424,16 +105737,16 @@ async function handleForkRequest(tab, plugin, userMessageId, forkRequestCallback
 async function handleForkAll(tab, plugin, forkRequestCallback) {
   const { state } = tab;
   if (!getTabCapabilities(tab, plugin).supportsFork) {
-    new import_obsidian43.Notice("Fork is not supported by this provider.");
+    new import_obsidian47.Notice("Fork is not supported by this provider.");
     return;
   }
   if (state.isStreaming) {
-    new import_obsidian43.Notice(t10("chat.fork.unavailableStreaming"));
+    new import_obsidian47.Notice(t10("chat.fork.unavailableStreaming"));
     return;
   }
   const msgs = state.messages;
   if (msgs.length === 0) {
-    new import_obsidian43.Notice(t10("chat.fork.commandNoMessages"));
+    new import_obsidian47.Notice(t10("chat.fork.commandNoMessages"));
     return;
   }
   let lastAssistantUuid;
@@ -101444,7 +105757,7 @@ async function handleForkAll(tab, plugin, forkRequestCallback) {
     }
   }
   if (!lastAssistantUuid) {
-    new import_obsidian43.Notice(t10("chat.fork.commandNoAssistantUuid"));
+    new import_obsidian47.Notice(t10("chat.fork.commandNoAssistantUuid"));
     return;
   }
   const source = resolveForkSource(tab, plugin);
@@ -101454,6 +105767,7 @@ async function handleForkAll(tab, plugin, forkRequestCallback) {
     providerId: source.providerId,
     sourceSessionId: source.sourceSessionId,
     sourceProviderState: source.sourceProviderState,
+    sourceSelectedModel: source.sourceSelectedModel,
     resumeAt: lastAssistantUuid,
     sourceTitle: source.sourceTitle,
     forkAtUserMessage: countUserMessagesForForkTitle(msgs) + 1,
@@ -101545,6 +105859,7 @@ function initializeTabControllers(tab, plugin, component, arg4, arg5, arg6, arg7
       getStatusPanel: () => ui.statusPanel,
       getAgentService: () => tab.service,
       // Use tab's service instead of plugin's
+      getSelectedModel: () => getTabSelectedModel(tab, plugin),
       dismissPendingInlinePrompts: () => {
         var _a5;
         return (_a5 = tab.controllers.inputController) == null ? void 0 : _a5.dismissPendingApproval();
@@ -101619,13 +105934,11 @@ function initializeTabControllers(tab, plugin, component, arg4, arg5, arg6, arg7
     generateId: generateMessageId,
     resetInputHeight: () => {
     },
-    getAuxiliaryModel: () => {
-      var _a5, _b3, _c2, _d;
-      return (_d = (_c2 = (_b3 = (_a5 = tab.service) == null ? void 0 : _a5.getAuxiliaryModel) == null ? void 0 : _b3.call(_a5)) != null ? _c2 : tab.draftModel) != null ? _d : null;
-    },
+    getAuxiliaryModel: () => getTabSelectedModel(tab, plugin),
     getAgentService: () => tab.service,
     getSubagentManager: () => services.subagentManager,
     getTabProviderId: () => getTabProviderId(tab, plugin),
+    turnOwner: tab.session,
     ensureServiceInitialized: async () => {
       if (tab.serviceInitialized && tab.lifecycleState === "bound_active") {
         return true;
@@ -101644,18 +105957,23 @@ function initializeTabControllers(tab, plugin, component, arg4, arg5, arg6, arg7
         applyProviderUIGating(tab, plugin);
         return true;
       } catch (error48) {
-        new import_obsidian43.Notice(error48 instanceof Error ? error48.message : "Failed to initialize chat service");
+        new import_obsidian47.Notice(error48 instanceof Error ? error48.message : "Failed to initialize chat service");
         return false;
       }
     },
     openConversation,
     onForkAll: forkRequestCallback ? () => handleForkAll(tab, plugin, forkRequestCallback) : void 0,
-    restorePrePlanPermissionModeIfNeeded: () => {
+    restorePrePlanPermissionModeIfNeeded: async () => {
       var _a5;
       if (getTabPermissionMode(tab, plugin) === "plan") {
         const restoreMode = (_a5 = tab.state.prePlanPermissionMode) != null ? _a5 : "normal";
-        tab.state.prePlanPermissionMode = null;
-        updatePlanModeUI(tab, plugin, restoreMode);
+        try {
+          await updatePlanModeUI(tab, plugin, restoreMode);
+        } finally {
+          if (getTabPermissionMode(tab, plugin) !== "plan") {
+            tab.state.prePlanPermissionMode = null;
+          }
+        }
       }
     }
   });
@@ -101802,32 +106120,41 @@ function deactivateTab(tab) {
 async function destroyTab(tab) {
   var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r, _s;
   tab.lifecycleState = "closing";
-  (_a5 = tab.controllers.selectionController) == null ? void 0 : _a5.stop();
-  (_b3 = tab.controllers.selectionController) == null ? void 0 : _b3.clear();
-  (_c2 = tab.controllers.browserSelectionController) == null ? void 0 : _c2.stop();
-  (_d = tab.controllers.browserSelectionController) == null ? void 0 : _d.clear();
-  (_e2 = tab.controllers.canvasSelectionController) == null ? void 0 : _e2.stop();
-  (_f2 = tab.controllers.canvasSelectionController) == null ? void 0 : _f2.clear();
-  (_g = tab.controllers.navigationController) == null ? void 0 : _g.dispose();
+  (_a5 = tab.controllers.inputController) == null ? void 0 : _a5.dismissPendingApproval();
+  const activeTurn = tab.session.activeTurn;
+  if (activeTurn) {
+    tab.state.cancelRequested = true;
+    tab.state.bumpStreamGeneration();
+    (_b3 = tab.service) == null ? void 0 : _b3.cancel();
+  }
+  tab.runtimeSupervisor.cleanup();
+  tab.service = null;
+  await (activeTurn == null ? void 0 : activeTurn.catch(() => void 0));
+  (_c2 = tab.controllers.selectionController) == null ? void 0 : _c2.stop();
+  (_d = tab.controllers.selectionController) == null ? void 0 : _d.clear();
+  (_e2 = tab.controllers.browserSelectionController) == null ? void 0 : _e2.stop();
+  (_f2 = tab.controllers.browserSelectionController) == null ? void 0 : _f2.clear();
+  (_g = tab.controllers.canvasSelectionController) == null ? void 0 : _g.stop();
+  (_h2 = tab.controllers.canvasSelectionController) == null ? void 0 : _h2.clear();
+  (_i = tab.controllers.navigationController) == null ? void 0 : _i.dispose();
   cleanupThinkingBlock(tab.state.currentThinkingState);
   tab.state.currentThinkingState = null;
-  (_h2 = tab.controllers.inputController) == null ? void 0 : _h2.dismissPendingApproval();
-  (_i = tab.controllers.inputController) == null ? void 0 : _i.destroyResumeDropdown();
-  (_j = tab.ui.fileContextManager) == null ? void 0 : _j.destroy();
-  (_k3 = tab.ui.slashCommandDropdown) == null ? void 0 : _k3.destroy();
+  (_j = tab.controllers.inputController) == null ? void 0 : _j.destroyResumeDropdown();
+  (_k3 = tab.ui.fileContextManager) == null ? void 0 : _k3.destroy();
+  (_l2 = tab.ui.slashCommandDropdown) == null ? void 0 : _l2.destroy();
   tab.ui.slashCommandDropdown = null;
-  (_l2 = tab.ui.instructionModeManager) == null ? void 0 : _l2.destroy();
+  (_m = tab.ui.instructionModeManager) == null ? void 0 : _m.destroy();
   tab.ui.instructionModeManager = null;
-  (_m = tab.ui.bangBashModeManager) == null ? void 0 : _m.destroy();
+  (_n = tab.ui.bangBashModeManager) == null ? void 0 : _n.destroy();
   tab.ui.bangBashModeManager = null;
-  (_n = tab.services.instructionRefineService) == null ? void 0 : _n.cancel();
-  (_o = tab.services.instructionRefineService) == null ? void 0 : _o.resetConversation();
+  (_o = tab.services.instructionRefineService) == null ? void 0 : _o.cancel();
+  (_p = tab.services.instructionRefineService) == null ? void 0 : _p.resetConversation();
   tab.services.instructionRefineService = null;
-  (_p = tab.services.titleGenerationService) == null ? void 0 : _p.cancel();
+  (_q3 = tab.services.titleGenerationService) == null ? void 0 : _q3.cancel();
   tab.services.titleGenerationService = null;
-  (_q3 = tab.ui.statusPanel) == null ? void 0 : _q3.destroy();
+  (_r = tab.ui.statusPanel) == null ? void 0 : _r.destroy();
   tab.ui.statusPanel = null;
-  (_r = tab.ui.navigationSidebar) == null ? void 0 : _r.destroy();
+  (_s = tab.ui.navigationSidebar) == null ? void 0 : _s.destroy();
   tab.ui.navigationSidebar = null;
   tab.services.subagentManager.orphanAllActive();
   tab.services.subagentManager.clear();
@@ -101835,8 +106162,6 @@ async function destroyTab(tab) {
     cleanup();
   }
   tab.dom.eventCleanups.length = 0;
-  (_s = tab.service) == null ? void 0 : _s.cleanup();
-  tab.service = null;
   tab.dom.contentEl.remove();
 }
 function getTabTitle(tab, plugin) {
@@ -101875,8 +106200,13 @@ function setupServiceCallbacks(tab, plugin) {
         if (decision !== null && decision.type !== "feedback") {
           if (getTabPermissionMode(tab, plugin) === "plan") {
             const restoreMode = (_c2 = tab.state.prePlanPermissionMode) != null ? _c2 : "normal";
-            tab.state.prePlanPermissionMode = null;
-            updatePlanModeUI(tab, plugin, restoreMode);
+            try {
+              await updatePlanModeUI(tab, plugin, restoreMode);
+            } finally {
+              if (getTabPermissionMode(tab, plugin) !== "plan") {
+                tab.state.prePlanPermissionMode = null;
+              }
+            }
           }
           if (decision.type === "approve-new-session") {
             tab.state.pendingNewSessionPlan = decision.planContent;
@@ -101896,10 +106226,17 @@ function setupServiceCallbacks(tab, plugin) {
       const mode = sdkMode === "bypassPermissions" || sdkMode === "yolo" ? "yolo" : sdkMode === "plan" ? "plan" : "normal";
       const currentMode = getTabPermissionMode(tab, plugin);
       if (currentMode !== mode) {
+        let capturedPrePlanMode = false;
         if (mode === "plan" && tab.state.prePlanPermissionMode === null) {
           tab.state.prePlanPermissionMode = currentMode;
+          capturedPrePlanMode = true;
         }
-        updatePlanModeUI(tab, plugin, mode);
+        void updatePlanModeUI(tab, plugin, mode).catch((error48) => {
+          if (capturedPrePlanMode && getTabPermissionMode(tab, plugin) !== "plan") {
+            tab.state.prePlanPermissionMode = null;
+          }
+          new import_obsidian47.Notice(error48 instanceof Error ? error48.message : "Failed to change permission mode.");
+        });
       }
     });
   }
@@ -102000,27 +106337,32 @@ async function renderAutoTriggeredTurn(tab, result) {
     }
   }
 }
-function updatePlanModeUI(tab, plugin, mode) {
+async function updatePlanModeUI(tab, plugin, mode) {
   var _a5;
   const providerId = getTabProviderId(tab, plugin);
-  const snapshot = getTabSettingsSnapshot(tab, plugin);
   const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
-  if (uiConfig.applyPermissionMode) {
-    uiConfig.applyPermissionMode(mode, snapshot);
-  } else {
-    snapshot.permissionMode = mode;
+  try {
+    await plugin.mutateSettings((settings11) => {
+      const snapshot = getWritableTabSettingsSnapshot(tab, plugin, settings11);
+      if (uiConfig.applyPermissionMode) {
+        uiConfig.applyPermissionMode(mode, snapshot);
+      } else {
+        snapshot.permissionMode = mode;
+      }
+      ProviderSettingsCoordinator.commitProviderSettingsSnapshot(
+        settings11,
+        providerId,
+        snapshot
+      );
+    });
+  } finally {
+    const activeMode = getTabPermissionMode(tab, plugin);
+    (_a5 = tab.ui.permissionToggle) == null ? void 0 : _a5.updateDisplay();
+    tab.dom.inputWrapper.toggleClass(
+      "claudian-input-plan-mode",
+      activeMode === "plan" && getTabCapabilities(tab, plugin).supportsPlanMode
+    );
   }
-  ProviderSettingsCoordinator.commitProviderSettingsSnapshot(
-    plugin.settings,
-    providerId,
-    snapshot
-  );
-  void plugin.saveSettings();
-  (_a5 = tab.ui.permissionToggle) == null ? void 0 : _a5.updateDisplay();
-  tab.dom.inputWrapper.toggleClass(
-    "claudian-input-plan-mode",
-    mode === "plan" && getTabCapabilities(tab, plugin).supportsPlanMode
-  );
 }
 
 // src/features/chat/tabs/TabBar.ts
@@ -102054,6 +106396,12 @@ var TabBar = class {
       this.renderBadge(item);
     }
     this.restoreScrollPosition();
+  }
+  getExpandedTitleTabIds() {
+    return Array.from(this.expandedTitleTabIds);
+  }
+  setExpandedTitleTabIds(tabIds) {
+    this.expandedTitleTabIds = new Set(tabIds);
   }
   /** Renders a single tab badge. */
   renderBadge(item) {
@@ -102129,6 +106477,7 @@ var TabBar = class {
     }
   }
   toggleBadgeTitle(item, badgeEl) {
+    var _a5, _b3;
     if (this.expandedTitleTabIds.has(item.id)) {
       this.expandedTitleTabIds.delete(item.id);
     } else {
@@ -102138,6 +106487,7 @@ var TabBar = class {
     badgeEl.textContent = this.getBadgeLabel(item);
     badgeEl.toggleClass("claudian-tab-badge-expanded", isTitleExpanded);
     badgeEl.setAttribute("data-title-expanded", isTitleExpanded ? "true" : "false");
+    (_b3 = (_a5 = this.callbacks).onTitleExpansionChanged) == null ? void 0 : _b3.call(_a5, this.getExpandedTitleTabIds());
   }
   getBadgeLabel(item) {
     if (!this.expandedTitleTabIds.has(item.id)) {
@@ -102155,16 +106505,16 @@ var TabBar = class {
 };
 
 // src/features/chat/tabs/TabManager.ts
-var import_obsidian45 = require("obsidian");
+var import_obsidian49 = require("obsidian");
 
 // src/shared/modals/ForkTargetModal.ts
-var import_obsidian44 = require("obsidian");
+var import_obsidian48 = require("obsidian");
 function chooseForkTarget(app) {
   return new Promise((resolve8) => {
     new ForkTargetModal(app, resolve8).open();
   });
 }
-var ForkTargetModal = class extends import_obsidian44.Modal {
+var ForkTargetModal = class extends import_obsidian48.Modal {
   constructor(app, resolve8) {
     super(app);
     this.resolved = false;
@@ -102206,6 +106556,8 @@ var TabManager = class {
     this.isRestoringState = false;
     /** Guard to prevent concurrent tab switches. */
     this.isSwitchingTab = false;
+    this.pendingSwitchTabId = null;
+    this.pendingTabCreations = 0;
     this.plugin = plugin;
     if (isTabManagerViewHost(arg3)) {
       this.containerEl = arg2;
@@ -102239,64 +106591,74 @@ var TabManager = class {
   async createTab(conversationId, tabId, options = {}) {
     var _a5, _b3;
     const maxTabs = this.getMaxTabs();
-    if (this.tabs.size >= maxTabs) {
+    if (this.tabs.size + this.pendingTabCreations >= maxTabs) {
       return null;
     }
-    const { activate = true, draftModel } = options;
-    const conversation = conversationId ? await this.plugin.getConversationById(conversationId) : void 0;
-    const activeTab = this.getActiveTab();
-    const defaultProviderId = conversation ? void 0 : activeTab ? getTabProviderId(activeTab, this.plugin) : void 0;
-    const tab = createTab({
-      plugin: this.plugin,
-      containerEl: this.containerEl,
-      conversation: conversation != null ? conversation : void 0,
-      tabId,
-      ...typeof draftModel === "string" ? { draftModel } : {},
-      defaultProviderId,
-      onStreamingChanged: (isStreaming) => {
-        var _a6, _b4;
-        (_b4 = (_a6 = this.callbacks).onTabStreamingChanged) == null ? void 0 : _b4.call(_a6, tab.id, isStreaming);
-      },
-      onTitleChanged: (title) => {
-        var _a6, _b4;
-        (_b4 = (_a6 = this.callbacks).onTabTitleChanged) == null ? void 0 : _b4.call(_a6, tab.id, title);
-      },
-      onAttentionChanged: (needsAttention) => {
-        var _a6, _b4;
-        (_b4 = (_a6 = this.callbacks).onTabAttentionChanged) == null ? void 0 : _b4.call(_a6, tab.id, needsAttention);
-      },
-      onConversationIdChanged: (conversationId2) => {
-        var _a6, _b4;
-        tab.conversationId = conversationId2;
-        (_b4 = (_a6 = this.callbacks).onTabConversationChanged) == null ? void 0 : _b4.call(_a6, tab.id, conversationId2);
+    this.pendingTabCreations += 1;
+    let reservationHeld = true;
+    try {
+      const { activate = true, draftModel } = options;
+      const conversation = conversationId ? await this.plugin.getConversationById(conversationId) : void 0;
+      const activeTab = this.getActiveTab();
+      const defaultProviderId = conversation ? void 0 : activeTab ? getTabProviderId(activeTab, this.plugin) : void 0;
+      const tab = createTab({
+        plugin: this.plugin,
+        containerEl: this.containerEl,
+        conversation: conversation != null ? conversation : void 0,
+        tabId,
+        ...typeof draftModel === "string" ? { draftModel } : {},
+        defaultProviderId,
+        onStreamingChanged: (isStreaming) => {
+          var _a6, _b4;
+          (_b4 = (_a6 = this.callbacks).onTabStreamingChanged) == null ? void 0 : _b4.call(_a6, tab.id, isStreaming);
+        },
+        onTitleChanged: (title) => {
+          var _a6, _b4;
+          (_b4 = (_a6 = this.callbacks).onTabTitleChanged) == null ? void 0 : _b4.call(_a6, tab.id, title);
+        },
+        onAttentionChanged: (needsAttention) => {
+          var _a6, _b4;
+          (_b4 = (_a6 = this.callbacks).onTabAttentionChanged) == null ? void 0 : _b4.call(_a6, tab.id, needsAttention);
+        },
+        onConversationIdChanged: (conversationId2) => {
+          var _a6, _b4;
+          tab.conversationId = conversationId2;
+          (_b4 = (_a6 = this.callbacks).onTabConversationChanged) == null ? void 0 : _b4.call(_a6, tab.id, conversationId2);
+        }
+      });
+      initializeTabUI(tab, this.plugin, {
+        getProviderCatalogConfig: () => this.getProviderCatalogConfig(tab),
+        onProviderChanged: (providerId) => {
+          var _a6, _b4;
+          (_b4 = (_a6 = this.callbacks).onTabProviderChanged) == null ? void 0 : _b4.call(_a6, tab.id, providerId);
+          void this.prewarmProviderTab(tab).catch(() => {
+          });
+        }
+      });
+      initializeTabControllers(
+        tab,
+        this.plugin,
+        this.view,
+        (forkContext) => this.handleForkRequest(forkContext),
+        (conversationId2) => this.openConversation(conversationId2),
+        () => this.getProviderCatalogConfig(tab)
+      );
+      wireTabInputEvents(tab, this.plugin);
+      this.tabs.set(tab.id, tab);
+      this.pendingTabCreations -= 1;
+      reservationHeld = false;
+      (_b3 = (_a5 = this.callbacks).onTabCreated) == null ? void 0 : _b3.call(_a5, tab);
+      if (!this.isRestoringState && (activate || !this.activeTabId)) {
+        await this.switchToTab(tab.id);
+      } else if (!this.isRestoringState) {
+        this.maybePrimeProviderRuntime(tab);
       }
-    });
-    initializeTabUI(tab, this.plugin, {
-      getProviderCatalogConfig: () => this.getProviderCatalogConfig(tab),
-      onProviderChanged: (providerId) => {
-        var _a6, _b4;
-        (_b4 = (_a6 = this.callbacks).onTabProviderChanged) == null ? void 0 : _b4.call(_a6, tab.id, providerId);
-        void this.prewarmProviderTab(tab).catch(() => {
-        });
+      return tab;
+    } finally {
+      if (reservationHeld) {
+        this.pendingTabCreations -= 1;
       }
-    });
-    initializeTabControllers(
-      tab,
-      this.plugin,
-      this.view,
-      (forkContext) => this.handleForkRequest(forkContext),
-      (conversationId2) => this.openConversation(conversationId2),
-      () => this.getProviderCatalogConfig(tab)
-    );
-    wireTabInputEvents(tab, this.plugin);
-    this.tabs.set(tab.id, tab);
-    (_b3 = (_a5 = this.callbacks).onTabCreated) == null ? void 0 : _b3.call(_a5, tab);
-    if (!this.isRestoringState && (activate || !this.activeTabId)) {
-      await this.switchToTab(tab.id);
-    } else if (!this.isRestoringState) {
-      this.maybePrimeProviderRuntime(tab);
     }
-    return tab;
   }
   /**
    * Switches to a different tab.
@@ -102309,6 +106671,7 @@ var TabManager = class {
       return;
     }
     if (this.isSwitchingTab) {
+      this.pendingSwitchTabId = tabId;
       return;
     }
     this.isSwitchingTab = true;
@@ -102339,6 +106702,11 @@ var TabManager = class {
       this.maybePrimeProviderRuntime(tab);
     } finally {
       this.isSwitchingTab = false;
+      const pendingTabId = this.pendingSwitchTabId;
+      this.pendingSwitchTabId = null;
+      if (pendingTabId && pendingTabId !== this.activeTabId) {
+        await this.switchToTab(pendingTabId);
+      }
     }
   }
   /**
@@ -102359,7 +106727,14 @@ var TabManager = class {
     if (this.tabs.size === 1 && !tab.conversationId && tab.state.messages.length === 0) {
       return false;
     }
-    await ((_a5 = tab.controllers.conversationController) == null ? void 0 : _a5.save());
+    let saveError;
+    let didSaveFail = false;
+    try {
+      await ((_a5 = tab.controllers.conversationController) == null ? void 0 : _a5.save());
+    } catch (error48) {
+      didSaveFail = true;
+      saveError = error48;
+    }
     const tabIdsBefore = Array.from(this.tabs.keys());
     const closingIndex = tabIdsBefore.indexOf(tabId);
     await destroyTab(tab);
@@ -102377,6 +106752,9 @@ var TabManager = class {
       } else {
         await this.createTab();
       }
+    }
+    if (didSaveFail) {
+      throw saveError;
     }
     return true;
   }
@@ -102511,17 +106889,17 @@ var TabManager = class {
       const tab = await this.forkToNewTab(context);
       if (!tab) {
         const maxTabs = this.getMaxTabs();
-        new import_obsidian45.Notice(t10("chat.fork.maxTabsReached", { count: String(maxTabs) }));
+        new import_obsidian49.Notice(t10("chat.fork.maxTabsReached", { count: String(maxTabs) }));
         return;
       }
-      new import_obsidian45.Notice(t10("chat.fork.notice"));
+      new import_obsidian49.Notice(t10("chat.fork.notice"));
     } else {
       const success2 = await this.forkInCurrentTab(context);
       if (!success2) {
-        new import_obsidian45.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorNoActiveTab") }));
+        new import_obsidian49.Notice(t10("chat.fork.failed", { error: t10("chat.fork.errorNoActiveTab") }));
         return;
       }
-      new import_obsidian45.Notice(t10("chat.fork.noticeCurrentTab"));
+      new import_obsidian49.Notice(t10("chat.fork.noticeCurrentTab"));
     }
   }
   async forkToNewTab(context) {
@@ -102553,7 +106931,8 @@ var TabManager = class {
   }
   async createForkConversation(context) {
     const conversation = await this.plugin.createConversation({
-      providerId: context.providerId
+      providerId: context.providerId,
+      ...context.sourceSelectedModel ? { selectedModel: context.sourceSelectedModel } : {}
     });
     const title = context.sourceTitle ? this.buildForkTitle(context.sourceTitle, context.forkAtUserMessage) : void 0;
     const forkProviderState = ProviderRegistry.getConversationHistoryService(conversation.providerId).buildForkProviderState(
@@ -102763,7 +107142,7 @@ var TabManager = class {
     const warmupMode = this.resolveProviderTabWarmupMode({
       conversation,
       externalContextPaths,
-      plugin: this.plugin,
+      plugin: this.plugin.providerHost,
       runtime,
       tab: {
         conversationId: tab.conversationId,
@@ -102821,7 +107200,7 @@ var TabManager = class {
       allowSessionCreation: context.warmupMode === "commands" && tab.lifecycleState === "blank" && tab.id === this.activeTabId,
       conversation: context.conversation,
       externalContextPaths: context.externalContextPaths,
-      plugin: this.plugin,
+      plugin: this.plugin.providerHost,
       runtime: context.runtime
     });
     if (!context.runtime || !context.runtime.isReady()) {
@@ -102870,6 +107249,23 @@ var TabManager = class {
       fn
     );
   }
+  async recycleProviderRuntimes(providerIds) {
+    const tabs = this.filterTabsByProvider(
+      providerIds,
+      (tab) => {
+        var _a5, _b3;
+        return (_b3 = (_a5 = tab.service) == null ? void 0 : _a5.providerId) != null ? _b3 : tab.providerId;
+      }
+    );
+    for (const tab of tabs) {
+      tab.runtimeSupervisor.cleanup();
+      tab.service = null;
+      tab.serviceInitialized = false;
+      if (tab.lifecycleState === "bound_active") {
+        tab.lifecycleState = tab.conversationId ? "bound_cold" : "blank";
+      }
+    }
+  }
   async broadcastToTabs(tabs, fn) {
     const promises2 = [];
     for (const tab of tabs) {
@@ -102902,11 +107298,12 @@ var TabManager = class {
 };
 
 // src/features/chat/ClaudianView.ts
-var ClaudianView = class extends import_obsidian46.ItemView {
+var ClaudianView = class extends import_obsidian50.ItemView {
   constructor(leaf, plugin) {
     super(leaf);
     // Tab management
     this.tabManager = null;
+    this.mentionCacheCoordinator = null;
     this.tabBar = null;
     this.tabBarContainerEl = null;
     this.tabContentEl = null;
@@ -102955,13 +107352,16 @@ var ClaudianView = class extends import_obsidian46.ItemView {
   }
   /** Refreshes model-dependent UI across all tabs (used after settings/env changes). */
   refreshModelSelector() {
-    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j;
+    var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m;
     for (const tab of (_b3 = (_a5 = this.tabManager) == null ? void 0 : _a5.getAllTabs()) != null ? _b3 : []) {
       onProviderAvailabilityChanged(tab, this.plugin);
       const providerId = getTabProviderId(tab, this.plugin);
-      const providerSettings = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+      const conversation = tab.conversationId ? this.plugin.getConversationSync(tab.conversationId) : null;
+      const modelOverride = conversation ? resolveConversationModel(this.plugin.settings, providerId, conversation).model : tab.lifecycleState === "blank" ? tab.draftModel : (_e2 = (_d = (_c2 = tab.service) == null ? void 0 : _c2.getAuxiliaryModel) == null ? void 0 : _d.call(_c2)) != null ? _e2 : null;
+      const providerSettings = getProviderSettingsSnapshotWithModel(
         this.plugin.settings,
-        providerId
+        providerId,
+        modelOverride
       );
       const model = providerSettings.model;
       const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
@@ -102974,19 +107374,19 @@ var ClaudianView = class extends import_obsidian46.ItemView {
       if (tab.state.usage) {
         tab.state.usage = recalculateUsageForModel(tab.state.usage, model, contextWindow);
       }
-      (_c2 = tab.ui.modelSelector) == null ? void 0 : _c2.updateDisplay();
-      (_d = tab.ui.modelSelector) == null ? void 0 : _d.renderOptions();
-      (_e2 = tab.ui.modeSelector) == null ? void 0 : _e2.updateDisplay();
-      (_f2 = tab.ui.modeSelector) == null ? void 0 : _f2.renderOptions();
-      (_g = tab.ui.thinkingBudgetSelector) == null ? void 0 : _g.updateDisplay();
-      (_h2 = tab.ui.permissionToggle) == null ? void 0 : _h2.updateDisplay();
-      (_i = tab.ui.serviceTierToggle) == null ? void 0 : _i.updateDisplay();
+      (_f2 = tab.ui.modelSelector) == null ? void 0 : _f2.updateDisplay();
+      (_g = tab.ui.modelSelector) == null ? void 0 : _g.renderOptions();
+      (_h2 = tab.ui.modeSelector) == null ? void 0 : _h2.updateDisplay();
+      (_i = tab.ui.modeSelector) == null ? void 0 : _i.renderOptions();
+      (_j = tab.ui.thinkingBudgetSelector) == null ? void 0 : _j.updateDisplay();
+      (_k3 = tab.ui.permissionToggle) == null ? void 0 : _k3.updateDisplay();
+      (_l2 = tab.ui.serviceTierToggle) == null ? void 0 : _l2.updateDisplay();
       tab.dom.inputWrapper.toggleClass(
         "claudian-input-plan-mode",
         providerSettings.permissionMode === "plan" && capabilities.supportsPlanMode
       );
     }
-    (_j = this.tabManager) == null ? void 0 : _j.primeProviderRuntime();
+    (_m = this.tabManager) == null ? void 0 : _m.primeProviderRuntime();
   }
   invalidateProviderCommandCaches(providerIds) {
     var _a5;
@@ -103067,6 +107467,14 @@ var ClaudianView = class extends import_obsidian46.ItemView {
         }
       }
     );
+    this.mentionCacheCoordinator = new MentionCacheCoordinator(
+      () => {
+        var _a6, _b4;
+        return ((_b4 = (_a6 = this.tabManager) == null ? void 0 : _a6.getAllTabs()) != null ? _b4 : []).map((tab) => ({
+          fileContextManager: tab.ui.fileContextManager
+        }));
+      }
+    );
     this.wireEventHandlers();
     await this.restoreOrCreateTabs();
     this.syncProviderBrandColor();
@@ -103089,6 +107497,7 @@ var ClaudianView = class extends import_obsidian46.ItemView {
     this.restoreActiveInputToTabContent();
     await ((_a5 = this.tabManager) == null ? void 0 : _a5.destroy());
     this.tabManager = null;
+    this.mentionCacheCoordinator = null;
     (_b3 = this.tabBar) == null ? void 0 : _b3.destroy();
     this.tabBar = null;
     this.scope = null;
@@ -103117,31 +107526,32 @@ var ClaudianView = class extends import_obsidian46.ItemView {
         void this.handleTabClose(tabId);
       },
       onNewTab: () => {
-        void this.createNewTab().catch(() => new import_obsidian46.Notice("Failed to create tab"));
-      }
+        void this.createNewTab().catch(() => new import_obsidian50.Notice("Failed to create tab"));
+      },
+      onTitleExpansionChanged: () => this.persistTabState()
     });
     fragment.appendChild(this.tabBarContainerEl);
     const navActionsEl = activeDocument.createElement("div");
     navActionsEl.className = "claudian-input-nav-actions";
     this.newTabButtonEl = navActionsEl.createDiv({ cls: "claudian-input-nav-btn claudian-new-tab-btn" });
-    (0, import_obsidian46.setIcon)(this.newTabButtonEl, "square-plus");
+    (0, import_obsidian50.setIcon)(this.newTabButtonEl, "square-plus");
     this.newTabButtonEl.setAttribute("aria-label", "New tab");
     this.newTabButtonEl.addEventListener("click", () => {
-      void this.createNewTab().catch(() => new import_obsidian46.Notice("Failed to create tab"));
+      void this.createNewTab().catch(() => new import_obsidian50.Notice("Failed to create tab"));
     });
     const newBtn = navActionsEl.createDiv({ cls: "claudian-input-nav-btn" });
-    (0, import_obsidian46.setIcon)(newBtn, "square-pen");
+    (0, import_obsidian50.setIcon)(newBtn, "square-pen");
     newBtn.setAttribute("aria-label", "New conversation");
     newBtn.addEventListener("click", () => {
       void (async () => {
         var _a5;
         await ((_a5 = this.tabManager) == null ? void 0 : _a5.createNewConversation());
         this.updateHistoryDropdown();
-      })().catch(() => new import_obsidian46.Notice("Failed to create conversation"));
+      })().catch(() => new import_obsidian50.Notice("Failed to create conversation"));
     });
     const historyContainer = navActionsEl.createDiv({ cls: "claudian-history-container" });
     const historyBtn = historyContainer.createDiv({ cls: "claudian-input-nav-btn" });
-    (0, import_obsidian46.setIcon)(historyBtn, "history");
+    (0, import_obsidian50.setIcon)(historyBtn, "history");
     historyBtn.setAttribute("aria-label", "Chat history");
     this.historyDropdown = historyContainer.createDiv({ cls: "claudian-history-menu" });
     historyBtn.addEventListener("click", (e2) => {
@@ -103215,7 +107625,7 @@ var ClaudianView = class extends import_obsidian46.ItemView {
     var _a5;
     const switched = (_a5 = this.tabManager) == null ? void 0 : _a5.switchToTab(tabId);
     if (switched) {
-      void switched.catch(() => new import_obsidian46.Notice("Failed to switch tab"));
+      void switched.catch(() => new import_obsidian50.Notice("Failed to switch tab"));
     }
   }
   async handleTabClose(tabId) {
@@ -103226,7 +107636,7 @@ var ClaudianView = class extends import_obsidian46.ItemView {
       await ((_c2 = this.tabManager) == null ? void 0 : _c2.closeTab(tabId, force));
       this.updateTabBarVisibility();
     } catch (e2) {
-      new import_obsidian46.Notice("Failed to close tab");
+      new import_obsidian50.Notice("Failed to close tab");
     }
   }
   async createNewTab() {
@@ -103234,7 +107644,7 @@ var ClaudianView = class extends import_obsidian46.ItemView {
     const tab = await ((_a5 = this.tabManager) == null ? void 0 : _a5.createTab());
     if (!tab) {
       const maxTabs = (_b3 = this.plugin.settings.maxTabs) != null ? _b3 : 3;
-      new import_obsidian46.Notice(`Maximum ${maxTabs} tabs allowed`);
+      new import_obsidian50.Notice(`Maximum ${maxTabs} tabs allowed`);
       this.updateTabBarVisibility();
       return;
     }
@@ -103407,15 +107817,33 @@ var ClaudianView = class extends import_obsidian46.ItemView {
         ).permissionMode;
         if (current === "plan") {
           const restoreMode = (_b3 = activeTab.state.prePlanPermissionMode) != null ? _b3 : "normal";
-          activeTab.state.prePlanPermissionMode = null;
-          updatePlanModeUI(activeTab, this.plugin, restoreMode);
+          void updatePlanModeUI(activeTab, this.plugin, restoreMode).finally(() => {
+            const activeMode = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+              this.plugin.settings,
+              providerId
+            ).permissionMode;
+            if (activeMode !== "plan") {
+              activeTab.state.prePlanPermissionMode = null;
+            }
+          }).catch((error48) => {
+            new import_obsidian50.Notice(error48 instanceof Error ? error48.message : "Failed to change permission mode.");
+          });
         } else {
           activeTab.state.prePlanPermissionMode = current;
-          updatePlanModeUI(activeTab, this.plugin, "plan");
+          void updatePlanModeUI(activeTab, this.plugin, "plan").catch((error48) => {
+            const activeMode = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+              this.plugin.settings,
+              providerId
+            ).permissionMode;
+            if (activeMode !== "plan") {
+              activeTab.state.prePlanPermissionMode = null;
+            }
+            new import_obsidian50.Notice(error48 instanceof Error ? error48.message : "Failed to change permission mode.");
+          });
         }
       }
     });
-    this.scope = new import_obsidian46.Scope(this.app.scope);
+    this.scope = new import_obsidian50.Scope(this.app.scope);
     this.scope.register([], "Escape", (e2) => {
       var _a5, _b3;
       if (e2.isComposing) return;
@@ -103436,18 +107864,23 @@ var ClaudianView = class extends import_obsidian46.ItemView {
         return false;
       }
     });
-    const markCacheDirty = (includesFolders) => {
-      var _a5, _b3;
-      const mgr = (_b3 = (_a5 = this.tabManager) == null ? void 0 : _a5.getActiveTab()) == null ? void 0 : _b3.ui.fileContextManager;
-      if (!mgr) return;
-      mgr.markFileCacheDirty();
-      if (includesFolders) mgr.markFolderCacheDirty();
-    };
     this.eventRefs.push(
-      this.plugin.app.vault.on("create", () => markCacheDirty(true)),
-      this.plugin.app.vault.on("delete", () => markCacheDirty(true)),
-      this.plugin.app.vault.on("rename", () => markCacheDirty(true)),
-      this.plugin.app.vault.on("modify", () => markCacheDirty(false))
+      this.plugin.app.vault.on("create", () => {
+        var _a5;
+        return (_a5 = this.mentionCacheCoordinator) == null ? void 0 : _a5.markStructureDirty();
+      }),
+      this.plugin.app.vault.on("delete", () => {
+        var _a5;
+        return (_a5 = this.mentionCacheCoordinator) == null ? void 0 : _a5.markStructureDirty();
+      }),
+      this.plugin.app.vault.on("rename", () => {
+        var _a5;
+        return (_a5 = this.mentionCacheCoordinator) == null ? void 0 : _a5.markStructureDirty();
+      }),
+      this.plugin.app.vault.on("modify", () => {
+        var _a5;
+        return (_a5 = this.mentionCacheCoordinator) == null ? void 0 : _a5.markFilesDirty();
+      })
     );
     this.registerEvent(
       this.plugin.app.workspace.on("file-open", (file2) => {
@@ -103472,10 +107905,13 @@ var ClaudianView = class extends import_obsidian46.ItemView {
   // Persistence
   // ============================================
   async restoreOrCreateTabs() {
+    var _a5, _b3;
     if (!this.tabManager) return;
     const persistedState = await this.plugin.storage.getTabManagerState();
     if (persistedState && persistedState.openTabs.length > 0) {
       await this.tabManager.restoreState(persistedState);
+      (_b3 = this.tabBar) == null ? void 0 : _b3.setExpandedTitleTabIds((_a5 = persistedState.expandedTitleTabIds) != null ? _a5 : []);
+      this.updateTabBar();
       return;
     }
     await this.tabManager.createTab();
@@ -103486,8 +107922,8 @@ var ClaudianView = class extends import_obsidian46.ItemView {
     }
     this.pendingPersist = window.setTimeout(() => {
       this.pendingPersist = null;
-      if (!this.tabManager) return;
-      const state = this.tabManager.getPersistedState();
+      const state = this.getPersistedTabState();
+      if (!state) return;
       this.plugin.persistTabManagerState(state).catch(() => {
       });
     }, 300);
@@ -103498,9 +107934,20 @@ var ClaudianView = class extends import_obsidian46.ItemView {
       window.clearTimeout(this.pendingPersist);
       this.pendingPersist = null;
     }
-    if (!this.tabManager) return;
-    const state = this.tabManager.getPersistedState();
+    const state = this.getPersistedTabState();
+    if (!state) return;
     await this.plugin.persistTabManagerState(state);
+  }
+  getPersistedTabState() {
+    var _a5, _b3;
+    if (!this.tabManager) return null;
+    const state = this.tabManager.getPersistedState();
+    const openTabIds = new Set(state.openTabs.map((tab) => tab.tabId));
+    const expandedTitleTabIds = ((_b3 = (_a5 = this.tabBar) == null ? void 0 : _a5.getExpandedTitleTabIds()) != null ? _b3 : []).filter((tabId) => openTabIds.has(tabId));
+    return {
+      ...state,
+      ...expandedTitleTabIds.length > 0 ? { expandedTitleTabIds } : {}
+    };
   }
   // ============================================
   // Public API
@@ -103525,11 +107972,11 @@ var ClaudianView = class extends import_obsidian46.ItemView {
 // src/features/inline-edit/ui/InlineEditModal.ts
 var import_state2 = require("@codemirror/state");
 var import_view2 = require("@codemirror/view");
-var import_obsidian48 = require("obsidian");
+var import_obsidian52 = require("obsidian");
 init_path();
 
 // src/features/inline-edit/ui/inlineEditMarkdownPreview.ts
-var import_obsidian47 = require("obsidian");
+var import_obsidian51 = require("obsidian");
 function emptyElement(container) {
   if (typeof container.empty === "function") {
     container.empty();
@@ -103557,7 +108004,7 @@ async function renderInlineEditMarkdownPreview({
       mediaFolder,
       sourcePath
     });
-    await import_obsidian47.MarkdownRenderer.render(app, processedMarkdown, container, sourcePath, component);
+    await import_obsidian51.MarkdownRenderer.render(app, processedMarkdown, container, sourcePath, component);
     if (processedMarkdown.includes("[[") && app.metadataCache) {
       processFileLinks(app, container);
     }
@@ -103757,11 +108204,11 @@ var InlineEditModal = class {
       editorView = getEditorView(editor);
     }
     if (!editorView) {
-      new import_obsidian48.Notice("Inline edit unavailable: could not access the active editor. Try reopening the note.");
+      new import_obsidian52.Notice("Inline edit unavailable: could not access the active editor. Try reopening the note.");
       return { decision: "reject" };
     }
     return new Promise((resolve8) => {
-      this.controller = new InlineEditController(
+      this.controller = new InlineEditSession(
         this.app,
         this.plugin,
         editorView,
@@ -103776,7 +108223,7 @@ var InlineEditModal = class {
     });
   }
 };
-var InlineEditController = class {
+var InlineEditSession = class {
   constructor(app, plugin, editorView, editor, editContext, notePath, getExternalContexts, resolve8) {
     this.app = app;
     this.plugin = plugin;
@@ -103801,18 +108248,24 @@ var InlineEditController = class {
     this.slashCommandDropdown = null;
     this.mentionDropdown = null;
     this.agentReplyRenderVersion = 0;
+    this.sourceSnapshot = null;
+    this.settled = false;
+    this.generation = 0;
     var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i;
     const activeView = typeof plugin.getView === "function" ? plugin.getView() : null;
     const activeTab = activeView == null ? void 0 : activeView.getActiveTab();
     const conversation = (activeTab == null ? void 0 : activeTab.conversationId) ? plugin.getConversationSync(activeTab.conversationId) : null;
     const providerId = (_d = (_c2 = (_b3 = conversation == null ? void 0 : conversation.providerId) != null ? _b3 : (_a5 = activeTab == null ? void 0 : activeTab.service) == null ? void 0 : _a5.providerId) != null ? _c2 : activeTab == null ? void 0 : activeTab.providerId) != null ? _d : DEFAULT_CHAT_PROVIDER_ID;
-    this.inlineEditService = ProviderRegistry.createInlineEditService(plugin, providerId);
-    const auxiliaryModel = ((_e2 = activeTab == null ? void 0 : activeTab.service) == null ? void 0 : _e2.providerId) === providerId ? (_g = (_f2 = activeTab.service).getAuxiliaryModel) == null ? void 0 : _g.call(_f2) : (activeTab == null ? void 0 : activeTab.providerId) === providerId ? activeTab == null ? void 0 : activeTab.draftModel : null;
+    this.inlineEditService = ProviderRegistry.createInlineEditService(
+      plugin.providerHost,
+      providerId
+    );
+    const auxiliaryModel = conversation ? resolveConversationModel(plugin.settings, providerId, conversation).model : ((_e2 = activeTab == null ? void 0 : activeTab.service) == null ? void 0 : _e2.providerId) === providerId ? (_g = (_f2 = activeTab.service).getAuxiliaryModel) == null ? void 0 : _g.call(_f2) : (activeTab == null ? void 0 : activeTab.providerId) === providerId ? activeTab == null ? void 0 : activeTab.draftModel : null;
     (_i = (_h2 = this.inlineEditService).setModelOverride) == null ? void 0 : _i.call(_h2, auxiliaryModel != null ? auxiliaryModel : void 0);
     this.resolvedProviderId = providerId;
     this.mentionDataProvider = new VaultMentionDataProvider(this.app, {
       onFileLoadError: () => {
-        new import_obsidian48.Notice("Failed to load vault files. Vault @-mentions may be unavailable.");
+        new import_obsidian52.Notice("Failed to load vault files. Vault @-mentions may be unavailable.");
       }
     });
     this.mentionDataProvider.initializeInBackground();
@@ -103859,7 +108312,7 @@ var InlineEditController = class {
       this.attachSelectionListeners();
     }
     this.escHandler = (e2) => {
-      if (e2.key === "Escape" && !e2.isComposing) {
+      if (e2.key === "Escape" && !e2.isComposing && this.isKeyboardEventInContext(e2)) {
         this.reject();
       }
     };
@@ -103987,6 +108440,8 @@ var InlineEditController = class {
     previewEl.appendChild(bodyEl);
     const actionsEl = ownerDocument.createElement("div");
     actionsEl.className = "claudian-inline-preview-actions";
+    actionsEl.setAttribute("role", "toolbar");
+    actionsEl.setAttribute("aria-label", "Inline edit actions");
     actionsEl.appendChild(this.createPreviewActionButton("Reject", "reject", () => this.reject()));
     actionsEl.appendChild(this.createPreviewActionButton("Accept", "accept", () => this.accept()));
     previewEl.appendChild(actionsEl);
@@ -103999,6 +108454,7 @@ var InlineEditController = class {
     button.type = "button";
     button.className = `claudian-inline-preview-action ${variant}`;
     button.textContent = label;
+    button.setAttribute("aria-label", `${label} inline edit`);
     button.title = variant === "accept" ? "Accept (enter)" : "Reject (esc)";
     button.addEventListener("click", (event) => {
       var _a5, _b3;
@@ -104042,39 +108498,65 @@ var InlineEditController = class {
     }
   }
   async generate() {
-    if (!this.inputEl || !this.spinnerEl) return;
+    var _a5;
+    if (this.settled || !this.inputEl || !this.spinnerEl) return;
     const userMessage = this.inputEl.value.trim();
     if (!userMessage) return;
+    const generation = ++this.generation;
+    const sourceDoc = this.editorView.state.doc;
+    this.sourceSnapshot = {
+      doc: sourceDoc,
+      from: this.selFrom,
+      text: this.getDocumentSlice(sourceDoc, this.selFrom, this.selTo),
+      to: this.selTo
+    };
     this.removeSelectionListeners();
     this.inputEl.disabled = true;
     this.spinnerEl.removeClass("claudian-hidden");
     const contextFiles = this.resolveContextFilesFromMessage(userMessage);
     let result;
-    if (this.isConversing) {
-      result = await this.inlineEditService.continueConversation(userMessage, contextFiles);
-    } else {
-      if (this.mode === "cursor") {
-        result = await this.inlineEditService.editText({
-          mode: "cursor",
-          instruction: userMessage,
-          notePath: this.notePath,
-          cursorContext: this.cursorContext,
-          contextFiles
-        });
+    try {
+      if (this.isConversing) {
+        result = await this.inlineEditService.continueConversation(userMessage, contextFiles);
       } else {
-        const lineCount = this.selectedText.split(/\r?\n/).length;
-        result = await this.inlineEditService.editText({
-          mode: "selection",
-          instruction: userMessage,
-          notePath: this.notePath,
-          selectedText: this.selectedText,
-          startLine: this.startLine,
-          lineCount,
-          contextFiles
-        });
+        if (this.mode === "cursor") {
+          result = await this.inlineEditService.editText({
+            mode: "cursor",
+            instruction: userMessage,
+            notePath: this.notePath,
+            cursorContext: this.cursorContext,
+            contextFiles
+          });
+        } else {
+          const lineCount = this.selectedText.split(/\r?\n/).length;
+          result = await this.inlineEditService.editText({
+            mode: "selection",
+            instruction: userMessage,
+            notePath: this.notePath,
+            selectedText: this.selectedText,
+            startLine: this.startLine,
+            lineCount,
+            contextFiles
+          });
+        }
+      }
+    } catch (error48) {
+      if (this.isGenerationActive(generation)) {
+        this.handleError(error48 instanceof Error ? error48.message : "Error - try again");
+      }
+      return;
+    } finally {
+      if (this.isGenerationActive(generation)) {
+        (_a5 = this.spinnerEl) == null ? void 0 : _a5.addClass("claudian-hidden");
       }
     }
-    this.spinnerEl.addClass("claudian-hidden");
+    if (!this.isGenerationActive(generation)) {
+      return;
+    }
+    if (!this.isSourceUnchanged()) {
+      this.rejectStaleSource();
+      return;
+    }
     if (result.success) {
       if (result.editedText !== void 0) {
         this.editedText = result.editedText;
@@ -104157,6 +108639,9 @@ var InlineEditController = class {
       this.getOwnerDocument().removeEventListener("keydown", this.escHandler);
     }
     this.escHandler = (e2) => {
+      if (!this.isKeyboardEventInContext(e2)) {
+        return;
+      }
       if (e2.key === "Escape" && !e2.isComposing) {
         this.reject();
       } else if (e2.key === "Enter" && !e2.isComposing) {
@@ -104167,24 +108652,39 @@ var InlineEditController = class {
   }
   accept() {
     var _a5;
+    if (this.settled) {
+      return;
+    }
     const textToInsert = (_a5 = this.editedText) != null ? _a5 : this.insertedText;
     if (textToInsert !== null) {
+      if (!this.isSourceUnchanged()) {
+        this.rejectStaleSource();
+        return;
+      }
       const doc = this.editorView.state.doc;
       const fromLine = doc.lineAt(this.selFrom);
       const toLine = doc.lineAt(this.selTo);
       const from = { line: fromLine.number - 1, ch: this.selFrom - fromLine.from };
       const to = { line: toLine.number - 1, ch: this.selTo - toLine.from };
+      this.settled = true;
       this.cleanup();
       this.editor.replaceRange(textToInsert, from, to);
+      this.focusEditor();
       this.resolve({ decision: "accept", editedText: textToInsert });
     } else {
+      this.settled = true;
       this.cleanup();
       this.resolve({ decision: "reject" });
     }
   }
   reject() {
+    if (this.settled) {
+      return;
+    }
+    this.settled = true;
     this.cleanup({ keepSelectionHighlight: true });
     this.restoreSelectionHighlight();
+    this.focusEditor();
     this.resolve({ decision: "reject" });
   }
   removeSelectionListeners() {
@@ -104196,6 +108696,7 @@ var InlineEditController = class {
   }
   cleanup(options) {
     var _a5, _b3;
+    this.generation += 1;
     this.inlineEditService.cancel();
     this.inlineEditService.resetConversation();
     this.isConversing = false;
@@ -104223,6 +108724,47 @@ var InlineEditController = class {
     }
     showSelectionHighlight(this.editorView, this.selFrom, this.selTo);
   }
+  isSourceUnchanged() {
+    const snapshot = this.sourceSnapshot;
+    if (!snapshot) {
+      return false;
+    }
+    const currentDoc = this.editorView.state.doc;
+    const currentLength = typeof currentDoc.length === "number" ? currentDoc.length : Number.POSITIVE_INFINITY;
+    return currentDoc === snapshot.doc && snapshot.from >= 0 && snapshot.to >= snapshot.from && snapshot.to <= currentLength && this.getDocumentSlice(currentDoc, snapshot.from, snapshot.to) === snapshot.text;
+  }
+  isGenerationActive(generation) {
+    return !this.settled && generation === this.generation;
+  }
+  rejectStaleSource() {
+    if (this.settled) {
+      return;
+    }
+    new import_obsidian52.Notice("Inline edit was not applied because the source document or selection changed.");
+    this.settled = true;
+    this.cleanup();
+    this.focusEditor();
+    this.resolve({ decision: "reject" });
+  }
+  getDocumentSlice(doc, from, to) {
+    const sliceString = doc.sliceString;
+    if (typeof sliceString === "function") {
+      return sliceString.call(doc, from, to);
+    }
+    return from === this.selFrom && to === this.selTo ? this.selectedText : "";
+  }
+  isKeyboardEventInContext(event) {
+    var _a5;
+    const target = event.target;
+    if (!target) {
+      return false;
+    }
+    return target === this.containerEl || ((_a5 = this.containerEl) == null ? void 0 : _a5.contains(target)) === true || target === this.editorView.dom || this.editorView.dom.contains(target);
+  }
+  focusEditor() {
+    const focus = this.editorView.focus;
+    focus == null ? void 0 : focus.call(this.editorView);
+  }
   handleKeydown(e2) {
     var _a5, _b3;
     if ((_a5 = this.mentionDropdown) == null ? void 0 : _a5.handleKeydown(e2)) {
@@ -104241,7 +108783,7 @@ var InlineEditController = class {
       const vaultPath = getVaultPath(this.app);
       return normalizePathForVault(rawPath, vaultPath);
     } catch (e2) {
-      new import_obsidian48.Notice("Failed to attach file: invalid path");
+      new import_obsidian52.Notice("Failed to attach file: invalid path");
       return null;
     }
   }
@@ -104292,7 +108834,7 @@ var InlineEditController = class {
 };
 
 // src/features/settings/ClaudianSettings.ts
-var import_obsidian49 = require("obsidian");
+var import_obsidian53 = require("obsidian");
 init_env();
 
 // src/features/settings/keyboardNavigation.ts
@@ -104342,7 +108884,7 @@ var parseNavMappings = (value) => {
 
 // src/features/settings/ClaudianSettings.ts
 function formatHotkey(hotkey) {
-  const isMac = import_obsidian49.Platform.isMacOS;
+  const isMac = import_obsidian53.Platform.isMacOS;
   const modMap = isMac ? { Mod: "\u2318", Ctrl: "\u2303", Alt: "\u2325", Shift: "\u21E7", Meta: "\u2318" } : { Mod: "Ctrl", Ctrl: "Ctrl", Alt: "Alt", Shift: "Shift", Meta: "Win" };
   const mods = hotkey.modifiers.map((modifier) => modMap[modifier] || modifier);
   const key = hotkey.key.length === 1 ? hotkey.key.toUpperCase() : hotkey.key;
@@ -104391,7 +108933,7 @@ function addHotkeySettingRow(containerEl, app, commandId, translationPrefix) {
   }
   item.addEventListener("click", () => openHotkeySettings(app));
 }
-var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
+var ClaudianSettingTab = class extends import_obsidian53.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.activeTab = "general";
@@ -104440,7 +108982,7 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
         continue;
       }
       (_a5 = ProviderWorkspaceRegistry.getSettingsTabRenderer(providerId)) == null ? void 0 : _a5.render(content, {
-        plugin: this.plugin,
+        plugin: this.plugin.providerHost,
         renderHiddenProviderCommandSetting: (target, targetProviderId, copy) => this.renderHiddenProviderCommandSetting(target, targetProviderId, copy),
         refreshModelSelectors: () => {
           for (const view of this.plugin.getAllViews()) {
@@ -104452,7 +108994,7 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
     }
   }
   renderGeneralTab(container) {
-    new import_obsidian49.Setting(container).setName(t10("settings.language.name")).setDesc(t10("settings.language.desc")).addDropdown((dropdown) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.language.name")).setDesc(t10("settings.language.desc")).addDropdown((dropdown) => {
       const locales = getAvailableLocales();
       for (const locale of locales) {
         dropdown.addOption(locale, getLocaleDisplayName(locale));
@@ -104463,13 +109005,14 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
           dropdown.setValue(this.plugin.settings.locale);
           return;
         }
-        this.plugin.settings.locale = locale;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.locale = locale;
+        });
         this.display();
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.display")).setHeading();
-    const maxTabsSetting = new import_obsidian49.Setting(container).setName(t10("settings.maxTabs.name")).setDesc(t10("settings.maxTabs.desc"));
+    new import_obsidian53.Setting(container).setName(t10("settings.display")).setHeading();
+    const maxTabsSetting = new import_obsidian53.Setting(container).setName(t10("settings.maxTabs.name")).setDesc(t10("settings.maxTabs.desc"));
     const maxTabsWarningEl = container.createDiv({
       cls: "claudian-max-tabs-warning claudian-setting-validation claudian-setting-validation-warning claudian-hidden"
     });
@@ -104480,8 +109023,9 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
     maxTabsSetting.addSlider((slider) => {
       var _a5, _b3;
       slider.setLimits(3, 10, 1).setValue((_a5 = this.plugin.settings.maxTabs) != null ? _a5 : 3).setDynamicTooltip().onChange(async (value) => {
-        this.plugin.settings.maxTabs = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.maxTabs = value;
+        });
         updateMaxTabsWarning(value);
         for (const view of this.plugin.getAllViews()) {
           view.refreshTabControls();
@@ -104489,49 +109033,54 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
       });
       updateMaxTabsWarning((_b3 = this.plugin.settings.maxTabs) != null ? _b3 : 3);
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.chatViewPlacement.name")).setDesc(t10("settings.chatViewPlacement.desc")).addDropdown((dropdown) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.chatViewPlacement.name")).setDesc(t10("settings.chatViewPlacement.desc")).addDropdown((dropdown) => {
       dropdown.addOption("right-sidebar", t10("settings.chatViewPlacement.rightSidebar")).addOption("left-sidebar", t10("settings.chatViewPlacement.leftSidebar")).addOption("main-tab", t10("settings.chatViewPlacement.mainTab")).setValue(this.plugin.settings.chatViewPlacement).onChange(async (value) => {
-        this.plugin.settings.chatViewPlacement = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.chatViewPlacement = value;
+        });
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.enableAutoScroll.name")).setDesc(t10("settings.enableAutoScroll.desc")).addToggle(
+    new import_obsidian53.Setting(container).setName(t10("settings.enableAutoScroll.name")).setDesc(t10("settings.enableAutoScroll.desc")).addToggle(
       (toggle) => {
         var _a5;
         return toggle.setValue((_a5 = this.plugin.settings.enableAutoScroll) != null ? _a5 : true).onChange(async (value) => {
-          this.plugin.settings.enableAutoScroll = value;
-          await this.plugin.saveSettings();
+          await this.plugin.mutateSettings((settings11) => {
+            settings11.enableAutoScroll = value;
+          });
         });
       }
     );
-    new import_obsidian49.Setting(container).setName(t10("settings.deferMathRenderingDuringStreaming.name")).setDesc(t10("settings.deferMathRenderingDuringStreaming.desc")).addToggle(
+    new import_obsidian53.Setting(container).setName(t10("settings.deferMathRenderingDuringStreaming.name")).setDesc(t10("settings.deferMathRenderingDuringStreaming.desc")).addToggle(
       (toggle) => {
         var _a5;
         return toggle.setValue((_a5 = this.plugin.settings.deferMathRenderingDuringStreaming) != null ? _a5 : true).onChange(async (value) => {
-          this.plugin.settings.deferMathRenderingDuringStreaming = value;
-          await this.plugin.saveSettings();
+          await this.plugin.mutateSettings((settings11) => {
+            settings11.deferMathRenderingDuringStreaming = value;
+          });
         });
       }
     );
-    new import_obsidian49.Setting(container).setName(t10("settings.expandFileEditsByDefault.name")).setDesc(t10("settings.expandFileEditsByDefault.desc")).addToggle(
+    new import_obsidian53.Setting(container).setName(t10("settings.expandFileEditsByDefault.name")).setDesc(t10("settings.expandFileEditsByDefault.desc")).addToggle(
       (toggle) => {
         var _a5;
         return toggle.setValue((_a5 = this.plugin.settings.expandFileEditsByDefault) != null ? _a5 : false).onChange(async (value) => {
-          this.plugin.settings.expandFileEditsByDefault = value;
-          await this.plugin.saveSettings();
+          await this.plugin.mutateSettings((settings11) => {
+            settings11.expandFileEditsByDefault = value;
+          });
         });
       }
     );
-    new import_obsidian49.Setting(container).setName(t10("settings.conversations")).setHeading();
-    new import_obsidian49.Setting(container).setName(t10("settings.autoTitle.name")).setDesc(t10("settings.autoTitle.desc")).addToggle(
+    new import_obsidian53.Setting(container).setName(t10("settings.conversations")).setHeading();
+    new import_obsidian53.Setting(container).setName(t10("settings.autoTitle.name")).setDesc(t10("settings.autoTitle.desc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.enableAutoTitleGeneration).onChange(async (value) => {
-        this.plugin.settings.enableAutoTitleGeneration = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.enableAutoTitleGeneration = value;
+        });
         this.display();
       })
     );
     if (this.plugin.settings.enableAutoTitleGeneration) {
-      new import_obsidian49.Setting(container).setName(t10("settings.titleModel.name")).setDesc(t10("settings.titleModel.desc")).addDropdown((dropdown) => {
+      new import_obsidian53.Setting(container).setName(t10("settings.titleModel.name")).setDesc(t10("settings.titleModel.desc")).addDropdown((dropdown) => {
         dropdown.addOption("", t10("settings.titleModel.auto"));
         const settingsBag = this.plugin.settings;
         const seenValues = /* @__PURE__ */ new Set();
@@ -104545,25 +109094,28 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
           }
         }
         dropdown.setValue(this.plugin.settings.titleGenerationModel || "").onChange(async (value) => {
-          this.plugin.settings.titleGenerationModel = value;
-          await this.plugin.saveSettings();
+          await this.plugin.mutateSettings((settings11) => {
+            settings11.titleGenerationModel = value;
+          });
         });
       });
     }
-    new import_obsidian49.Setting(container).setName(t10("settings.content")).setHeading();
-    new import_obsidian49.Setting(container).setName(t10("settings.userName.name")).setDesc(t10("settings.userName.desc")).addText((text) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.content")).setHeading();
+    new import_obsidian53.Setting(container).setName(t10("settings.userName.name")).setDesc(t10("settings.userName.desc")).addText((text) => {
       text.setPlaceholder(t10("settings.userName.name")).setValue(this.plugin.settings.userName).onChange(async (value) => {
-        this.plugin.settings.userName = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.userName = value;
+        });
       });
       text.inputEl.addEventListener("blur", () => {
         void this.restartServiceForPromptChange();
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.systemPrompt.name")).setDesc(t10("settings.systemPrompt.desc")).addTextArea((text) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.systemPrompt.name")).setDesc(t10("settings.systemPrompt.desc")).addTextArea((text) => {
       text.setPlaceholder(t10("settings.systemPrompt.name")).setValue(this.plugin.settings.systemPrompt).onChange(async (value) => {
-        this.plugin.settings.systemPrompt = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.systemPrompt = value;
+        });
       });
       text.inputEl.rows = 6;
       text.inputEl.cols = 50;
@@ -104571,33 +109123,36 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
         void this.restartServiceForPromptChange();
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.excludedTags.name")).setDesc(t10("settings.excludedTags.desc")).addTextArea((text) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.excludedTags.name")).setDesc(t10("settings.excludedTags.desc")).addTextArea((text) => {
       text.setPlaceholder("System\nprivate\ndraft").setValue(this.plugin.settings.excludedTags.join("\n")).onChange(async (value) => {
-        this.plugin.settings.excludedTags = value.split(/\r?\n/).map((entry) => entry.trim().replace(/^#/, "")).filter((entry) => entry.length > 0);
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.excludedTags = value.split(/\r?\n/).map((entry) => entry.trim().replace(/^#/, "")).filter((entry) => entry.length > 0);
+        });
       });
       text.inputEl.rows = 4;
       text.inputEl.cols = 30;
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.mediaFolder.name")).setDesc(t10("settings.mediaFolder.desc")).addText((text) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.mediaFolder.name")).setDesc(t10("settings.mediaFolder.desc")).addText((text) => {
       text.setPlaceholder("Attachments").setValue(this.plugin.settings.mediaFolder).onChange(async (value) => {
-        this.plugin.settings.mediaFolder = value.trim();
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.mediaFolder = value.trim();
+        });
       });
       text.inputEl.addClass("claudian-settings-media-input");
       text.inputEl.addEventListener("blur", () => {
         void this.restartServiceForPromptChange();
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.input")).setHeading();
-    new import_obsidian49.Setting(container).setName(t10("settings.requireCommandOrControlEnterToSend.name")).setDesc(t10("settings.requireCommandOrControlEnterToSend.desc")).addToggle((toggle) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.input")).setHeading();
+    new import_obsidian53.Setting(container).setName(t10("settings.requireCommandOrControlEnterToSend.name")).setDesc(t10("settings.requireCommandOrControlEnterToSend.desc")).addToggle((toggle) => {
       var _a5;
       toggle.setValue((_a5 = this.plugin.settings.requireCommandOrControlEnterToSend) != null ? _a5 : false).onChange(async (value) => {
-        this.plugin.settings.requireCommandOrControlEnterToSend = value;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.requireCommandOrControlEnterToSend = value;
+        });
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.navMappings.name")).setDesc(t10("settings.navMappings.desc")).addTextArea((text) => {
+    new import_obsidian53.Setting(container).setName(t10("settings.navMappings.name")).setDesc(t10("settings.navMappings.desc")).addTextArea((text) => {
       let pendingValue = buildNavMappingText(this.plugin.settings.keyboardNavigation);
       let saveTimeout = null;
       const commitValue = async (showError) => {
@@ -104608,16 +109163,17 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
         const result = parseNavMappings(pendingValue);
         if (!result.settings) {
           if (showError) {
-            new import_obsidian49.Notice(`${t10("common.error")}: ${result.error}`);
+            new import_obsidian53.Notice(`${t10("common.error")}: ${result.error}`);
             pendingValue = buildNavMappingText(this.plugin.settings.keyboardNavigation);
             text.setValue(pendingValue);
           }
           return;
         }
-        this.plugin.settings.keyboardNavigation.scrollUpKey = result.settings.scrollUp;
-        this.plugin.settings.keyboardNavigation.scrollDownKey = result.settings.scrollDown;
-        this.plugin.settings.keyboardNavigation.focusInputKey = result.settings.focusInput;
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.keyboardNavigation.scrollUpKey = result.settings.scrollUp;
+          settings11.keyboardNavigation.scrollDownKey = result.settings.scrollDown;
+          settings11.keyboardNavigation.focusInputKey = result.settings.focusInput;
+        });
         pendingValue = buildNavMappingText(this.plugin.settings.keyboardNavigation);
         text.setValue(pendingValue);
       };
@@ -104638,7 +109194,7 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
         void commitValue(true);
       });
     });
-    new import_obsidian49.Setting(container).setName(t10("settings.hotkeys")).setHeading();
+    new import_obsidian53.Setting(container).setName(t10("settings.hotkeys")).setHeading();
     const hotkeyGrid = container.createDiv({ cls: "claudian-hotkey-grid" });
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:inline-edit", "settings.inlineEditHotkey");
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:open-view", "settings.openChatHotkey");
@@ -104647,7 +109203,7 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
     addHotkeySettingRow(hotkeyGrid, this.app, "claudian:close-current-tab", "settings.closeTabHotkey");
     renderEnvironmentSettingsSection({
       container,
-      plugin: this.plugin,
+      plugin: this.plugin.providerHost,
       scope: "shared",
       heading: t10("settings.environment"),
       name: "Shared environment",
@@ -104657,14 +109213,15 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
     });
   }
   renderHiddenProviderCommandSetting(container, providerId, copy) {
-    new import_obsidian49.Setting(container).setName(copy.name).setDesc(copy.desc).addTextArea((text) => {
+    new import_obsidian53.Setting(container).setName(copy.name).setDesc(copy.desc).addTextArea((text) => {
       text.setPlaceholder(copy.placeholder).setValue(getHiddenProviderCommands(this.plugin.settings, providerId).join("\n")).onChange(async (value) => {
         var _a5;
-        this.plugin.settings.hiddenProviderCommands = {
-          ...this.plugin.settings.hiddenProviderCommands,
-          [providerId]: normalizeHiddenCommandList(value.split(/\r?\n/))
-        };
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          settings11.hiddenProviderCommands = {
+            ...settings11.hiddenProviderCommands,
+            [providerId]: normalizeHiddenCommandList(value.split(/\r?\n/))
+          };
+        });
         (_a5 = this.plugin.getView()) == null ? void 0 : _a5.updateHiddenProviderCommands();
       });
       text.inputEl.rows = 4;
@@ -104720,32 +109277,28 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
       const validationEl = inputWrapper.createDiv({ cls: "claudian-context-limit-validation claudian-hidden" });
       const saveAlias = async () => {
         var _a6;
-        if (!this.plugin.settings.customModelAliases) {
-          this.plugin.settings.customModelAliases = {};
-        }
         const existing = (_a6 = this.plugin.settings.customModelAliases[modelId]) != null ? _a6 : "";
         const trimmed = aliasInputEl.value.trim();
         if (trimmed === existing) {
           aliasInputEl.value = existing;
           return;
         }
-        if (trimmed) {
-          this.plugin.settings.customModelAliases[modelId] = trimmed;
-        } else {
-          delete this.plugin.settings.customModelAliases[modelId];
-        }
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          var _a7;
+          (_a7 = settings11.customModelAliases) != null ? _a7 : settings11.customModelAliases = {};
+          if (trimmed) {
+            settings11.customModelAliases[modelId] = trimmed;
+          } else {
+            delete settings11.customModelAliases[modelId];
+          }
+        });
         for (const view of this.plugin.getAllViews()) {
           view.refreshModelSelector();
         }
       };
       const saveContextLimit = async () => {
         const trimmed = inputEl.value.trim();
-        if (!this.plugin.settings.customContextLimits) {
-          this.plugin.settings.customContextLimits = {};
-        }
         if (!trimmed) {
-          delete this.plugin.settings.customContextLimits[modelId];
           validationEl.toggleClass("claudian-hidden", true);
           inputEl.classList.remove("claudian-input-error");
         } else {
@@ -104756,11 +109309,18 @@ var ClaudianSettingTab = class extends import_obsidian49.PluginSettingTab {
             inputEl.classList.add("claudian-input-error");
             return;
           }
-          this.plugin.settings.customContextLimits[modelId] = parsed;
           validationEl.toggleClass("claudian-hidden", true);
           inputEl.classList.remove("claudian-input-error");
         }
-        await this.plugin.saveSettings();
+        await this.plugin.mutateSettings((settings11) => {
+          var _a6;
+          (_a6 = settings11.customContextLimits) != null ? _a6 : settings11.customContextLimits = {};
+          if (!trimmed) {
+            delete settings11.customContextLimits[modelId];
+          } else {
+            settings11.customContextLimits[modelId] = parseContextLimit(trimmed);
+          }
+        });
       };
       inputEl.addEventListener("input", () => {
         void saveContextLimit();
@@ -104802,15 +109362,15 @@ patchSetMaxListenersForElectron();
 function isClaudianView(value) {
   return !!value && typeof value === "object" && typeof value.getTabManager === "function";
 }
-var ClaudianPlugin = class extends import_obsidian50.Plugin {
+var ClaudianPlugin = class extends import_obsidian54.Plugin {
   constructor() {
     super(...arguments);
-    this.conversations = [];
+    this.providerHost = new ClaudianProviderHost(this);
     this.lastKnownTabManagerState = null;
   }
   async onload() {
     await this.loadSettings();
-    await ProviderWorkspaceRegistry.initializeAll(this);
+    await ProviderWorkspaceRegistry.initializeAll(this.providerHost);
     this.registerView(
       VIEW_TYPE_CLAUDIAN,
       (leaf) => new ClaudianView(leaf, this)
@@ -104830,9 +109390,9 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       name: "Inline edit",
       editorCallback: async (editor, ctx) => {
         var _a5;
-        const view = ctx instanceof import_obsidian50.MarkdownView ? ctx : this.app.workspace.getActiveViewOfType(import_obsidian50.MarkdownView);
+        const view = ctx instanceof import_obsidian54.MarkdownView ? ctx : this.app.workspace.getActiveViewOfType(import_obsidian54.MarkdownView);
         if (!view) {
-          new import_obsidian50.Notice("Inline edit unavailable: could not access the active Markdown view.");
+          new import_obsidian54.Notice("Inline edit unavailable: could not access the active Markdown view.");
           return;
         }
         const selectedText = editor.getSelection();
@@ -104864,7 +109424,7 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
         );
         const result = await modal.openAndWait();
         if (result.decision === "accept" && result.editedText !== void 0) {
-          new import_obsidian50.Notice(editContext.mode === "cursor" ? "Inserted" : "Edit applied");
+          new import_obsidian54.Notice(editContext.mode === "cursor" ? "Inserted" : "Edit applied");
         }
       }
     });
@@ -105000,6 +109560,20 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       ...DEFAULT_CLAUDIAN_SETTINGS,
       ...claudian
     };
+    this.settingsCoordinator = new SettingsCoordinator(
+      this.settings,
+      async (settings11) => {
+        ProviderSettingsCoordinator.normalizeProviderSelection(settings11);
+        ProviderSettingsCoordinator.persistProjectedProviderState(settings11);
+        await this.storage.saveClaudianSettings(settings11);
+      }
+    );
+    this.conversationRepository = new ConversationRepository({
+      getSettings: () => this.settings,
+      getVaultPath: () => getVaultPath(this.app),
+      sessions: this.storage.sessions,
+      onConversationDeleted: (conversationId) => this.resetDeletedConversationTabs(conversationId)
+    });
     if (this.settings.permissionMode === "plan") {
       this.settings.permissionMode = "normal";
     }
@@ -105019,7 +109593,7 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
     );
     const didNormalizeModelVariants = this.normalizeModelVariantSettings();
     const allMetadata = await this.storage.sessions.listMetadata();
-    this.conversations = allMetadata.map((meta3) => {
+    this.conversationRepository.replaceAll(allMetadata.map((meta3) => {
       var _a6;
       const resumeSessionId = meta3.sessionId !== void 0 ? meta3.sessionId : meta3.id;
       return {
@@ -105030,6 +109604,7 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
         updatedAt: meta3.updatedAt,
         lastResponseAt: meta3.lastResponseAt,
         sessionId: resumeSessionId,
+        selectedModel: meta3.selectedModel,
         providerState: meta3.providerState,
         messages: [],
         currentNote: meta3.currentNote,
@@ -105044,9 +109619,9 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
         var _a6, _b3;
         return ((_a6 = b2.lastResponseAt) != null ? _a6 : b2.updatedAt) - ((_b3 = a.lastResponseAt) != null ? _b3 : a.updatedAt);
       }
-    );
+    ));
     setLocale(this.settings.locale);
-    const backfilledConversations = this.backfillConversationResponseTimestamps();
+    const backfilledConversations = this.conversationRepository.backfillResponseTimestamps();
     const { changed, invalidatedConversations } = this.reconcileModelWithEnvironment();
     ProviderSettingsCoordinator.projectActiveProviderState(
       this.settings
@@ -105061,35 +109636,19 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       );
     }
   }
-  backfillConversationResponseTimestamps() {
-    const updated = [];
-    for (const conv of this.conversations) {
-      if (conv.lastResponseAt != null) continue;
-      if (!conv.messages || conv.messages.length === 0) continue;
-      for (let i = conv.messages.length - 1; i >= 0; i--) {
-        const msg = conv.messages[i];
-        if (msg.role === "assistant") {
-          conv.lastResponseAt = msg.timestamp;
-          updated.push(conv);
-          break;
-        }
-      }
-    }
-    return updated;
-  }
   normalizeModelVariantSettings() {
     return ProviderSettingsCoordinator.normalizeAllModelVariants(
       this.settings
     );
   }
   async saveSettings() {
-    ProviderSettingsCoordinator.normalizeProviderSelection(
-      this.settings
-    );
-    ProviderSettingsCoordinator.persistProjectedProviderState(
-      this.settings
-    );
-    await this.storage.saveClaudianSettings(this.settings);
+    await this.settingsCoordinator.persistCurrent();
+  }
+  async mutateSettings(mutation) {
+    await this.settingsCoordinator.mutate(mutation);
+  }
+  async mutateSettingsConditionally(mutation) {
+    await this.settingsCoordinator.mutateConditionally(mutation);
   }
   /** Updates and persists environment variables, restarting processes to apply changes. */
   async applyEnvironmentVariables(scope, envText) {
@@ -105097,27 +109656,43 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
   }
   async applyEnvironmentVariablesBatch(updates) {
     var _a5;
-    const settingsBag = this.settings;
     const nextEnvironmentByScope = /* @__PURE__ */ new Map();
     for (const update of updates) {
       nextEnvironmentByScope.set(update.scope, update.envText);
     }
-    const changedScopes = [];
-    for (const [scope, envText] of nextEnvironmentByScope) {
-      const currentValue = getEnvironmentVariablesForScope(settingsBag, scope);
-      if (currentValue !== envText) {
-        changedScopes.push(scope);
+    let affectedProviderIds = [];
+    let changed = false;
+    let invalidatedConversations = [];
+    await this.mutateSettings((settings11) => {
+      const settingsBag = settings11;
+      const changedScopes = [];
+      for (const [scope, envText] of nextEnvironmentByScope) {
+        const currentValue = getEnvironmentVariablesForScope(settingsBag, scope);
+        if (currentValue !== envText) {
+          changedScopes.push(scope);
+        }
+        setEnvironmentVariablesForScope(settingsBag, scope, envText);
       }
-      setEnvironmentVariablesForScope(settingsBag, scope, envText);
-    }
-    if (changedScopes.length === 0) {
-      await this.saveSettings();
+      affectedProviderIds = this.getAffectedEnvironmentProviders(changedScopes);
+      ProviderSettingsCoordinator.handleEnvironmentChange(settingsBag, affectedProviderIds);
+      const reconciliation = this.reconcileModelWithEnvironment(affectedProviderIds);
+      changed = reconciliation.changed;
+      invalidatedConversations = reconciliation.invalidatedConversations;
+    });
+    if (affectedProviderIds.length === 0) {
       return;
     }
-    const affectedProviderIds = this.getAffectedEnvironmentProviders(changedScopes);
-    ProviderSettingsCoordinator.handleEnvironmentChange(settingsBag, affectedProviderIds);
-    const { changed, invalidatedConversations } = this.reconcileModelWithEnvironment(affectedProviderIds);
-    await this.saveSettings();
+    const modelCatalogDiagnostics = [];
+    for (const providerId of affectedProviderIds) {
+      if (ProviderRegistry.isEnabled(providerId, this.settings)) {
+        const result = await ProviderWorkspaceRegistry.refreshModelCatalog(providerId);
+        if (result.diagnostics) {
+          modelCatalogDiagnostics.push(
+            `${ProviderRegistry.getProviderDisplayName(providerId)}: ${result.diagnostics}`
+          );
+        }
+      }
+    }
     if (invalidatedConversations.length > 0) {
       for (const conv of invalidatedConversations) {
         await this.storage.sessions.saveMetadata(
@@ -105175,7 +109750,7 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
         }
       }
       if (failedTabs > 0) {
-        new import_obsidian50.Notice(`Environment changes applied, but ${failedTabs} affected tab(s) failed to restart.`);
+        new import_obsidian54.Notice(`Environment changes applied, but ${failedTabs} affected tab(s) failed to restart.`);
       }
     }
     for (const openView of this.getAllViews()) {
@@ -105183,7 +109758,11 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       openView.refreshModelSelector();
     }
     const noticeText = changed ? "Environment variables applied. Sessions will be rebuilt on next message." : "Environment variables applied.";
-    new import_obsidian50.Notice(noticeText);
+    new import_obsidian54.Notice(noticeText);
+    if (modelCatalogDiagnostics.length > 0) {
+      new import_obsidian54.Notice(`Model catalog refresh failed:
+${modelCatalogDiagnostics.join("\n")}`);
+    }
   }
   /** Returns the runtime environment variables (fixed at plugin load). */
   getActiveEnvironmentVariables(providerId = ProviderRegistry.resolveSettingsProviderId(
@@ -105200,17 +109779,17 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       scope
     );
   }
-  getResolvedProviderCliPath(providerId) {
+  getResolvedProviderCliPath(providerId, context) {
     const cliResolver = ProviderWorkspaceRegistry.getCliResolver(providerId);
     if (!cliResolver) {
       return null;
     }
-    return cliResolver.resolveFromSettings(this.settings);
+    return cliResolver.resolveFromSettings(this.settings, context);
   }
   reconcileModelWithEnvironment(providerIds = ProviderRegistry.getRegisteredProviderIds()) {
     return ProviderSettingsCoordinator.reconcileProviders(
       this.settings,
-      this.conversations,
+      this.conversationRepository.getAll(),
       providerIds
     );
   }
@@ -105231,64 +109810,17 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
     }
     return Array.from(affectedProviderIds);
   }
-  generateConversationId() {
-    return `conv-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
-  }
-  generateDefaultTitle() {
-    const now = /* @__PURE__ */ new Date();
-    return now.toLocaleString(void 0, {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-  }
-  getConversationPreview(conv) {
-    var _a5, _b3;
-    const firstUserMsg = conv.messages.find((m4) => m4.role === "user");
-    if (!firstUserMsg) {
-      return "New conversation";
-    }
-    const previewText = (_b3 = (_a5 = firstUserMsg.displayContent) != null ? _a5 : extractUserDisplayContent(firstUserMsg.content)) != null ? _b3 : firstUserMsg.content;
-    return previewText.substring(0, 50) + (previewText.length > 50 ? "..." : "");
-  }
-  async loadSdkMessagesForConversation(conversation) {
-    await ProviderRegistry.getConversationHistoryService(conversation.providerId).hydrateConversationHistory(conversation, getVaultPath(this.app));
-  }
   async createConversation(options) {
-    var _a5;
-    const providerId = (_a5 = options == null ? void 0 : options.providerId) != null ? _a5 : DEFAULT_CHAT_PROVIDER_ID;
-    const sessionId = options == null ? void 0 : options.sessionId;
-    const conversationId = sessionId != null ? sessionId : this.generateConversationId();
-    const conversation = {
-      id: conversationId,
-      providerId,
-      title: this.generateDefaultTitle(),
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      sessionId: sessionId != null ? sessionId : null,
-      messages: []
-    };
-    this.conversations.unshift(conversation);
-    await this.storage.sessions.saveMetadata(
-      this.storage.sessions.toSessionMetadata(conversation)
-    );
-    return conversation;
+    return this.conversationRepository.create(options);
   }
   async switchConversation(id) {
-    const conversation = this.conversations.find((c) => c.id === id);
-    if (!conversation) return null;
-    await this.loadSdkMessagesForConversation(conversation);
-    return conversation;
+    return this.conversationRepository.switchTo(id);
   }
-  async deleteConversation(id) {
+  async deleteConversation(id, options = {}) {
+    await this.conversationRepository.delete(id, options);
+  }
+  async resetDeletedConversationTabs(id) {
     var _a5, _b3;
-    const index = this.conversations.findIndex((c) => c.id === id);
-    if (index === -1) return;
-    const conversation = this.conversations[index];
-    this.conversations.splice(index, 1);
-    await ProviderRegistry.getConversationHistoryService(conversation.providerId).deleteConversationSession(conversation, getVaultPath(this.app));
-    await this.storage.sessions.deleteMetadata(id);
     for (const view of this.getAllViews()) {
       const tabManager = view.getTabManager();
       if (!tabManager) continue;
@@ -105300,50 +109832,26 @@ var ClaudianPlugin = class extends import_obsidian50.Plugin {
       }
     }
   }
+  async handleMissingProviderSession(id, missingProviderSessionId) {
+    return this.conversationRepository.handleMissingProviderSession(id, missingProviderSessionId);
+  }
   async renameConversation(id, title) {
-    const conversation = this.conversations.find((c) => c.id === id);
-    if (!conversation) return;
-    conversation.title = title.trim() || this.generateDefaultTitle();
-    conversation.updatedAt = Date.now();
-    await this.storage.sessions.saveMetadata(
-      this.storage.sessions.toSessionMetadata(conversation)
-    );
+    await this.conversationRepository.rename(id, title);
   }
   async updateConversation(id, updates) {
-    const conversation = this.conversations.find((c) => c.id === id);
-    if (!conversation) return;
-    const safeUpdates = { ...updates };
-    delete safeUpdates.providerId;
-    Object.assign(conversation, safeUpdates, { updatedAt: Date.now() });
-    await this.storage.sessions.saveMetadata(
-      this.storage.sessions.toSessionMetadata(conversation)
-    );
+    await this.conversationRepository.update(id, updates);
   }
   async getConversationById(id) {
-    const conversation = this.conversations.find((c) => c.id === id) || null;
-    if (conversation) {
-      await this.loadSdkMessagesForConversation(conversation);
-    }
-    return conversation;
+    return this.conversationRepository.getById(id);
   }
   getConversationSync(id) {
-    return this.conversations.find((c) => c.id === id) || null;
+    return this.conversationRepository.getSync(id);
   }
   findEmptyConversation() {
-    return this.conversations.find((c) => c.messages.length === 0) || null;
+    return this.conversationRepository.findEmpty();
   }
   getConversationList() {
-    return this.conversations.map((c) => ({
-      id: c.id,
-      providerId: c.providerId,
-      title: c.title,
-      createdAt: c.createdAt,
-      updatedAt: c.updatedAt,
-      lastResponseAt: c.lastResponseAt,
-      messageCount: c.messages.length,
-      preview: this.getConversationPreview(c),
-      titleGenerationStatus: c.titleGenerationStatus
-    }));
+    return this.conversationRepository.list();
   }
   async persistTabManagerState(state) {
     this.lastKnownTabManagerState = state;
@@ -105420,5 +109928,3 @@ smol-toml/dist/index.js:
    * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    *)
 */
-
-/* nosourcemap */

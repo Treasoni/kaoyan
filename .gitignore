@@ -136,5 +136,10 @@ Sessionx.vim
 
 
 
+# -----------------------------------
+# 8. LLM 调用日志（本地遥测，不上传）
+# -----------------------------------
+.llm/
+
 # Ignore Smart Environment folder
 .smart-env
