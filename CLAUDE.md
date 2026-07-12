@@ -16,6 +16,15 @@
 | 英语进度 | `考研英语/📊 学习进度.md` | 读/写 |
 | 专业课进度 | `考研专业课/📊 学习进度.md` | 读/写 |
 
+<!-- prompt-cache-bootstrap:begin -->
+## Prompt Cache
+
+- Follow `.claude/rules/common/prompt-cache.md` for high-frequency prompt design.
+- Keep stable instructions and output formats before dynamic user input, file excerpts, dates, IDs, and runtime state.
+- Reuse canonical templates and load long context only when needed.
+<!-- prompt-cache-bootstrap:end -->
+
+
 ---
 
 ## 2. 技能体系：少入口，多模块
@@ -109,3 +118,4 @@
 - 任何以 `> [!personal]` 开头的 callout 块
 
 数学证明、推导类内容统一使用 `> [!note]-` 单一折叠块；写入包含表格的文件后检查 Obsidian Markdown 表格格式，表格内 LaTeX 绝对值使用 `\lvert...\rvert`，避免管道符破坏渲染。
+
