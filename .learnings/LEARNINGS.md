@@ -49,3 +49,21 @@ Self-improvement patterns, corrections, and knowledge gaps.
 - 已合并到 RULES.md
 
 ---
+
+## [LRN-20260713-001] best_practice
+
+**Logged**: 2026-07-13T11:29:16+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: docs
+
+### Summary
+图片纠正错题时，必须按新题完整重算并回读渲染结果
+
+### Details
+本次用户指出错题21的题目应以图片为准。修正时不能只替换题干，还要重新计算特征多项式、二重根分类、验秩矩阵和对角化结论。虽然新旧题最终的参数值恰好相同，但验秩矩阵完全不同；如果只沿用旧解析，会留下隐性错误。另一次写入时用 Python 普通字符串插入 LaTeX，导致 `\begin`、`\rvert` 等转义被误处理，幸好通过回读目标段落发现并用 raw string 重写修正。
+
+### Suggested Action
+处理用户基于图片/截图修正题目时：先按图片重新识别题目，再完整重算关键步骤；写入含大量 LaTeX 的 Markdown 时优先使用 raw string 或 here-doc 单引号，并在写入后必须回读目标段落检查是否出现控制字符、反斜杠丢失或公式变形。
+
+---
