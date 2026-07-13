@@ -18,10 +18,11 @@
         "conversationId": "conv-1783906704919-ijk9ipkxr"
       },
       {
+        "draftModel": "gpt-5.5",
         "tabId": "tab-1782004129110-rax9f12",
-        "conversationId": "conv-1783927890096-joyp41tjd"
+        "conversationId": null
       }
     ],
-    "activeTabId": "tab-1779448736943-hq3dr8b"
+    "activeTabId": "tab-1782004129110-rax9f12"
   }
 }
