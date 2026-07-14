@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+  <defs>
+    <style>
+      .title{font:700 30px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#123b72}.h{font:700 21px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#173a63}.t{font:18px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#1f2937}.s{font:16px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#374151}.formula{font:italic 19px Georgia,'Times New Roman',serif;fill:#1f2937}.wire{fill:none;stroke:#1f2937;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.blue{fill:none;stroke:#2563eb;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.red{fill:none;stroke:#dc2626;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.dash{fill:none;stroke:#dc2626;stroke-width:2;stroke-dasharray:7 6}.panel{fill:#fbfdff;stroke:#bfdbfe;stroke-width:2}.note{fill:#fff7d6;stroke:#eab308;stroke-width:1.5}
+    </style>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"/></marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="1200" height="650" fill="#fff"/>
+  <text x="600" y="48" text-anchor="middle" class="title">二极管微变模型的起点：直流偏置把工作状态定在 Q 点</text>
+  <rect x="35" y="78" width="515" height="520" rx="16" class="panel"/>
+  <rect x="580" y="78" width="585" height="520" rx="16" class="panel"/>
+  <text x="65" y="120" class="h">① 原电路：直流偏置 + 小交流输入</text>
+  <text x="610" y="120" class="h">② 伏安曲线：Q 点附近才可用切线近似</text>
+
+  <!-- circuit -->
+  <path d="M120 205 H185 M120 205 V450 H490 V315 M410 205 H490 V315" class="wire"/>
+  <circle cx="120" cy="275" r="34" fill="#fff" stroke="#1f2937" stroke-width="3"/>
+  <path d="M98 276 C105 252 115 252 120 276 S135 300 142 276" class="blue"/>
+  <text x="72" y="246" class="formula">u<tspan baseline-shift="sub" font-size="13">i</tspan>(t)</text>
+  <text x="91" y="261" class="blue" font-family="Arial" font-size="20">+</text><text x="91" y="310" class="blue" font-family="Arial" font-size="20">−</text>
+  <circle cx="120" cy="380" r="34" fill="#fff" stroke="#1f2937" stroke-width="3"/>
+  <path d="M120 352 V367 M104 378 H136 M110 392 H130" class="red"/>
+  <text x="74" y="398" class="formula">V</text>
+  <text x="91" y="366" class="red" font-family="Arial" font-size="20">+</text><text x="91" y="411" class="red" font-family="Arial" font-size="20">−</text>
+  <path d="M185 205 L198 185 L213 225 L228 185 L243 225 L258 185 L273 225 L288 185 L303 225 L316 205 H410" class="wire"/>
+  <text x="246" y="170" text-anchor="middle" class="formula">R</text>
+  <path d="M410 185 L410 225 L455 205 Z M465 180 V230" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round"/>
+  <text x="438" y="165" text-anchor="middle" class="formula">D</text>
+  <text x="397" y="260" class="red" font-family="Arial" font-size="20">+</text><text x="470" y="260" class="red" font-family="Arial" font-size="20">−</text>
+  <text x="432" y="280" text-anchor="middle" class="formula">v<tspan baseline-shift="sub" font-size="13">D</tspan></text>
+  <path d="M340 190 H390" class="blue" marker-end="url(#arrowBlue)"/>
+  <text x="345" y="178" class="formula" fill="#2563eb">i<tspan baseline-shift="sub" font-size="13">D</tspan></text>
+  <rect x="70" y="490" width="442" height="72" rx="10" class="note"/>
+  <text x="92" y="518" class="t">直流 V 决定工作点：V<tspan baseline-shift="sub" font-size="13">DQ</tspan>、I<tspan baseline-shift="sub" font-size="13">DQ</tspan></text>
+  <text x="92" y="546" class="t">小交流 u<tspan baseline-shift="sub" font-size="13">i</tspan> 只让工作点在 Q 附近摆动</text>
+
+  <!-- IV curve -->
+  <path d="M650 500 H1110" class="wire" marker-end="url(#arrowBlue)"/>
+  <path d="M700 550 V160" class="wire" marker-end="url(#arrowBlue)"/>
+  <text x="1085" y="530" class="formula">v<tspan baseline-shift="sub" font-size="13">D</tspan></text>
+  <text x="660" y="177" class="formula">i<tspan baseline-shift="sub" font-size="13">D</tspan></text>
+  <path d="M702 498 C790 497 818 494 850 475 C890 452 912 417 930 360 C946 309 960 235 1000 170" class="blue"/>
+  <path d="M840 470 L1020 225" class="dash"/>
+  <circle cx="902" cy="406" r="8" fill="#dc2626"/>
+  <path d="M902 406 V500 M700 406 H902" class="dash"/>
+  <text x="916" y="394" class="t" fill="#dc2626">Q(V<tspan baseline-shift="sub" font-size="13">DQ</tspan>, I<tspan baseline-shift="sub" font-size="13">DQ</tspan>)</text>
+  <text x="815" y="525" class="s" fill="#dc2626">V<tspan baseline-shift="sub" font-size="12">DQ</tspan></text>
+  <text x="650" y="398" class="s" fill="#dc2626">I<tspan baseline-shift="sub" font-size="12">DQ</tspan></text>
+  <path d="M872 446 C880 431 888 461 896 446 S912 431 920 446 S936 461 944 446" fill="none" stroke="#7c3aed" stroke-width="3"/>
+  <text x="953" y="450" class="s" fill="#7c3aed">小交流摆动</text>
+  <rect x="635" y="550" width="485" height="35" rx="8" class="note"/>
+  <text x="878" y="574" text-anchor="middle" class="t">Q 点处切线斜率的倒数：r<tspan baseline-shift="sub" font-size="13">d</tspan> = Δv<tspan baseline-shift="sub" font-size="13">d</tspan> / Δi<tspan baseline-shift="sub" font-size="13">d</tspan></text>
+</svg>

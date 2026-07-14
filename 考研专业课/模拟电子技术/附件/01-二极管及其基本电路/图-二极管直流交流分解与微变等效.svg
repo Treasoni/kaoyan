@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <style>
+      .title{font:700 30px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#123b72}.h{font:700 21px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#173a63}.t{font:18px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#1f2937}.s{font:16px 'PingFang SC','Microsoft YaHei',Arial,sans-serif;fill:#374151}.formula{font:italic 20px Georgia,'Times New Roman',serif;fill:#1f2937}.wire{fill:none;stroke:#1f2937;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.blue{fill:none;stroke:#2563eb;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.red{fill:none;stroke:#dc2626;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.panel{fill:#fbfdff;stroke:#bfdbfe;stroke-width:2}.note{fill:#fff7d6;stroke:#eab308;stroke-width:1.5}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="1200" height="640" fill="#fff"/>
+  <text x="600" y="48" text-anchor="middle" class="title">二极管小信号题：直流分析与交流微变等效必须分开</text>
+  <rect x="35" y="82" width="515" height="420" rx="16" class="panel"/>
+  <rect x="650" y="82" width="515" height="420" rx="16" class="panel"/>
+  <text x="65" y="123" class="h">① 直流等效：令 uᵢ = 0，求 Q 点</text>
+  <text x="680" y="123" class="h">② 交流等效：V 置零，D 换成 r<tspan baseline-shift="sub" font-size="14">d</tspan></text>
+
+  <!-- DC circuit -->
+  <path d="M130 195 H185 M130 195 V395 H465 V305 M385 195 H465 V305" class="wire"/>
+  <circle cx="130" cy="300" r="37" fill="#fff" stroke="#1f2937" stroke-width="3"/>
+  <path d="M130 264 V282 M112 300 H148 M118 316 H142" class="red"/>
+  <text x="83" y="323" class="formula">V</text>
+  <path d="M185 195 L198 175 L213 215 L228 175 L243 215 L258 175 L273 215 L288 175 L303 215 L316 195 H385" class="wire"/>
+  <text x="250" y="160" text-anchor="middle" class="formula">R</text>
+  <path d="M385 175 L385 215 L430 195 Z M440 170 V220" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round"/>
+  <text x="413" y="155" text-anchor="middle" class="formula">D</text>
+  <path d="M320 180 H370" class="red" marker-end="url(#arrow)"/>
+  <text x="320" y="168" class="formula" fill="#dc2626">I<tspan baseline-shift="sub" font-size="13">DQ</tspan></text>
+  <rect x="78" y="430" width="430" height="47" rx="9" class="note"/>
+  <text x="293" y="460" text-anchor="middle" class="formula">I<tspan baseline-shift="sub" font-size="13">DQ</tspan> ≈ (V − 0.7 V) / R</text>
+
+  <!-- AC circuit -->
+  <path d="M745 195 H800 M745 195 V395 H1080 V195 H1005" class="wire"/>
+  <circle cx="745" cy="295" r="37" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+  <path d="M722 296 C730 270 740 270 746 296 S760 322 768 296" class="blue"/>
+  <text x="693" y="262" class="formula" fill="#2563eb">u<tspan baseline-shift="sub" font-size="13">i</tspan></text>
+  <path d="M800 195 L813 175 L828 215 L843 175 L858 215 L873 175 L888 215 L903 175 L918 215 L931 195 H1005" class="wire"/>
+  <text x="865" y="160" text-anchor="middle" class="formula">R</text>
+  <path d="M1005 195 V230 L991 242 L1019 254 L991 266 L1019 278 L991 290 L1019 302 L1005 314 V395" class="wire"/>
+  <text x="1042" y="268" class="formula">r<tspan baseline-shift="sub" font-size="13">d</tspan></text>
+  <path d="M940 180 H990" class="blue" marker-end="url(#arrow)"/>
+  <text x="940" y="168" class="formula" fill="#2563eb">i<tspan baseline-shift="sub" font-size="13">d</tspan></text>
+  <text x="1036" y="213" class="blue" font-family="Arial" font-size="20">+</text><text x="1036" y="355" class="blue" font-family="Arial" font-size="20">−</text>
+  <text x="1045" y="338" class="formula" fill="#2563eb">v<tspan baseline-shift="sub" font-size="13">d</tspan></text>
+  <rect x="684" y="430" width="442" height="47" rx="9" class="note"/>
+  <text x="905" y="460" text-anchor="middle" class="formula">i<tspan baseline-shift="sub" font-size="13">d</tspan> = u<tspan baseline-shift="sub" font-size="13">i</tspan> / (R + r<tspan baseline-shift="sub" font-size="13">d</tspan>)</text>
+
+  <path d="M550 290 H650" class="blue" marker-end="url(#arrow)"/>
+  <text x="600" y="270" text-anchor="middle" class="s" fill="#2563eb">由 Q 点得到 r<tspan baseline-shift="sub" font-size="12">d</tspan></text>
+  <rect x="110" y="540" width="980" height="62" rx="12" class="note"/>
+  <text x="600" y="568" text-anchor="middle" class="t">最后再叠加回总量：i<tspan baseline-shift="sub" font-size="13">D</tspan>(t) = I<tspan baseline-shift="sub" font-size="13">DQ</tspan> + i<tspan baseline-shift="sub" font-size="13">d</tspan>(t)，v<tspan baseline-shift="sub" font-size="13">D</tspan>(t) = V<tspan baseline-shift="sub" font-size="13">DQ</tspan> + v<tspan baseline-shift="sub" font-size="13">d</tspan>(t)</text>
+  <text x="600" y="592" text-anchor="middle" class="s">红色：直流量；蓝色：交流微变量。直流电压源在交流等效中是短路（交流地）。</text>
+</svg>
