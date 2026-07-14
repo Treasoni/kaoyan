@@ -323,12 +323,12 @@ function getAppProvidedCliPaths() {
   if (process.platform === "darwin") {
     const appBundleMatch = process.execPath.match(/^(.+?\.app)\//);
     if (appBundleMatch) {
-      return [path4.join(appBundleMatch[1], "Contents", "MacOS")];
+      return [path3.join(appBundleMatch[1], "Contents", "MacOS")];
     }
-    return [path4.dirname(process.execPath)];
+    return [path3.dirname(process.execPath)];
   }
   if (process.platform === "win32") {
-    return [path4.dirname(process.execPath)];
+    return [path3.dirname(process.execPath)];
   }
   return [];
 }
@@ -342,14 +342,14 @@ function getExtraBinaryPaths() {
     const programFilesX86 = process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)";
     const programData = process.env.ProgramData || "C:\\ProgramData";
     if (appData) {
-      paths.push(path4.join(appData, "npm"));
+      paths.push(path3.join(appData, "npm"));
     }
     if (localAppData) {
-      paths.push(path4.join(localAppData, "Programs", "nodejs"));
-      paths.push(path4.join(localAppData, "Programs", "node"));
+      paths.push(path3.join(localAppData, "Programs", "nodejs"));
+      paths.push(path3.join(localAppData, "Programs", "node"));
     }
-    paths.push(path4.join(programFiles, "nodejs"));
-    paths.push(path4.join(programFilesX86, "nodejs"));
+    paths.push(path3.join(programFiles, "nodejs"));
+    paths.push(path3.join(programFilesX86, "nodejs"));
     const nvmSymlink = process.env.NVM_SYMLINK;
     if (nvmSymlink) {
       paths.push(nvmSymlink);
@@ -358,13 +358,13 @@ function getExtraBinaryPaths() {
     if (nvmHome) {
       paths.push(nvmHome);
     } else if (appData) {
-      paths.push(path4.join(appData, "nvm"));
+      paths.push(path3.join(appData, "nvm"));
     }
     const voltaHome = process.env.VOLTA_HOME;
     if (voltaHome) {
-      paths.push(path4.join(voltaHome, "bin"));
+      paths.push(path3.join(voltaHome, "bin"));
     } else if (home) {
-      paths.push(path4.join(home, ".volta", "bin"));
+      paths.push(path3.join(home, ".volta", "bin"));
     }
     const fnmMultishell = process.env.FNM_MULTISHELL_PATH;
     if (fnmMultishell) {
@@ -374,29 +374,29 @@ function getExtraBinaryPaths() {
     if (fnmDir) {
       paths.push(fnmDir);
     } else if (localAppData) {
-      paths.push(path4.join(localAppData, "fnm"));
+      paths.push(path3.join(localAppData, "fnm"));
     }
     const chocolateyInstall = process.env.ChocolateyInstall;
     if (chocolateyInstall) {
-      paths.push(path4.join(chocolateyInstall, "bin"));
+      paths.push(path3.join(chocolateyInstall, "bin"));
     } else {
-      paths.push(path4.join(programData, "chocolatey", "bin"));
+      paths.push(path3.join(programData, "chocolatey", "bin"));
     }
     const scoopDir = process.env.SCOOP;
     if (scoopDir) {
-      paths.push(path4.join(scoopDir, "shims"));
-      paths.push(path4.join(scoopDir, "apps", "nodejs", "current", "bin"));
-      paths.push(path4.join(scoopDir, "apps", "nodejs", "current"));
+      paths.push(path3.join(scoopDir, "shims"));
+      paths.push(path3.join(scoopDir, "apps", "nodejs", "current", "bin"));
+      paths.push(path3.join(scoopDir, "apps", "nodejs", "current"));
     } else if (home) {
-      paths.push(path4.join(home, "scoop", "shims"));
-      paths.push(path4.join(home, "scoop", "apps", "nodejs", "current", "bin"));
-      paths.push(path4.join(home, "scoop", "apps", "nodejs", "current"));
+      paths.push(path3.join(home, "scoop", "shims"));
+      paths.push(path3.join(home, "scoop", "apps", "nodejs", "current", "bin"));
+      paths.push(path3.join(home, "scoop", "apps", "nodejs", "current"));
     }
-    paths.push(path4.join(programFiles, "Docker", "Docker", "resources", "bin"));
+    paths.push(path3.join(programFiles, "Docker", "Docker", "resources", "bin"));
     if (home) {
-      paths.push(path4.join(home, ".local", "bin"));
-      paths.push(path4.join(home, ".bun", "bin"));
-      paths.push(path4.join(home, ".opencode", "bin"));
+      paths.push(path3.join(home, ".local", "bin"));
+      paths.push(path3.join(home, ".bun", "bin"));
+      paths.push(path3.join(home, ".opencode", "bin"));
     }
     paths.push(...getAppProvidedCliPaths());
     return paths;
@@ -410,12 +410,12 @@ function getExtraBinaryPaths() {
     ];
     const voltaHome = process.env.VOLTA_HOME;
     if (voltaHome) {
-      paths.push(path4.join(voltaHome, "bin"));
+      paths.push(path3.join(voltaHome, "bin"));
     }
     const asdfRoot = process.env.ASDF_DATA_DIR || process.env.ASDF_DIR;
     if (asdfRoot) {
-      paths.push(path4.join(asdfRoot, "shims"));
-      paths.push(path4.join(asdfRoot, "bin"));
+      paths.push(path3.join(asdfRoot, "shims"));
+      paths.push(path3.join(asdfRoot, "bin"));
     }
     const fnmMultishell = process.env.FNM_MULTISHELL_PATH;
     if (fnmMultishell) {
@@ -426,14 +426,14 @@ function getExtraBinaryPaths() {
       paths.push(fnmDir);
     }
     if (home) {
-      paths.push(path4.join(home, ".local", "bin"));
-      paths.push(path4.join(home, ".bun", "bin"));
-      paths.push(path4.join(home, ".opencode", "bin"));
-      paths.push(path4.join(home, ".docker", "bin"));
-      paths.push(path4.join(home, ".volta", "bin"));
-      paths.push(path4.join(home, ".asdf", "shims"));
-      paths.push(path4.join(home, ".asdf", "bin"));
-      paths.push(path4.join(home, ".fnm"));
+      paths.push(path3.join(home, ".local", "bin"));
+      paths.push(path3.join(home, ".bun", "bin"));
+      paths.push(path3.join(home, ".opencode", "bin"));
+      paths.push(path3.join(home, ".docker", "bin"));
+      paths.push(path3.join(home, ".volta", "bin"));
+      paths.push(path3.join(home, ".asdf", "shims"));
+      paths.push(path3.join(home, ".asdf", "bin"));
+      paths.push(path3.join(home, ".fnm"));
       const nvmBin = process.env.NVM_BIN;
       if (nvmBin) {
         paths.push(nvmBin);
@@ -457,9 +457,9 @@ function findNodeDirectory(additionalPaths) {
   for (const dir of allPaths) {
     if (!dir) continue;
     try {
-      const nodePath2 = path4.join(dir, NODE_EXECUTABLE);
-      if (fs4.existsSync(nodePath2)) {
-        const stat = fs4.statSync(nodePath2);
+      const nodePath2 = path3.join(dir, NODE_EXECUTABLE);
+      if (fs3.existsSync(nodePath2)) {
+        const stat = fs3.statSync(nodePath2);
         if (stat.isFile()) {
           return dir;
         }
@@ -472,7 +472,7 @@ function findNodeDirectory(additionalPaths) {
 function findNodeExecutable(additionalPaths) {
   const nodeDir = findNodeDirectory(additionalPaths);
   if (nodeDir) {
-    return path4.join(nodeDir, NODE_EXECUTABLE);
+    return path3.join(nodeDir, NODE_EXECUTABLE);
   }
   return null;
 }
@@ -483,18 +483,18 @@ function cliPathRequiresNode(cliPath) {
     return true;
   }
   try {
-    if (!fs4.existsSync(cliPath)) {
+    if (!fs3.existsSync(cliPath)) {
       return false;
     }
-    const stat = fs4.statSync(cliPath);
+    const stat = fs3.statSync(cliPath);
     if (!stat.isFile()) {
       return false;
     }
     let fd = null;
     try {
-      fd = fs4.openSync(cliPath, "r");
+      fd = fs3.openSync(cliPath, "r");
       const buffer = Buffer.alloc(200);
-      const bytesRead = fs4.readSync(fd, buffer, 0, buffer.length, 0);
+      const bytesRead = fs3.readSync(fd, buffer, 0, buffer.length, 0);
       const header = buffer.subarray(0, bytesRead).toString("utf8");
       if (!header.startsWith("#!")) return false;
       const shebangLine = header.split(/\r?\n/)[0].toLowerCase();
@@ -502,7 +502,7 @@ function cliPathRequiresNode(cliPath) {
     } finally {
       if (fd !== null) {
         try {
-          fs4.closeSync(fd);
+          fs3.closeSync(fd);
         } catch (e2) {
         }
       }
@@ -531,10 +531,10 @@ function getEnhancedPath(additionalPaths, cliPath) {
   let cliDirHasNode = false;
   if (cliPath) {
     try {
-      const cliDir = path4.dirname(cliPath);
-      const nodeInCliDir = path4.join(cliDir, NODE_EXECUTABLE);
-      if (fs4.existsSync(nodeInCliDir)) {
-        const stat = fs4.statSync(nodeInCliDir);
+      const cliDir = path3.dirname(cliPath);
+      const nodeInCliDir = path3.join(cliDir, NODE_EXECUTABLE);
+      if (fs3.existsSync(nodeInCliDir)) {
+        const stat = fs3.statSync(nodeInCliDir);
         if (stat.isFile()) {
           segments.push(cliDir);
           cliDirHasNode = true;
@@ -625,7 +625,7 @@ function getHostnameKey() {
 }
 function getLegacyHostnameKey() {
   try {
-    return os4.hostname();
+    return os3.hostname();
   } catch (e2) {
     return "";
   }
@@ -673,12 +673,12 @@ function formatContextLimit(tokens) {
   }
   return tokens.toLocaleString();
 }
-var fs4, os4, path4, isWindows, PATH_SEPARATOR, NODE_EXECUTABLE, DEVICE_SETTINGS_STORAGE_KEY, cachedDeviceSettingsKey, MIN_CONTEXT_LIMIT, MAX_CONTEXT_LIMIT;
+var fs3, os3, path3, isWindows, PATH_SEPARATOR, NODE_EXECUTABLE, DEVICE_SETTINGS_STORAGE_KEY, cachedDeviceSettingsKey, MIN_CONTEXT_LIMIT, MAX_CONTEXT_LIMIT;
 var init_env = __esm({
   "src/utils/env.ts"() {
-    fs4 = __toESM(require("fs"));
-    os4 = __toESM(require("os"));
-    path4 = __toESM(require("path"));
+    fs3 = __toESM(require("fs"));
+    os3 = __toESM(require("os"));
+    path3 = __toESM(require("path"));
     init_path();
     isWindows = process.platform === "win32";
     PATH_SEPARATOR = isWindows ? ";" : ":";
@@ -945,10 +945,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path32) {
-  if (!path32)
+function getElementAtPath(obj, path33) {
+  if (!path33)
     return obj;
-  return path32.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
+  return path33.reduce((acc, key) => acc == null ? void 0 : acc[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -1261,12 +1261,12 @@ function aborted(x2, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path32, issues) {
+function prefixIssues(path33, issues) {
   return issues.map((iss) => {
     var _a6;
     var _a5;
     (_a6 = (_a5 = iss).path) != null ? _a6 : _a5.path = [];
-    iss.path.unshift(path32);
+    iss.path.unshift(path33);
     return iss;
   });
 }
@@ -1510,7 +1510,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path32 = []) => {
+  const processError = (error49, path33 = []) => {
     var _a6, _b4, _c2, _d;
     var _a5, _b3;
     for (const issue2 of error49.issues) {
@@ -1521,7 +1521,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path32, ...issue2.path];
+        const fullpath = [...path33, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -1553,8 +1553,8 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path32 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path32) {
+  const path33 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path33) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -18239,8 +18239,8 @@ var require_resolve = __commonJS({
       }
       return count;
     }
-    function getFullPath(resolver, id = "", normalize3) {
-      if (normalize3 !== false)
+    function getFullPath(resolver, id = "", normalize4) {
+      if (normalize4 !== false)
         id = normalizeId(id);
       const p = resolver.parse(id);
       return _getFullPath(resolver, p);
@@ -18988,7 +18988,7 @@ var require_compile = __commonJS({
       const schOrFunc = root.refs[ref];
       if (schOrFunc)
         return schOrFunc;
-      let _sch = resolve8.call(this, root, ref);
+      let _sch = resolve9.call(this, root, ref);
       if (_sch === void 0) {
         const schema = (_a5 = root.localRefs) === null || _a5 === void 0 ? void 0 : _a5[ref];
         const { schemaId } = this.opts;
@@ -19015,7 +19015,7 @@ var require_compile = __commonJS({
     function sameSchemaEnv(s1, s2) {
       return s1.schema === s2.schema && s1.root === s2.root && s1.baseId === s2.baseId;
     }
-    function resolve8(root, ref) {
+    function resolve9(root, ref) {
       let sch;
       while (typeof (sch = this.refs[ref]) == "string")
         ref = sch;
@@ -19233,8 +19233,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path32) {
-      let input = path32;
+    function removeDotSegments(path33) {
+      let input = path33;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -19486,8 +19486,8 @@ var require_schemes = __commonJS({
         wsComponent.secure = void 0;
       }
       if (wsComponent.resourceName) {
-        const [path32, query] = wsComponent.resourceName.split("?");
-        wsComponent.path = path32 && path32 !== "/" ? path32 : void 0;
+        const [path33, query] = wsComponent.resourceName.split("?");
+        wsComponent.path = path33 && path33 !== "/" ? path33 : void 0;
         wsComponent.query = query;
         wsComponent.resourceName = void 0;
       }
@@ -19636,7 +19636,7 @@ var require_fast_uri = __commonJS({
     "use strict";
     var { normalizeIPv6, removeDotSegments, recomposeAuthority, normalizePercentEncoding, normalizePathEncoding, escapePreservingEscapes, reescapeHostDelimiters, isIPv4, nonSimpleDomain } = require_utils();
     var { SCHEMES, getSchemeHandler } = require_schemes();
-    function normalize3(uri, options) {
+    function normalize4(uri, options) {
       if (typeof uri === "string") {
         uri = /** @type {T} */
         normalizeString(uri, options);
@@ -19646,7 +19646,7 @@ var require_fast_uri = __commonJS({
       }
       return uri;
     }
-    function resolve8(baseURI, relativeURI, options) {
+    function resolve9(baseURI, relativeURI, options) {
       const schemelessOptions = options ? Object.assign({ scheme: "null" }, options) : { scheme: "null" };
       const resolved = resolveComponent(parse4(baseURI, schemelessOptions), parse4(relativeURI, schemelessOptions), schemelessOptions, true);
       schemelessOptions.skipEscape = true;
@@ -19903,8 +19903,8 @@ var require_fast_uri = __commonJS({
     }
     var fastUri = {
       SCHEMES,
-      normalize: normalize3,
-      resolve: resolve8,
+      normalize: normalize4,
+      resolve: resolve9,
       resolveComponent,
       equal,
       serialize,
@@ -22899,7 +22899,7 @@ var require_windows = __commonJS({
     module2.exports = isexe;
     isexe.sync = sync;
     var fs31 = require("fs");
-    function checkPathExt(path32, options) {
+    function checkPathExt(path33, options) {
       var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
       if (!pathext) {
         return true;
@@ -22910,25 +22910,25 @@ var require_windows = __commonJS({
       }
       for (var i = 0; i < pathext.length; i++) {
         var p = pathext[i].toLowerCase();
-        if (p && path32.substr(-p.length).toLowerCase() === p) {
+        if (p && path33.substr(-p.length).toLowerCase() === p) {
           return true;
         }
       }
       return false;
     }
-    function checkStat(stat, path32, options) {
+    function checkStat(stat, path33, options) {
       if (!stat.isSymbolicLink() && !stat.isFile()) {
         return false;
       }
-      return checkPathExt(path32, options);
+      return checkPathExt(path33, options);
     }
-    function isexe(path32, options, cb2) {
-      fs31.stat(path32, function(er, stat) {
-        cb2(er, er ? false : checkStat(stat, path32, options));
+    function isexe(path33, options, cb2) {
+      fs31.stat(path33, function(er, stat) {
+        cb2(er, er ? false : checkStat(stat, path33, options));
       });
     }
-    function sync(path32, options) {
-      return checkStat(fs31.statSync(path32), path32, options);
+    function sync(path33, options) {
+      return checkStat(fs31.statSync(path33), path33, options);
     }
   }
 });
@@ -22939,13 +22939,13 @@ var require_mode = __commonJS({
     module2.exports = isexe;
     isexe.sync = sync;
     var fs31 = require("fs");
-    function isexe(path32, options, cb2) {
-      fs31.stat(path32, function(er, stat) {
+    function isexe(path33, options, cb2) {
+      fs31.stat(path33, function(er, stat) {
         cb2(er, er ? false : checkStat(stat, options));
       });
     }
-    function sync(path32, options) {
-      return checkStat(fs31.statSync(path32), options);
+    function sync(path33, options) {
+      return checkStat(fs31.statSync(path33), options);
     }
     function checkStat(stat, options) {
       return stat.isFile() && checkMode(stat, options);
@@ -22978,7 +22978,7 @@ var require_isexe = __commonJS({
     }
     module2.exports = isexe;
     isexe.sync = sync;
-    function isexe(path32, options, cb2) {
+    function isexe(path33, options, cb2) {
       if (typeof options === "function") {
         cb2 = options;
         options = {};
@@ -22987,17 +22987,17 @@ var require_isexe = __commonJS({
         if (typeof Promise !== "function") {
           throw new TypeError("callback not provided");
         }
-        return new Promise(function(resolve8, reject) {
-          isexe(path32, options || {}, function(er, is) {
+        return new Promise(function(resolve9, reject) {
+          isexe(path33, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
-              resolve8(is);
+              resolve9(is);
             }
           });
         });
       }
-      core(path32, options || {}, function(er, is) {
+      core(path33, options || {}, function(er, is) {
         if (er) {
           if (er.code === "EACCES" || options && options.ignoreErrors) {
             er = null;
@@ -23007,9 +23007,9 @@ var require_isexe = __commonJS({
         cb2(er, is);
       });
     }
-    function sync(path32, options) {
+    function sync(path33, options) {
       try {
-        return core.sync(path32, options || {});
+        return core.sync(path33, options || {});
       } catch (er) {
         if (options && options.ignoreErrors || er.code === "EACCES") {
           return false;
@@ -23025,7 +23025,7 @@ var require_isexe = __commonJS({
 var require_which = __commonJS({
   "node_modules/which/which.js"(exports, module2) {
     var isWindows2 = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path32 = require("path");
+    var path33 = require("path");
     var COLON = isWindows2 ? ";" : ":";
     var isexe = require_isexe();
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
@@ -23058,27 +23058,27 @@ var require_which = __commonJS({
         opt = {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
-      const step = (i) => new Promise((resolve8, reject) => {
+      const step = (i) => new Promise((resolve9, reject) => {
         if (i === pathEnv.length)
-          return opt.all && found.length ? resolve8(found) : reject(getNotFoundError(cmd));
+          return opt.all && found.length ? resolve9(found) : reject(getNotFoundError(cmd));
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path32.join(pathPart, cmd);
+        const pCmd = path33.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
-        resolve8(subStep(p, i, 0));
+        resolve9(subStep(p, i, 0));
       });
-      const subStep = (p, i, ii) => new Promise((resolve8, reject) => {
+      const subStep = (p, i, ii) => new Promise((resolve9, reject) => {
         if (ii === pathExt.length)
-          return resolve8(step(i + 1));
+          return resolve9(step(i + 1));
         const ext = pathExt[ii];
         isexe(p + ext, { pathExt: pathExtExe }, (er, is) => {
           if (!er && is) {
             if (opt.all)
               found.push(p + ext);
             else
-              return resolve8(p + ext);
+              return resolve9(p + ext);
           }
-          return resolve8(subStep(p, i, ii + 1));
+          return resolve9(subStep(p, i, ii + 1));
         });
       });
       return cb2 ? step(0).then((res) => cb2(null, res), cb2) : step(0);
@@ -23090,7 +23090,7 @@ var require_which = __commonJS({
       for (let i = 0; i < pathEnv.length; i++) {
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path32.join(pathPart, cmd);
+        const pCmd = path33.join(pathPart, cmd);
         const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
         for (let j = 0; j < pathExt.length; j++) {
           const cur = p + pathExt[j];
@@ -23138,7 +23138,7 @@ var require_path_key = __commonJS({
 var require_resolveCommand = __commonJS({
   "node_modules/cross-spawn/lib/util/resolveCommand.js"(exports, module2) {
     "use strict";
-    var path32 = require("path");
+    var path33 = require("path");
     var which = require_which();
     var getPathKey = require_path_key();
     function resolveCommandAttempt(parsed, withoutPathExt) {
@@ -23156,7 +23156,7 @@ var require_resolveCommand = __commonJS({
       try {
         resolved = which.sync(parsed.command, {
           path: env[getPathKey({ env })],
-          pathExt: withoutPathExt ? path32.delimiter : void 0
+          pathExt: withoutPathExt ? path33.delimiter : void 0
         });
       } catch (e2) {
       } finally {
@@ -23165,7 +23165,7 @@ var require_resolveCommand = __commonJS({
         }
       }
       if (resolved) {
-        resolved = path32.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
+        resolved = path33.resolve(hasCustomCwd ? parsed.options.cwd : "", resolved);
       }
       return resolved;
     }
@@ -23219,8 +23219,8 @@ var require_shebang_command = __commonJS({
       if (!match) {
         return null;
       }
-      const [path32, argument] = match[0].replace(/#! ?/, "").split(" ");
-      const binary = path32.split("/").pop();
+      const [path33, argument] = match[0].replace(/#! ?/, "").split(" ");
+      const binary = path33.split("/").pop();
       if (binary === "env") {
         return argument;
       }
@@ -23255,7 +23255,7 @@ var require_readShebang = __commonJS({
 var require_parse = __commonJS({
   "node_modules/cross-spawn/lib/parse.js"(exports, module2) {
     "use strict";
-    var path32 = require("path");
+    var path33 = require("path");
     var resolveCommand = require_resolveCommand();
     var escape2 = require_escape();
     var readShebang = require_readShebang();
@@ -23280,7 +23280,7 @@ var require_parse = __commonJS({
       const needsShell = !isExecutableRegExp.test(commandFile);
       if (parsed.options.forceShell || needsShell) {
         const needsDoubleEscapeMetaChars = isCmdShimRegExp.test(commandFile);
-        parsed.command = path32.normalize(parsed.command);
+        parsed.command = path33.normalize(parsed.command);
         parsed.command = escape2.command(parsed.command);
         parsed.args = parsed.args.map((arg) => escape2.argument(arg, needsDoubleEscapeMetaChars));
         const shellCommand = [parsed.command].concat(parsed.args).join(" ");
@@ -24760,7 +24760,7 @@ var init_sse = __esm({
       _startOrAuth() {
         var _a5, _b3, _c2;
         const fetchImpl = (_c2 = (_b3 = (_a5 = this == null ? void 0 : this._eventSourceInit) == null ? void 0 : _a5.fetch) != null ? _b3 : this._fetch) != null ? _c2 : fetch;
-        return new Promise((resolve8, reject) => {
+        return new Promise((resolve9, reject) => {
           this._eventSource = new EventSource(this._url.href, {
             ...this._eventSourceInit,
             fetch: async (url2, init) => {
@@ -24782,7 +24782,7 @@ var init_sse = __esm({
           this._eventSource.onerror = (event) => {
             var _a6;
             if (event.code === 401 && this._authProvider) {
-              this._authThenStart().then(resolve8, reject);
+              this._authThenStart().then(resolve9, reject);
               return;
             }
             const error48 = new SseError(event.code, event.message, event);
@@ -24805,7 +24805,7 @@ var init_sse = __esm({
               void this.close();
               return;
             }
-            resolve8();
+            resolve9();
           });
           this._eventSource.onmessage = (event) => {
             var _a6, _b4;
@@ -25462,12 +25462,46 @@ var McpServerManager = class {
 };
 
 // src/providers/claude/app/ClaudeWorkspaceServices.ts
+init_env();
 init_path();
 
 // src/providers/claude/agents/AgentManager.ts
-var fs3 = __toESM(require("fs"));
-var os3 = __toESM(require("os"));
-var path3 = __toESM(require("path"));
+var fs4 = __toESM(require("fs"));
+var path5 = __toESM(require("path"));
+
+// src/providers/claude/config/ClaudeConfigDir.ts
+var os4 = __toESM(require("os"));
+var path4 = __toESM(require("path"));
+function resolveSdkHomeDir(environment, hostPlatform) {
+  if (hostPlatform === "win32") {
+    if (environment.USERPROFILE !== void 0) {
+      return environment.USERPROFILE;
+    }
+    if (environment.HOMEDRIVE !== void 0 && environment.HOMEPATH !== void 0) {
+      return `${environment.HOMEDRIVE}${environment.HOMEPATH}`;
+    }
+  } else if (environment.HOME !== void 0) {
+    return environment.HOME;
+  }
+  return os4.homedir();
+}
+function resolveFromSdkWorkingDirectory(value, vaultPath) {
+  const normalizedValue = value.normalize("NFC");
+  return path4.isAbsolute(normalizedValue) ? path4.normalize(normalizedValue) : path4.resolve(vaultPath != null ? vaultPath : process.cwd(), normalizedValue);
+}
+function resolveClaudeConfigDir(context) {
+  var _a5, _b3;
+  const environment = (_a5 = context == null ? void 0 : context.environment) != null ? _a5 : process.env;
+  const configuredDir = environment.CLAUDE_CONFIG_DIR;
+  if (configuredDir === void 0) {
+    const homeDir = (context == null ? void 0 : context.environment) ? resolveSdkHomeDir(environment, (_b3 = context.hostPlatform) != null ? _b3 : process.platform) : os4.homedir();
+    return resolveFromSdkWorkingDirectory(
+      path4.join(homeDir, ".claude"),
+      context == null ? void 0 : context.vaultPath
+    );
+  }
+  return resolveFromSdkWorkingDirectory(configuredDir, context == null ? void 0 : context.vaultPath);
+}
 
 // src/utils/frontmatter.ts
 var import_obsidian = require("obsidian");
@@ -25708,7 +25742,6 @@ function buildAgentFromFrontmatter(frontmatter, body, meta3) {
 }
 
 // src/providers/claude/agents/AgentManager.ts
-var GLOBAL_AGENTS_DIR = path3.join(os3.homedir(), ".claude", "agents");
 var VAULT_AGENTS_DIR = ".claude/agents";
 var PLUGIN_AGENTS_DIR = "agents";
 var FALLBACK_BUILTIN_AGENT_NAMES = ["Explore", "Plan", "Bash", "general-purpose"];
@@ -25733,11 +25766,12 @@ function normalizePluginName(name) {
   return name.toLowerCase().replace(/\s+/g, "-");
 }
 var AgentManager = class {
-  constructor(vaultPath, pluginManager) {
+  constructor(vaultPath, pluginManager, configDir = () => resolveClaudeConfigDir()) {
     this.agents = [];
     this.builtinAgentNames = FALLBACK_BUILTIN_AGENT_NAMES;
     this.vaultPath = vaultPath;
     this.pluginManager = pluginManager;
+    this.resolveConfigDir = typeof configDir === "function" ? configDir : () => configDir;
   }
   /** Built-in agents are those from init that are NOT loaded from files. */
   setBuiltinAgentNames(names) {
@@ -25784,8 +25818,8 @@ var AgentManager = class {
   loadPluginAgents() {
     for (const plugin of this.pluginManager.getPlugins()) {
       if (!plugin.enabled) continue;
-      const agentsDir = path3.join(plugin.installPath, PLUGIN_AGENTS_DIR);
-      if (!fs3.existsSync(agentsDir)) continue;
+      const agentsDir = path5.join(plugin.installPath, PLUGIN_AGENTS_DIR);
+      if (!fs4.existsSync(agentsDir)) continue;
       this.loadAgentsFromFiles(
         this.listMarkdownFiles(agentsDir),
         (filePath) => this.parsePluginAgentFromFile(filePath, plugin.name)
@@ -25793,13 +25827,13 @@ var AgentManager = class {
     }
   }
   loadVaultAgents() {
-    this.loadAgentsFromDirectory(path3.join(this.vaultPath, VAULT_AGENTS_DIR), "vault");
+    this.loadAgentsFromDirectory(path5.join(this.vaultPath, VAULT_AGENTS_DIR), "vault");
   }
   loadGlobalAgents() {
-    this.loadAgentsFromDirectory(GLOBAL_AGENTS_DIR, "global");
+    this.loadAgentsFromDirectory(path5.join(this.resolveConfigDir(), "agents"), "global");
   }
   loadAgentsFromDirectory(dir, source) {
-    if (!fs3.existsSync(dir)) return;
+    if (!fs4.existsSync(dir)) return;
     this.loadAgentsFromFiles(
       this.listMarkdownFiles(dir),
       (filePath) => this.parseAgentFromFile(filePath, source)
@@ -25808,10 +25842,10 @@ var AgentManager = class {
   listMarkdownFiles(dir) {
     const files = [];
     try {
-      const entries = fs3.readdirSync(dir, { withFileTypes: true });
+      const entries = fs4.readdirSync(dir, { withFileTypes: true });
       for (const entry of entries) {
         if (entry.isFile() && entry.name.endsWith(".md")) {
-          files.push(path3.join(dir, entry.name));
+          files.push(path5.join(dir, entry.name));
         }
       }
     } catch (e2) {
@@ -25857,7 +25891,7 @@ var AgentManager = class {
   }
   parseAgentDefinition(filePath, buildId, buildAgent) {
     try {
-      const content = fs3.readFileSync(filePath, "utf-8");
+      const content = fs4.readFileSync(filePath, "utf-8");
       const parsed = parseAgentFile(content);
       if (!parsed) {
         return null;
@@ -26115,7 +26149,7 @@ var import_fs = require("fs");
 var import_promises = require("fs/promises");
 var import_module = require("module");
 var import_os = require("os");
-var import_path = require("path");
+var import_path2 = require("path");
 var import_readline = require("readline");
 var import_url = require("url");
 var import_events = require("events");
@@ -26123,9 +26157,9 @@ var import_child_process2 = require("child_process");
 var import_fs2 = require("fs");
 var import_readline2 = require("readline");
 var import_os2 = require("os");
-var import_path2 = require("path");
-var import_crypto2 = require("crypto");
 var import_path3 = require("path");
+var import_crypto2 = require("crypto");
+var import_path4 = require("path");
 var import_async_hooks = require("async_hooks");
 var import_promises2 = require("fs/promises");
 var import_crypto3 = require("crypto");
@@ -26134,47 +26168,47 @@ var import_fs3 = require("fs");
 var import_process = require("process");
 var import_crypto4 = require("crypto");
 var import_promises4 = require("fs/promises");
-var import_path4 = require("path");
+var import_path5 = require("path");
 var s = __toESM(require("fs"), 1);
 var import_promises5 = require("fs/promises");
 var import_fs4 = require("fs");
-var import_path5 = require("path");
+var import_path6 = require("path");
 var import_fs5 = require("fs");
 var import_promises6 = require("fs/promises");
 var import_events2 = require("events");
 var import_fs6 = require("fs");
 var import_promises7 = require("fs/promises");
-var import_path6 = require("path");
+var import_path7 = require("path");
 var import_child_process3 = require("child_process");
 var import_util = require("util");
 var import_child_process4 = require("child_process");
-var import_path7 = require("path");
-var import_promises8 = require("fs/promises");
 var import_path8 = require("path");
+var import_promises8 = require("fs/promises");
+var import_path9 = require("path");
 var import_fs7 = require("fs");
 var import_promises9 = require("fs/promises");
-var import_path9 = require("path");
-var import_crypto5 = require("crypto");
 var import_path10 = require("path");
-var import_promises10 = require("fs/promises");
+var import_crypto5 = require("crypto");
 var import_path11 = require("path");
+var import_promises10 = require("fs/promises");
+var import_path12 = require("path");
 var import_crypto6 = require("crypto");
 var import_os3 = require("os");
-var import_path12 = require("path");
 var import_path13 = require("path");
 var import_path14 = require("path");
+var import_path15 = require("path");
 var import_node_path = __toESM(require("node:path"), 1);
 var import_node_os = __toESM(require("node:os"), 1);
 var import_node_process = __toESM(require("node:process"), 1);
-var import_path15 = require("path");
+var import_path16 = require("path");
 var import_promises11 = require("fs/promises");
 var import_os4 = require("os");
-var import_path16 = require("path");
+var import_path17 = require("path");
 var import_os5 = require("os");
 var import_child_process5 = require("child_process");
 var import_fs8 = require("fs");
-var import_path17 = require("path");
 var import_path18 = require("path");
+var import_path19 = require("path");
 var n_ = Object.create;
 var { getPrototypeOf: r_, defineProperty: OG, getOwnPropertyNames: o_ } = Object;
 var t_ = Object.prototype.hasOwnProperty;
@@ -31344,7 +31378,7 @@ MG.Cache = m9;
 var C$ = MG;
 var p6 = C$(() => {
   var _a5;
-  return ((_a5 = process.env.CLAUDE_CONFIG_DIR) != null ? _a5 : (0, import_path2.join)((0, import_os2.homedir)(), ".claude")).normalize("NFC");
+  return ((_a5 = process.env.CLAUDE_CONFIG_DIR) != null ? _a5 : (0, import_path3.join)((0, import_os2.homedir)(), ".claude")).normalize("NFC");
 }, () => process.env.CLAUDE_CONFIG_DIR);
 var h0$ = C$(() => R$(process.env.CLAUDE_CODE_SUPERVISED));
 function y($, Q, J, Y, X) {
@@ -34599,8 +34633,8 @@ var O8 = null;
 function uw() {
   if (O8) return O8;
   if (!R$(process.env.DEBUG_CLAUDE_AGENT_SDK)) return q0 = null, O8 = Promise.resolve(), O8;
-  let $ = (0, import_path3.join)(p6(), "debug");
-  return q0 = (0, import_path3.join)($, `sdk-${(0, import_crypto2.randomUUID)()}.txt`), process.stderr.write(`SDK debug logs: ${q0}
+  let $ = (0, import_path4.join)(p6(), "debug");
+  return q0 = (0, import_path4.join)($, `sdk-${(0, import_crypto2.randomUUID)()}.txt`), process.stderr.write(`SDK debug logs: ${q0}
 `), O8 = w8().mkdir($).catch(() => {
   }), O8;
 }
@@ -35503,7 +35537,7 @@ async function V2($, Q, J = Rx) {
   }
 }
 function B2($) {
-  return ZU = (0, import_path4.join)($, `${VU()}.txt`), ZU;
+  return ZU = (0, import_path5.join)($, `${VU()}.txt`), ZU;
 }
 async function Px($, Q, J, Y) {
   if ($) await (0, import_promises4.mkdir)(Q, { recursive: true }).catch(() => {
@@ -35523,7 +35557,7 @@ function Ex() {
   if (!KX) {
     let $ = null;
     KX = lO({ writeFn: (Q) => {
-      let J = z2(), Y = (0, import_path4.dirname)(J), X = $ !== Y;
+      let J = z2(), Y = (0, import_path5.dirname)(J), X = $ !== Y;
       if ($ = Y, FU()) {
         if (X) try {
           l$().mkdirSync(Y);
@@ -35561,11 +35595,11 @@ function X$($, { level: Q } = { level: "debug" }) {
 }
 function z2() {
   var _a5, _b3, _c2;
-  return (_c2 = (_b3 = (_a5 = q2()) != null ? _a5 : ZU) != null ? _b3 : process.env.CLAUDE_CODE_DEBUG_LOGS_DIR) != null ? _c2 : (0, import_path4.join)(p6(), "debug", `${VU()}.txt`);
+  return (_c2 = (_b3 = (_a5 = q2()) != null ? _a5 : ZU) != null ? _b3 : process.env.CLAUDE_CODE_DEBUG_LOGS_DIR) != null ? _c2 : (0, import_path5.join)(p6(), "debug", `${VU()}.txt`);
 }
 var N2 = C$(async () => {
   try {
-    let $ = z2(), Q = (0, import_path4.dirname)($), J = (0, import_path4.join)(Q, "latest");
+    let $ = z2(), Q = (0, import_path5.dirname)($), J = (0, import_path5.join)(Q, "latest");
     await (0, import_promises4.unlink)(J).catch(() => {
     }), await (0, import_promises4.symlink)($, J);
   } catch (e2) {
@@ -45294,13 +45328,13 @@ var m0 = C$(function() {
   }
 });
 var BF$ = C$(function() {
-  return (0, import_path15.join)(m0(), "managed-settings.d");
+  return (0, import_path16.join)(m0(), "managed-settings.d");
 });
 var Ee = b(() => K.object({ allowedDomains: K.array(K.string()).optional(), deniedDomains: K.array(K.string()).optional().describe("Domains that are always blocked, even if matched by allowedDomains. Supports the same wildcard syntax as allowedDomains. Merged from all settings sources regardless of allowManagedDomainsOnly."), allowManagedDomainsOnly: K.boolean().optional().describe("When true (and set in managed settings), only allowedDomains and WebFetch(domain:...) allow rules from managed settings are respected. User, project, local, and flag settings domains are ignored. Denied domains are still respected from all sources."), allowUnixSockets: K.array(K.string()).optional().describe("macOS only: Unix socket paths to allow. Ignored on Linux (seccomp cannot filter by path)."), allowAllUnixSockets: K.boolean().optional().describe("If true, allow all Unix sockets (disables blocking on both platforms)."), allowLocalBinding: K.boolean().optional(), allowMachLookup: K.array(K.string().refine(($) => {
   return !($.endsWith("*") ? $.slice(0, -1) : $).includes("*");
 }, { message: 'Wildcards are only allowed as a single trailing "*" (e.g., "com.example.*" or "*" for all services).' })).optional().describe('macOS only: Additional XPC/Mach service names to allow looking up. Supports trailing-wildcard prefix matching (e.g., "com.apple.coresimulator.*"). Needed for tools that communicate via XPC such as the iOS Simulator or Playwright.'), httpProxyPort: K.number().optional(), socksProxyPort: K.number().optional(), tlsTerminate: K.object({ caCertPath: K.string().min(1).optional(), caKeyPath: K.string().min(1).optional() }).optional().describe("[EXPERIMENTAL] Enable in-process TLS termination so the per-request filter can see HTTPS request bodies. Provide a CA cert+key, or omit both to have sandbox-runtime generate an ephemeral one for the session.") }).optional());
 var be = b(() => K.object({ allowWrite: K.array(K.string()).optional().describe("Additional paths to allow writing within the sandbox. Merged with paths from Edit(...) allow permission rules."), denyWrite: K.array(K.string()).optional().describe("Additional paths to deny writing within the sandbox. Merged with paths from Edit(...) deny permission rules."), denyRead: K.array(K.string()).optional().describe("Additional paths to deny reading within the sandbox. Merged with paths from Read(...) deny permission rules."), allowRead: K.array(K.string()).optional().describe("Paths to re-allow reading within denyRead regions. Takes precedence over denyRead for matching paths."), allowManagedReadPathsOnly: K.boolean().optional().describe("When true (set in managed settings), only allowRead paths from policySettings are used.") }).optional());
-var PE = b(() => K.object({ enabled: K.boolean().optional(), failIfUnavailable: K.boolean().optional().describe("Exit with an error at startup if sandbox.enabled is true but the sandbox cannot start (missing dependencies or unsupported platform). When false (default), a warning is shown and commands run unsandboxed. Intended for managed-settings deployments that require sandboxing as a hard gate."), autoAllowBashIfSandboxed: K.boolean().optional(), allowUnsandboxedCommands: K.boolean().optional().describe("Allow commands to run outside the sandbox via the dangerouslyDisableSandbox parameter. When false, the dangerouslyDisableSandbox parameter is completely ignored and all commands must run sandboxed. Default: true."), network: Ee(), filesystem: be(), ignoreViolations: K.record(K.string(), K.array(K.string())).optional(), enableWeakerNestedSandbox: K.boolean().optional(), enableWeakerNetworkIsolation: K.boolean().optional().describe("macOS only: Allow access to com.apple.trustd.agent in the sandbox. Needed for Go-based CLI tools (gh, gcloud, terraform, etc.) to verify TLS certificates when using httpProxyPort with a MITM proxy and custom CA. **Reduces security** \u2014 opens a potential data exfiltration vector through the trustd service. Default: false"), excludedCommands: K.array(K.string()).optional(), ripgrep: K.object({ command: K.string(), args: K.array(K.string()).optional() }).optional().describe("Custom ripgrep configuration for bundled ripgrep support"), bwrapPath: K.preprocess(($) => typeof $ === "string" && (0, import_path16.isAbsolute)($) ? $ : void 0, K.string()).optional().catch(void 0).describe("Linux/WSL only: Absolute path to the bwrap (bubblewrap) binary. Overrides auto-detection via PATH. Only honored from admin-controlled managed settings."), socatPath: K.preprocess(($) => typeof $ === "string" && (0, import_path16.isAbsolute)($) ? $ : void 0, K.string()).optional().catch(void 0).describe("Linux/WSL only: Absolute path to the socat binary used for the sandbox network proxy. Overrides auto-detection via PATH. Only honored from admin-controlled managed settings.") }).passthrough());
+var PE = b(() => K.object({ enabled: K.boolean().optional(), failIfUnavailable: K.boolean().optional().describe("Exit with an error at startup if sandbox.enabled is true but the sandbox cannot start (missing dependencies or unsupported platform). When false (default), a warning is shown and commands run unsandboxed. Intended for managed-settings deployments that require sandboxing as a hard gate."), autoAllowBashIfSandboxed: K.boolean().optional(), allowUnsandboxedCommands: K.boolean().optional().describe("Allow commands to run outside the sandbox via the dangerouslyDisableSandbox parameter. When false, the dangerouslyDisableSandbox parameter is completely ignored and all commands must run sandboxed. Default: true."), network: Ee(), filesystem: be(), ignoreViolations: K.record(K.string(), K.array(K.string())).optional(), enableWeakerNestedSandbox: K.boolean().optional(), enableWeakerNetworkIsolation: K.boolean().optional().describe("macOS only: Allow access to com.apple.trustd.agent in the sandbox. Needed for Go-based CLI tools (gh, gcloud, terraform, etc.) to verify TLS certificates when using httpProxyPort with a MITM proxy and custom CA. **Reduces security** \u2014 opens a potential data exfiltration vector through the trustd service. Default: false"), excludedCommands: K.array(K.string()).optional(), ripgrep: K.object({ command: K.string(), args: K.array(K.string()).optional() }).optional().describe("Custom ripgrep configuration for bundled ripgrep support"), bwrapPath: K.preprocess(($) => typeof $ === "string" && (0, import_path17.isAbsolute)($) ? $ : void 0, K.string()).optional().catch(void 0).describe("Linux/WSL only: Absolute path to the bwrap (bubblewrap) binary. Overrides auto-detection via PATH. Only honored from admin-controlled managed settings."), socatPath: K.preprocess(($) => typeof $ === "string" && (0, import_path17.isAbsolute)($) ? $ : void 0, K.string()).optional().catch(void 0).describe("Linux/WSL only: Absolute path to the socat binary used for the sandbox network proxy. Overrides auto-detection via PATH. Only honored from admin-controlled managed settings.") }).passthrough());
 var EE = ["auto", "iterm2", "iterm2_with_bell", "terminal_bell", "kitty", "ghostty", "notifications_disabled"];
 var bE = ["normal", "vim"];
 var _E2 = ["auto", "tmux", "in-process"];
@@ -45838,24 +45872,24 @@ async function b_($, Q, J, Y, X = 6e4) {
   if (!L$(Q)) return;
   let W = J4(J), G = await v4($.load({ projectKey: W, sessionId: Q }), X, `SessionStore.load() timed out after ${X}ms for session ${Q}`);
   if (!G || G.length === 0) return;
-  let U = (0, import_path.join)((0, import_os.tmpdir)(), `claude-resume-${(0, import_crypto.randomUUID)()}`);
+  let U = (0, import_path2.join)((0, import_os.tmpdir)(), `claude-resume-${(0, import_crypto.randomUUID)()}`);
   try {
-    let H = (0, import_path.join)(U, "projects", W);
+    let H = (0, import_path2.join)(U, "projects", W);
     await (0, import_promises.mkdir)(H, { recursive: true });
-    let q = (0, import_path.join)(H, `${Q}.jsonl`);
+    let q = (0, import_path2.join)(H, `${Q}.jsonl`);
     await rQ(q, G);
-    let V = (_a5 = Y == null ? void 0 : Y.CLAUDE_CONFIG_DIR) != null ? _a5 : process.env.CLAUDE_CONFIG_DIR, B = V != null ? V : (0, import_path.join)((0, import_os.homedir)(), ".claude"), z4;
+    let V = (_a5 = Y == null ? void 0 : Y.CLAUDE_CONFIG_DIR) != null ? _a5 : process.env.CLAUDE_CONFIG_DIR, B = V != null ? V : (0, import_path2.join)((0, import_os.homedir)(), ".claude"), z4;
     try {
-      z4 = await (0, import_promises.readFile)((0, import_path.join)(B, ".credentials.json"), "utf-8");
+      z4 = await (0, import_promises.readFile)((0, import_path2.join)(B, ".credentials.json"), "utf-8");
     } catch (N) {
       if (!D1(N)) throw N;
     }
     if (!V && !(Y != null ? Y : process.env).ANTHROPIC_API_KEY && !(Y != null ? Y : process.env).CLAUDE_CODE_OAUTH_TOKEN) z4 = (_b3 = await H4$()) != null ? _b3 : z4;
-    if (await U4$(z4, (0, import_path.join)(U, ".credentials.json")), await G4$((0, import_path.join)(V != null ? V : (0, import_os.homedir)(), ".claude.json"), (0, import_path.join)(U, ".claude.json")), $.listSubkeys) {
-      let N = (0, import_path.join)(H, Q), w = await v4($.listSubkeys({ projectKey: W, sessionId: Q }), X, `SessionStore.listSubkeys() timed out after ${X}ms for session ${Q}`);
+    if (await U4$(z4, (0, import_path2.join)(U, ".credentials.json")), await G4$((0, import_path2.join)(V != null ? V : (0, import_os.homedir)(), ".claude.json"), (0, import_path2.join)(U, ".claude.json")), $.listSubkeys) {
+      let N = (0, import_path2.join)(H, Q), w = await v4($.listSubkeys({ projectKey: W, sessionId: Q }), X, `SessionStore.listSubkeys() timed out after ${X}ms for session ${Q}`);
       for (let O of w) {
-        let D = (0, import_path.resolve)(N, O + ".jsonl");
-        if (!O || (0, import_path.isAbsolute)(O) || O.split(/[\\/]/).includes("..") || !D.startsWith(N + import_path.sep)) {
+        let D = (0, import_path2.resolve)(N, O + ".jsonl");
+        if (!O || (0, import_path2.isAbsolute)(O) || O.split(/[\\/]/).includes("..") || !D.startsWith(N + import_path2.sep)) {
           X$(`[SessionStore] skipping unsafe subpath from listSubkeys: ${O}`, { level: "warn" });
           continue;
         }
@@ -45864,10 +45898,10 @@ async function b_($, Q, J, Y, X = 6e4) {
         let j = [], A = [];
         for (let S of M) if (lz(S)) j.push(S);
         else A.push(S);
-        if (A.length > 0) await (0, import_promises.mkdir)((0, import_path.dirname)(D), { recursive: true }), await rQ(D, A);
+        if (A.length > 0) await (0, import_promises.mkdir)((0, import_path2.dirname)(D), { recursive: true }), await rQ(D, A);
         if (j.length > 0) {
-          let S = j.at(-1), u = (0, import_path.resolve)(N, O + ".meta.json");
-          await (0, import_promises.mkdir)((0, import_path.dirname)(u), { recursive: true });
+          let S = j.at(-1), u = (0, import_path2.resolve)(N, O + ".meta.json");
+          await (0, import_promises.mkdir)((0, import_path2.dirname)(u), { recursive: true });
           let { type: G$, ...h$ } = S;
           await (0, import_promises.writeFile)(u, B$(h$), { mode: 384 });
         }
@@ -45935,7 +45969,7 @@ function uz($, Q, J, Y) {
   if (s$) {
     let S6 = () => {
       var _a6;
-      return (0, import_path.join)((_a6 = V6.CLAUDE_CONFIG_DIR) != null ? _a6 : (0, import_path.join)((0, import_os.homedir)(), ".claude"), "projects");
+      return (0, import_path2.join)((_a6 = V6.CLAUDE_CONFIG_DIR) != null ? _a6 : (0, import_path2.join)((0, import_os.homedir)(), ".claude"), "projects");
     }, X4 = S4 === "eager", s1 = new EU(async (n0, wG) => {
       let f9 = A_(n0, S6());
       if (f9) await s$.append(f9, wG);
@@ -45970,7 +46004,7 @@ function q4$($, Q) {
 function jA$({ prompt: $, options: Q }) {
   var _a5, _b3;
   if (((Q == null ? void 0 : Q.resume) || (Q == null ? void 0 : Q.continue)) && (Q == null ? void 0 : Q.sessionStore)) {
-    let { queryInstance: W, transport: G, abortController: U, processEnv: H } = uz({ ...Q }, typeof $ === "string", void 0, true), q = (0, import_path.resolve)((_a5 = Q.cwd) != null ? _a5 : "."), V = Q.sessionStore, B = (_b3 = Q.loadTimeoutMs) != null ? _b3 : 6e4, z4 = Q.resume;
+    let { queryInstance: W, transport: G, abortController: U, processEnv: H } = uz({ ...Q }, typeof $ === "string", void 0, true), q = (0, import_path2.resolve)((_a5 = Q.cwd) != null ? _a5 : "."), V = Q.sessionStore, B = (_b3 = Q.loadTimeoutMs) != null ? _b3 : 6e4, z4 = Q.resume;
     return (async () => {
       var _a6;
       if (!z4) z4 = (_a6 = (await v4(V.listSessions(J4(q)), B, `SessionStore.listSessions() timed out after ${B}ms`)).slice().sort((O, D) => D.mtime - O.mtime)[0]) == null ? void 0 : _a6.sessionId;
@@ -45997,7 +46031,7 @@ function jA$({ prompt: $, options: Q }) {
   return mz(J, Y, $, X), J;
 }
 function __($) {
-  let Q = (0, import_path.resolve)($ != null ? $ : "."), J;
+  let Q = (0, import_path2.resolve)($ != null ? $ : "."), J;
   try {
     J = (0, import_fs.realpathSync)(Q);
   } catch (e2) {
@@ -46012,8 +46046,8 @@ function lz($) {
   return typeof $ === "object" && $ !== null && "type" in $ && $.type === "agent_metadata";
 }
 function A_($, Q) {
-  let J = (0, import_path.relative)(Q, $), Y = J.split(import_path.sep);
-  if (Y[0] === ".." || (0, import_path.isAbsolute)(J)) return null;
+  let J = (0, import_path2.relative)(Q, $), Y = J.split(import_path2.sep);
+  if (Y[0] === ".." || (0, import_path2.isAbsolute)(J)) return null;
   if (Y.length < 2) return null;
   let X = Y[0], W = Y[1];
   if (Y.length === 2 && W.endsWith(".jsonl")) return { projectKey: X, sessionId: W.replace(/\.jsonl$/, "") };
@@ -46532,10 +46566,7 @@ async function probeRuntimeCommands(plugin) {
 // src/providers/claude/plugins/PluginManager.ts
 var fs5 = __toESM(require("fs"));
 var import_obsidian2 = require("obsidian");
-var os5 = __toESM(require("os"));
-var path5 = __toESM(require("path"));
-var INSTALLED_PLUGINS_PATH = path5.join(os5.homedir(), ".claude", "plugins", "installed_plugins.json");
-var GLOBAL_SETTINGS_PATH = path5.join(os5.homedir(), ".claude", "settings.json");
+var path6 = __toESM(require("path"));
 function readJsonFile(filePath) {
   try {
     if (!fs5.existsSync(filePath)) {
@@ -46555,7 +46586,7 @@ function normalizePathForComparison2(p) {
     }
   } catch (e2) {
   }
-  return path5.resolve(p);
+  return path6.resolve(p);
 }
 function selectInstalledPluginEntry(entries, normalizedVaultPath) {
   var _a5;
@@ -46576,15 +46607,19 @@ function extractPluginName(pluginId) {
   return pluginId;
 }
 var PluginManager = class {
-  constructor(vaultPath, ccSettingsStorage) {
+  constructor(vaultPath, ccSettingsStorage, configDir = () => resolveClaudeConfigDir()) {
     this.plugins = [];
     this.vaultPath = vaultPath;
     this.ccSettingsStorage = ccSettingsStorage;
+    this.resolveConfigDir = typeof configDir === "function" ? configDir : () => configDir;
   }
   async loadPlugins() {
     var _a5, _b3, _c2, _d;
-    const installedPlugins = readJsonFile(INSTALLED_PLUGINS_PATH);
-    const globalSettings = readJsonFile(GLOBAL_SETTINGS_PATH);
+    const configDir = this.resolveConfigDir();
+    const installedPlugins = readJsonFile(
+      path6.join(configDir, "plugins", "installed_plugins.json")
+    );
+    const globalSettings = readJsonFile(path6.join(configDir, "settings.json"));
     const projectSettings = await this.loadProjectSettings();
     const globalEnabled = (_a5 = globalSettings == null ? void 0 : globalSettings.enabledPlugins) != null ? _a5 : {};
     const projectEnabled = (_b3 = projectSettings == null ? void 0 : projectSettings.enabledPlugins) != null ? _b3 : {};
@@ -46618,7 +46653,7 @@ var PluginManager = class {
     });
   }
   async loadProjectSettings() {
-    const projectSettingsPath = path5.join(this.vaultPath, ".claude", "settings.json");
+    const projectSettingsPath = path6.join(this.vaultPath, ".claude", "settings.json");
     return readJsonFile(projectSettingsPath);
   }
   getPlugins() {
@@ -46682,8 +46717,8 @@ init_path();
 
 // src/providers/claude/cli/findClaudeCLIPath.ts
 var fs6 = __toESM(require("fs"));
-var os6 = __toESM(require("os"));
-var path6 = __toESM(require("path"));
+var os5 = __toESM(require("os"));
+var path7 = __toESM(require("path"));
 init_path();
 var CLAUDE_CODE_PACKAGE_SEGMENTS = ["node_modules", "@anthropic-ai", "claude-code"];
 var CLAUDE_CODE_NODE_ENTRYPOINTS = ["cli-wrapper.cjs", "cli.js"];
@@ -46703,7 +46738,7 @@ function findFirstExistingPath(entries, candidates) {
   for (const dir of entries) {
     if (!dir) continue;
     for (const candidate of candidates) {
-      const fullPath = path6.join(dir, candidate);
+      const fullPath = path7.join(dir, candidate);
       if (isExistingFile(fullPath)) {
         return fullPath;
       }
@@ -46723,7 +46758,7 @@ function isExistingFile(filePath) {
 }
 function findClaudeCodeNodeEntrypoint(packageRoot) {
   for (const entrypoint of CLAUDE_CODE_NODE_ENTRYPOINTS) {
-    const candidate = path6.join(packageRoot, entrypoint);
+    const candidate = path7.join(packageRoot, entrypoint);
     if (isExistingFile(candidate)) {
       return candidate;
     }
@@ -46732,17 +46767,17 @@ function findClaudeCodeNodeEntrypoint(packageRoot) {
 }
 function resolveClaudeCodeEntrypointNearPathEntry(entry, isWindows2) {
   const directCandidate = findClaudeCodeNodeEntrypoint(
-    path6.join(entry, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
+    path7.join(entry, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
   );
   if (directCandidate) {
     return directCandidate;
   }
-  const baseName = path6.basename(entry).toLowerCase();
+  const baseName = path7.basename(entry).toLowerCase();
   if (baseName === "bin") {
-    const prefix = path6.dirname(entry);
-    const packageParent = isWindows2 ? prefix : path6.join(prefix, "lib");
+    const prefix = path7.dirname(entry);
+    const packageParent = isWindows2 ? prefix : path7.join(prefix, "lib");
     const candidate = findClaudeCodeNodeEntrypoint(
-      path6.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
+      path7.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS)
     );
     if (candidate) {
       return candidate;
@@ -46782,7 +46817,7 @@ function getNpmGlobalPrefix() {
     return process.env.npm_config_prefix;
   }
   if (process.platform === "win32") {
-    const appDataNpm = process.env.APPDATA ? path6.join(process.env.APPDATA, "npm") : null;
+    const appDataNpm = process.env.APPDATA ? path7.join(process.env.APPDATA, "npm") : null;
     if (appDataNpm && fs6.existsSync(appDataNpm)) {
       return appDataNpm;
     }
@@ -46790,38 +46825,38 @@ function getNpmGlobalPrefix() {
   return null;
 }
 function addClaudeCodeEntrypointPaths(paths, packageParent) {
-  const packageRoot = path6.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS);
+  const packageRoot = path7.join(packageParent, ...CLAUDE_CODE_PACKAGE_SEGMENTS);
   for (const entrypoint of CLAUDE_CODE_NODE_ENTRYPOINTS) {
-    paths.push(path6.join(packageRoot, entrypoint));
+    paths.push(path7.join(packageRoot, entrypoint));
   }
 }
 function getNpmClaudeCodeEntrypointPaths() {
-  const homeDir = os6.homedir();
+  const homeDir = os5.homedir();
   const isWindows2 = process.platform === "win32";
   const entrypointPaths = [];
   if (isWindows2) {
-    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(homeDir, "AppData", "Roaming", "npm"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path7.join(homeDir, "AppData", "Roaming", "npm"));
     const npmPrefix = getNpmGlobalPrefix();
     if (npmPrefix) {
       addClaudeCodeEntrypointPaths(entrypointPaths, npmPrefix);
     }
     const programFiles = process.env.ProgramFiles || "C:\\Program Files";
     const programFilesX86 = process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)";
-    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(programFiles, "nodejs", "node_global"));
-    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(programFilesX86, "nodejs", "node_global"));
-    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join("D:", "Program Files", "nodejs", "node_global"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path7.join(programFiles, "nodejs", "node_global"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path7.join(programFilesX86, "nodejs", "node_global"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path7.join("D:", "Program Files", "nodejs", "node_global"));
   } else {
-    addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(homeDir, ".npm-global", "lib"));
+    addClaudeCodeEntrypointPaths(entrypointPaths, path7.join(homeDir, ".npm-global", "lib"));
     addClaudeCodeEntrypointPaths(entrypointPaths, "/usr/local/lib");
     addClaudeCodeEntrypointPaths(entrypointPaths, "/usr/lib");
     if (process.env.npm_config_prefix) {
-      addClaudeCodeEntrypointPaths(entrypointPaths, path6.join(process.env.npm_config_prefix, "lib"));
+      addClaudeCodeEntrypointPaths(entrypointPaths, path7.join(process.env.npm_config_prefix, "lib"));
     }
   }
   return entrypointPaths;
 }
 function findClaudeCLIPath(pathValue) {
-  const homeDir = os6.homedir();
+  const homeDir = os5.homedir();
   const isWindows2 = process.platform === "win32";
   const customEntries = dedupePaths(parsePathEntries(pathValue));
   if (customEntries.length > 0) {
@@ -46832,11 +46867,11 @@ function findClaudeCLIPath(pathValue) {
   }
   if (isWindows2) {
     const exePaths = [
-      path6.join(homeDir, ".claude", "local", "claude.exe"),
-      path6.join(homeDir, "AppData", "Local", "Claude", "claude.exe"),
-      path6.join(process.env.ProgramFiles || "C:\\Program Files", "Claude", "claude.exe"),
-      path6.join(process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)", "Claude", "claude.exe"),
-      path6.join(homeDir, ".local", "bin", "claude.exe")
+      path7.join(homeDir, ".claude", "local", "claude.exe"),
+      path7.join(homeDir, "AppData", "Local", "Claude", "claude.exe"),
+      path7.join(process.env.ProgramFiles || "C:\\Program Files", "Claude", "claude.exe"),
+      path7.join(process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)", "Claude", "claude.exe"),
+      path7.join(homeDir, ".local", "bin", "claude.exe")
     ];
     for (const p of exePaths) {
       if (isExistingFile(p)) {
@@ -46851,23 +46886,23 @@ function findClaudeCLIPath(pathValue) {
     }
   }
   const commonPaths = [
-    path6.join(homeDir, ".claude", "local", "claude"),
-    path6.join(homeDir, ".local", "bin", "claude"),
-    path6.join(homeDir, ".volta", "bin", "claude"),
-    path6.join(homeDir, ".asdf", "shims", "claude"),
-    path6.join(homeDir, ".asdf", "bin", "claude"),
+    path7.join(homeDir, ".claude", "local", "claude"),
+    path7.join(homeDir, ".local", "bin", "claude"),
+    path7.join(homeDir, ".volta", "bin", "claude"),
+    path7.join(homeDir, ".asdf", "shims", "claude"),
+    path7.join(homeDir, ".asdf", "bin", "claude"),
     "/usr/local/bin/claude",
     "/opt/homebrew/bin/claude",
-    path6.join(homeDir, "bin", "claude"),
-    path6.join(homeDir, ".npm-global", "bin", "claude")
+    path7.join(homeDir, "bin", "claude"),
+    path7.join(homeDir, ".npm-global", "bin", "claude")
   ];
   const npmPrefix = getNpmGlobalPrefix();
   if (npmPrefix) {
-    commonPaths.push(path6.join(npmPrefix, "bin", "claude"));
+    commonPaths.push(path7.join(npmPrefix, "bin", "claude"));
   }
   const nvmBin = resolveNvmDefaultBin(homeDir);
   if (nvmBin) {
-    commonPaths.push(path6.join(nvmBin, "claude"));
+    commonPaths.push(path7.join(nvmBin, "claude"));
   }
   for (const p of commonPaths) {
     if (isExistingFile(p)) {
@@ -49444,39 +49479,39 @@ var VaultFileAdapter = class {
     this.app = app;
     this.writeQueue = Promise.resolve();
   }
-  async exists(path32) {
-    return this.app.vault.adapter.exists(path32);
+  async exists(path33) {
+    return this.app.vault.adapter.exists(path33);
   }
-  async read(path32) {
-    return this.app.vault.adapter.read(path32);
+  async read(path33) {
+    return this.app.vault.adapter.read(path33);
   }
-  async write(path32, content) {
-    await this.ensureParentFolder(path32);
-    await this.app.vault.adapter.write(path32, content);
+  async write(path33, content) {
+    await this.ensureParentFolder(path33);
+    await this.app.vault.adapter.write(path33, content);
   }
-  async append(path32, content) {
-    await this.ensureParentFolder(path32);
+  async append(path33, content) {
+    await this.ensureParentFolder(path33);
     this.writeQueue = this.writeQueue.then(async () => {
-      if (await this.exists(path32)) {
-        const existing = await this.read(path32);
-        await this.app.vault.adapter.write(path32, existing + content);
+      if (await this.exists(path33)) {
+        const existing = await this.read(path33);
+        await this.app.vault.adapter.write(path33, existing + content);
       } else {
-        await this.app.vault.adapter.write(path32, content);
+        await this.app.vault.adapter.write(path33, content);
       }
     }).catch(() => {
     });
     await this.writeQueue;
   }
-  async delete(path32) {
-    if (await this.exists(path32)) {
-      await this.app.vault.adapter.remove(path32);
+  async delete(path33) {
+    if (await this.exists(path33)) {
+      await this.app.vault.adapter.remove(path33);
     }
   }
   /** Fails silently if non-empty or missing. */
-  async deleteFolder(path32) {
+  async deleteFolder(path33) {
     try {
-      if (await this.exists(path32)) {
-        await this.app.vault.adapter.rmdir(path32, false);
+      if (await this.exists(path33)) {
+        await this.app.vault.adapter.rmdir(path33, false);
       }
     } catch (e2) {
     }
@@ -49517,9 +49552,9 @@ var VaultFileAdapter = class {
     }
   }
   /** Ensure a folder exists, creating it and parent folders if needed. */
-  async ensureFolder(path32) {
-    if (await this.exists(path32)) return;
-    const parts = path32.split("/").filter(Boolean);
+  async ensureFolder(path33) {
+    if (await this.exists(path33)) return;
+    const parts = path33.split("/").filter(Boolean);
     let current = "";
     for (const part of parts) {
       current = current ? `${current}/${part}` : part;
@@ -49532,9 +49567,9 @@ var VaultFileAdapter = class {
   async rename(oldPath, newPath) {
     await this.app.vault.adapter.rename(oldPath, newPath);
   }
-  async stat(path32) {
+  async stat(path33) {
     try {
-      const stat = await this.app.vault.adapter.stat(path32);
+      const stat = await this.app.vault.adapter.stat(path33);
       if (!stat) return null;
       return { mtime: stat.mtime, size: stat.size };
     } catch (e2) {
@@ -50275,8 +50310,10 @@ var ProviderSettingsCoordinator = class {
     normalizeModelDependentSettings(uiConfig, settings11, model);
   }
   static projectModelSelection(settings11, providerId, model) {
+    var _a5;
     const uiConfig = ProviderRegistry.getChatUIConfig(providerId);
     settings11.model = model;
+    (_a5 = uiConfig.applyModelProjectionDefaults) == null ? void 0 : _a5.call(uiConfig, model, settings11);
     normalizeModelDependentSettings(uiConfig, settings11, model);
   }
   static handleEnvironmentChange(settings11, providerIds) {
@@ -55203,21 +55240,21 @@ init_env();
 // src/shared/modals/ConfirmModal.ts
 var import_obsidian6 = require("obsidian");
 function confirmDelete(app, message) {
-  return new Promise((resolve8) => {
-    new ConfirmModal(app, message, resolve8).open();
+  return new Promise((resolve9) => {
+    new ConfirmModal(app, message, resolve9).open();
   });
 }
 function confirm(app, message, confirmText) {
-  return new Promise((resolve8) => {
-    new ConfirmModal(app, message, resolve8, confirmText).open();
+  return new Promise((resolve9) => {
+    new ConfirmModal(app, message, resolve9, confirmText).open();
   });
 }
 var ConfirmModal = class extends import_obsidian6.Modal {
-  constructor(app, message, resolve8, confirmText) {
+  constructor(app, message, resolve9, confirmText) {
     super(app);
     this.resolved = false;
     this.message = message;
-    this.resolve = resolve8;
+    this.resolve = resolve9;
     this.confirmText = confirmText != null ? confirmText : t10("common.delete");
   }
   onOpen() {
@@ -56069,8 +56106,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path32, errorMaps, issueData } = params;
-  const fullPath = [...path32, ...issueData.path || []];
+  const { data, path: path33, errorMaps, issueData } = params;
+  const fullPath = [...path33, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -56185,11 +56222,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path32, key) {
+  constructor(parent, value, path33, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path32;
+    this._path = path33;
     this._key = key;
   }
   get path() {
@@ -60349,7 +60386,7 @@ var Protocol = class {
           return;
         }
         const pollInterval = (_c2 = (_b3 = task2.pollInterval) != null ? _b3 : (_a5 = this._options) == null ? void 0 : _a5.defaultTaskPollInterval) != null ? _c2 : 1e3;
-        await new Promise((resolve8) => setTimeout(resolve8, pollInterval));
+        await new Promise((resolve9) => setTimeout(resolve9, pollInterval));
         (_d = options == null ? void 0 : options.signal) == null ? void 0 : _d.throwIfAborted();
       }
     } catch (error48) {
@@ -60366,7 +60403,7 @@ var Protocol = class {
    */
   request(request, resultSchema, options) {
     const { relatedRequestId, resumptionToken, onresumptiontoken, task, relatedTask } = options != null ? options : {};
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       var _a5, _b3, _c2, _d, _e2, _f2, _g;
       const earlyReject = (error48) => {
         reject(error48);
@@ -60447,7 +60484,7 @@ var Protocol = class {
           if (!parseResult.success) {
             reject(parseResult.error);
           } else {
-            resolve8(parseResult.data);
+            resolve9(parseResult.data);
           }
         } catch (error48) {
           reject(error48);
@@ -60713,12 +60750,12 @@ var Protocol = class {
       }
     } catch (e2) {
     }
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       if (signal.aborted) {
         reject(new McpError(ErrorCode.InvalidRequest, "Request cancelled"));
         return;
       }
-      const timeoutId = setTimeout(resolve8, interval);
+      const timeoutId = setTimeout(resolve9, interval);
       signal.addEventListener("abort", () => {
         clearTimeout(timeoutId);
         reject(new McpError(ErrorCode.InvalidRequest, "Request cancelled"));
@@ -61689,7 +61726,7 @@ var StdioClientTransport = class {
     if (this._process) {
       throw new Error("StdioClientTransport already started! If using Client class, note that connect() calls start() automatically.");
     }
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       var _a5, _b3, _c2, _d, _e2;
       this._process = (0, import_cross_spawn.default)(this._serverParams.command, (_a5 = this._serverParams.args) != null ? _a5 : [], {
         // merge default env with server env because mcp server needs some env vars
@@ -61708,7 +61745,7 @@ var StdioClientTransport = class {
         (_a6 = this.onerror) == null ? void 0 : _a6.call(this, error48);
       });
       this._process.on("spawn", () => {
-        resolve8();
+        resolve9();
       });
       this._process.on("close", (_code) => {
         var _a6;
@@ -61774,17 +61811,17 @@ var StdioClientTransport = class {
     if (this._process) {
       const processToClose = this._process;
       this._process = void 0;
-      const closePromise = new Promise((resolve8) => {
+      const closePromise = new Promise((resolve9) => {
         processToClose.once("close", () => {
-          resolve8();
+          resolve9();
         });
       });
       try {
         (_a5 = processToClose.stdin) == null ? void 0 : _a5.end();
       } catch (e2) {
       }
-      await Promise.race([closePromise, new Promise((resolve8) => {
-        const closeTimeout = setTimeout(resolve8, 2e3);
+      await Promise.race([closePromise, new Promise((resolve9) => {
+        const closeTimeout = setTimeout(resolve9, 2e3);
         closeTimeout.unref?.();
       })]);
       if (processToClose.exitCode === null) {
@@ -61792,8 +61829,8 @@ var StdioClientTransport = class {
           processToClose.kill("SIGTERM");
         } catch (e2) {
         }
-        await Promise.race([closePromise, new Promise((resolve8) => {
-        const closeTimeout = setTimeout(resolve8, 2e3);
+        await Promise.race([closePromise, new Promise((resolve9) => {
+        const closeTimeout = setTimeout(resolve9, 2e3);
         closeTimeout.unref?.();
       })]);
       }
@@ -61807,16 +61844,16 @@ var StdioClientTransport = class {
     this._readBuffer.clear();
   }
   send(message) {
-    return new Promise((resolve8) => {
+    return new Promise((resolve9) => {
       var _a5;
       if (!((_a5 = this._process) == null ? void 0 : _a5.stdin)) {
         throw new Error("Not connected");
       }
       const json2 = serializeMessage(message);
       if (this._process.stdin.write(json2)) {
-        resolve8();
+        resolve9();
       } else {
-        this._process.stdin.once("drain", resolve8);
+        this._process.stdin.once("drain", resolve9);
       }
     });
   }
@@ -62281,7 +62318,7 @@ function createNodeFetch() {
     const signal = (_b3 = init == null ? void 0 : init.signal) != null ? _b3 : input instanceof Request ? input.signal : void 0;
     const body = await getRequestBody((_c2 = init == null ? void 0 : init.body) != null ? _c2 : input instanceof Request ? input.body : void 0);
     const transport = requestUrl.protocol === "https:" ? https : http;
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       let settled = false;
       const fail = (error48) => {
         if (settled) return;
@@ -62311,7 +62348,7 @@ function createNodeFetch() {
           if (settled) return;
           settled = true;
           signal == null ? void 0 : signal.removeEventListener("abort", onAbort);
-          resolve8(createFetchResponse(res));
+          resolve9(createFetchResponse(res));
         }
       );
       req.on("error", (error48) => fail(error48));
@@ -62771,12 +62808,12 @@ function appendSpinnerSvg(container) {
   svg.setAttribute("fill", "none");
   svg.setAttribute("stroke", "currentColor");
   svg.setAttribute("stroke-width", "2");
-  const path32 = container.ownerDocument.createElementNS(SVG_NS, "path");
-  path32.setAttribute(
+  const path33 = container.ownerDocument.createElementNS(SVG_NS, "path");
+  path33.setAttribute(
     "d",
     "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
   );
-  svg.appendChild(path32);
+  svg.appendChild(path33);
   container.appendChild(svg);
 }
 var McpTestModal = class extends import_obsidian10.Modal {
@@ -64017,9 +64054,9 @@ function appendMcpIcon(container) {
   title.textContent = "MCP";
   svg.appendChild(title);
   for (const pathData of MCP_ICON_PATHS) {
-    const path32 = createSvgElement(container.ownerDocument, "path");
-    path32.setAttribute("d", pathData);
-    svg.appendChild(path32);
+    const path33 = createSvgElement(container.ownerDocument, "path");
+    path33.setAttribute("d", pathData);
+    svg.appendChild(path33);
   }
   container.appendChild(svg);
 }
@@ -64122,10 +64159,10 @@ function createProviderIconSvg(icon, options = {}) {
     }
     return svg;
   }
-  const path32 = ownerDocument.createElementNS(SVG_NS2, "path");
-  path32.setAttribute("d", icon.path);
-  path32.setAttribute("fill", "currentColor");
-  svg.appendChild(path32);
+  const path33 = ownerDocument.createElementNS(SVG_NS2, "path");
+  path33.setAttribute("d", icon.path);
+  path33.setAttribute("fill", "currentColor");
+  svg.appendChild(path33);
   return svg;
 }
 function createProviderSvgChild(child, ownerDocument) {
@@ -64979,10 +65016,22 @@ async function createClaudeWorkspaceServices(plugin, adapter) {
   const mcpManager = new McpServerManager(mcpStorage);
   await mcpManager.loadServers();
   const vaultPath = (_a5 = getVaultPath(plugin.app)) != null ? _a5 : "";
-  const pluginManager = new PluginManager(vaultPath, claudeStorage.ccSettings);
+  const getClaudeConfigDir = () => resolveClaudeConfigDir({
+    environment: {
+      ...process.env,
+      ...parseEnvironmentVariables(plugin.getActiveEnvironmentVariables("claude"))
+    },
+    hostPlatform: process.platform,
+    vaultPath
+  });
+  const pluginManager = new PluginManager(
+    vaultPath,
+    claudeStorage.ccSettings,
+    getClaudeConfigDir
+  );
   await pluginManager.loadPlugins();
   const agentStorage = claudeStorage.agents;
-  const agentManager = new AgentManager(vaultPath, pluginManager);
+  const agentManager = new AgentManager(vaultPath, pluginManager, getClaudeConfigDir);
   await agentManager.loadAgents();
   const commandCatalog = new ClaudeCommandCatalog(
     claudeStorage.commands,
@@ -65002,6 +65051,7 @@ async function createClaudeWorkspaceServices(plugin, adapter) {
     agentMentionProvider: agentManager,
     settingsTabRenderer: claudeSettingsTabRenderer,
     refreshAgentMentions: async () => {
+      await pluginManager.loadPlugins();
       await agentManager.loadAgents();
     }
   };
@@ -66052,16 +66102,16 @@ var claudeSettingsReconciler = {
   },
   normalizeModelVariantSettings(settings11) {
     let changed = false;
-    const normalize3 = (model2) => claudeChatUIConfig.normalizeModelVariant(model2, settings11);
+    const normalize4 = (model2) => claudeChatUIConfig.normalizeModelVariant(model2, settings11);
     const model = settings11.model;
-    const normalizedModel = normalize3(model);
+    const normalizedModel = normalize4(model);
     if (model !== normalizedModel) {
       settings11.model = normalizedModel;
       changed = true;
     }
     const titleModel = settings11.titleGenerationModel;
     if (titleModel) {
-      const normalizedTitleModel = normalize3(titleModel);
+      const normalizedTitleModel = normalize4(titleModel);
       if (titleModel !== normalizedTitleModel) {
         settings11.titleGenerationModel = normalizedTitleModel;
         changed = true;
@@ -66069,7 +66119,7 @@ var claudeSettingsReconciler = {
     }
     const lastClaudeModel = getClaudeProviderSettings(settings11).lastModel;
     if (lastClaudeModel) {
-      const normalizedLastClaudeModel = normalize3(lastClaudeModel);
+      const normalizedLastClaudeModel = normalize4(lastClaudeModel);
       if (lastClaudeModel !== normalizedLastClaudeModel) {
         updateClaudeProviderSettings(settings11, { lastModel: normalizedLastClaudeModel });
         changed = true;
@@ -66805,14 +66855,14 @@ var INTERRUPT_MARKERS = /* @__PURE__ */ new Set([
   "[Request interrupted by user for tool use]"
 ]);
 var COMPACTION_CANCELED_STDERR_PATTERN = /^<local-command-stderr>\s*Error:\s*Compaction canceled\.?\s*<\/local-command-stderr>$/i;
-function normalize2(text) {
+function normalize3(text) {
   return text.trim();
 }
 function isBracketInterruptText(text) {
-  return INTERRUPT_MARKERS.has(normalize2(text));
+  return INTERRUPT_MARKERS.has(normalize3(text));
 }
 function isCompactionCanceledStderr(text) {
-  return COMPACTION_CANCELED_STDERR_PATTERN.test(normalize2(text));
+  return COMPACTION_CANCELED_STDERR_PATTERN.test(normalize3(text));
 }
 function isInterruptSignalText(text) {
   return isBracketInterruptText(text) || isCompactionCanceledStderr(text);
@@ -67169,14 +67219,13 @@ function hydrateFallbackAskUserAnswers(messages) {
 // src/providers/claude/history/sdkSessionPaths.ts
 var import_fs9 = require("fs");
 var fs9 = __toESM(require("fs/promises"));
-var os7 = __toESM(require("os"));
-var path7 = __toESM(require("path"));
+var path8 = __toESM(require("path"));
 function encodeVaultPathForSDK(vaultPath) {
-  const absolutePath = path7.resolve(vaultPath);
+  const absolutePath = path8.resolve(vaultPath);
   return absolutePath.replace(/[^a-zA-Z0-9]/g, "-");
 }
-function getSDKProjectsPath() {
-  return path7.join(os7.homedir(), ".claude", "projects");
+function getSDKProjectsPath(context) {
+  return path8.join(resolveClaudeConfigDir(context), "projects");
 }
 function isPathSafeId(value) {
   if (!value || value.length === 0 || value.length > 128) {
@@ -67190,25 +67239,25 @@ function isPathSafeId(value) {
 function isValidSessionId(sessionId) {
   return isPathSafeId(sessionId);
 }
-function getSDKSessionPath(vaultPath, sessionId) {
+function getSDKSessionPath(vaultPath, sessionId, context) {
   if (!isValidSessionId(sessionId)) {
     throw new Error(`Invalid session ID: ${sessionId}`);
   }
-  const projectsPath = getSDKProjectsPath();
+  const projectsPath = getSDKProjectsPath(context);
   const encodedVault = encodeVaultPathForSDK(vaultPath);
-  return path7.join(projectsPath, encodedVault, `${sessionId}.jsonl`);
+  return path8.join(projectsPath, encodedVault, `${sessionId}.jsonl`);
 }
 function hasFileSystemErrorCode(error48, code) {
   return !!error48 && typeof error48 === "object" && "code" in error48 && error48.code === code;
 }
-async function locateSDKSessions(vaultPath, sessionIds) {
+async function locateSDKSessions(vaultPath, sessionIds, context) {
   const locations = /* @__PURE__ */ new Map();
   const currentPaths = /* @__PURE__ */ new Map();
   const unresolvedIds = /* @__PURE__ */ new Set();
   await Promise.all([...new Set(sessionIds)].map(async (sessionId) => {
     let sessionPath;
     try {
-      sessionPath = getSDKSessionPath(vaultPath, sessionId);
+      sessionPath = getSDKSessionPath(vaultPath, sessionId, context);
     } catch (e2) {
       locations.set(sessionId, { availability: "unknown" });
       return;
@@ -67231,7 +67280,8 @@ async function locateSDKSessions(vaultPath, sessionIds) {
   const targetIdsByFileName = new Map(
     [...unresolvedIds].map((sessionId) => [`${sessionId}.jsonl`, sessionId])
   );
-  const pendingDirectories = [getSDKProjectsPath()];
+  const projectsPath = getSDKProjectsPath(context);
+  const pendingDirectories = [projectsPath];
   let rootExists = true;
   let scanComplete = true;
   while (pendingDirectories.length > 0 && unresolvedIds.size > 0) {
@@ -67240,7 +67290,7 @@ async function locateSDKSessions(vaultPath, sessionIds) {
     try {
       entries = await fs9.readdir(directory, { withFileTypes: true });
     } catch (error48) {
-      if (directory === getSDKProjectsPath() && hasFileSystemErrorCode(error48, "ENOENT")) {
+      if (directory === projectsPath && hasFileSystemErrorCode(error48, "ENOENT")) {
         rootExists = false;
       } else if (!hasFileSystemErrorCode(error48, "ENOENT")) {
         scanComplete = false;
@@ -67248,7 +67298,7 @@ async function locateSDKSessions(vaultPath, sessionIds) {
       continue;
     }
     for (const entry of entries) {
-      const entryPath = path7.join(directory, entry.name);
+      const entryPath = path8.join(directory, entry.name);
       if (entry.isFile()) {
         const sessionId = targetIdsByFileName.get(entry.name);
         if (sessionId && unresolvedIds.has(sessionId)) {
@@ -67270,13 +67320,13 @@ async function locateSDKSessions(vaultPath, sessionIds) {
   }
   return locations;
 }
-async function locateSDKSession(vaultPath, sessionId) {
+async function locateSDKSession(vaultPath, sessionId, context) {
   var _a5;
-  return (_a5 = (await locateSDKSessions(vaultPath, [sessionId])).get(sessionId)) != null ? _a5 : { availability: "unknown" };
+  return (_a5 = (await locateSDKSessions(vaultPath, [sessionId], context)).get(sessionId)) != null ? _a5 : { availability: "unknown" };
 }
-async function deleteSDKSession(vaultPath, sessionId) {
+async function deleteSDKSession(vaultPath, sessionId, context) {
   try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    const sessionPath = getSDKSessionPath(vaultPath, sessionId, context);
     if (!(0, import_fs9.existsSync)(sessionPath)) {
       return;
     }
@@ -67284,9 +67334,9 @@ async function deleteSDKSession(vaultPath, sessionId) {
   } catch (e2) {
   }
 }
-async function readSDKSession(vaultPath, sessionId) {
+async function readSDKSession(vaultPath, sessionId, context) {
   try {
-    const sessionPath = getSDKSessionPath(vaultPath, sessionId);
+    const sessionPath = getSDKSessionPath(vaultPath, sessionId, context);
     if (!(0, import_fs9.existsSync)(sessionPath)) {
       return { messages: [], skippedLines: 0 };
     }
@@ -67319,7 +67369,7 @@ async function readSDKSessionFile(sessionPath) {
 // src/providers/claude/history/sdkSubagentSidecar.ts
 var import_fs10 = require("fs");
 var fs10 = __toESM(require("fs/promises"));
-var path8 = __toESM(require("path"));
+var path9 = __toESM(require("path"));
 
 // src/utils/subagentJsonl.ts
 function extractFinalResultFromSubagentJsonl(content) {
@@ -67461,20 +67511,26 @@ function buildToolCallsFromSubagentEvents(events) {
   }
   return Array.from(toolsById.values()).filter((entry) => entry.hasToolUse).sort((a, b2) => a.timestamp - b2.timestamp).map((entry) => entry.toolCall);
 }
-function getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath) {
+function getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath, pathContext) {
   if (!isValidSessionId(sessionId) || !isValidAgentId(agentId)) {
     return null;
   }
-  const projectPath = sessionPath ? path8.dirname(sessionPath) : path8.join(getSDKProjectsPath(), encodeVaultPathForSDK(vaultPath));
-  return path8.join(
+  const projectPath = sessionPath ? path9.dirname(sessionPath) : path9.join(getSDKProjectsPath(pathContext), encodeVaultPathForSDK(vaultPath));
+  return path9.join(
     projectPath,
     sessionId,
     "subagents",
     `agent-${agentId}.jsonl`
   );
 }
-async function loadSubagentToolCalls(vaultPath, sessionId, agentId, sessionPath) {
-  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath);
+async function loadSubagentToolCalls(vaultPath, sessionId, agentId, sessionPath, pathContext) {
+  const subagentFilePath = getSubagentSidecarPath(
+    vaultPath,
+    sessionId,
+    agentId,
+    sessionPath,
+    pathContext
+  );
   if (!subagentFilePath) {
     return [];
   }
@@ -67510,8 +67566,14 @@ async function loadSubagentToolCalls(vaultPath, sessionId, agentId, sessionPath)
     return [];
   }
 }
-async function loadSubagentFinalResult(vaultPath, sessionId, agentId, sessionPath) {
-  const subagentFilePath = getSubagentSidecarPath(vaultPath, sessionId, agentId, sessionPath);
+async function loadSubagentFinalResult(vaultPath, sessionId, agentId, sessionPath, pathContext) {
+  const subagentFilePath = getSubagentSidecarPath(
+    vaultPath,
+    sessionId,
+    agentId,
+    sessionPath,
+    pathContext
+  );
   if (!subagentFilePath) {
     return null;
   }
@@ -67527,9 +67589,9 @@ async function loadSubagentFinalResult(vaultPath, sessionId, agentId, sessionPat
 }
 
 // src/providers/claude/history/ClaudeHistoryStore.ts
-async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId, sessionPath) {
+async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId, sessionPath, pathContext) {
   var _a5, _b3, _c2;
-  const result = sessionPath ? await readSDKSessionFile(sessionPath) : await readSDKSession(vaultPath, sessionId);
+  const result = sessionPath ? await readSDKSessionFile(sessionPath) : await (pathContext ? readSDKSession(vaultPath, sessionId, pathContext) : readSDKSession(vaultPath, sessionId));
   if (result.error) {
     return { messages: [], skippedLines: result.skippedLines, error: result.error };
   }
@@ -67591,15 +67653,14 @@ async function loadSDKSessionMessages(vaultPath, sessionId, resumeAtMessageId, s
           }
           toolCall.status = subagent.status;
           if (subagent.agentId && isValidAgentId(subagent.agentId)) {
-            sidecarLoads.push({
-              subagent,
-              promise: loadSubagentToolCalls(
-                vaultPath,
-                sessionId,
-                subagent.agentId,
-                sessionPath
-              )
-            });
+            const promise2 = pathContext ? loadSubagentToolCalls(
+              vaultPath,
+              sessionId,
+              subagent.agentId,
+              sessionPath,
+              pathContext
+            ) : loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId, sessionPath);
+            sidecarLoads.push({ subagent, promise: promise2 });
           }
         }
       }
@@ -67771,7 +67832,7 @@ function dedupeMessages(messages) {
   }
   return result;
 }
-async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds, relocatedSessionPaths) {
+async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds, relocatedSessionPaths, pathContext) {
   var _a5, _b3;
   const uniqueSessionIds = [...new Set(sessionIds)];
   if (uniqueSessionIds.length === 0) return;
@@ -67785,7 +67846,22 @@ async function enrichAsyncSubagentToolCalls(subagentData, vaultPath, sessionIds,
       let loader = loaderCache.get(cacheKey);
       if (!loader) {
         const relocatedSessionPath = relocatedSessionPaths.get(sessionId);
-        loader = relocatedSessionPath ? loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId, relocatedSessionPath) : loadSubagentToolCalls(vaultPath, sessionId, subagent.agentId);
+        if (pathContext) {
+          loader = loadSubagentToolCalls(
+            vaultPath,
+            sessionId,
+            subagent.agentId,
+            relocatedSessionPath,
+            pathContext
+          );
+        } else {
+          loader = loadSubagentToolCalls(
+            vaultPath,
+            sessionId,
+            subagent.agentId,
+            relocatedSessionPath
+          );
+        }
         loaderCache.set(cacheKey, loader);
       }
       const recoveredToolCalls = await loader;
@@ -67888,6 +67964,7 @@ function sanitizeProviderState(providerState) {
 var ClaudeConversationHistoryService = class {
   constructor() {
     this.hydratedConversationIds = /* @__PURE__ */ new Set();
+    this.historyCacheKeysByConversation = /* @__PURE__ */ new Map();
     this.pendingSessionLocationsByConversation = /* @__PURE__ */ new Map();
     this.relocatedSessionPathsByConversation = /* @__PURE__ */ new Map();
   }
@@ -67902,13 +67979,33 @@ var ClaudeConversationHistoryService = class {
       (_a5 = state.providerSessionId) != null ? _a5 : conversation.sessionId
     ].filter((id) => !!id))];
   }
-  async getConversationSessionAvailability(conversation, vaultPath) {
+  synchronizeHistoryCache(conversation, vaultPath, pathContext) {
+    var _a5, _b3, _c2;
+    const state = getClaudeState(conversation.providerState);
+    const cacheKey = JSON.stringify([
+      getSDKProjectsPath(pathContext),
+      encodeVaultPathForSDK(vaultPath),
+      this.getConversationSessionIds(conversation),
+      (_a5 = conversation.resumeAtMessageId) != null ? _a5 : null,
+      (_c2 = (_b3 = state.forkSource) == null ? void 0 : _b3.resumeAt) != null ? _c2 : null
+    ]);
+    const previousKey = this.historyCacheKeysByConversation.get(conversation.id);
+    if (previousKey !== void 0 && previousKey !== cacheKey) {
+      this.hydratedConversationIds.delete(conversation.id);
+      this.pendingSessionLocationsByConversation.delete(conversation.id);
+      this.relocatedSessionPathsByConversation.delete(conversation.id);
+    }
+    this.historyCacheKeysByConversation.set(conversation.id, cacheKey);
+  }
+  async getConversationSessionAvailability(conversation, vaultPath, pathContext) {
     var _a5, _b3;
     const sessionId = this.resolveSessionIdForConversation(conversation);
-    if (!vaultPath || !sessionId) {
+    if (!vaultPath) {
       return "unknown";
     }
-    const location = await locateSDKSession(vaultPath, sessionId);
+    this.synchronizeHistoryCache(conversation, vaultPath, pathContext);
+    if (!sessionId) return "unknown";
+    const location = await (pathContext ? locateSDKSession(vaultPath, sessionId, pathContext) : locateSDKSession(vaultPath, sessionId));
     this.pendingSessionLocationsByConversation.set(
       conversation.id,
       /* @__PURE__ */ new Map([[sessionId, location]])
@@ -67938,13 +68035,13 @@ var ClaudeConversationHistoryService = class {
     }
     return location.availability;
   }
-  async prepareRelocatedConversationSession(conversation, vaultPath) {
+  async prepareRelocatedConversationSession(conversation, vaultPath, pathContext) {
     var _a5;
     const sessionId = this.resolveSessionIdForConversation(conversation);
     if (!vaultPath || !sessionId) {
       return false;
     }
-    await this.hydrateConversationHistory(conversation, vaultPath);
+    await this.hydrateConversationHistory(conversation, vaultPath, pathContext);
     if (!this.hydratedConversationIds.has(conversation.id)) {
       return false;
     }
@@ -67961,14 +68058,15 @@ var ClaudeConversationHistoryService = class {
     conversation.providerState = sanitizeProviderState(state);
     return true;
   }
-  async resolveMissingConversationSession(conversation, vaultPath, missingProviderSessionId) {
+  async resolveMissingConversationSession(conversation, vaultPath, missingProviderSessionId, pathContext) {
     var _a5;
     const currentSessionId = this.resolveSessionIdForConversation(conversation);
     if (!vaultPath || !currentSessionId || missingProviderSessionId && missingProviderSessionId.toLowerCase() !== currentSessionId.toLowerCase()) {
       return "preserve";
     }
+    this.synchronizeHistoryCache(conversation, vaultPath, pathContext);
     const sessionIds = this.getConversationSessionIds(conversation);
-    const locations = await locateSDKSessions(vaultPath, sessionIds);
+    const locations = await (pathContext ? locateSDKSessions(vaultPath, sessionIds, pathContext) : locateSDKSessions(vaultPath, sessionIds));
     const preservedSessionIds = sessionIds.filter(
       (sessionId) => {
         var _a6;
@@ -68022,11 +68120,13 @@ var ClaudeConversationHistoryService = class {
     }
     return sanitizeProviderState(providerState);
   }
-  async hydrateConversationHistory(conversation, vaultPath) {
+  async hydrateConversationHistory(conversation, vaultPath, pathContext) {
     var _a5, _b3, _c2, _d;
-    if (!vaultPath || this.hydratedConversationIds.has(conversation.id)) {
+    if (!vaultPath) {
       return;
     }
+    this.synchronizeHistoryCache(conversation, vaultPath, pathContext);
+    if (this.hydratedConversationIds.has(conversation.id)) return;
     const state = getClaudeState(conversation.providerState);
     const isPendingFork = this.isPendingForkConversation(conversation);
     const allSessionIds = this.getConversationSessionIds(conversation);
@@ -68048,7 +68148,7 @@ var ClaudeConversationHistoryService = class {
     const unresolvedSessionIds = allSessionIds.filter(
       (id) => !relocatedSessionPaths.has(id) && !cachedLocations.has(id)
     );
-    const locatedSessions = await locateSDKSessions(vaultPath, unresolvedSessionIds);
+    const locatedSessions = await (pathContext ? locateSDKSessions(vaultPath, unresolvedSessionIds, pathContext) : locateSDKSessions(vaultPath, unresolvedSessionIds));
     const resolvedLocations = new Map([...cachedLocations, ...locatedSessions]);
     for (const [sessionId, location] of locatedSessions) {
       if (location.availability === "relocated" && location.sessionPath) {
@@ -68074,7 +68174,13 @@ var ClaudeConversationHistoryService = class {
       const isCheckpointSession = sessionId === checkpointSessionId;
       const truncateAt = isCheckpointSession ? isPendingFork ? state.forkSource.resumeAt : conversation.resumeAtMessageId : void 0;
       const sessionPathOverride = relocatedSessionPaths.get(sessionId);
-      const result = sessionPathOverride ? await loadSDKSessionMessages(vaultPath, sessionId, truncateAt, sessionPathOverride) : await loadSDKSessionMessages(vaultPath, sessionId, truncateAt);
+      const result = pathContext ? await loadSDKSessionMessages(
+        vaultPath,
+        sessionId,
+        truncateAt,
+        sessionPathOverride,
+        pathContext
+      ) : sessionPathOverride ? await loadSDKSessionMessages(vaultPath, sessionId, truncateAt, sessionPathOverride) : await loadSDKSessionMessages(vaultPath, sessionId, truncateAt);
       if (result.error) {
         errorCount++;
         continue;
@@ -68096,7 +68202,8 @@ var ClaudeConversationHistoryService = class {
         state.subagentData,
         vaultPath,
         allSessionIds,
-        relocatedSessionPaths
+        relocatedSessionPaths,
+        pathContext
       );
       applySubagentData(merged, state.subagentData);
     }
@@ -68105,17 +68212,22 @@ var ClaudeConversationHistoryService = class {
       this.hydratedConversationIds.add(conversation.id);
     }
   }
-  async deleteConversationSession(conversation, vaultPath) {
+  async deleteConversationSession(conversation, vaultPath, pathContext) {
     var _a5;
     this.pendingSessionLocationsByConversation.delete(conversation.id);
     this.relocatedSessionPathsByConversation.delete(conversation.id);
     this.hydratedConversationIds.delete(conversation.id);
+    this.historyCacheKeysByConversation.delete(conversation.id);
     const state = getClaudeState(conversation.providerState);
     const sessionId = (_a5 = state.providerSessionId) != null ? _a5 : conversation.sessionId;
     if (!vaultPath || !sessionId) {
       return;
     }
-    await deleteSDKSession(vaultPath, sessionId);
+    if (pathContext) {
+      await deleteSDKSession(vaultPath, sessionId, pathContext);
+    } else {
+      await deleteSDKSession(vaultPath, sessionId);
+    }
   }
 };
 
@@ -69549,9 +69661,9 @@ var MessageChannel = class {
     if (!this.turnActive) {
       if (this.resolveNext) {
         this.turnActive = true;
-        const resolve8 = this.resolveNext;
+        const resolve9 = this.resolveNext;
         this.resolveNext = null;
-        resolve8({ value: message, done: false });
+        resolve9({ value: message, done: false });
       } else {
         if (this.queue.length >= MESSAGE_CHANNEL_CONFIG.MAX_QUEUED_MESSAGES) {
           this.onWarning(`[MessageChannel] Queue full (${MESSAGE_CHANNEL_CONFIG.MAX_QUEUED_MESSAGES}), dropping newest`);
@@ -69598,18 +69710,18 @@ var MessageChannel = class {
     if (this.queue.length > 0 && this.resolveNext) {
       const pending = this.queue.shift();
       this.turnActive = true;
-      const resolve8 = this.resolveNext;
+      const resolve9 = this.resolveNext;
       this.resolveNext = null;
-      resolve8({ value: this.pendingToMessage(pending), done: false });
+      resolve9({ value: this.pendingToMessage(pending), done: false });
     }
   }
   close() {
     this.closed = true;
     this.queue = [];
     if (this.resolveNext) {
-      const resolve8 = this.resolveNext;
+      const resolve9 = this.resolveNext;
       this.resolveNext = null;
-      resolve8({ value: void 0, done: true });
+      resolve9({ value: void 0, done: true });
     }
   }
   reset() {
@@ -69632,8 +69744,8 @@ var MessageChannel = class {
           this.turnActive = true;
           return Promise.resolve({ value: this.pendingToMessage(pending), done: false });
         }
-        return new Promise((resolve8) => {
-          this.resolveNext = resolve8;
+        return new Promise((resolve9) => {
+          this.resolveNext = resolve9;
         });
       }
     };
@@ -70038,14 +70150,14 @@ var QueryOptionsBuilder = class _QueryOptionsBuilder {
 
 // src/providers/claude/runtime/ClaudeRewindService.ts
 var fs11 = __toESM(require("fs/promises"));
-var os8 = __toESM(require("os"));
-var path9 = __toESM(require("path"));
+var os6 = __toESM(require("os"));
+var path10 = __toESM(require("path"));
 function resolveRewindFilePath(filePath, vaultPath) {
-  if (path9.isAbsolute(filePath)) {
+  if (path10.isAbsolute(filePath)) {
     return filePath;
   }
   if (vaultPath) {
-    return path9.join(vaultPath, filePath);
+    return path10.join(vaultPath, filePath);
   }
   return filePath;
 }
@@ -70053,8 +70165,8 @@ async function copyDir(from, to) {
   await fs11.mkdir(to, { recursive: true });
   const dirents = await fs11.readdir(from, { withFileTypes: true });
   for (const dirent of dirents) {
-    const srcPath = path9.join(from, dirent.name);
-    const destPath = path9.join(to, dirent.name);
+    const srcPath = path10.join(from, dirent.name);
+    const destPath = path10.join(to, dirent.name);
     if (dirent.isDirectory()) {
       await copyDir(srcPath, destPath);
       continue;
@@ -70073,9 +70185,9 @@ async function createClaudeRewindBackup(filesChanged, vaultPath) {
   if (!filesChanged || filesChanged.length === 0) {
     return null;
   }
-  const backupRoot = await fs11.mkdtemp(path9.join(os8.tmpdir(), "claudian-rewind-"));
+  const backupRoot = await fs11.mkdtemp(path10.join(os6.tmpdir(), "claudian-rewind-"));
   const entries = [];
-  const backupPathForIndex = (index) => path9.join(backupRoot, String(index));
+  const backupPathForIndex = (index) => path10.join(backupRoot, String(index));
   for (let i = 0; i < filesChanged.length; i++) {
     const originalPath = resolveRewindFilePath(filesChanged[i], vaultPath);
     try {
@@ -70116,7 +70228,7 @@ async function createClaudeRewindBackup(filesChanged, vaultPath) {
           continue;
         }
         await fs11.rm(entry.originalPath, { recursive: true, force: true });
-        await fs11.mkdir(path9.dirname(entry.originalPath), { recursive: true });
+        await fs11.mkdir(path10.dirname(entry.originalPath), { recursive: true });
         if (entry.kind === "symlink") {
           await fs11.symlink(entry.symlinkTarget, entry.originalPath);
           continue;
@@ -70616,13 +70728,25 @@ var ClaudianService = class {
     const sessionId = this.getSessionId();
     const vaultPath = getVaultPath(this.plugin.app);
     if (!sessionId || !vaultPath) return [];
-    return loadSubagentToolCalls(vaultPath, sessionId, agentId);
+    return loadSubagentToolCalls(
+      vaultPath,
+      sessionId,
+      agentId,
+      void 0,
+      this.buildHistoryPathContext(vaultPath)
+    );
   }
   async loadSubagentFinalResult(agentId) {
     const sessionId = this.getSessionId();
     const vaultPath = getVaultPath(this.plugin.app);
     if (!sessionId || !vaultPath) return null;
-    return loadSubagentFinalResult(vaultPath, sessionId, agentId);
+    return loadSubagentFinalResult(
+      vaultPath,
+      sessionId,
+      agentId,
+      void 0,
+      this.buildHistoryPathContext(vaultPath)
+    );
   }
   async reloadMcpServers() {
     await this.mcpManager.loadServers();
@@ -70817,6 +70941,17 @@ var ClaudianService = class {
       enhancedPath,
       mcpManager: this.mcpManager,
       pluginManager: this.requirePluginManager()
+    };
+  }
+  buildHistoryPathContext(vaultPath) {
+    const customEnv = parseEnvironmentVariables(
+      this.plugin.getActiveEnvironmentVariables(this.providerId)
+    );
+    return {
+      environment: { ...process.env, ...customEnv },
+      hostPlatform: process.platform,
+      settings: this.getScopedSettings(),
+      vaultPath
     };
   }
   requirePluginManager() {
@@ -71370,8 +71505,8 @@ var ClaudianService = class {
         if (state.chunks.length > 0) {
           yield state.chunks.shift();
         } else {
-          const chunk = await new Promise((resolve8) => {
-            state.resolveChunk = resolve8;
+          const chunk = await new Promise((resolve9) => {
+            state.resolveChunk = resolve9;
           });
           if (chunk) {
             yield chunk;
@@ -71991,7 +72126,7 @@ var CodexAppServerProcess = class {
   }
   async shutdown() {
     if (!this.proc || !this.alive) return;
-    return new Promise((resolve8) => {
+    return new Promise((resolve9) => {
       let killTimer = null;
       let finalTimer = null;
       const cleanup = () => {
@@ -72002,7 +72137,7 @@ var CodexAppServerProcess = class {
       };
       const finish = () => {
         cleanup();
-        resolve8();
+        resolve9();
       };
       const onExit = () => {
         finish();
@@ -72133,7 +72268,7 @@ function resolveCodexExecutionTarget(options) {
 }
 
 // src/providers/codex/runtime/CodexPathMapper.ts
-var path10 = __toESM(require("path"));
+var path11 = __toESM(require("path"));
 function normalizeWindowsPath(value) {
   if (!value) {
     return "";
@@ -72144,13 +72279,13 @@ function normalizeWindowsPath(value) {
   } else if (normalized.startsWith("\\\\?\\")) {
     normalized = normalized.slice("\\\\?\\".length);
   }
-  return path10.win32.normalize(normalized);
+  return path11.win32.normalize(normalized);
 }
 function normalizePosixPath(value) {
   if (!value) {
     return "";
   }
-  const normalized = path10.posix.normalize(value.replace(/\\/g, "/"));
+  const normalized = path11.posix.normalize(value.replace(/\\/g, "/"));
   return normalized === "/" ? normalized : normalized.replace(/\/+$/, "");
 }
 function maybeMapWindowsDriveToWsl(hostPath) {
@@ -72380,13 +72515,13 @@ var CodexRpcTransport = class {
     }
     const id = this.nextId++;
     const msg = { jsonrpc: "2.0", id, method, params };
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       const timer = timeoutMs > 0 ? window.setTimeout(() => {
         this.pending.delete(id);
         reject(new Error(`Request timeout: ${method} (${timeoutMs}ms)`));
       }, timeoutMs) : null;
       const resolvePending = (result) => {
-        resolve8(result);
+        resolve9(result);
       };
       this.pending.set(id, {
         resolve: resolvePending,
@@ -72503,12 +72638,12 @@ ${stderr}` : "App-server process exited";
 };
 
 // src/providers/codex/runtime/CodexRuntimeContext.ts
-var path11 = __toESM(require("path"));
+var path12 = __toESM(require("path"));
 function normalizeTargetPath(launchSpec, value) {
-  return launchSpec.target.platformFamily === "windows" ? path11.win32.normalize(value) : path11.posix.normalize(value.replace(/\\/g, "/"));
+  return launchSpec.target.platformFamily === "windows" ? path12.win32.normalize(value) : path12.posix.normalize(value.replace(/\\/g, "/"));
 }
 function joinTargetPath(launchSpec, ...parts) {
-  return launchSpec.target.platformFamily === "windows" ? path11.win32.join(...parts) : path11.posix.join(...parts.map((part) => part.replace(/\\/g, "/")));
+  return launchSpec.target.platformFamily === "windows" ? path12.win32.join(...parts) : path12.posix.join(...parts.map((part) => part.replace(/\\/g, "/")));
 }
 function normalizeOptionalTargetPath(launchSpec, value) {
   const trimmed = typeof value === "string" ? value.trim() : "";
@@ -72677,7 +72812,7 @@ var CodexSkillListingService = class {
 };
 
 // src/providers/codex/storage/CodexSkillStorage.ts
-var path12 = __toESM(require("path"));
+var path13 = __toESM(require("path"));
 var CODEX_VAULT_SKILLS_PATH = ".codex/skills";
 var AGENTS_VAULT_SKILLS_PATH = ".agents/skills";
 var CODEX_SKILL_ROOT_OPTIONS = [
@@ -72722,7 +72857,7 @@ function parseCodexSkillPersistenceKey(persistenceKey) {
 }
 function resolveCodexSkillLocationFromPath(skillPath, vaultPath) {
   const usesWindowsPathSemantics = /^[A-Za-z]:[\\/]/.test(skillPath) || /^[A-Za-z]:[\\/]/.test(vaultPath) || skillPath.startsWith("\\\\") || vaultPath.startsWith("\\\\");
-  const pathApi = usesWindowsPathSemantics ? path12.win32 : path12.posix;
+  const pathApi = usesWindowsPathSemantics ? path13.win32 : path13.posix;
   const normalizedSkillPath = pathApi.normalize(skillPath);
   const normalizedVaultPath = pathApi.normalize(vaultPath);
   for (const [rootId, rootPath] of Object.entries(ROOT_PATH_BY_ID)) {
@@ -72968,12 +73103,12 @@ init_env();
 
 // src/providers/codex/runtime/CodexBinaryLocator.ts
 var fs13 = __toESM(require("fs"));
-var os9 = __toESM(require("os"));
-var path14 = __toESM(require("path"));
+var os7 = __toESM(require("os"));
+var path15 = __toESM(require("path"));
 
 // src/utils/cliBinaryLocator.ts
 var fs12 = __toESM(require("fs"));
-var path13 = __toESM(require("path"));
+var path14 = __toESM(require("path"));
 init_env();
 init_path();
 function isExistingFile2(filePath) {
@@ -73001,7 +73136,7 @@ function findCliBinaryPath(binaryName, additionalPath, platform = process.platfo
   for (const dir of searchEntries) {
     if (!dir) continue;
     for (const candidateName of binaryNames) {
-      const candidate = path13.join(dir, candidateName);
+      const candidate = path14.join(dir, candidateName);
       if (isExistingFile2(candidate)) {
         return candidate;
       }
@@ -73075,7 +73210,7 @@ function findCodexBinaryInDirs(dirs, platform) {
   for (const dir of dirs) {
     if (!dir) continue;
     for (const binaryName of binaryNames) {
-      const candidate = path14.join(dir, binaryName);
+      const candidate = path15.join(dir, binaryName);
       if (isExistingFile3(candidate)) {
         return candidate;
       }
@@ -73087,22 +73222,22 @@ function getPreferredCodexBinaryDirs(platform) {
   const home = getHomeDir2();
   if (platform === "darwin") {
     return [
-      path14.join(home, "Applications", "Codex.app", "Contents", "Resources"),
+      path15.join(home, "Applications", "Codex.app", "Contents", "Resources"),
       "/Applications/Codex.app/Contents/Resources",
-      path14.join(home, "Applications", "Codex.app", "Contents", "MacOS"),
+      path15.join(home, "Applications", "Codex.app", "Contents", "MacOS"),
       "/Applications/Codex.app/Contents/MacOS",
-      path14.join(home, ".local", "bin")
+      path15.join(home, ".local", "bin")
     ];
   }
   if (platform !== "win32") {
     return [
-      path14.join(home, ".local", "bin")
+      path15.join(home, ".local", "bin")
     ];
   }
   return [];
 }
 function getHomeDir2() {
-  return process.env.HOME || process.env.USERPROFILE || os9.homedir();
+  return process.env.HOME || process.env.USERPROFILE || os7.homedir();
 }
 function isExistingFile3(filePath) {
   try {
@@ -74332,8 +74467,8 @@ function renderProviderModelPicker(options) {
     text: "Discover"
   });
   catalogActionEl.setAttribute("type", "button");
-  catalogActionEl.addEventListener("click", async () => {
-    await loadCatalog(true);
+  catalogActionEl.addEventListener("click", () => {
+    void loadCatalog(true);
   });
   const listEl = catalogEl.createDiv({ cls: "claudian-provider-model-picker-list" });
   const renderSummary = () => {
@@ -74396,8 +74531,8 @@ function renderProviderModelPicker(options) {
     });
     clearAllButton.setAttribute("type", "button");
     clearAllButton.setAttribute("aria-label", `Clear all selected ${options.providerName} models`);
-    clearAllButton.addEventListener("click", async () => {
-      await persistSelectedIds([]);
+    clearAllButton.addEventListener("click", () => {
+      void persistSelectedIds([]);
     });
     const rowsEl = selectedEl.createDiv({ cls: "claudian-provider-model-picker-selected-rows" });
     for (const modelId of state.selectedIds) {
@@ -74442,8 +74577,8 @@ function renderProviderModelPicker(options) {
       aliasInput.value = (_c2 = state.aliases[model.id]) != null ? _c2 : "";
       aliasInput.setAttribute("aria-label", `Alias for ${defaultLabel}`);
       aliasInput.title = "Custom label shown in the model selector. Leave empty to use the default.";
-      aliasInput.addEventListener("blur", async () => {
-        await persistAlias(model.id, aliasInput.value);
+      aliasInput.addEventListener("blur", () => {
+        void persistAlias(model.id, aliasInput.value);
       });
       aliasInput.addEventListener("keydown", (event) => {
         var _a7;
@@ -74462,8 +74597,8 @@ function renderProviderModelPicker(options) {
       });
       removeButton.setAttribute("type", "button");
       removeButton.setAttribute("aria-label", `Remove ${defaultLabel}`);
-      removeButton.addEventListener("click", async () => {
-        await persistSelectedIds(options.getState().selectedIds.filter((id) => id !== model.id));
+      removeButton.addEventListener("click", () => {
+        void persistSelectedIds(options.getState().selectedIds.filter((id) => id !== model.id));
       });
     }
   };
@@ -74534,7 +74669,7 @@ function renderProviderModelPicker(options) {
       rowEl.title = model.id;
       const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
       checkboxEl.checked = isSelected;
-      checkboxEl.addEventListener("change", async () => {
+      const persistSelection = async () => {
         var _a7;
         const selecting = checkboxEl.checked;
         const currentIds = options.getState().selectedIds;
@@ -74543,6 +74678,9 @@ function renderProviderModelPicker(options) {
         if (selecting) {
           await ((_a7 = options.onModelSelected) == null ? void 0 : _a7.call(options, model));
         }
+      };
+      checkboxEl.addEventListener("change", () => {
+        void persistSelection();
       });
       const textEl = rowEl.createDiv({ cls: "claudian-provider-model-picker-row-text" });
       const headerEl = textEl.createDiv({ cls: "claudian-provider-model-picker-row-header" });
@@ -74596,9 +74734,9 @@ function renderProviderModelPicker(options) {
     }
   };
   renderAll();
-  catalogEl.addEventListener("toggle", async () => {
+  catalogEl.addEventListener("toggle", () => {
     if (catalogEl.open) {
-      await loadCatalog(false);
+      void loadCatalog(false);
     }
   });
   if (options.loadCatalogOnRender) {
@@ -75644,8 +75782,8 @@ var CodexAuxQueryRunner = class {
     let accumulatedText = "";
     let turnError = null;
     let resolveWait = null;
-    const donePromise = new Promise((resolve8) => {
-      resolveWait = resolve8;
+    const donePromise = new Promise((resolve9) => {
+      resolveWait = resolve9;
     });
     this.transport.onNotification("item/agentMessage/delta", (params) => {
       var _a6;
@@ -76282,17 +76420,17 @@ var codexSettingsReconciler = {
 var fs17 = __toESM(require("node:fs/promises"));
 
 // src/providers/codex/history/CodexHistoryPathResolver.ts
-var os11 = __toESM(require("node:os"));
-var path17 = __toESM(require("node:path"));
+var os9 = __toESM(require("node:os"));
+var path18 = __toESM(require("node:path"));
 
 // src/core/storage/pathContainment.ts
 var fs15 = __toESM(require("node:fs"));
-var path15 = __toESM(require("node:path"));
+var path16 = __toESM(require("node:path"));
 function getPathModule(value) {
-  return value.includes("\\") || /^[A-Za-z]:/.test(value) ? path15.win32 : path15.posix;
+  return value.includes("\\") || /^[A-Za-z]:/.test(value) ? path16.win32 : path16.posix;
 }
 function isHostPath(pathModule) {
-  return process.platform === "win32" ? pathModule === path15.win32 : pathModule === path15.posix;
+  return process.platform === "win32" ? pathModule === path16.win32 : pathModule === path16.posix;
 }
 function resolveExistingPath(value, pathModule) {
   if (!isHostPath(pathModule)) {
@@ -76324,8 +76462,8 @@ function isSamePath(left, right) {
 // src/providers/codex/history/CodexHistoryStore.ts
 var fsp = __toESM(require("node:fs/promises"));
 var fs16 = __toESM(require("fs"));
-var os10 = __toESM(require("os"));
-var path16 = __toESM(require("path"));
+var os8 = __toESM(require("os"));
+var path17 = __toESM(require("path"));
 
 // src/providers/codex/codexUserText.ts
 var CODEX_IMAGE_OPEN_TAG_PATTERN = /^<image\b[^>]*>$/i;
@@ -76440,33 +76578,39 @@ function normalizeCodexToolName(rawName) {
   return (_a5 = TOOL_NAME_MAP[rawName]) != null ? _a5 : rawName;
 }
 function normalizeCodexToolCall(rawName, rawInput) {
-  var _a5, _b3;
-  const nestedCall = rawName === "exec" ? decodeExecEnvelope(rawInput) : null;
-  const effectiveName = (_a5 = nestedCall == null ? void 0 : nestedCall.name) != null ? _a5 : rawName;
-  const effectiveInput = (_b3 = nestedCall == null ? void 0 : nestedCall.input) != null ? _b3 : rawInput;
+  const nestedCalls = rawName === "exec" ? decodeCodexExecEnvelope(rawInput) : null;
+  if ((nestedCalls == null ? void 0 : nestedCalls.length) === 1) {
+    return nestedCalls[0];
+  }
   return {
-    name: normalizeCodexToolName(effectiveName),
-    input: normalizeCodexToolInput(effectiveName, effectiveInput)
+    name: normalizeCodexToolName(rawName),
+    input: normalizeCodexToolInput(rawName, rawInput)
   };
 }
-function decodeExecEnvelope(input) {
+function decodeCodexExecEnvelope(input) {
   const source = firstNonEmptyString(input.raw, input.value);
   if (!source) return null;
   const tokens = tokenizeExecEnvelope(source);
   if (!tokens) return null;
   const calls = findExecEnvelopeToolCalls(tokens);
-  if (!calls || calls.length !== 1) return null;
-  const call = calls[0];
-  if (!call) return null;
-  if (call.name === "exec_command") {
-    const command = extractExecCommand(tokens, call);
-    return command ? { name: call.name, input: { cmd: command } } : null;
+  if (!calls || calls.length === 0) return null;
+  const decodedCalls = [];
+  for (const call of calls) {
+    if (call.name === "exec_command") {
+      const command = extractExecCommand(tokens, call);
+      if (!command) return null;
+      decodedCalls.push({ name: "Bash", input: { command } });
+      continue;
+    }
+    if (call.name === "apply_patch") {
+      const patch = extractApplyPatch(tokens, call);
+      if (!patch) return null;
+      decodedCalls.push({ name: "apply_patch", input: { patch } });
+      continue;
+    }
+    return null;
   }
-  if (call.name === "apply_patch") {
-    const patch = extractApplyPatch(tokens, call);
-    return patch ? { name: call.name, input: { patch } } : null;
-  }
-  return null;
+  return decodedCalls;
 }
 function tokenizeExecEnvelope(source) {
   var _a5, _b3, _c2;
@@ -76934,6 +77078,7 @@ function createPersistedParseContext() {
     terminalSessionToCommandId: /* @__PURE__ */ new Map(),
     stdinCallToCommandId: /* @__PURE__ */ new Map(),
     execCellToCommandId: /* @__PURE__ */ new Map(),
+    execEnvelopeToolCallIds: /* @__PURE__ */ new Map(),
     waitCallToCommand: /* @__PURE__ */ new Map(),
     turnCounter: 0
   };
@@ -76984,11 +77129,33 @@ function appendUniqueChunk(chunks, value) {
   if (chunks[chunks.length - 1] === trimmed) return;
   chunks.push(trimmed);
 }
-function replaceLatestChunk(chunks, value) {
+function appendOrderedTextChunk(bubble, type, value) {
   const trimmed = value.trim();
   if (!trimmed) return;
-  chunks.length = 0;
+  const chunks = type === "text" ? bubble.contentChunks : bubble.thinkingChunks;
+  const lastBlock = bubble.contentBlocks[bubble.contentBlocks.length - 1];
+  if ((lastBlock == null ? void 0 : lastBlock.type) === type) {
+    if (chunks[chunks.length - 1] === trimmed) return;
+    chunks.push(trimmed);
+    lastBlock.content = `${lastBlock.content}
+
+${trimmed}`;
+    return;
+  }
   chunks.push(trimmed);
+  bubble.contentBlocks.push({ type, content: trimmed });
+}
+function replaceLatestOrderedTextChunk(bubble, type, value) {
+  const trimmed = value.trim();
+  if (!trimmed) return;
+  const chunks = type === "text" ? bubble.contentChunks : bubble.thinkingChunks;
+  const lastBlock = bubble.contentBlocks[bubble.contentBlocks.length - 1];
+  if ((lastBlock == null ? void 0 : lastBlock.type) !== type || chunks.length === 0) {
+    appendOrderedTextChunk(bubble, type, trimmed);
+    return;
+  }
+  chunks[chunks.length - 1] = trimmed;
+  lastBlock.content = trimmed;
 }
 function appendUserChunk(turn, value, timestamp) {
   const chunkCountBefore = turn.userChunks.length;
@@ -77252,6 +77419,16 @@ function processPersistedToolCall(payload, timestamp, ctx) {
   if (!callId) return;
   const rawArgs = (_a5 = payload.arguments) != null ? _a5 : payload.input;
   const parsedArgs = parseCodexArguments(rawArgs);
+  const execEnvelopeCalls = payload.name === "exec" ? decodeCodexExecEnvelope(parsedArgs) : null;
+  if (execEnvelopeCalls && execEnvelopeCalls.length > 1) {
+    const toolCallIds = execEnvelopeCalls.map((call, index) => {
+      const nestedCallId = `${callId}:${index + 1}`;
+      pushPersistedNormalizedToolCall(nestedCallId, call, timestamp, ctx);
+      return nestedCallId;
+    });
+    ctx.execEnvelopeToolCallIds.set(callId, toolCallIds);
+    return;
+  }
   const normalized = normalizeCodexToolCall(payload.name, parsedArgs);
   if (normalized.name === "wait") {
     const cellId = readCodexExecCellIdArgument(normalized.input);
@@ -77272,7 +77449,16 @@ function processPersistedToolCall(payload, timestamp, ctx) {
       return;
     }
   }
-  const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
+  pushPersistedNormalizedToolCall(callId, normalized, timestamp, ctx);
+}
+function pushPersistedNormalizedToolCall(callId, normalized, timestamp, ctx) {
+  const turn = ensureTurn(
+    ctx.turns,
+    ctx.turnOrder,
+    nextTurnId(ctx),
+    ctx.currentTurnId,
+    timestamp
+  );
   const bubble = ensureAssistantBubble(turn, timestamp);
   const toolCall = {
     id: callId,
@@ -77290,6 +77476,17 @@ function processPersistedToolOutput(payload, timestamp, ctx) {
   const callId = payload.call_id;
   if (!callId) return;
   const rawOutput = stringifyCodexToolOutput(payload.output);
+  const execEnvelopeToolCallIds = ctx.execEnvelopeToolCallIds.get(callId);
+  if (execEnvelopeToolCallIds) {
+    applyPersistedExecEnvelopeOutput(
+      execEnvelopeToolCallIds,
+      payload.output,
+      rawOutput,
+      ctx
+    );
+    ctx.execEnvelopeToolCallIds.delete(callId);
+    return;
+  }
   const waitCall = ctx.waitCallToCommand.get(callId);
   if (waitCall) {
     const parentToolCall = findPersistedToolCallById(ctx, waitCall.commandCallId);
@@ -77352,6 +77549,45 @@ function findPersistedToolCallById(ctx, callId) {
     return null;
   }
   return (_a5 = turn.assistantBubbles[origin.bubbleIndex].toolCalls.find((tool) => tool.id === callId)) != null ? _a5 : null;
+}
+function applyPersistedExecEnvelopeOutput(toolCallIds, rawOutputValue, rawOutputText, ctx) {
+  var _a5;
+  const toolCalls = toolCallIds.map((toolCallId) => findPersistedToolCallById(ctx, toolCallId)).filter((toolCall) => toolCall !== null);
+  if (toolCalls.length === 0) return;
+  const outputParts = splitPersistedExecEnvelopeOutput(rawOutputValue, toolCalls.length);
+  if (outputParts) {
+    for (const [index, toolCall] of toolCalls.entries()) {
+      const outputPart = (_a5 = outputParts[index]) != null ? _a5 : "";
+      applyPersistedToolOutput(toolCall, outputPart, outputPart, ctx);
+    }
+    return;
+  }
+  const isError = isCodexToolOutputError(rawOutputText);
+  for (const toolCall of toolCalls) {
+    toolCall.status = isError ? "error" : "completed";
+  }
+  const lastToolCall = toolCalls[toolCalls.length - 1];
+  if (lastToolCall) {
+    lastToolCall.result = normalizeCodexToolResult(lastToolCall.name, rawOutputText);
+  }
+}
+function splitPersistedExecEnvelopeOutput(rawOutputValue, toolCallCount) {
+  var _a5;
+  if (!Array.isArray(rawOutputValue)) return null;
+  const outputParts = [];
+  for (const part of rawOutputValue) {
+    if (!part || typeof part !== "object" || Array.isArray(part)) return null;
+    const text = part.text;
+    if (typeof text !== "string") return null;
+    outputParts.push(text);
+  }
+  if (outputParts.length === toolCallCount + 1 && isPersistedExecEnvelopeHeader((_a5 = outputParts[0]) != null ? _a5 : "")) {
+    return outputParts.slice(1);
+  }
+  return outputParts.length === toolCallCount ? outputParts : null;
+}
+function isPersistedExecEnvelopeHeader(value) {
+  return value.startsWith("Script ") && value.endsWith("Output:\n");
 }
 function readTerminalSessionIdArgument(input) {
   var _a5;
@@ -77481,7 +77717,7 @@ function processPersistedPayload(payload, timestamp, lineIndex, ctx) {
         const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
         const bubble = ensureAssistantBubble(turn, timestamp);
         if (text) {
-          appendUniqueChunk(bubble.contentChunks, text);
+          appendOrderedTextChunk(bubble, "text", text);
         }
       }
       break;
@@ -77492,7 +77728,7 @@ function processPersistedPayload(payload, timestamp, lineIndex, ctx) {
       if (!text) break;
       const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
       const bubble = ensureAssistantBubble(turn, timestamp);
-      appendUniqueChunk(bubble.thinkingChunks, text);
+      appendOrderedTextChunk(bubble, "thinking", text);
       break;
     }
     case "function_call":
@@ -77574,7 +77810,7 @@ function processEventMsg(payload, timestamp, ctx) {
       const bubble = ensureAssistantBubble(turn, timestamp);
       const msg = payload.message;
       if (typeof msg === "string") {
-        appendUniqueChunk(bubble.contentChunks, msg);
+        appendOrderedTextChunk(bubble, "text", msg);
       }
       break;
     }
@@ -77583,20 +77819,25 @@ function processEventMsg(payload, timestamp, ctx) {
       if (!text) break;
       const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
       const bubble = ensureAssistantBubble(turn, timestamp);
-      appendUniqueChunk(bubble.thinkingChunks, text);
+      appendOrderedTextChunk(bubble, "thinking", text);
       break;
     }
     case "context_compacted": {
-      if (ctx.currentTurnId) {
-        const prevTurn = ctx.turns.get(ctx.currentTurnId);
-        if (prevTurn) closeAssistantBubble(prevTurn);
+      const activeTurnId = ctx.currentTurnId;
+      if (activeTurnId) {
+        const activeTurn = ctx.turns.get(activeTurnId);
+        if (activeTurn) closeAssistantBubble(activeTurn);
       }
-      const id = nextTurnId(ctx);
-      const turn = ensureTurn(ctx.turns, ctx.turnOrder, id, null, timestamp);
+      const turn = ensureTurn(
+        ctx.turns,
+        ctx.turnOrder,
+        nextTurnId(ctx),
+        activeTurnId,
+        timestamp
+      );
       const bubble = ensureAssistantBubble(turn, timestamp);
       bubble.contentBlocks.push({ type: "context_compacted" });
       closeAssistantBubble(turn);
-      ctx.currentTurnId = null;
       break;
     }
     default:
@@ -77642,14 +77883,7 @@ function flushBubbleTurnMessages(turn, msgIndex) {
       }
       continue;
     }
-    const contentBlocks = [];
-    if (hasThinking) {
-      contentBlocks.push({ type: "thinking", content: thinkingText.trim() });
-    }
-    contentBlocks.push(...bubble.contentBlocks);
-    if (hasContent) {
-      contentBlocks.push({ type: "text", content: contentText.trim() });
-    }
+    const contentBlocks = bubble.contentBlocks;
     const msg = {
       id: `codex-msg-${msgIndex}`,
       role: "assistant",
@@ -77683,7 +77917,7 @@ function flushBubbleTurnMessages(turn, msgIndex) {
 }
 var SAFE_SESSION_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 function getPathModuleForSessionPath(sessionPath) {
-  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path16.win32 : path16.posix;
+  return sessionPath.includes("\\") || /^[A-Za-z]:/.test(sessionPath) ? path17.win32 : path17.posix;
 }
 function deriveCodexSessionsRootFromSessionPath(sessionFilePath) {
   if (!sessionFilePath) {
@@ -77708,11 +77942,11 @@ function deriveCodexMemoriesDirFromSessionsRoot(sessionsDir) {
   const pathModule = getPathModuleForSessionPath(sessionsDir);
   return pathModule.join(pathModule.dirname(sessionsDir), "memories");
 }
-function findCodexSessionFile(threadId, root = path16.join(os10.homedir(), ".codex", "sessions")) {
+function findCodexSessionFile(threadId, root = path17.join(os8.homedir(), ".codex", "sessions")) {
   if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId) || !fs16.existsSync(root)) {
     return null;
   }
-  const directPath = path16.join(root, `${threadId}.jsonl`);
+  const directPath = path17.join(root, `${threadId}.jsonl`);
   if (fs16.existsSync(directPath)) {
     return directPath;
   }
@@ -77729,7 +77963,7 @@ function findCodexSessionFile(threadId, root = path16.join(os10.homedir(), ".cod
       continue;
     }
     for (const entry of entries) {
-      const fullPath = path16.join(current, entry.name);
+      const fullPath = path17.join(current, entry.name);
       if (entry.isDirectory()) {
         stack.push(fullPath);
         continue;
@@ -77741,7 +77975,7 @@ function findCodexSessionFile(threadId, root = path16.join(os10.homedir(), ".cod
   }
   return null;
 }
-async function findCodexSessionFileAsync(threadId, root = path16.join(os10.homedir(), ".codex", "sessions"), timeoutMs = 1e4, dependencies = {}) {
+async function findCodexSessionFileAsync(threadId, root = path17.join(os8.homedir(), ".codex", "sessions"), timeoutMs = 1e4, dependencies = {}) {
   var _a5, _b3;
   if (!threadId || !SAFE_SESSION_ID_PATTERN.test(threadId)) {
     return null;
@@ -77753,7 +77987,7 @@ async function findCodexSessionFileAsync(threadId, root = path16.join(os10.homed
     if (!await runBeforeDeadline(() => pathExists(root), deadline)) {
       return null;
     }
-    const directPath = path16.join(root, `${threadId}.jsonl`);
+    const directPath = path17.join(root, `${threadId}.jsonl`);
     if (await runBeforeDeadline(() => pathExists(directPath), deadline)) {
       return directPath;
     }
@@ -77774,7 +78008,7 @@ async function findCodexSessionFileAsync(threadId, root = path16.join(os10.homed
       continue;
     }
     for (const entry of entries) {
-      const fullPath = path16.join(current, entry.name);
+      const fullPath = path17.join(current, entry.name);
       if (entry.isDirectory()) {
         stack.push(fullPath);
       } else if (entry.isFile() && entry.name.endsWith(`-${threadId}.jsonl`)) {
@@ -77789,18 +78023,18 @@ async function runBeforeDeadline(operation, deadline) {
   if (remainingMs <= 0) {
     throw new Error("Codex history lookup deadline exceeded.");
   }
-  return new Promise((resolve8, reject) => {
+  return new Promise((resolve9, reject) => {
     const timer = window.setTimeout(() => {
       reject(new Error("Codex history lookup deadline exceeded."));
     }, remainingMs);
     operation().then(
       (value) => {
         window.clearTimeout(timer);
-        resolve8(value);
+        resolve9(value);
       },
       (error48) => {
         window.clearTimeout(timer);
-        reject(error48);
+        reject(error48 instanceof Error ? error48 : new Error(String(error48)));
       }
     );
   });
@@ -77957,7 +78191,7 @@ function processLegacyItemInModernContext(eventType, item, timestamp, ctx) {
       if ((eventType === "item.updated" || eventType === "item.completed") && item.text) {
         const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
         const bubble = ensureAssistantBubble(turn, timestamp);
-        replaceLatestChunk(bubble.contentChunks, item.text);
+        replaceLatestOrderedTextChunk(bubble, "text", item.text);
       }
       break;
     }
@@ -77965,7 +78199,7 @@ function processLegacyItemInModernContext(eventType, item, timestamp, ctx) {
       if ((eventType === "item.updated" || eventType === "item.completed") && item.text) {
         const turn = ensureTurn(ctx.turns, ctx.turnOrder, nextTurnId(ctx), ctx.currentTurnId, timestamp);
         const bubble = ensureAssistantBubble(turn, timestamp);
-        replaceLatestChunk(bubble.thinkingChunks, item.text);
+        replaceLatestOrderedTextChunk(bubble, "thinking", item.text);
       }
       break;
     }
@@ -78125,17 +78359,17 @@ function processLegacyEventInModernContext(event, timestamp, ctx) {
 // src/providers/codex/history/CodexHistoryPathResolver.ts
 var CODEX_HISTORY_LOOKUP_TIMEOUT_MS = 1e4;
 function isAbsolutePath(value) {
-  return path17.posix.isAbsolute(value) || path17.win32.isAbsolute(value);
+  return path18.posix.isAbsolute(value) || path18.win32.isAbsolute(value);
 }
 function isWindowsPath(value) {
   return value.includes("\\") || /^[A-Za-z]:/.test(value);
 }
 function joinSessionsRoot(home) {
-  const pathModule = isWindowsPath(home) ? path17.win32 : path17.posix;
+  const pathModule = isWindowsPath(home) ? path18.win32 : path18.posix;
   return pathModule.join(home, "sessions");
 }
 function parseStandardWslSessionsRoot(value) {
-  const normalized = path17.win32.normalize(value);
+  const normalized = path18.win32.normalize(value);
   const match = normalized.match(
     /^(\\\\wsl\$\\([^\\]+)\\home\\[^\\]+\\\.codex\\sessions)(?:\\|$)/i
   );
@@ -78173,7 +78407,7 @@ function getTrustedSessionRoots(context, hints = []) {
   if (configuredHome && isAbsolutePath(configuredHome)) {
     roots.push(joinSessionsRoot(configuredHome));
     const distroConstraint = getWslDistroConstraint(context);
-    if (distroConstraint !== void 0 && path17.posix.isAbsolute(configuredHome)) {
+    if (distroConstraint !== void 0 && path18.posix.isAbsolute(configuredHome)) {
       const hintedDistro = hints.map((hint) => inferWslDistroFromWindowsPath(hint)).find((distro) => !!distro);
       const pathMapper = createCodexPathMapper({
         distroName: distroConstraint || hintedDistro,
@@ -78182,15 +78416,15 @@ function getTrustedSessionRoots(context, hints = []) {
         platformOs: "linux"
       });
       const hostSessionsRoot = pathMapper.toHostPath(
-        path17.posix.join(configuredHome, "sessions")
+        path18.posix.join(configuredHome, "sessions")
       );
       if (hostSessionsRoot) {
         roots.push(hostSessionsRoot);
       }
     }
   }
-  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os11.homedir();
-  const homePathModule = isWindowsPath(home) ? path17.win32 : path17.posix;
+  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os9.homedir();
+  const homePathModule = isWindowsPath(home) ? path18.win32 : path18.posix;
   roots.push(homePathModule.join(home, ".codex", "sessions"));
   for (const hint of hints) {
     const wslRoot = getTrustedWslRoot(hint, context);
@@ -78581,8 +78815,8 @@ var codexSubagentLifecycleAdapter = {
 
 // src/providers/codex/runtime/CodexChatRuntime.ts
 var fs18 = __toESM(require("fs"));
-var os12 = __toESM(require("os"));
-var path18 = __toESM(require("path"));
+var os10 = __toESM(require("os"));
+var path19 = __toESM(require("path"));
 init_path();
 
 // src/providers/codex/prompt/encodeCodexTurn.ts
@@ -79434,15 +79668,15 @@ function normalizeFileChanges(changes) {
 function normalizeFileChange(change) {
   var _a5;
   const record2 = asRecord(change);
-  const path32 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path32) {
+  const path33 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path33) {
     return null;
   }
   const kindInfo = normalizeFileChangeKind((_a5 = record2.kind) != null ? _a5 : record2.type);
   const diff = firstString2(record2.diff);
   return {
     ...record2,
-    path: path32,
+    path: path33,
     kind: kindInfo.kind,
     type: kindInfo.kind,
     ...kindInfo.movePath ? { movePath: kindInfo.movePath } : {},
@@ -79489,12 +79723,12 @@ function fileChangeKey(change) {
 }
 function formatFileChangeSummary(change) {
   const record2 = asRecord(change);
-  const path32 = firstString2(record2 == null ? void 0 : record2.path);
-  if (!record2 || !path32) {
+  const path33 = firstString2(record2 == null ? void 0 : record2.path);
+  if (!record2 || !path33) {
     return "";
   }
   const kind = firstString2(record2.kind, record2.type) || "change";
-  return `${kind}: ${path32}`;
+  return `${kind}: ${path33}`;
 }
 function readContentText(value) {
   if (!Array.isArray(value)) {
@@ -80176,10 +80410,10 @@ User: ${turn.prompt}`
           return;
         }
         if (this.chunkBuffer.length === 0) {
-          await new Promise((resolve8) => {
-            this.chunkResolve = resolve8;
+          await new Promise((resolve9) => {
+            this.chunkResolve = resolve9;
             if (this.chunkBuffer.length > 0 || this.canceled) {
-              resolve8();
+              resolve9();
               this.chunkResolve = null;
             }
           });
@@ -80556,12 +80790,12 @@ User: ${turn.prompt}`
       externalContextPaths,
       "external context path"
     );
-    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path18.join(os12.homedir(), ".codex", "memories");
+    const memoriesDirTarget = (_c2 = (_a5 = deriveCodexMemoriesDirFromSessionsRoot(transcriptRootTargetHint)) != null ? _a5 : this.resolveMemoriesDirTarget(sessionFilePathHint)) != null ? _c2 : ((_b3 = this.launchSpec) == null ? void 0 : _b3.target.method) === "wsl" ? null : path19.join(os10.homedir(), ".codex", "memories");
     const writableRoots = [
       (_e2 = (_d = this.launchSpec) == null ? void 0 : _d.targetCwd) != null ? _e2 : getVaultPath(this.plugin.app),
       ...mappedExternalContextPaths,
       memoriesDirTarget,
-      this.mapHostPathToTarget(os12.tmpdir()),
+      this.mapHostPathToTarget(os10.tmpdir()),
       ((_f2 = this.launchSpec) == null ? void 0 : _f2.target.platformFamily) === "unix" ? "/tmp" : null,
       this.mapHostPathToTarget(process.env.TMPDIR)
     ].filter((value) => typeof value === "string" && value.trim().length > 0);
@@ -80699,12 +80933,12 @@ User: ${turn.prompt}`
     };
     try {
       if (images && images.length > 0) {
-        tempDir = fs18.mkdtempSync(path18.join(os12.tmpdir(), "claudian-codex-images-"));
+        tempDir = fs18.mkdtempSync(path19.join(os10.tmpdir(), "claudian-codex-images-"));
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
           if (!img.mediaType.startsWith("image/")) continue;
           const filename = toAttachmentFilename(img, i);
-          const filePath = path18.join(tempDir, `${i + 1}-${filename}`);
+          const filePath = path19.join(tempDir, `${i + 1}-${filename}`);
           fs18.writeFileSync(filePath, Buffer.from(img.data, "base64"));
           const targetFilePath = this.mapHostPathToTarget(filePath);
           if (!targetFilePath) {
@@ -80989,7 +81223,7 @@ var OpencodeCliResolver = class {
 };
 
 // src/providers/opencode/storage/OpencodeAgentStorage.ts
-var path19 = __toESM(require("node:path"));
+var path20 = __toESM(require("node:path"));
 
 // src/providers/opencode/types/agent.ts
 var OPENCODE_AGENT_KNOWN_KEYS = /* @__PURE__ */ new Set([
@@ -81060,7 +81294,7 @@ var OpencodeAgentStorage = class {
   async save(agent, previous) {
     const filePath = this.resolveTargetPath(agent, previous);
     const previousPath = previous ? this.resolveCurrentPath(previous) : null;
-    await this.vaultAdapter.ensureFolder(path19.posix.dirname(filePath));
+    await this.vaultAdapter.ensureFolder(path20.posix.dirname(filePath));
     const content = serializeOpencodeAgentMarkdown(agent);
     await this.vaultAdapter.write(filePath, content);
     if (previousPath && previousPath !== filePath) {
@@ -81284,7 +81518,7 @@ init_path();
 
 // src/providers/opencode/runtime/OpencodeChatRuntime.ts
 var fs21 = __toESM(require("node:fs/promises"));
-var path22 = __toESM(require("node:path"));
+var path23 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -81402,7 +81636,7 @@ var AcpJsonRpcTransport = class {
     }
     const id = this.nextId++;
     const timeoutMs = (_a5 = options.timeoutMs) != null ? _a5 : this.defaultTimeoutMs;
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       let timer;
       let onAbort;
       const cleanup = () => {
@@ -81412,7 +81646,7 @@ var AcpJsonRpcTransport = class {
         }
       };
       const resolvePending = (result) => {
-        resolve8(result);
+        resolve9(result);
       };
       const pending = {
         cleanup,
@@ -82267,13 +82501,13 @@ var AcpSubprocess = class {
     if (!this.proc || this.proc.exitCode !== null) {
       return;
     }
-    await new Promise((resolve8) => {
+    await new Promise((resolve9) => {
       const proc = this.proc;
       let killTimer = null;
       let finalTimer = null;
       const onClose = () => {
         cleanup();
-        resolve8();
+        resolve9();
       };
       killTimer = window.setTimeout(() => {
         this.killProc(proc, "SIGKILL");
@@ -82785,13 +83019,13 @@ function buildOpencodePromptBlocks(request, conversationHistory = []) {
 
 // src/providers/opencode/runtime/OpencodeLaunchArtifacts.ts
 var fs20 = __toESM(require("node:fs/promises"));
-var path21 = __toESM(require("node:path"));
+var path22 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/runtime/OpencodePaths.ts
 var fs19 = __toESM(require("node:fs"));
-var os13 = __toESM(require("node:os"));
-var path20 = __toESM(require("node:path"));
+var os11 = __toESM(require("node:os"));
+var path21 = __toESM(require("node:path"));
 var OPENCODE_APP_NAME = "opencode";
 var DEFAULT_DATABASE_NAME = "opencode.db";
 var DATABASE_NAME_PATTERN = /^opencode(?:-[a-z0-9._-]+)?\.db$/i;
@@ -82799,23 +83033,23 @@ function resolveOpencodeDataDir(env = process.env) {
   var _a5;
   const xdgDataHome = (_a5 = env.XDG_DATA_HOME) == null ? void 0 : _a5.trim();
   if (xdgDataHome) {
-    return path20.join(xdgDataHome, OPENCODE_APP_NAME);
+    return path21.join(xdgDataHome, OPENCODE_APP_NAME);
   }
-  const home = env.HOME || os13.homedir();
+  const home = env.HOME || os11.homedir();
   if (process.platform === "win32") {
-    const appData = env.APPDATA || env.LOCALAPPDATA || path20.join(home, "AppData", "Roaming");
-    return path20.join(appData, OPENCODE_APP_NAME);
+    const appData = env.APPDATA || env.LOCALAPPDATA || path21.join(home, "AppData", "Roaming");
+    return path21.join(appData, OPENCODE_APP_NAME);
   }
-  return path20.join(home, ".local", "share", OPENCODE_APP_NAME);
+  return path21.join(home, ".local", "share", OPENCODE_APP_NAME);
 }
 function resolveOpencodeDatabasePath(env = process.env) {
   var _a5, _b3;
   const override = (_a5 = env.OPENCODE_DB) == null ? void 0 : _a5.trim();
   if (override) {
-    if (override === ":memory:" || path20.isAbsolute(override)) {
+    if (override === ":memory:" || path21.isAbsolute(override)) {
       return override;
     }
-    return path20.join(resolveOpencodeDataDir(env), override);
+    return path21.join(resolveOpencodeDataDir(env), override);
   }
   const candidates = getOpencodeDatabasePathCandidates(env);
   for (const candidate of candidates) {
@@ -82844,13 +83078,13 @@ function resolveExistingOpencodeDatabasePath(preferredPath, env = process.env) {
 function getOpencodeDatabasePathCandidates(env) {
   const candidates = [];
   const seen = /* @__PURE__ */ new Set();
-  const home = env.HOME || os13.homedir();
+  const home = env.HOME || os11.homedir();
   const dataDirs = [
     resolveOpencodeDataDir(env),
-    path20.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
+    path21.join(home, "Library", "Application Support", OPENCODE_APP_NAME)
   ];
   for (const dataDir of dataDirs) {
-    pushCandidate(candidates, seen, path20.join(dataDir, DEFAULT_DATABASE_NAME));
+    pushCandidate(candidates, seen, path21.join(dataDir, DEFAULT_DATABASE_NAME));
     try {
       const matches = fs19.readdirSync(dataDir).filter((entry) => DATABASE_NAME_PATTERN.test(entry)).sort((left, right) => {
         if (left === DEFAULT_DATABASE_NAME) return -1;
@@ -82858,7 +83092,7 @@ function getOpencodeDatabasePathCandidates(env) {
         return left.localeCompare(right);
       });
       for (const entry of matches) {
-        pushCandidate(candidates, seen, path20.join(dataDir, entry));
+        pushCandidate(candidates, seen, path21.join(dataDir, entry));
       }
     } catch (e2) {
     }
@@ -82902,13 +83136,13 @@ var DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS = [
 ];
 async function prepareOpencodeLaunchArtifacts(params) {
   var _a5, _b3, _c2, _d, _e2, _f2;
-  const artifactsDir = path21.join(
+  const artifactsDir = path22.join(
     params.workspaceRoot,
     CLAUDIAN_STORAGE_PATH,
     (_a5 = params.artifactsSubdir) != null ? _a5 : "opencode"
   );
-  const systemPromptPath = path21.join(artifactsDir, "system.md");
-  const configPath = path21.join(artifactsDir, "config.json");
+  const systemPromptPath = path22.join(artifactsDir, "system.md");
+  const configPath = path22.join(artifactsDir, "config.json");
   const systemPrompt = normalizeSystemPrompt(
     (_b3 = params.systemPromptText) != null ? _b3 : buildSystemPrompt(requireSettings(params))
   );
@@ -82951,7 +83185,7 @@ async function ensureOpencodeDatabaseDirectory(databasePath) {
   if (!databasePath || databasePath === ":memory:") {
     return;
   }
-  await fs20.mkdir(path21.dirname(databasePath), { recursive: true });
+  await fs20.mkdir(path22.dirname(databasePath), { recursive: true });
 }
 function buildOpencodeManagedConfig(baseConfig, systemPromptPath, userName, managedAgents = DEFAULT_OPENCODE_MANAGED_AGENT_CONFIGS, defaultAgentId) {
   const config2 = {
@@ -82997,7 +83231,7 @@ async function loadOpencodeBaseConfig(configuredPath, workspaceRoot) {
     return {};
   }
   const expandedPath = expandHomePath(trimmedPath);
-  const resolvedPath = path21.isAbsolute(expandedPath) ? expandedPath : path21.resolve(workspaceRoot, expandedPath);
+  const resolvedPath = path22.isAbsolute(expandedPath) ? expandedPath : path22.resolve(workspaceRoot, expandedPath);
   try {
     const rawConfig = await fs20.readFile(resolvedPath, "utf8");
     const parsedConfig = JSON.parse(rawConfig);
@@ -83070,8 +83304,8 @@ var StreamChunkQueue = class {
     if (this.closed) {
       return null;
     }
-    return new Promise((resolve8) => {
-      this.waiters.push(resolve8);
+    return new Promise((resolve9) => {
+      this.waiters.push(resolve9);
     });
   }
 };
@@ -83549,7 +83783,7 @@ var OpencodeChatRuntime = class {
       OPENCODE_CONFIG: params.configPath,
       PATH: getEnhancedPath(
         params.runtimeEnv.PATH,
-        path22.isAbsolute(params.command) ? params.command : void 0
+        path23.isAbsolute(params.command) ? params.command : void 0
       )
     };
     this.process = new AcpSubprocess({
@@ -84165,17 +84399,17 @@ var OpencodeChatRuntime = class {
     if (this.supportedCommands.length > 0) {
       return Promise.resolve([...this.supportedCommands]);
     }
-    return new Promise((resolve8) => {
+    return new Promise((resolve9) => {
       const waiter = (commands) => {
         window.clearTimeout(timeoutId);
-        resolve8([...commands]);
+        resolve9([...commands]);
       };
       const timeoutId = window.setTimeout(() => {
         const index = this.supportedCommandWaiters.indexOf(waiter);
         if (index >= 0) {
           this.supportedCommandWaiters.splice(index, 1);
         }
-        resolve8([...this.supportedCommands]);
+        resolve9([...this.supportedCommands]);
       }, timeoutMs);
       this.supportedCommandWaiters.push(waiter);
     });
@@ -84196,17 +84430,17 @@ var OpencodeChatRuntime = class {
   }
   async writeTextFile(request) {
     const resolvedPath = this.resolveSessionPath(request.sessionId, request.path);
-    await fs21.mkdir(path22.dirname(resolvedPath), { recursive: true });
+    await fs21.mkdir(path23.dirname(resolvedPath), { recursive: true });
     await fs21.writeFile(resolvedPath, request.content, "utf-8");
     return {};
   }
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
-    if (path22.isAbsolute(rawPath)) {
+    if (path23.isAbsolute(rawPath)) {
       return rawPath;
     }
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    return path22.resolve(cwd, rawPath);
+    return path23.resolve(cwd, rawPath);
   }
   formatRuntimeError(error48) {
     var _a5;
@@ -85158,7 +85392,7 @@ function maybeGetOpencodeWorkspaceServices() {
 
 // src/providers/opencode/runtime/OpencodeAuxQueryRunner.ts
 var fs23 = __toESM(require("node:fs/promises"));
-var path23 = __toESM(require("node:path"));
+var path24 = __toESM(require("node:path"));
 init_path();
 
 // src/providers/opencode/ui/OpencodeChatUIConfig.ts
@@ -85197,7 +85431,7 @@ var opencodeChatUIConfig = {
     const savedProviderModel = settings11.savedProviderModel && typeof settings11.savedProviderModel === "object" && !Array.isArray(settings11.savedProviderModel) ? settings11.savedProviderModel : null;
     const seenValues = /* @__PURE__ */ new Set();
     const options = [];
-    for (const rawModelId of opencodeSettings.visibleModels) {
+    for (const rawModelId of [...opencodeSettings.visibleModels].reverse()) {
       const encodedModelId = encodeOpencodeModelId(rawModelId);
       pushOption(
         options,
@@ -85666,9 +85900,9 @@ ${stderr}` : message,
   resolveSessionPath(sessionId, rawPath) {
     var _a5, _b3;
     const cwd = (_b3 = (_a5 = this.sessionCwds.get(sessionId)) != null ? _a5 : getVaultPath(this.plugin.app)) != null ? _b3 : process.cwd();
-    const resolvedPath = path23.isAbsolute(rawPath) ? path23.resolve(rawPath) : path23.resolve(cwd, rawPath);
-    const relative4 = path23.relative(cwd, resolvedPath);
-    if (relative4 === "" || !relative4.startsWith("..") && !path23.isAbsolute(relative4)) {
+    const resolvedPath = path24.isAbsolute(rawPath) ? path24.resolve(rawPath) : path24.resolve(cwd, rawPath);
+    const relative4 = path24.relative(cwd, resolvedPath);
+    if (relative4 === "" || !relative4.startsWith("..") && !path24.isAbsolute(relative4)) {
       return resolvedPath;
     }
     throw new Error("OpenCode aux read access is limited to the current workspace.");
@@ -85899,8 +86133,8 @@ var opencodeSettingsReconciler = {
 };
 
 // src/providers/opencode/history/OpencodeHistoryPathResolver.ts
-var os14 = __toESM(require("node:os"));
-var path24 = __toESM(require("node:path"));
+var os12 = __toESM(require("node:os"));
+var path25 = __toESM(require("node:path"));
 function resolveOpencodeDatabasePathHint(persistedPath, context) {
   var _a5, _b3;
   if (!context) {
@@ -85908,10 +86142,10 @@ function resolveOpencodeDatabasePathHint(persistedPath, context) {
   }
   const env = context.environment;
   const configuredPath = resolveOpencodeDatabasePath(env);
-  const home = ((_a5 = env.HOME) == null ? void 0 : _a5.trim()) || ((_b3 = env.USERPROFILE) == null ? void 0 : _b3.trim()) || os14.homedir();
+  const home = ((_a5 = env.HOME) == null ? void 0 : _a5.trim()) || ((_b3 = env.USERPROFILE) == null ? void 0 : _b3.trim()) || os12.homedir();
   const trustedRoots = [
     resolveOpencodeDataDir(env),
-    path24.join(home, "Library", "Application Support", "opencode")
+    path25.join(home, "Library", "Application Support", "opencode")
   ];
   const isTrustedHint = !!persistedPath && (!!configuredPath && isSamePath(persistedPath, configuredPath) || trustedRoots.some((root) => isPathWithinRoot(persistedPath, root)));
   return resolveExistingOpencodeDatabasePath(
@@ -86051,7 +86285,7 @@ async function runSqlite3JsonQuery(databasePath, sql, spawn6) {
   return stdout === null ? null : parseStoredRows(stdout);
 }
 function runBufferedChild(command, args, spawn6) {
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     var _a5;
     let settled = false;
     let size = 0;
@@ -86064,14 +86298,14 @@ function runBufferedChild(command, args, spawn6) {
         windowsHide: true
       });
     } catch (e2) {
-      resolve8(null);
+      resolve9(null);
       return;
     }
     const finish = (value) => {
       if (settled) return;
       settled = true;
       if (timer !== null) window.clearTimeout(timer);
-      resolve8(value);
+      resolve9(value);
     };
     (_a5 = child.stdout) == null ? void 0 : _a5.on("data", (chunk) => {
       const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
@@ -86903,7 +87137,7 @@ var PiRpcTransport = class {
       return Promise.reject(new PiRpcTransportClosedError());
     }
     const id = `req_${this.nextId++}`;
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       let timer;
       const cleanup = () => {
         if (timer !== void 0) {
@@ -86920,7 +87154,7 @@ var PiRpcTransport = class {
       this.pending.set(id, {
         cleanup,
         reject,
-        resolve: (response) => resolve8(response),
+        resolve: (response) => resolve9(response),
         type: commandType
       });
       try {
@@ -87022,7 +87256,7 @@ function isPlainObject9(value) {
 
 // src/providers/pi/runtime/PiSubprocess.ts
 var import_node_child_process3 = require("node:child_process");
-var path25 = __toESM(require("node:path"));
+var path26 = __toESM(require("node:path"));
 init_env();
 var SIGKILL_TIMEOUT_MS3 = 3e3;
 var FINAL_SHUTDOWN_TIMEOUT_MS3 = 3e3;
@@ -87061,7 +87295,7 @@ var PiSubprocess = class {
         ...this.launchSpec.env,
         PATH: getEnhancedPath(
           this.launchSpec.env.PATH,
-          path25.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
+          path26.isAbsolute(this.launchSpec.command) ? this.launchSpec.command : void 0
         )
       },
       stdio: "pipe",
@@ -87099,13 +87333,13 @@ var PiSubprocess = class {
     if (!this.proc || this.proc.exitCode !== null) {
       return;
     }
-    await new Promise((resolve8) => {
+    await new Promise((resolve9) => {
       const proc = this.proc;
       let killTimer = null;
       let finalTimer = null;
       const onClose = () => {
         cleanup();
-        resolve8();
+        resolve9();
       };
       killTimer = window.setTimeout(() => {
         this.killProc(proc, "SIGKILL");
@@ -87446,7 +87680,7 @@ function formatProviderLabel(provider) {
 
 // src/providers/pi/runtime/PiChatRuntime.ts
 var fsp3 = __toESM(require("node:fs/promises"));
-var path27 = __toESM(require("node:path"));
+var path28 = __toESM(require("node:path"));
 init_env();
 init_path();
 
@@ -87470,8 +87704,8 @@ var PI_PROVIDER_CAPABILITIES = Object.freeze({
 var import_node_crypto = require("node:crypto");
 var fs26 = __toESM(require("node:fs"));
 var fsp2 = __toESM(require("node:fs/promises"));
-var os15 = __toESM(require("node:os"));
-var path26 = __toESM(require("node:path"));
+var os13 = __toESM(require("node:os"));
+var path27 = __toESM(require("node:path"));
 
 // src/providers/pi/normalizations/piToolNormalization.ts
 var PI_BUILT_IN_TOOL_NAMES = {
@@ -87693,8 +87927,8 @@ async function createPiForkSessionFile(sourceSessionFile, resumeAt, options = {}
   const timestamp = (_a5 = options.now) != null ? _a5 : /* @__PURE__ */ new Date();
   const timestampText = timestamp.toISOString();
   const sessionId = (_b3 = options.sessionId) != null ? _b3 : (0, import_node_crypto.randomUUID)();
-  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path26.dirname(sourceSessionFile);
-  const sessionFile = path26.join(
+  const sessionDir = (_c2 = options.sessionDir) != null ? _c2 : path27.dirname(sourceSessionFile);
+  const sessionFile = path27.join(
     sessionDir,
     `${timestampText.replace(/[:.]/g, "-")}_${sessionId}.jsonl`
   );
@@ -87726,16 +87960,16 @@ function findPiSessionFile(sessionIdOrFile, cwd, sessionDir) {
   if (!trimmed) {
     return null;
   }
-  if (path26.isAbsolute(trimmed) && fileExists(trimmed)) {
+  if (path27.isAbsolute(trimmed) && fileExists(trimmed)) {
     return trimmed;
   }
   const roots = [
     sessionDir,
-    cwd ? path26.join(cwd, ".pi", "agent", "sessions") : null,
-    path26.join(os15.homedir(), ".pi", "agent", "sessions")
+    cwd ? path27.join(cwd, ".pi", "agent", "sessions") : null,
+    path27.join(os13.homedir(), ".pi", "agent", "sessions")
   ].filter((root) => !!root);
   for (const root of roots) {
-    const direct = path26.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
+    const direct = path27.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
     if (fileExists(direct)) {
       return direct;
     }
@@ -87748,10 +87982,10 @@ function findPiSessionFile(sessionIdOrFile, cwd, sessionDir) {
 }
 function findPiSessionFileInRoot(sessionId, root) {
   const trimmed = sessionId.trim();
-  if (!trimmed || path26.isAbsolute(trimmed) || /[\\/]/.test(trimmed)) {
+  if (!trimmed || path27.isAbsolute(trimmed) || /[\\/]/.test(trimmed)) {
     return null;
   }
-  const direct = path26.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
+  const direct = path27.join(root, trimmed.endsWith(".jsonl") ? trimmed : `${trimmed}.jsonl`);
   if (fileExists(direct)) {
     return direct;
   }
@@ -88024,7 +88258,7 @@ function findSessionFileInRoot(root, sessionId) {
   try {
     const entries = fs26.readdirSync(root, { withFileTypes: true });
     for (const entry of entries) {
-      const candidate = path26.join(root, entry.name);
+      const candidate = path27.join(root, entry.name);
       if (entry.isDirectory()) {
         const nested = findSessionFileInRoot(candidate, sessionId);
         if (nested) {
@@ -88478,8 +88712,8 @@ var StreamChunkQueue2 = class {
     if (this.closed) {
       return null;
     }
-    return new Promise((resolve8) => {
-      this.waiters.push(resolve8);
+    return new Promise((resolve9) => {
+      this.waiters.push(resolve9);
     });
   }
 };
@@ -88919,13 +89153,13 @@ var PiChatRuntime = class {
     let terminalSettled = false;
     let resolveTerminal;
     let rejectTerminal;
-    const terminalPromise = new Promise((resolve8, reject) => {
+    const terminalPromise = new Promise((resolve9, reject) => {
       resolveTerminal = () => {
         if (terminalSettled) {
           return;
         }
         terminalSettled = true;
-        resolve8();
+        resolve9();
       };
       rejectTerminal = (error48) => {
         if (terminalSettled) {
@@ -89259,14 +89493,11 @@ var PiChatRuntime = class {
     };
   }
   getProviderSettings() {
-    const settings11 = ProviderSettingsCoordinator.getProviderSettingsSnapshot(
+    return getProviderSettingsSnapshotWithModel(
       this.plugin.settings,
-      this.providerId
+      this.providerId,
+      this.currentConversationModel
     );
-    if (this.currentConversationModel) {
-      settings11.model = this.currentConversationModel;
-    }
-    return settings11;
   }
   setCurrentConversationModel(model) {
     const selectedModel = typeof model === "string" ? model.trim() : "";
@@ -89339,7 +89570,7 @@ var PiChatRuntime = class {
 ${stderr}` : message;
   }
   isSwitchableSessionFile(sessionFile) {
-    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path27.isAbsolute(sessionFile);
+    return typeof sessionFile === "string" && sessionFile.trim().length > 0 && path28.isAbsolute(sessionFile);
   }
   async switchSession(sessionFile, launchSpec, nextLaunchKey, lifecycleGeneration = this.lifecycleGeneration, conversationGeneration = this.conversationGeneration) {
     var _a5, _b3;
@@ -89530,13 +89761,13 @@ var PiAuxQueryRunner = class {
     let terminalSettled = false;
     let resolveTerminal;
     let rejectTerminal;
-    const terminalPromise = new Promise((resolve8, reject) => {
+    const terminalPromise = new Promise((resolve9, reject) => {
       resolveTerminal = () => {
         if (terminalSettled) {
           return;
         }
         terminalSettled = true;
-        resolve8();
+        resolve9();
       };
       rejectTerminal = (error48) => {
         if (terminalSettled) {
@@ -89740,7 +89971,7 @@ var piChatUIConfig = {
     const savedProviderModel = settings11.savedProviderModel && typeof settings11.savedProviderModel === "object" && !Array.isArray(settings11.savedProviderModel) ? settings11.savedProviderModel : null;
     const options = [];
     const seen = /* @__PURE__ */ new Set();
-    for (const encodedId of piSettings.visibleModels) {
+    for (const encodedId of [...piSettings.visibleModels].reverse()) {
       pushOption2(
         options,
         seen,
@@ -89801,18 +90032,8 @@ var piChatUIConfig = {
   isDefaultModel(model) {
     return isPiModelSelectionId(model);
   },
-  applyModelDefaults(model, settings11) {
-    if (!settings11 || typeof settings11 !== "object" || Array.isArray(settings11)) {
-      return;
-    }
-    const settingsBag = settings11;
-    if (!decodePiModelId(model)) {
-      settingsBag.effortLevel = "off";
-      return;
-    }
-    settingsBag.model = model;
-    settingsBag.effortLevel = getPiDefaultReasoningValue(model, settingsBag);
-  },
+  applyModelDefaults: applyPiModelDefaults,
+  applyModelProjectionDefaults: applyPiModelProjectionDefaults,
   applyReasoningSelection(model, value, settings11) {
     var _a5, _b3;
     if (!settings11 || typeof settings11 !== "object" || Array.isArray(settings11)) {
@@ -89873,6 +90094,28 @@ function getCachedModel(model, settings11) {
     return null;
   }
   return (_a5 = getPiProviderSettings(settings11).discoveredModels.find((entry) => entry.encodedId === model)) != null ? _a5 : null;
+}
+function applyPiModelDefaults(model, settings11) {
+  if (!settings11 || typeof settings11 !== "object" || Array.isArray(settings11)) {
+    return;
+  }
+  const settingsBag = settings11;
+  if (!decodePiModelId(model)) {
+    settingsBag.effortLevel = "off";
+    return;
+  }
+  settingsBag.model = model;
+  settingsBag.effortLevel = getPiDefaultReasoningValue(model, settingsBag);
+}
+function applyPiModelProjectionDefaults(model, settings11) {
+  if (!settings11 || typeof settings11 !== "object" || Array.isArray(settings11)) {
+    return;
+  }
+  const settingsBag = settings11;
+  const preferredThinkingLevel = getPiProviderSettings(settingsBag).preferredThinkingByModel[model];
+  if (preferredThinkingLevel) {
+    settingsBag.effortLevel = preferredThinkingLevel;
+  }
 }
 function getPiDefaultReasoningValue(model, settings11) {
   const piModel = getCachedModel(model, settings11);
@@ -90044,12 +90287,12 @@ function getDefaultPiEffortForSelection(selection, piSettings) {
 var fs27 = __toESM(require("node:fs/promises"));
 
 // src/providers/pi/history/PiHistoryPathResolver.ts
-var os16 = __toESM(require("node:os"));
-var path28 = __toESM(require("node:path"));
+var os14 = __toESM(require("node:os"));
+var path29 = __toESM(require("node:path"));
 function getConfiguredSessionDir(context) {
   var _a5;
   const configured = (_a5 = context.environment.PI_CODING_AGENT_SESSION_DIR) == null ? void 0 : _a5.trim();
-  return configured && path28.isAbsolute(configured) ? configured : null;
+  return configured && path29.isAbsolute(configured) ? configured : null;
 }
 function getTrustedRoots(vaultPath, context) {
   var _a5, _b3, _c2;
@@ -90059,21 +90302,21 @@ function getTrustedRoots(vaultPath, context) {
     roots.push(configuredSessionDir);
   }
   const configuredAgentDir = (_a5 = context.environment.PI_CODING_AGENT_DIR) == null ? void 0 : _a5.trim();
-  if (configuredAgentDir && path28.isAbsolute(configuredAgentDir)) {
-    roots.push(path28.join(configuredAgentDir, "sessions"));
+  if (configuredAgentDir && path29.isAbsolute(configuredAgentDir)) {
+    roots.push(path29.join(configuredAgentDir, "sessions"));
   }
   if (vaultPath) {
-    const vaultSessionRoot = path28.join(vaultPath, ".pi", "agent", "sessions");
+    const vaultSessionRoot = path29.join(vaultPath, ".pi", "agent", "sessions");
     if (isPathWithinRoot(vaultSessionRoot, vaultPath)) {
       roots.push(vaultSessionRoot);
     }
   }
-  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os16.homedir();
-  roots.push(path28.join(home, ".pi", "agent", "sessions"));
+  const home = ((_b3 = context.environment.HOME) == null ? void 0 : _b3.trim()) || ((_c2 = context.environment.USERPROFILE) == null ? void 0 : _c2.trim()) || os14.homedir();
+  roots.push(path29.join(home, ".pi", "agent", "sessions"));
   return [...new Set(roots)];
 }
 function isLogicalSessionId(value) {
-  return typeof value === "string" && value.trim().length > 0 && !path28.isAbsolute(value) && !/[\\/]/.test(value);
+  return typeof value === "string" && value.trim().length > 0 && !path29.isAbsolute(value) && !/[\\/]/.test(value);
 }
 function resolvePiSessionFileHint(persistedPath, logicalSessionId, vaultPath, context) {
   if (!context) {
@@ -90280,8 +90523,8 @@ var PiExtensionModal = class extends import_obsidian25.Modal {
     this.request = request;
     this.signal = signal;
     this.done = false;
-    this.resultPromise = new Promise((resolve8) => {
-      this.resolve = resolve8;
+    this.resultPromise = new Promise((resolve9) => {
+      this.resolve = resolve9;
     });
   }
   openAndWait() {
@@ -90516,7 +90759,12 @@ var ConversationRepository = class {
     const conversation = this.conversations[index];
     this.conversations.splice(index, 1);
     if (options.deleteProviderSession !== false) {
-      await ProviderRegistry.getConversationHistoryService(conversation.providerId).deleteConversationSession(conversation, this.deps.getVaultPath());
+      const vaultPath = this.deps.getVaultPath();
+      await ProviderRegistry.getConversationHistoryService(conversation.providerId).deleteConversationSession(
+        conversation,
+        vaultPath,
+        this.getHistoryPathContext(conversation.providerId, vaultPath)
+      );
     }
     await this.deps.sessions.deleteMetadata(id);
     await this.deps.onConversationDeleted(id);
@@ -90529,11 +90777,13 @@ var ConversationRepository = class {
     const previousSessionId = conversation.sessionId;
     const previousProviderState = conversation.providerState;
     const previousResumeAtMessageId = conversation.resumeAtMessageId;
+    const vaultPath = this.deps.getVaultPath();
     try {
       const resolution = await historyService.resolveMissingConversationSession(
         conversation,
-        this.deps.getVaultPath(),
-        missingProviderSessionId
+        vaultPath,
+        missingProviderSessionId,
+        this.getHistoryPathContext(conversation.providerId, vaultPath)
       );
       if (resolution === "delete") {
         await this.delete(id, { deleteProviderSession: false });
@@ -90611,11 +90861,14 @@ var ConversationRepository = class {
   async reconcileProviderSession(conversation) {
     const historyService = ProviderRegistry.getConversationHistoryService(conversation.providerId);
     if (!historyService.getConversationSessionAvailability) return;
+    const vaultPath = this.deps.getVaultPath();
+    const pathContext = this.getHistoryPathContext(conversation.providerId, vaultPath);
     let availability;
     try {
       availability = await historyService.getConversationSessionAvailability(
         conversation,
-        this.deps.getVaultPath()
+        vaultPath,
+        pathContext
       );
     } catch (e2) {
       return;
@@ -90625,7 +90878,11 @@ var ConversationRepository = class {
     const previousProviderState = conversation.providerState;
     const previousResumeAtMessageId = conversation.resumeAtMessageId;
     try {
-      if (await historyService.prepareRelocatedConversationSession(conversation, this.deps.getVaultPath())) {
+      if (await historyService.prepareRelocatedConversationSession(
+        conversation,
+        vaultPath,
+        pathContext
+      )) {
         await this.save(conversation);
       }
     } catch (e2) {
@@ -90645,17 +90902,24 @@ var ConversationRepository = class {
     await this.save(conversation);
   }
   async hydrate(conversation) {
-    const settings11 = this.deps.getSettings();
     const vaultPath = this.deps.getVaultPath();
-    await ProviderRegistry.getConversationHistoryService(conversation.providerId).hydrateConversationHistory(conversation, vaultPath, {
+    await ProviderRegistry.getConversationHistoryService(conversation.providerId).hydrateConversationHistory(
+      conversation,
+      vaultPath,
+      this.getHistoryPathContext(conversation.providerId, vaultPath)
+    );
+  }
+  getHistoryPathContext(providerId, vaultPath = this.deps.getVaultPath()) {
+    const settings11 = this.deps.getSettings();
+    return {
       environment: {
         ...process.env,
-        ...getRuntimeEnvironmentVariables(settings11, conversation.providerId)
+        ...getRuntimeEnvironmentVariables(settings11, providerId)
       },
       hostPlatform: process.platform,
       settings: settings11,
       vaultPath
-    });
+    };
   }
   save(conversation) {
     return this.deps.sessions.saveMetadata(this.deps.sessions.toSessionMetadata(conversation));
@@ -91312,35 +91576,16 @@ var SlashCommandDropdown = class {
 init_env();
 init_path();
 
-// src/features/chat/controllers/contextRowVisibility.ts
-function updateContextRowHasContent(contextRowEl) {
-  const editorIndicator = contextRowEl.querySelector(".claudian-selection-indicator");
-  const browserIndicator = contextRowEl.querySelector(".claudian-browser-selection-indicator");
-  const canvasIndicator = contextRowEl.querySelector(".claudian-canvas-indicator");
-  const fileIndicator = contextRowEl.querySelector(".claudian-file-indicator");
-  const imagePreview = contextRowEl.querySelector(".claudian-image-preview");
-  const hasEditorSelection = !!editorIndicator && !editorIndicator.hasClass("claudian-hidden");
-  const hasBrowserSelection = !!browserIndicator && !browserIndicator.hasClass("claudian-hidden");
-  const hasCanvasSelection = !!canvasIndicator && !canvasIndicator.hasClass("claudian-hidden");
-  const hasFileChips = !!fileIndicator && fileIndicator.hasClass("claudian-visible-flex");
-  const hasImageChips = !!imagePreview && imagePreview.hasClass("claudian-visible-flex");
-  contextRowEl.classList.toggle(
-    "has-content",
-    hasEditorSelection || hasBrowserSelection || hasCanvasSelection || hasFileChips || hasImageChips
-  );
-}
-
 // src/features/chat/controllers/BrowserSelectionController.ts
 var BROWSER_SELECTION_POLL_INTERVAL = 250;
 var BrowserSelectionController = class {
-  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange) {
+  constructor(app, contextTray, inputEl, onVisibilityChange) {
     this.storedSelection = null;
     this.pollInterval = null;
     this.pollInFlight = false;
     this.app = app;
-    this.indicatorEl = indicatorEl;
+    this.contextTray = contextTray;
     this.inputEl = inputEl;
-    this.contextRowEl = contextRowEl;
     this.onVisibilityChange = onVisibilityChange != null ? onVisibilityChange : null;
   }
   start() {
@@ -91508,37 +91753,25 @@ var BrowserSelectionController = class {
     }
   }
   updateIndicator() {
-    if (!this.indicatorEl) return;
     if (this.storedSelection) {
       const lineCount = this.storedSelection.selectedText.split(/\r?\n/).length;
       const lineLabel = lineCount === 1 ? "line" : "lines";
-      this.indicatorEl.textContent = `${lineCount} ${lineLabel} selected`;
-      this.indicatorEl.setAttribute("title", this.buildIndicatorTitle());
-      this.indicatorEl.removeClass("claudian-hidden");
+      const label = `${lineCount} ${lineLabel} selected`;
+      this.contextTray.setItems("browser-selection", [{
+        id: "browser-selection",
+        kind: "selection",
+        label,
+        icon: "globe",
+        ariaLabel: label,
+        onRemove: () => this.clear()
+      }]);
     } else {
-      this.indicatorEl.addClass("claudian-hidden");
-      this.indicatorEl.textContent = "";
-      this.indicatorEl.removeAttribute("title");
+      this.contextTray.clearItems("browser-selection");
     }
     this.updateContextRowVisibility();
   }
-  buildIndicatorTitle() {
-    if (!this.storedSelection) return "";
-    const charCount = this.storedSelection.selectedText.length;
-    const charLabel = charCount === 1 ? "char" : "chars";
-    const lines = [`${charCount} ${charLabel} selected`, `source=${this.storedSelection.source}`];
-    if (this.storedSelection.title) {
-      lines.push(`title=${this.storedSelection.title}`);
-    }
-    if (this.storedSelection.url) {
-      lines.push(this.storedSelection.url);
-    }
-    return lines.join("\n");
-  }
   updateContextRowVisibility() {
     var _a5;
-    if (!this.contextRowEl) return;
-    updateContextRowHasContent(this.contextRowEl);
     (_a5 = this.onVisibilityChange) == null ? void 0 : _a5.call(this);
   }
   getContext() {
@@ -91556,13 +91789,12 @@ var BrowserSelectionController = class {
 // src/features/chat/controllers/CanvasSelectionController.ts
 var CANVAS_POLL_INTERVAL = 250;
 var CanvasSelectionController = class {
-  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange) {
+  constructor(app, contextTray, inputEl, onVisibilityChange) {
     this.storedSelection = null;
     this.pollInterval = null;
     this.app = app;
-    this.indicatorEl = indicatorEl;
+    this.contextTray = contextTray;
     this.inputEl = inputEl;
-    this.contextRowEl = contextRowEl;
     this.onVisibilityChange = onVisibilityChange != null ? onVisibilityChange : null;
   }
   start() {
@@ -91616,20 +91848,25 @@ var CanvasSelectionController = class {
     return leaf ? leaf.view : null;
   }
   updateIndicator() {
-    if (!this.indicatorEl) return;
     if (this.storedSelection) {
       const { nodeIds } = this.storedSelection;
-      this.indicatorEl.textContent = nodeIds.length === 1 ? `node "${nodeIds[0]}" selected` : `${nodeIds.length} nodes selected`;
-      this.indicatorEl.removeClass("claudian-hidden");
+      const nodeLabel = nodeIds.length === 1 ? "1 node" : `${nodeIds.length} nodes`;
+      const label = `${nodeLabel} selected`;
+      this.contextTray.setItems("canvas-selection", [{
+        id: "canvas-selection",
+        kind: "selection",
+        label,
+        icon: "network",
+        ariaLabel: label,
+        onRemove: () => this.clear()
+      }]);
     } else {
-      this.indicatorEl.addClass("claudian-hidden");
+      this.contextTray.clearItems("canvas-selection");
     }
     this.updateContextRowVisibility();
   }
   updateContextRowVisibility() {
     var _a5;
-    if (!this.contextRowEl) return;
-    updateContextRowHasContent(this.contextRowEl);
     (_a5 = this.onVisibilityChange) == null ? void 0 : _a5.call(this);
   }
   getContext() {
@@ -93128,7 +93365,7 @@ var FLAVOR_TEXTS = [
 var HINTS_TEXT = "Enter to select \xB7 Tab/Arrow keys to navigate \xB7 Esc to cancel";
 var HINTS_TEXT_IMMEDIATE = "Enter to select \xB7 Arrow keys to navigate \xB7 Esc to cancel";
 var InlineAskUserQuestion = class {
-  constructor(containerEl, input, resolve8, signal, config2) {
+  constructor(containerEl, input, resolve9, signal, config2) {
     this.resolved = false;
     this.questions = [];
     this.answers = /* @__PURE__ */ new Map();
@@ -93142,7 +93379,7 @@ var InlineAskUserQuestion = class {
     var _a5, _b3, _c2;
     this.containerEl = containerEl;
     this.input = input;
-    this.resolveCallback = resolve8;
+    this.resolveCallback = resolve9;
     this.signal = signal;
     this.config = {
       title: (_a5 = config2 == null ? void 0 : config2.title) != null ? _a5 : "Question",
@@ -93572,6 +93809,7 @@ var InlineAskUserQuestion = class {
   }
   handleKeyDown(e2) {
     var _a5, _b3, _c2;
+    if (e2.isComposing) return;
     if (this.isInputFocused) {
       if (e2.key === "Escape") {
         e2.preventDefault();
@@ -93711,7 +93949,7 @@ var fs28 = __toESM(require("fs"));
 var nodePath = __toESM(require("path"));
 var HINTS_TEXT2 = "Arrow keys to navigate \xB7 Enter to select \xB7 Esc to cancel";
 var InlineExitPlanMode = class {
-  constructor(containerEl, input, resolve8, signal, renderContent, planPathPrefix) {
+  constructor(containerEl, input, resolve9, signal, renderContent, planPathPrefix) {
     this.resolved = false;
     this.planContent = null;
     this.planReadError = null;
@@ -93721,7 +93959,7 @@ var InlineExitPlanMode = class {
     this.abortHandler = null;
     this.containerEl = containerEl;
     this.input = input;
-    this.resolveCallback = resolve8;
+    this.resolveCallback = resolve9;
     this.signal = signal;
     this.renderContent = renderContent;
     this.planPathPrefix = planPathPrefix;
@@ -93838,6 +94076,7 @@ ${this.planContent}`;
     return "Implement the approved plan.";
   }
   handleKeyDown(e2) {
+    if (e2.isComposing) return;
     if (this.isInputFocused) {
       if (e2.key === "Escape") {
         e2.preventDefault();
@@ -93935,13 +94174,13 @@ ${this.planContent}`;
 // src/features/chat/rendering/InlinePlanApproval.ts
 var HINTS_TEXT3 = "Arrow keys to navigate \xB7 Enter to select \xB7 Esc to cancel";
 var InlinePlanApproval = class {
-  constructor(containerEl, resolve8) {
+  constructor(containerEl, resolve9) {
     this.resolved = false;
     this.focusedIndex = 0;
     this.items = [];
     this.isInputFocused = false;
     this.containerEl = containerEl;
-    this.resolveCallback = resolve8;
+    this.resolveCallback = resolve9;
     this.boundKeyDown = (event) => this.handleKeyDown(event);
   }
   render() {
@@ -94000,6 +94239,7 @@ var InlinePlanApproval = class {
     this.handleResolve(null);
   }
   handleKeyDown(e2) {
+    if (e2.isComposing) return;
     if (this.isInputFocused) {
       if (e2.key === "Escape") {
         e2.preventDefault();
@@ -94664,10 +94904,10 @@ function renderApplyPatchExpanded(container, input, result) {
     for (const change of changes) {
       if (!change || typeof change !== "object" || Array.isArray(change)) continue;
       const changeRecord = change;
-      const path32 = typeof changeRecord.path === "string" ? changeRecord.path : "";
-      if (!path32) continue;
+      const path33 = typeof changeRecord.path === "string" ? changeRecord.path : "";
+      if (!path33) continue;
       const movedTo = readMoveTarget(changeRecord.kind);
-      const pathText = movedTo ? `${path32} -> ${movedTo}` : path32;
+      const pathText = movedTo ? `${path33} -> ${movedTo}` : path33;
       linesEl.createDiv({ cls: "claudian-tool-line", text: pathText });
     }
     return;
@@ -96289,14 +96529,14 @@ var InputController = class {
   showInlineQuestion(parentEl, inputContainerEl, input, setPending, signal, config2) {
     this.deps.streamController.hideThinkingIndicator();
     this.hideInputContainer(inputContainerEl);
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       const inline = new InlineAskUserQuestion(
         parentEl,
         input,
         (result) => {
           setPending(null);
           this.restoreInputContainer(inputContainerEl);
-          resolve8(result);
+          resolve9(result);
         },
         signal,
         config2
@@ -96323,14 +96563,14 @@ var InputController = class {
     const enrichedInput = state.planFilePath ? { ...input, planFilePath: state.planFilePath } : input;
     const renderContent = (el2, markdown) => this.deps.renderer.renderContent(el2, markdown);
     const planPathPrefix = this.getActiveCapabilities().planPathPrefix;
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       const inline = new InlineExitPlanMode(
         parentEl,
         enrichedInput,
         (decision) => {
           this.pendingExitPlanModeInline = null;
           this.restoreInputContainer(inputContainerEl);
-          resolve8(decision);
+          resolve9(decision);
         },
         signal,
         renderContent,
@@ -96373,7 +96613,7 @@ var InputController = class {
     }
     this.hideInputContainer(inputContainerEl);
     this.pendingPlanApprovalInvalidated = false;
-    return new Promise((resolve8, reject) => {
+    return new Promise((resolve9, reject) => {
       const inline = new InlinePlanApproval(
         parentEl,
         (decision) => {
@@ -96381,7 +96621,7 @@ var InputController = class {
           this.pendingPlanApprovalInvalidated = false;
           this.pendingPlanApproval = null;
           this.restoreInputContainer(inputContainerEl);
-          resolve8({ decision, invalidated });
+          resolve9({ decision, invalidated });
         }
       );
       this.pendingPlanApproval = inline;
@@ -96719,7 +96959,7 @@ var SELECTION_POLL_INTERVAL = 250;
 var INPUT_HANDOFF_GRACE_MS = 1500;
 var HIGHLIGHT_KEY = "claudian-selection";
 var SelectionController = class {
-  constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange, focusScopeEl) {
+  constructor(app, contextTray, inputEl, onVisibilityChange, focusScopeEl) {
     this.storedSelection = null;
     this.inputHandoffGraceUntil = null;
     this.pollInterval = null;
@@ -96733,10 +96973,9 @@ var SelectionController = class {
       this.showHighlight();
     };
     this.app = app;
-    this.indicatorEl = indicatorEl;
+    this.contextTray = contextTray;
     this.inputEl = inputEl;
     this.focusScopeEls = this.normalizeFocusScopes(focusScopeEl);
-    this.contextRowEl = contextRowEl;
     this.onVisibilityChange = onVisibilityChange != null ? onVisibilityChange : null;
   }
   start() {
@@ -96989,20 +97228,24 @@ var SelectionController = class {
   // Indicator
   // ============================================
   updateIndicator() {
-    if (!this.indicatorEl) return;
     if (this.storedSelection) {
       const lineText = this.storedSelection.lineCount === 1 ? "line" : "lines";
-      this.indicatorEl.textContent = `${this.storedSelection.lineCount} ${lineText} selected`;
-      this.indicatorEl.removeClass("claudian-hidden");
+      const label = `${this.storedSelection.lineCount} ${lineText} selected`;
+      this.contextTray.setItems("editor-selection", [{
+        id: "editor-selection",
+        kind: "selection",
+        label,
+        icon: "text-select",
+        ariaLabel: label,
+        onRemove: () => this.clear()
+      }]);
     } else {
-      this.indicatorEl.addClass("claudian-hidden");
+      this.contextTray.clearItems("editor-selection");
     }
     this.updateContextRowVisibility();
   }
   updateContextRowVisibility() {
     var _a5;
-    if (!this.contextRowEl) return;
-    updateContextRowHasContent(this.contextRowEl);
     (_a5 = this.onVisibilityChange) == null ? void 0 : _a5.call(this);
   }
   // ============================================
@@ -98302,8 +98545,8 @@ var _StreamController = class _StreamController {
   }
   scheduleCurrentTextRender() {
     if (!this.pendingTextRenderPromise) {
-      this.pendingTextRenderPromise = new Promise((resolve8) => {
-        this.resolvePendingTextRender = resolve8;
+      this.pendingTextRenderPromise = new Promise((resolve9) => {
+        this.resolvePendingTextRender = resolve9;
       });
     }
     if (this.pendingTextRenderFrame === null && !this.isTextRenderRunning) {
@@ -98351,20 +98594,20 @@ var _StreamController = class _StreamController {
       }, this.getStreamingRenderWindow());
       return;
     }
-    const resolve8 = this.resolvePendingTextRender;
+    const resolve9 = this.resolvePendingTextRender;
     this.pendingTextRenderPromise = null;
     this.resolvePendingTextRender = null;
-    resolve8 == null ? void 0 : resolve8();
+    resolve9 == null ? void 0 : resolve9();
   }
   cancelPendingTextRender() {
     if (this.pendingTextRenderFrame !== null) {
       cancelScheduledAnimationFrame(this.pendingTextRenderFrame);
       this.pendingTextRenderFrame = null;
     }
-    const resolve8 = this.resolvePendingTextRender;
+    const resolve9 = this.resolvePendingTextRender;
     this.pendingTextRenderPromise = null;
     this.resolvePendingTextRender = null;
-    resolve8 == null ? void 0 : resolve8();
+    resolve9 == null ? void 0 : resolve9();
   }
   scheduleToolOutputRender(toolId, toolCall) {
     if (this.pendingToolOutputFrames.has(toolId)) return;
@@ -98424,8 +98667,8 @@ var _StreamController = class _StreamController {
   }
   scheduleCurrentThinkingRender() {
     if (!this.pendingThinkingRenderPromise) {
-      this.pendingThinkingRenderPromise = new Promise((resolve8) => {
-        this.resolvePendingThinkingRender = resolve8;
+      this.pendingThinkingRenderPromise = new Promise((resolve9) => {
+        this.resolvePendingThinkingRender = resolve9;
       });
     }
     if (this.pendingThinkingRenderFrame === null && !this.isThinkingRenderRunning) {
@@ -98474,20 +98717,20 @@ var _StreamController = class _StreamController {
       }, this.getThinkingRenderWindow());
       return;
     }
-    const resolve8 = this.resolvePendingThinkingRender;
+    const resolve9 = this.resolvePendingThinkingRender;
     this.pendingThinkingRenderPromise = null;
     this.resolvePendingThinkingRender = null;
-    resolve8 == null ? void 0 : resolve8();
+    resolve9 == null ? void 0 : resolve9();
   }
   cancelPendingThinkingRender() {
     if (this.pendingThinkingRenderFrame !== null) {
       cancelScheduledAnimationFrame(this.pendingThinkingRenderFrame);
       this.pendingThinkingRenderFrame = null;
     }
-    const resolve8 = this.resolvePendingThinkingRender;
+    const resolve9 = this.resolvePendingThinkingRender;
     this.pendingThinkingRenderPromise = null;
     this.resolvePendingThinkingRender = null;
-    resolve8 == null ? void 0 : resolve8();
+    resolve9 == null ? void 0 : resolve9();
   }
   // ============================================
   // Subagent Tool Handling (via SubagentManager)
@@ -99183,9 +99426,9 @@ var IMAGE_EXTENSIONS2 = /* @__PURE__ */ new Set([
   "ico"
 ]);
 var IMAGE_EMBED_PATTERN = /!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
-function isImagePath(path32) {
+function isImagePath(path33) {
   var _a5;
-  const ext = (_a5 = path32.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
+  const ext = (_a5 = path33.split(".").pop()) == null ? void 0 : _a5.toLowerCase();
   return ext ? IMAGE_EXTENSIONS2.has(ext) : false;
 }
 function resolveImageFile(app, imagePath, options) {
@@ -99994,7 +100237,7 @@ var BangBashService = class {
     this.enhancedPath = enhancedPath;
   }
   execute(command) {
-    return new Promise((resolve8) => {
+    return new Promise((resolve9) => {
       (0, import_child_process9.exec)(command, {
         cwd: this.cwd,
         env: { ...process.env, PATH: this.enhancedPath },
@@ -100004,7 +100247,7 @@ var BangBashService = class {
       }, (error48, stdout, stderr) => {
         if (error48 && "killed" in error48 && error48.killed) {
           const isMaxBuffer = "code" in error48 && error48.code === "ERR_CHILD_PROCESS_STDIO_MAXBUFFER";
-          resolve8({
+          resolve9({
             command,
             stdout: stdout != null ? stdout : "",
             stderr: stderr != null ? stderr : "",
@@ -100013,7 +100256,7 @@ var BangBashService = class {
           });
           return;
         }
-        resolve8({
+        resolve9({
           command,
           stdout: stdout != null ? stdout : "",
           stderr: stderr != null ? stderr : "",
@@ -101287,11 +101530,206 @@ var BangBashModeManager = class {
   }
 };
 
+// src/features/chat/ui/ComposerContextTray.ts
+var import_obsidian39 = require("obsidian");
+var SLOT_ORDER = [
+  "current-note",
+  "editor-selection",
+  "browser-selection",
+  "canvas-selection",
+  "images"
+];
+var MAX_COLLAPSED_ROWS = 1;
+var ROW_OVERLAP_TOLERANCE = 1;
+var ComposerContextTray = class {
+  constructor(containerEl, options = {}) {
+    this.itemsBySlot = /* @__PURE__ */ new Map();
+    this.resizeObserver = null;
+    this.pendingLayout = null;
+    this.expanded = false;
+    this.containerEl = containerEl;
+    this.options = options;
+    this.containerEl.addClass("claudian-context-row");
+    this.observeSize();
+    this.render();
+  }
+  setItems(slot, items) {
+    if (items.length === 0) {
+      this.itemsBySlot.delete(slot);
+    } else {
+      this.itemsBySlot.set(slot, [...items]);
+    }
+    this.expanded = false;
+    this.render();
+  }
+  clearItems(slot) {
+    if (!this.itemsBySlot.delete(slot)) return;
+    this.expanded = false;
+    this.render();
+  }
+  refreshLayout() {
+    const chips = Array.from(
+      this.containerEl.querySelectorAll(".claudian-context-chip")
+    );
+    const moreButton = this.containerEl.querySelector(".claudian-context-more");
+    if (!moreButton || chips.length === 0) return;
+    for (const chip of chips) {
+      chip.removeClass("claudian-context-chip--overflow-hidden");
+    }
+    moreButton.addClass("claudian-hidden");
+    const rows = this.getRows(chips);
+    const hasOverflow = rows.length > MAX_COLLAPSED_ROWS;
+    if (!hasOverflow) {
+      this.expanded = false;
+      this.containerEl.removeClass("claudian-context-row--expanded");
+      moreButton.setAttribute("aria-expanded", "false");
+      return;
+    }
+    moreButton.removeClass("claudian-hidden");
+    if (this.expanded) {
+      this.containerEl.addClass("claudian-context-row--expanded");
+      moreButton.textContent = "Show less";
+      moreButton.setAttribute("aria-expanded", "true");
+      return;
+    }
+    this.containerEl.removeClass("claudian-context-row--expanded");
+    moreButton.setAttribute("aria-expanded", "false");
+    const lastVisibleRow = rows[MAX_COLLAPSED_ROWS - 1];
+    let visibleCount = lastVisibleRow.lastIndex + 1;
+    for (let index = visibleCount; index < chips.length; index++) {
+      chips[index].addClass("claudian-context-chip--overflow-hidden");
+    }
+    const minimumVisibleCount = Math.max(1, lastVisibleRow.firstIndex);
+    while (visibleCount > minimumVisibleCount && moreButton.offsetTop >= lastVisibleRow.bottom) {
+      visibleCount -= 1;
+      chips[visibleCount].addClass("claudian-context-chip--overflow-hidden");
+    }
+    const hiddenCount = chips.length - visibleCount;
+    moreButton.textContent = `+${hiddenCount} more`;
+    moreButton.setAttribute("aria-label", `Show ${hiddenCount} more context items`);
+  }
+  destroy() {
+    var _a5;
+    if (this.pendingLayout) {
+      cancelScheduledAnimationFrame(this.pendingLayout);
+      this.pendingLayout = null;
+    }
+    (_a5 = this.resizeObserver) == null ? void 0 : _a5.disconnect();
+    this.resizeObserver = null;
+    this.itemsBySlot.clear();
+    this.containerEl.empty();
+    this.containerEl.removeClass("has-content");
+    this.containerEl.removeClass("claudian-context-row--expanded");
+  }
+  render() {
+    var _a5, _b3;
+    this.containerEl.empty();
+    this.containerEl.removeClass("claudian-context-row--expanded");
+    const entries = SLOT_ORDER.flatMap(
+      (slot) => {
+        var _a6;
+        return ((_a6 = this.itemsBySlot.get(slot)) != null ? _a6 : []).map((item) => ({ item, slot }));
+      }
+    );
+    this.containerEl.toggleClass("has-content", entries.length > 0);
+    for (const { item, slot } of entries) {
+      this.renderItem(slot, item);
+    }
+    if (entries.length > 0) {
+      const moreButton = this.containerEl.createEl("button", {
+        cls: "claudian-context-more claudian-hidden",
+        attr: {
+          type: "button",
+          "aria-expanded": "false"
+        }
+      });
+      moreButton.addEventListener("click", () => {
+        var _a6, _b4;
+        this.expanded = !this.expanded;
+        this.refreshLayout();
+        (_b4 = (_a6 = this.options).onDidChange) == null ? void 0 : _b4.call(_a6);
+      });
+    }
+    (_b3 = (_a5 = this.options).onDidChange) == null ? void 0 : _b3.call(_a5);
+    this.scheduleLayout();
+  }
+  renderItem(slot, item) {
+    var _a5, _b3;
+    const chipEl = this.containerEl.createDiv({
+      cls: `claudian-context-chip claudian-context-chip--${item.kind}`
+    });
+    chipEl.dataset.contextSlot = slot;
+    chipEl.dataset.contextId = item.id;
+    const contentEl = item.onActivate ? chipEl.createEl("button", {
+      cls: "claudian-context-chip-main",
+      attr: { type: "button" }
+    }) : chipEl.createSpan({ cls: "claudian-context-chip-main" });
+    if (item.title) {
+      contentEl.setAttribute("title", item.title);
+    }
+    contentEl.setAttribute("aria-label", (_a5 = item.ariaLabel) != null ? _a5 : item.label);
+    if (item.onActivate) {
+      contentEl.addEventListener("click", item.onActivate);
+    }
+    if (item.icon) {
+      const iconEl = contentEl.createSpan({ cls: "claudian-context-chip-icon" });
+      (0, import_obsidian39.setIcon)(iconEl, item.icon);
+    }
+    contentEl.createSpan({ cls: "claudian-context-chip-label", text: item.label });
+    if (item.onRemove) {
+      const removeButton = chipEl.createEl("button", {
+        cls: "claudian-context-chip-remove",
+        text: "\xD7",
+        attr: {
+          type: "button",
+          "aria-label": `Remove ${(_b3 = item.ariaLabel) != null ? _b3 : item.label}`
+        }
+      });
+      removeButton.addEventListener("click", item.onRemove);
+    }
+  }
+  getRows(chips) {
+    const rows = [];
+    for (const [index, chip] of chips.entries()) {
+      const top = chip.offsetTop;
+      const height = chip.offsetHeight > 0 ? chip.offsetHeight : 1;
+      const bottom = top + height;
+      const row = rows.find(
+        (candidate) => top < candidate.bottom + ROW_OVERLAP_TOLERANCE && bottom > candidate.top - ROW_OVERLAP_TOLERANCE
+      );
+      if (row) {
+        row.top = Math.min(row.top, top);
+        row.bottom = Math.max(row.bottom, bottom);
+        row.lastIndex = index;
+      } else {
+        rows.push({ top, bottom, firstIndex: index, lastIndex: index });
+      }
+    }
+    return rows.sort((left, right) => left.top - right.top);
+  }
+  scheduleLayout() {
+    if (this.pendingLayout) {
+      cancelScheduledAnimationFrame(this.pendingLayout);
+    }
+    this.pendingLayout = scheduleAnimationFrame(() => {
+      this.pendingLayout = null;
+      this.refreshLayout();
+    }, this.containerEl.ownerDocument.defaultView);
+  }
+  observeSize() {
+    var _a5;
+    const ResizeObserverConstructor = (_a5 = this.containerEl.ownerDocument.defaultView) == null ? void 0 : _a5.ResizeObserver;
+    if (typeof ResizeObserverConstructor !== "function") return;
+    this.resizeObserver = new ResizeObserverConstructor(() => this.scheduleLayout());
+    this.resizeObserver.observe(this.containerEl);
+  }
+};
+
 // src/features/chat/ui/FileContext.ts
 var import_obsidian42 = require("obsidian");
 
 // src/shared/mention/MentionDropdownController.ts
-var import_obsidian39 = require("obsidian");
+var import_obsidian40 = require("obsidian");
 
 // src/utils/externalContext.ts
 var fs29 = __toESM(require("fs"));
@@ -101383,7 +101821,7 @@ function isDuplicatePath(newPath, existingPaths) {
 
 // src/utils/externalContextScanner.ts
 var fs30 = __toESM(require("fs"));
-var path29 = __toESM(require("path"));
+var path30 = __toESM(require("path"));
 init_path();
 var CACHE_TTL_MS = 3e4;
 var MAX_FILES_PER_PATH = 1e3;
@@ -101437,7 +101875,7 @@ var ExternalContextScanner = class {
         if (entry.name.startsWith(".")) continue;
         if (SKIP_DIRECTORIES.has(entry.name)) continue;
         if (entry.isSymbolicLink()) continue;
-        const fullPath = path29.join(dir, entry.name);
+        const fullPath = path30.join(dir, entry.name);
         if (entry.isDirectory()) {
           const subFiles = this.scanDirectory(fullPath, contextRoot, depth + 1);
           files.push(...subFiles);
@@ -101447,7 +101885,7 @@ var ExternalContextScanner = class {
             files.push({
               path: fullPath,
               name: entry.name,
-              relativePath: path29.relative(contextRoot, fullPath),
+              relativePath: path30.relative(contextRoot, fullPath),
               contextRoot,
               mtime: fileStat.mtimeMs
             });
@@ -101912,17 +102350,17 @@ var MentionDropdownController = class {
             break;
           case "agent":
           case "agent-folder":
-            (0, import_obsidian39.setIcon)(iconEl, "bot");
+            (0, import_obsidian40.setIcon)(iconEl, "bot");
             break;
           case "context-file":
-            (0, import_obsidian39.setIcon)(iconEl, "folder-open");
+            (0, import_obsidian40.setIcon)(iconEl, "folder-open");
             break;
           case "folder":
           case "context-folder":
-            (0, import_obsidian39.setIcon)(iconEl, "folder");
+            (0, import_obsidian40.setIcon)(iconEl, "folder");
             break;
           default:
-            (0, import_obsidian39.setIcon)(iconEl, "file-text");
+            (0, import_obsidian40.setIcon)(iconEl, "file-text");
         }
         const textEl = itemEl.createSpan({ cls: "claudian-mention-text" });
         switch (item.type) {
@@ -102068,7 +102506,7 @@ var MentionDropdownController = class {
 };
 
 // src/shared/mention/VaultMentionCache.ts
-var import_obsidian40 = require("obsidian");
+var import_obsidian41 = require("obsidian");
 var VaultFileCache = class {
   constructor(app, options = {}) {
     this.app = app;
@@ -102147,7 +102585,7 @@ var VaultFolderCache = class {
     }
   }
   loadFolders() {
-    return this.app.vault.getAllLoadedFiles().filter((file2) => file2 instanceof import_obsidian40.TFolder && isVisibleFolder(file2));
+    return this.app.vault.getAllLoadedFiles().filter((file2) => file2 instanceof import_obsidian41.TFolder && isVisibleFolder(file2));
   }
 };
 
@@ -102332,11 +102770,11 @@ var FileContextState = class {
       this.attachedFiles.add(file2);
     }
   }
-  attachFile(path32) {
-    this.attachedFiles.add(path32);
+  attachFile(path33) {
+    this.attachedFiles.add(path33);
   }
-  detachFile(path32) {
-    this.attachedFiles.delete(path32);
+  detachFile(path33) {
+    this.attachedFiles.delete(path33);
   }
   clearAttachments() {
     this.attachedFiles.clear();
@@ -102360,59 +102798,38 @@ var FileContextState = class {
 };
 
 // src/features/chat/ui/file-context/view/FileChipsView.ts
-var import_obsidian41 = require("obsidian");
 var FileChipsView = class {
-  constructor(containerEl, callbacks) {
-    this.containerEl = containerEl;
+  constructor(contextTray, callbacks) {
+    this.contextTray = contextTray;
     this.callbacks = callbacks;
-    const firstChild = this.containerEl.firstChild;
-    this.fileIndicatorEl = this.containerEl.createDiv({ cls: "claudian-file-indicator" });
-    if (firstChild) {
-      this.containerEl.insertBefore(this.fileIndicatorEl, firstChild);
-    }
   }
   destroy() {
-    this.fileIndicatorEl.remove();
+    this.contextTray.clearItems("current-note");
   }
   renderCurrentNote(filePath) {
-    this.fileIndicatorEl.empty();
     if (!filePath) {
-      this.fileIndicatorEl.removeClass("claudian-visible-flex");
-      this.fileIndicatorEl.addClass("claudian-hidden");
+      this.contextTray.clearItems("current-note");
       return;
     }
-    this.fileIndicatorEl.addClass("claudian-visible-flex");
-    this.fileIndicatorEl.removeClass("claudian-hidden");
-    this.renderFileChip(filePath, () => {
-      this.callbacks.onRemoveAttachment(filePath);
-    });
-  }
-  renderFileChip(filePath, onRemove) {
-    const chipEl = this.fileIndicatorEl.createDiv({ cls: "claudian-file-chip" });
-    const iconEl = chipEl.createSpan({ cls: "claudian-file-chip-icon" });
-    (0, import_obsidian41.setIcon)(iconEl, "file-text");
     const normalizedPath = filePath.replace(/\\/g, "/");
     const filename = normalizedPath.split("/").pop() || filePath;
-    const nameEl = chipEl.createSpan({ cls: "claudian-file-chip-name" });
-    nameEl.setText(filename);
-    nameEl.setAttribute("title", filePath);
-    const removeEl = chipEl.createSpan({ cls: "claudian-file-chip-remove" });
-    removeEl.setText("\xD7");
-    removeEl.setAttribute("aria-label", "Remove");
-    chipEl.addEventListener("click", (e2) => {
-      if (!e2.target.closest(".claudian-file-chip-remove")) {
-        this.callbacks.onOpenFile(filePath);
-      }
-    });
-    removeEl.addEventListener("click", () => {
-      onRemove();
-    });
+    this.contextTray.setItems("current-note", [{
+      id: filePath,
+      kind: "note",
+      label: filename,
+      icon: "file-text",
+      title: filePath,
+      ariaLabel: `Linked note: ${filePath}`,
+      onActivate: () => this.callbacks.onOpenFile(filePath),
+      onRemove: () => this.callbacks.onRemoveAttachment(filePath)
+    }]);
   }
 };
 
 // src/features/chat/ui/FileContext.ts
 var FileContextManager = class {
-  constructor(app, chipsContainerEl, inputEl, callbacks, dropdownContainerEl) {
+  constructor(app, chipsContainerEl, inputEl, callbacks, dropdownContainerEl, contextTray) {
+    this.ownedContextTray = null;
     this.deleteEventRef = null;
     this.renameEventRef = null;
     // Current note (shown as chip)
@@ -102420,14 +102837,17 @@ var FileContextManager = class {
     // MCP server support
     this.onMcpMentionChange = null;
     this.app = app;
-    this.chipsContainerEl = chipsContainerEl;
     this.dropdownContainerEl = dropdownContainerEl != null ? dropdownContainerEl : chipsContainerEl;
     this.inputEl = inputEl;
     this.callbacks = callbacks;
     this.state = new FileContextState();
     this.mentionDataProvider = new VaultMentionDataProvider(this.app);
     this.mentionDataProvider.initializeInBackground();
-    this.chipsView = new FileChipsView(this.chipsContainerEl, {
+    const resolvedContextTray = contextTray != null ? contextTray : new ComposerContextTray(chipsContainerEl);
+    if (!contextTray) {
+      this.ownedContextTray = resolvedContextTray;
+    }
+    this.chipsView = new FileChipsView(resolvedContextTray, {
       onRemoveAttachment: (filePath) => {
         if (filePath === this.currentNotePath) {
           this.currentNotePath = null;
@@ -102601,10 +103021,13 @@ var FileContextManager = class {
   }
   /** Cleans up event listeners (call on view close). */
   destroy() {
+    var _a5;
     if (this.deleteEventRef) this.app.vault.offref(this.deleteEventRef);
     if (this.renameEventRef) this.app.vault.offref(this.renameEventRef);
     this.mentionDropdown.destroy();
     this.chipsView.destroy();
+    (_a5 = this.ownedContextTray) == null ? void 0 : _a5.destroy();
+    this.ownedContextTray = null;
   }
   /** Normalizes a file path to be vault-relative with forward slashes. */
   normalizePathForVault(rawPath) {
@@ -102704,7 +103127,7 @@ var FileContextManager = class {
 
 // src/features/chat/ui/ImageContext.ts
 var import_obsidian43 = require("obsidian");
-var path30 = __toESM(require("path"));
+var path31 = __toESM(require("path"));
 var MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 var IMAGE_EXTENSIONS3 = {
   ".jpg": "image/jpeg",
@@ -102714,18 +103137,18 @@ var IMAGE_EXTENSIONS3 = {
   ".webp": "image/webp"
 };
 var ImageContextManager = class {
-  constructor(containerEl, inputEl, callbacks, previewContainerEl) {
+  constructor(containerEl, inputEl, callbacks, previewContainerEl, contextTray) {
+    this.ownedContextTray = null;
     this.dropOverlay = null;
     this.attachedImages = /* @__PURE__ */ new Map();
     this.enabled = true;
     this.containerEl = containerEl;
-    this.previewContainerEl = previewContainerEl != null ? previewContainerEl : containerEl;
     this.inputEl = inputEl;
     this.callbacks = callbacks;
-    const fileIndicator = this.previewContainerEl.querySelector(".claudian-file-indicator");
-    this.imagePreviewEl = this.previewContainerEl.createDiv({ cls: "claudian-image-preview" });
-    if (fileIndicator && fileIndicator.parentElement === this.previewContainerEl) {
-      this.previewContainerEl.insertBefore(this.imagePreviewEl, fileIndicator);
+    const ownedTrayContainer = contextTray ? null : (previewContainerEl != null ? previewContainerEl : containerEl).createDiv({ cls: "claudian-context-row" });
+    this.contextTray = contextTray != null ? contextTray : new ComposerContextTray(ownedTrayContainer);
+    if (!contextTray) {
+      this.ownedContextTray = this.contextTray;
     }
     this.setupDragAndDrop();
     this.setupPasteHandler();
@@ -102743,18 +103166,26 @@ var ImageContextManager = class {
     return this.attachedImages.size > 0;
   }
   clearImages() {
+    var _a5, _b3;
     this.attachedImages.clear();
     this.updateImagePreview();
-    this.callbacks.onImagesChanged();
+    (_b3 = (_a5 = this.callbacks).onImagesChanged) == null ? void 0 : _b3.call(_a5);
   }
   /** Sets images directly (used for queued messages). */
   setImages(images) {
+    var _a5, _b3;
     this.attachedImages.clear();
     for (const image of images) {
       this.attachedImages.set(image.id, image);
     }
     this.updateImagePreview();
-    this.callbacks.onImagesChanged();
+    (_b3 = (_a5 = this.callbacks).onImagesChanged) == null ? void 0 : _b3.call(_a5);
+  }
+  destroy() {
+    var _a5;
+    this.contextTray.clearItems("images");
+    (_a5 = this.ownedContextTray) == null ? void 0 : _a5.destroy();
+    this.ownedContextTray = null;
   }
   setupDragAndDrop() {
     var _a5;
@@ -102856,10 +103287,11 @@ var ImageContextManager = class {
     return file2.type.startsWith("image/") && this.getMediaType(file2.name) !== null;
   }
   getMediaType(filename) {
-    const ext = path30.extname(filename).toLowerCase();
+    const ext = path31.extname(filename).toLowerCase();
     return IMAGE_EXTENSIONS3[ext] || null;
   }
   async addImageFromFile(file2, source) {
+    var _a5, _b3;
     if (!this.enabled) {
       new import_obsidian43.Notice("Image attachments are not supported by this provider.");
       return false;
@@ -102885,7 +103317,7 @@ var ImageContextManager = class {
       };
       this.attachedImages.set(attachment.id, attachment);
       this.updateImagePreview();
-      this.callbacks.onImagesChanged();
+      (_b3 = (_a5 = this.callbacks).onImagesChanged) == null ? void 0 : _b3.call(_a5);
       return true;
     } catch (error48) {
       this.notifyImageError("Failed to attach image.", error48);
@@ -102901,45 +103333,25 @@ var ImageContextManager = class {
   // Private: Image Preview
   // ============================================
   updateImagePreview() {
-    this.imagePreviewEl.empty();
     if (this.attachedImages.size === 0) {
-      this.imagePreviewEl.removeClass("claudian-visible-flex");
-      this.imagePreviewEl.addClass("claudian-hidden");
+      this.contextTray.clearItems("images");
       return;
     }
-    this.imagePreviewEl.addClass("claudian-visible-flex");
-    this.imagePreviewEl.removeClass("claudian-hidden");
-    for (const [id, image] of this.attachedImages) {
-      this.renderImagePreview(id, image);
-    }
-  }
-  renderImagePreview(id, image) {
-    const previewEl = this.imagePreviewEl.createDiv({ cls: "claudian-image-chip" });
-    const thumbEl = previewEl.createDiv({ cls: "claudian-image-thumb" });
-    thumbEl.createEl("img", {
-      attr: {
-        src: `data:${image.mediaType};base64,${image.data}`,
-        alt: image.name
+    const images = Array.from(this.attachedImages);
+    this.contextTray.setItems("images", images.map(([id, image], index) => ({
+      id,
+      kind: "image",
+      label: images.length === 1 ? "Image" : `Image ${index + 1}`,
+      title: `${image.name} \xB7 ${this.formatSize(image.size)}`,
+      ariaLabel: `Image attachment: ${image.name}`,
+      onActivate: () => this.showFullImage(image),
+      onRemove: () => {
+        var _a5, _b3;
+        this.attachedImages.delete(id);
+        this.updateImagePreview();
+        (_b3 = (_a5 = this.callbacks).onImagesChanged) == null ? void 0 : _b3.call(_a5);
       }
-    });
-    const infoEl = previewEl.createDiv({ cls: "claudian-image-info" });
-    const nameEl = infoEl.createSpan({ cls: "claudian-image-name" });
-    nameEl.setText(this.truncateName(image.name, 20));
-    nameEl.setAttribute("title", image.name);
-    const sizeEl = infoEl.createSpan({ cls: "claudian-image-size" });
-    sizeEl.setText(this.formatSize(image.size));
-    const removeEl = previewEl.createSpan({ cls: "claudian-image-remove" });
-    removeEl.setText("\xD7");
-    removeEl.setAttribute("aria-label", "Remove image");
-    removeEl.addEventListener("click", (e2) => {
-      e2.stopPropagation();
-      this.attachedImages.delete(id);
-      this.updateImagePreview();
-      this.callbacks.onImagesChanged();
-    });
-    thumbEl.addEventListener("click", () => {
-      this.showFullImage(image);
-    });
+    })));
   }
   showFullImage(image) {
     var _a5;
@@ -102972,13 +103384,6 @@ var ImageContextManager = class {
   generateId() {
     return `img-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
   }
-  truncateName(name, maxLen) {
-    if (name.length <= maxLen) return name;
-    const ext = path30.extname(name);
-    const base = name.slice(0, name.length - ext.length);
-    const truncatedBase = base.slice(0, maxLen - ext.length - 3);
-    return `${truncatedBase}...${ext}`;
-  }
   formatSize(bytes) {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -102999,8 +103404,8 @@ var ImageContextManager = class {
 
 // src/features/chat/ui/InputToolbar.ts
 var import_obsidian44 = require("obsidian");
-var os17 = __toESM(require("os"));
-var path31 = __toESM(require("path"));
+var os15 = __toESM(require("os"));
+var path32 = __toESM(require("path"));
 init_path();
 function runToolbarAction(action, failureMessage) {
   void action().catch(() => {
@@ -103430,24 +103835,24 @@ var ExternalContextSelector = class {
       (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     }
   }
-  togglePersistence(path32) {
+  togglePersistence(path33) {
     var _a5;
-    if (this.persistentPaths.has(path32)) {
-      this.persistentPaths.delete(path32);
+    if (this.persistentPaths.has(path33)) {
+      this.persistentPaths.delete(path33);
     } else {
-      if (!isValidDirectoryPath(path32)) {
-        new import_obsidian44.Notice(`Cannot persist "${this.shortenPath(path32)}" - directory no longer exists`, 4e3);
+      if (!isValidDirectoryPath(path33)) {
+        new import_obsidian44.Notice(`Cannot persist "${this.shortenPath(path33)}" - directory no longer exists`, 4e3);
         return;
       }
-      this.persistentPaths.add(path32);
+      this.persistentPaths.add(path33);
     }
     (_a5 = this.onPersistenceChangeCallback) == null ? void 0 : _a5.call(this, [...this.persistentPaths]);
     this.renderDropdown();
   }
   mergePersistentPaths() {
     const pathSet = new Set(this.externalContextPaths);
-    for (const path32 of this.persistentPaths) {
-      pathSet.add(path32);
+    for (const path33 of this.persistentPaths) {
+      pathSet.add(path33);
     }
     this.externalContextPaths = [...pathSet];
   }
@@ -103494,7 +103899,7 @@ var ExternalContextSelector = class {
     }
     const expandedPath = expandHomePath(cleanPath);
     const normalizedPath = normalizePathForFilesystem(expandedPath);
-    if (!path31.isAbsolute(normalizedPath)) {
+    if (!path32.isAbsolute(normalizedPath)) {
       return { success: false, error: "Path must be absolute. Usage: /add-dir /absolute/path" };
     }
     const validation = validateDirectoryPath(normalizedPath);
@@ -103619,10 +104024,10 @@ var ExternalContextSelector = class {
   /** Shorten path for display (replace home dir with ~) */
   shortenPath(fullPath) {
     try {
-      const homeDir = os17.homedir();
-      const normalize3 = (value) => value.replace(/\\/g, "/");
-      const normalizedFull = normalize3(fullPath);
-      const normalizedHome = normalize3(homeDir);
+      const homeDir = os15.homedir();
+      const normalize4 = (value) => value.replace(/\\/g, "/");
+      const normalizedFull = normalize4(fullPath);
+      const normalizedHome = normalize4(homeDir);
       const compareFull = process.platform === "win32" ? normalizedFull.toLowerCase() : normalizedFull;
       const compareHome = process.platform === "win32" ? normalizedHome.toLowerCase() : normalizedHome;
       if (compareFull.startsWith(compareHome)) {
@@ -104412,6 +104817,13 @@ var StatusPanel = class {
     this.todoContainerEl.appendChild(this.todoContentEl);
     this.containerEl.appendChild(this.panelEl);
   }
+  syncPanelVisibility() {
+    var _a5, _b3;
+    if (!this.panelEl) return;
+    const hasTodos = ((_b3 = (_a5 = this.currentTodos) == null ? void 0 : _a5.length) != null ? _b3 : 0) > 0;
+    const hasBashOutputs = this.currentBashOutputs.size > 0;
+    this.panelEl.toggleClass("claudian-status-panel--visible", hasTodos || hasBashOutputs);
+  }
   /**
    * Update the panel with new todo items.
    * Called by ChatState.onTodosChanged callback when TodoWrite tool is used.
@@ -104426,9 +104838,11 @@ var StatusPanel = class {
       this.todoContainerEl.addClass("claudian-hidden");
       this.todoHeaderEl.empty();
       this.todoContentEl.empty();
+      this.syncPanelVisibility();
       return;
     }
     this.todoContainerEl.removeClass("claudian-hidden");
+    this.syncPanelVisibility();
     const completedCount = todos.filter((t11) => t11.status === "completed").length;
     const totalCount = todos.length;
     const currentTask = todos.find((t11) => t11.status === "in_progress");
@@ -104551,9 +104965,11 @@ var StatusPanel = class {
     const scroll = (_a5 = options.scroll) != null ? _a5 : true;
     if (this.currentBashOutputs.size === 0) {
       this.bashOutputContainerEl.addClass("claudian-hidden");
+      this.syncPanelVisibility();
       return;
     }
     this.bashOutputContainerEl.removeClass("claudian-hidden");
+    this.syncPanelVisibility();
     this.bashHeaderEl.empty();
     this.bashContentEl.empty();
     const ownerDocument = (_b3 = this.bashHeaderEl.ownerDocument) != null ? _b3 : window.document;
@@ -105221,6 +105637,7 @@ function createTab(options) {
       titleGenerationService: null
     },
     ui: {
+      contextTray: null,
       fileContextManager: null,
       imageContextManager: null,
       modelSelector: null,
@@ -105273,9 +105690,6 @@ function buildTabDOM(contentEl) {
     inputEl,
     navRowEl,
     contextRowEl,
-    selectionIndicatorEl: null,
-    browserIndicatorEl: null,
-    canvasIndicatorEl: null,
     eventCleanups: []
   };
 }
@@ -105338,42 +105752,31 @@ function isConversationLike(value) {
 function initializeContextManagers(tab, plugin) {
   const { dom } = tab;
   const app = plugin.app;
+  const contextTray = tab.ui.contextTray;
+  if (!contextTray) {
+    throw new Error("Composer context tray must be initialized before context managers");
+  }
   tab.ui.fileContextManager = new FileContextManager(
     app,
     dom.contextRowEl,
     dom.inputEl,
     {
       getExcludedTags: () => plugin.settings.excludedTags,
-      onChipsChanged: () => {
-        var _a5, _b3, _c2, _d;
-        (_a5 = tab.controllers.selectionController) == null ? void 0 : _a5.updateContextRowVisibility();
-        (_b3 = tab.controllers.browserSelectionController) == null ? void 0 : _b3.updateContextRowVisibility();
-        (_c2 = tab.controllers.canvasSelectionController) == null ? void 0 : _c2.updateContextRowVisibility();
-        autoResizeTextarea(dom.inputEl);
-        (_d = tab.renderer) == null ? void 0 : _d.scrollToBottomIfNeeded();
-      },
       getExternalContexts: () => {
         var _a5;
         return ((_a5 = tab.ui.externalContextSelector) == null ? void 0 : _a5.getExternalContexts()) || [];
       }
     },
-    dom.inputContainerEl
+    dom.inputContainerEl,
+    contextTray
   );
   tab.ui.fileContextManager.setMcpManager(getProviderMcpManager(getTabProviderId(tab, plugin)));
   tab.ui.imageContextManager = new ImageContextManager(
     dom.inputContainerEl,
     dom.inputEl,
-    {
-      onImagesChanged: () => {
-        var _a5, _b3, _c2, _d;
-        (_a5 = tab.controllers.selectionController) == null ? void 0 : _a5.updateContextRowVisibility();
-        (_b3 = tab.controllers.browserSelectionController) == null ? void 0 : _b3.updateContextRowVisibility();
-        (_c2 = tab.controllers.canvasSelectionController) == null ? void 0 : _c2.updateContextRowVisibility();
-        autoResizeTextarea(dom.inputEl);
-        (_d = tab.renderer) == null ? void 0 : _d.scrollToBottomIfNeeded();
-      }
-    },
-    dom.contextRowEl
+    {},
+    dom.contextRowEl,
+    contextTray
   );
 }
 function initializeSlashCommands(tab, getHiddenCommands, catalogInfo) {
@@ -105625,10 +106028,14 @@ function initializeInputToolbar(tab, plugin, getProviderCatalogConfig, onProvide
 function initializeTabUI(tab, plugin, options = {}) {
   var _a5, _b3;
   const { dom, state } = tab;
+  tab.ui.contextTray = new ComposerContextTray(dom.contextRowEl, {
+    onDidChange: () => {
+      var _a6;
+      autoResizeTextarea(dom.inputEl);
+      (_a6 = tab.renderer) == null ? void 0 : _a6.scrollToBottomIfNeeded();
+    }
+  });
   initializeContextManagers(tab, plugin);
-  dom.selectionIndicatorEl = dom.contextRowEl.createDiv({ cls: "claudian-selection-indicator claudian-hidden" });
-  dom.browserIndicatorEl = dom.contextRowEl.createDiv({ cls: "claudian-browser-selection-indicator claudian-hidden" });
-  dom.canvasIndicatorEl = dom.contextRowEl.createDiv({ cls: "claudian-canvas-indicator claudian-hidden" });
   const catalogInfo = (_b3 = (_a5 = options.getProviderCatalogConfig) == null ? void 0 : _a5.call(options)) != null ? _b3 : null;
   initializeSlashCommands(
     tab,
@@ -105790,25 +106197,20 @@ function initializeTabControllers(tab, plugin, component, arg4, arg5, arg6, arg7
   );
   tab.controllers.selectionController = new SelectionController(
     plugin.app,
-    dom.selectionIndicatorEl,
+    ui.contextTray,
     dom.inputEl,
-    dom.contextRowEl,
-    () => autoResizeTextarea(dom.inputEl),
+    void 0,
     [dom.contentEl, dom.inputComposerEl, ...getSharedSelectionFocusScopeEls(component)]
   );
   tab.controllers.browserSelectionController = new BrowserSelectionController(
     plugin.app,
-    dom.browserIndicatorEl,
-    dom.inputEl,
-    dom.contextRowEl,
-    () => autoResizeTextarea(dom.inputEl)
+    ui.contextTray,
+    dom.inputEl
   );
   tab.controllers.canvasSelectionController = new CanvasSelectionController(
     plugin.app,
-    dom.canvasIndicatorEl,
-    dom.inputEl,
-    dom.contextRowEl,
-    () => autoResizeTextarea(dom.inputEl)
+    ui.contextTray,
+    dom.inputEl
   );
   tab.controllers.streamController = new StreamController({
     plugin,
@@ -105933,6 +106335,7 @@ function initializeTabControllers(tab, plugin, component, arg4, arg5, arg6, arg7
     getStatusPanel: () => ui.statusPanel,
     generateId: generateMessageId,
     resetInputHeight: () => {
+      autoResizeTextarea(dom.inputEl);
     },
     getAuxiliaryModel: () => getTabSelectedModel(tab, plugin),
     getAgentService: () => tab.service,
@@ -106118,7 +106521,7 @@ function deactivateTab(tab) {
   (_c2 = tab.controllers.canvasSelectionController) == null ? void 0 : _c2.stop();
 }
 async function destroyTab(tab) {
-  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r, _s;
+  var _a5, _b3, _c2, _d, _e2, _f2, _g, _h2, _i, _j, _k3, _l2, _m, _n, _o, _p, _q3, _r, _s, _t, _u2;
   tab.lifecycleState = "closing";
   (_a5 = tab.controllers.inputController) == null ? void 0 : _a5.dismissPendingApproval();
   const activeTurn = tab.session.activeTurn;
@@ -106141,20 +106544,23 @@ async function destroyTab(tab) {
   tab.state.currentThinkingState = null;
   (_j = tab.controllers.inputController) == null ? void 0 : _j.destroyResumeDropdown();
   (_k3 = tab.ui.fileContextManager) == null ? void 0 : _k3.destroy();
-  (_l2 = tab.ui.slashCommandDropdown) == null ? void 0 : _l2.destroy();
+  (_l2 = tab.ui.imageContextManager) == null ? void 0 : _l2.destroy();
+  (_m = tab.ui.contextTray) == null ? void 0 : _m.destroy();
+  tab.ui.contextTray = null;
+  (_n = tab.ui.slashCommandDropdown) == null ? void 0 : _n.destroy();
   tab.ui.slashCommandDropdown = null;
-  (_m = tab.ui.instructionModeManager) == null ? void 0 : _m.destroy();
+  (_o = tab.ui.instructionModeManager) == null ? void 0 : _o.destroy();
   tab.ui.instructionModeManager = null;
-  (_n = tab.ui.bangBashModeManager) == null ? void 0 : _n.destroy();
+  (_p = tab.ui.bangBashModeManager) == null ? void 0 : _p.destroy();
   tab.ui.bangBashModeManager = null;
-  (_o = tab.services.instructionRefineService) == null ? void 0 : _o.cancel();
-  (_p = tab.services.instructionRefineService) == null ? void 0 : _p.resetConversation();
+  (_q3 = tab.services.instructionRefineService) == null ? void 0 : _q3.cancel();
+  (_r = tab.services.instructionRefineService) == null ? void 0 : _r.resetConversation();
   tab.services.instructionRefineService = null;
-  (_q3 = tab.services.titleGenerationService) == null ? void 0 : _q3.cancel();
+  (_s = tab.services.titleGenerationService) == null ? void 0 : _s.cancel();
   tab.services.titleGenerationService = null;
-  (_r = tab.ui.statusPanel) == null ? void 0 : _r.destroy();
+  (_t = tab.ui.statusPanel) == null ? void 0 : _t.destroy();
   tab.ui.statusPanel = null;
-  (_s = tab.ui.navigationSidebar) == null ? void 0 : _s.destroy();
+  (_u2 = tab.ui.navigationSidebar) == null ? void 0 : _u2.destroy();
   tab.ui.navigationSidebar = null;
   tab.services.subagentManager.orphanAllActive();
   tab.services.subagentManager.clear();
@@ -106510,15 +106916,15 @@ var import_obsidian49 = require("obsidian");
 // src/shared/modals/ForkTargetModal.ts
 var import_obsidian48 = require("obsidian");
 function chooseForkTarget(app) {
-  return new Promise((resolve8) => {
-    new ForkTargetModal(app, resolve8).open();
+  return new Promise((resolve9) => {
+    new ForkTargetModal(app, resolve9).open();
   });
 }
 var ForkTargetModal = class extends import_obsidian48.Modal {
-  constructor(app, resolve8) {
+  constructor(app, resolve9) {
     super(app);
     this.resolved = false;
-    this.resolve = resolve8;
+    this.resolve = resolve9;
   }
   onOpen() {
     this.setTitle(t10("chat.fork.chooseTarget"));
@@ -106870,10 +107276,10 @@ var TabManager = class {
       this.maybePrimeProviderRuntime(tab);
     }
   }
-  *filterTabsByProvider(providerIds, resolve8) {
+  *filterTabsByProvider(providerIds, resolve9) {
     const filter = providerIds ? new Set(Array.isArray(providerIds) ? providerIds : [providerIds]) : null;
     for (const tab of this.tabs.values()) {
-      if (filter && !filter.has(resolve8(tab))) {
+      if (filter && !filter.has(resolve9(tab))) {
         continue;
       }
       yield tab;
@@ -108207,7 +108613,7 @@ var InlineEditModal = class {
       new import_obsidian52.Notice("Inline edit unavailable: could not access the active editor. Try reopening the note.");
       return { decision: "reject" };
     }
-    return new Promise((resolve8) => {
+    return new Promise((resolve9) => {
       this.controller = new InlineEditSession(
         this.app,
         this.plugin,
@@ -108216,7 +108622,7 @@ var InlineEditModal = class {
         this.editContext,
         this.notePath,
         this.getExternalContexts,
-        resolve8
+        resolve9
       );
       activeController = this.controller;
       this.controller.show();
@@ -108224,14 +108630,14 @@ var InlineEditModal = class {
   }
 };
 var InlineEditSession = class {
-  constructor(app, plugin, editorView, editor, editContext, notePath, getExternalContexts, resolve8) {
+  constructor(app, plugin, editorView, editor, editContext, notePath, getExternalContexts, resolve9) {
     this.app = app;
     this.plugin = plugin;
     this.editorView = editorView;
     this.editor = editor;
     this.notePath = notePath;
     this.getExternalContexts = getExternalContexts;
-    this.resolve = resolve8;
+    this.resolve = resolve9;
     this.inputEl = null;
     this.spinnerEl = null;
     this.agentReplyEl = null;
@@ -109655,7 +110061,6 @@ var ClaudianPlugin = class extends import_obsidian54.Plugin {
     await this.applyEnvironmentVariablesBatch([{ scope, envText }]);
   }
   async applyEnvironmentVariablesBatch(updates) {
-    var _a5;
     const nextEnvironmentByScope = /* @__PURE__ */ new Map();
     for (const update of updates) {
       nextEnvironmentByScope.set(update.scope, update.envText);
@@ -109691,6 +110096,7 @@ var ClaudianPlugin = class extends import_obsidian54.Plugin {
             `${ProviderRegistry.getProviderDisplayName(providerId)}: ${result.diagnostics}`
           );
         }
+        await ProviderWorkspaceRegistry.refreshAgentMentions(providerId);
       }
     }
     if (invalidatedConversations.length > 0) {
@@ -109700,62 +110106,19 @@ var ClaudianPlugin = class extends import_obsidian54.Plugin {
         );
       }
     }
-    const view = this.getView();
-    const tabManager = view == null ? void 0 : view.getTabManager();
-    if (tabManager) {
-      const affectedTabs = tabManager.getAllTabs().filter((tab) => {
-        var _a6;
-        return affectedProviderIds.includes((_a6 = tab.providerId) != null ? _a6 : DEFAULT_CHAT_PROVIDER_ID);
-      });
-      const syncTabRuntimeState = (tab) => {
-        var _a6, _b3, _c2, _d, _e2;
-        if (!tab.service || !tab.serviceInitialized) {
-          return;
-        }
-        const conversation = tab.conversationId ? this.getConversationSync(tab.conversationId) : null;
-        const hasConversationContext = ((_a6 = conversation == null ? void 0 : conversation.messages.length) != null ? _a6 : 0) > 0;
-        const externalContextPaths = (_e2 = (_b3 = tab.ui.externalContextSelector) == null ? void 0 : _b3.getExternalContexts()) != null ? _e2 : hasConversationContext ? (_c2 = conversation == null ? void 0 : conversation.externalContextPaths) != null ? _c2 : [] : (_d = this.settings.persistentExternalContextPaths) != null ? _d : [];
-        tab.service.syncConversationState(conversation, externalContextPaths);
-      };
-      for (const tab of affectedTabs) {
-        if (tab.state.isStreaming) {
-          (_a5 = tab.controllers.inputController) == null ? void 0 : _a5.cancelStreaming();
-        }
-      }
-      let failedTabs = 0;
-      if (changed) {
-        for (const tab of affectedTabs) {
-          if (!tab.service || !tab.serviceInitialized) {
-            continue;
-          }
-          try {
-            syncTabRuntimeState(tab);
-            tab.service.resetSession();
-            await tab.service.ensureReady();
-          } catch (e2) {
-            failedTabs++;
-          }
-        }
-      } else {
-        for (const tab of affectedTabs) {
-          if (!tab.service || !tab.serviceInitialized) {
-            continue;
-          }
-          try {
-            syncTabRuntimeState(tab);
-            await tab.service.ensureReady({ force: true });
-          } catch (e2) {
-            failedTabs++;
-          }
-        }
-      }
-      if (failedTabs > 0) {
-        new import_obsidian54.Notice(`Environment changes applied, but ${failedTabs} affected tab(s) failed to restart.`);
-      }
-    }
-    for (const openView of this.getAllViews()) {
+    const openViews = this.getAllViews();
+    let failedTabs = 0;
+    for (const openView of openViews) {
+      failedTabs += await this.restartEnvironmentAffectedRuntimes(
+        openView,
+        affectedProviderIds,
+        changed
+      );
       openView.invalidateProviderCommandCaches(affectedProviderIds);
       openView.refreshModelSelector();
+    }
+    if (failedTabs > 0) {
+      new import_obsidian54.Notice(`Environment changes applied, but ${failedTabs} affected tab(s) failed to restart.`);
     }
     const noticeText = changed ? "Environment variables applied. Sessions will be rebuilt on next message." : "Environment variables applied.";
     new import_obsidian54.Notice(noticeText);
@@ -109763,6 +110126,44 @@ var ClaudianPlugin = class extends import_obsidian54.Plugin {
       new import_obsidian54.Notice(`Model catalog refresh failed:
 ${modelCatalogDiagnostics.join("\n")}`);
     }
+  }
+  async restartEnvironmentAffectedRuntimes(view, affectedProviderIds, resetSessions) {
+    var _a5;
+    const tabManager = view.getTabManager();
+    if (!tabManager) return 0;
+    const affectedTabs = tabManager.getAllTabs().filter((tab) => {
+      var _a6;
+      return affectedProviderIds.includes((_a6 = tab.providerId) != null ? _a6 : DEFAULT_CHAT_PROVIDER_ID);
+    });
+    const syncTabRuntimeState = (tab) => {
+      var _a6, _b3, _c2, _d, _e2;
+      if (!tab.service || !tab.serviceInitialized) return;
+      const conversation = tab.conversationId ? this.getConversationSync(tab.conversationId) : null;
+      const hasConversationContext = ((_a6 = conversation == null ? void 0 : conversation.messages.length) != null ? _a6 : 0) > 0;
+      const externalContextPaths = (_e2 = (_b3 = tab.ui.externalContextSelector) == null ? void 0 : _b3.getExternalContexts()) != null ? _e2 : hasConversationContext ? (_c2 = conversation == null ? void 0 : conversation.externalContextPaths) != null ? _c2 : [] : (_d = this.settings.persistentExternalContextPaths) != null ? _d : [];
+      tab.service.syncConversationState(conversation, externalContextPaths);
+    };
+    for (const tab of affectedTabs) {
+      if (tab.state.isStreaming) {
+        (_a5 = tab.controllers.inputController) == null ? void 0 : _a5.cancelStreaming();
+      }
+    }
+    let failedTabs = 0;
+    for (const tab of affectedTabs) {
+      if (!tab.service || !tab.serviceInitialized) continue;
+      try {
+        syncTabRuntimeState(tab);
+        if (resetSessions) {
+          tab.service.resetSession();
+          await tab.service.ensureReady();
+        } else {
+          await tab.service.ensureReady({ force: true });
+        }
+      } catch (e2) {
+        failedTabs++;
+      }
+    }
+    return failedTabs;
   }
   /** Returns the runtime environment variables (fixed at plugin load). */
   getActiveEnvironmentVariables(providerId = ProviderRegistry.resolveSettingsProviderId(
@@ -109928,3 +110329,5 @@ smol-toml/dist/index.js:
    * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    *)
 */
+
+/* nosourcemap */
