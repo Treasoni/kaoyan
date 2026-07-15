@@ -64,3 +64,24 @@ Self-improvement patterns, corrections, and knowledge gaps.
 Pattern-Key: docs.visual_source_coverage
 
 ---
+
+## [LRN-20260715-007] best_practice
+
+**Logged**: 2026-07-15T17:04:04+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+写入含 LaTeX 的索引表格行时，也必须使用 quoted heredoc 或纯文本拼接并回读控制字符
+
+### Details
+本次连续整理高数积分学错题 11.1、11.2、11.3 到 `考研数学/高数-一元函数积分学/错题本.md` 和 `错题题目.md`。在写入错题93索引行时，Python 字符串中的 `\frac`、`\textrm`、`\big` 被解释为控制字符（form feed、tab、backspace），造成索引行残留不可见字符。虽然正文通过 quoted heredoc 最终正确写入，但索引行也同样属于 Markdown/LaTeX 高风险写入区域，不能用普通 Python 字符串草率拼接。
+
+### Suggested Action
+以后凡是写入包含 LaTeX 命令的 Markdown，不只正文，索引表格行也要采用 quoted heredoc、Python raw string，或避免在索引表格中放复杂 LaTeX 命令。写入后必须扫描控制字符、奇数 `$`、表格管道符冲突，并回读目标段落确认 `\frac`、`\text`、`\big` 等没有被转义污染。
+
+### Related Rules
+Pattern-Key: write_verify.latex_escape
+
+---
