@@ -6,12 +6,14 @@
         "conversationId": "conv-1784169747233-f6ybtnlkt"
       },
       {
+        "draftModel": "gpt-5.5",
         "tabId": "tab-1778492346086-rk6c0kv",
-        "conversationId": "conv-1784169638917-fj2d38f62"
+        "conversationId": null
       },
       {
+        "draftModel": "gpt-5.5",
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": "conv-1784166405592-lsm5eqaps"
+        "conversationId": null
       },
       {
         "tabId": "tab-1780456956859-0i1qnvx",
@@ -22,6 +24,6 @@
         "conversationId": "conv-1784166093308-ravyqsmjj"
       }
     ],
-    "activeTabId": "tab-1780456956859-0i1qnvx"
+    "activeTabId": "tab-1778492346086-rk6c0kv"
   }
 }

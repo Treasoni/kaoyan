@@ -4,45 +4,22 @@ Command failures and integration errors.
 
 ---
 
-## [ERR-20260715-001] write
+## [ERR-20260716-002] digest
 
-**Logged**: 2026-07-15T17:04:04+08:00
-**Priority**: high
-**Status**: pending
-**Area**: docs
-
-### Summary
-写入错题93时 Python 字符串转义导致脚本语法错误与索引行控制字符污染
-
-### Error
-```text
-SyntaxError: EOL while scanning string literal
-SyntaxError: invalid syntax
-索引行出现控制字符：\x0c、\x08、\t，表现为 \frac、\textrm、\big、\text 被污染
-```
-
-### Context
-尝试用 Python 字符串构造包含大量 LaTeX 的错题93正文和索引行，并在脚本中做反斜杠归一化。多次失败后改用 quoted heredoc 写入正文；随后通过控制字符扫描发现索引行仍有污染，最终删除坏残留行并改成无复杂 LaTeX 的简洁索引描述。
-
----
-
-## [ERR-20260716-001] digest
-
-**Logged**: 2026-07-16T09:53:40+08:00
+**Logged**: 2026-07-16T10:55:08+08:00
 **Priority**: high
 **Status**: pending
 **Area**: ops
 
 ### Summary
-digest 初始化检查命令中撇号转义错误，导致 RULES.md 被截空
+digest 压缩写入 RULES.md 时再次因 Python 字符串转义生成控制字符
 
 ### Error
 ```text
-zsh:5: command not found: t\n\n## Watch For\n
-.learnings/RULES.md 行数变为 0
+RULES.md 中 `\begin`、`\rvert` 被普通 Python 字符串解释为控制字符：\x08、\r
 ```
 
 ### Context
-执行自我学习阶段的阈值检查和文件初始化时，使用了包含 `Don'` + `t` 片段的 inline shell `printf` 命令，撇号破坏了 zsh 字符串边界，并在错误路径上触发对 `.learnings/RULES.md` 的重定向截断。已立即使用本轮启动时注入的 RULES 内容恢复文件，并回读验证关键规则存在。
+执行 digest 阈值压缩并重写 `.learnings/RULES.md` 时，最初使用普通三引号字符串保存包含 LaTeX 命令的规则文本，导致 `\begin` 和 `\rvert` 被转义污染。随后立即改用 raw string 写回 RULES.md，并扫描 `.learnings/RULES.md`、`.learnings/LEARNINGS.md`、`.learnings/ERRORS.md`、归档文件，确认控制字符为 0。
 
 ---
