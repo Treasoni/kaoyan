@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "{{PYTHON}} '{{HOOK_SCRIPT}}'"
+          }
+        ]
+      }
+    ]
+  }
+}

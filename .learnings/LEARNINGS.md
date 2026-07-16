@@ -45,3 +45,46 @@ Pattern-Key: obsidian.problem_solution_collapsible
 Pattern-Key: math.problem_context_required
 
 ---
+
+
+## [LRN-20260716-012] best_practice
+
+**Logged**: 2026-07-16T15:51:16+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+Obsidian 拆分笔记恢复或重构后必须验证最终 `.md` 文件可见，而不是只确认备份文件存在
+
+### Details
+本次用户指出 BJT 与基本放大电路章节“内容少很多”。检查后发现 01-07 的拆分内容实际存在，但文件名停留在 `.md.bak_restructure`，导致 Obsidian 正常链接不可见，章节导读指向的 wikilink 也像是空转。恢复为 `.md` 后，章节内容立即可见，并进一步用链接扫描确认 missing links 为 0。
+
+### Suggested Action
+以后用户反馈“章节内容缺失、链接打不开、拆分版不完整”时，先检查目标目录是否存在 `.bak_restructure`、`.bak`、临时后缀或未落地的拆分文件；恢复后必须检查：目录下 `.md` 文件列表、章节导读 wikilink、missing links、文件大小与标题数量。不要只看整章版或备份文件就判断内容完整。
+
+### Related Rules
+Pattern-Key: obsidian.split_notes_visibility
+
+---
+
+## [LRN-20260716-013] best_practice
+
+**Logged**: 2026-07-16T15:51:16+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: docs
+
+### Summary
+专业课章节补笔记要同时做“学习路线前置链路”和“附件图覆盖”审计
+
+### Details
+本次修复 BJT 章节时，用户指出学习路线不像正常学习顺序，随后又指出第 01 节“没图”。实际问题是：章节一开始直接进入放大思想与 Q 点，但缺少 BJT 器件基础、NPN/PNP、三电极、电流关系、输入输出特性等前置环节；同时附件目录中已有结构图、符号图、放大状态载流子图、输入/输出特性曲线，却没有嵌入到第 01 节。补齐文字路线后，还必须把关键图嵌入并写明“图的作用 + 关键标注 + 做题结论”。
+
+### Suggested Action
+以后整理模电/专业课章节时，不要只按已有标题补文字。先按“前置概念 → 器件/模型 → 工作区 → 静态 → 动态 → 题型”的学习链路审计目录；再扫描对应附件目录，把关键教材图嵌入到相关小节，并为每张关键图补“看什么/做题结论”。如果用户问“没图吗”，优先检查附件库，不要立刻重画或回答没有。
+
+### Related Rules
+Pattern-Key: electronics.chapter_route_visual_audit
+
+---
