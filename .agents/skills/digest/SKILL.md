@@ -99,6 +99,21 @@ What was being attempted
 ---
 ```
 
+### Step 4.1: 写入安全与控制字符验证
+
+每次写入或重写 `.learnings/LEARNINGS.md`、`.learnings/ERRORS.md`、`.learnings/RULES.md`、归档文件时，必须执行以下安全约束：
+
+1. 含 LaTeX、反斜杠、反引号、Markdown 表格或代码块的内容，优先使用 Python raw string、`Path.write_text()` 已构造字符串，或 quoted heredoc（如 `<<'EOF'`）；不要用普通三引号字符串保存含 `\begin`、`\rvert` 等内容。
+2. 写入后立刻扫描控制字符，只允许 `\n`、`\r`、`\t`：
+
+```python
+bad = [(i, b) for i, b in enumerate(path.read_bytes()) if b < 32 and b not in (9, 10, 13)]
+assert not bad
+```
+
+3. 回读刚写入的关键段落，确认 `\begin`、`\rvert`、反引号、表格分隔线没有被转义污染。
+4. 若控制字符检查失败，必须先修复文件并重新扫描；不得把受污染的 `.learnings/` 文件留给下一轮会话。
+
 ### Step 4.5: RULES.md 冲突检测与同步
 
 **每次追加新条目到 LEARNINGS.md 后，必须执行本步骤**，检查新条目是否与 `.learnings/RULES.md` 中现有规则存在冲突。
@@ -169,7 +184,7 @@ What was being attempted
 - 不要归档未压缩的条目
 - 不要在无意义时强行记录
 - **不要未经用户确认就修改 RULES.md** — 冲突同步是确认制，不是自动制
-- **不要将新规则提升到 AGENTS.md** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
+- **不要将新规则提升到项目入口文件（AGENTS.md / CLAUDE.md）** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
 
 ## 硬停止 (Hard Stop)
 
