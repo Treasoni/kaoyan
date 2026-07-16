@@ -85,3 +85,42 @@ Pattern-Key: docs.visual_source_coverage
 Pattern-Key: write_verify.latex_escape
 
 ---
+
+## [LRN-20260716-008] best_practice
+
+**Logged**: 2026-07-16T09:53:40+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: docs
+
+### Summary
+章节笔记提炼为必背笔记时，应只保留快速复习可直接调用的结论
+
+### Details
+本次用户给出线性代数第一章行列式的三篇章节笔记，目标是更新 `线性代数/必背知识.md`，用于后续快速复习。最终筛选时没有照搬历史背景、方程组推导、沙路法则完整图示和完整例题，而是保留了二阶/三阶行列式公式、余子式与代数余子式、五大性质、零行列式结论、展开定理、展开定理推论和行列式计算策略，并添加来源链接方便回查原章节。
+
+### Suggested Action
+以后从章节详笔记提炼“必背/速查/快速复习”类笔记时，优先写“定义 + 公式 + 性质 + 口诀 + 易错点 + 做题步骤 + 来源链接”；长推导、历史背景、完整例题和课堂解释保留在原章节笔记中，不要挤占速查笔记空间。
+
+---
+
+## [LRN-20260716-009] best_practice
+
+**Logged**: 2026-07-16T09:53:40+08:00
+**Priority**: high
+**Status**: pending
+**Area**: ops
+
+### Summary
+初始化或修复学习文件时，避免用含撇号的复杂 inline printf 命令
+
+### Details
+本次执行 digest 阶段时，尝试用一行 shell 命令在 `.learnings/RULES.md` 不存在时创建默认内容，其中字符串包含 `Don't` 的撇号，导致 zsh 引号提前闭合并触发错误。由于命令中同时存在重定向，最终造成 `.learnings/RULES.md` 被截空。随后已根据本轮启动时注入的规则内容，用 quoted heredoc 恢复 RULES，并回读确认无控制字符。
+
+### Suggested Action
+以后初始化或修复 `.learnings/`、规则文件、Markdown 配置文件时，不要把含撇号、反斜杠或 Markdown 符号的多行内容塞进 inline `printf`。优先使用 quoted heredoc、Python `Path.write_text()` 的 raw string，或先判断文件是否存在再单独写入；涉及重定向的命令写完后必须立刻回读行数和关键内容。
+
+### Related Rules
+Pattern-Key: ops.shell_quote_redirect
+
+---
