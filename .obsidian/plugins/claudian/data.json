@@ -11,18 +11,17 @@
       },
       {
         "tabId": "tab-1779448736943-hq3dr8b",
-        "conversationId": "conv-1784114386900-sp5e4psid"
+        "conversationId": "conv-1784166405592-lsm5eqaps"
       },
       {
         "tabId": "tab-1780456956859-0i1qnvx",
         "conversationId": "conv-1784114521471-uiw64tquo"
       },
       {
-        "draftModel": "deepseek-v4-flash",
         "tabId": "tab-1782004129110-rax9f12",
-        "conversationId": null
+        "conversationId": "conv-1784166093308-ravyqsmjj"
       }
     ],
-    "activeTabId": "tab-1782004129110-rax9f12"
+    "activeTabId": "tab-1779448736943-hq3dr8b"
   }
 }
