@@ -10,7 +10,7 @@ Compressed patterns from repeated learnings and errors.
 - (2x) `/kaoyan-plan` 完成报告后必须更新：每日计划 → 完成记录 → 英语📊进度 → ⭐英语📅日志 → ⭐线代📊进度 → 专业课📊进度
 - (2x) 删除 Obsidian 文件前先调用 safe-delete skill 清理悬空链接
 - (2x) **证明/推导类内容统一使用 `> [!note]-` 单一折叠块**（默认折叠，可包含 `$$` 公式、列表、表格），不再使用嵌套 callout 结构。标题直接作为 callout 标题：`> [!note]- 标题内容`
-- (3x) 教材图、手写图、曲线/特性图、电路图进入笔记时，必须保留原图示链并为每张关键图补“图的作用 + 关键标注/区域 + 做题结论”
+- (4x) 处理用户手写笔记时，默认采用“主笔记提取重构 + 手写原图溯源”：正文提炼为结构化文字，并配清晰的标准图或 AI 重绘图；原图按对应段落保留，内容重复时可折叠为“手写来源”；每张关键图补“图的作用 + 关键标注/区域 + 做题结论”
 - (3x) 写入含大量 LaTeX/反引号的 Markdown 时，优先使用 Python raw string、占位符替换或 quoted heredoc（如 `<<'EOF'`），写入后回读目标段落检查反斜杠和控制字符
 - (1x) 写入或修改笔记前先快速浏览 `.learnings/RULES.md`，确认当前格式规范与高频错误
 - (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
@@ -24,6 +24,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 专业课核心公式首次出现后，紧跟变量符号说明：物理意义、方向/极性约定、单位/典型值、做题近似用法
 - (1x) 必背/速查类笔记优先保留“定义 + 公式 + 性质 + 口诀 + 易错点 + 做题步骤 + 来源链接”，长推导和完整例题留在原章节
 - (1x) Markdown 区块替换优先用标题边界（如从 `## A` 到下一个 `## B`），不要用裸 `---` 作为唯一结束锚点
+- (1x) 生成或更新学习内容时，先判断图示/图片描述是否更有利于学习；若能降低理解成本，就主动生成并嵌入图，并配“图的作用 + 关键标注 + 学习/做题结论”
 
 ## Don't
 
@@ -41,7 +42,8 @@ Compressed patterns from repeated learnings and errors.
 - (4x) Markdown/LaTeX 写入转义污染（Pattern-Key: write_verify.latex_escape）— `\begin`、`\rvert`、反引号、heredoc、Python 字符串和索引表格行都要重点回读
 - (2x) 完成报告更新清单中“英语📅日志”和“线代📊进度”容易遗漏
 - (2x) Obsidian 证明/推导使用 `> [!note]-` 单一折叠块（Pattern-Key: obsidian.proof_collapsible）— 默认折叠；callout 内允许 `$$` 块级公式；表格前后留空行
-- (3x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
+- (4x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
+- (1x) 手写笔记混合重构（Pattern-Key: docs.handwritten_hybrid）— 正文以结构化提炼和标准图/AI 重绘图服务复习，原图留在对应段落或折叠“手写来源”保留推理、纠错和个人理解
 - (1x) 数学笔记内容准确性验证（Pattern-Key: math.content_verify）— 公式/定理/推导写入前必须独立验证
 - (1x) 自测文件覆盖率遗漏（Pattern-Key: quiz.coverage_audit）— 更新自测前必须对比源文件章节列表
 - (1x) 图片纠正题目后的完整重算（Pattern-Key: image_problem.recompute）— 按图片重新识别题目、重算关键步骤并回读渲染结果
@@ -51,3 +53,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 速查笔记过度搬运详解（Pattern-Key: notes.quick_review_extract）— 必背/速查文件避免塞入历史背景、完整推导和完整例题
 - (1x) shell 引号与重定向风险（Pattern-Key: ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 等规则文件时避免复杂 inline printf，写后立刻回读行数和关键内容
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
+- (1x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 几何位置、物理过程、函数曲线、流程结构、电路、变量方向易混内容，优先考虑补图而非只写文字公式
