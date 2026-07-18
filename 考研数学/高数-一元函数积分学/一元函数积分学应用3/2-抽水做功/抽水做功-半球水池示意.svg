@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600" viewBox="0 0 1100 600">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .axis{stroke:#1f2937;stroke-width:2;marker-end:url(#arrow)}
+      .outline{stroke:#111827;stroke-width:3;fill:#dbeafe;fill-opacity:.25}
+      .water{stroke:#2563eb;stroke-width:3;fill:#93c5fd;fill-opacity:.22}
+      .slice{stroke:#dc2626;stroke-width:3;fill:none}
+      .dash{stroke:#6b7280;stroke-width:2;stroke-dasharray:6 6;fill:none}
+      .label{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;font-size:24px;fill:#111827}
+      .small{font-size:21px;fill:#374151}
+      .blue{fill:#2563eb}.red{fill:#dc2626}.green{fill:#15803d}
+    </style>
+  </defs>
+
+  <text x="550" y="42" text-anchor="middle" class="label" font-weight="700">半球水池：y 向下 ⇒ 路程 H+y</text>
+
+  <!-- target level and water surface -->
+  <line x1="180" y1="92" x2="865" y2="92" stroke="#2563eb" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="875" y="99" class="label blue">抽到此处：水面上方 H</text>
+  <line x1="200" y1="210" x2="820" y2="210" stroke="#111827" stroke-width="3"/>
+  <text x="830" y="218" class="label">原水面 y=0</text>
+
+  <!-- hemisphere -->
+  <path class="outline" d="M200 210 A250 250 0 0 0 700 210 L200 210 Z"/>
+  <path class="water" d="M200 210 A250 250 0 0 0 700 210 Z"/>
+
+  <!-- coordinate axis downward -->
+  <line class="axis" x1="450" y1="190" x2="450" y2="500"/>
+  <text x="468" y="500" class="label">y 向下</text>
+  <text x="468" y="212" class="small">O（球心/水面中心）</text>
+  <text x="470" y="462" class="small">y=R</text>
+
+  <!-- H bracket -->
+  <line x1="150" y1="210" x2="150" y2="92" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <line x1="150" y1="92" x2="150" y2="210" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="112" y="158" class="label blue">H</text>
+
+  <!-- slice -->
+  <ellipse class="slice" cx="450" cy="335" rx="216" ry="25"/>
+  <line class="slice" x1="450" y1="335" x2="666" y2="335"/>
+  <text x="670" y="342" class="label red">√(R²-y²)</text>
+  <line class="dash" x1="450" y1="210" x2="450" y2="335"/>
+  <text x="470" y="286" class="label">深度 y</text>
+
+  <!-- lift distance H+y -->
+  <line x1="860" y1="335" x2="860" y2="92" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="880" y="226" class="label blue">提升距离 H+y</text>
+
+  <!-- formula box -->
+  <rect x="70" y="480" width="380" height="92" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+  <text x="92" y="518" class="label" font-weight="700">截面面积</text>
+  <text x="92" y="552" class="small">A(y)=π(R²-y²)，0≤y≤R</text>
+
+  <rect x="560" y="480" width="420" height="92" rx="18" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text x="585" y="518" class="label" font-weight="700">最容易错</text>
+  <text x="585" y="552" class="small">y 向下 ⇒ 路程 = H + y</text>
+</svg>

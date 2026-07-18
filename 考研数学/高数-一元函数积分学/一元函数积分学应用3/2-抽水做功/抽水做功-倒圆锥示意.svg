@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .axis{stroke:#1f2937;stroke-width:2;marker-end:url(#arrow)}
+      .outline{stroke:#111827;stroke-width:3;fill:#dbeafe;fill-opacity:.35}
+      .water{stroke:#2563eb;stroke-width:3;fill:#93c5fd;fill-opacity:.22}
+      .slice{stroke:#dc2626;stroke-width:3;fill:none}
+      .dash{stroke:#6b7280;stroke-width:2;stroke-dasharray:6 6;fill:none}
+      .label{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;font-size:24px;fill:#111827}
+      .small{font-size:21px;fill:#374151}
+      .blue{fill:#2563eb}.red{fill:#dc2626}.gray{fill:#4b5563}
+    </style>
+  </defs>
+
+  <text x="550" y="42" text-anchor="middle" class="label" font-weight="700">倒圆锥：x 取成提升距离</text>
+
+  <!-- cone body -->
+  <path class="outline" d="M260 100 C330 82,570 82,640 100 L450 470 Z"/>
+  <ellipse class="water" cx="450" cy="100" rx="190" ry="34"/>
+  <path class="water" d="M260 100 C330 118,570 118,640 100 L450 470 Z"/>
+
+  <!-- axis x downward -->
+  <line class="axis" x1="450" y1="78" x2="450" y2="505"/>
+  <text x="468" y="505" class="label">x 向下</text>
+  <text x="470" y="137" class="small">x=0（水面/出口）</text>
+  <text x="470" y="468" class="small">x=a（锥顶）</text>
+
+  <!-- slice at depth x -->
+  <g>
+    <line class="dash" x1="450" y1="250" x2="450" y2="100"/>
+    <line class="slice" x1="342" y1="250" x2="558" y2="250"/>
+    <ellipse class="slice" cx="450" cy="250" rx="108" ry="18"/>
+    <line class="slice" x1="450" y1="250" x2="558" y2="250"/>
+    <text x="570" y="258" class="label red">半径 r</text>
+    <line stroke="#dc2626" stroke-width="2" x1="450" y1="250" x2="558" y2="250" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- lifting distance -->
+  <line x1="705" y1="250" x2="705" y2="104" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="802" y="182" class="label blue">提升距离 x</text>
+
+  <!-- top radius -->
+  <line x1="450" y1="100" x2="640" y2="100" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="515" y="76" class="label" fill="#15803d">上口半径 b</text>
+
+  <!-- formula box -->
+  <rect x="80" y="360" width="310" height="118" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+  <text x="100" y="400" class="label" font-weight="700">相似比</text>
+  <text x="100" y="436" class="small">r / b = (a - x) / a</text>
+  <text x="100" y="468" class="small">A(x)=π[b(a-x)/a]²</text>
+
+  <rect x="590" y="360" width="380" height="118" rx="18" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text x="615" y="400" class="label" font-weight="700">图上先看两件事</text>
+  <text x="615" y="436" class="small">1. 截面半径随 x 变小</text>
+  <text x="615" y="468" class="small">2. 每层水要向上提 x</text>
+</svg>
