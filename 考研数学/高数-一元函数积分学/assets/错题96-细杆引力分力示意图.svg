@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <!-- coordinate axes -->
+  <line x1="90" y1="390" x2="640" y2="390" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="140" y1="420" x2="140" y2="60" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="650" y="397" font-size="22" fill="#111">x</text>
+  <text x="132" y="48" font-size="22" fill="#111">y</text>
+  <text x="120" y="414" font-size="18" fill="#111">O</text>
+
+  <!-- rod from y=0 to y=1 -->
+  <line x1="140" y1="390" x2="140" y2="120" stroke="#16a34a" stroke-width="14" stroke-linecap="round"/>
+  <text x="82" y="258" font-size="20" fill="#16a34a">均匀细杆</text>
+  <text x="102" y="125" font-size="20" fill="#111">1</text>
+  <line x1="130" y1="120" x2="150" y2="120" stroke="#333" stroke-width="2"/>
+
+  <!-- point mass at (1,0) -->
+  <circle cx="470" cy="390" r="7" fill="#111"/>
+  <text x="448" y="423" font-size="20" fill="#111">(1,0)</text>
+  <text x="492" y="384" font-size="18" fill="#111">单位质点</text>
+  <line x1="470" y1="390" x2="470" y2="400" stroke="#333" stroke-width="2"/>
+  <text x="463" y="414" font-size="18" fill="#111">1</text>
+
+  <!-- element dy on rod -->
+  <line x1="140" y1="240" x2="140" y2="210" stroke="#0f766e" stroke-width="18" stroke-linecap="round"/>
+  <text x="78" y="232" font-size="20" fill="#0f766e">ρdy</text>
+  <text x="88" y="246" font-size="20" fill="#111">y</text>
+  <line x1="130" y1="240" x2="150" y2="240" stroke="#333" stroke-width="2"/>
+
+  <!-- distance vector and force vector -->
+  <line x1="470" y1="390" x2="140" y2="225" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="285" y="282" font-size="22" fill="#2563eb">r=√(1+y²)</text>
+  <text x="320" y="338" font-size="22" fill="#2563eb">dF</text>
+
+  <!-- x component -->
+  <line x1="470" y1="390" x2="350" y2="390" stroke="#dc2626" stroke-width="4" marker-end="url(#arrowRed)"/>
+  <text x="368" y="378" font-size="22" fill="#dc2626">dFₓ&lt;0</text>
+  <text x="250" y="430" font-size="20" fill="#dc2626">沿 x 轴正向的分力取负号</text>
+
+  <!-- helper right triangle labels -->
+  <line x1="140" y1="225" x2="470" y2="225" stroke="#999" stroke-dasharray="6 6"/>
+  <line x1="470" y1="225" x2="470" y2="390" stroke="#999" stroke-dasharray="6 6"/>
+  <text x="300" y="218" font-size="18" fill="#555">水平距离 1</text>
+  <text x="482" y="310" font-size="18" fill="#555">竖直距离 y</text>
+
+  <text x="170" y="35" font-size="24" font-weight="700" fill="#111">细杆对单位质点的引力分解图</text>
+</svg>
