@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="520" viewBox="0 0 860 520">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111827" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="210" y="38" font-size="25" font-weight="700" fill="#111827">摆脱地球引力：沿地心距离 r 做功</text>
+
+  <!-- earth -->
+  <circle cx="210" cy="270" r="90" fill="#bfdbfe" stroke="#2563eb" stroke-width="4"/>
+  <circle cx="210" cy="270" r="5" fill="#111827"/>
+  <text x="190" y="265" font-size="18" fill="#111827">地心 O</text>
+  <text x="182" y="378" font-size="20" fill="#2563eb">地球半径 R</text>
+  <line x1="210" y1="270" x2="300" y2="270" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="246" y="250" font-size="20" fill="#2563eb">R</text>
+
+  <!-- radial axis -->
+  <line x1="210" y1="270" x2="780" y2="270" stroke="#111827" stroke-width="2.3" marker-end="url(#arrow)"/>
+  <text x="790" y="277" font-size="22" fill="#111827">r</text>
+  <line x1="300" y1="250" x2="300" y2="290" stroke="#111827" stroke-width="2"/>
+  <text x="286" y="325" font-size="20" fill="#111827">r=R</text>
+
+  <!-- object and movement -->
+  <circle cx="300" cy="270" r="10" fill="#dc2626"/>
+  <text x="280" y="230" font-size="20" fill="#dc2626">m=1</text>
+  <path d="M322 250 C430 180, 580 182, 700 238" fill="none" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="470" y="170" font-size="21" fill="#16a34a">外力缓慢拉到无穷远</text>
+  <text x="650" y="225" font-size="20" fill="#16a34a">r→+∞</text>
+
+  <!-- gravity direction -->
+  <line x1="300" y1="305" x2="226" y2="305" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <text x="235" y="334" font-size="20" fill="#dc2626">引力方向向地心</text>
+  <text x="225" y="466" font-size="21" fill="#111827">F(r)=GM/r²，克服引力做功：W=∫[R,+∞] GM/r² dr=GM/R</text>
+</svg>
