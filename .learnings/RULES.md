@@ -23,6 +23,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 用户质疑数学解析正确性时，优先用目标等式或代入法直接验算；相似变换题直接验算 `P^(-1)AP=B` 或 `AP=PB`
 - (1x) 专业课核心公式首次出现后，紧跟变量符号说明：物理意义、方向/极性约定、单位/典型值、做题近似用法
 - (1x) 必背/速查类笔记优先保留“定义 + 公式 + 性质 + 口诀 + 易错点 + 做题步骤 + 来源链接”，长推导和完整例题留在原章节
+- (1x) 必背/速查类笔记先读取对应源笔记，按“源笔记原句/公式/步骤 → 精简压缩 → 必要补充”的顺序处理；补充内容必须与源笔记主线一致
 - (1x) Markdown 区块替换优先用标题边界（如从 `## A` 到下一个 `## B`），不要用裸 `---` 作为唯一结束锚点
 - (1x) 生成或更新学习内容时，先判断图示/图片描述是否更有利于学习；若能降低理解成本，就主动生成并嵌入图，并配“图的作用 + 关键标注 + 学习/做题结论”
 
@@ -51,6 +52,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 数学解析质疑后的直接验算（Pattern-Key: math.direct_substitution_check）— 优先验算目标等式，不只口头确认
 - (1x) 专业课公式符号说明遗漏（Pattern-Key: electronics.formula_symbol_explain）— 首次出现核心公式时检查变量、方向、单位、近似用法是否齐全
 - (1x) 速查笔记过度搬运详解（Pattern-Key: notes.quick_review_extract）— 必背/速查文件避免塞入历史背景、完整推导和完整例题
+- (1x) 源笔记优先抽取（Pattern-Key: notes.source_first_extract）— 更新必背/速查笔记前先读对应章节源笔记，避免凭空换符号、替换原主方法或另写一套表达
 - (1x) shell 引号与重定向风险（Pattern-Key: ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 等规则文件时避免复杂 inline printf，写后立刻回读行数和关键内容
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
 - (1x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 几何位置、物理过程、函数曲线、流程结构、电路、变量方向易混内容，优先考虑补图而非只写文字公式
