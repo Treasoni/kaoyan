@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="470" viewBox="0 0 1160 470">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .title{font:700 30px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#111827}
+      .box{fill:#f8fafc;stroke:#2563eb;stroke-width:2.5;rx:18;ry:18}
+      .key{fill:#ecfdf5;stroke:#10b981;stroke-width:2.5;rx:18;ry:18}
+      .bad{fill:#fff1f2;stroke:#e11d48;stroke-width:2.5;rx:18;ry:18}
+      .txt{font:22px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#111827}
+      .small{font:18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#374151}
+      .formula{font:21px 'Times New Roman','Cambria Math',serif;fill:#111827}
+      .arrow{stroke:#2563eb;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .warn{font:20px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#be123c;font-weight:600}
+    </style>
+  </defs>
+  <text x="580" y="42" text-anchor="middle" class="title">错题38：正交矩阵 + 伴随矩阵化简路线</text>
+
+  <rect x="45" y="90" width="250" height="112" class="box"/>
+  <text x="170" y="126" text-anchor="middle" class="txt">题干开关</text>
+  <text x="170" y="160" text-anchor="middle" class="formula">A⁻¹ = Aᵀ</text>
+  <text x="170" y="188" text-anchor="middle" class="small">立刻识别：A 是正交矩阵</text>
+
+  <rect x="350" y="90" width="250" height="112" class="box"/>
+  <text x="475" y="126" text-anchor="middle" class="txt">行列式开关</text>
+  <text x="475" y="160" text-anchor="middle" class="formula">|A|² = 1</text>
+  <text x="475" y="188" text-anchor="middle" class="small">所以 |A| = ±1</text>
+
+  <rect x="655" y="90" width="250" height="112" class="key"/>
+  <text x="780" y="126" text-anchor="middle" class="txt">奇数阶开关</text>
+  <text x="780" y="160" text-anchor="middle" class="formula">|A*| = |A|ⁿ⁻¹ = 1</text>
+  <text x="780" y="188" text-anchor="middle" class="small">n-1 是偶数</text>
+
+  <rect x="350" y="285" width="250" height="112" class="key"/>
+  <text x="475" y="322" text-anchor="middle" class="txt">伴随化简</text>
+  <text x="475" y="356" text-anchor="middle" class="formula">A* = |A|A⁻¹ = |A|Aᵀ</text>
+  <text x="475" y="384" text-anchor="middle" class="small">见伴随，先化逆 / 转置</text>
+
+  <rect x="655" y="285" width="250" height="112" class="bad"/>
+  <text x="780" y="322" text-anchor="middle" class="txt">判错选项</text>
+  <text x="780" y="356" text-anchor="middle" class="formula">(A*)ᵀA* = E ≠ -E</text>
+  <text x="780" y="384" text-anchor="middle" class="small">所以 B 不成立</text>
+
+  <path d="M295 146 H340" class="arrow"/>
+  <path d="M600 146 H645" class="arrow"/>
+  <path d="M475 202 V275" class="arrow"/>
+  <path d="M600 341 H645" class="arrow"/>
+  <text x="580" y="445" text-anchor="middle" class="warn">考场提醒：不要把 |A|=±1 的符号不确定误带到 |A*|；奇数阶使 n-1 为偶数。</text>
+</svg>
