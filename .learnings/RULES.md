@@ -33,6 +33,8 @@ Compressed patterns from repeated learnings and errors.
 
 - (1x) 写入题目解析前先确认目标笔记；用户给出路径时以该路径为唯一写入目标；若误写，必须移动到正确目标并清理原处后回读验证
 
+- (1x) Obsidian Mermaid 节点文本含中文、比较符、括号、逗号或公式样内容时，用双引号包裹；比较符优先用 `≤`、`≥`、`＜`、`＞` 等显示符号。
+
 ## Don't
 
 - (5x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
@@ -42,6 +44,8 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 不要只替换图片题的题干而沿用旧解析；新旧答案偶然一致也可能隐藏验秩矩阵、过程或边界条件错误
 - (1x) 不要用含撇号、反斜杠或 Markdown 符号的复杂 inline `printf` 搭配重定向初始化/修复学习文件，避免引号破裂导致文件被截空
 - **不要将新规则提升到项目入口文件（AGENTS.md / CLAUDE.md）** — 新规则仅写入 `.learnings/RULES.md`，由 hook 在 agent 启动时注入
+
+- (1x) Mermaid 节点标签中不要裸写 `<`、`<=`、`>`、`>=` 或未加引号的 `VGS(off)` 这类括号表达式，避免 Obsidian/Mermaid 解析异常。
 
 ## Watch For
 
@@ -65,3 +69,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 笔记开头符号说明遗漏（Pattern-Key: notes.symbol_quick_reference）— 专业课/数学等符号密集笔记写入前，先检查开头是否有符号速查；不要把符号解释分散到正文首次出现处。
 - (1x) 好题解析题目卡片缺失（Pattern-Key: problem_note.complete_card）— 图片题必须检查题干、已知所求、电路图/曲线图等关键图是否在正文可见；原题整图只作折叠溯源
 - (1x) 题目解析目标路径误判（Pattern-Key: note_update.target_path_confirm）— 题目/例题/好题/错题优先写入好题解析或错题文件；用户显式路径最高优先级
+- (1x) Mermaid 节点标签转义（Pattern-Key: obsidian.mermaid_node_label_escape）— 中文节点、条件判断、括号和比较符要先加引号并替换裸 `<`/`<=`。
