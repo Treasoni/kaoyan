@@ -29,3 +29,30 @@ Command failures and integration errors.
 Pattern-Key: write_verify.latex_escape
 
 ---
+
+## [ERR-20260719-002] note_update
+
+**Logged**: 2026-07-19T16:19:52+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs/math
+
+### Summary
+伴随矩阵“代数余子式下标转置位置”这类位置关系，只写文字不够直观，应主动配图。
+
+### Error
+```text
+用户反馈：图不给我，给我不是更方便我理解吗？
+```
+
+### Context
+更新 [[线性代数/必背知识.md]] 的伴随矩阵小节时，先只写了“代数余子式 $A_{ij}$ 放到第 $j$ 行第 $i$ 列；下标是 $ji$，不是 $ij$”，没有主动生成位置对应图。后续已补充 [[线性代数/第二章：矩阵/assets/伴随矩阵下标转置位置图.svg]]，并在笔记中说明图的作用与做题结论。
+
+### Suggested Action
+遇到下标互换、行列位置对应、左右乘、转置/伴随等“空间位置关系”或“索引映射”知识点时，默认主动生成最小示意图，并配“图的作用 + 关键标注 + 做题结论”，不要等用户提醒。
+
+### Related Rules
+Pattern-Key: docs.proactive_visual_learning
+Pattern-Key: docs.visual_source_coverage
+
+---

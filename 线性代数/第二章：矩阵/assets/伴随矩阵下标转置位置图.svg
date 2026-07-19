@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb" />
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', Arial, sans-serif; fill: #111827; }
+      .title { font-size: 24px; font-weight: 700; }
+      .label { font-size: 19px; font-weight: 600; }
+      .cell { fill: #ffffff; stroke: #6b7280; stroke-width: 1.4; }
+      .hi { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2.2; }
+      .math { font-size: 20px; font-family: 'Times New Roman', serif; }
+      .note { font-size: 17px; fill: #374151; }
+      .red { fill: #dc2626; font-weight: 700; }
+      .blue { fill: #2563eb; font-weight: 700; }
+    </style>
+  </defs>
+
+  <text x="490" y="36" text-anchor="middle" class="title">伴随矩阵的位置关系：先排代数余子式矩阵，再转置</text>
+
+  <text x="250" y="78" text-anchor="middle" class="label">代数余子式矩阵 C = (Aᵢⱼ)</text>
+  <text x="730" y="78" text-anchor="middle" class="label">伴随矩阵 A* = Cᵀ = (Aⱼᵢ)</text>
+
+  <!-- left matrix grid -->
+  <g transform="translate(130,105)">
+    <rect x="0" y="0" width="80" height="60" class="cell"/><rect x="80" y="0" width="80" height="60" class="hi"/><rect x="160" y="0" width="80" height="60" class="cell"/>
+    <rect x="0" y="60" width="80" height="60" class="cell"/><rect x="80" y="60" width="80" height="60" class="cell"/><rect x="160" y="60" width="80" height="60" class="hi"/>
+    <rect x="0" y="120" width="80" height="60" class="cell"/><rect x="80" y="120" width="80" height="60" class="cell"/><rect x="160" y="120" width="80" height="60" class="cell"/>
+    <text x="40" y="38" text-anchor="middle" class="math">A₁₁</text><text x="120" y="38" text-anchor="middle" class="math red">A₁₂</text><text x="200" y="38" text-anchor="middle" class="math">A₁₃</text>
+    <text x="40" y="98" text-anchor="middle" class="math">A₂₁</text><text x="120" y="98" text-anchor="middle" class="math">A₂₂</text><text x="200" y="98" text-anchor="middle" class="math blue">A₂₃</text>
+    <text x="40" y="158" text-anchor="middle" class="math">A₃₁</text><text x="120" y="158" text-anchor="middle" class="math">A₃₂</text><text x="200" y="158" text-anchor="middle" class="math">A₃₃</text>
+  </g>
+
+  <!-- right matrix grid -->
+  <g transform="translate(610,105)">
+    <rect x="0" y="0" width="80" height="60" class="cell"/><rect x="80" y="0" width="80" height="60" class="cell"/><rect x="160" y="0" width="80" height="60" class="cell"/>
+    <rect x="0" y="60" width="80" height="60" class="hi"/><rect x="80" y="60" width="80" height="60" class="cell"/><rect x="160" y="60" width="80" height="60" class="cell"/>
+    <rect x="0" y="120" width="80" height="60" class="cell"/><rect x="80" y="120" width="80" height="60" class="hi"/><rect x="160" y="120" width="80" height="60" class="cell"/>
+    <text x="40" y="38" text-anchor="middle" class="math">A₁₁</text><text x="120" y="38" text-anchor="middle" class="math">A₂₁</text><text x="200" y="38" text-anchor="middle" class="math">A₃₁</text>
+    <text x="40" y="98" text-anchor="middle" class="math red">A₁₂</text><text x="120" y="98" text-anchor="middle" class="math">A₂₂</text><text x="200" y="98" text-anchor="middle" class="math">A₃₂</text>
+    <text x="40" y="158" text-anchor="middle" class="math">A₁₃</text><text x="120" y="158" text-anchor="middle" class="math blue">A₂₃</text><text x="200" y="158" text-anchor="middle" class="math">A₃₃</text>
+  </g>
+
+  <path d="M390 150 C455 120, 525 120, 590 150" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <text x="490" y="132" text-anchor="middle" class="label blue">转置</text>
+
+  <path d="M250 135 C380 238, 485 238, 650 195" stroke="#dc2626" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="470" y="248" text-anchor="middle" class="note red">A₁₂：原来第 1 行第 2 列 → A* 中第 2 行第 1 列</text>
+
+  <path d="M330 195 C455 315, 555 315, 730 255" stroke="#2563eb" stroke-width="2.5" fill="none" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="505" y="340" text-anchor="middle" class="note blue">A₂₃：原来第 2 行第 3 列 → A* 中第 3 行第 2 列</text>
+
+  <rect x="120" y="375" width="740" height="38" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="490" y="400" text-anchor="middle" class="note">做题口诀：先算 Aᵢⱼ，最后整体转置；所以 Aᵢⱼ 放到 A* 的 (j,i) 位置。</text>
+</svg>
