@@ -29,6 +29,10 @@ Compressed patterns from repeated learnings and errors.
 
 - (1x) 学习笔记开头优先设置“符号速查/符号说明”区块：集中解释本节会用到的缩写、变量、端口、电压/电流方向、参数含义和做题用法，方便复习时先查符号。
 
+- (1x) 好题/错题解析笔记先写完整题目卡片：题目原文、已知与所求、原题关键图/裁剪图、答案速览、SOP、分步解析、易错点；原题整图只作折叠溯源，不能替代正文关键图
+
+- (1x) 写入题目解析前先确认目标笔记；用户给出路径时以该路径为唯一写入目标；若误写，必须移动到正确目标并清理原处后回读验证
+
 ## Don't
 
 - (5x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
@@ -45,7 +49,7 @@ Compressed patterns from repeated learnings and errors.
 - (4x) Markdown/LaTeX 写入转义污染（Pattern-Key: write_verify.latex_escape）— `\begin`、`\rvert`、反引号、heredoc、Python 字符串和索引表格行都要重点回读
 - (2x) 完成报告更新清单中“英语📅日志”和“线代📊进度”容易遗漏
 - (2x) Obsidian 证明/推导使用 `> [!note]-` 单一折叠块（Pattern-Key: obsidian.proof_collapsible）— 默认折叠；callout 内允许 `$$` 块级公式；表格前后留空行
-- (4x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
+- (5x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
 - (1x) 手写笔记混合重构（Pattern-Key: docs.handwritten_hybrid）— 正文以结构化提炼和标准图/AI 重绘图服务复习，原图留在对应段落或折叠“手写来源”保留推理、纠错和个人理解
 - (1x) 数学笔记内容准确性验证（Pattern-Key: math.content_verify）— 公式/定理/推导写入前必须独立验证
 - (1x) 自测文件覆盖率遗漏（Pattern-Key: quiz.coverage_audit）— 更新自测前必须对比源文件章节列表
@@ -59,3 +63,5 @@ Compressed patterns from repeated learnings and errors.
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
 - (1x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 几何位置、物理过程、函数曲线、流程结构、电路、变量方向易混内容，优先考虑补图而非只写文字公式
 - (1x) 笔记开头符号说明遗漏（Pattern-Key: notes.symbol_quick_reference）— 专业课/数学等符号密集笔记写入前，先检查开头是否有符号速查；不要把符号解释分散到正文首次出现处。
+- (1x) 好题解析题目卡片缺失（Pattern-Key: problem_note.complete_card）— 图片题必须检查题干、已知所求、电路图/曲线图等关键图是否在正文可见；原题整图只作折叠溯源
+- (1x) 题目解析目标路径误判（Pattern-Key: note_update.target_path_confirm）— 题目/例题/好题/错题优先写入好题解析或错题文件；用户显式路径最高优先级
