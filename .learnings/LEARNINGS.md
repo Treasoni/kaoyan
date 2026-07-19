@@ -73,3 +73,24 @@ Pattern-Key: docs.proactive_visual_learning
 ### Related Rules
 Pattern-Key: notes.structure_template_required
 
+## [LRN-20260719-002] correction
+
+**Logged**: 2026-07-19T15:08:30+0800
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+用户提供原图或资料做法时，笔记应优先还原原图主方法，不能擅自换成另一种可行但非原资料的解法。
+
+### Details
+整理线性代数“递推型行列式”例题 13“四角剥皮型 $2n$ 阶行列式”时，原图体现的是分块矩阵法：通过同序重排行和列，把矩阵化为 $n$ 个 $2\times2$ 块对角矩阵，得到 $(ad-bc)^n$。初版笔记却先写成“按第一行展开 + 剥皮递推”的做法。虽然结论正确，但与用户资料中的主思路不一致，导致用户追问“图中的做法不是用分块矩阵的做法吗”。随后已将分块矩阵法改为主方法，剥皮递推法降级为备用理解。
+
+### Suggested Action
+以后根据用户提供的图片、截图、教材页或原笔记整理内容时，先识别并保留“原资料主方法/主线索”。如果另有更通用或更简单的方法，只能作为“备用方法/补充理解”呈现；不得用替代方法覆盖原图思路。写入后回读标题和方法选择提示，确认主次关系与资料来源一致。
+
+### Related Rules
+Pattern-Key: docs.source_method_alignment
+
+---
+
