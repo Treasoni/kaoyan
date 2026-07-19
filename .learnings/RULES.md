@@ -27,6 +27,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) Markdown 区块替换优先用标题边界（如从 `## A` 到下一个 `## B`），不要用裸 `---` 作为唯一结束锚点
 - (1x) 生成或更新学习内容时，先判断图示/图片描述是否更有利于学习；若能降低理解成本，就主动生成并嵌入图，并配“图的作用 + 关键标注 + 学习/做题结论”
 
+- (1x) 学习笔记开头优先设置“符号速查/符号说明”区块：集中解释本节会用到的缩写、变量、端口、电压/电流方向、参数含义和做题用法，方便复习时先查符号。
 ## Don't
 
 - (5x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
@@ -56,3 +57,5 @@ Compressed patterns from repeated learnings and errors.
 - (1x) shell 引号与重定向风险（Pattern-Key: ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 等规则文件时避免复杂 inline printf，写后立刻回读行数和关键内容
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
 - (1x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 几何位置、物理过程、函数曲线、流程结构、电路、变量方向易混内容，优先考虑补图而非只写文字公式
+
+- (1x) 笔记开头符号说明遗漏（Pattern-Key: notes.symbol_quick_reference）— 专业课/数学等符号密集笔记写入前，先检查开头是否有符号速查；不要把符号解释分散到正文首次出现处。
