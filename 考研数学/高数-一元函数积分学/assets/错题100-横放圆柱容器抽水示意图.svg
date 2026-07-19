@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="620" viewBox="0 0 980 620">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111827" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0284c7" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="255" y="40" font-size="25" font-weight="700" fill="#111827">横放圆柱容器：液面变化率与抽水做功</text>
+
+  <!-- cross-section circle -->
+  <circle cx="305" cy="305" r="190" fill="#eff6ff" stroke="#2563eb" stroke-width="4"/>
+  <line x1="115" y1="305" x2="495" y2="305" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="305" y1="520" x2="305" y2="80" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="505" y="313" font-size="22" fill="#111827">x</text>
+  <text x="316" y="88" font-size="22" fill="#111827">y</text>
+  <text x="332" y="120" font-size="18" fill="#0284c7">顶端 y=1</text>
+  <text x="324" y="506" font-size="18" fill="#64748b">底端 y=-1</text>
+  <text x="335" y="300" font-size="18" fill="#111827">圆心 y=0</text>
+  <text x="130" y="555" font-size="20" fill="#2563eb">底面圆：x²+y²=1，圆柱长度=1</text>
+
+  <!-- top line -->
+  <line x1="305" y1="115" x2="760" y2="115" stroke="#0ea5e9" stroke-width="4"/>
+  <text x="770" y="122" font-size="20" fill="#0284c7">抽到容器顶端 y=1</text>
+
+  <!-- current liquid surface y=0 -->
+  <line x1="115" y1="305" x2="495" y2="305" stroke="#16a34a" stroke-width="5" opacity="0.75"/>
+  <text x="510" y="292" font-size="20" fill="#16a34a">液面 y=0 时</text>
+  <text x="510" y="320" font-size="18" fill="#16a34a">弦长=2</text>
+
+  <!-- generic horizontal slice y -->
+  <line x1="185" y1="405" x2="425" y2="405" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+  <text x="440" y="410" font-size="19" fill="#dc2626">高度 y 处水平液层</text>
+  <text x="440" y="438" font-size="18" fill="#dc2626">dV=2√(1-y²) dy</text>
+  <line x1="305" y1="405" x2="425" y2="405" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="322" y="388" font-size="18" fill="#111827">√(1-y²)</text>
+  <text x="155" y="412" font-size="18" fill="#dc2626">dy</text>
+
+  <!-- lift distance -->
+  <line x1="710" y1="115" x2="710" y2="405" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="710" y1="405" x2="710" y2="115" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="425" y1="405" x2="704" y2="405" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 5"/>
+  <text x="728" y="255" font-size="20" fill="#0284c7">提升距离</text>
+  <text x="728" y="282" font-size="20" fill="#0284c7">1-y</text>
+
+  <!-- formula box -->
+  <rect x="95" y="570" width="790" height="38" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="116" y="595" font-size="18" fill="#111827">V(y)=∫[-1,y]2√(1-u²)du；  dV/dy=2√(1-y²)；  W=∫[-1,1]2√(1-y²)(1-y)dy=π</text>
+</svg>
