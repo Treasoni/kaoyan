@@ -51,3 +51,25 @@ Pattern-Key: docs.proactive_visual_learning
 2026-07-18：用户明确要求将该做法作为以后生成内容的习惯，已同步到 `.learnings/RULES.md` 的 Do 与 Watch For。
 
 ---
+
+---
+
+## [LRN-20260719-001] best_practice
+
+**Logged**: 2026-07-19T14:51:56+0800
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+结构识别型必背/速查笔记不能压缩到只剩公式，必须保留最小结构模板或图示。
+
+### Details
+整理线性代数“递推型行列式”到《必背知识》时，初版只保留了递推公式、结论和易错点。用户指出这会导致复习时“不懂”：递推型行列式属于结构识别型知识，考场启动依赖先认出异爪型、三对角型、四角剥皮型等模板，而不是只背 $D_n=pD_{n-1}+qD_{n-2}$。随后已补充异爪型模板、三对角模板和四角剥皮图示，并为图示配“图的作用 + 关键标注 + 做题结论”。
+
+### Suggested Action
+以后更新必背/速查类笔记时，先判断知识点是“纯公式型”还是“结构识别型”。纯公式型可只保留公式、条件和易错点；结构识别型必须保留最小识别模板、启动口诀和必要图示，避免过度压缩导致复习时无法认题。
+
+### Related Rules
+Pattern-Key: notes.structure_template_required
+
