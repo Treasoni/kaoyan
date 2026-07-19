@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="620" viewBox="0 0 1060 620">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111827" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0284c7" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <text x="290" y="38" font-size="25" font-weight="700" fill="#111827">旋转抛物面水缸：水平圆盘微元</text>
+
+  <!-- axes -->
+  <line x1="450" y1="535" x2="450" y2="75" stroke="#111827" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <line x1="210" y1="535" x2="740" y2="535" stroke="#111827" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <text x="462" y="82" font-size="22" fill="#111827">y</text>
+  <text x="750" y="542" font-size="22" fill="#111827">x</text>
+
+  <!-- water surface / rim y=a -->
+  <line x1="250" y1="135" x2="720" y2="135" stroke="#0ea5e9" stroke-width="4"/>
+  <text x="735" y="142" font-size="20" fill="#0284c7">y=a 缸口</text>
+  <line x1="250" y1="135" x2="250" y2="535" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 5"/>
+  <line x1="650" y1="135" x2="650" y2="535" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 5"/>
+  <text x="235" y="118" font-size="19" fill="#111827">-a</text>
+  <text x="640" y="118" font-size="19" fill="#111827">a</text>
+
+  <!-- parabola cross-section y=x^2/a, scaled: a=200 px, y_svg=535-y_math*400/a? simple Bezier -->
+  <path d="M250 135 C310 305, 382 458, 450 535" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <path d="M650 135 C590 305, 518 458, 450 535" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <text x="102" y="330" font-size="20" fill="#2563eb">截面抛物线：y=x²/a</text>
+
+  <!-- revolved bowl visual hint -->
+  <path d="M250 135 C310 162, 590 162, 650 135" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M250 135 C315 108, 585 108, 650 135" fill="none" stroke="#2563eb" stroke-width="2" opacity="0.7"/>
+
+  <!-- horizontal slice at y -->
+  <line x1="330" y1="335" x2="570" y2="335" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+  <path d="M330 335 C370 318, 530 318, 570 335" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <path d="M330 335 C370 352, 530 352, 570 335" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <text x="680" y="325" font-size="18" fill="#dc2626">水平薄圆盘</text>
+  <text x="680" y="352" font-size="18" fill="#dc2626">dV=πay dy</text>
+
+  <!-- radius label -->
+  <line x1="450" y1="335" x2="570" y2="335" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="474" y="316" font-size="19" fill="#111827">x=√(ay)</text>
+
+  <!-- y and dy labels -->
+  <line x1="418" y1="535" x2="418" y2="335" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="386" y="438" font-size="20" fill="#111827">y</text>
+  <line x1="318" y1="325" x2="318" y2="345" stroke="#dc2626" stroke-width="3"/>
+  <text x="286" y="338" font-size="18" fill="#dc2626">dy</text>
+
+  <!-- lift distance -->
+  <line x1="790" y1="135" x2="790" y2="335" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="790" y1="335" x2="790" y2="135" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="570" y1="335" x2="784" y2="335" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 5"/>
+  <text x="808" y="240" font-size="19" fill="#0284c7">提升</text>
+  <text x="808" y="267" font-size="19" fill="#0284c7">a-y</text>
+
+  <!-- formula box -->
+  <rect x="105" y="565" width="850" height="40" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="126" y="591" font-size="18" fill="#111827">V=int_0^a pi*a*y dy = pi*a^3/2； W=rho*g*int_0^a (a-y)pi*a*y dy = rho*g*pi*a^4/6</text>
+</svg>
