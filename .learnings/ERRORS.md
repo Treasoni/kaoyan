@@ -56,3 +56,55 @@ Pattern-Key: docs.proactive_visual_learning
 Pattern-Key: docs.visual_source_coverage
 
 ---
+
+## [ERR-20260719-003] note_update
+
+**Logged**: 2026-07-19T19:29:10+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs/electronics
+
+### Summary
+连续手写笔记被按知识点拆散，破坏了用户原始书写顺序。
+
+### Error
+```text
+用户反馈：我的手写笔记是按顺序写的，你拆开来放到不同笔记是什么意思？
+```
+
+### Context
+整理 FET/MOSFET 笔记时，按“核心思想与类型”和“工作区判断”两个主题分别嵌入不同手写图，忽视了这 4 张手写图属于同一条连续学习链。后续已将 4 张原图统一放入 [[考研专业课/模拟电子技术/详细笔记/02-场效应管及其放大电路/01-FET核心思想与类型]] 的“手写原图顺序索引”，并在 [[考研专业课/模拟电子技术/详细笔记/02-场效应管及其放大电路/02-MOSFET工作区判断]] 中改为回链。
+
+### Suggested Action
+遇到连续手写笔记时，原图顺序优先；先保留一个完整页序索引，再做主题化提炼。不要只按知识点归属移动原图。
+
+### Related Rules
+Pattern-Key: docs.handwritten_sequence_preserve
+
+---
+
+## [ERR-20260719-004] note_update
+
+**Logged**: 2026-07-19T19:29:10+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: docs/obsidian
+
+### Summary
+学习笔记图片宽度设置过大，影响正常阅读版面。
+
+### Error
+```text
+用户反馈：这里的图片太大了，改成正常大小
+```
+
+### Context
+重排 [[考研专业课/模拟电子技术/详细笔记/02-场效应管及其放大电路/01-FET核心思想与类型]] 和 [[考研专业课/模拟电子技术/详细笔记/02-场效应管及其放大电路/02-MOSFET工作区判断]] 后，图片宽度使用了 900、760、720、560 等偏大的尺寸。后续已改为正文图 520、总览图 600、手写图 420。
+
+### Suggested Action
+学习笔记图片默认使用阅读尺寸：普通图约 520，总览大图约 600，手写图约 420；避免无理由使用 700 以上宽度。
+
+### Related Rules
+Pattern-Key: obsidian.image_reading_size
+
+---
