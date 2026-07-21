@@ -51,3 +51,27 @@ Pattern-Key: write_verify.latex_escape
 ### Resolution
 2026-07-21：已同步到 `.learnings/RULES.md`。
 
+## [LRN-20260721-002] best_practice
+
+**Logged**: 2026-07-21T15:32:50+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs/obsidian/math/linear-algebra
+
+### Summary
+抽象数学题解析不能只给符号推导，要先解释“这一步在干什么”，再给坐标、列向量和计算细节。
+
+### Details
+用户反馈 [[线性代数/第一章：行列式/错题本.md]] 错题21原解析“构造 $A$ 在新基下的矩阵”看不懂。原版本虽然步骤正确，但偏教材式：直接定义 $v_1,v_2,v_3$、写 $AP=PB$、推出相似，缺少“新基是什么”“$B$ 的每一列为什么这么写”“为什么可以用 $B$ 代替 $A$ 算”的人话桥接。改写后按“先说人话含义 → 每个基向量逐列算坐标 → 解释 $AP=PB$ → 再计算行列式”的顺序，用户确认更清楚。
+
+### Suggested Action
+以后写考研数学题目解析，尤其是线代抽象矩阵、相似、特征值、基变换、坐标表示类题目时，默认采用“人话入口 + 分步坐标/对象解释 + 公式推导 + 一句话记忆”的结构。不要只写正确推导链；每出现一个抽象对象（如新基、表示矩阵、相似、$AP=PB$、$\lvert A-E\rvert$），都要先交代它在题里承担的作用。
+
+### Related Rules
+Pattern-Key: math.explain_human_bridge
+Pattern-Key: linear_algebra.basis_coordinate_explain
+
+### Resolution
+2026-07-21：用户明确要求“以后都这样”，已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
+
+---

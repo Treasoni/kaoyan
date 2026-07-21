@@ -35,6 +35,8 @@ Compressed patterns from repeated learnings and errors.
 
 - (1x) Obsidian Mermaid 节点文本含中文、比较符、括号、逗号或公式样内容时，用双引号包裹；比较符优先用 `≤`、`≥`、`＜`、`＞` 等显示符号。
 
+- (1x) 数学题解析默认采用“人话入口 + 分步对象/坐标解释 + 公式推导 + 一句话记忆”；抽象线代题要先解释新基、表示矩阵、相似、列坐标等对象在题里承担什么作用，再写符号推导。
+
 ## Don't
 
 - (5x) 表格单元格内 LaTeX 不要用 `$|A|$`、`$\Vert A \Vert$`、`$\left| A \right|$` — 管道符会被 Markdown 误解析
@@ -73,3 +75,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 题目解析目标路径误判（Pattern-Key: note_update.target_path_confirm）— 题目/例题/好题/错题优先写入好题解析或错题文件；用户显式路径最高优先级
 - (1x) Mermaid 节点标签转义（Pattern-Key: obsidian.mermaid_node_label_escape）— 中文节点、条件判断、括号和比较符要先加引号并替换裸 `<`/`<=`。
 - (1x) JSON/exec 层 LaTeX 转义污染（Pattern-Key: write_verify.json_latex_escape）— 通过工具命令写入 Markdown 时，外层 JSON 会先解释 `\b`、`\t` 等序列；用占位符/`chr(92)`/外部脚本，并检查 `\boxed`、`\text` 是否完整
+- (1x) 数学解析缺少人话桥接（Pattern-Key: math.explain_human_bridge）— 线代相似/特征值/基变换/坐标表示题，若只写 $AP=PB$、表示矩阵或行列式计算，用户可能看不懂“为什么这么做”；写前补“这一步在干什么”。
