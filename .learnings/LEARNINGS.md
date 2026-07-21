@@ -28,3 +28,26 @@ Pattern-Key: markdown.heading_tree_review
 2026-07-21：已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
 
 ---
+
+
+## [LRN-20260721-005] best_practice
+
+**Logged**: 2026-07-21T19:30:02+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: docs/obsidian/markdown-table
+
+### Summary
+Markdown 表格即使列数和语法正确，也可能因为列太多、公式与中文混排过宽而在 Obsidian 中显示不佳。
+
+### Details
+本次“四类放大倍数”表格原本有 6 列：输入量、输出量、名称、定义式、单位、等效受控源直觉。检查后发现每行列数一致，也没有 LaTeX 管道符或控制字符污染；问题主要是宽表在 Obsidian 阅读视图中容易被压缩错位。后续将 6 列合并为 4 列，把输入/输出/受控源解释合并到“读法与受控源直觉”列，显示更稳定，也更适合复习阅读。
+
+### Suggested Action
+以后写入 Obsidian 表格时，不只检查 Markdown 语法和管道符，还要检查阅读宽度：如果表格超过 4 列，或单元格同时包含中文长句、行内公式和英文缩写，应优先改成短表、列表或分组表；复习型笔记优先保证移动端/窄窗阅读顺畅，而不是保留信息密度最高的宽表。
+
+### Related Rules
+Pattern-Key: table.readability_width
+Pattern-Key: obsidian.table_layout_review
+
+---
