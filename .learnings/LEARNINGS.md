@@ -26,3 +26,28 @@ Pattern-Key: notes.source_first_extract
 
 ---
 
+## [LRN-20260721-001] correction
+
+**Logged**: 2026-07-21T11:14:02+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs/obsidian/math
+
+### Summary
+写入含 LaTeX 的长 Markdown 时，除了 Python 字符串转义，还要防 JSON/exec 传参层提前解释反斜杠序列。
+
+### Details
+本次重排 [[考研数学/0-基础知识/高数必背公式.md]] 时，LaTeX 命令 `\boxed` 和 `\text` 在命令传递过程中分别触发了退格和制表符转义，说明“Python raw string”本身不覆盖 JSON/exec 外层转义风险。必须从输入源头避免裸写高风险反斜杠序列。
+
+### Suggested Action
+长段 Markdown/LaTeX 写入优先使用独立脚本文件、占位符替换或 `chr(92)` 构造反斜杠；写后同时做控制字符扫描与关键 LaTeX 命令回读检查，尤其检查 `\boxed`、`\text`、`\begin`、`\rvert`。
+
+### Related Rules
+Pattern-Key: write_verify.json_latex_escape
+Pattern-Key: write_verify.latex_escape
+
+---
+
+### Resolution
+2026-07-21：已同步到 `.learnings/RULES.md`。
+

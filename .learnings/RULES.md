@@ -11,7 +11,7 @@ Compressed patterns from repeated learnings and errors.
 - (2x) 删除 Obsidian 文件前先调用 safe-delete skill 清理悬空链接
 - (2x) **证明/推导类内容统一使用 `> [!note]-` 单一折叠块**（默认折叠，可包含 `$$` 公式、列表、表格），不再使用嵌套 callout 结构。标题直接作为 callout 标题：`> [!note]- 标题内容`
 - (4x) 处理用户手写笔记时，默认采用“主笔记提取重构 + 手写原图溯源”：正文提炼为结构化文字，并配清晰的标准图或 AI 重绘图；原图按对应段落保留，内容重复时可折叠为“手写来源”；每张关键图补“图的作用 + 关键标注/区域 + 做题结论”
-- (3x) 写入含大量 LaTeX/反引号的 Markdown 时，优先使用 Python raw string、占位符替换或 quoted heredoc（如 `<<'EOF'`），写入后回读目标段落检查反斜杠和控制字符
+- (4x) 写入含大量 LaTeX/反引号的 Markdown 时，优先使用外部脚本文件、占位符替换、`chr(92)` 拼接或 quoted heredoc（如 `<<'EOF'`）；不要只依赖会经过 JSON/exec 层的 Python raw string；写入后回读目标段落检查反斜杠和控制字符
 - (1x) 写入或修改笔记前先快速浏览 `.learnings/RULES.md`，确认当前格式规范与高频错误
 - (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
 - (1x) 错题归档按知识模块判断，不按表象判断
@@ -47,10 +47,12 @@ Compressed patterns from repeated learnings and errors.
 
 - (1x) Mermaid 节点标签中不要裸写 `<`、`<=`、`>`、`>=` 或未加引号的 `VGS(off)` 这类括号表达式，避免 Obsidian/Mermaid 解析异常。
 
+- (1x) 不要在 JSON/exec 命令文本中裸写高风险 LaTeX 反斜杠序列（如 `\boxed`、`\text`、`\begin`），避免被外层解释成退格、制表符或其他控制字符
+
 ## Watch For
 
 - (5x) 表格内 LaTeX 管道符冲突（Pattern-Key: table.pipe_in_math）— 高频复发
-- (4x) Markdown/LaTeX 写入转义污染（Pattern-Key: write_verify.latex_escape）— `\begin`、`\rvert`、反引号、heredoc、Python 字符串和索引表格行都要重点回读
+- (5x) Markdown/LaTeX 写入转义污染（Pattern-Key: write_verify.latex_escape）— `\boxed`、`\text`、`\begin`、`\rvert`、反引号、JSON/exec 命令层、heredoc、Python 字符串和索引表格行都要重点回读
 - (2x) 完成报告更新清单中“英语📅日志”和“线代📊进度”容易遗漏
 - (2x) Obsidian 证明/推导使用 `> [!note]-` 单一折叠块（Pattern-Key: obsidian.proof_collapsible）— 默认折叠；callout 内允许 `$$` 块级公式；表格前后留空行
 - (5x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
@@ -70,3 +72,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 好题解析题目卡片缺失（Pattern-Key: problem_note.complete_card）— 图片题必须检查题干、已知所求、电路图/曲线图等关键图是否在正文可见；原题整图只作折叠溯源
 - (1x) 题目解析目标路径误判（Pattern-Key: note_update.target_path_confirm）— 题目/例题/好题/错题优先写入好题解析或错题文件；用户显式路径最高优先级
 - (1x) Mermaid 节点标签转义（Pattern-Key: obsidian.mermaid_node_label_escape）— 中文节点、条件判断、括号和比较符要先加引号并替换裸 `<`/`<=`。
+- (1x) JSON/exec 层 LaTeX 转义污染（Pattern-Key: write_verify.json_latex_escape）— 通过工具命令写入 Markdown 时，外层 JSON 会先解释 `\b`、`\t` 等序列；用占位符/`chr(92)`/外部脚本，并检查 `\boxed`、`\text` 是否完整
