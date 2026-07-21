@@ -25,7 +25,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 必背/速查类笔记优先保留“定义 + 公式 + 性质 + 口诀 + 易错点 + 做题步骤 + 来源链接”，长推导和完整例题留在原章节
 - (1x) 必背/速查类笔记先读取对应源笔记，按“源笔记原句/公式/步骤 → 精简压缩 → 必要补充”的顺序处理；补充内容必须与源笔记主线一致
 - (1x) Markdown 区块替换优先用标题边界（如从 `## A` 到下一个 `## B`），不要用裸 `---` 作为唯一结束锚点
-- (1x) 生成或更新学习内容时，先判断图示/图片描述是否更有利于学习；若能降低理解成本，就主动生成并嵌入图，并配“图的作用 + 关键标注 + 学习/做题结论”
+- (2x) 生成或更新学习内容时，先判断图示/图片描述是否更有利于学习；若能降低理解成本，就主动生成并嵌入图，并配“图的作用 + 关键标注 + 学习/做题结论”；涉及曲线、几何位置、物理过程、电路拓扑、信号流、波形、变量方向、流程结构、边界条件或对比关系时，默认主动画图，不只写文字。
 
 - (1x) 学习笔记开头优先设置“符号速查/符号说明”区块：集中解释本节会用到的缩写、变量、端口、电压/电流方向、参数含义和做题用法，方便复习时先查符号。
 
@@ -69,7 +69,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 源笔记优先抽取（Pattern-Key: notes.source_first_extract）— 更新必背/速查笔记前先读对应章节源笔记，避免凭空换符号、替换原主方法或另写一套表达
 - (1x) shell 引号与重定向风险（Pattern-Key: ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 等规则文件时避免复杂 inline printf，写后立刻回读行数和关键内容
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
-- (1x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 几何位置、物理过程、函数曲线、流程结构、电路、变量方向易混内容，优先考虑补图而非只写文字公式
+- (2x) 主动图示化学习内容（Pattern-Key: docs.proactive_visual_learning）— 曲线、几何位置、物理过程、电路拓扑、信号流、波形、变量方向、流程结构、边界条件或对比关系，优先主动画图并嵌入正文，而不是只写文字公式
 - (1x) 笔记开头符号说明遗漏（Pattern-Key: notes.symbol_quick_reference）— 专业课/数学等符号密集笔记写入前，先检查开头是否有符号速查；不要把符号解释分散到正文首次出现处。
 - (1x) 好题解析题目卡片缺失（Pattern-Key: problem_note.complete_card）— 图片题必须检查题干、已知所求、电路图/曲线图等关键图是否在正文可见；原题整图只作折叠溯源
 - (1x) 题目解析目标路径误判（Pattern-Key: note_update.target_path_confirm）— 题目/例题/好题/错题优先写入好题解析或错题文件；用户显式路径最高优先级

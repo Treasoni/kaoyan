@@ -75,3 +75,29 @@ Pattern-Key: linear_algebra.basis_coordinate_explain
 2026-07-21：用户明确要求“以后都这样”，已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
 
 ---
+
+
+## [LRN-20260721-003] best_practice
+
+**Logged**: 2026-07-21T18:56:54+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs/visual-learning
+
+### Summary
+学习内容只要配图能明显降低理解成本，就主动画图并嵌入笔记正文。
+
+### Details
+用户指出本次整理 $g_m$ 与小信号线性化笔记时，手写内容本身包含转移曲线、Q 点切线、小信号范围和波形失真关系；如果只整理文字而不画标准图，会降低理解效率。后续已补充标准重绘图，并嵌入到对应笔记正文。
+
+### Suggested Action
+以后写学习笔记、整理手写/截图或解释抽象概念时，先判断“图是否能让用户更快理解”。凡是涉及曲线、几何位置、物理过程、电路拓扑、信号流、波形、变量方向、流程结构、边界条件或对比关系，默认主动画清晰图并嵌入正文；原图/手写图保留为折叠溯源。
+
+### Related Rules
+Pattern-Key: docs.proactive_visual_learning
+Pattern-Key: docs.visual_source_coverage
+
+### Resolution
+2026-07-21：已合并强化 `.learnings/RULES.md` 中主动图示化学习内容规则，并已同步修复 `kaoyan-electronics-circuit` skill 的输出要求。
+
+---

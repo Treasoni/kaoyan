@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2b2b2b"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #222; }
+      .title { font-size: 28px; font-weight: 700; }
+      .label { font-size: 22px; }
+      .small { font-size: 18px; }
+      .box { fill: #fff8e8; stroke: #222; stroke-width: 3; rx: 16; }
+      .wire { stroke: #222; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .line { stroke: #222; stroke-width: 3; fill: none; }
+      .blue { fill: #1f5fbf; }
+      .red { fill: #c62828; }
+      .green { fill: #187a37; }
+      .note { fill: #f5f7ff; stroke: #5870b8; stroke-width: 2; rx: 12; }
+      .load { fill: none; stroke: #222; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect x="25" y="25" width="930" height="470" rx="22" fill="#ffffff" stroke="#d7d7d7" stroke-width="2"/>
+  <text x="490" y="66" text-anchor="middle" class="title">放大的根源：输入信号“控制”电源能量送往负载</text>
+
+  <rect x="365" y="165" width="250" height="165" class="box"/>
+  <text x="490" y="238" text-anchor="middle" class="title">放大电路</text>
+  <text x="490" y="276" text-anchor="middle" class="small">工作点在放大区 / 小信号近似线性</text>
+
+  <line x1="110" y1="210" x2="365" y2="210" class="wire"/>
+  <line x1="365" y1="290" x2="110" y2="290" class="line"/>
+  <text x="152" y="196" class="label blue">i_i</text>
+  <text x="154" y="278" class="label blue">u_i</text>
+  <text x="106" y="244" class="small blue">输入端</text>
+  <text x="210" y="165" text-anchor="middle" class="small">小信号只提供控制量</text>
+
+  <line x1="615" y1="210" x2="862" y2="210" class="wire"/>
+  <line x1="862" y1="290" x2="615" y2="290" class="line"/>
+  <text x="808" y="196" class="label red">i_o</text>
+  <text x="808" y="278" class="label red">u_o</text>
+  <text x="866" y="244" class="small red">输出端</text>
+
+  <path d="M862 210 L862 230 L850 238 L874 254 L850 270 L874 286 L862 294 L862 290" class="load"/>
+  <text x="900" y="256" class="label">R_L</text>
+  <text x="760" y="340" class="small red">负载得到的功率可大于输入信号功率</text>
+
+  <line x1="490" y1="105" x2="490" y2="165" class="wire"/>
+  <rect x="378" y="92" width="224" height="45" class="note"/>
+  <text x="490" y="122" text-anchor="middle" class="label green">直流电源 VCC / VEE</text>
+
+  <rect x="72" y="385" width="835" height="78" class="note"/>
+  <text x="92" y="417" class="small">四类放大倍数：互阻 U_o/I_i（Ω）｜电流 I_o/I_i（无量纲）｜互导 I_o/U_i（S）｜电压 U_o/U_i（无量纲）</text>
+  <text x="92" y="447" class="small">前提：不失真。若 Q 点或输入幅度不合适，输出会截止/饱和削顶，增益再大也没有意义。</text>
+</svg>
