@@ -51,3 +51,28 @@ Pattern-Key: table.readability_width
 Pattern-Key: obsidian.table_layout_review
 
 ---
+
+## [LRN-20260723-001] best_practice
+
+**Logged**: 2026-07-23T09:17:03+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs/obsidian/quick-review
+
+### Summary
+更新必背/速查类笔记时，不能只筛公式；凡是对用户学习、复习、做题有帮助的 SOP、流程、判断准则和易错检查都要优先提炼放入。
+
+### Details
+本次整理“条件最值与拉格朗日乘数法”时，首次判断过度受“速查页别太长”约束影响，只把“闭区域最值问题 SOP（两步走，最后比大小）”弱化为一般提醒，没有把它作为核心内容放入。用户指出后确认：闭区域最值 SOP 能直接防止漏查内部驻点、漏查端点、只用拉格朗日、比错对象等高频错误，属于比单纯公式更重要的复习型知识。
+
+### Suggested Action
+以后从章节笔记抽取内容到必背/速查页时，先按“对学习/复习/做题是否有帮助”判断价值：高价值对象包括定义、公式、性质、口诀、SOP、启动步骤、题型流程、判断准则、易错检查清单、候选点完整策略。不要因为内容不是公式或略长就降权；应压缩成速查版并放入，而不是遗漏。
+
+### Related Rules
+Pattern-Key: notes.review_value_extraction
+Pattern-Key: notes.quick_review_extract
+
+### Resolution
+2026-07-23：已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
+
+---
