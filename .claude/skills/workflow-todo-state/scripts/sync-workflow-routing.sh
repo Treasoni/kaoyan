@@ -8,7 +8,6 @@ WORKFLOWS_DIR=""
 RULES_DIR=""
 DEFAULT_WORKFLOWS_DIR="__DEFAULT_WORKFLOWS_DIR__"
 DEFAULT_RULES_DIR="__DEFAULT_RULES_DIR__"
-PYTHON_BIN="${PYTHON:-python3}"
 START_MARKER="<!-- workflow-routing:generated:start -->"
 END_MARKER="<!-- workflow-routing:generated:end -->"
 
@@ -29,6 +28,26 @@ USAGE
 
 warn() {
   printf '%s\n' "sync-workflow-routing: $*" >&2
+}
+
+is_python3() {
+  "$1" -c 'import sys; raise SystemExit(0 if sys.version_info[0] == 3 else 1)' >/dev/null 2>&1
+}
+
+find_python() {
+  if [ -n "${PYTHON:-}" ] && is_python3 "$PYTHON"; then
+    printf '%s\n' "$PYTHON"
+    return 0
+  fi
+  if command -v python3 >/dev/null 2>&1 && is_python3 python3; then
+    printf '%s\n' python3
+    return 0
+  fi
+  if command -v python >/dev/null 2>&1 && is_python3 python; then
+    printf '%s\n' python
+    return 0
+  fi
+  return 1
 }
 
 while [ "$#" -gt 0 ]; do
@@ -116,6 +135,11 @@ if [ ! -f "$ROUTING_FILE" ]; then
   warn "routing file not found: $ROUTING_FILE"
   exit 1
 fi
+
+PYTHON_BIN="$(find_python)" || {
+  warn "Python 3 is required (python3 or python)"
+  exit 1
+}
 
 yaml_value() {
   local file="$1"

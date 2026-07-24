@@ -43,7 +43,16 @@ WORKFLOWS_DIR=".claude/workflows"
 ENTRY_FILE="CLAUDE.md"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-PROFILE_ROOT="${WORKFLOW_PROFILE_ROOT:-$(cd "${SCRIPT_DIR}/../../.." && pwd)/profiles}"
+PROFILE_ROOT="${WORKFLOW_PROFILE_ROOT:-}"
+
+if [ -z "$PROFILE_ROOT" ]; then
+  for candidate in "$SKILL_DIR/profiles" "$SCRIPT_DIR/../../profiles" "$SCRIPT_DIR/../../../profiles" "$SCRIPT_DIR/../../../../profiles"; do
+    if [ -d "$candidate" ]; then
+      PROFILE_ROOT="$(cd "$candidate" && pwd)"
+      break
+    fi
+  done
+fi
 
 profile_value() {
   local profile_file="$1"
@@ -228,10 +237,22 @@ install_skill() {
   local target_skill="${target_skills}/workflow-todo-state"
 
   mkdir -p "$target_skills"
-  if ! backup_existing_path "$target_skill" "$SKILL_DIR"; then
-    return
+  if [ -e "$target_skill" ]; then
+    if diff -qr -x profiles "$SKILL_DIR" "$target_skill" >/dev/null 2>&1 \
+      && { [ -z "$PROFILE_ROOT" ] || { [ -d "$target_skill/profiles" ] && diff -qr "$PROFILE_ROOT" "$target_skill/profiles" >/dev/null 2>&1; }; }; then
+      echo "skipped: unchanged ${target_skill}"
+      return
+    fi
+    if [ "$FORCE" != true ]; then
+      echo "install: already exists, use --force to replace: $target_skill" >&2
+      exit 1
+    fi
+    mv "$target_skill" "${target_skill}.bak.${STAMP}"
   fi
   cp -R "$SKILL_DIR" "$target_skill"
+  if [ -n "$PROFILE_ROOT" ] && [ -d "$PROFILE_ROOT" ]; then
+    cp -R "$PROFILE_ROOT" "$target_skill/profiles"
+  fi
   chmod +x "${target_skill}/scripts/todo-state.sh" "${target_skill}/scripts/install.sh"
   echo "installed: ${target_skill}"
 }
