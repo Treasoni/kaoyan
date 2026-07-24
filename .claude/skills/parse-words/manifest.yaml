@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: parse-words
+  version: 0.1.0
+  description: "This skill should be used when the user asks to parse highlighted English words from an article, especially `==highlighted==` vocabulary in 考研英语 reading notes, and generate an in-place vocabulary analysis section without"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.parse-words
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

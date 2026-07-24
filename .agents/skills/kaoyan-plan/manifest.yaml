@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-plan
+  version: 0.1.0
+  description: "Generate and maintain 考研 study plans, daily schedules, weekly reviews, task debt recovery, and completion records for the 湖南大学控制工程与科学专硕 prep project. Use for \"今天怎么学\", \"安排计划\", \"完成了什么\", \"补计划\", \"周复盘\", and schedule optimizat"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-plan
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

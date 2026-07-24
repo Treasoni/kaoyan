@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: fix-table-pipe
+  version: 0.1.0
+  description: "修复 Markdown 表格渲染问题，包括：(1) Callout 块内表格前缺少空行；(2) LaTeX 行内公式中管道符 $|...|$ 被误解析为表格分隔符（含整行结构已崩坏的修复）；(3) 检测孤立 $ 符号和奇数 $ 数等行结构异常。**自动触发**：每次写入包含表格的文件后，自动检查表格格式是否符合 Obsidian Markdown 规范。手动触发：当用户提到\"表格格式错误\"、\"表格显示异常\"、\"表格渲染问题\"、\"Call"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.fix-table-pipe
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

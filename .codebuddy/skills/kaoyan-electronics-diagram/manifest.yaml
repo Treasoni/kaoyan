@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-electronics-diagram
+  version: 0.1.0
+  description: "Use when generating, redrawing, correcting, exporting, or embedding 822 electronic circuit diagrams, including textbook-style SVG/PNG diagrams, DC/AC paths, small-signal equivalents, coupling diagrams, and handwritten-no"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-electronics-diagram
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

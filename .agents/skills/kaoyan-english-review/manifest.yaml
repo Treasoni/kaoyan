@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-english-review
+  version: 0.1.0
+  description: "This skill handles review planning and progress tracking for 考研英语 (Chinese graduate entrance English exam) vocabulary learning. Use it when users want to generate spaced repetition schedules based on the SM-2 algorithm,"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-english-review
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

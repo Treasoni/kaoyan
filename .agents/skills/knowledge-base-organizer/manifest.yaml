@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: knowledge-base-organizer
+  version: 0.1.0
+  description: "This skill should be used when the user asks to organize documents, generate/update MOC (Map of Content), extract concepts from notes, build document links, identify document types, or analyze knowledge gaps in their Obs"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.knowledge-base-organizer
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

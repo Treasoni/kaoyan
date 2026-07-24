@@ -54,14 +54,14 @@ version: 1.0.0
 
 ```bash
 # 单函数绘图
-python .claude/skills/math-graph/scripts/plot_functions.py \
+python .Codex/skills/math-graph/scripts/plot_functions.py \
   --function "abs(x)" \
   --range "-2,2" \
   --output "考研数学/高数-一元微分学/.../assets/corner.png" \
   --title "角点"
 
 # 多函数对比（并排）
-python .claude/skills/math-graph/scripts/plot_functions.py \
+python .Codex/skills/math-graph/scripts/plot_functions.py \
   --compare \
   --functions "abs(x)" "np.cbrt(x)" \
   --titles "角点 (|x|)" "无穷导数 (x^{1/3})" \
@@ -102,4 +102,4 @@ pip install matplotlib numpy seaborn
 ---
 
 *创建日期: 2026-03-16*
-*维护者: Claude Code + 用户协作*
+*维护者: Codex + 用户协作*

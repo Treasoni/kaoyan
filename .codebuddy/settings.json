@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/zhqznc/Documents/考研复习/.codebuddy/hooks/read-learnings.sh"
+            "command": "bash '/Users/zhqznc/Documents/考研复习/.codebuddy/hooks/read-learnings.sh'"
           },
           {
             "type": "command",

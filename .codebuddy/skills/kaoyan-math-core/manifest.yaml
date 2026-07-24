@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-math-core
+  version: 0.1.0
+  description: "This skill manages the core infrastructure for 考研数学 (Chinese graduate entrance math exam) learning, including MemOS integration for persistent storage, dispatch signal processing, unified error tracking, cross-subject kn"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-math-core
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

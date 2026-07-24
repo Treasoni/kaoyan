@@ -28,11 +28,11 @@ description: 错题本结构优化技能。自动分析错题关联、按知识�
 
 ```bash
 # 重构指定错题本
-python .claude/skills/mistake-restructure/scripts/restructure.py \
+python .Codex/skills/mistake-restructure/scripts/restructure.py \
   --input "考研数学/高数-函数极限与连续/错题本.md"
 
 # 预览模式（不修改文件）
-python .claude/skills/mistake-restructure/scripts/restructure.py \
+python .Codex/skills/mistake-restructure/scripts/restructure.py \
   --input "考研数学/高数-数列极限/错题本.md" \
   --preview
 ```

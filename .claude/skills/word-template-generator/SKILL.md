@@ -11,14 +11,14 @@ version: 1.0.0
 **This skill provides guidance and generates structured data for Word document processing.**
 
 **Important Limitations:**
-- Claude is a text-based AI model and **cannot directly execute Python code**
-- Claude **cannot directly manipulate .docx binary files** - these require specialized libraries
+- Codex is a text-based AI model and **cannot directly execute Python code**
+- Codex **cannot directly manipulate .docx binary files** - these require specialized libraries
 - All Python code examples in this skill are **reference implementations** for an external runtime
 - Actual Word document processing requires:
   - A Python runtime environment
   - Dependencies: `python-docx`, `docxtpl`, `openpyxl`, `pandas`, `pillow`
 
-**What Claude DOES:**
+**What Codex DOES:**
 - Extract and structure data from user input/materials into validated JSON context
 - Analyze template requirements and placeholder mapping
 - Generate structured output that a runtime tool can consume
@@ -34,7 +34,7 @@ version: 1.0.0
 ## Overview
 
 This skill guides the processing of Word document templates through a clear separation of concerns:
-- **Claude's Role**: Generate validated context JSON from user input and materials
+- **Codex's Role**: Generate validated context JSON from user input and materials
 - **Tool's Role**: Execute docx rendering using the provided context
 
 The workflow covers:
@@ -59,7 +59,7 @@ The workflow covers:
 
 ```
 ┌─────────────────┐      ┌──────────────────┐      ┌─────────────────┐
-│   User Input    │ ──▶ │   Claude (LLM)   │ ──▶ │  Context JSON   │
+│   User Input    │ ──▶ │   Codex (LLM)   │ ──▶ │  Context JSON   │
 │  + Template     │      │  - Extract data  │      │  - Structured   │
 │  + Materials    │      │  - Validate      │      │  - Validated    │
 └─────────────────┘      └──────────────────┘      └─────────────────┘
@@ -72,7 +72,7 @@ The workflow covers:
 └─────────────────┘      └──────────────────┘      └─────────────────┘
 ```
 
-### Claude's Responsibilities (This Skill)
+### Codex's Responsibilities (This Skill)
 1. **Parse Template Requirements**: Analyze placeholders and their types
 2. **Extract Data**: Process user input and materials folders
 3. **Validate Structure**: Ensure data matches JSON Schema requirements
@@ -216,11 +216,11 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 
 ---
 
-## Claude Output Format Examples
+## Codex Output Format Examples
 
 ### Example 1: Simple Contract Context
 
-**Claude generates this JSON:**
+**Codex generates this JSON:**
 ```json
 {
   "contract_no": "HT-2026-001",
@@ -233,7 +233,7 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 
 ### Example 2: Invoice with Table Data
 
-**Claude generates this JSON:**
+**Codex generates this JSON:**
 ```json
 {
   "invoice_no": "INV-001",
@@ -247,7 +247,7 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 
 ### Example 3: Report with Mixed Content
 
-**Claude generates this JSON:**
+**Codex generates this JSON:**
 ```json
 {
   "title": "Quarterly Sales Report",
@@ -277,14 +277,14 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 ### Phase 1: Template Analysis
 
 1. Receive the Word template file path from the user
-2. **Claude's Task**: Guide the user to identify placeholders
+2. **Codex's Task**: Guide the user to identify placeholders
 3. Identify placeholder types:
    - Simple variables: `{{name}}`
    - Lists/loops: `{% for item in items %}...{% endfor %}`
    - Conditions: `{% if condition %}...{% endif %}`
    - Table rows: `{%tr for item in items %}...{%tr endfor %}`
 
-**Note**: Actual parsing requires runtime execution. Claude guides the process and generates expected context structure.
+**Note**: Actual parsing requires runtime execution. Codex guides the process and generates expected context structure.
 
 1. Receive the Word template file path from the user
 2. Use python-docx to read document content
@@ -296,7 +296,7 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 
 ### Phase 2: Materials Folder Processing (Core Feature)
 
-**Claude's Task**: Guide the user through materials organization and generate context JSON.
+**Codex's Task**: Guide the user through materials organization and generate context JSON.
 
 1. **Materials Folder Structure Analysis**
    - Scan and categorize files by type
@@ -317,13 +317,13 @@ The context JSON passed to the runtime tool MUST conform to this schema:
    - {{content}} -> content.docx (embed other Word content)
    ```
 
-**Claude's Output**: Structured context JSON conforming to the schema
+**Codex's Output**: Structured context JSON conforming to the schema
 
 ---
 
 ### Phase 3: Context Generation & Validation
 
-**Claude's Task**: Produce validated JSON context.
+**Codex's Task**: Produce validated JSON context.
 
 1. **Collect Data** from:
    - User input (direct text/values)
@@ -341,7 +341,7 @@ The context JSON passed to the runtime tool MUST conform to this schema:
    - Handle optional fields appropriately
    - Provide validation status to user
 
-**Example Claude Output:**
+**Example Codex Output:**
 ```json
 {
   "title": "Quarterly Sales Report",
@@ -363,7 +363,7 @@ The context JSON passed to the runtime tool MUST conform to this schema:
 **Runtime Tool's Task**: Execute template rendering.
 
 1. Load template using `docxtpl`
-2. Parse the Claude-generated context JSON
+2. Parse the Codex-generated context JSON
 3. Render template with Jinja2
 4. Handle image embedding
 5. Save the generated .docx file
@@ -406,7 +406,7 @@ VIP Member Exclusive Offer
 ## Runtime Reference Code
 
 **IMPORTANT**: The following code is for **runtime environment execution only**.
-Claude cannot execute this code directly. It should be used by an external tool.
+Codex cannot execute this code directly. It should be used by an external tool.
 
 ### Read Template and Extract Placeholders
 ```python
@@ -560,7 +560,7 @@ Date: 2026-02-22
 Contract No: HT-2026-001
 ```
 
-**Claude Generates (Context JSON)**:
+**Codex Generates (Context JSON)**:
 ```json
 {
   "contract_no": "HT-2026-001",
@@ -600,7 +600,7 @@ Product List:
 - Product B x 3 @ 50 yuan
 ```
 
-**Claude Generates (Context JSON)**:
+**Codex Generates (Context JSON)**:
 ```json
 {
   "invoice_no": "INV-001",
@@ -648,7 +648,7 @@ Template: /Users/user/report_template.docx
 Materials: /Users/user/materials/
 ```
 
-**Claude's Processing**:
+**Codex's Processing**:
 1. Analyze template placeholders: `{{title}}`, `{{project_info}}`, `{{data_items}}`, `{{chart_image}}`
 2. Map materials to placeholders:
    - `title.txt` → `{{title}}`
@@ -657,7 +657,7 @@ Materials: /Users/user/materials/
    - `chart.png` → `{{chart_image}}` (image path object)
 3. Validate structure against JSON Schema
 
-**Claude Generates (Context JSON)**:
+**Codex Generates (Context JSON)**:
 ```json
 {
   "title": "Quarterly Sales Report",
@@ -678,7 +678,7 @@ Materials: /Users/user/materials/
 
 ## Limitations
 
-### Claude (This Skill)
+### Codex (This Skill)
 - Cannot directly execute Python code or manipulate .docx binaries
 - Cannot read binary file contents directly
 - Relies on user-provided file descriptions or structured inputs
@@ -696,7 +696,7 @@ Materials: /Users/user/materials/
 
 ## Validation Criteria
 
-### Claude's Responsibilities (Validated by This Skill)
+### Codex's Responsibilities (Validated by This Skill)
 1. ✅ Analyzes template structure and identifies placeholders
 2. ✅ Generates context JSON conforming to JSON Schema
 3. ✅ Validates data types (string, number, boolean, array, object)
@@ -718,7 +718,7 @@ Materials: /Users/user/materials/
 
 ## Installation of Dependencies
 
-**For Runtime Environment Only** - Claude cannot execute these commands.
+**For Runtime Environment Only** - Codex cannot execute these commands.
 
 To run the reference code in an actual Python environment:
 
@@ -738,10 +738,10 @@ pip install python-docx docxtpl openpyxl pandas pillow
 ## Summary
 
 This skill provides:
-- ✅ Clear separation between Claude (data generation) and runtime tools (document rendering)
+- ✅ Clear separation between Codex (data generation) and runtime tools (document rendering)
 - ✅ JSON Schema definitions for validated context output
 - ✅ Reference implementations for runtime environments
 - ✅ Complete workflow guidance from template to generated document
 
-**Claude's Output**: Validated JSON context conforming to the defined schema
+**Codex's Output**: Validated JSON context conforming to the defined schema
 **Runtime Tool's Role**: Execute template rendering with the provided context

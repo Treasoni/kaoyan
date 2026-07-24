@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: handwritten-note-reconstruction
+  version: 0.1.0
+  description: "Internal cross-subject protocol for reconstructing handwritten study notes, boardwork, screenshots, and note photos into source-traceable learning notes. Called by subject entry skills for note_reconstruction requests."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.handwritten-note-reconstruction
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

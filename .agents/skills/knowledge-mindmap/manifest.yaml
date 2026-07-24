@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: knowledge-mindmap
+  version: 0.1.0
+  description: "自动分析知识点目录结构，生成 Excalidraw 格式的详细思维导图。适用于考研数学、专业课等知识体系的可视化整理。触发词包括\"知识点思维导图\"、\"生成思维导图\"、\"知识结构图\"、\"目录结构图\"。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.knowledge-mindmap
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

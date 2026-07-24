@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-electronics-structure
+  version: 0.1.0
+  description: "822电子技术基础知识结构与章节复盘模块。用于模电/数电章节定位、前置知识判断、高频题型映射、学习顺序建议、章节卡片和进度骨架生成。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-electronics-structure
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

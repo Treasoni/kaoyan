@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-math-notes
+  version: 0.1.0
+  description: "This skill handles note generation and updates for 考研数学 (Chinese graduate entrance math exam) preparation. Use it when users want to generate exam-oriented study notes from existing materials, update notes based on feedb"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-math-notes
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

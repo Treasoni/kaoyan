@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-electronics
+  version: 0.1.0
+  description: "822电子技术基础考研学习入口。用于湖南大学822专业课的新学、题型训练、错题回收、章节复盘、模电/数电进度推进。默认围绕“章节输入 -> 题型SOP -> 错题归因 -> 进度更新”的考研闭环执行。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-electronics
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

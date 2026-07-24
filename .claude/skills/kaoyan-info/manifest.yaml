@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-info
+  version: 0.1.0
+  description: "This skill should be used when the user asks to collect graduate entrance exam (考研) information, create/modify exam preparation documents, or update existing study guides with latest data."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-info
+  permissions:
+    filesystem: write
+    network: allow
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

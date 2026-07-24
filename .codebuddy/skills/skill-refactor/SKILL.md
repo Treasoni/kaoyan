@@ -1,6 +1,6 @@
 ---
 name: skill-refactor
-description: 技能自动化重构器 - 自动提取代码到code.md、拆分过长内容、优化技能结构。**自动触发**：每次修改.claude/skills目录下的SKILL.md或code.md后检测并提示用户确认。手动触发：当用户提到"重构技能"、"拆分技能"、"技能代码分离"、"优化技能结构"时使用此skill。
+description: 技能自动化重构器 - 自动提取代码到code.md、拆分过长内容、优化技能结构。**自动触发**：每次修改.Codex/skills目录下的SKILL.md或code.md后检测并提示用户确认。手动触发：当用户提到"重构技能"、"拆分技能"、"技能代码分离"、"优化技能结构"时使用此skill。
 ---
 
 # 技能自动化重构器 (Skill Refactor)
@@ -22,10 +22,10 @@ description: 技能自动化重构器 - 自动提取代码到code.md、拆分过
 ### 自动触发（混合模式）
 
 当检测到以下情况时，**提示用户确认后执行**：
-- 写入 `.claude/skills/**/SKILL.md` 后检测到：
+- 写入 `.Codex/skills/**/SKILL.md` 后检测到：
   - 包含可提取的代码块
   - 文件行数 > 300行
-- 写入 `.claude/skills/**/code.md` 后检测到：
+- 写入 `.Codex/skills/**/code.md` 后检测到：
   - 文件行数 > 400行
 
 ### 手动触发

@@ -166,4 +166,4 @@ description: This skill helps users quickly organize mistakes/errors into subjec
 
 *版本: 2.0.0*
 *更新日期: 2026-03-27*
-*维护者: Claude Code + 用户协作*
+*维护者: Codex + 用户协作*

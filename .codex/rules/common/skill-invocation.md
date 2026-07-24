@@ -1,7 +1,7 @@
 # Skill Invocation
 
 ## 技能列表
-<!-- skill-registry:managed ["chapter-summary","defuddle","digest","docx","excalidraw-diagram","fix-table-pipe","handwritten-note-reconstruction","json-canvas","kaoyan-electronics","kaoyan-electronics-circuit","kaoyan-electronics-core","kaoyan-electronics-diagram","kaoyan-electronics-sop","kaoyan-electronics-structure","kaoyan-english","kaoyan-english-core","kaoyan-english-quiz","kaoyan-english-review","kaoyan-english-vocab","kaoyan-english-writing","kaoyan-info","kaoyan-math","kaoyan-math-core","kaoyan-math-notes","kaoyan-math-structure","kaoyan-plan","knowledge-base-organizer","knowledge-learning","knowledge-mindmap","learning-response-contract","maintain-learnings","math-graph","mcp-builder","mistake-book","mistake-extract","mistake-restructure","obsidian-bases","obsidian-cli","obsidian-markdown","opencli-adapter-author","opencli-autofix","opencli-browser","opencli-usage","parse-words","pdf","prompt-cache-optimizer","security-secret-audit","skill-refactor","smart-search","sortspec-generator","sync","sync-skill-registry","understanding","word-template-generator","workflow-todo-state"] -->
+<!-- skill-registry:managed ["chapter-summary","defuddle","digest","docx","excalidraw-diagram","fix-table-pipe","handwritten-note-reconstruction","json-canvas","kaoyan-electronics","kaoyan-electronics-circuit","kaoyan-electronics-core","kaoyan-electronics-diagram","kaoyan-electronics-sop","kaoyan-electronics-structure","kaoyan-english","kaoyan-english-core","kaoyan-english-quiz","kaoyan-english-review","kaoyan-english-vocab","kaoyan-english-writing","kaoyan-info","kaoyan-math","kaoyan-math-core","kaoyan-math-notes","kaoyan-math-structure","kaoyan-plan","knowledge-base-organizer","knowledge-learning","knowledge-mindmap","learning-response-contract","maintain-learnings","manifest-platform","math-graph","mcp-builder","mistake-book","mistake-extract","mistake-restructure","obsidian-bases","obsidian-cli","obsidian-markdown","opencli-adapter-author","opencli-autofix","opencli-browser","opencli-usage","parse-words","pdf","prompt-cache-optimizer","security-secret-audit","skill-refactor","smart-search","sortspec-generator","sync","sync-skill-registry","understanding","word-template-generator","workflow-todo-state"] -->
 
 #### 未分类
 
@@ -38,6 +38,7 @@
 | `knowledge-mindmap` | 自动分析知识点目录结构，生成 Excalidraw 格式的详细思维导图。 | 知识点思维导图、生成思维导图、知识结构图、目录结构图 |
 | `learning-response-contract` | Internal learning-response contract. Subject entry skills use it to choose on… | Internal learning-response contract |
 | `maintain-learnings` | 维护 .learnings/ 经验库，把过多或反复出现的学习记录、错误日志、规则失效问题聚类诊断，追溯并修改对应 skill、模板、hook、校验脚本或项目规则； | 维护 .learnings/ 经验库，把过多或反复出现的学习记录、错误日志、规则… |
+| `manifest-platform` | Install, configure, migrate, and validate a portable manifest registry for ag… | Install, configure, migrate, and validat… |
 | `math-graph` | 使用 Python + Matplotlib 生成教科书级别的数学函数图像。 | 使用 Python + Matplotlib 生成教科书级别的数学函数图像 |
 | `mcp-builder` | Guide for creating high-quality MCP (Model Context Protocol) servers that ena… | Guide for creating high-quality MCP (Mod… |
 | `mistake-book` | This skill helps users quickly organize mistakes/errors into subject-specific… | 整理错题、记错题、错题笔记、把这道题记到错题本 |

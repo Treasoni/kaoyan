@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-electronics-core
+  version: 0.1.0
+  description: "822电子技术基础核心协调模块。用于专业课进度、欠账、阶段策略、错题标签、MemOS同步、模电/数电优先级和与kaoyan-plan的完成汇报联动。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-electronics-core
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

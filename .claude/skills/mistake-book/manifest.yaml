@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: mistake-book
+  version: 0.1.0
+  description: "This skill helps users quickly organize mistakes/errors into subject-specific mistake notebooks. It supports multiple subjects (math, electronics, English), auto-formats mistake entries following the established template"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.mistake-book
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

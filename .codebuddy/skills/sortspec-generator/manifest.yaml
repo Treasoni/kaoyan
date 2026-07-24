@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: sortspec-generator
+  version: 0.1.0
+  description: "|"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.sortspec-generator
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

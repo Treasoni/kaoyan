@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-electronics-circuit
+  version: 0.1.0
+  description: "822电子技术基础电路图与电路题分析模块。用于图片/文字电路识别、模电静态/动态分析、数电逻辑/时序分析、电路图生成、微变等效图生成，并自动衔接题型SOP和错题归因。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-electronics-circuit
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

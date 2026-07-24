@@ -1,0 +1,20 @@
+apiVersion: agent-platform/v1
+kind: Hook
+metadata:
+  name: read-learnings
+  version: 0.1.0
+  description: "Load project learning reminders into the agent context when a session starts."
+spec:
+  entrypoint: ../read_learnings.py
+  capabilities:
+    - hook.read-learnings
+  permissions:
+    filesystem: read
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false
+  event: SessionStart

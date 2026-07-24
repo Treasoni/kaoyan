@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: math-graph
+  version: 0.1.0
+  description: "使用 Python + Matplotlib 生成教科书级别的数学函数图像。当用户想要画函数图、生成图像、可视化数学概念、替换 ASCII 字符图时使用此技能。支持任意函数表达式、多图对比、专业标注。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.math-graph
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

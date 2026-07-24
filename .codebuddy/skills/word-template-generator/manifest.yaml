@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: word-template-generator
+  version: 0.1.0
+  description: "This skill should be used when the user wants to process Word document templates, extract placeholders, or generate Word documents based on templates."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.word-template-generator
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

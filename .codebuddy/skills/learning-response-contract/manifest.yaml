@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: learning-response-contract
+  version: 0.1.0
+  description: "Internal learning-response contract. Subject entry skills use it to choose one response mode before routing to subject modules; it is not a standalone daily learning entry."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.learning-response-contract
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

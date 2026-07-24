@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-math
+  version: 0.1.0
+  description: "考研数学入口路由器。用于数学二学习中的概念理解、笔记生成、推导补全、题目讲解、知识结构查询、进度/欠账检查。默认只加载一个最匹配子模块：notes、structure 或 core。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-math
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

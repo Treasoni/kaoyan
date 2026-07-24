@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-english-quiz
+  version: 0.1.0
+  description: "This skill handles vocabulary quizzes and testing for 考研英语 (Chinese graduate entrance English exam). Use it when users want to test vocabulary knowledge with meaning quizzes, collocation exercises, polysemy-focused tests"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-english-quiz
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

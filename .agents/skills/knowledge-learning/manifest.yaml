@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: knowledge-learning
+  version: 0.1.0
+  description: "This skill should be used when the user asks to learn about a topic, understand a concept, get explanations about technical subjects, or requests knowledge about any domain."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.knowledge-learning
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

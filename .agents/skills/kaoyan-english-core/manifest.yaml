@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-english-core
+  version: 0.1.0
+  description: "This skill manages the core infrastructure for 考研英语 (Chinese graduate entrance English exam) vocabulary learning, including MemOS integration for persistent storage, dispatch signal processing, memory compression mode, u"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-english-core
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

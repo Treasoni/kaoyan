@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-english
+  version: 0.1.0
+  description: "考研英语入口路由器。用于英语二词汇、阅读高亮词、复习计划、单词测试、写作输出训练和英语学习状态检查。默认只加载一个最匹配子模块：vocab、review、quiz、writing 或 core。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-english
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: mistake-restructure
+  version: 0.1.0
+  description: "错题本结构优化技能。自动分析错题关联、按知识点分类索引、生成关联网络图。触发词：\"重构错题本\"、\"整理错题结构\"、\"优化错题索引\"。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.mistake-restructure
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

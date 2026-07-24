@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: mistake-extract
+  version: 0.1.0
+  description: "错题精华提炼技能。从指定模块的错题本中提取核心口诀、避坑要点、关键认知、解题方法模板、检查清单、核心陷阱、常见错误模式，生成结构化提炼笔记。触发词：\"错题精华\"、\"提炼错题\"、\"精华提炼\"、\"错题提炼\"、\"提取精华\"、\"生成精华本\"、\"错题精华总结\"。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.mistake-extract
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

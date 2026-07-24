@@ -15,3 +15,7 @@ url = "https://mcp.api-inference.modelscope.net/21e3d616f2cc43/sse"
 
 [mcp_servers.time]
 url = "https://mcp.api-inference.modelscope.net/b3158d0b497140/sse"
+
+# BEGIN agent-sync:mcp
+# Generated from .agent-sync/mcp-servers.json. Do not edit this block.
+# END agent-sync:mcp

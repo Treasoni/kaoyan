@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: excalidraw-diagram
+  version: 0.1.0
+  description: "Generate Excalidraw diagrams from text content. Supports three output modes - Obsidian (.md), Standard (.excalidraw), and Animated (.excalidraw with animation order). Triggers on \"Excalidraw\", \"画图\", \"流程图\", \"思维导图\", \"可视化\","
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.excalidraw-diagram
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

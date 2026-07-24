@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-math-structure
+  version: 0.1.0
+  description: "This skill provides knowledge point structure templates and module organization for 考研数学 (Chinese graduate entrance math exam). Use it when users want to query the directory structure of high math/linear algebra/probabil"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-math-structure
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

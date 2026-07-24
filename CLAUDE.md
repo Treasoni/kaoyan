@@ -16,15 +16,6 @@
 | 英语进度 | `考研英语/📊 学习进度.md` | 读/写 |
 | 专业课进度 | `考研专业课/📊 学习进度.md` | 读/写 |
 
-<!-- prompt-cache-bootstrap:begin -->
-## Prompt Cache
-
-- Follow `.claude/rules/common/prompt-cache.md` for high-frequency prompt design.
-- Keep stable instructions and output formats before dynamic user input, file excerpts, dates, IDs, and runtime state.
-- Reuse canonical templates and load long context only when needed.
-<!-- prompt-cache-bootstrap:end -->
-
-
 ---
 
 ## 2. 技能体系：少入口，多模块
@@ -61,13 +52,13 @@
 - 技能说明只写触发条件、路由决策、关键约束；长模板、代码、数据表放到 `code.md`、`templates/` 或 `references/`。
 - 修改 Codex 侧项目架构、技能、命令、hook、MCP 或说明时，必须同步检查 Claude Code 侧对应结构。
 
-详细技能地图见 `.claude/SKILL_SYSTEM.md`。
+详细技能地图见 `.agents/SKILL_SYSTEM.md`。
 
 ---
 
 ## 3. Codex / Claude Code 同步规则
-- `AGENTS.md` 与 `CLAUDE.md` 必须保持核心规则一致。
-- `.agents/skills` 与 `.claude/skills` 应保持等价能力；若某技能只能在单端实现，回复中必须说明差异、原因和替代方案。
+- `CLAUDE.md` 与 `CLAUDE.md` 必须保持核心规则一致。
+- `.claude/skills` 与 `.claude/skills` 应保持等价能力；若某技能只能在单端实现，回复中必须说明差异、原因和替代方案。
 - 更新技能、命令、hook、MCP、项目级说明后，必须做一致性检查。
 - 不把临时学习经验直接提升到 `CLAUDE.md`；新经验只写入 `.learnings/RULES.md`，由启动注入机制加载。
 
@@ -138,13 +129,13 @@
 
 ### 7.2 多 Agent 自学习同步规则
 
-- Codex profile 默认使用 `.agents/skills/`。
+- Codex profile 默认使用 `.claude/skills/`。
 - Claude Code profile 默认使用 `.claude/skills/`。
 - 通用 profile 默认使用 `.agent/skills/`；其他 agent 可使用项目自定义 skills 目录。
 - 新增或更新任何共享 self-learning skill 后，必须确认相关 profile 都保留同等功能：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
+python3 .claude/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
 ```
 
 - 如果报告另一侧缺失，先补齐另一侧再结束任务。
@@ -170,6 +161,13 @@ python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root
 <!-- env-template:claude:end -->
 
 
+<!-- prompt-cache-bootstrap:claude:begin -->
+## Prompt Cache
+
+- Follow `.claude/rules/common/prompt-cache.md` for high-frequency prompt design.
+- Keep stable instructions and output formats before dynamic user input, file excerpts, dates, IDs, and runtime state.
+- Reuse canonical templates and load long context only when needed.
+<!-- prompt-cache-bootstrap:claude:end -->
 
 <!-- workflow-todo-state:start -->
 ## Workflow Todo State

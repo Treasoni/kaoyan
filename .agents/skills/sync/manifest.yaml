@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: sync
+  version: 0.1.0
+  description: "This skill should be used when the user asks to sync study progress with MemOS, especially `/sync 拉取` to read the latest cross-device context or `/sync 上传` to save today's learning state from local notes."
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.sync
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: none
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false
