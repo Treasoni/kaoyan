@@ -2,8 +2,8 @@
   "customOrder": {
     "/": {
       "children": [
+        "docs",
         "self-learning",
-        "template_ai",
         "workspace",
         "AGENTS.md",
         "CODEBUDDY.md",
@@ -43,6 +43,10 @@
     },
     "考研计划/每日计划": {
       "children": [
+        "考研计划/每日计划/2026-07-20-每日计划.md",
+        "考研计划/每日计划/2026-07-21-每日计划.md",
+        "考研计划/每日计划/2026-07-23-每日计划.md",
+        "考研计划/每日计划/2026-07-24-每日计划.md",
         "考研计划/每日计划/2026-07-18-每日计划.md",
         "考研计划/每日计划/2026-07-19-每日计划.md",
         "考研计划/每日计划/2026-07-16-每日计划.md",
@@ -99,6 +103,10 @@
     },
     "考研计划/每日计划/完成记录": {
       "children": [
+        "考研计划/每日计划/完成记录/2026-07-19-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-20-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-21-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-23-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-16-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-18-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-15-完成记录.md",
@@ -370,6 +378,8 @@
     },
     "考研数学/0-基础知识/assets": {
       "children": [
+        "考研数学/0-基础知识/assets/高数必背公式",
+        "考研数学/0-基础知识/assets/limit-continuity-differentiability-relation-20260724.png",
         "考研数学/0-基础知识/assets/常用平面图形"
       ],
       "sortOrder": "custom"
@@ -379,6 +389,12 @@
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162136500.png",
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162451321.png",
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162505792.png"
+      ],
+      "sortOrder": "custom"
+    },
+    "考研数学/0-基础知识/assets/高数必背公式": {
+      "children": [
+        "考研数学/0-基础知识/assets/高数必背公式/file-20260724085405969.png"
       ],
       "sortOrder": "custom"
     },
@@ -488,6 +504,7 @@
     },
     "考研数学/高数-多元函数微分学": {
       "children": [
+        "考研数学/高数-多元函数微分学/assets",
         "考研数学/高数-多元函数微分学/错题题目.md",
         "考研数学/高数-多元函数微分学/错题本.md",
         "考研数学/高数-多元函数微分学/1-基本概念",
@@ -602,6 +619,12 @@
       "children": [
         "考研数学/高数-多元函数微分学/3-极值与最值/assets/最远最近点的垂线原理/截屏2026-05-02 13.27.51.png",
         "考研数学/高数-多元函数微分学/3-极值与最值/assets/最远最近点的垂线原理/截屏2026-05-02 13.27.00.png"
+      ],
+      "sortOrder": "custom"
+    },
+    "考研数学/高数-多元函数微分学/assets": {
+      "children": [
+        "考研数学/高数-多元函数微分学/assets/错题31-曲线到原点距离最值.png"
       ],
       "sortOrder": "custom"
     },
@@ -2255,6 +2278,18 @@
     },
     "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路": {
       "children": [
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/例1-4-2-电路图-裁剪-2026-07-19.png",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/例1-4-2-输出特性曲线-裁剪-2026-07-19.png",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/例1-4-2-MOSFET输出特性图解法-题图-2026-07-19.png",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-耗尽型NMOS-01-零偏已有沟道-2026-07-19.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-耗尽型NMOS-02-输出转移与夹断条件-2026-07-19.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-耗尽型NMOS-03-三区域判断总结-2026-07-19.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-N沟道JFET-01-结构与PN结反偏-2026-07-20.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-N沟道JFET-02-输出特性与夹断边界-2026-07-20.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-N沟道JFET-03-转移特性与符号-2026-07-20.jpg",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/图-例1-4-2-MOSFET负载线交点-2026-07-19.png",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/图5-3-2-gm小信号线性化手写来源.png",
+        "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/图5-4-1-gm小信号线性化标准图.png",
         "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-MOSFET输出转移特性与恒流区公式-2026-07-19.png",
         "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-增强型NMOS-01-结构与无沟道.jpg",
         "考研专业课/模拟电子技术/附件/02-场效应管及其放大电路/手写-增强型NMOS-02-感生沟道.jpg",
@@ -2297,6 +2332,18 @@
     },
     "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路": {
       "children": [
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/放大电路信号与能量关系-2026-07-21.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-放大的根源-2026-07-21.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-基本共射放大电路-1-2026-07-21.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-基本共射放大电路-2-2026-07-21.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-为什么设置静态工作点-1-2026-07-23.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-为什么设置静态工作点-2-2026-07-23.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-直接耦合与阻容耦合-1-2026-07-23.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-直接耦合与阻容耦合-2-2026-07-23.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-直接耦合与阻容耦合-3-2026-07-23.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图5-3-1-Q点与小信号摆动示意.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图5-3-2-无偏置与有偏置对比.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图5-3-3-输入到输出反相链条.png",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-三极管工作过程-2026-07-16-a0fca3e8.png",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-BJT饱和区Ic计算-2026-07-18.png",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-BJT功率与PCM-2026-07-18.jpg",
@@ -5567,6 +5614,20 @@
       ],
       "sortOrder": "custom"
     },
+    "线性代数/第二章：矩阵/assets": {
+      "children": [
+        "线性代数/第二章：矩阵/assets/可逆判定链-手写来源-20260723.jpg",
+        "线性代数/第二章：矩阵/assets/可逆判定三信号-手写来源-20260724.jpg",
+        "线性代数/第二章：矩阵/assets/错题38-正交伴随化简路线图.svg",
+        "线性代数/第二章：矩阵/assets/错题37-Cayley证明路线图.svg",
+        "线性代数/第二章：矩阵/assets/错题37-正交证明手写解析-交换判定.jpg",
+        "线性代数/第二章：矩阵/assets/错题37-正交证明手写解析-转置求积.jpg",
+        "线性代数/第二章：矩阵/assets/错题37-Cayley变换与正交矩阵.png",
+        "线性代数/第二章：矩阵/assets/伴随矩阵下标转置位置图.svg",
+        "线性代数/第二章：矩阵/assets/反对称矩阵二次型恒为零-手写来源.jpg"
+      ],
+      "sortOrder": "custom"
+    },
     "线性代数/第六章：二次型": {
       "children": [
         "线性代数/第六章：二次型/错题题目.md",
@@ -5852,10 +5913,41 @@
     },
     "线性代数/第一章：行列式/assets": {
       "children": [
+        "线性代数/第一章：行列式/assets/错题22-余子式参数反推.png",
+        "线性代数/第一章：行列式/assets/错题23-全体代数余子式求和.png",
+        "线性代数/第一章：行列式/assets/错题24-E加B代数余子式总和.jpg",
+        "线性代数/第一章：行列式/assets/错题25-代数余子式矩阵等于负A.png",
+        "线性代数/第一章：行列式/assets/错题25-非零行展开排除零行列式.png",
         "线性代数/第一章：行列式/assets/1999数二-行列式函数根个数.png",
         "线性代数/第一章：行列式/assets/2021数二三-行列式多项式x3系数.png",
         "线性代数/第一章：行列式/assets/错题16-正交矩阵反对称矩阵法.png",
         "线性代数/第一章：行列式/assets/错题18-增广矩阵行列式法.png"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs": {
+      "children": [
+        "docs/superpowers"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/superpowers": {
+      "children": [
+        "docs/superpowers/plans",
+        "docs/superpowers/specs"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/superpowers/plans": {
+      "children": [
+        "docs/superpowers/plans/2026-07-24-learning-response-experience.md"
+      ],
+      "sortOrder": "custom"
+    },
+    "docs/superpowers/specs": {
+      "children": [
+        "docs/superpowers/specs/2026-07-24-handwritten-note-reconstruction-design.md",
+        "docs/superpowers/specs/2026-07-24-learning-response-experience-design.md"
       ],
       "sortOrder": "custom"
     },
@@ -5921,347 +6013,6 @@
       ],
       "sortOrder": "custom"
     },
-    "template_ai": {
-      "children": [
-        "template_ai/docs",
-        "template_ai/profiles",
-        "template_ai/scripts",
-        "template_ai/skills",
-        "template_ai/templates",
-        "template_ai/tests",
-        "template_ai/workspace",
-        "template_ai/AGENTS.md",
-        "template_ai/CHANGELOG.md",
-        "template_ai/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/docs": {
-      "children": [
-        "template_ai/docs/PORTABILITY.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/profiles": {
-      "children": [
-        "template_ai/profiles/claude.yaml",
-        "template_ai/profiles/cline.yaml",
-        "template_ai/profiles/codebuddy.yaml",
-        "template_ai/profiles/codex.yaml",
-        "template_ai/profiles/cursor.yaml",
-        "template_ai/profiles/gemini.yaml",
-        "template_ai/profiles/generic.yaml",
-        "template_ai/profiles/github-copilot.yaml",
-        "template_ai/profiles/opencode.yaml",
-        "template_ai/profiles/qwen-code.yaml",
-        "template_ai/profiles/README.md",
-        "template_ai/profiles/roo-code.yaml",
-        "template_ai/profiles/windsurf.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/scripts": {
-      "children": [
-        "template_ai/scripts/__pycache__",
-        "template_ai/scripts/install.py",
-        "template_ai/scripts/validate.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/scripts/__pycache__": {
-      "children": [
-        "template_ai/scripts/__pycache__/install.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer",
-        "template_ai/skills/security-secret-audit",
-        "template_ai/skills/sync-skill-registry",
-        "template_ai/skills/workflow-todo-state",
-        "template_ai/skills/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/prompt-cache-optimizer": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer/agents",
-        "template_ai/skills/prompt-cache-optimizer/assets",
-        "template_ai/skills/prompt-cache-optimizer/references",
-        "template_ai/skills/prompt-cache-optimizer/scripts",
-        "template_ai/skills/prompt-cache-optimizer/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/prompt-cache-optimizer/agents": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer/agents/openai.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/prompt-cache-optimizer/assets": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer/assets/llm-usage-event.schema.json",
-        "template_ai/skills/prompt-cache-optimizer/assets/prompt-cache-regression-cases.json"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/prompt-cache-optimizer/references": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer/references/measurement.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/prompt-cache-optimizer/scripts": {
-      "children": [
-        "template_ai/skills/prompt-cache-optimizer/scripts/prompt-cache-bootstrap.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/security-secret-audit": {
-      "children": [
-        "template_ai/skills/security-secret-audit/agents",
-        "template_ai/skills/security-secret-audit/scripts",
-        "template_ai/skills/security-secret-audit/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/security-secret-audit/agents": {
-      "children": [
-        "template_ai/skills/security-secret-audit/agents/openai.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/security-secret-audit/scripts": {
-      "children": [
-        "template_ai/skills/security-secret-audit/scripts/audit-secrets.sh",
-        "template_ai/skills/security-secret-audit/scripts/detect-secrets.pl"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/sync-skill-registry": {
-      "children": [
-        "template_ai/skills/sync-skill-registry/scripts",
-        "template_ai/skills/sync-skill-registry/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/sync-skill-registry/scripts": {
-      "children": [
-        "template_ai/skills/sync-skill-registry/scripts/__pycache__",
-        "template_ai/skills/sync-skill-registry/scripts/sync_skill_registry.py"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/sync-skill-registry/scripts/__pycache__": {
-      "children": [
-        "template_ai/skills/sync-skill-registry/scripts/__pycache__/sync_skill_registry.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/workflow-todo-state": {
-      "children": [
-        "template_ai/skills/workflow-todo-state/agents",
-        "template_ai/skills/workflow-todo-state/references",
-        "template_ai/skills/workflow-todo-state/scripts",
-        "template_ai/skills/workflow-todo-state/AGENTS.snippet.md",
-        "template_ai/skills/workflow-todo-state/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/workflow-todo-state/agents": {
-      "children": [
-        "template_ai/skills/workflow-todo-state/agents/openai.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/workflow-todo-state/references": {
-      "children": [
-        "template_ai/skills/workflow-todo-state/references/basic-state-template.md",
-        "template_ai/skills/workflow-todo-state/references/integration.md",
-        "template_ai/skills/workflow-todo-state/references/workflow-routing-template.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/skills/workflow-todo-state/scripts": {
-      "children": [
-        "template_ai/skills/workflow-todo-state/scripts/install.sh",
-        "template_ai/skills/workflow-todo-state/scripts/sync-workflow-routing.sh",
-        "template_ai/skills/workflow-todo-state/scripts/todo-state.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates": {
-      "children": [
-        "template_ai/templates/cache",
-        "template_ai/templates/env",
-        "template_ai/templates/self-learning"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/cache": {
-      "children": [
-        "template_ai/templates/cache/AGENTS-cache-snippet.md",
-        "template_ai/templates/cache/prompt-cache-bootstrap.sh",
-        "template_ai/templates/cache/prompt-cache-playbook.md",
-        "template_ai/templates/cache/prompt-cache-rules.md",
-        "template_ai/templates/cache/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env": {
-      "children": [
-        "template_ai/templates/env/__pycache__",
-        "template_ai/templates/env/claude",
-        "template_ai/templates/env/codex",
-        "template_ai/templates/env/install.py",
-        "template_ai/templates/env/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env/__pycache__": {
-      "children": [
-        "template_ai/templates/env/__pycache__/install.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env/claude": {
-      "children": [
-        "template_ai/templates/env/claude/scripts",
-        "template_ai/templates/env/claude/env.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env/claude/scripts": {
-      "children": [
-        "template_ai/templates/env/claude/scripts/check-env-template.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env/codex": {
-      "children": [
-        "template_ai/templates/env/codex/scripts",
-        "template_ai/templates/env/codex/env.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/env/codex/scripts": {
-      "children": [
-        "template_ai/templates/env/codex/scripts/check-env-template.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning": {
-      "children": [
-        "template_ai/templates/self-learning/__pycache__",
-        "template_ai/templates/self-learning/hooks",
-        "template_ai/templates/self-learning/learnings",
-        "template_ai/templates/self-learning/skills",
-        "template_ai/templates/self-learning/AGENTS.snippet.md",
-        "template_ai/templates/self-learning/install.py",
-        "template_ai/templates/self-learning/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/__pycache__": {
-      "children": [
-        "template_ai/templates/self-learning/__pycache__/install.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/hooks": {
-      "children": [
-        "template_ai/templates/self-learning/hooks/__pycache__",
-        "template_ai/templates/self-learning/hooks/claude-settings.json.template",
-        "template_ai/templates/self-learning/hooks/codebuddy-hooks.json.template",
-        "template_ai/templates/self-learning/hooks/codex-hooks.json.template",
-        "template_ai/templates/self-learning/hooks/read_learnings.py",
-        "template_ai/templates/self-learning/hooks/read-learnings.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/hooks/__pycache__": {
-      "children": [
-        "template_ai/templates/self-learning/hooks/__pycache__/read_learnings.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/learnings": {
-      "children": [
-        "template_ai/templates/self-learning/learnings/ERRORS.md",
-        "template_ai/templates/self-learning/learnings/LEARNINGS.md",
-        "template_ai/templates/self-learning/learnings/RULES.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills": {
-      "children": [
-        "template_ai/templates/self-learning/skills/digest",
-        "template_ai/templates/self-learning/skills/maintain-learnings"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills/digest": {
-      "children": [
-        "template_ai/templates/self-learning/skills/digest/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills/maintain-learnings": {
-      "children": [
-        "template_ai/templates/self-learning/skills/maintain-learnings/agents",
-        "template_ai/templates/self-learning/skills/maintain-learnings/scripts",
-        "template_ai/templates/self-learning/skills/maintain-learnings/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills/maintain-learnings/agents": {
-      "children": [
-        "template_ai/templates/self-learning/skills/maintain-learnings/agents/openai.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills/maintain-learnings/scripts": {
-      "children": [
-        "template_ai/templates/self-learning/skills/maintain-learnings/scripts/__pycache__",
-        "template_ai/templates/self-learning/skills/maintain-learnings/scripts/audit_learnings.py",
-        "template_ai/templates/self-learning/skills/maintain-learnings/scripts/sync_platform_skills.py"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/templates/self-learning/skills/maintain-learnings/scripts/__pycache__": {
-      "children": [
-        "template_ai/templates/self-learning/skills/maintain-learnings/scripts/__pycache__/sync_platform_skills.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/tests": {
-      "children": [
-        "template_ai/tests/__pycache__",
-        "template_ai/tests/test_refactor_regressions.py"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/tests/__pycache__": {
-      "children": [
-        "template_ai/tests/__pycache__/test_refactor_regressions.cpython-313.pyc"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/workspace": {
-      "children": [
-        "template_ai/workspace/workflow-runs"
-      ],
-      "sortOrder": "custom"
-    },
-    "template_ai/workspace/workflow-runs": {
-      "children": [
-        "template_ai/workspace/workflow-runs/reusable-agent-assets-core-refactor.workflow.md",
-        "template_ai/workspace/workflow-runs/reusable-agent-assets-usage-docs.workflow.md"
-      ],
-      "sortOrder": "custom"
-    },
     "workspace": {
       "children": [
         "workspace/workflow-runs"
@@ -6270,18 +6021,6 @@
     },
     "workspace/workflow-runs": {
       "children": [],
-      "sortOrder": "custom"
-    },
-    "线性代数/第二章：矩阵/assets": {
-      "children": [
-        "线性代数/第二章：矩阵/assets/错题38-正交伴随化简路线图.svg",
-        "线性代数/第二章：矩阵/assets/错题37-Cayley证明路线图.svg",
-        "线性代数/第二章：矩阵/assets/错题37-正交证明手写解析-交换判定.jpg",
-        "线性代数/第二章：矩阵/assets/错题37-正交证明手写解析-转置求积.jpg",
-        "线性代数/第二章：矩阵/assets/错题37-Cayley变换与正交矩阵.png",
-        "线性代数/第二章：矩阵/assets/伴随矩阵下标转置位置图.svg",
-        "线性代数/第二章：矩阵/assets/反对称矩阵二次型恒为零-手写来源.jpg"
-      ],
       "sortOrder": "custom"
     }
   },
