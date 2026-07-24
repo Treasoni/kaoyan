@@ -226,9 +226,9 @@ def render_markdown(summary: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
-    parser.add_argument("--skills-dir", default=".agents/skills")
+    parser.add_argument("--skills-dir", default=".claude/skills")
     parser.add_argument("--rules-file", default="AGENTS.md")
-    parser.add_argument("--hooks-path", default=".codex/hooks")
+    parser.add_argument("--hooks-path", default=".claude/hooks")
     parser.add_argument("--line-threshold", type=int, default=100)
     parser.add_argument("--active-only", action="store_true")
     parser.add_argument("--json", action="store_true")

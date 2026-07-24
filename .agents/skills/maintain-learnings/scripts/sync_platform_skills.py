@@ -15,6 +15,7 @@ DEFAULT_PLATFORMS = {
     "claude": ".claude/skills",
 }
 TEXT_SUFFIXES = {".md", ".py", ".sh", ".json", ".yaml", ".yml", ".txt"}
+IGNORED_SUFFIXES = {".backup", ".bak", ".tmp", ".swp", ".swo"}
 
 
 @dataclass
@@ -59,7 +60,7 @@ def files_for_skill(root: Path, platform: str, skill: str, dirs: dict[str, str])
     for path in base.rglob("*"):
         if path.is_file():
             rel = path.relative_to(base)
-            if not ignored(platform, rel):
+            if not ignored(platform, rel) and path.suffix.lower() not in IGNORED_SUFFIXES:
                 files[rel.as_posix()] = path
     return files
 

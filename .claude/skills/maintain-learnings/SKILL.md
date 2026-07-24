@@ -24,7 +24,7 @@ python3 <skills-dir>/maintain-learnings/scripts/audit_learnings.py --root . --sk
 Codex 内置 profile 示例：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/audit_learnings.py --root . --skills-dir .agents/skills --rules-file AGENTS.md --hooks-path .codex/hooks
+python3 .claude/skills/maintain-learnings/scripts/audit_learnings.py --root . --skills-dir .claude/skills --rules-file AGENTS.md --hooks-path .claude/hooks
 ```
 
 Claude Code 内置 profile 示例：
@@ -49,7 +49,7 @@ python3 .claude/skills/maintain-learnings/scripts/audit_learnings.py --root . --
 - skill 问题：`<skills-dir>/<skill>/SKILL.md`
 - skill 模板问题：`<skills-dir>/<skill>/references/`
 - 项目规则问题：`AGENTS.md` / `CLAUDE.md` / `INSTRUCTIONS.md` / 项目自定义规则文件
-- hook 问题：`.codex/hooks/` / `.claude/hooks/` / 项目自定义 hook
+- hook 问题：`.claude/hooks/` / `.claude/hooks/` / 项目自定义 hook
 - 工具脚本问题：对应 `scripts/`
 
 ## Step 4: 修改机制
@@ -80,25 +80,25 @@ python3 -c 'from pathlib import Path; p=Path("<skills-dir>/<skill>/SKILL.md"); t
 如果项目同时使用多个 agent profile，修改任何共享 skill 后都运行同步检查。默认会比较 `agents` 与 `claude`：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
+python3 .claude/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
 ```
 
 自定义 profile 示例：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --platform generic=.agent/skills --base-platform agents --compare-platform generic --skill <skill>
+python3 .claude/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --platform generic=.agent/skills --base-platform agents --compare-platform generic --skill <skill>
 ```
 
 如果目标侧缺失，先 dry-run：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill>
+python3 .claude/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill>
 ```
 
 确认后应用：
 
 ```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill> --apply
+python3 .claude/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill> --apply
 ```
 
 保留平台专属内容：
