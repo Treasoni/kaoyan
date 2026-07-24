@@ -17,6 +17,20 @@ description: 822电子技术基础考研学习入口。用于湖南大学822专�
 
 ---
 
+## 回答模式优先
+
+先读取 `learning-response-contract` 并确定本次 `response_mode`，再进入本技能的既有路由。
+
+- `quick_answer`：只解决当前疑问，不自动展开成整章笔记或写入文件。
+- `concept_learning`：按“钩子 → TL;DR → 为什么 → 是什么 → 怎么用 → 自检”组织，并保留考研考法。
+- `problem_solving`：按既有题型 SOP 分步处理；电路图优先转入 `kaoyan-electronics-circuit`。
+- `note_reconstruction`：手写笔记、板书、电路图、波形或特性曲线转入 `kaoyan-electronics-circuit`，并调用 `handwritten-note-reconstruction`。
+- `planning_review`：转交 `/kaoyan-plan`。
+
+只有用户明确要求或长期复习价值明确时才写入文件；若目标路径不明，不创建文件。
+
+---
+
 ## 学习动作优先级
 
 | 用户意图 | 默认动作 | 子模块 |

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "math-quick-derivative",
+    "request": "这一步为什么能约分？",
+    "subject": "math",
+    "expected_mode": "quick_answer",
+    "must_include": ["结论", "关键步骤", "易错点", "自检"],
+    "must_not_include": ["整章笔记", "写入文件"]
+  },
+  {
+    "id": "math-problem-solving",
+    "request": "这道极值题我哪里错了？",
+    "subject": "math",
+    "expected_mode": "problem_solving",
+    "must_include": ["题型", "SOP", "分步解", "错因"],
+    "must_not_include": ["只给答案", "跳过条件"]
+  },
+  {
+    "id": "electronics-circuit",
+    "request": "分析这个负反馈电路。",
+    "subject": "electronics",
+    "expected_mode": "problem_solving",
+    "must_include": ["题型", "取样", "比较", "反馈极性"],
+    "must_not_include": ["凭直觉", "省略检查"]
+  },
+  {
+    "id": "math-handwritten",
+    "request": "帮我整理这页手写的拉格朗日中值定理笔记。",
+    "subject": "math",
+    "expected_mode": "note_reconstruction",
+    "must_include": ["来源盘点", "重构逻辑", "待确认", "原图溯源"],
+    "must_not_include": ["直接套模板", "猜测模糊公式"]
+  },
+  {
+    "id": "electronics-handwritten",
+    "request": "把这张手写共射放大电路整理成笔记。",
+    "subject": "electronics",
+    "expected_mode": "note_reconstruction",
+    "must_include": ["电路图", "方向", "待确认", "原图溯源"],
+    "must_not_include": ["忽略拓扑", "代替原图"]
+  },
+  {
+    "id": "daily-planning",
+    "request": "今天怎么安排复习？",
+    "subject": "planning",
+    "expected_mode": "planning_review",
+    "must_include": ["策略", "时间块", "兜底", "汇报"],
+    "must_not_include": ["整章讲解", "无休息安排"]
+  }
+]

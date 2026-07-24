@@ -13,6 +13,20 @@ description: 考研数学入口路由器。用于数学二学习中的概念理�
 
 ---
 
+## 回答模式优先
+
+先读取 `learning-response-contract` 并确定本次 `response_mode`，再进入本技能的既有路由。
+
+- `quick_answer`：只解决当前疑问，不自动展开成整章笔记或写入文件。
+- `concept_learning`：按“钩子 → TL;DR → 为什么 → 是什么 → 怎么用 → 自检”组织。
+- `problem_solving`：转入 `kaoyan-math-notes`，先给对象解释，再给推导或分步解法。
+- `note_reconstruction`：转入 `kaoyan-math-notes`；手写笔记、板书或截图继续调用 `handwritten-note-reconstruction`。
+- `planning_review`：转交 `/kaoyan-plan`。
+
+只有用户明确要求或长期复习价值明确时才写入文件；若目标路径不明，不创建文件。
+
+---
+
 ## 路由规则
 
 | 用户意图 | 子模块 | 判断线索 |

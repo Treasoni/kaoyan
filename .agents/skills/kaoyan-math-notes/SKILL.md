@@ -1,7 +1,7 @@
 ---
 name: kaoyan-math-notes
 description: This skill handles note generation and updates for 考研数学 (Chinese graduate entrance math exam) preparation. Use it when users want to generate exam-oriented study notes from existing materials, update notes based on feedback, or create structured learning content with LaTeX formatting.
-version: 1.0.0
+version: 1.2.0
 ---
 
 # 考研数学笔记生成更新技能 (Kaoyan Math Notes)
@@ -76,6 +76,10 @@ version: 1.0.0
 4. **必背/速查只保留高价值内容**：优先保留定义、公式、性质、口诀、易错点、做题步骤、来源链接；长推导和完整例题留在源章节。
 5. **结构识别型知识不能只剩公式**：先判断知识点是“纯公式型”还是“结构识别型”。结构识别型必须保留最小识别模板、做题启动步骤和必要图示/读图结论。
 6. **补充需标明边界**：源笔记缺少模板、启动步骤或图示时可以补充，但补充内容必须与源笔记主线一致。
+
+### 手写笔记重构
+
+用户提供手写笔记、板书截图或照片时，先调用 `handwritten-note-reconstruction`，不得直接按普通文本模板改写。数学公式、定义、定理和推导须在重构前自行核验；有曲线、几何关系、边界或变量方向时，正文必须包含标准图或重绘图及其做题结论。
 
 ### Markdown/LaTeX 写入验证清单 ⚠️
 
