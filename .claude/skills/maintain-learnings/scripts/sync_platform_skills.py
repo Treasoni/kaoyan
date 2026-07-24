@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 DEFAULT_PLATFORMS = {
-    "agents": ".claude/skills",
+    "agents": ".agents/skills",
     "claude": ".claude/skills",
 }
 TEXT_SUFFIXES = {".md", ".py", ".sh", ".json", ".yaml", ".yml", ".txt"}
@@ -67,13 +67,13 @@ def files_for_skill(root: Path, platform: str, skill: str, dirs: dict[str, str])
 
 def normalized_text(text: str, dirs: dict[str, str]) -> str:
     replacements = {
-        ".claude/hooks": "{CODEX_HOOKS}",
+        ".codex/hooks": "{CODEX_HOOKS}",
         ".claude/hooks": "{CLAUDE_HOOKS}",
-        ".claude/hooks.json": "{CODEX_SETTINGS}",
+        ".codex/hooks.json": "{CODEX_SETTINGS}",
         ".claude/settings.json": "{CLAUDE_SETTINGS}",
         "Codex": "{CODEX}",
         "Claude Code": "{CLAUDE}",
-        "claude-hook": "{CODEX_HOOK}",
+        "codex-hook": "{CODEX_HOOK}",
         "claude-hook": "{CLAUDE_HOOK}",
     }
     for name, path in dirs.items():
@@ -124,15 +124,15 @@ def transform_text(text: str, source: str, target: str, dirs: dict[str, str]) ->
     source_kind = platform_kind(source)
     target_kind = platform_kind(target)
     if source_kind == "codex" and target_kind == "claude":
-        transformed = transformed.replace(".claude/hooks", ".claude/hooks")
-        transformed = transformed.replace(".claude/hooks.json", ".claude/settings.json")
-        transformed = transformed.replace("Claude Code hook", "Claude Code hook")
-        transformed = transformed.replace("claude-hook", "claude-hook")
+        transformed = transformed.replace(".codex/hooks", ".claude/hooks")
+        transformed = transformed.replace(".codex/hooks.json", ".claude/settings.json")
+        transformed = transformed.replace("Codex hook", "Claude Code hook")
+        transformed = transformed.replace("codex-hook", "claude-hook")
     elif source_kind == "claude" and target_kind == "codex":
-        transformed = transformed.replace(".claude/hooks", ".claude/hooks")
-        transformed = transformed.replace(".claude/settings.json", ".claude/hooks.json")
-        transformed = transformed.replace("Claude Code hook", "Claude Code hook")
-        transformed = transformed.replace("claude-hook", "claude-hook")
+        transformed = transformed.replace(".claude/hooks", ".codex/hooks")
+        transformed = transformed.replace(".claude/settings.json", ".codex/hooks.json")
+        transformed = transformed.replace("Claude Code hook", "Codex hook")
+        transformed = transformed.replace("claude-hook", "codex-hook")
     return transformed
 
 
