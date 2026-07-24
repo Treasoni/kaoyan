@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">共射放大电路的直流通路与交流通路</title>
+  <desc id="desc">四格教材风电路图，对比直接耦合与阻容耦合在直流通路、交流通路中的处理。</desc>
+  <defs>
+    <marker id="npn-arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#1f2937"/>
+    </marker>
+  </defs>
+  <style>
+    .bg { fill: #f7f8fb; }
+    .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; }
+    .title { font: 700 30px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+    .subtitle { font: 18px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+    .panel-title { font: 700 24px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+    .label { font: 17px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+    .small { font: 15px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #374151; }
+    .tiny { font: 13px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+    .red { fill: #b42318; }
+    .blue { fill: #175cd3; }
+    .green { fill: #067647; }
+    .wire { stroke: #1f2937; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .res { fill: #ffffff; stroke: #1f2937; stroke-width: 2.2; }
+    .cap { stroke: #1f2937; stroke-width: 3; stroke-linecap: round; }
+    .node { fill: #1f2937; }
+    .gnd { stroke: #1f2937; stroke-width: 2.2; stroke-linecap: round; }
+    .muted-wire { stroke: #94a3b8; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .muted-res { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; }
+    .muted-text { font: 15px "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #64748b; }
+    .note-box-red { fill: #fff1f0; stroke: #f4b3ad; stroke-width: 1.5; }
+    .note-box-blue { fill: #eef4ff; stroke: #b7ccff; stroke-width: 1.5; }
+  </style>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1120"/>
+  <text class="title" x="800" y="50" text-anchor="middle">直流通路与交流通路：直接耦合 vs 阻容耦合</text>
+  <text class="subtitle" x="800" y="80" text-anchor="middle">先把源和电容处理对，再判断哪些电阻进入 Q 点或交流负载</text>
+
+  <!-- 直接耦合：直流通路 -->
+  <g transform="translate(40,110)">
+    <rect class="panel" x="0" y="0" width="740" height="470" rx="16"/>
+    <text class="panel-title" x="28" y="42">① 直接耦合：直流通路</text>
+    <text class="small red" x="28" y="70">令 u<tspan baseline-shift="sub" font-size="70%">i</tspan>=0，信号源短路，但 R<tspan baseline-shift="sub" font-size="70%">s</tspan>、R<tspan baseline-shift="sub" font-size="70%">b1</tspan>、R<tspan baseline-shift="sub" font-size="70%">L</tspan> 仍按真实连线保留</text>
+
+    <line class="wire" x1="250" y1="105" x2="610" y2="105"/>
+    <text class="label" x="430" y="82" text-anchor="middle">V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+    <line class="wire" x1="70" y1="385" x2="645" y2="385"/>
+
+    <line class="wire" x1="80" y1="260" x2="80" y2="385"/>
+    <text class="small red" x="54" y="248">u<tspan baseline-shift="sub" font-size="70%">i</tspan>=0</text>
+    <line class="wire" x1="80" y1="260" x2="115" y2="260"/>
+    <rect class="res" x="115" y="242" width="56" height="36" rx="4"/>
+    <text class="small" x="127" y="266">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+    <line class="wire" x1="171" y1="260" x2="215" y2="260"/>
+    <rect class="res" x="215" y="242" width="64" height="36" rx="4"/>
+    <text class="small" x="228" y="266">R<tspan baseline-shift="sub" font-size="70%">b1</tspan></text>
+    <line class="wire" x1="279" y1="260" x2="330" y2="260"/>
+
+    <line class="wire" x1="330" y1="105" x2="330" y2="130"/>
+    <rect class="res" x="312" y="130" width="36" height="88" rx="4"/>
+    <text class="small" x="309" y="124">R<tspan baseline-shift="sub" font-size="70%">b2</tspan></text>
+    <line class="wire" x1="330" y1="218" x2="330" y2="260"/>
+    <circle class="node" cx="330" cy="260" r="4.5"/>
+
+    <line class="wire" x1="385" y1="220" x2="385" y2="300"/>
+    <line class="wire" x1="385" y1="260" x2="330" y2="260"/>
+    <line class="wire" x1="385" y1="236" x2="455" y2="185"/>
+    <line class="wire" x1="385" y1="284" x2="455" y2="335" marker-end="url(#npn-arrow)"/>
+    <text class="tiny" x="392" y="254">B</text>
+    <text class="tiny" x="462" y="181">C</text>
+    <text class="tiny" x="462" y="343">E</text>
+
+    <line class="wire" x1="455" y1="105" x2="455" y2="128"/>
+    <rect class="res" x="437" y="128" width="36" height="78" rx="4"/>
+    <text class="small" x="438" y="122">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+    <line class="wire" x1="455" y1="206" x2="455" y2="185"/>
+    <circle class="node" cx="455" cy="185" r="4.5"/>
+
+    <line class="wire" x1="455" y1="185" x2="585" y2="185"/>
+    <line class="wire" x1="585" y1="185" x2="585" y2="225"/>
+    <rect class="res" x="567" y="225" width="36" height="86" rx="4"/>
+    <text class="small" x="568" y="219">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+    <line class="wire" x1="585" y1="311" x2="585" y2="385"/>
+    <text class="small" x="605" y="266">u<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+
+    <line class="wire" x1="455" y1="335" x2="455" y2="385"/>
+    <line class="gnd" x1="72" y1="385" x2="88" y2="385"/>
+    <line class="gnd" x1="75" y1="391" x2="85" y2="391"/>
+    <line class="gnd" x1="78" y1="397" x2="82" y2="397"/>
+    <line class="gnd" x1="447" y1="385" x2="463" y2="385"/>
+    <line class="gnd" x1="450" y1="391" x2="460" y2="391"/>
+    <line class="gnd" x1="453" y1="397" x2="457" y2="397"/>
+
+    <rect class="note-box-red" x="38" y="418" width="664" height="30" rx="8"/>
+    <text class="small red" x="370" y="439" text-anchor="middle">结论：无隔直电容，输入支路和负载支路可能改变静态工作点 Q</text>
+  </g>
+
+  <!-- 直接耦合：交流通路 -->
+  <g transform="translate(820,110)">
+    <rect class="panel" x="0" y="0" width="740" height="470" rx="16"/>
+    <text class="panel-title" x="28" y="42">② 直接耦合：交流通路</text>
+    <text class="small blue" x="28" y="70">直流电源置零为交流地；信号源、R<tspan baseline-shift="sub" font-size="70%">s</tspan>、R<tspan baseline-shift="sub" font-size="70%">b1</tspan> 保留</text>
+
+    <line class="wire" x1="250" y1="105" x2="610" y2="105"/>
+    <text class="label blue" x="430" y="82" text-anchor="middle">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 交流地</text>
+    <line class="wire" x1="70" y1="385" x2="645" y2="385"/>
+
+    <circle cx="80" cy="260" r="22" fill="#ffffff" stroke="#1f2937" stroke-width="2"/>
+    <text class="small" x="70" y="253">+</text>
+    <text class="small" x="70" y="276">-</text>
+    <text class="small" x="44" y="310">u<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+    <line class="wire" x1="80" y1="282" x2="80" y2="385"/>
+    <line class="wire" x1="102" y1="260" x2="115" y2="260"/>
+    <rect class="res" x="115" y="242" width="56" height="36" rx="4"/>
+    <text class="small" x="127" y="266">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+    <line class="wire" x1="171" y1="260" x2="215" y2="260"/>
+    <rect class="res" x="215" y="242" width="64" height="36" rx="4"/>
+    <text class="small" x="228" y="266">R<tspan baseline-shift="sub" font-size="70%">b1</tspan></text>
+    <line class="wire" x1="279" y1="260" x2="330" y2="260"/>
+
+    <line class="wire" x1="330" y1="105" x2="330" y2="130"/>
+    <rect class="res" x="312" y="130" width="36" height="88" rx="4"/>
+    <text class="small" x="309" y="124">R<tspan baseline-shift="sub" font-size="70%">b2</tspan></text>
+    <line class="wire" x1="330" y1="218" x2="330" y2="260"/>
+    <circle class="node" cx="330" cy="260" r="4.5"/>
+
+    <line class="wire" x1="385" y1="220" x2="385" y2="300"/>
+    <line class="wire" x1="385" y1="260" x2="330" y2="260"/>
+    <line class="wire" x1="385" y1="236" x2="455" y2="185"/>
+    <line class="wire" x1="385" y1="284" x2="455" y2="335" marker-end="url(#npn-arrow)"/>
+    <text class="tiny" x="392" y="254">B</text>
+    <text class="tiny" x="462" y="181">C</text>
+    <text class="tiny" x="462" y="343">E</text>
+
+    <line class="wire" x1="455" y1="105" x2="455" y2="128"/>
+    <rect class="res" x="437" y="128" width="36" height="78" rx="4"/>
+    <text class="small" x="438" y="122">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+    <line class="wire" x1="455" y1="206" x2="455" y2="185"/>
+    <circle class="node" cx="455" cy="185" r="4.5"/>
+
+    <line class="wire" x1="455" y1="185" x2="585" y2="185"/>
+    <line class="wire" x1="585" y1="185" x2="585" y2="225"/>
+    <rect class="res" x="567" y="225" width="36" height="86" rx="4"/>
+    <text class="small" x="568" y="219">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+    <line class="wire" x1="585" y1="311" x2="585" y2="385"/>
+    <text class="small" x="605" y="266">u<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+
+    <line class="wire" x1="455" y1="335" x2="455" y2="385"/>
+    <line class="gnd" x1="322" y1="105" x2="338" y2="105"/>
+    <line class="gnd" x1="325" y1="111" x2="335" y2="111"/>
+    <line class="gnd" x1="328" y1="117" x2="332" y2="117"/>
+    <line class="gnd" x1="447" y1="385" x2="463" y2="385"/>
+    <line class="gnd" x1="450" y1="391" x2="460" y2="391"/>
+    <line class="gnd" x1="453" y1="397" x2="457" y2="397"/>
+
+    <rect class="note-box-blue" x="38" y="418" width="664" height="30" rx="8"/>
+    <text class="small blue" x="370" y="439" text-anchor="middle">结论：交流负载按节点看，若同接输出节点与交流地，则有 R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+  </g>
+
+  <!-- 阻容耦合：直流通路 -->
+  <g transform="translate(40,610)">
+    <rect class="panel" x="0" y="0" width="740" height="470" rx="16"/>
+    <text class="panel-title" x="28" y="42">③ 阻容耦合：直流通路</text>
+    <text class="small red" x="28" y="70">C<tspan baseline-shift="sub" font-size="70%">1</tspan>、C<tspan baseline-shift="sub" font-size="70%">2</tspan> 直流开路，信号源和 R<tspan baseline-shift="sub" font-size="70%">L</tspan> 不进入 Q 点</text>
+
+    <line class="wire" x1="250" y1="105" x2="610" y2="105"/>
+    <text class="label" x="430" y="82" text-anchor="middle">V<tspan baseline-shift="sub" font-size="70%">CC</tspan></text>
+    <line class="wire" x1="70" y1="385" x2="645" y2="385"/>
+
+    <circle cx="75" cy="260" r="21" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <text class="muted-text" x="66" y="253">+</text>
+    <text class="muted-text" x="66" y="276">-</text>
+    <text class="muted-text" x="40" y="310">u<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+    <line class="muted-wire" x1="75" y1="281" x2="75" y2="385"/>
+    <line class="muted-wire" x1="96" y1="260" x2="120" y2="260"/>
+    <rect class="muted-res" x="120" y="242" width="56" height="36" rx="4"/>
+    <text class="muted-text" x="132" y="266">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+    <line class="muted-wire" x1="176" y1="260" x2="206" y2="260"/>
+    <line class="cap" x1="214" y1="238" x2="214" y2="282"/>
+    <line class="cap" x1="228" y1="238" x2="228" y2="282"/>
+    <text class="small" x="208" y="228">C<tspan baseline-shift="sub" font-size="70%">1</tspan></text>
+    <text class="small red" x="198" y="305">开路</text>
+    <line class="wire" x1="228" y1="260" x2="330" y2="260"/>
+
+    <line class="wire" x1="330" y1="105" x2="330" y2="130"/>
+    <rect class="res" x="312" y="130" width="36" height="88" rx="4"/>
+    <text class="small" x="316" y="124">R<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+    <line class="wire" x1="330" y1="218" x2="330" y2="260"/>
+    <circle class="node" cx="330" cy="260" r="4.5"/>
+
+    <line class="wire" x1="385" y1="220" x2="385" y2="300"/>
+    <line class="wire" x1="385" y1="260" x2="330" y2="260"/>
+    <line class="wire" x1="385" y1="236" x2="455" y2="185"/>
+    <line class="wire" x1="385" y1="284" x2="455" y2="335" marker-end="url(#npn-arrow)"/>
+    <text class="tiny" x="392" y="254">B</text>
+    <text class="tiny" x="462" y="181">C</text>
+    <text class="tiny" x="462" y="343">E</text>
+
+    <line class="wire" x1="455" y1="105" x2="455" y2="128"/>
+    <rect class="res" x="437" y="128" width="36" height="78" rx="4"/>
+    <text class="small" x="438" y="122">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+    <line class="wire" x1="455" y1="206" x2="455" y2="185"/>
+    <circle class="node" cx="455" cy="185" r="4.5"/>
+
+    <line class="wire" x1="455" y1="185" x2="504" y2="185"/>
+    <line class="cap" x1="512" y1="163" x2="512" y2="207"/>
+    <line class="cap" x1="526" y1="163" x2="526" y2="207"/>
+    <text class="small" x="506" y="153">C<tspan baseline-shift="sub" font-size="70%">2</tspan></text>
+    <text class="small red" x="498" y="232">开路</text>
+    <line class="muted-wire" x1="526" y1="185" x2="585" y2="185"/>
+    <line class="muted-wire" x1="585" y1="185" x2="585" y2="225"/>
+    <rect class="muted-res" x="567" y="225" width="36" height="86" rx="4"/>
+    <text class="muted-text" x="568" y="219">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+    <line class="muted-wire" x1="585" y1="311" x2="585" y2="385"/>
+
+    <line class="wire" x1="455" y1="335" x2="455" y2="385"/>
+    <line class="gnd" x1="447" y1="385" x2="463" y2="385"/>
+    <line class="gnd" x1="450" y1="391" x2="460" y2="391"/>
+    <line class="gnd" x1="453" y1="397" x2="457" y2="397"/>
+
+    <rect class="note-box-red" x="38" y="418" width="664" height="30" rx="8"/>
+    <text class="small red" x="370" y="439" text-anchor="middle">结论：Q 点只由本级偏置 R<tspan baseline-shift="sub" font-size="70%">b</tspan>、R<tspan baseline-shift="sub" font-size="70%">C</tspan>、V<tspan baseline-shift="sub" font-size="70%">CC</tspan> 和三极管直流模型决定</text>
+  </g>
+
+  <!-- 阻容耦合：交流通路 -->
+  <g transform="translate(820,610)">
+    <rect class="panel" x="0" y="0" width="740" height="470" rx="16"/>
+    <text class="panel-title" x="28" y="42">④ 阻容耦合：交流通路</text>
+    <text class="small blue" x="28" y="70">中频下 C<tspan baseline-shift="sub" font-size="70%">1</tspan>、C<tspan baseline-shift="sub" font-size="70%">2</tspan> 近似短路；V<tspan baseline-shift="sub" font-size="70%">CC</tspan> 置零为交流地</text>
+
+    <line class="wire" x1="250" y1="105" x2="610" y2="105"/>
+    <text class="label blue" x="430" y="82" text-anchor="middle">V<tspan baseline-shift="sub" font-size="70%">CC</tspan> → 交流地</text>
+    <line class="wire" x1="70" y1="385" x2="645" y2="385"/>
+
+    <circle cx="75" cy="260" r="21" fill="#ffffff" stroke="#1f2937" stroke-width="2"/>
+    <text class="small" x="66" y="253">+</text>
+    <text class="small" x="66" y="276">-</text>
+    <text class="small" x="40" y="310">u<tspan baseline-shift="sub" font-size="70%">i</tspan></text>
+    <line class="wire" x1="75" y1="281" x2="75" y2="385"/>
+    <line class="wire" x1="96" y1="260" x2="120" y2="260"/>
+    <rect class="res" x="120" y="242" width="56" height="36" rx="4"/>
+    <text class="small" x="132" y="266">R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+    <line class="wire" x1="176" y1="260" x2="330" y2="260"/>
+    <text class="small blue" x="210" y="238">C<tspan baseline-shift="sub" font-size="70%">1</tspan>≈短路</text>
+
+    <line class="wire" x1="330" y1="105" x2="330" y2="130"/>
+    <rect class="res" x="312" y="130" width="36" height="88" rx="4"/>
+    <text class="small" x="316" y="124">R<tspan baseline-shift="sub" font-size="70%">b</tspan></text>
+    <line class="wire" x1="330" y1="218" x2="330" y2="260"/>
+    <circle class="node" cx="330" cy="260" r="4.5"/>
+
+    <line class="wire" x1="385" y1="220" x2="385" y2="300"/>
+    <line class="wire" x1="385" y1="260" x2="330" y2="260"/>
+    <line class="wire" x1="385" y1="236" x2="455" y2="185"/>
+    <line class="wire" x1="385" y1="284" x2="455" y2="335" marker-end="url(#npn-arrow)"/>
+    <text class="tiny" x="392" y="254">B</text>
+    <text class="tiny" x="462" y="181">C</text>
+    <text class="tiny" x="462" y="343">E</text>
+
+    <line class="wire" x1="455" y1="105" x2="455" y2="128"/>
+    <rect class="res" x="437" y="128" width="36" height="78" rx="4"/>
+    <text class="small" x="438" y="122">R<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+    <line class="wire" x1="455" y1="206" x2="455" y2="185"/>
+    <circle class="node" cx="455" cy="185" r="4.5"/>
+
+    <line class="wire" x1="455" y1="185" x2="585" y2="185"/>
+    <text class="small blue" x="498" y="164">C<tspan baseline-shift="sub" font-size="70%">2</tspan>≈短路</text>
+    <line class="wire" x1="585" y1="185" x2="585" y2="225"/>
+    <rect class="res" x="567" y="225" width="36" height="86" rx="4"/>
+    <text class="small" x="568" y="219">R<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+    <line class="wire" x1="585" y1="311" x2="585" y2="385"/>
+    <text class="small" x="605" y="266">u<tspan baseline-shift="sub" font-size="70%">o</tspan></text>
+
+    <line class="wire" x1="455" y1="335" x2="455" y2="385"/>
+    <line class="gnd" x1="322" y1="105" x2="338" y2="105"/>
+    <line class="gnd" x1="325" y1="111" x2="335" y2="111"/>
+    <line class="gnd" x1="328" y1="117" x2="332" y2="117"/>
+    <line class="gnd" x1="447" y1="385" x2="463" y2="385"/>
+    <line class="gnd" x1="450" y1="391" x2="460" y2="391"/>
+    <line class="gnd" x1="453" y1="397" x2="457" y2="397"/>
+
+    <rect class="note-box-blue" x="38" y="418" width="664" height="30" rx="8"/>
+    <text class="small blue" x="370" y="439" text-anchor="middle">结论：输出交流负载 R<tspan baseline-shift="sub" font-size="70%">C</tspan>′ = R<tspan baseline-shift="sub" font-size="70%">C</tspan> ∥ R<tspan baseline-shift="sub" font-size="70%">L</tspan>，输入端重新接入 R<tspan baseline-shift="sub" font-size="70%">s</tspan></text>
+  </g>
+</svg>
