@@ -143,3 +143,6 @@ Sessionx.vim
 
 # Ignore Smart Environment folder
 .smart-env
+
+# Git worktree directories (local implementation sandboxes)
+.worktrees/
