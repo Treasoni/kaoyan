@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">共射放大电路的直流交流通路与耦合方式</title>
+  <desc id="desc">左侧说明直流和交流等效规则；右上为直接耦合，右下为阻容耦合。</desc>
+  <style>
+    .box{fill:#fffdf7;stroke:#52616b;stroke-width:2}.wire{stroke:#263238;stroke-width:3;fill:none}.res{fill:#eef3f6;stroke:#263238;stroke-width:2}.cap{stroke:#2368a2;stroke-width:4}.label{font:20px -apple-system,BlinkMacSystemFont,'Noto Sans CJK SC',sans-serif;fill:#17212b}.small{font:16px -apple-system,BlinkMacSystemFont,'Noto Sans CJK SC',sans-serif;fill:#17212b}.head{font:700 25px -apple-system,BlinkMacSystemFont,'Noto Sans CJK SC',sans-serif;fill:#17212b}.dc{fill:#b94242}.ac{fill:#176b9b}.ground{stroke:#263238;stroke-width:2}.note{font:17px -apple-system,BlinkMacSystemFont,'Noto Sans CJK SC',sans-serif;fill:#41525d}
+  </style>
+  <rect width="1200" height="640" fill="#f8fafb"/>
+  <rect class="box" x="25" y="25" width="370" height="590" rx="14"/>
+  <text class="head" x="55" y="70">先判分析对象</text>
+  <text class="label dc" x="55" y="118">直流通路：求 Q 点</text>
+  <text class="small" x="75" y="155">C 开路；L 短路；交流源置零</text>
+  <text class="small" x="75" y="185">直流电源保留；受控源保留</text>
+  <text class="small" x="75" y="215">理想电压源置零 → 短路</text>
+  <text class="small" x="75" y="245">但实际信号源内阻 Rₛ 必须保留</text>
+  <path class="cap" d="M90 290 h48 m15 -22 v44 m15 -44 v44 m0 -22 h48"/>
+  <text class="note" x="95" y="340">稳态：i<tspan baseline-shift="sub">C</tspan>=C·du<tspan baseline-shift="sub">C</tspan>/dt=0</text>
+  <text class="label ac" x="55" y="405">交流通路：求动态指标</text>
+  <text class="small" x="75" y="442">中频近似下：耦合/旁路 C 短路</text>
+  <text class="small" x="75" y="472">直流电压源交流接地；直流电流源开路</text>
+  <text class="small" x="75" y="502">R<tspan baseline-shift="sub">C</tspan> 与接入的 R<tspan baseline-shift="sub">L</tspan> 常并联为交流负载</text>
+  <text class="note" x="75" y="550">判据：|X<tspan baseline-shift="sub">C</tspan>|=1/(ωC) 远小于相关电阻</text>
+
+  <rect class="box" x="425" y="25" width="750" height="275" rx="14"/>
+  <text class="head" x="455" y="70">直接耦合：没有电容隔断直流</text>
+  <path class="wire" d="M495 130 H610 M610 95 V205 M610 95 H720 M720 95 V130 M720 130 H835 M610 205 H835"/>
+  <rect class="res" x="650" y="110" width="40" height="40"/><text class="small" x="650" y="105">R<tspan baseline-shift="sub">B</tspan></text>
+  <rect class="res" x="760" y="110" width="40" height="40"/><text class="small" x="760" y="105">R<tspan baseline-shift="sub">C</tspan></text>
+  <rect class="res" x="850" y="145" width="40" height="40"/><text class="small" x="850" y="140">R<tspan baseline-shift="sub">L</tspan></text>
+  <text class="small" x="470" y="125">u<tspan baseline-shift="sub">i</tspan> + R<tspan baseline-shift="sub">s</tspan></text>
+  <text class="small" x="690" y="90">V<tspan baseline-shift="sub">CC</tspan></text>
+  <line class="ground" x1="820" y1="205" x2="820" y2="220"/><line class="ground" x1="805" y1="220" x2="835" y2="220"/><line class="ground" x1="810" y1="226" x2="830" y2="226"/>
+  <text class="note" x="455" y="255">直流：Rₛ、R<tspan baseline-shift="sub">L</tspan> 若仍有直流连接，就会参与 Q 点；交流：V<tspan baseline-shift="sub">CC</tspan> 为交流地。</text>
+
+  <rect class="box" x="425" y="325" width="750" height="290" rx="14"/>
+  <text class="head" x="455" y="370">阻容耦合：C₁、C₂ 把“静态”和“动态”分开</text>
+  <path class="wire" d="M485 455 H535 M555 430 V480 M575 430 V480 M575 455 H650 M650 410 V535 M650 410 H760 M760 410 V455 M760 455 H820 M840 430 V480 M860 430 V480 M860 455 H940 M940 455 V535 M650 535 H940"/>
+  <line class="cap" x1="555" y1="430" x2="555" y2="480"/><line class="cap" x1="575" y1="430" x2="575" y2="480"/><text class="small" x="548" y="415">C₁</text>
+  <line class="cap" x1="840" y1="430" x2="840" y2="480"/><line class="cap" x1="860" y1="430" x2="860" y2="480"/><text class="small" x="833" y="415">C₂</text>
+  <rect class="res" x="690" y="425" width="40" height="40"/><text class="small" x="690" y="420">R<tspan baseline-shift="sub">B</tspan></text>
+  <rect class="res" x="780" y="425" width="40" height="40"/><text class="small" x="780" y="420">R<tspan baseline-shift="sub">C</tspan></text>
+  <rect class="res" x="920" y="470" width="40" height="40"/><text class="small" x="920" y="465">R<tspan baseline-shift="sub">L</tspan></text>
+  <text class="small" x="465" y="450">u<tspan baseline-shift="sub">i</tspan>+R<tspan baseline-shift="sub">s</tspan></text><text class="small" x="745" y="405">V<tspan baseline-shift="sub">CC</tspan></text><text class="small" x="875" y="445">u<tspan baseline-shift="sub">o</tspan></text>
+  <text class="note" x="455" y="575">直流：C₁、C₂ 开路，信号源和 R<tspan baseline-shift="sub">L</tspan> 不进 Q 点；交流：C₁、C₂ 近似短路，R<tspan baseline-shift="sub">C</tspan>∥R<tspan baseline-shift="sub">L</tspan>。</text>
+</svg>
