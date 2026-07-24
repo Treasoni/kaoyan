@@ -1,0 +1,6 @@
+interface:
+  display_name: "822 电路图生成"
+  short_description: "教材风电路图：拓扑校验、SVG 源图、PNG 入库"
+  default_prompt: "Use $kaoyan-electronics-diagram to redraw a circuit as a clear textbook-style diagram and embed it into the right Obsidian note."
+policy:
+  allow_implicit_invocation: true
