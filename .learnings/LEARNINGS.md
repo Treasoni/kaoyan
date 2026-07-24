@@ -76,3 +76,25 @@ Pattern-Key: notes.quick_review_extract
 2026-07-23：已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
 
 ---
+
+
+## [LRN-20260724-001] correction
+
+**Logged**: 2026-07-24T20:05:52+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs/obsidian/handwritten-notes
+
+### Summary
+处理手写图片笔记时，必须先识别图片真实主题和电路拓扑，再决定写入哪个笔记与章节。
+
+### Details
+本次整理模电手写图时，先被当前笔记文件名“分压式射极偏置”带偏，把图片内容误归入分压式射极偏置。用户指出后重新查看图片，确认三张手写图实际在讲“直接耦合”和“阻容耦合”：直接耦合中输入源进入基极偏置回路、静态点会互相牵连；阻容耦合中输入/输出通过电容隔直通交，静态时电容开路、交流时电容近似短路。错误根因是没有先逐张识别图片标题、关键文字、电路拓扑和知识点归属，就直接按当前 note 名称改写笔记。
+
+### Suggested Action
+以后处理用户手写图片、截图或教材图并写入笔记前，先完成“图片识别卡”：1. 抄出图片标题/关键词；2. 识别电路拓扑、元件和信号路径；3. 判断它属于哪个知识点/章节；4. 若图片内容与当前笔记标题不一致，先说明不一致并写入更合适的笔记，不能强行按当前文件名归类。
+
+### Related Rules
+Pattern-Key: image_note.semantic_routing_before_write
+
+---
