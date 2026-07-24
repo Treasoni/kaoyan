@@ -1,7 +1,7 @@
 ---
 name: kaoyan-math-notes
 description: This skill handles note generation and updates for 考研数学 (Chinese graduate entrance math exam) preparation. Use it when users want to generate exam-oriented study notes from existing materials, update notes based on feedback, or create structured learning content with LaTeX formatting.
-version: 1.0.0
+version: 1.2.0
 ---
 
 # 考研数学笔记生成更新技能 (Kaoyan Math Notes)
