@@ -17,6 +17,8 @@
   --claudian-brand-opencode-rgb: 184, 184, 184;
   --claudian-brand-pi: #ffffff;
   --claudian-brand-pi-rgb: 255, 255, 255;
+  --claudian-brand-grok: #ffffff;
+  --claudian-brand-grok-rgb: 255, 255, 255;
   --claudian-error: #dc3545;
   --claudian-error-rgb: 220, 53, 69;
   --claudian-compact: #5bc0de;
@@ -29,6 +31,8 @@ body.theme-light .claudian-container {
   --claudian-brand-opencode-rgb: 112, 112, 112;
   --claudian-brand-pi: #000000;
   --claudian-brand-pi-rgb: 0, 0, 0;
+  --claudian-brand-grok: #000000;
+  --claudian-brand-grok-rgb: 0, 0, 0;
 }
 
 /* Active-provider alias for single-provider surfaces. */
@@ -50,6 +54,11 @@ body.theme-light .claudian-container {
 .claudian-container[data-provider="pi"] {
   --claudian-brand: var(--claudian-brand-pi);
   --claudian-brand-rgb: var(--claudian-brand-pi-rgb);
+}
+
+.claudian-container[data-provider="grok"] {
+  --claudian-brand: var(--claudian-brand-grok);
+  --claudian-brand-rgb: var(--claudian-brand-grok-rgb);
 }
 
 
@@ -124,38 +133,6 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   to {
     transform: rotate(360deg);
   }
-}
-
-
-/* ============================================
-   components/header.css
-   ============================================ */
-/* Header - logo and title */
-.claudian-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 0 12px 12px 12px;
-}
-
-.claudian-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
-}
-
-.claudian-title-text {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.claudian-logo {
-  display: flex;
-  align-items: center;
-  color: var(--claudian-brand);
 }
 
 
@@ -248,6 +225,10 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 
 .claudian-tab-badge-streaming[data-provider="pi"] {
   border-color: var(--claudian-brand-pi, #ffffff);
+}
+
+.claudian-tab-badge-streaming[data-provider="grok"] {
+  border-color: var(--claudian-brand-grok, #ffffff);
 }
 
 .claudian-tab-badge-attention {
@@ -553,11 +534,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 10px;
   padding: 20px;
   min-height: 200px;
 }
 
-.claudian-welcome-greeting {
+.claudian-welcome-text {
   font-family: 'Copernicus', 'Tiempos Headline', 'Tiempos', Georgia, 'Times New Roman', serif;
   font-size: 28px;
   font-weight: 300;
@@ -2012,8 +1994,18 @@ body.theme-light .claudian-message-content pre {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   flex-shrink: 0;
+  row-gap: 12px;
   padding: 4px 6px 6px 6px;
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+
+/* Hide secondary text when the full toolbar would wrap. */
+.claudian-input-toolbar--compact .claudian-thinking-effort > .claudian-thinking-label-text,
+.claudian-input-toolbar--compact .claudian-context-meter-percent {
+  display: none;
 }
 
 /* Composer queue status row (queued follow-up preview + steer action) */
@@ -2427,6 +2419,9 @@ body.theme-light .claudian-message-content pre {
 
 .claudian-model-provider-icon {
   flex-shrink: 0;
+}
+
+.claudian-model-option .claudian-model-provider-icon {
   opacity: 0.7;
 }
 
@@ -6093,6 +6088,68 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Agent Settings — all structural rules live in base.css .claudian-sp-* */
 /* This file is kept as a placeholder for future agent-specific overrides. */
+
+
+/* ============================================
+   settings/agent-skills.css
+   ============================================ */
+.claudian-agent-skills-help {
+  padding: 0 12px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-agent-skills-help p {
+  margin: 0 0 8px;
+}
+
+.claudian-agent-skill-instructions {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 220px;
+  margin-top: 8px;
+  resize: vertical;
+  font-family: var(--font-monospace);
+}
+
+.claudian-agent-skill-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.claudian-agent-skills-diagnostics {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--background-modifier-error);
+  border-radius: 6px;
+  background: var(--background-modifier-error-hover);
+}
+
+.claudian-agent-skills-diagnostics-title {
+  margin-bottom: 8px;
+  color: var(--text-error);
+  font-weight: var(--font-semibold);
+}
+
+.claudian-agent-skills-diagnostic {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.claudian-agent-skills-error {
+  padding: 12px;
+  color: var(--text-error);
+}
+
+.claudian-agent-skill-delete-description {
+  color: var(--text-warning);
+}
 
 
 /* ============================================
