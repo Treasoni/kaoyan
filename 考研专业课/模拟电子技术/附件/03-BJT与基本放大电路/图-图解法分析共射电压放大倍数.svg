@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">图解法分析固定偏置共射电路的电压放大倍数</title>
+  <desc id="desc">展示交流输入为正时，输入负载线右移、输入工作点沿输入特性曲线上移，输出工作点换到更高基极电流对应的输出特性曲线并沿直流负载线左上移动，因此输出电压变化与输入电压变化反相。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#202020"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d63b32"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2468d8"/>
+    </marker>
+    <style>
+      .bg { fill: #fffdf8; }
+      .panel { fill: #fff; stroke: #d8d0c0; stroke-width: 2; }
+      .wire { stroke: #202020; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #202020; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .red { stroke: #d63b32; fill: none; }
+      .blue { stroke: #2468d8; fill: none; }
+      .green { stroke: #23834f; fill: none; }
+      .purple { stroke: #7b4dd6; fill: none; }
+      .gray { stroke: #909090; fill: none; }
+      .dash-red { stroke: #d63b32; stroke-width: 3; stroke-dasharray: 13 9; fill: none; }
+      .dash-blue { stroke: #2468d8; stroke-width: 3; stroke-dasharray: 13 9; fill: none; }
+      .label { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: 30px; fill: #202020; }
+      .small { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: 24px; fill: #202020; }
+      .tiny { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: 20px; fill: #202020; }
+      .title { font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: 42px; font-weight: 700; fill: #202020; }
+      .math { font-family: "Times New Roman", "Songti SC", serif; font-size: 28px; fill: #202020; font-style: italic; }
+      .math-small { font-family: "Times New Roman", "Songti SC", serif; font-size: 22px; fill: #202020; font-style: italic; }
+      .note { fill: #fff3d5; stroke: #e2be5f; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1120"/>
+  <text class="title" x="72" y="70">图解法分析共射电压放大倍数</text>
+  <text class="small" x="76" y="110">以 Δui＞0 为例：三极管自身特性曲线不变，变化的是负载线约束与工作点位置。</text>
+
+  <rect class="panel" x="70" y="145" width="1460" height="320" rx="8"/>
+  <rect class="panel" x="70" y="505" width="680" height="470" rx="8"/>
+  <rect class="panel" x="790" y="505" width="740" height="470" rx="8"/>
+  <rect class="note" x="70" y="1000" width="1460" height="80" rx="8"/>
+
+  <!-- Top circuit -->
+  <text class="label" x="100" y="192">1. 电路与输入侧动态负载线</text>
+  <text class="math-small" x="100" y="230">uBE = VBB + Δui - iB RB</text>
+  <text class="tiny" x="101" y="260">交流输入为正时，输入负载线整体右移；BJT 输入特性曲线本身不移动。</text>
+
+  <path class="wire" d="M 175 410 L 1110 410"/>
+  <path class="wire" d="M 180 410 L 180 320"/>
+  <circle cx="180" cy="290" r="27" fill="#fff" stroke="#202020" stroke-width="4"/>
+  <line x1="167" y1="290" x2="193" y2="290" stroke="#202020" stroke-width="3"/>
+  <line x1="180" y1="277" x2="180" y2="303" stroke="#202020" stroke-width="3"/>
+  <path class="wire" d="M 180 263 L 180 235 L 300 235"/>
+  <text class="math-small" x="114" y="300">VBB</text>
+
+  <circle cx="300" cy="235" r="20" fill="#fff" stroke="#d63b32" stroke-width="3"/>
+  <text class="math-small" x="270" y="202" fill="#d63b32">ui</text>
+  <text class="tiny" x="288" y="242" fill="#d63b32">+</text>
+  <path class="wire" d="M 320 235 L 348 235"/>
+  <path class="thin" d="M 348 235 l 12 -18 l 24 36 l 24 -36 l 24 36 l 24 -36 l 24 36 l 12 -18"/>
+  <path class="wire" d="M 492 235 L 575 235"/>
+  <text class="math-small" x="397" y="275">RB</text>
+
+  <line x1="610" y1="260" x2="610" y2="365" stroke="#202020" stroke-width="5"/>
+  <path class="wire" d="M 575 235 L 610 288"/>
+  <path class="wire" d="M 610 333 L 650 390"/>
+  <path class="wire" d="M 650 390 L 650 410"/>
+  <path class="wire" d="M 610 288 L 722 235"/>
+  <path class="thin" d="M 638 374 L 660 395 L 631 394" marker-end="url(#arrow)"/>
+  <text class="tiny" x="565" y="281">B</text>
+  <text class="tiny" x="630" y="275">C</text>
+  <text class="tiny" x="662" y="398">E</text>
+
+  <path class="wire" d="M 722 235 L 790 235"/>
+  <path class="thin" d="M 790 235 l 12 -18 l 24 36 l 24 -36 l 24 36 l 24 -36 l 24 36 l 12 -18"/>
+  <path class="wire" d="M 934 235 L 1048 235 L 1048 265"/>
+  <text class="math-small" x="842" y="275">RC</text>
+  <circle cx="1048" cy="295" r="27" fill="#fff" stroke="#202020" stroke-width="4"/>
+  <line x1="1035" y1="295" x2="1061" y2="295" stroke="#202020" stroke-width="3"/>
+  <line x1="1048" y1="282" x2="1048" y2="308" stroke="#202020" stroke-width="3"/>
+  <path class="wire" d="M 1048 322 L 1048 410"/>
+  <text class="math-small" x="1084" y="302">VCC</text>
+
+  <line x1="650" y1="410" x2="650" y2="431" stroke="#202020" stroke-width="4"/>
+  <line x1="620" y1="431" x2="680" y2="431" stroke="#202020" stroke-width="3"/>
+  <line x1="630" y1="443" x2="670" y2="443" stroke="#202020" stroke-width="3"/>
+  <line x1="640" y1="455" x2="660" y2="455" stroke="#202020" stroke-width="3"/>
+
+  <path class="red" stroke-width="3" d="M 500 205 L 562 205" marker-end="url(#arrow-red)"/>
+  <text class="math-small" x="512" y="188" fill="#d63b32">iB</text>
+  <path class="blue" stroke-width="3" d="M 715 205 L 777 205" marker-end="url(#arrow-blue)"/>
+  <text class="math-small" x="728" y="188" fill="#2468d8">iC</text>
+  <path class="red" stroke-width="3" d="M 548 260 L 548 372" marker-end="url(#arrow-red)"/>
+  <text class="math-small" x="486" y="325" fill="#d63b32">uBE</text>
+  <path class="blue" stroke-width="3" d="M 738 260 L 738 384" marker-end="url(#arrow-blue)"/>
+  <text class="math-small" x="760" y="325" fill="#2468d8">uCE</text>
+
+  <path class="dash-red" d="M 108 220 L 602 220 L 602 435 L 108 435 Z"/>
+  <path class="dash-blue" d="M 585 220 L 1230 220 L 1230 435 L 585 435 Z"/>
+  <text class="tiny" x="1260" y="260" fill="#d63b32">输入侧：ui 使负载线右移</text>
+  <text class="tiny" x="1260" y="292" fill="#2468d8">输出侧：直流负载线不变</text>
+  <text class="tiny" x="1260" y="324">工作点沿负载线左上移动</text>
+
+  <!-- Small sine input -->
+  <path class="red" stroke-width="3" d="M 1262 378 C 1290 335, 1320 335, 1348 378 S 1406 421, 1434 378" />
+  <line x1="1262" y1="378" x2="1434" y2="378" stroke="#202020" stroke-width="2"/>
+  <text class="math-small" x="1350" y="354" fill="#d63b32">Δui＞0</text>
+
+  <!-- Input graph -->
+  <text class="label" x="100" y="555">2. 输入侧：负载线右移，点沿同一输入特性曲线上移</text>
+  <line x1="155" y1="905" x2="650" y2="905" stroke="#202020" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="155" y1="905" x2="155" y2="625" stroke="#202020" stroke-width="3" marker-end="url(#arrow)"/>
+  <text class="math-small" x="654" y="914">uBE</text>
+  <text class="math-small" x="118" y="622">iB</text>
+  <path class="green" stroke-width="5" d="M 190 895 C 302 892, 383 860, 450 727 C 480 667, 505 638, 545 618"/>
+  <text class="tiny" x="444" y="655" fill="#23834f">输入特性曲线不变</text>
+  <path class="gray" stroke-width="4" d="M 155 672 L 606 905"/>
+  <path class="red" stroke-width="4" d="M 155 640 L 640 905"/>
+  <text class="tiny" x="312" y="692" fill="#909090">静态输入负载线</text>
+  <text class="tiny" x="382" y="724" fill="#d63b32">ui＞0 后负载线</text>
+  <circle cx="410" cy="772" r="8" fill="#202020"/>
+  <circle cx="452" cy="726" r="9" fill="#d63b32"/>
+  <line x1="410" y1="772" x2="410" y2="905" stroke="#909090" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="155" y1="772" x2="410" y2="772" stroke="#909090" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="452" y1="726" x2="452" y2="905" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="155" y1="726" x2="452" y2="726" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <path class="purple" stroke-width="3" d="M 413 923 L 450 923" marker-end="url(#arrow)"/>
+  <path class="purple" stroke-width="3" d="M 137 768 L 137 730" marker-end="url(#arrow)"/>
+  <text class="math-small" x="414" y="950" fill="#7b4dd6">ΔuBE＞0</text>
+  <text class="math-small" x="76" y="742" fill="#7b4dd6">ΔiB＞0</text>
+  <text class="math-small" x="93" y="684">VBB/RB</text>
+  <text class="math-small" x="515" y="942">VBB</text>
+  <text class="math-small" x="579" y="942" fill="#d63b32">VBB+Δui</text>
+
+  <!-- Output graph -->
+  <text class="label" x="820" y="555">3. 输出侧：iB 增大，工作点沿直流负载线左上移动</text>
+  <line x1="875" y1="905" x2="1435" y2="905" stroke="#202020" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="875" y1="905" x2="875" y2="625" stroke="#202020" stroke-width="3" marker-end="url(#arrow)"/>
+  <text class="math-small" x="1440" y="914">uCE</text>
+  <text class="math-small" x="840" y="622">iC</text>
+  <path class="blue" stroke-width="4" d="M 875 665 L 1405 905"/>
+  <text class="tiny" x="1010" y="690" fill="#2468d8">直流负载线不变</text>
+  <path class="green" stroke-width="4" d="M 882 855 C 995 822, 1135 812, 1415 812"/>
+  <path class="green" stroke-width="4" d="M 882 795 C 995 748, 1135 735, 1415 735"/>
+  <path class="green" stroke-width="4" d="M 882 735 C 995 675, 1135 662, 1415 662"/>
+  <text class="math-small" x="1220" y="760" fill="#23834f">iB = IBQ+ΔiB</text>
+  <text class="math-small" x="1210" y="835" fill="#23834f">iB = IBQ</text>
+  <circle cx="1132" cy="781" r="8" fill="#202020"/>
+  <circle cx="1050" cy="744" r="9" fill="#d63b32"/>
+  <line x1="1132" y1="781" x2="1132" y2="905" stroke="#909090" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="875" y1="781" x2="1132" y2="781" stroke="#909090" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="1050" y1="744" x2="1050" y2="905" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <line x1="875" y1="744" x2="1050" y2="744" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
+  <path class="purple" stroke-width="3" d="M 1128 923 L 1055 923" marker-end="url(#arrow)"/>
+  <path class="purple" stroke-width="3" d="M 858 782 L 858 748" marker-end="url(#arrow)"/>
+  <text class="math-small" x="1060" y="952" fill="#7b4dd6">ΔuCE＜0</text>
+  <text class="math-small" x="790" y="755" fill="#7b4dd6">ΔiC＞0</text>
+  <text class="math-small" x="1110" y="938">UCEQ</text>
+  <text class="math-small" x="1018" y="938" fill="#d63b32">UCEQ+ΔuCE</text>
+  <text class="math-small" x="800" y="790">ICQ</text>
+  <text class="math-small" x="772" y="752" fill="#d63b32">ICQ+ΔiC</text>
+
+  <!-- Bottom conclusion -->
+  <text class="small" x="100" y="1033">结论链条：Δui＞0 → ΔuBE＞0 → ΔiB＞0 → ΔiC＞0 → uCE 下降，所以共射电压放大倍数为负。</text>
+  <text class="math" x="101" y="1068">A<tspan baseline-shift="sub" font-size="20">u</tspan> = Δu<tspan baseline-shift="sub" font-size="20">CE</tspan> / Δu<tspan baseline-shift="sub" font-size="20">i</tspan> ＜ 0</text>
+  <text class="tiny" x="560" y="1066">这里的负号表示反相；大小由输入曲线斜率、电流放大能力 β、RC 与负载共同决定。</text>
+</svg>
