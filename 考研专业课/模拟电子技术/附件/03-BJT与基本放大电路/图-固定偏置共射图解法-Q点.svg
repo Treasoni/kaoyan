@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
   <title id="title">固定偏置共射电路的图解法求静态工作点</title>
-  <desc id="desc">左侧为固定偏置共射静态等效电路，中间为输入侧负载线与输入特性曲线，右侧为输出侧直流负载线与输出特性曲线，展示如何得到 U_BEQ、I_BQ、U_CEQ、I_CQ。</desc>
+  <desc id="desc">左侧为固定偏置共射静态等效电路，中间为输入侧负载线与输入特性曲线，右侧为输出侧直流负载线与输出特性曲线，展示如何得到 UBEQ、IBQ、UCEQ、ICQ。</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/>
@@ -34,15 +34,15 @@
 
   <rect class="bg" x="0" y="0" width="1600" height="1120"/>
   <text class="title" x="80" y="72">固定偏置共射电路：图解法求静态工作点 Q</text>
-  <text class="small" x="84" y="112">静态分析先令交流源 u_i=0，再分别用输入侧和输出侧负载线找同一个 BJT 的工作状态。</text>
+  <text class="small" x="84" y="112">静态分析先令交流源 ui=0，再分别用输入侧和输出侧负载线找同一个 BJT 的工作状态。</text>
 
   <rect class="panel" x="70" y="150" width="1460" height="365" rx="8"/>
   <rect class="panel" x="70" y="550" width="680" height="480" rx="8"/>
   <rect class="panel" x="790" y="550" width="740" height="480" rx="8"/>
 
-  <text class="label" x="100" y="200">1. 静态等效电路：u_i 置零</text>
-  <text class="tiny" x="1070" y="200" fill="#d0382f">红框：输入侧电路 1</text>
-  <text class="tiny" x="1070" y="230" fill="#2266cc">蓝框：输出侧电路 2</text>
+  <text class="label" x="100" y="198">1. 静态等效电路：ui 置零</text>
+  <text class="tiny" x="1110" y="198" fill="#d0382f">红框：输入侧电路 1</text>
+  <text class="tiny" x="1110" y="226" fill="#2266cc">蓝框：输出侧电路 2</text>
 
   <!-- Circuit regions -->
   <rect class="dash-red" x="110" y="230" width="485" height="225" rx="6"/>
@@ -57,13 +57,13 @@
   <circle cx="170" cy="300" r="30" fill="#fff" stroke="#1f1f1f" stroke-width="4"/>
   <line x1="156" y1="300" x2="184" y2="300" stroke="#1f1f1f" stroke-width="3"/>
   <line x1="170" y1="286" x2="170" y2="314" stroke="#1f1f1f" stroke-width="3"/>
-  <text class="math-small" x="105" y="305">V_BB</text>
+  <text class="math-small" x="105" y="305">VBB</text>
 
   <!-- RB resistor -->
   <path class="wire" d="M 300 230 L 330 230"/>
   <path class="thin" d="M 330 230 l 12 -18 l 24 36 l 24 -36 l 24 36 l 24 -36 l 24 36 l 12 -18"/>
   <path class="wire" d="M 474 230 L 565 230"/>
-  <text class="math-small" x="382" y="198">R_B</text>
+  <text class="math-small" x="382" y="270">RB</text>
 
   <!-- BJT symbol -->
   <line x1="600" y1="255" x2="600" y2="365" stroke="#1f1f1f" stroke-width="5"/>
@@ -80,12 +80,12 @@
   <path class="wire" d="M 715 230 L 785 230"/>
   <path class="thin" d="M 785 230 l 12 -18 l 24 36 l 24 -36 l 24 36 l 24 -36 l 24 36 l 12 -18"/>
   <path class="wire" d="M 929 230 L 1050 230 L 1050 270"/>
-  <text class="math-small" x="835" y="198">R_C</text>
+  <text class="math-small" x="835" y="270">RC</text>
   <circle cx="1050" cy="310" r="30" fill="#fff" stroke="#1f1f1f" stroke-width="4"/>
   <line x1="1036" y1="310" x2="1064" y2="310" stroke="#1f1f1f" stroke-width="3"/>
   <line x1="1050" y1="296" x2="1050" y2="324" stroke="#1f1f1f" stroke-width="3"/>
   <path class="wire" d="M 1050 350 L 1050 430"/>
-  <text class="math-small" x="1088" y="318">V_CC</text>
+  <text class="math-small" x="1088" y="318">VCC</text>
 
   <!-- Ground symbol -->
   <line x1="640" y1="430" x2="640" y2="452" stroke="#1f1f1f" stroke-width="4"/>
@@ -95,29 +95,29 @@
 
   <!-- Current and voltage markers -->
   <path class="red" stroke-width="3" d="M 495 205 L 560 205" marker-end="url(#arrow-red)"/>
-  <text class="math-small" x="505" y="188" fill="#d0382f">i_B</text>
+  <text class="math-small" x="505" y="188" fill="#d0382f">iB</text>
   <path class="blue" stroke-width="3" d="M 700 205 L 765 205" marker-end="url(#arrow-blue)"/>
-  <text class="math-small" x="710" y="188" fill="#2266cc">i_C</text>
+  <text class="math-small" x="710" y="188" fill="#2266cc">iC</text>
   <path class="red" stroke-width="3" d="M 535 255 L 535 390" marker-end="url(#arrow-red)"/>
-  <text class="math-small" x="478" y="330" fill="#d0382f">u_BE</text>
+  <text class="math-small" x="478" y="330" fill="#d0382f">uBE</text>
   <path class="blue" stroke-width="3" d="M 720 255 L 720 400" marker-end="url(#arrow-blue)"/>
-  <text class="math-small" x="742" y="330" fill="#2266cc">u_CE</text>
+  <text class="math-small" x="742" y="330" fill="#2266cc">uCE</text>
 
   <rect class="note" x="1280" y="260" width="215" height="160" rx="6"/>
   <text class="small" x="1300" y="300">静态置零：</text>
   <text class="tiny" x="1300" y="338">理想交流电压源</text>
-  <text class="tiny" x="1300" y="370">u_i=0 等效短路</text>
+  <text class="tiny" x="1300" y="370">ui=0 等效短路</text>
   <text class="tiny" x="1300" y="402">只保留直流偏置</text>
 
   <!-- Input graph -->
-  <text class="label" x="100" y="600">2. 输入侧：先定 I_BQ</text>
-  <text class="math-small" x="105" y="636">u_BE = V_BB - i_B R_B</text>
+  <text class="label" x="100" y="600">2. 输入侧：先定 IBQ</text>
+  <text class="math-small" x="105" y="636">uBE = VBB - iB RB</text>
   <line x1="155" y1="940" x2="650" y2="940" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
   <line x1="155" y1="940" x2="155" y2="665" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
-  <text class="math-small" x="655" y="948">u_BE</text>
-  <text class="math-small" x="120" y="660">i_B</text>
-  <text class="math-small" x="105" y="698">V_BB/R_B</text>
-  <text class="math-small" x="610" y="978">V_BB</text>
+  <text class="math-small" x="655" y="948">uBE</text>
+  <text class="math-small" x="120" y="660">iB</text>
+  <text class="math-small" x="105" y="698">VBB/RB</text>
+  <text class="math-small" x="610" y="978">VBB</text>
   <path class="red" stroke-width="4" d="M 155 705 L 610 940"/>
   <text class="tiny" x="320" y="735" fill="#d0382f">输入负载线</text>
   <path class="green" stroke-width="5" d="M 190 930 C 300 928, 382 900, 448 765 C 478 704, 500 675, 540 650"/>
@@ -125,33 +125,33 @@
   <circle cx="424" cy="826" r="8" fill="#d0382f"/>
   <line x1="424" y1="826" x2="424" y2="940" stroke="#d0382f" stroke-width="2.5" stroke-dasharray="8 8"/>
   <line x1="155" y1="826" x2="424" y2="826" stroke="#d0382f" stroke-width="2.5" stroke-dasharray="8 8"/>
-  <text class="math-small" x="385" y="975" fill="#d0382f">U_BEQ</text>
-  <text class="math-small" x="92" y="834" fill="#d0382f">I_BQ</text>
-  <text class="small" x="255" y="1000">交点给出 U_BEQ、I_BQ</text>
+  <text class="math-small" x="385" y="975" fill="#d0382f">UBEQ</text>
+  <text class="math-small" x="92" y="834" fill="#d0382f">IBQ</text>
+  <text class="small" x="255" y="1000">交点给出 UBEQ、IBQ</text>
 
   <!-- Output graph -->
-  <text class="label" x="820" y="600">3. 输出侧：再定 I_CQ 与 U_CEQ</text>
-  <text class="math-small" x="825" y="636">u_CE = V_CC - i_C R_C，选 i_B = I_BQ 的输出特性曲线</text>
+  <text class="label" x="820" y="600">3. 输出侧：再定 ICQ 与 UCEQ</text>
+  <text class="math-small" x="825" y="636">uCE = VCC - iC RC，选 iB = IBQ 的输出特性曲线</text>
   <line x1="875" y1="940" x2="1435" y2="940" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
   <line x1="875" y1="940" x2="875" y2="665" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
-  <text class="math-small" x="1440" y="948">u_CE</text>
-  <text class="math-small" x="838" y="660">i_C</text>
-  <text class="math-small" x="798" y="700">V_CC/R_C</text>
-  <text class="math-small" x="1390" y="978">V_CC</text>
+  <text class="math-small" x="1440" y="948">uCE</text>
+  <text class="math-small" x="838" y="660">iC</text>
+  <text class="math-small" x="798" y="700">VCC/RC</text>
+  <text class="math-small" x="1390" y="978">VCC</text>
   <path class="blue" stroke-width="4" d="M 875 705 L 1400 940"/>
   <text class="tiny" x="1010" y="735" fill="#2266cc">输出直流负载线</text>
   <path class="green" stroke-width="4" d="M 880 900 C 990 875, 1130 858, 1410 858"/>
   <path class="green" stroke-width="4" d="M 880 840 C 990 800, 1130 786, 1410 786"/>
   <path class="green" stroke-width="4" d="M 880 780 C 990 725, 1130 712, 1410 712"/>
   <text class="tiny" x="1220" y="706" fill="#25814f">输出特性族线</text>
-  <text class="math-small" x="1210" y="808" fill="#25814f">i_B=I_BQ</text>
+  <text class="math-small" x="1210" y="808" fill="#25814f">iB=IBQ</text>
   <circle cx="1130" cy="820" r="8" fill="#2266cc"/>
   <line x1="1130" y1="820" x2="1130" y2="940" stroke="#2266cc" stroke-width="2.5" stroke-dasharray="8 8"/>
   <line x1="875" y1="820" x2="1130" y2="820" stroke="#2266cc" stroke-width="2.5" stroke-dasharray="8 8"/>
-  <text class="math-small" x="1088" y="975" fill="#2266cc">U_CEQ</text>
-  <text class="math-small" x="804" y="828" fill="#2266cc">I_CQ</text>
+  <text class="math-small" x="1088" y="975" fill="#2266cc">UCEQ</text>
+  <text class="math-small" x="804" y="828" fill="#2266cc">ICQ</text>
   <text class="small" x="1005" y="1000">交点就是实际静态工作点 Q</text>
 
   <!-- Bottom note -->
-  <text class="small" x="88" y="1080">做题口诀：输入图先定 I_BQ，输出图用 I_BQ 选曲线；Q 点必须同时满足 BJT 自身特性和外部负载线。</text>
+  <text class="small" x="88" y="1080">做题口诀：输入图先定 IBQ，输出图用 IBQ 选曲线；Q 点必须同时满足 BJT 自身特性和外部负载线。</text>
 </svg>
