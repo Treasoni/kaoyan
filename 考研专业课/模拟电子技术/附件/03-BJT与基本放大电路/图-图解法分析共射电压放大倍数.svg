@@ -44,8 +44,8 @@
 
   <!-- Top circuit -->
   <text class="label" x="100" y="192">1. 电路与输入侧动态负载线</text>
-  <text class="math-small" x="100" y="230">uBE = VBB + Δui - iB RB</text>
-  <text class="tiny" x="101" y="260">交流输入为正时，输入负载线整体右移；BJT 输入特性曲线本身不移动。</text>
+  <text class="math-small" x="1220" y="214">输入方程</text>
+  <text class="math-small" x="1220" y="244">uBE = VBB + Δui - iB RB</text>
 
   <path class="wire" d="M 175 410 L 1110 410"/>
   <path class="wire" d="M 180 410 L 180 320"/>
@@ -99,9 +99,9 @@
 
   <path class="dash-red" d="M 108 220 L 602 220 L 602 435 L 108 435 Z"/>
   <path class="dash-blue" d="M 585 220 L 1230 220 L 1230 435 L 585 435 Z"/>
-  <text class="tiny" x="1260" y="260" fill="#d63b32">输入侧：ui 使负载线右移</text>
-  <text class="tiny" x="1260" y="292" fill="#2468d8">输出侧：直流负载线不变</text>
-  <text class="tiny" x="1260" y="324">工作点沿负载线左上移动</text>
+  <text class="tiny" x="1260" y="282" fill="#d63b32">输入侧：ui 使负载线右移</text>
+  <text class="tiny" x="1260" y="314" fill="#2468d8">输出侧：直流负载线不变</text>
+  <text class="tiny" x="1260" y="346">工作点沿负载线左上移动</text>
 
   <!-- Small sine input -->
   <path class="red" stroke-width="3" d="M 1262 378 C 1290 335, 1320 335, 1348 378 S 1406 421, 1434 378" />
@@ -128,11 +128,11 @@
   <line x1="155" y1="726" x2="452" y2="726" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
   <path class="purple" stroke-width="3" d="M 413 923 L 450 923" marker-end="url(#arrow)"/>
   <path class="purple" stroke-width="3" d="M 137 768 L 137 730" marker-end="url(#arrow)"/>
-  <text class="math-small" x="414" y="950" fill="#7b4dd6">ΔuBE＞0</text>
-  <text class="math-small" x="76" y="742" fill="#7b4dd6">ΔiB＞0</text>
+  <text class="math-small" x="394" y="960" fill="#7b4dd6">ΔuBE＞0</text>
+  <text class="math-small" x="172" y="748" fill="#7b4dd6">ΔiB＞0</text>
   <text class="math-small" x="93" y="684">VBB/RB</text>
-  <text class="math-small" x="515" y="942">VBB</text>
-  <text class="math-small" x="579" y="942" fill="#d63b32">VBB+Δui</text>
+  <text class="math-small" x="505" y="942">VBB</text>
+  <text class="math-small" x="560" y="962" fill="#d63b32">VBB+Δui</text>
 
   <!-- Output graph -->
   <text class="label" x="820" y="555">3. 输出侧：iB 增大，工作点沿直流负载线左上移动</text>
@@ -155,12 +155,12 @@
   <line x1="875" y1="744" x2="1050" y2="744" stroke="#d63b32" stroke-width="2.5" stroke-dasharray="8 8"/>
   <path class="purple" stroke-width="3" d="M 1128 923 L 1055 923" marker-end="url(#arrow)"/>
   <path class="purple" stroke-width="3" d="M 858 782 L 858 748" marker-end="url(#arrow)"/>
-  <text class="math-small" x="1060" y="952" fill="#7b4dd6">ΔuCE＜0</text>
-  <text class="math-small" x="790" y="755" fill="#7b4dd6">ΔiC＞0</text>
-  <text class="math-small" x="1110" y="938">UCEQ</text>
-  <text class="math-small" x="1018" y="938" fill="#d63b32">UCEQ+ΔuCE</text>
-  <text class="math-small" x="800" y="790">ICQ</text>
-  <text class="math-small" x="772" y="752" fill="#d63b32">ICQ+ΔiC</text>
+  <text class="math-small" x="1080" y="930" fill="#7b4dd6">ΔuCE＜0</text>
+  <text class="math-small" x="900" y="742" fill="#7b4dd6">ΔiC＞0</text>
+  <text class="math-small" x="1120" y="938">UCEQ</text>
+  <text class="math-small" x="930" y="962" fill="#d63b32">UCEQ+ΔuCE</text>
+  <text class="math-small" x="800" y="796">ICQ</text>
+  <text class="math-small" x="782" y="728" fill="#d63b32">ICQ+ΔiC</text>
 
   <!-- Bottom conclusion -->
   <text class="small" x="100" y="1033">结论链条：Δui＞0 → ΔuBE＞0 → ΔiB＞0 → ΔiC＞0 → uCE 下降，所以共射电压放大倍数为负。</text>
