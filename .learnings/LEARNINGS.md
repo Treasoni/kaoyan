@@ -98,3 +98,27 @@ Pattern-Key: notes.quick_review_extract
 Pattern-Key: image_note.semantic_routing_before_write
 
 ---
+
+
+## [LRN-20260725-001] best_practice
+
+**Logged**: 2026-07-25T21:29:41+08:00
+**Priority**: high
+**Status**: pending
+**Area**: docs/obsidian/handwritten-notes
+
+### Summary
+手写笔记写入后，必须主动回看整篇标题树和学习路线，判断新增内容是否应升为独立模块，而不只是局部追加正确。
+
+### Details
+本次整理“固定偏置共射电路图解法”手写笔记时，先正确识别了静态 Q 点、动态电压放大倍数、输入/输出负载线和反相结论，也补画了标准图。但第一次写入时只做了局部落点判断，把“图解法看电压放大倍数”挂成 `5.5.1`，像是 `R_C` 输出公式的附属内容。用户追问“为什么放入笔记时不帮我重新排版”后，才将它升成独立的 `5.6` 模块，并拆成输入侧、输出侧、放大倍数符号三段。
+
+### Suggested Action
+以后处理手写笔记并写入已有章节时，完成内容追加后必须执行“标题树回看”：1. 列出当前章节标题；2. 判断新增内容是前置概念、静态分析、动态分析、题型方法、易错点还是总结；3. 若新增内容承担新的学习阶段，应主动升为独立模块并顺号；4. 更新开头学习顺序说明；5. 回读确认阅读路线符合“先定对象/状态 → 再看变化过程 → 最后总结做题结论”。
+
+### Related Rules
+Pattern-Key: notes.learning_route_coherence
+Pattern-Key: markdown.heading_tree_review
+Pattern-Key: handwritten_note.post_insert_relayout
+
+---
