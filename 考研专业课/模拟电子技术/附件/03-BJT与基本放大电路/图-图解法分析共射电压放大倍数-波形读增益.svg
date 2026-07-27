@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="981.772455pt" height="649.299848pt" viewBox="0 0 981.772455 649.299848" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-27T19:47:57.271812</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 649.299848 
+L 981.772455 649.299848 
+L 981.772455 -0 
+L 0 -0 
+z
+" style="fill: #fffdf8"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <text style="fill: #202020; font: 700 30px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="50.279125" y="38.131875" transform="rotate(-0 50.279125 38.131875)">图解法分析共射电压放大倍数：从 Q 点移动到波形读数</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #333333; font: 17px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="50.279125" y="73.631917" transform="rotate(-0 50.279125 73.631917)">读图主线：ui 增大 -&gt; iB 增大 -&gt; iC 增大 -&gt; uCE 下降；所以输出与输入反相，幅值比给出放大倍数大小。</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_2">
+    <path d="M 32.423125 403.330485 
+L 925.223125 403.330485 
+L 925.223125 145.148364 
+L 32.423125 145.148364 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="text_3">
+     <text style="font: 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: middle" x="478.823125" y="420.290485" transform="rotate(-0 478.823125 420.290485)">uCE / V</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="text_4">
+     <text style="font: 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: middle" x="25.92" y="274.239424" transform="rotate(-90 25.92 274.239424)">iC / mA</text>
+    </g>
+   </g>
+   <g id="line2d_1">
+    <path d="M 45.552537 396.753135 
+L 53.939552 392.82845 
+L 62.326568 389.106401 
+L 70.713583 385.576546 
+L 81.896271 381.152057 
+L 93.078958 377.029836 
+L 104.261646 373.189544 
+L 115.444333 369.612306 
+L 126.62702 366.280606 
+L 137.809708 363.178187 
+L 148.992395 360.289958 
+L 160.175083 357.601908 
+L 174.153442 354.503614 
+L 188.131801 351.674435 
+L 202.11016 349.093018 
+L 216.088519 346.739865 
+L 230.066879 344.59716 
+L 246.84091 342.280859 
+L 263.614941 340.218637 
+L 280.388972 338.387449 
+L 297.163003 336.766482 
+L 316.732706 335.116013 
+L 336.302409 333.699154 
+L 355.872112 332.491739 
+L 378.237487 331.340484 
+L 400.602861 330.40524 
+L 425.763908 329.57877 
+L 453.720626 328.901667 
+L 484.473017 328.402907 
+L 518.021079 328.097462 
+L 557.160485 327.983213 
+L 604.686906 328.087577 
+L 677.374374 328.506481 
+L 775.222889 329.041226 
+L 833.931998 329.132454 
+L 881.458419 329.02068 
+L 881.458419 329.02068 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke: #23834f; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 45.552537 392.040246 
+L 53.939552 385.309686 
+L 62.326568 378.931264 
+L 70.713583 372.886573 
+L 79.100599 367.158199 
+L 87.487614 361.729671 
+L 95.87463 356.585406 
+L 104.261646 351.710666 
+L 112.648661 347.091505 
+L 121.035677 342.714732 
+L 129.422692 338.567867 
+L 137.809708 334.639102 
+L 146.196723 330.917264 
+L 154.583739 327.391783 
+L 162.970754 324.052654 
+L 174.153442 319.874076 
+L 185.336129 315.988968 
+L 196.518817 312.377763 
+L 207.701504 309.02227 
+L 218.884191 305.905572 
+L 230.066879 303.011935 
+L 241.249566 300.326715 
+L 252.432253 297.836282 
+L 266.410613 294.977904 
+L 280.388972 292.381199 
+L 294.367331 290.025178 
+L 308.34569 287.890591 
+L 322.32405 285.959766 
+L 339.098081 283.888964 
+L 355.872112 282.062627 
+L 372.646143 280.457511 
+L 389.420174 279.052492 
+L 408.989877 277.640627 
+L 428.55958 276.447291 
+L 450.924955 275.319113 
+L 473.290329 274.410237 
+L 498.451376 273.612563 
+L 526.408095 272.960807 
+L 557.160485 272.475569 
+L 593.504219 272.143284 
+L 635.439297 271.988902 
+L 696.944077 272.008891 
+L 819.953638 272.094198 
+L 878.662747 271.887157 
+L 881.458419 271.871512 
+L 881.458419 271.871512 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke: #23834f; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 45.552537 387.327357 
+L 51.14388 380.912651 
+L 59.530896 371.713646 
+L 67.917912 362.998537 
+L 76.304927 354.741906 
+L 84.691943 346.919702 
+L 93.078958 339.50917 
+L 101.465974 332.488775 
+L 109.852989 325.838145 
+L 118.240005 319.538001 
+L 126.62702 313.570099 
+L 135.014036 307.917177 
+L 143.401051 302.562899 
+L 151.788067 297.491806 
+L 160.175083 292.689265 
+L 168.562098 288.141429 
+L 176.949114 283.83519 
+L 185.336129 279.758142 
+L 193.723145 275.898538 
+L 202.11016 272.245258 
+L 210.497176 268.787774 
+L 218.884191 265.516113 
+L 230.066879 261.426709 
+L 241.249566 257.62991 
+L 252.432253 254.106156 
+L 263.614941 250.837245 
+L 274.797628 247.806226 
+L 285.980316 244.99731 
+L 297.163003 242.395784 
+L 308.34569 239.987934 
+L 322.32405 237.231068 
+L 336.302409 234.733766 
+L 350.280768 232.474795 
+L 364.259127 230.434645 
+L 378.237487 228.595367 
+L 395.011518 226.630206 
+L 411.785549 224.904433 
+L 428.55958 223.394299 
+L 448.129283 221.876282 
+L 467.698986 220.591325 
+L 490.06436 219.372388 
+L 512.429735 218.383887 
+L 537.590782 217.505761 
+L 565.5475 216.77126 
+L 596.299891 216.197982 
+L 632.643625 215.759799 
+L 677.374374 215.461587 
+L 747.26617 215.255159 
+L 847.910357 214.929536 
+L 881.458419 214.722345 
+L 881.458419 214.722345 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke: #23834f; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 45.552537 174.581126 
+L 881.458419 404.707456 
+L 881.458419 404.707456 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke: #2468d8; stroke-width: 3.2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 255.623125 403.330485 
+L 255.623125 232.356547 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #d63b32; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 32.423125 232.356547 
+L 255.623125 232.356547 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #d63b32; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 421.929007 403.330485 
+L 421.929007 278.255591 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #202020; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 32.423125 278.255591 
+L 421.929007 278.255591 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #202020; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 596.987831 403.330485 
+L 596.987831 326.449586 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #7b4dd6; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 32.423125 326.449586 
+L 596.987831 326.449586 
+" clip-path="url(#p0ba9a6eb34)" style="fill: none; stroke-dasharray: 6.66,2.88; stroke-dashoffset: 0; stroke: #7b4dd6; stroke-opacity: 0.75; stroke-width: 1.8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 32.423125 403.330485 
+L 32.423125 145.148364 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 32.423125 403.330485 
+L 925.223125 403.330485 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 34.426063 403.330485 
+Q 476.637148 403.330485 916.053147 403.330485 
+" style="fill: none; stroke: #202020; stroke-width: 2.5; stroke-linecap: round"/>
+    <path d="M 912.053147 401.330485 
+L 916.053147 403.330485 
+L 912.053147 405.330485 
+z
+" style="fill: #202020; stroke: #202020; stroke-width: 2.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 32.423125 401.331953 
+Q 32.423125 275.673678 32.423125 152.810488 
+" style="fill: none; stroke: #202020; stroke-width: 2.5; stroke-linecap: round"/>
+    <path d="M 30.423125 156.810488 
+L 32.423125 152.810488 
+L 34.423125 156.810488 
+z
+" style="fill: #202020; stroke: #202020; stroke-width: 2.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="fill: #202020; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="885.83489" y="331.781972" transform="rotate(-0 885.83489 331.781972)">IB = 5uA</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #202020; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="885.83489" y="275.555644" transform="rotate(-0 885.83489 275.555644)">IB = 10uA</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #202020; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="885.83489" y="219.329315" transform="rotate(-0 885.83489 219.329315)">IB = 15uA</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #202020; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="63.058419" y="166.95041" transform="rotate(-0 63.058419 166.95041)">VCC/RC</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #202020; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="798.305478" y="394.724414" transform="rotate(-0 798.305478 394.724414)">VCC</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #2468d8; font: 17px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(567.23813 255.651594) rotate(-338)">直流负载线不变</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(266.126654 207.964839)">t1: ui 最大</text>
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(266.126654 224.324214)">uo 最小</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #202020; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="432.432537" y="270.223258" transform="rotate(-0 432.432537 270.223258)">Q: 静态点</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(607.49136 301.717566)">t2: ui 最小</text>
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(607.49136 318.417254)">uo 最大</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 374.483592 193.031806 
+Q 316.001906 212.380351 259.855408 230.956305 
+" style="fill: none; stroke: #d63b32; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 266.936627 231.984088 
+L 259.855408 230.956305 
+L 264.926366 225.907999 
+" style="fill: none; stroke: #d63b32; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_14">
+    <text style="fill: #d63b32; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="316.893713" y="188.178717" transform="rotate(-0 316.893713 188.178717)">ui 增大时，工作点左上移</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 572.34019 355.277309 
+Q 584.015626 341.621794 594.092639 329.835784 
+" style="fill: none; stroke: #7b4dd6; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 587.501396 332.620654 
+L 594.092639 329.835784 
+L 592.36579 336.779701 
+" style="fill: none; stroke: #7b4dd6; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_15">
+    <text style="fill: #7b4dd6; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="474.446654" y="371.774892" transform="rotate(-0 474.446654 371.774892)">ui 减小时，工作点右下移</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #202020; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="395.670184" y="423.411316" transform="rotate(-0 395.670184 423.411316)">UCEQ</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="207.481949" y="423.411316" transform="rotate(-0 207.481949 423.411316)">uo(t1) 小</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="557.599596" y="423.411316" transform="rotate(-0 557.599596 423.411316)">uo(t2) 大</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #333333; font: 17px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="80.564301" y="388.987033" transform="rotate(-0 80.564301 388.987033)">输出电压看横坐标 uCE：越往左，uCE 越小；越往右，uCE 越大。</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m85d0f44e3c" d="M 0 4.743416 
+C 1.257969 4.743416 2.464584 4.24362 3.354102 3.354102 
+C 4.24362 2.464584 4.743416 1.257969 4.743416 0 
+C 4.743416 -1.257969 4.24362 -2.464584 3.354102 -3.354102 
+C 2.464584 -4.24362 1.257969 -4.743416 0 -4.743416 
+C -1.257969 -4.743416 -2.464584 -4.24362 -3.354102 -3.354102 
+C -4.24362 -2.464584 -4.743416 -1.257969 -4.743416 0 
+C -4.743416 1.257969 -4.24362 2.464584 -3.354102 3.354102 
+C -2.464584 4.24362 -1.257969 4.743416 0 4.743416 
+z
+" style="stroke: #d63b32"/>
+    </defs>
+    <g clip-path="url(#p0ba9a6eb34)">
+     <use xlink:href="#m85d0f44e3c" x="255.623125" y="232.356547" style="fill: #d63b32; stroke: #d63b32"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="m93a43998ff" d="M 0 4.743416 
+C 1.257969 4.743416 2.464584 4.24362 3.354102 3.354102 
+C 4.24362 2.464584 4.743416 1.257969 4.743416 0 
+C 4.743416 -1.257969 4.24362 -2.464584 3.354102 -3.354102 
+C 2.464584 -4.24362 1.257969 -4.743416 0 -4.743416 
+C -1.257969 -4.743416 -2.464584 -4.24362 -3.354102 -3.354102 
+C -4.24362 -2.464584 -4.743416 -1.257969 -4.743416 0 
+C -4.743416 1.257969 -4.24362 2.464584 -3.354102 3.354102 
+C -2.464584 4.24362 -1.257969 4.743416 0 4.743416 
+z
+" style="stroke: #202020"/>
+    </defs>
+    <g clip-path="url(#p0ba9a6eb34)">
+     <use xlink:href="#m93a43998ff" x="421.929007" y="278.255591" style="fill: #202020; stroke: #202020"/>
+    </g>
+   </g>
+   <g id="PathCollection_3">
+    <defs>
+     <path id="m1be9548441" d="M 0 4.743416 
+C 1.257969 4.743416 2.464584 4.24362 3.354102 3.354102 
+C 4.24362 2.464584 4.743416 1.257969 4.743416 0 
+C 4.743416 -1.257969 4.24362 -2.464584 3.354102 -3.354102 
+C 2.464584 -4.24362 1.257969 -4.743416 0 -4.743416 
+C -1.257969 -4.743416 -2.464584 -4.24362 -3.354102 -3.354102 
+C -4.24362 -2.464584 -4.743416 -1.257969 -4.743416 0 
+C -4.743416 1.257969 -4.24362 2.464584 -3.354102 3.354102 
+C -2.464584 4.24362 -1.257969 4.743416 0 4.743416 
+z
+" style="stroke: #7b4dd6"/>
+    </defs>
+    <g clip-path="url(#p0ba9a6eb34)">
+     <use xlink:href="#m1be9548441" x="596.987831" y="326.449586" style="fill: #7b4dd6; stroke: #7b4dd6"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="patch_9">
+    <path d="M 32.423125 636.339848 
+L 475.280268 636.339848 
+L 475.280268 462.066917 
+L 32.423125 462.066917 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4"/>
+   <g id="line2d_11">
+    <path d="M 32.423125 567.491283 
+L 475.280268 567.491283 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke: #202020; stroke-width: 1.7; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_12">
+    <path d="M 32.423125 520.157894 
+L 475.280268 520.157894 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke-dasharray: 6.29,2.72; stroke-dashoffset: 0; stroke: #909090; stroke-width: 1.7"/>
+   </g>
+   <g id="line2d_13">
+    <path d="M 32.423125 567.491283 
+L 53.51156 559.881231 
+L 64.610737 556.106377 
+L 74.599996 552.947366 
+L 83.479337 550.382349 
+L 91.248761 548.359117 
+L 99.018184 546.568123 
+L 106.787608 545.031108 
+L 113.447114 543.930043 
+L 120.106619 543.039159 
+L 126.766125 542.366402 
+L 133.425631 541.917774 
+L 140.085137 541.697276 
+L 146.744643 541.706876 
+L 153.404149 541.946488 
+L 160.063655 542.413974 
+L 166.723161 543.105165 
+L 173.382667 544.013894 
+L 180.042173 545.132055 
+L 186.701679 546.449674 
+L 194.471102 548.223212 
+L 202.240526 550.230639 
+L 211.119867 552.779858 
+L 219.999208 555.562247 
+L 229.988467 558.916116 
+L 243.307479 563.643278 
+L 279.934761 576.829046 
+L 289.92402 580.135421 
+L 298.803361 582.863519 
+L 307.682703 585.347973 
+L 315.452126 587.290942 
+L 323.22155 588.99357 
+L 329.881056 590.245923 
+L 336.540561 591.295291 
+L 343.200067 592.132314 
+L 349.859573 592.749524 
+L 356.519079 593.141416 
+L 363.178585 593.304493 
+L 369.838091 593.237302 
+L 376.497597 592.940441 
+L 383.157103 592.416559 
+L 389.816609 591.670329 
+L 396.476115 590.708407 
+L 403.135621 589.539375 
+L 410.905044 587.927752 
+L 418.674468 586.068057 
+L 426.443891 583.982865 
+L 435.323232 581.356254 
+L 445.312491 578.140854 
+L 456.411668 574.320678 
+L 471.950515 568.710533 
+L 475.280268 567.491283 
+L 475.280268 567.491283 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke: #d63b32; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_14">
+    <path d="M 32.423125 520.157894 
+L 49.07189 532.745323 
+L 59.061149 540.005799 
+L 66.830572 545.384871 
+L 73.490078 549.754155 
+L 80.149584 553.859423 
+L 85.699172 557.052302 
+L 91.248761 560.016574 
+L 96.798349 562.733871 
+L 102.347937 565.187356 
+L 107.897525 567.361827 
+L 112.337196 568.891399 
+L 116.776866 570.227677 
+L 121.216537 571.365361 
+L 125.656208 572.299939 
+L 130.095878 573.027704 
+L 134.535549 573.545769 
+L 138.97522 573.852079 
+L 143.41489 573.945419 
+L 147.854561 573.82542 
+L 152.294231 573.492557 
+L 156.733902 572.94815 
+L 161.173573 572.194359 
+L 165.613243 571.234173 
+L 170.052914 570.071402 
+L 174.492584 568.710656 
+L 178.932255 567.157333 
+L 184.481843 564.954325 
+L 190.031431 562.473747 
+L 195.58102 559.730969 
+L 201.130608 556.742986 
+L 206.680196 553.528312 
+L 213.339702 549.399609 
+L 219.999208 545.010053 
+L 227.768632 539.611568 
+L 236.647973 533.156677 
+L 248.857067 523.966279 
+L 272.165338 506.338847 
+L 281.044679 499.916988 
+L 288.814102 494.557663 
+L 295.473608 490.208922 
+L 302.133114 486.127343 
+L 307.682703 482.956457 
+L 313.232291 480.016081 
+L 318.781879 477.324433 
+L 324.331467 474.898193 
+L 329.881056 472.752394 
+L 334.320726 471.246668 
+L 338.760397 469.93494 
+L 343.200067 468.822413 
+L 347.639738 467.913501 
+L 352.079409 467.211808 
+L 356.519079 466.720118 
+L 360.95875 466.44038 
+L 365.39842 466.373704 
+L 369.838091 466.520354 
+L 374.277762 466.87975 
+L 378.717432 467.450465 
+L 383.157103 468.230236 
+L 387.596773 469.215969 
+L 392.036444 470.403756 
+L 396.476115 471.788885 
+L 400.915785 473.365862 
+L 406.465373 475.59727 
+L 412.014962 478.104788 
+L 417.56455 480.872877 
+L 423.114138 483.884387 
+L 428.663727 487.120656 
+L 435.323232 491.272538 
+L 441.982738 495.682094 
+L 449.752162 501.099658 
+L 458.631503 507.570465 
+L 470.840597 516.772068 
+L 475.280268 520.157894 
+L 475.280268 520.157894 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke: #7b4dd6; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_15">
+    <path d="M 143.137411 636.339848 
+L 143.137411 462.066917 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke-dasharray: 5.92,2.56; stroke-dashoffset: 0; stroke: #d63b32; stroke-width: 1.6"/>
+   </g>
+   <g id="line2d_16">
+    <path d="M 364.565982 636.339848 
+L 364.565982 462.066917 
+" clip-path="url(#p05daf38acb)" style="fill: none; stroke-dasharray: 5.92,2.56; stroke-dashoffset: 0; stroke: #7b4dd6; stroke-width: 1.6"/>
+   </g>
+   <g id="text_20">
+    <text style="fill: #d63b32; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="39.471415" y="555.442784" transform="rotate(-0 39.471415 555.442784)">ui：围绕 0 摆动，幅值 5mV</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #7b4dd6; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="39.471415" y="502.085146" transform="rotate(-0 39.471415 502.085146)">uo = UCEQ + Δuo：围绕 UCEQ 摆动，幅值 50mV</text>
+   </g>
+   <g id="text_22">
+    <text style="fill: #666666; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="402.458368" y="517.145769" transform="rotate(-0 402.458368 517.145769)">UCEQ</text>
+   </g>
+   <g id="text_23">
+    <text style="fill: #d63b32; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="130.450488" y="625.58226" transform="rotate(-0 130.450488 625.58226)">t1</text>
+   </g>
+   <g id="text_24">
+    <text style="fill: #7b4dd6; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="351.87906" y="625.58226" transform="rotate(-0 351.87906 625.58226)">t2</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 139.269884 485.36237 
+Q 141.135073 512.519291 142.847046 537.445401 
+" style="fill: none; stroke: #d63b32; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 145.428872 531.253941 
+L 142.847046 537.445401 
+L 139.442974 531.665064 
+" style="fill: none; stroke: #d63b32; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_25">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(113.478464 462.919683)">ui 最大</text>
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(113.478464 479.279058)">uo 最小</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 351.389126 466.070321 
+Q 356.978674 466.197423 360.332731 466.273692 
+" style="fill: none; stroke: #7b4dd6; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 354.402482 463.138067 
+L 360.332731 466.273692 
+L 354.266082 469.136517 
+" style="fill: none; stroke: #7b4dd6; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_26">
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(324.927174 462.579371)">ui 最小</text>
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif" transform="translate(324.927174 479.279058)">uo 最大</text>
+   </g>
+  </g>
+  <g id="axes_4">
+   <g id="patch_12">
+    <path d="M 581.565982 622.398014 
+L 914.594554 622.398014 
+L 914.594554 479.49421 
+L 581.565982 479.49421 
+z
+" clip-path="url(#pa7f40ee74d)" style="fill: #fff3d5; stroke: #e2be5f; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_27">
+    <text style="fill: #202020; font: 700 22px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="599.280268" y="510.863338" transform="rotate(-0 599.280268 510.863338)">波形读增益</text>
+   </g>
+   <g id="text_28">
+    <text style="fill: #333333; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="599.280268" y="540.489736" transform="rotate(-0 599.280268 540.489736)">只用交流变化量，不把直流 UCEQ 算进幅值。</text>
+   </g>
+   <g id="text_29">
+    <text style="fill: #202020; font: 22px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="599.280268" y="573.601593" transform="rotate(-0 599.280268 573.601593)">|Au| = 50mV / 5mV = 10</text>
+   </g>
+   <g id="text_30">
+    <text style="fill: #d63b32; font: 19px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="599.280268" y="604.970721" transform="rotate(-0 599.280268 604.970721)">因为 ui 最大时 uo 最小，二者反相：Au = -10</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0ba9a6eb34">
+   <rect x="32.423125" y="145.148364" width="892.8" height="258.182121"/>
+  </clipPath>
+  <clipPath id="p05daf38acb">
+   <rect x="32.423125" y="462.066917" width="442.857143" height="174.272931"/>
+  </clipPath>
+  <clipPath id="pa7f40ee74d">
+   <rect x="570.937411" y="462.066917" width="354.285714" height="174.272931"/>
+  </clipPath>
+ </defs>
+</svg>
