@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="932.116875pt" height="510.912pt" viewBox="0 0 932.116875 510.912" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-27T20:57:16.553430</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 510.912 
+L 932.116875 510.912 
+L 932.116875 0 
+L 0 0 
+z
+" style="fill: #fffdf8"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 42.21 258.228 
+L 304.47 258.228 
+L 304.47 94.68 
+L 42.21 94.68 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #ffffff; stroke: #d8d0c0; stroke-width: 1.8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 326.79 258.228 
+L 589.05 258.228 
+L 589.05 94.68 
+L 326.79 94.68 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #ffffff; stroke: #d8d0c0; stroke-width: 1.8"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 611.37 258.228 
+L 873.63 258.228 
+L 873.63 94.68 
+L 611.37 94.68 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #ffffff; stroke: #d8d0c0; stroke-width: 1.8"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 78.48 193.3632 
+C 82.623533 193.3632 86.597916 191.727578 89.527836 188.81656 
+C 92.457757 185.905542 94.104 181.956801 94.104 177.84 
+C 94.104 173.723199 92.457757 169.774458 89.527836 166.86344 
+C 86.597916 163.952422 82.623533 162.3168 78.48 162.3168 
+C 74.336467 162.3168 70.362084 163.952422 67.432164 166.86344 
+C 64.502243 169.774458 62.856 173.723199 62.856 177.84 
+C 62.856 181.956801 64.502243 185.905542 67.432164 188.81656 
+C 70.362084 191.727578 74.336467 193.3632 78.48 193.3632 
+L 78.48 193.3632 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 232.430375 215.053694 
+Q 239.185422 219.975436 244.313948 223.712091 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: round"/>
+    <path d="M 240.614677 216.562588 
+L 244.313948 223.712091 
+L 236.374783 222.381805 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #202020; stroke: #202020; stroke-width: 1.8; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 310.377226 175.068 
+Q 315.63062 175.068 318.647947 175.068 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 309.047947 170.268 
+L 318.647947 175.068 
+L 309.047947 179.868 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #2468d8; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 594.957226 175.068 
+Q 600.21062 175.068 603.227947 175.068 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 593.627947 170.268 
+L 603.227947 175.068 
+L 593.627947 179.868 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #2468d8; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 662.471547 137.3688 
+Q 677.769979 137.3688 690.832342 137.3688 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #d63b32; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 684.432342 134.1688 
+L 690.832342 137.3688 
+L 684.432342 140.5688 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #d63b32; stroke: #d63b32; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 834.57 192.8088 
+C 839.305467 192.8088 843.847618 190.939517 847.196099 187.61264 
+C 850.544579 184.285763 852.426 179.772915 852.426 175.068 
+C 852.426 170.363085 850.544579 165.850237 847.196099 162.52336 
+C 843.847618 159.196483 839.305467 157.3272 834.57 157.3272 
+C 829.834533 157.3272 825.292382 159.196483 821.943901 162.52336 
+C 818.595421 165.850237 816.714 170.363085 816.714 175.068 
+C 816.714 179.772915 818.595421 184.285763 821.943901 187.61264 
+C 825.292382 190.939517 829.834533 192.8088 834.57 192.8088 
+L 834.57 192.8088 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 834.57 161.542048 
+Q 834.57 175.064868 834.57 186.35162 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 838.17 179.15162 
+L 834.57 186.35162 
+L 830.97 179.15162 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #2468d8; stroke: #2468d8; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 42.21 474.444 
+L 873.63 474.444 
+L 873.63 310.896 
+L 42.21 310.896 
+z
+" clip-path="url(#p3d19e11e32)" style="fill: #fff3d5; stroke: #e2be5f; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 94.104 177.84 
+L 123.12 177.84 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 123.12 177.84 
+L 128.7 167.8608 
+L 134.28 187.8192 
+L 139.86 167.8608 
+L 145.44 187.8192 
+L 151.02 167.8608 
+L 156.6 187.8192 
+L 162.18 167.8608 
+L 167.76 177.84 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 167.76 177.84 
+L 195.66 177.84 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 209.61 205.56 
+L 209.61 139.032 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 195.66 177.84 
+L 209.61 177.84 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 209.61 150.12 
+L 251.46 122.4 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 209.61 200.016 
+L 251.46 227.736 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 251.46 122.4 
+L 279.36 122.4 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 251.46 227.736 
+L 279.36 227.736 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.4; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 379.8 219.330177 
+L 380.948824 219.289202 
+L 382.097647 219.246827 
+L 383.246471 219.203003 
+L 384.395294 219.157681 
+L 385.544118 219.110809 
+L 386.692941 219.062336 
+L 387.841765 219.012205 
+L 388.990588 218.96036 
+L 390.139412 218.906744 
+L 391.288235 218.851294 
+L 392.437059 218.793949 
+L 393.585882 218.734644 
+L 394.734706 218.673311 
+L 395.883529 218.609881 
+L 397.032353 218.544284 
+L 398.181176 218.476443 
+L 399.33 218.406284 
+L 400.478824 218.333726 
+L 401.627647 218.258688 
+L 402.776471 218.181085 
+L 403.925294 218.100829 
+L 405.074118 218.017829 
+L 406.222941 217.931992 
+L 407.371765 217.843221 
+L 408.520588 217.751415 
+L 409.669412 217.656471 
+L 410.818235 217.558281 
+L 411.967059 217.456735 
+L 413.115882 217.351717 
+L 414.264706 217.243109 
+L 415.413529 217.130788 
+L 416.562353 217.014628 
+L 417.711176 216.894497 
+L 418.86 216.770259 
+L 420.008824 216.641775 
+L 421.157647 216.508897 
+L 422.306471 216.371478 
+L 423.455294 216.229361 
+L 424.604118 216.082386 
+L 425.752941 215.930386 
+L 426.901765 215.77319 
+L 428.050588 215.610621 
+L 429.199412 215.442494 
+L 430.348235 215.26862 
+L 431.497059 215.088802 
+L 432.645882 214.902837 
+L 433.794706 214.710515 
+L 434.943529 214.511618 
+L 436.092353 214.305922 
+L 437.241176 214.093195 
+L 438.39 213.873195 
+L 439.538824 213.645675 
+L 440.687647 213.410377 
+L 441.836471 213.167035 
+L 442.985294 212.915375 
+L 444.134118 212.655112 
+L 445.282941 212.385952 
+L 446.431765 212.107591 
+L 447.580588 211.819714 
+L 448.729412 211.521996 
+L 449.878235 211.2141 
+L 451.027059 210.895679 
+L 452.175882 210.566373 
+L 453.324706 210.22581 
+L 454.473529 209.873605 
+L 455.622353 209.50936 
+L 456.771176 209.132663 
+L 457.92 208.743088 
+L 459.068824 208.340197 
+L 460.217647 207.923532 
+L 461.366471 207.492624 
+L 462.515294 207.046986 
+L 463.664118 206.586113 
+L 464.812941 206.109486 
+L 465.961765 205.616565 
+L 467.110588 205.106794 
+L 468.259412 204.579596 
+L 469.408235 204.034376 
+L 470.557059 203.470518 
+L 471.705882 202.887385 
+L 472.854706 202.284318 
+L 474.003529 201.660634 
+L 475.152353 201.015631 
+L 476.301176 200.348578 
+L 477.45 199.658722 
+L 478.598824 198.945283 
+L 479.747647 198.207456 
+L 480.896471 197.444406 
+L 482.045294 196.655271 
+L 483.194118 195.83916 
+L 484.342941 194.995151 
+L 485.491765 194.122289 
+L 486.640588 193.219589 
+L 487.789412 192.28603 
+L 488.938235 191.320558 
+L 490.087059 190.322081 
+L 491.235882 189.289472 
+L 492.384706 188.221563 
+L 493.533529 187.117148 
+L 494.682353 185.974978 
+L 495.831176 184.793764 
+L 496.98 183.57217 
+L 498.128824 182.308817 
+L 499.277647 181.002276 
+L 500.426471 179.651071 
+L 501.575294 178.253676 
+L 502.724118 176.808511 
+L 503.872941 175.313943 
+L 505.021765 173.768284 
+L 506.170588 172.169787 
+L 507.319412 170.516646 
+L 508.468235 168.806992 
+L 509.617059 167.038895 
+L 510.765882 165.210355 
+L 511.914706 163.319307 
+L 513.063529 161.363615 
+L 514.212353 159.341067 
+L 515.361176 157.249379 
+L 516.51 155.086187 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #23834f; stroke-width: 2.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_11">
+    <path d="M 427.23 216.648 
+L 510.93 150.12 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #7b4dd6; stroke-width: 2.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_12">
+    <path d="M 519.3 191.7 
+L 533.25 191.7 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_13">
+    <path d="M 533.25 191.7 
+L 538.365 183.384 
+L 543.48 200.016 
+L 548.595 183.384 
+L 553.71 200.016 
+L 558.825 183.384 
+L 563.94 191.7 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_14">
+    <path d="M 653.22 161.208 
+L 681.12 161.208 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_15">
+    <path d="M 681.12 161.208 
+L 687.3975 151.7832 
+L 693.675 170.6328 
+L 699.9525 151.7832 
+L 706.23 170.6328 
+L 712.5075 151.7832 
+L 718.785 170.6328 
+L 725.0625 151.7832 
+L 731.34 161.208 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_16">
+    <path d="M 731.34 161.208 
+L 753.66 161.208 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_17">
+    <path d="M 789.93 139.032 
+L 842.94 139.032 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 789.93 211.104 
+L 842.94 211.104 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_19">
+    <path d="M 834.57 139.032 
+L 834.57 157.3272 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_20">
+    <path d="M 834.57 211.104 
+L 834.57 192.8088 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_21">
+    <path d="M 753.66 161.208 
+L 834.57 211.104 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_22">
+    <path d="M 753.66 161.208 
+L 834.57 139.032 
+" clip-path="url(#p3d19e11e32)" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #202020; font: 700 28px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="36.63" y="42.012" transform="rotate(-0 36.63 42.012)">BJT h 参数小信号等效：先定 Q 点，再在 Q 点附近线性化</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #333333; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="38.304" y="65.8512" transform="rotate(-0 38.304 65.8512)">核心：输入端把 b-e 小信号看成 r_be；输出端把集电极电流变化看成受控电流源 βi_b。</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #202020; font: 700 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="54.486" y="119.628" transform="rotate(-0 54.486 119.628)">① 交流通路</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #202020; font: 700 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="339.066" y="119.628" transform="rotate(-0 339.066 119.628)">② 输入端线性化</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #202020; font: 700 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="623.646" y="119.628" transform="rotate(-0 623.646 119.628)">③ 简化 h 参数模型</text>
+   </g>
+   <g id="text_6">
+    <text style="font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="57.834" y="200.016" transform="rotate(-0 57.834 200.016)">u_i</text>
+   </g>
+   <g id="text_7">
+    <text style="font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="132.606" y="159.5448" transform="rotate(-0 132.606 159.5448)">R_B</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="182.826" y="166.752" transform="rotate(-0 182.826 166.752)">i_b</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="198.45" y="223.8552" transform="rotate(-0 198.45 223.8552)">u_be</text>
+   </g>
+   <g id="text_10">
+    <text style="font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="253.134" y="124.0632" transform="rotate(-0 253.134 124.0632)">C</text>
+   </g>
+   <g id="text_11">
+    <text style="font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="253.134" y="234.9432" transform="rotate(-0 253.134 234.9432)">E</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #555555; font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="246.0312" transform="rotate(-0 61.74 246.0312)">直流电源交流接地；只保留小信号量。</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 359.479608 222.192 
+Q 455.128439 222.192 548.429398 222.192 
+" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linecap: round"/>
+    <path d="M 544.429398 220.192 
+L 548.429398 222.192 
+L 544.429398 224.192 
+z
+" style="fill: #202020; stroke: #202020; stroke-width: 2.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 368.64 231.279673 
+Q 368.64 175.068275 368.64 121.204749 
+" style="fill: none; stroke: #202020; stroke-width: 2.1; stroke-linecap: round"/>
+    <path d="M 366.64 125.204749 
+L 368.64 121.204749 
+L 370.64 125.204749 
+z
+" style="fill: #202020; stroke: #202020; stroke-width: 2.1; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="551.106" y="240.4872" transform="rotate(-0 551.106 240.4872)">u_BE</text>
+   </g>
+   <g id="text_14">
+    <text style="font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="342.414" y="118.5192" transform="rotate(-0 342.414 118.5192)">i_B</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="475.776" y="176.7312" transform="rotate(-0 475.776 176.7312)">Q</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #7b4dd6; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="485.82" y="136.26" transform="rotate(-0 485.82 136.26)">Q 点切线</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #333333; font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="351.9" y="248.2488" transform="rotate(-0 351.9 248.2488)">r_be = Δu_be / Δi_b = 切线斜率的倒数</text>
+   </g>
+   <g id="text_18">
+    <text style="font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="534.366" y="176.1768" transform="rotate(-0 534.366 176.1768)">r_be</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #555555; font: 13px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="519.3" y="211.104" transform="rotate(-0 519.3 211.104)">b-e 端看成电阻</text>
+   </g>
+   <g id="text_20">
+    <text style="font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="636.48" y="154.0008" transform="rotate(-0 636.48 154.0008)">b</text>
+   </g>
+   <g id="text_21">
+    <text style="font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="845.73" y="135.1512" transform="rotate(-0 845.73 135.1512)">c</text>
+   </g>
+   <g id="text_22">
+    <text style="font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="736.92" y="227.736" transform="rotate(-0 736.92 227.736)">e</text>
+   </g>
+   <g id="text_23">
+    <text style="font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="693.954" y="142.9128" transform="rotate(-0 693.954 142.9128)">r_be</text>
+   </g>
+   <g id="text_24">
+    <text style="fill: #d63b32; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="664.38" y="127.944" transform="rotate(-0 664.38 127.944)">i_b</text>
+   </g>
+   <g id="text_25">
+    <text style="fill: #2468d8; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="783.234" y="173.9592" transform="rotate(-0 783.234 173.9592)">βi_b = i_c</text>
+   </g>
+   <g id="text_26">
+    <text style="fill: #555555; font: 14px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="636.48" y="248.2488" transform="rotate(-0 636.48 248.2488)">忽略 h_re、h_oe 后，考试常用这张简化模型。</text>
+   </g>
+   <g id="text_27">
+    <text style="fill: #202020; font: 700 21px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="60.624" y="338.616" transform="rotate(-0 60.624 338.616)">做题启动顺序</text>
+   </g>
+   <g id="text_28">
+    <text style="fill: #333333; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="363.564" transform="rotate(-0 61.74 363.564)">1. 先用直流通路求 Q 点</text>
+   </g>
+   <g id="text_29">
+    <text style="fill: #333333; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="381.8592" transform="rotate(-0 61.74 381.8592)">2. 由 I_EQ 计算 r_be</text>
+   </g>
+   <g id="text_30">
+    <text style="fill: #333333; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="400.1544" transform="rotate(-0 61.74 400.1544)">3. 画交流通路：直流源交流接地、电容中频短路</text>
+   </g>
+   <g id="text_31">
+    <text style="fill: #333333; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="418.4496" transform="rotate(-0 61.74 418.4496)">4. 把 BJT 换成 r_be + βi_b</text>
+   </g>
+   <g id="text_32">
+    <text style="fill: #333333; font: 15px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="61.74" y="436.7448" transform="rotate(-0 61.74 436.7448)">5. 再求 A_u、R_i、R_o</text>
+   </g>
+   <g id="text_33">
+    <text style="fill: #202020; font: 700 20px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="480.24" y="358.02" transform="rotate(-0 480.24 358.02)">常用公式</text>
+   </g>
+   <g id="text_34">
+    <text style="fill: #202020; font: 18px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="483.03" y="384.0768" transform="rotate(-0 483.03 384.0768)">r_be = r_bb' + (1+β) u_T / I_EQ</text>
+   </g>
+   <g id="text_35">
+    <text style="fill: #333333; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="483.03" y="409.5792" transform="rotate(-0 483.03 409.5792)">r_bb' 常取约 200Ω，室温 u_T ≈ 26mV</text>
+   </g>
+   <g id="text_36">
+    <text style="fill: #333333; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="483.03" y="433.9728" transform="rotate(-0 483.03 433.9728)">I_EQ = I_BQ + I_CQ = (1+β)I_BQ，β 大时 I_EQ ≈ I_CQ</text>
+   </g>
+   <g id="text_37">
+    <text style="fill: #d63b32; font: 16px 'Songti SC', 'Arial Unicode MS', 'Hiragino Sans GB', 'STHeiti', sans-serif; text-anchor: start" x="483.03" y="457.2576" transform="rotate(-0 483.03 457.2576)">注意：r_be 是交流小信号电阻，不能拿来求静态 Q 点。</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m52cf3edc35" d="M 0 4.1833 
+C 1.109424 4.1833 2.173559 3.742521 2.95804 2.95804 
+C 3.742521 2.173559 4.1833 1.109424 4.1833 0 
+C 4.1833 -1.109424 3.742521 -2.173559 2.95804 -2.95804 
+C 2.173559 -3.742521 1.109424 -4.1833 0 -4.1833 
+C -1.109424 -4.1833 -2.173559 -3.742521 -2.95804 -2.95804 
+C -3.742521 -2.173559 -4.1833 -1.109424 -4.1833 0 
+C -4.1833 1.109424 -3.742521 2.173559 -2.95804 2.95804 
+C -2.173559 3.742521 -1.109424 4.1833 0 4.1833 
+z
+" style="stroke: #d63b32"/>
+    </defs>
+    <g clip-path="url(#p3d19e11e32)">
+     <use xlink:href="#m52cf3edc35" x="469.08" y="183.384" style="fill: #d63b32; stroke: #d63b32"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3d19e11e32">
+   <rect x="11.52" y="11.52" width="892.8" height="487.872"/>
+  </clipPath>
+ </defs>
+</svg>

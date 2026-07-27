@@ -10,7 +10,7 @@ Compressed patterns from repeated learnings and errors.
 - (2x) `/kaoyan-plan` 完成报告后必须更新：每日计划 → 完成记录 → 英语📊进度 → ⭐英语📅日志 → ⭐线代📊进度 → 专业课📊进度
 - (2x) 删除 Obsidian 文件前先调用 safe-delete skill 清理悬空链接
 - (2x) **证明/推导类内容统一使用 `> [!note]-` 单一折叠块**（默认折叠，可包含 `$$` 公式、列表、表格），不再使用嵌套 callout 结构。标题直接作为 callout 标题：`> [!note]- 标题内容`
-- (4x) 处理用户手写笔记时，默认采用“主笔记提取重构 + 手写原图溯源”：正文提炼为结构化文字，并配清晰的标准图或 AI 重绘图；原图按对应段落保留，内容重复时可折叠为“手写来源”；每张关键图补“图的作用 + 关键标注/区域 + 做题结论”
+- (6x) 处理用户手写/截图/教材图笔记时，默认采用“逐页识别卡 → 标准图/重绘图 → 公式链 → 做题结论 → 标题树回看”：每页原图直接对应一个知识层，写清视觉盘点、解决的问题、关键公式/逻辑链、待确认项和做题结论；原图不能只折叠为来源，也不能被一张总结图替代。
 - (4x) 写入含大量 LaTeX/反引号的 Markdown 时，优先使用外部脚本文件、占位符替换、`chr(92)` 拼接或 quoted heredoc（如 `<<'EOF'`）；不要只依赖会经过 JSON/exec 层的 Python raw string；写入后回读目标段落检查反斜杠和控制字符
 - (1x) 写入或修改笔记前先快速浏览 `.learnings/RULES.md`，确认当前格式规范与高频错误
 - (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
@@ -38,7 +38,8 @@ Compressed patterns from repeated learnings and errors.
 
 - (1x) 数学题解析默认采用“人话入口 + 分步对象/坐标解释 + 公式推导 + 一句话记忆”；抽象线代题要先解释新基、表示矩阵、相似、列坐标等对象在题里承担什么作用，再写符号推导。
 
-- (1x) 补充或扩写学习笔记前，先检查内容在整章学习路线中的位置：明确它属于前置概念、核心定义、推导、题型方法、例题错题还是复盘总结；写入后回读标题树，确保顺序符合“为什么学 → 学什么 → 怎么判断/计算 → 易错点 → 最低掌握标准”。
+- (3x) 补充或扩写学习笔记前，先检查内容在整章学习路线中的位置：明确它属于前置概念、核心定义、推导、题型方法、例题错题还是复盘总结；写入后回读标题树，确保顺序符合“为什么学 → 学什么 → 怎么判断/计算 → 易错点 → 最低掌握标准”。
+- (1x) Obsidian 复习型表格超过 4 列，或单元格同时混合中文长句、公式和英文缩写时，优先改成短表、列表或分组表，确保阅读视图和窄窗可读。
 
 ## Don't
 
@@ -60,8 +61,9 @@ Compressed patterns from repeated learnings and errors.
 - (5x) Markdown/LaTeX 写入转义污染（Pattern-Key: write_verify.latex_escape）— `\boxed`、`\text`、`\begin`、`\rvert`、反引号、JSON/exec 命令层、heredoc、Python 字符串和索引表格行都要重点回读
 - (2x) 完成报告更新清单中“英语📅日志”和“线代📊进度”容易遗漏
 - (2x) Obsidian 证明/推导使用 `> [!note]-` 单一折叠块（Pattern-Key: obsidian.proof_collapsible）— 默认折叠；callout 内允许 `$$` 块级公式；表格前后留空行
-- (5x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；特性曲线、负载线、Q 点漂移类知识应主动配图
-- (1x) 手写笔记混合重构（Pattern-Key: docs.handwritten_hybrid）— 正文以结构化提炼和标准图/AI 重绘图服务复习，原图留在对应段落或折叠“手写来源”保留推理、纠错和个人理解
+- (6x) 图示覆盖率不足（Pattern-Key: docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做“原图页/关键图 → 笔记章节”覆盖清单；每页原图要在正文中有对应知识层，特性曲线、负载线、Q 点漂移类知识应主动配图
+- (2x) 手写笔记混合重构（Pattern-Key: docs.handwritten_hybrid）— 正文以结构化提炼和标准图/AI 重绘图服务复习；多页原图优先放成逐页识别卡，内容重复时才折叠为“手写来源”
+- (1x) 多页手写图映射缺失（Pattern-Key: handwritten_note.page_card_mapping）— 处理多页手写笔记时，先逐页写“视觉盘点 + 解决的问题 + 公式/逻辑链 + 做题结论 + 待确认”，再给标准图和总结
 - (1x) 数学笔记内容准确性验证（Pattern-Key: math.content_verify）— 公式/定理/推导写入前必须独立验证
 - (1x) 自测文件覆盖率遗漏（Pattern-Key: quiz.coverage_audit）— 更新自测前必须对比源文件章节列表
 - (1x) 图片纠正题目后的完整重算（Pattern-Key: image_problem.recompute）— 按图片重新识别题目、重算关键步骤并回读渲染结果
@@ -70,6 +72,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 专业课公式符号说明遗漏（Pattern-Key: electronics.formula_symbol_explain）— 首次出现核心公式时检查变量、方向、单位、近似用法是否齐全
 - (1x) 速查笔记过度搬运详解（Pattern-Key: notes.quick_review_extract）— 必背/速查文件避免塞入历史背景、完整推导和完整例题
 - (1x) 速查页高价值流程遗漏（Pattern-Key: notes.review_value_extraction）— 从章节笔记抽取到必背/速查页时，凡能直接帮助复习、启动做题或避免高频错误的 SOP/流程/判断准则/检查清单，都应压缩放入；不要只筛公式。
+- (1x) Obsidian 宽表阅读性（Pattern-Key: table.readability_width）— 表格超过 4 列或单元格公式/中文/英文混排过宽时，优先拆短表、列表或分组表
 - (1x) 源笔记优先抽取（Pattern-Key: notes.source_first_extract）— 更新必背/速查笔记前先读对应章节源笔记，避免凭空换符号、替换原主方法或另写一套表达
 - (1x) shell 引号与重定向风险（Pattern-Key: ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 等规则文件时避免复杂 inline printf，写后立刻回读行数和关键内容
 - (1x) Markdown 区块替换边界误伤（Pattern-Key: markdown.section_replace_boundary）— 表格分隔线和水平线都含 `---`，批量替换时优先用标题边界并回读目标段
@@ -80,4 +83,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) Mermaid 节点标签转义（Pattern-Key: obsidian.mermaid_node_label_escape）— 中文节点、条件判断、括号和比较符要先加引号并替换裸 `<`/`<=`。
 - (1x) JSON/exec 层 LaTeX 转义污染（Pattern-Key: write_verify.json_latex_escape）— 通过工具命令写入 Markdown 时，外层 JSON 会先解释 `\b`、`\t` 等序列；用占位符/`chr(92)`/外部脚本，并检查 `\boxed`、`\text` 是否完整
 - (1x) 数学解析缺少人话桥接（Pattern-Key: math.explain_human_bridge）— 线代相似/特征值/基变换/坐标表示题，若只写 $AP=PB$、表示矩阵或行列式计算，用户可能看不懂“为什么这么做”；写前补“这一步在干什么”。
-- (1x) 笔记学习路线不顺（Pattern-Key: notes.learning_route_coherence）— 补充内容不能只局部正确；若标题层级会误导学习顺序，必须先重排章节结构，再结束任务。
+- (3x) 笔记学习路线不顺（Pattern-Key: notes.learning_route_coherence）— 补充内容不能只局部正确；若标题层级会误导学习顺序，必须先重排章节结构，再结束任务。
