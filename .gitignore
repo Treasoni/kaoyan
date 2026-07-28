@@ -132,8 +132,7 @@ Sessionx.vim
 # - .obsidian/plugins/             # 插件配置（部分）
 # - CLAUDE.md                      # 项目配置
 # - .claude/skills/                # 技能定义
-
-
+# - .claudeignore                  # 项目配置（部分）
 
 
 # -----------------------------------

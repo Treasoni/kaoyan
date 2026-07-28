@@ -1,0 +1,33 @@
+# === 依赖 ===
+node_modules/
+.pnp/
+.pnp.js
+
+# === 构建产物 ===
+dist/
+build/
+.next/
+out/
+.cache/
+.turbo/
+
+# === 环境与密钥 ===
+.env
+.env.*
+*.pem
+*.key
+
+# === 大文件 ===
+*.onnx
+*.pkl
+*.bin
+*.pt
+
+# === 自动生成 ===
+generated/
+coverage/
+.nyc_output/
+
+# === 日志 ===
+*.log
+npm-debug.log*
