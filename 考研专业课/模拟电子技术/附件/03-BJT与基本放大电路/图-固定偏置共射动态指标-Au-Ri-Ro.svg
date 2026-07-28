@@ -60,8 +60,7 @@
 <text x="448" y="398.0" font-size="25" font-weight="400" fill="#171717" text-anchor="start">
 <tspan x="448" dy="0">rbe</tspan>
 </text>
-  <line class="wire" x1="414" y1="296" x2="520" y2="296"/>
-  <line class="wire" x1="520" y1="296" x2="520" y2="248"/>
+  <line class="wire" x1="520" y1="248" x2="520" y2="320"/>
   <line class="wire" x1="520" y1="248" x2="636" y2="248"/>
   <line class="wire" x1="636" y1="248" x2="636" y2="324.0"/>
 <rect class="comp" x="614" y="324.0" width="44" height="84" rx="8"/>
@@ -79,7 +78,12 @@
   <text x="708" y="256" font-size="25" font-weight="700" fill="#dc2626" text-anchor="start">
 <tspan x="708" dy="0">+ uo</tspan>
 </text>
-  <line class="wire" x1="702" y1="248" x2="702" y2="484"/>
+  <line class="wire" x1="636" y1="484" x2="702" y2="484"/>
+  <circle class="comp" cx="702" cy="248" r="5"/>
+  <circle class="comp" cx="702" cy="484" r="5"/>
+  <text x="708" y="492" font-size="25" font-weight="700" fill="#dc2626" text-anchor="start">
+<tspan x="708" dy="0">-</tspan>
+</text>
   <text x="370" y="272" font-size="25" font-weight="700" fill="#2563eb" text-anchor="start">
 <tspan x="370" dy="0">ib →</tspan>
 </text>
@@ -137,11 +141,11 @@
   <text x="94" y="754" font-size="26" font-weight="500" fill="#171717" text-anchor="start">
 <tspan x="94" dy="0">负载断开，输入源保留，输出端没有外接负载。</tspan>
 </text>
-  <line class="wire" x1="196" y1="862" x2="388" y2="862"/>
-  <line class="wire" x1="388" y1="862" x2="388" y2="859.0"/>
-<rect class="comp" x="366" y="859.0" width="44" height="84" rx="8"/>
-<line class="wire" x1="388" y1="943.0" x2="388" y2="940"/>
-<text x="422" y="909.0" font-size="25" font-weight="400" fill="#171717" text-anchor="start">
+  <line class="wire" x1="196" y1="820" x2="468" y2="820"/>
+  <line class="wire" x1="388" y1="820" x2="388" y2="850"/>
+<rect class="comp" x="366" y="850" width="44" height="84" rx="8"/>
+<line class="wire" x1="388" y1="934" x2="388" y2="950"/>
+<text x="422" y="900" font-size="25" font-weight="400" fill="#171717" text-anchor="start">
 <tspan x="422" dy="0">RC</tspan>
 </text>
   <polygon class="comp" points="268,858 314,904 268,950 222,904"/>
@@ -150,7 +154,6 @@
 <tspan x="326" dy="0">β ib</tspan>
 </text>
   <line class="wire" x1="268" y1="858" x2="268" y2="820"/>
-  <line class="wire" x1="268" y1="820" x2="388" y2="820"/>
   <line class="wire" x1="268" y1="950" x2="388" y2="950"/>
   <line class="wire" x1="330" y1="950" x2="330" y2="968"/>
 <line class="wire" x1="302" y1="968" x2="358" y2="968"/>
