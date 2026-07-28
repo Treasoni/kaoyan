@@ -57,7 +57,7 @@ $$\mathrm{d}V_y = \underbrace{2\pi x}_{\text{周长}} \cdot \underbrace{|y(x)|}_
 
 | 参数   | 含义         | 公式                                    |
 | ---- | ---------- | ------------------------------------- |
-| 半径 $r$ | 微元到旋转轴的水平距离 | $r = \|x - k\|$                        |
+| 半径 $r$ | 微元到旋转轴的水平距离 | $r = \lvert x - k\rvert$                        |
 | 高 $h$  | 竖直细长条的长度    | $h = y_{\text{上}} - y_{\text{下}}$ |
 
 **4. 列体积微元**：将圆柱壳"沿高剪开"展平为矩形薄板——
@@ -70,13 +70,37 @@ $$\mathrm{d}V_y = \underbrace{2\pi x}_{\text{周长}} \cdot \underbrace{|y(x)|}_
 
 因此：
 
-$$\mathrm{d}V = 2\pi r \cdot h \, \mathrm{d}x = 2\pi |x - k|(y_{\text{上}} - y_{\text{下}}) \, \mathrm{d}x$$
+$$\mathrm{d}V = 2\pi r \cdot h \, \mathrm{d}x = 2\pi \lvert x - k\rvert(y_{\text{上}} - y_{\text{下}}) \, \mathrm{d}x$$
+
+### 例：绕直线 $x = 3$ 的圆柱壳示意图
+
+以区域 $0 \leqslant x \leqslant 2$，$0 \leqslant y \leqslant x$ 绕直线 $x = 3$ 旋转为例：
+
+![[assets/绕y轴旋转/圆柱壳法-绕x等于3.png]]
+
+图中黄色竖条绕红色虚线 $x = 3$ 旋转后形成一个圆柱壳：
+
+- 壳半径：$r = 3 - x$
+- 壳高：$h = x$
+- 壳厚：$\mathrm{d}x$
+
+因此体积微元为：
+
+$$
+\mathrm{d}V = 2\pi(3 - x)x\,\mathrm{d}x
+$$
+
+总体积为：
+
+$$
+V = 2\pi\int_0^2 (3 - x)x\,\mathrm{d}x
+$$
 
 > [!tip] 水平切片的对称形式
 > 若取水平切片 $\mathrm{d}y$，绕水平直线 $y = k$ 旋转，逻辑完全对称：
-> - 半径：$r = |y - k|$
+> - 半径：$r = \lvert y - k\rvert$
 > - 高：$h = x_{\text{右}} - x_{\text{左}}$
-> - 体积微元：$\mathrm{d}V = 2\pi |y - k|(x_{\text{右}} - x_{\text{左}}) \, \mathrm{d}y$
+> - 体积微元：$\mathrm{d}V = 2\pi \lvert y - k\rvert(x_{\text{右}} - x_{\text{左}}) \, \mathrm{d}y$
 
 > [!summary] 一句话记忆
 > **"壳的周长 $\times$ 壳的高 $\times$ 壳的厚"**，其中周长 $= 2\pi \times$ 到轴的距离，高 $=$ 截线长度，厚 $= \mathrm{d}x$ 或 $\mathrm{d}y$。
