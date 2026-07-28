@@ -29,3 +29,28 @@ Pattern-Key: notes.learning_route_coherence
 2026-07-27：已同步到 `.learnings/RULES.md` 的 Do / Watch For 区。
 
 ---
+
+## [LRN-20260728-001] correction
+
+**Logged**: 2026-07-28T21:36:33+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: docs/electronics/diagrams
+
+### Summary
+专业课标准电路图必须先核对标准画法和节点网表，再生成或嵌入笔记。
+
+### Details
+整理“固定偏置共射动态指标”手写笔记时，先生成了一张总结图，但图中左上角微变等效电路把基极节点和集电极节点误连，相当于把输入端和输出端短在一起；同时输出电压端口画法也容易被看成上下短接。用户指出“图画错了”后，复核确认这是拓扑错误，不是排版问题。随后改为先查 MIT OCW、Purdue、Berkeley 等标准资料中的共射小信号等效与戴维南端口画法，再按节点关系重画：$r_{be}$ 接 b-e，受控源 $\beta i_b$ 与 $R_C$ 接 c-e，输出端用两个开口端子标 $u_o$。
+
+### Suggested Action
+以后生成或整理专业课标准电路图、微变等效图、输出电阻测试图时，先查教材/高校课件的标准画法，再写节点网表卡：输入端、输出端、电源与地、关键节点、受控源控制量、每个元件两端。画完后逐项核对拓扑：BJT 的 b/c/e 节点不能误连，输出端口不能被短接，受控源应按规则保留，求 $R_o$ 时独立源置零但受控源不随手删除。用户质疑图时，先承认并重核拓扑，不先辩解。
+
+### Related Rules
+Pattern-Key: electronics.diagram_topology_verify
+Pattern-Key: docs.proactive_visual_learning
+
+### Resolution
+2026-07-28：已同步到 `.learnings/RULES.md` 的 Do / Don't / Watch For 区。
+
+---
