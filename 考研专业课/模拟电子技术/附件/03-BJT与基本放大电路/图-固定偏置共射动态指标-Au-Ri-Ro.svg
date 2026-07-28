@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      text { font-family: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; }
+      .wire { stroke:#111827; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .bluewire { stroke:#2563eb; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .redwire { stroke:#dc2626; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .comp { stroke:#111827; stroke-width:4; fill:#fffef9; }
+      .panel { fill:#fffdf7; stroke:#d4d4d8; stroke-width:2; }
+      .badge { fill:#eef2ff; stroke:#6366f1; stroke-width:2; }
+      .formula { fill:#f8fafc; stroke:#cbd5e1; stroke-width:2; }
+      .note { fill:#fff7ed; stroke:#fb923c; stroke-width:2; }
+    </style>
+  </defs>
+  <rect width="1600" height="1050" fill="#fffdf7"/>
+  <rect x="44" y="38" width="1512" height="96" rx="14" fill="#0f172a"/>
+  <text x="80" y="100" font-size="42" font-weight="700" fill="#ffffff" text-anchor="start">
+<tspan x="80" dy="0">固定偏置共射动态指标：Au / Ri / Ro</tspan>
+</text>
+  <text x="920" y="97" font-size="28" font-weight="500" fill="#dbeafe" text-anchor="start">
+<tspan x="920" dy="0">本图按手写图的输入端定义：ui 从 Rb 左端加入</tspan>
+</text>
+
+  <rect class="panel" x="54" y="166" width="724" height="404" rx="14"/>
+  <rect class="badge" x="82" y="192" width="276" height="48" rx="24"/>
+  <text x="104" y="225" font-size="27" font-weight="700" fill="#312e81" text-anchor="start">
+<tspan x="104" dy="0">1  电压放大倍数</tspan>
+</text>
+  <circle class="comp" cx="132" cy="374" r="34"/>
+<text x="123" y="327" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="123" dy="0">+</tspan>
+</text>
+<text x="125" y="440" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="125" dy="0">-</tspan>
+</text>
+<text x="74" y="383" font-size="28" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="74" dy="0">ui</tspan>
+</text>
+  <line class="wire" x1="132" y1="340" x2="132" y2="296"/>
+  <line class="wire" x1="132" y1="296" x2="196" y2="296"/>
+  <line class="wire" x1="196" y1="296" x2="232.0" y2="296"/>
+<rect class="comp" x="232.0" y="274" width="100" height="44" rx="8"/>
+<line class="wire" x1="332.0" y1="296" x2="368" y2="296"/>
+<text x="282.0" y="262" font-size="26" font-weight="400" fill="#171717" text-anchor="middle">
+<tspan x="282.0" dy="0">Rb</tspan>
+</text>
+  <line class="wire" x1="132" y1="408" x2="132" y2="484"/>
+  <line class="wire" x1="132" y1="484" x2="636" y2="484"/>
+  <line class="wire" x1="390" y1="484" x2="390" y2="502"/>
+<line class="wire" x1="362" y1="502" x2="418" y2="502"/>
+<line class="wire" x1="372" y1="514" x2="408" y2="514"/>
+<line class="wire" x1="382" y1="526" x2="398" y2="526"/>
+  <line class="wire" x1="368" y1="296" x2="414" y2="296"/>
+  <line class="wire" x1="414" y1="296" x2="414" y2="348.0"/>
+<rect class="comp" x="392" y="348.0" width="44" height="84" rx="8"/>
+<line class="wire" x1="414" y1="432.0" x2="414" y2="484"/>
+<text x="448" y="398.0" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="448" dy="0">rbe</tspan>
+</text>
+  <line class="wire" x1="414" y1="296" x2="520" y2="296"/>
+  <line class="wire" x1="520" y1="296" x2="520" y2="248"/>
+  <line class="wire" x1="520" y1="248" x2="636" y2="248"/>
+  <line class="wire" x1="636" y1="248" x2="636" y2="324.0"/>
+<rect class="comp" x="614" y="324.0" width="44" height="84" rx="8"/>
+<line class="wire" x1="636" y1="408.0" x2="636" y2="484"/>
+<text x="670" y="374.0" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="670" dy="0">RC</tspan>
+</text>
+  <polygon class="comp" points="520,320 566,366 520,412 474,366"/>
+<line class="bluewire" x1="520" y1="338" x2="520" y2="392" marker-end="url(#arrow)"/>
+<text x="578" y="374" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="578" dy="0">β ib</tspan>
+</text>
+  <line class="wire" x1="520" y1="412" x2="520" y2="484"/>
+  <line class="wire" x1="636" y1="248" x2="702" y2="248"/>
+  <text x="708" y="256" font-size="26" font-weight="600" fill="#dc2626" text-anchor="start">
+<tspan x="708" dy="0">+ uo</tspan>
+</text>
+  <line class="wire" x1="702" y1="248" x2="702" y2="484"/>
+  <text x="370" y="272" font-size="25" font-weight="600" fill="#2563eb" text-anchor="start">
+<tspan x="370" dy="0">ib →</tspan>
+</text>
+  <rect class="formula" x="82" y="502" width="650" height="46" rx="10"/>
+  <text x="106" y="534" font-size="24" font-weight="600" fill="#0f172a" text-anchor="start">
+<tspan x="106" dy="0">ui = ib(Rb + rbe)，uo = -β ib RC，所以 Au = uo/ui = -βRC/(Rb+rbe)</tspan>
+</text>
+
+  <rect class="panel" x="822" y="166" width="724" height="316" rx="14"/>
+  <rect class="badge" x="850" y="192" width="224" height="48" rx="24"/>
+  <text x="872" y="225" font-size="27" font-weight="700" fill="#312e81" text-anchor="start">
+<tspan x="872" dy="0">2  输入电阻</tspan>
+</text>
+  <text x="870" y="288" font-size="27" font-weight="500" fill="#171717" text-anchor="start">
+<tspan x="870" dy="0">从输入端向右看，把内部复杂电路等效成一个电阻 Ri。</tspan>
+</text>
+  <line class="bluewire" x1="900" y1="366" x2="1110" y2="366" marker-end="url(#arrow)"/>
+  <text x="892" y="344" font-size="28" font-weight="700" fill="#2563eb" text-anchor="start">
+<tspan x="892" dy="0">I</tspan>
+</text>
+  <circle class="comp" cx="910" cy="416" r="34"/>
+<text x="901" y="369" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="901" dy="0">+</tspan>
+</text>
+<text x="903" y="482" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="903" dy="0">-</tspan>
+</text>
+<text x="852" y="425" font-size="28" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="852" dy="0">U</tspan>
+</text>
+  <line class="wire" x1="944" y1="416" x2="1018" y2="416"/>
+  <line class="wire" x1="1018" y1="416" x2="1077.0" y2="416"/>
+<rect class="comp" x="1077.0" y="394" width="100" height="44" rx="8"/>
+<line class="wire" x1="1177.0" y1="416" x2="1236" y2="416"/>
+<text x="1127.0" y="382" font-size="26" font-weight="400" fill="#171717" text-anchor="middle">
+<tspan x="1127.0" dy="0">Ri = Rb + rbe</tspan>
+</text>
+  <line class="wire" x1="1236" y1="416" x2="1302" y2="416"/>
+  <line class="wire" x1="1302" y1="416" x2="1302" y2="458"/>
+  <line class="wire" x1="910" y1="450" x2="910" y2="458"/>
+  <line class="wire" x1="910" y1="458" x2="1302" y2="458"/>
+  <rect class="formula" x="850" y="504" width="656" height="46" rx="10"/>
+  <text x="878" y="536" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">
+<tspan x="878" dy="0">Ri = U/I = Rb + rbe（按本图端口定义）</tspan>
+</text>
+
+  <rect class="panel" x="54" y="614" width="724" height="356" rx="14"/>
+  <rect class="badge" x="82" y="640" width="268" height="48" rx="24"/>
+  <text x="104" y="673" font-size="27" font-weight="700" fill="#312e81" text-anchor="start">
+<tspan x="104" dy="0">3  开路输出电压</tspan>
+</text>
+  <text x="94" y="736" font-size="27" font-weight="500" fill="#171717" text-anchor="start">
+<tspan x="94" dy="0">负载断开，输入源保留，输出端没有外接负载。</tspan>
+</text>
+  <line class="wire" x1="196" y1="842" x2="388" y2="842"/>
+  <line class="wire" x1="388" y1="842" x2="388" y2="839.0"/>
+<rect class="comp" x="366" y="839.0" width="44" height="84" rx="8"/>
+<line class="wire" x1="388" y1="923.0" x2="388" y2="920"/>
+<text x="422" y="889.0" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="422" dy="0">RC</tspan>
+</text>
+  <polygon class="comp" points="268,838 314,884 268,930 222,884"/>
+<line class="bluewire" x1="268" y1="856" x2="268" y2="910" marker-end="url(#arrow)"/>
+<text x="326" y="892" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="326" dy="0">β ib</tspan>
+</text>
+  <line class="wire" x1="268" y1="838" x2="268" y2="800"/>
+  <line class="wire" x1="268" y1="800" x2="388" y2="800"/>
+  <line class="wire" x1="268" y1="930" x2="388" y2="930"/>
+  <line class="wire" x1="330" y1="930" x2="330" y2="948"/>
+<line class="wire" x1="302" y1="948" x2="358" y2="948"/>
+<line class="wire" x1="312" y1="960" x2="348" y2="960"/>
+<line class="wire" x1="322" y1="972" x2="338" y2="972"/>
+  <text x="424" y="808" font-size="26" font-weight="700" fill="#dc2626" text-anchor="start">
+<tspan x="424" dy="0">+ Uoc</tspan>
+</text>
+  <text x="424" y="928" font-size="26" font-weight="700" fill="#dc2626" text-anchor="start">
+<tspan x="424" dy="0">-</tspan>
+</text>
+  <rect class="formula" x="82" y="902" width="320" height="46" rx="10"/>
+  <text x="108" y="934" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">
+<tspan x="108" dy="0">Uoc = -β ib RC</tspan>
+</text>
+  <text x="468" y="850" font-size="27" font-weight="500" fill="#171717" text-anchor="start">
+<tspan x="468" dy="0">开路电压就是戴维南等效源。</tspan>
+</text>
+
+  <rect class="panel" x="822" y="526" width="724" height="444" rx="14"/>
+  <rect class="badge" x="850" y="552" width="248" height="48" rx="24"/>
+  <text x="872" y="585" font-size="27" font-weight="700" fill="#312e81" text-anchor="start">
+<tspan x="872" dy="0">4  输出电阻</tspan>
+</text>
+  <text x="870" y="650" font-size="26" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="870" dy="0">求 Ro 时：独立源置零，受控源保留；若控制量变为 0，受控源才等效为 0。</tspan>
+</text>
+  <text x="872" y="712" font-size="28" font-weight="700" fill="#dc2626" text-anchor="start">
+<tspan x="872" dy="0">ui = 0  ⇒  vb = 0  ⇒  ib = 0  ⇒  βib = 0</tspan>
+</text>
+  <line class="wire" x1="916" y1="820" x2="1068" y2="820"/>
+  <line class="wire" x1="1068" y1="820" x2="1068" y2="830.0"/>
+<rect class="comp" x="1046" y="830.0" width="44" height="84" rx="8"/>
+<line class="wire" x1="1068" y1="914.0" x2="1068" y2="924"/>
+<text x="1102" y="880.0" font-size="26" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="1102" dy="0">RC</tspan>
+</text>
+  <line class="wire" x1="916" y1="924" x2="1234" y2="924"/>
+  <line class="wire" x1="1000" y1="924" x2="1000" y2="942"/>
+<line class="wire" x1="972" y1="942" x2="1028" y2="942"/>
+<line class="wire" x1="982" y1="954" x2="1018" y2="954"/>
+<line class="wire" x1="992" y1="966" x2="1008" y2="966"/>
+  <circle class="comp" cx="1234" cy="872" r="34"/>
+<text x="1225" y="825" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="1225" dy="0">+</tspan>
+</text>
+<text x="1227" y="938" font-size="28" font-weight="600" fill="#171717" text-anchor="start">
+<tspan x="1227" dy="0">-</tspan>
+</text>
+<text x="1176" y="881" font-size="28" font-weight="400" fill="#171717" text-anchor="start">
+<tspan x="1176" dy="0">U</tspan>
+</text>
+  <line class="wire" x1="1234" y1="838" x2="1234" y2="820"/>
+  <line class="wire" x1="1068" y1="820" x2="1234" y2="820"/>
+  <line class="wire" x1="1234" y1="906" x2="1234" y2="924"/>
+  <line class="bluewire" x1="1234" y1="790" x2="1128" y2="790" marker-end="url(#arrow)"/>
+  <text x="1210" y="780" font-size="28" font-weight="700" fill="#2563eb" text-anchor="start">
+<tspan x="1210" dy="0">I</tspan>
+</text>
+  <rect class="formula" x="850" y="786" width="286" height="46" rx="10"/>
+  <text x="876" y="818" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">
+<tspan x="876" dy="0">Ro = U/I = RC</tspan>
+</text>
+  <rect class="note" x="1148" y="608" width="336" height="136" rx="12"/>
+  <text x="1174" y="650" font-size="25" font-weight="700" fill="#9a3412" text-anchor="start">
+<tspan x="1174" dy="0">若考虑 rce：</tspan>
+</text>
+  <text x="1174" y="692" font-size="26" font-weight="700" fill="#111827" text-anchor="start">
+<tspan x="1174" dy="0">Ro ≈ RC ∥ rce</tspan>
+</text>
+  <text x="1174" y="730" font-size="23" font-weight="500" fill="#111827" text-anchor="start">
+<tspan x="1174" dy="0">普通 822 简化题常忽略 rce。</tspan>
+</text>
+
+  <rect x="54" y="994" width="1492" height="34" rx="8" fill="#eef2ff"/>
+  <text x="80" y="1018" font-size="23" font-weight="700" fill="#312e81" text-anchor="start">
+<tspan x="80" dy="0">做题顺序：画微变等效 → 明确输入/输出端口 → 算 Au → 算 Ri → 断开负载、置零独立源、保留受控源求 Ro</tspan>
+</text>
+</svg>
