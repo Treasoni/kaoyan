@@ -2,8 +2,8 @@
   "customOrder": {
     "/": {
       "children": [
+        "assets",
         "docs",
-        "self-learning",
         "workspace",
         "AGENTS.md",
         "CODEBUDDY.md",
@@ -43,6 +43,11 @@
     },
     "考研计划/每日计划": {
       "children": [
+        "考研计划/每日计划/2026-07-30-每日计划.md",
+        "考研计划/每日计划/2026-07-29-每日计划.md",
+        "考研计划/每日计划/2026-07-28-每日计划.md",
+        "考研计划/每日计划/2026-07-27-每日计划.md",
+        "考研计划/每日计划/2026-07-25-每日计划.md",
         "考研计划/每日计划/2026-07-20-每日计划.md",
         "考研计划/每日计划/2026-07-21-每日计划.md",
         "考研计划/每日计划/2026-07-23-每日计划.md",
@@ -103,6 +108,10 @@
     },
     "考研计划/每日计划/完成记录": {
       "children": [
+        "考研计划/每日计划/完成记录/2026-07-28-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-27-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-25-完成记录.md",
+        "考研计划/每日计划/完成记录/2026-07-24-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-19-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-20-完成记录.md",
         "考研计划/每日计划/完成记录/2026-07-21-完成记录.md",
@@ -386,6 +395,8 @@
     },
     "考研数学/0-基础知识/assets/常用平面图形": {
       "children": [
+        "考研数学/0-基础知识/assets/常用平面图形/circle-drawing-20260728.png",
+        "考研数学/0-基础知识/assets/常用平面图形/ellipse-hyperbola-drawing-20260728.png",
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162136500.png",
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162451321.png",
         "考研数学/0-基础知识/assets/常用平面图形/file-20260424162505792.png"
@@ -400,6 +411,7 @@
     },
     "考研数学/二重积分": {
       "children": [
+        "考研数学/二重积分/images",
         "考研数学/二重积分/错题题目.md",
         "考研数学/二重积分/sortspec.md",
         "考研数学/二重积分/错题本.md",
@@ -485,6 +497,9 @@
     },
     "考研数学/二重积分/2-计算/assets/极坐标系": {
       "children": [
+        "考研数学/二重积分/2-计算/assets/极坐标系/三大高频场景-3-直线外边界.png",
+        "考研数学/二重积分/2-计算/assets/极坐标系/三大高频场景-2-两曲线夹域.png",
+        "考研数学/二重积分/2-计算/assets/极坐标系/三大高频场景-1-极点内边界.png",
         "考研数学/二重积分/2-计算/assets/极坐标系/file-20260422103058571.png",
         "考研数学/二重积分/2-计算/assets/极坐标系/file-20260422103046044.png",
         "考研数学/二重积分/2-计算/assets/极坐标系/file-20260422103033101.png",
@@ -1083,12 +1098,14 @@
     },
     "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕x轴旋转": {
       "children": [
+        "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕x轴旋转/万能圆环法-绕y等于2示意图.png",
         "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕x轴旋转/file-20260411110746706.png"
       ],
       "sortOrder": "custom"
     },
     "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕y轴旋转": {
       "children": [
+        "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕y轴旋转/圆柱壳法-绕x等于3.png",
         "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕y轴旋转/file-20260411112921879.png",
         "考研数学/高数-一元函数积分学/一元函数积分学应用1/2-旋转体的体积/assets/绕y轴旋转/file-20260411112913007.png"
       ],
@@ -1225,6 +1242,7 @@
     },
     "考研数学/高数-一元函数积分学/assets/错题本": {
       "children": [
+        "考研数学/高数-一元函数积分学/assets/错题本/错题103-古鲁金定理绕斜线旋转.svg",
         "考研数学/高数-一元函数积分学/assets/错题本/file-20260416124129766.png",
         "考研数学/高数-一元函数积分学/assets/错题本/12bc1be2f378e0737f163e448597647d.jpg",
         "考研数学/高数-一元函数积分学/assets/错题本/file-20260410181239821.png"
@@ -2332,6 +2350,37 @@
     },
     "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路": {
       "children": [
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-固定偏置共射动态指标-Au-Ri-Ro.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-固定偏置共射动态指标-Au-Ri-Ro.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-共射动态指标-输出电阻方法-2026-07-28.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-共射动态指标-输出电阻推导-2026-07-28.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-共射动态指标-戴维南定义-2026-07-28.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-共射动态指标-输入电阻-2026-07-28.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-共射动态指标-电压放大倍数-2026-07-28.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-BJT-h参数小信号等效模型-从交流通路到模型.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-BJT-h参数小信号等效模型-从交流通路到模型.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-BJT-h参数等效-简化模型-2026-07-27.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-BJT-h参数等效-输入线性化-2026-07-27.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-图解法分析共射电压放大倍数-波形读增益.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-图解法分析共射电压放大倍数-波形读增益.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-图解法分析电压放大倍数-输入动态-2026-07-27.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-图解法分析电压放大倍数-总览-2026-07-27.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-图解法分析电压放大倍数-输出波形与增益-2026-07-27.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-图解法分析共射电压放大倍数.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-图解法分析共射电压放大倍数.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-图解法分析电压放大倍数-动态变化-2026-07-25.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-图解法分析电压放大倍数-静态基础-2026-07-25.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-固定偏置共射图解法-Q点.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-固定偏置共射图解法-Q点.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-固定偏置图解法-输出侧-2026-07-25.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-固定偏置图解法-输入侧-2026-07-25.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-固定偏置图解法-静态源置零-2026-07-25.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-直流交流通路与耦合方式.png",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/图-直流交流通路与耦合方式.svg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-阻容耦合共射直流交流-2026-07-24.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-直接耦合共射直流交流-2026-07-24.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-固定偏置共射直流交流-2026-07-24.jpg",
+        "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-直流交流通路元件处理-2026-07-24.jpg",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/放大电路信号与能量关系-2026-07-21.svg",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-放大的根源-2026-07-21.jpg",
         "考研专业课/模拟电子技术/附件/03-BJT与基本放大电路/手写原图-基本共射放大电路-1-2026-07-21.jpg",
@@ -2614,6 +2663,7 @@
     },
     "考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路": {
       "children": [
+        "考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路/好题笔记.md",
         "考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路/01-放大思想与工作区.md.bak_restructure",
         "考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路/02-直流通路与交流通路.md.bak_restructure",
         "考研专业课/模拟电子技术/详细笔记/03-BJT与基本放大电路/03-基本共射放大电路.md.bak_restructure",
@@ -5951,66 +6001,12 @@
       ],
       "sortOrder": "custom"
     },
-    "self-learning": {
-      "children": [
-        "self-learning/hooks",
-        "self-learning/learnings",
-        "self-learning/skills",
-        "self-learning/AGENTS.snippet.md",
-        "self-learning/install.py",
-        "self-learning/README.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "self-learning/hooks": {
-      "children": [
-        "self-learning/hooks/claude-settings.json.template",
-        "self-learning/hooks/codex-hooks.json.template",
-        "self-learning/hooks/read_learnings.py",
-        "self-learning/hooks/read-learnings.sh"
-      ],
-      "sortOrder": "custom"
-    },
-    "self-learning/learnings": {
-      "children": [
-        "self-learning/learnings/ERRORS.md",
-        "self-learning/learnings/LEARNINGS.md",
-        "self-learning/learnings/RULES.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "self-learning/skills": {
-      "children": [
-        "self-learning/skills/digest",
-        "self-learning/skills/maintain-learnings"
-      ],
-      "sortOrder": "custom"
-    },
     "self-learning/skills/digest": {
-      "children": [
-        "self-learning/skills/digest/SKILL.md"
-      ],
+      "children": [],
       "sortOrder": "custom"
     },
     "self-learning/skills/maintain-learnings": {
-      "children": [
-        "self-learning/skills/maintain-learnings/agents",
-        "self-learning/skills/maintain-learnings/scripts",
-        "self-learning/skills/maintain-learnings/SKILL.md"
-      ],
-      "sortOrder": "custom"
-    },
-    "self-learning/skills/maintain-learnings/agents": {
-      "children": [
-        "self-learning/skills/maintain-learnings/agents/openai.yaml"
-      ],
-      "sortOrder": "custom"
-    },
-    "self-learning/skills/maintain-learnings/scripts": {
-      "children": [
-        "self-learning/skills/maintain-learnings/scripts/audit_learnings.py",
-        "self-learning/skills/maintain-learnings/scripts/sync_platform_skills.py"
-      ],
+      "children": [],
       "sortOrder": "custom"
     },
     "workspace": {
@@ -6021,6 +6017,112 @@
     },
     "workspace/workflow-runs": {
       "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/docs/superpowers": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/scripts/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/manifest-platform": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/multi-agent-sync": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/security-secret-audit": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/prompt-cache-optimizer": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/workflow-todo-state": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/sync-skill-registry": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/cache": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/env": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/self-learning": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/tests/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/workspace/workflow-runs": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/manifest-platform/assets/platform": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/multi-agent-sync/scripts/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/skills/sync-skill-registry/scripts/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/env/claude/scripts": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/env/codex/scripts": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/self-learning/hooks/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/self-learning/skills/digest": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/self-learning/skills/maintain-learnings": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "template_ai/templates/self-learning/skills/maintain-learnings/scripts/__pycache__": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "assets": {
+      "children": [],
+      "sortOrder": "custom"
+    },
+    "考研数学/二重积分/images": {
+      "children": [
+        "考研数学/二重积分/images/例14.15-变量代换区域映射.svg",
+        "考研数学/二重积分/images/例14.10-第一象限变上限圆环.png",
+        "考研数学/二重积分/images/例14.10-原题第一象限圆环.png",
+        "考研数学/二重积分/images/例14.8-圆域轮换对称.png",
+        "考研数学/二重积分/images/例14.6-换序积分区域.png",
+        "考研数学/二重积分/images/例14.6-原题区域图.png",
+        "考研数学/二重积分/images/例14.3-D2-补辅助线.png",
+        "考研数学/二重积分/images/例14.3-D3-补辅助线.png",
+        "考研数学/二重积分/images/例14.3-D1-正方形对称.png"
+      ],
       "sortOrder": "custom"
     }
   },
