@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+    </marker>
+    <style>
+      .axis{stroke:#0f172a;stroke-width:2.2;marker-end:url(#arrow)}
+      .grid{stroke:#e2e8f0;stroke-width:1}
+      .tri{fill:#dbeafe;stroke:#2563eb;stroke-width:3;fill-opacity:.65}
+      .edge{stroke:#1d4ed8;stroke-width:3}
+      .label{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Arial,sans-serif;font-size:20px;fill:#0f172a}
+      .small{font-size:17px;fill:#334155}
+      .formula{font-size:19px;fill:#7c2d12}
+      .title{font-size:24px;font-weight:700;fill:#0f172a}
+      .badge{fill:#fff7ed;stroke:#fb923c;stroke-width:1.5}
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="95" y="38" class="title">xy 平面：D = {x ≥ 0, y ≥ 0, x + y ≤ 1}</text>
+  <text x="610" y="38" class="title">uv 平面：D′ = {0 ≤ v ≤ u ≤ 1}</text>
+
+  <!-- left axes -->
+  <line x1="80" y1="345" x2="420" y2="345" class="axis"/>
+  <line x1="80" y1="345" x2="80" y2="75" class="axis"/>
+  <text x="428" y="351" class="label">x</text>
+  <text x="72" y="66" class="label">y</text>
+  <path d="M80 345 L360 345 L80 90 Z" class="tri"/>
+  <text x="62" y="369" class="small">O</text>
+  <text x="353" y="371" class="small">1</text>
+  <text x="50" y="98" class="small">1</text>
+  <text x="220" y="196" class="formula">x + y = 1</text>
+  <text x="205" y="338" class="small">y = 0</text>
+  <text x="91" y="225" class="small">x = 0</text>
+
+  <!-- mapping arrow -->
+  <line x1="450" y1="215" x2="540" y2="215" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="443" y="238" width="112" height="56" rx="10" class="badge"/>
+  <text x="456" y="261" class="small">u = x + y</text>
+  <text x="456" y="284" class="small">v = y</text>
+
+  <!-- right axes -->
+  <line x1="610" y1="345" x2="910" y2="345" class="axis"/>
+  <line x1="610" y1="345" x2="610" y2="75" class="axis"/>
+  <text x="918" y="351" class="label">u</text>
+  <text x="602" y="66" class="label">v</text>
+  <path d="M610 345 L865 345 L865 90 Z" class="tri"/>
+  <line x1="610" y1="345" x2="865" y2="90" class="edge"/>
+  <text x="593" y="369" class="small">O</text>
+  <text x="858" y="371" class="small">1</text>
+  <text x="875" y="98" class="small">1</text>
+  <text x="708" y="210" class="formula">v = u</text>
+  <text x="875" y="221" class="formula">u = 1</text>
+  <text x="728" y="338" class="small">v = 0</text>
+
+  <text x="210" y="405" class="small">三条边映射：y=0 → v=0；x=0 → v=u；x+y=1 → u=1</text>
+</svg>
