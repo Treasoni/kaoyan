@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820">
+  <defs>
+    <style>
+      .wire{fill:none;stroke:#1f2937;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .res{fill:none;stroke:#1f2937;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .thin{fill:none;stroke:#334155;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .blue{fill:none;stroke:#2563eb;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .gray{fill:none;stroke:#94a3b8;stroke-width:3;stroke-dasharray:8 7;stroke-linecap:round;stroke-linejoin:round}
+      .node{fill:#1f2937}
+      .title{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:31px;font-weight:700;fill:#111827}
+      .subtitle{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:23px;font-weight:700;fill:#1f2937}
+      .label{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:23px;fill:#111827}
+      .small{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:19px;fill:#334155}
+      .blueText{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:20px;fill:#2563eb;font-weight:700}
+      .grayText{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:19px;fill:#64748b}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1f2937"/></marker>
+  </defs>
+
+  <rect x="28" y="24" width="740" height="760" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="832" y="24" width="740" height="760" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="65" y="78" class="title">(a) 未旁路 R_E：交流负反馈仍在</text>
+  <text x="870" y="78" class="title">(b) C_E 旁路 R_E：中频高增益</text>
+  <text x="65" y="115" class="small">中频：耦合电容短路，V_CC 为交流地，忽略 r_ce</text>
+  <text x="870" y="115" class="small">中频：C_E 近似短路，使发射极交流接地</text>
+
+  <!-- left: input source and bias resistors -->
+  <path class="wire" d="M105 330 L205 330 L205 585 M105 585 L205 585"/>
+  <circle cx="105" cy="458" r="36" class="thin"/>
+  <path class="thin" d="M105 422 L105 400 M105 494 L105 516 M93 444 L117 444 M105 432 L105 456"/>
+  <text x="59" y="407" class="label">u_i</text>
+  <path class="wire" d="M205 330 L355 330 M205 585 L680 585"/>
+  <path class="res" d="M245 330 L245 365 L232 377 L258 391 L232 405 L258 419 L245 431 L245 585"/>
+  <path class="res" d="M292 330 L292 365 L279 377 L305 391 L279 405 L305 419 L292 431 L292 585"/>
+  <text x="200" y="495" class="label">R_B1</text>
+  <text x="287" y="495" class="label">R_B2</text>
+  <circle cx="355" cy="330" r="6" class="node"/>
+  <text x="338" y="305" class="small">b</text>
+  <!-- rbe and emitter resistor -->
+  <path class="wire" d="M355 330 L390 330 M390 330 L390 388"/>
+  <path class="res" d="M390 388 L376 401 L404 416 L376 431 L404 446 L390 459"/>
+  <path class="wire" d="M390 459 L390 486 L470 486"/>
+  <text x="332" y="430" class="label">r_be</text>
+  <text x="401" y="510" class="small">e</text>
+  <path class="res" d="M430 486 L430 520 L416 533 L444 547 L416 561 L444 575 L430 585"/>
+  <text x="445" y="555" class="label">R_E</text>
+  <!-- controlled source -->
+  <path class="wire" d="M470 330 L470 382 M470 442 L470 486"/>
+  <circle cx="470" cy="412" r="30" class="thin"/>
+  <path class="thin" d="M470 393 L470 429" marker-end="url(#arrow)"/>
+  <text x="488" y="419" class="label">βi_b</text>
+  <!-- collector load -->
+  <path class="wire" d="M470 330 L680 330"/>
+  <path class="res" d="M535 330 L535 365 L521 378 L549 392 L521 406 L549 420 L535 433 L535 585"/>
+  <text x="553" y="455" class="label">R_C</text>
+  <path class="res" d="M625 330 L625 365 L611 378 L639 392 L611 406 L639 420 L625 433 L625 585"/>
+  <text x="642" y="455" class="label">R_L</text>
+  <circle cx="680" cy="330" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <circle cx="680" cy="585" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <text x="693" y="338" class="label">+</text>
+  <text x="693" y="592" class="label">−</text>
+  <text x="703" y="465" class="label">u_o</text>
+  <text x="360" y="653" class="subtitle">u_i=i_b[r_be+(1+β)R_E]</text>
+  <text x="360" y="694" class="subtitle">u_o=−βi_b(R_C∥R_L)</text>
+  <text x="65" y="745" class="label">R_i=R_B1∥R_B2∥[r_be+(1+β)R_E]</text>
+
+  <!-- right: input source and bias resistors -->
+  <path class="wire" d="M910 330 L1010 330 L1010 585 M910 585 L1010 585"/>
+  <circle cx="910" cy="458" r="36" class="thin"/>
+  <path class="thin" d="M910 422 L910 400 M910 494 L910 516 M898 444 L922 444 M910 432 L910 456"/>
+  <text x="864" y="407" class="label">u_i</text>
+  <path class="wire" d="M1010 330 L1160 330 M1010 585 L1485 585"/>
+  <path class="res" d="M1050 330 L1050 365 L1037 377 L1063 391 L1037 405 L1063 419 L1050 431 L1050 585"/>
+  <path class="res" d="M1097 330 L1097 365 L1084 377 L1110 391 L1084 405 L1110 419 L1097 431 L1097 585"/>
+  <text x="1005" y="495" class="label">R_B1</text>
+  <text x="1092" y="495" class="label">R_B2</text>
+  <circle cx="1160" cy="330" r="6" class="node"/>
+  <text x="1143" y="305" class="small">b</text>
+  <path class="wire" d="M1160 330 L1195 330 M1195 330 L1195 388"/>
+  <path class="res" d="M1195 388 L1181 401 L1209 416 L1181 431 L1209 446 L1195 459"/>
+  <path class="wire" d="M1195 459 L1195 486 L1275 486"/>
+  <text x="1137" y="430" class="label">r_be</text>
+  <text x="1206" y="510" class="small">e</text>
+  <!-- bypass branch and gray Re -->
+  <path class="gray" d="M1235 486 L1235 520 L1221 533 L1249 547 L1221 561 L1249 575 L1235 585"/>
+  <text x="1155" y="565" class="grayText">R_E（被旁路）</text>
+  <path class="blue" d="M1280 486 L1280 524 M1264 524 L1296 524 M1264 540 L1296 540 M1280 540 L1280 585"/>
+  <text x="1308" y="505" class="blueText">C_E≈短路</text>
+  <!-- controlled source -->
+  <path class="wire" d="M1275 330 L1275 382 M1275 442 L1275 486"/>
+  <circle cx="1275" cy="412" r="30" class="thin"/>
+  <path class="thin" d="M1275 393 L1275 429" marker-end="url(#arrow)"/>
+  <text x="1293" y="419" class="label">βi_b</text>
+  <path class="wire" d="M1275 330 L1485 330"/>
+  <path class="res" d="M1340 330 L1340 365 L1326 378 L1354 392 L1326 406 L1354 420 L1340 433 L1340 585"/>
+  <text x="1358" y="455" class="label">R_C</text>
+  <path class="res" d="M1430 330 L1430 365 L1416 378 L1444 392 L1416 406 L1444 420 L1430 433 L1430 585"/>
+  <text x="1447" y="455" class="label">R_L</text>
+  <circle cx="1485" cy="330" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <circle cx="1485" cy="585" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <text x="1498" y="338" class="label">+</text>
+  <text x="1498" y="592" class="label">−</text>
+  <text x="1508" y="465" class="label">u_o</text>
+  <text x="1170" y="653" class="subtitle">u_i=i_b r_be</text>
+  <text x="1170" y="694" class="subtitle">u_o=−βi_b(R_C∥R_L)</text>
+  <text x="870" y="745" class="label">R_i=R_B1∥R_B2∥r_be，R_o≈R_C</text>
+  <text x="73" y="793" class="small">两图均在求 R_o 时：负载开路、独立输入源置零；若忽略 r_ce，则 R_o≈R_C。</text>
+</svg>
