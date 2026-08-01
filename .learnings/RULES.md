@@ -14,6 +14,7 @@ Compressed patterns from repeated learnings and errors.
 - (4x) 写入含大量 LaTeX/反引号的 Markdown 时，优先使用外部脚本文件、占位符替换、`chr(92)` 拼接或 quoted heredoc（如 `<<'EOF'`）；不要只依赖会经过 JSON/exec 层的 Python raw string；写入后回读目标段落检查反斜杠和控制字符
 - (1x) 写入或修改笔记前先快速浏览 `.learnings/RULES.md`，确认当前格式规范与高频错误
 - (1x) 生成 wikilink 前先用 Glob 确认目标文件存在
+- (1x) 批量修复悬空 wikilink 用脚本闭环：先写审计脚本统计（basename/path 后缀匹配 Obsidian 解析规则），再按「索引行题号 / 正文描述语义」两类上下文映射修复，用 before==after 计数校验（不满足不写入）+ 写前备份 + 写后复审计到 0
 - (1x) 错题归档按知识模块判断，不按表象判断
 - (1x) sortspec 中文件夹只用文件夹名称，不展开子文件
 - (1x) **写入笔记前验证数学内容正确性** — 公式、定理、推导必须先自行核验（对教材/推导/边界检查）再写入，不能“写完再看”
@@ -70,6 +71,8 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 自测文件覆盖率遗漏（Pattern-Key: quiz.coverage_audit）— 更新自测前必须对比源文件章节列表
 - (1x) 图片纠正题目后的完整重算（Pattern-Key: image_problem.recompute）— 按图片重新识别题目、重算关键步骤并回读渲染结果
 - (1x) 错题本与练习入口题干同步（Pattern-Key: mistake.index_sync）— 修改错题本后检查 `错题题目.md`
+- (1x) 错题去重遗漏（Pattern-Key: mistake.dedup_link）— 记录错题前先检索同目录已有好题是否覆盖同一题型/知识；本质相同仅记法不同 → 折叠关联不新增，本质不同 → 新增编号
+- (1x) 目录重构后历史 wikilink 悬空（Pattern-Key: obsidian.stale_wikilink）— 笔记文件夹改名/重构为编号式后，检查错题本/索引类文件的历史 wikilink；批量修复用 before==after 校验 + 备份 + 复审计
 - (1x) 数学解析质疑后的直接验算（Pattern-Key: math.direct_substitution_check）— 优先验算目标等式，不只口头确认
 - (1x) 专业课公式符号说明遗漏（Pattern-Key: electronics.formula_symbol_explain）— 首次出现核心公式时检查变量、方向、单位、近似用法是否齐全
 - (1x) 速查笔记过度搬运详解（Pattern-Key: notes.quick_review_extract）— 必背/速查文件避免塞入历史背景、完整推导和完整例题
