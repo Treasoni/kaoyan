@@ -33,7 +33,7 @@
   <path class="res" d="M245 330 L245 365 L232 377 L258 391 L232 405 L258 419 L245 431 L245 585"/>
   <path class="res" d="M292 330 L292 365 L279 377 L305 391 L279 405 L305 419 L292 431 L292 585"/>
   <text x="200" y="495" class="label">R_B1</text>
-  <text x="287" y="495" class="label">R_B2</text>
+  <text x="315" y="495" class="label">R_B2</text>
   <circle cx="355" cy="330" r="6" class="node"/>
   <text x="338" y="305" class="small">b</text>
   <!-- rbe and emitter resistor -->
@@ -73,7 +73,7 @@
   <path class="res" d="M1050 330 L1050 365 L1037 377 L1063 391 L1037 405 L1063 419 L1050 431 L1050 585"/>
   <path class="res" d="M1097 330 L1097 365 L1084 377 L1110 391 L1084 405 L1110 419 L1097 431 L1097 585"/>
   <text x="1005" y="495" class="label">R_B1</text>
-  <text x="1092" y="495" class="label">R_B2</text>
+  <text x="1120" y="495" class="label">R_B2</text>
   <circle cx="1160" cy="330" r="6" class="node"/>
   <text x="1143" y="305" class="small">b</text>
   <path class="wire" d="M1160 330 L1195 330 M1195 330 L1195 388"/>
