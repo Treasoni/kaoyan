@@ -7,22 +7,21 @@
       },
       {
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": "conv-1785654857305-o8ouujohu"
+        "conversationId": "conv-1785670185243-2w5jmasyw"
       },
       {
         "tabId": "tab-1782004129110-rax9f12",
-        "conversationId": "conv-1785591291156-t4yzuba9i"
+        "conversationId": "conv-1785670106442-as7c96x7b"
       },
       {
-        "draftModel": "gpt-5.5",
         "tabId": "tab-1785634945500-eape14h",
-        "conversationId": null
+        "conversationId": "conv-1785670033818-2y4ntfgdn"
       },
       {
         "tabId": "tab-1785634945688-e0bxaj7",
-        "conversationId": "conv-1785634884904-lstv0mnv7"
+        "conversationId": "conv-1785670059128-lk9du2i9z"
       }
     ],
-    "activeTabId": "tab-1779448736943-hq3dr8b"
+    "activeTabId": "tab-1785634945688-e0bxaj7"
   }
 }
