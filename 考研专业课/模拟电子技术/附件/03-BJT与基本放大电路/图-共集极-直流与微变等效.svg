@@ -82,6 +82,6 @@
   <text x="1465" y="498" class="label">+</text><text x="1465" y="592" class="label">−</text><text x="1480" y="551" class="label">u_o</text>
   <text x="872" y="670" class="subtitle">A_u= (1+β)R_E / [R_b+r_be+(1+β)R_E]</text>
   <text x="872" y="712" class="subtitle">R_i=R_b+r_be+(1+β)R_E</text>
-  <text x="872" y="754" class="subtitle">R_o=R_E∥(R_b+r_be)/(1+β)</text>
+  <text x="872" y="754" class="subtitle">R_o=R_E∥[(R_b+r_be)/(1+β)]</text>
   <text x="872" y="790" class="small">此图的 R_i 端口位于 R_b 左端；若端口在基极，R_b 不应串入。</text>
 </svg>
