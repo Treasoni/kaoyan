@@ -43,6 +43,7 @@ Compressed patterns from repeated learnings and errors.
 - (3x) 补充或扩写学习笔记前，先检查内容在整章学习路线中的位置：明确它属于前置概念、核心定义、推导、题型方法、例题错题还是复盘总结；写入后回读标题树，确保顺序符合“为什么学 → 学什么 → 怎么判断/计算 → 易错点 → 最低掌握标准”。
 - (1x) Obsidian 复习型表格超过 4 列，或单元格同时混合中文长句、公式和英文缩写时，优先改成短表、列表或分组表，确保阅读视图和窄窗可读。
 - (1x) 专业课标准电路图/微变等效图生成前，先查教材或高校课件的标准画法，再写节点网表卡（输入端、输出端、电源与地、关键节点、受控源控制量、每个元件两端）；导出后按拓扑逐项核对，确认 BJT 的 b/c/e 节点不误连、输出端口不短接、受控源和测试源处理正确。
+- (1x) 审计多 agent profile 的 hook/启动注入时，先用 grep -rn 枚举全部 profile 目录并比对 SessionStart hook 列表，同一内容只保留一个注入入口
 
 ## Don't
 
@@ -92,3 +93,4 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 数学解析缺少人话桥接（Pattern-Key: math.explain_human_bridge）— 线代相似/特征值/基变换/坐标表示题，若只写 $AP=PB$、表示矩阵或行列式计算，用户可能看不懂“为什么这么做”；写前补“这一步在干什么”。
 - (3x) 笔记学习路线不顺（Pattern-Key: notes.learning_route_coherence）— 补充内容不能只局部正确；若标题层级会误导学习顺序，必须先重排章节结构，再结束任务。
 - (1x) 专业课电路图拓扑误连（Pattern-Key: electronics.diagram_topology_verify）— 标准图、微变等效图、输出电阻测试图进入笔记前，先查标准参考并写节点网表，再检查基极/集电极/发射极节点、输出端口、受控源控制量、负载/测试源连接；用户质疑图时优先重核拓扑。
+- (1x) 多 agent SessionStart hook 重复注入（Pattern-Key: ops.hook_duplication）— 审计/修改 agent profile 的 hook 或启动注入时，枚举全部 profile（.claude/.codex/.codebuddy/.agent 等）比对 SessionStart 注册的 hook，同一内容只保留一个注入入口；改动后校验 JSON 并回读确认一致

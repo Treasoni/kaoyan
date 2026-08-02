@@ -145,3 +145,6 @@ Sessionx.vim
 
 # Git worktree directories (local implementation sandboxes)
 .worktrees/
+
+# LLM usage events (local, derived from Claude Code transcripts)
+.llm/prompt-cache/events/
