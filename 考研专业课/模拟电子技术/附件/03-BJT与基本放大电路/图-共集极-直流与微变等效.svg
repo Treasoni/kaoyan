@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840">
+  <defs>
+    <style>
+      .wire{fill:none;stroke:#1f2937;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .res{fill:none;stroke:#1f2937;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .thin{fill:none;stroke:#334155;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .red{fill:none;stroke:#dc2626;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .blue{fill:none;stroke:#2563eb;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+      .node{fill:#1f2937}
+      .title{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:31px;font-weight:700;fill:#111827}
+      .subtitle{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:23px;font-weight:700;fill:#1f2937}
+      .label{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:23px;fill:#111827}
+      .small{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:19px;fill:#334155}
+      .redText{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:20px;fill:#dc2626;font-weight:700}
+      .blueText{font-family:Arial,\"Noto Sans CJK SC\",sans-serif;font-size:20px;fill:#2563eb;font-weight:700}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1f2937"/></marker>
+  </defs>
+
+  <rect x="28" y="24" width="740" height="780" rx="18" fill="#fffaf5" stroke="#fed7aa" stroke-width="3"/>
+  <rect x="832" y="24" width="740" height="780" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="66" y="80" class="title">(a) 直流通路：先确定 Q 点</text>
+  <text x="870" y="80" class="title">(b) 中频微变等效：求 A_u、R_i、R_o</text>
+  <text x="66" y="116" class="redText">耦合电容开路；保留 V_BB、V_CC、R_b、R_E</text>
+  <text x="870" y="116" class="blueText">耦合电容短路；V_CC 为交流地；忽略 r_ce</text>
+
+  <!-- DC panel: supply and BJT -->
+  <path class="wire" d="M430 180 L430 250 M430 180 L520 180"/>
+  <path class="thin" d="M520 154 L520 206 M534 166 L534 194"/>
+  <text x="545" y="189" class="label">V_CC</text>
+  <path class="wire" d="M430 250 L430 300"/>
+  <path class="wire" d="M360 315 L360 400"/>
+  <path class="wire" d="M270 355 L360 355"/>
+  <path class="wire" d="M395 315 L430 300 M395 400 L460 465"/>
+  <path class="wire" d="M460 465 L460 500"/>
+  <path class="thin" d="M425 442 L445 462" marker-end="url(#arrow)"/>
+  <text x="371" y="291" class="small">c</text>
+  <text x="335" y="342" class="small">b</text>
+  <text x="470" y="453" class="small">e</text>
+  <path class="res" d="M160 355 L195 355 L207 341 L221 369 L235 341 L249 369 L261 355 L270 355"/>
+  <text x="202" y="325" class="label">R_b</text>
+  <path class="wire" d="M160 355 L160 565 M160 565 L460 565"/>
+  <path class="thin" d="M135 432 L135 492 M125 447 L145 447 M125 477 L145 477"/>
+  <text x="84" y="468" class="label">V_BB</text>
+  <path class="res" d="M460 500 L460 522 L446 535 L474 549 L446 563 L474 577 L460 590"/>
+  <path class="wire" d="M460 590 L460 640"/>
+  <text x="480" y="564" class="label">R_E</text>
+  <path class="wire" d="M430 640 L490 640 M440 650 L480 650 M450 660 L470 660"/>
+  <path class="wire" d="M460 500 L625 500"/>
+  <circle cx="625" cy="500" r="7" fill="#fffaf5" stroke="#1f2937" stroke-width="3"/>
+  <circle cx="625" cy="640" r="7" fill="#fffaf5" stroke="#1f2937" stroke-width="3"/>
+  <text x="640" y="508" class="label">+</text><text x="640" y="647" class="label">−</text>
+  <text x="656" y="582" class="label">u_o</text>
+  <text x="82" y="722" class="subtitle">V_BB=I_BQ R_b+U_BEQ+I_EQ R_E</text>
+  <text x="82" y="760" class="subtitle">V_CEQ=V_CC−I_EQ R_E</text>
+
+  <!-- AC panel: source -->
+  <circle cx="950" cy="435" r="34" class="thin"/>
+  <path class="thin" d="M950 401 L950 378 M950 469 L950 492 M938 420 L962 420 M950 408 L950 432"/>
+  <text x="905" y="385" class="label">u_i</text>
+  <path class="wire" d="M950 401 L950 330 L1010 330 M950 469 L950 585 L1010 585"/>
+  <path class="res" d="M1010 330 L1045 330 L1057 316 L1071 344 L1085 316 L1099 344 L1111 330 L1140 330"/>
+  <text x="1050" y="300" class="label">R_b</text>
+  <circle cx="1140" cy="330" r="6" class="node"/><text x="1123" y="306" class="small">b</text>
+  <!-- rbe -->
+  <path class="wire" d="M1140 330 L1180 330 L1180 388"/>
+  <path class="res" d="M1180 388 L1166 401 L1194 416 L1166 431 L1194 446 L1180 459"/>
+  <path class="wire" d="M1180 459 L1180 490 L1270 490"/>
+  <text x="1120" y="430" class="label">r_be</text><text x="1190" y="515" class="small">e</text>
+  <!-- collector ground to controlled source -->
+  <path class="wire" d="M1270 225 L1270 365 M1240 225 L1300 225 M1250 235 L1290 235 M1260 245 L1280 245"/>
+  <path class="wire" d="M1270 425 L1270 490"/>
+  <circle cx="1270" cy="395" r="30" class="thin"/>
+  <path class="thin" d="M1270 376 L1270 412" marker-end="url(#arrow)"/>
+  <text x="1288" y="402" class="label">βi_b</text>
+  <!-- Re and output port -->
+  <path class="res" d="M1220 490 L1220 522 L1206 535 L1234 549 L1206 563 L1234 577 L1220 585"/>
+  <text x="1238" y="560" class="label">R_E</text>
+  <path class="wire" d="M1010 585 L1450 585 M1270 490 L1450 490"/>
+  <circle cx="1450" cy="490" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <circle cx="1450" cy="585" r="7" fill="#f8fafc" stroke="#1f2937" stroke-width="3"/>
+  <text x="1465" y="498" class="label">+</text><text x="1465" y="592" class="label">−</text><text x="1480" y="551" class="label">u_o</text>
+  <text x="872" y="670" class="subtitle">A_u= (1+β)R_E / [R_b+r_be+(1+β)R_E]</text>
+  <text x="872" y="712" class="subtitle">R_i=R_b+r_be+(1+β)R_E</text>
+  <text x="872" y="754" class="subtitle">R_o=R_E∥(R_b+r_be)/(1+β)</text>
+  <text x="872" y="790" class="small">此图的 R_i 端口位于 R_b 左端；若端口在基极，R_b 不应串入。</text>
+</svg>
