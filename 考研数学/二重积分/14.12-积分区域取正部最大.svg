@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="420" viewBox="0 0 560 420">
+  <rect width="100%" height="100%" fill="white"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <line x1="70" y1="210" x2="500" y2="210" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="360" x2="280" y2="45" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="508" y="216" font-size="18" fill="#333">x</text>
+  <text x="270" y="35" font-size="18" fill="#333">y</text>
+  <text x="258" y="232" font-size="16" fill="#333">O</text>
+
+  <!-- ellipse 2x^2+y^2<=1, semi axes a=1/sqrt2 horizontal, b=1 vertical, scaled: ax=115, ay=150 -->
+  <ellipse cx="280" cy="210" rx="115" ry="150" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3" opacity="0.85"/>
+  <text x="330" y="95" font-size="18" fill="#1d4ed8">2x²+y²=1</text>
+  <text x="215" y="205" font-size="18" fill="#1d4ed8">D: f≥0</text>
+  <text x="365" y="193" font-size="15" fill="#333">1/√2</text>
+  <text x="288" y="63" font-size="15" fill="#333">1</text>
+  <text x="395" y="238" font-size="16" fill="#333">外部 f&lt;0，不取</text>
+  <text x="125" y="382" font-size="16" fill="#555">f(x,y)=1-2x²-y²；最大积分区域 = 正部区域</text>
+</svg>
