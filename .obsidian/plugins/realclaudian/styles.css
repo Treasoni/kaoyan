@@ -1998,8 +1998,6 @@ body.theme-light .claudian-message-content pre {
   flex-shrink: 0;
   row-gap: 12px;
   padding: 4px 6px 6px 6px;
-  flex-wrap: wrap;
-  row-gap: 12px;
 }
 
 /* Hide secondary text when the full toolbar would wrap. */
@@ -2664,6 +2662,10 @@ body.theme-light .claudian-message-content pre {
 
 .claudian-service-tier-button.active {
   color: var(--claudian-brand);
+}
+
+.claudian-service-tier-button.active .claudian-service-tier-icon svg {
+  stroke-width: 2.5;
 }
 
 
@@ -6093,14 +6095,23 @@ code .claudian-file-link:hover {
 /* ============================================
    settings/agent-skills.css
    ============================================ */
+.claudian-agent-skills-header {
+  gap: 12px;
+}
+
 .claudian-agent-skills-help {
-  padding: 0 12px;
+  flex: 1;
+  min-width: 0;
   color: var(--text-muted);
   font-size: var(--font-ui-small);
 }
 
 .claudian-agent-skills-help p {
-  margin: 0 0 8px;
+  margin: 0;
+}
+
+.claudian-agent-skills-header .claudian-sp-header-actions {
+  flex-shrink: 0;
 }
 
 .claudian-agent-skill-instructions {
@@ -6157,6 +6168,12 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Provider model picker */
 
+.claudian-settings .claudian-provider-model-picker-setting {
+  padding: 0 12px;
+  background: transparent;
+  border-radius: 0;
+}
+
 .claudian-provider-model-picker {
   display: flex;
   flex-direction: column;
@@ -6168,6 +6185,7 @@ code .claudian-file-link:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
+  padding: 0 12px;
   font-size: var(--font-ui-small);
   color: var(--text-muted);
 }
@@ -6306,9 +6324,21 @@ code .claudian-file-link:hover {
 
 .claudian-provider-model-picker-selected-controls {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 6px;
   flex-shrink: 0;
+}
+
+.claudian-provider-model-picker-selected-alias-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.claudian-provider-model-picker-selected-alias-label {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: 1;
 }
 
 .claudian-provider-model-picker-selected-alias {

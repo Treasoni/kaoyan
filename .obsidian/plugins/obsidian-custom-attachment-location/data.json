@@ -12,6 +12,7 @@
   "emptyFolderBehavior": "DeleteWithEmptyParents",
   "excludePaths": [],
   "excludePathsFromAttachmentCollecting": [],
+  "excludePathsFromMultipleNotesCheck": [],
   "generatedAttachmentFileName": "file-${date:{momentJsFormat:'YYYYMMDDHHmmssSSS'}}",
   "includePaths": [],
   "jpegQuality": 0.8,
@@ -24,11 +25,13 @@
   "shouldRenameAttachmentFiles": true,
   "shouldRenameAttachmentFolder": true,
   "shouldRenameCollectedAttachments": false,
+  "shouldSetLinkDisplayTextToAttachmentFileName": false,
+  "shouldSkipCollectingAttachmentsReferencedByRawPath": false,
   "specialCharacters": "#^[]|*\\<>:?/",
   "specialCharactersReplacement": "-",
   "timeoutInSeconds": 5,
   "treatAsAttachmentExtensions": [
     ".excalidraw.md"
   ],
-  "version": "11.1.1"
+  "version": "11.5.0"
 }
