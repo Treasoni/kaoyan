@@ -1,0 +1,162 @@
+{
+  "version": "5",
+  "description": "考研复习项目高频请求回归样本。2026-08-03 v5：提取器分类修复——① 解析 Obsidian <command-name> 包装与 ❯ 终端前缀；② 补 /kaoyan-info；③ 此前的 kaoyan_english 232 事件实为 /kaoyan-plan 完成报告的误分类，已纠正回 kaoyan_plan。基线统一按 deepseek-v4-flash 事件均值计算（n 为事件数，会话数见各 case 注释）。任何模板/模型/上下文加载策略改动后，用 analyze-usage-events.py 重跑同一批样本并对比：质量不降且输入/缓存 token 变少才算优化。",
+  "cases": [
+    {
+      "id": "kaoyan_plan_daily",
+      "enabled": true,
+      "request_type": "kaoyan_plan",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://kaoyan-plan/今天怎么学（极简模式）",
+      "parameters": {
+        "mode": "minimal",
+        "subject": "daily_schedule",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "输出必须含 4 要素：今日总策略、时间表（时间块+科目+产出+休息）、兜底方案、检查点",
+        "不创建文件，除非用户要求或进度更新确有必要",
+        "尊重保护区块：不覆盖 ## 个人笔记 / > [!personal]"
+      ],
+      "baseline": {
+        "input_tokens": 5594,
+        "cache_read_tokens": 84845,
+        "output_tokens": 0,
+        "latency_ms": 0,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "n=1712 events / 18 sessions avg; deepseek-v4-flash; includes daily completion reports (previously misclassified as kaoyan_english); refreshed 2026-08-03"
+      }
+    },
+    {
+      "id": "kaoyan_math_concept",
+      "enabled": true,
+      "request_type": "kaoyan_math",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://kaoyan-math/概念讲解",
+      "parameters": {
+        "mode": "concept",
+        "subject": "concept_explain",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "概念含定义 + 关键公式 + 逻辑推导链 + 易错点",
+        "数学公式用 LaTeX，核心结论独立行 $$，证明/推导用 > [!note]- 单一折叠块",
+        "写入前验证数学内容正确性"
+      ],
+      "baseline": {
+        "input_tokens": 7824,
+        "cache_read_tokens": 63052,
+        "output_tokens": 0,
+        "latency_ms": 0,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "n=300 events / 13 sessions avg; deepseek-v4-flash; keyword-fallback classification (无 <command-name> 会话)"
+      }
+    },
+    {
+      "id": "kaoyan_english_review",
+      "enabled": true,
+      "request_type": "kaoyan_english",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://kaoyan-english/复习",
+      "parameters": {
+        "mode": "review",
+        "subject": "vocab_review",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "输出词汇/阅读复习清单或自测，含复习间隔或测试题",
+        "更新英语📊进度与⭐英语📅日志时按完成报告清单",
+        "不覆盖用户个人笔记区块"
+      ],
+      "baseline": {
+        "input_tokens": null,
+        "cache_read_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "no genuine events yet; v4 的 232 事件基线为误分类的 /kaoyan-plan 完成报告，已纠正；待真实英语会话自动补齐"
+      }
+    },
+    {
+      "id": "mistake_book_process",
+      "enabled": true,
+      "request_type": "mistake_book",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://mistake-book/记录整理错题",
+      "parameters": {
+        "mode": "record",
+        "subject": "mistake_book",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "记录错题前先检索同目录已有好题是否覆盖同一题型/知识点：本质相同仅记法不同 → 折叠关联不新增；本质不同 → 新增编号条目",
+        "修改错题本题干/参数/选项后同步检查同目录 错题题目.md，回读两处题干一致",
+        "归档按知识模块判断，不按表象；不覆盖保护区块"
+      ],
+      "baseline": {
+        "input_tokens": 3468,
+        "cache_read_tokens": 81100,
+        "output_tokens": 0,
+        "latency_ms": 0,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "n=1633 events / 29 sessions avg; deepseek-v4-flash; refreshed 2026-08-03 (此前混入 kaoyan_plan 误分类事件)"
+      }
+    },
+    {
+      "id": "kaoyan_electronics_study",
+      "enabled": true,
+      "request_type": "kaoyan_electronics",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://kaoyan-electronics/专业课章节学习",
+      "parameters": {
+        "mode": "study",
+        "subject": "electronics_822",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "专业课章节学习输出：章节定位 + 前置知识 + 高频题型映射",
+        "涉及电路图/微变等效图时先查标准画法并写节点网表，导出后拓扑复核（BJT 节点不误连、输出端口不短接）",
+        "核心公式首次出现紧跟变量符号说明：物理意义、方向/极性、单位/典型值、做题近似用法"
+      ],
+      "baseline": {
+        "input_tokens": 7482,
+        "cache_read_tokens": 22560,
+        "output_tokens": 0,
+        "latency_ms": 0,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "n=8 events / 1 session avg; deepseek-v4-flash; SMALL SAMPLE, treat as provisional"
+      }
+    },
+    {
+      "id": "understanding_verify",
+      "enabled": true,
+      "request_type": "understanding",
+      "template_id": "claude_code_session",
+      "input_fixture": "user-request://understanding/验证理解（图片或文字）",
+      "parameters": {
+        "mode": "verify",
+        "subject": "logic_chain",
+        "write_files": "as_needed"
+      },
+      "quality_checks": [
+        "正确性检查 + 逻辑链追溯，不能只看结论；跳步时要求补推导",
+        "错误时输出 > [!personal] 已修正块（✅正确/❌错误/⚠️补充/修正后完整理解）",
+        "知识关联基于考研大纲，推荐 1-2 个最相关概念"
+      ],
+      "baseline": {
+        "input_tokens": null,
+        "cache_read_tokens": null,
+        "output_tokens": null,
+        "latency_ms": null,
+        "cost_usd": null,
+        "quality_score": null,
+        "note": "no events classified yet; first real session auto-fills"
+      }
+    }
+  ]
+}

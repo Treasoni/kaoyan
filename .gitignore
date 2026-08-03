@@ -138,13 +138,14 @@ Sessionx.vim
 # -----------------------------------
 # 8. LLM 调用日志（本地遥测，不上传）
 # -----------------------------------
-.llm/
+# 提示缓存工具与回归样本（schema / regression-cases / scripts / README）纳入版本控制；
+# events/ 为从本地会话转储派生的数据，保持忽略。
+.llm/*
+!.llm/prompt-cache/
+.llm/prompt-cache/events/
 
 # Ignore Smart Environment folder
 .smart-env
 
 # Git worktree directories (local implementation sandboxes)
 .worktrees/
-
-# LLM usage events (local, derived from Claude Code transcripts)
-.llm/prompt-cache/events/
