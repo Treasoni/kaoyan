@@ -31,7 +31,7 @@ Pattern-Key: ops.hook_duplication
 
 **Logged**: 2026-08-05T11:56:14+08:00
 **Priority**: high
-**Status**: pending
+**Status**: resolved
 **Area**: docs
 
 ### Summary
@@ -45,4 +45,7 @@ Pattern-Key: ops.hook_duplication
 
 ### Related Rules
 Pattern-Key: notes.conclusion_only_reject
+
+### Resolution
+2026-08-05：用户确认同步后，已在 `.learnings/RULES.md` 的 Watch For 区新增 `notes.conclusion_only_reject` 模式键，条目状态改为 resolved。
 

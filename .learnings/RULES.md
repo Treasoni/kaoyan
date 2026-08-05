@@ -79,6 +79,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 专业课公式符号说明遗漏（Pattern-Key: electronics.formula_symbol_explain）— 首次出现核心公式时检查变量、方向、单位、近似用法是否齐全
 - (1x) 速查笔记过度搬运详解（Pattern-Key: notes.quick_review_extract）— 必背/速查文件避免塞入历史背景、完整推导和完整例题
 - (1x) 速查页高价值流程遗漏（Pattern-Key: notes.review_value_extraction）— 从章节笔记抽取到必背/速查页时，凡能直接帮助复习、启动做题或避免高频错误的 SOP/流程/判断准则/检查清单，都应压缩放入；不要只筛公式。
+- (1x) 必背/速查页只给公式结论被否回（Pattern-Key: notes.conclusion_only_reject）— 方法/操作类内容必须补「核心思想（为什么）+ 带中间状态的操作模板（怎么做）」；长推导折叠进折叠块、完整例题回源笔记；结论型旧章节按「识别特征 → 核心思想 → 操作模板 → 公式 → 口诀 → 易错点」骨架重构
 - (1x) 用户定理理解压缩遗漏（Pattern-Key: notes.theorem_intuition_embed）— 用户主动提供的定理理解也要先验证再压缩，用 `> [!note]-` 折叠块嵌入必背页对应结论附近，折叠块与结论行互补；避免两种极端：整段照搬进必背页、或忽略用户理解只写标准结论
 - (1x) Obsidian 宽表阅读性（Pattern-Key: table.readability_width）— 表格超过 4 列或单元格公式/中文/英文混排过宽时，优先拆短表、列表或分组表
 - (1x) 源笔记优先抽取（Pattern-Key: notes.source_first_extract）— 更新必背/速查笔记前先读对应章节源笔记，避免凭空换符号、替换原主方法或另写一套表达
