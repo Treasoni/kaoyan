@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: kaoyan-notes-update
+  version: 0.1.0
+  description: "向必背/速查类笔记补充新内容的标准流程：先读源笔记、判断内容类型、按识别→核心思想→操作模板→公式→口诀→易错点骨架组织、补横向关联与主等价链、数学验算、格式合规。"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.kaoyan-notes-update
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

@@ -1,7 +1,7 @@
 # Skill Invocation
 
 ## 技能列表
-<!-- skill-registry:managed ["chapter-summary","defuddle","digest","docx","excalidraw-diagram","fix-table-pipe","handwritten-note-reconstruction","json-canvas","kaoyan-electronics","kaoyan-electronics-circuit","kaoyan-electronics-core","kaoyan-electronics-diagram","kaoyan-electronics-sop","kaoyan-electronics-structure","kaoyan-english","kaoyan-english-core","kaoyan-english-quiz","kaoyan-english-review","kaoyan-english-vocab","kaoyan-english-writing","kaoyan-info","kaoyan-math","kaoyan-math-core","kaoyan-math-notes","kaoyan-math-structure","kaoyan-plan","knowledge-base-organizer","knowledge-learning","knowledge-mindmap","learning-response-contract","maintain-learnings","manifest-platform","math-graph","mcp-builder","mistake-book","mistake-extract","mistake-restructure","obsidian-bases","obsidian-cli","obsidian-markdown","opencli-adapter-author","opencli-autofix","opencli-browser","opencli-usage","parse-words","pdf","prompt-cache-optimizer","security-secret-audit","skill-refactor","smart-search","sortspec-generator","sync","sync-skill-registry","understanding","word-template-generator","workflow-todo-state"] -->
+<!-- skill-registry:managed ["chapter-summary","defuddle","digest","docx","excalidraw-diagram","fix-table-pipe","handwritten-note-reconstruction","json-canvas","kaoyan-electronics","kaoyan-electronics-circuit","kaoyan-electronics-core","kaoyan-electronics-diagram","kaoyan-electronics-sop","kaoyan-electronics-structure","kaoyan-english","kaoyan-english-core","kaoyan-english-quiz","kaoyan-english-review","kaoyan-english-vocab","kaoyan-english-writing","kaoyan-info","kaoyan-math","kaoyan-math-core","kaoyan-math-notes","kaoyan-math-structure","kaoyan-notes-update","kaoyan-plan","knowledge-base-organizer","knowledge-learning","knowledge-mindmap","learning-response-contract","maintain-learnings","manifest-platform","math-graph","mcp-builder","mistake-book","mistake-extract","mistake-restructure","obsidian-bases","obsidian-cli","obsidian-markdown","opencli-adapter-author","opencli-autofix","opencli-browser","opencli-usage","parse-words","pdf","prompt-cache-optimizer","security-secret-audit","skill-refactor","smart-search","sortspec-generator","sync","sync-skill-registry","understanding","word-template-generator","workflow-todo-state"] -->
 
 #### 未分类
 
@@ -32,6 +32,7 @@
 | `kaoyan-math-core` | This skill manages the core infrastructure for 考研数学 (Chinese graduate entranc… | This skill manages the core infrastructu… |
 | `kaoyan-math-notes` | This skill handles note generation and updates for 考研数学 (Chinese graduate ent… | This skill handles note generation and u… |
 | `kaoyan-math-structure` | This skill provides knowledge point structure templates and module organizati… | This skill provides knowledge point stru… |
+| `kaoyan-notes-update` | 向必背/速查类笔记（如《线性代数必背知识》）补充新内容的标准流程。 | 复习知识点、会做题，不只背结论、识别特征→核心思想→操作模板→公式→口诀→易错点、补充必背知识/往必背笔记加内容/更新速查/这里如何补充进第X节 |
 | `kaoyan-plan` | Generate and maintain 考研 study plans, daily schedules, weekly reviews | 今天怎么学、安排计划、完成了什么、补计划、周复盘 |
 | `knowledge-base-organizer` | This skill should be used when the user asks to organize documents | This skill should be used when the user … |
 | `knowledge-learning` | This skill should be used when the user asks to learn about a topic | This skill should be used when the user … |
