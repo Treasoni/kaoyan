@@ -6,13 +6,13 @@
   <text x="800" y="58" text-anchor="middle" class="title">增强型 NMOS 分压偏置共源放大器：直流 Q 点与中频小信号</text>
   <rect x="55" y="92" width="700" height="770" rx="20" class="panel"/>
   <text x="405" y="142" text-anchor="middle" class="subtitle">直流：三只电容开路，保留 R<tspan baseline-shift="sub" font-size="17">S</tspan></text>
-  <text x="105" y="190" class="small">网表：VDD—RD—D；S—RS—地；VDD—RG2—G—RG1—地</text>
+  <text x="105" y="190" class="small">网表：VDD—RD—D；S—RS—地；VDD—RG2—M—RG1—地，M—RG3—G</text>
   <!-- DC divider and device -->
   <path d="M210 220 L500 220" class="wire"/><text x="505" y="228" class="label">V<tspan baseline-shift="sub" font-size="17">DD</tspan></text><circle cx="500" cy="220" r="5" fill="#18212b"/>
   <path d="M230 220 L230 255" class="wire"/><path d="M230 255 L218 268 L242 282 L218 296 L242 310 L218 324 L242 338 L230 352" class="wire"/><text x="150" y="310" class="label">R<tspan baseline-shift="sub" font-size="17">G2</tspan></text><path d="M230 352 L230 410" class="wire"/><circle cx="230" cy="410" r="5" fill="#18212b"/>
   <path d="M230 410 L230 445" class="wire"/><path d="M230 445 L218 458 L242 472 L218 486 L242 500 L218 514 L242 528 L230 542" class="wire"/><text x="150" y="503" class="label">R<tspan baseline-shift="sub" font-size="17">G1</tspan></text><path d="M230 542 L230 630 L450 630" class="wire"/>
-  <path d="M230 410 L305 410" class="wire"/><path d="M305 410 L320 410" class="wire"/><path d="M320 410 L320 382" class="thin"/><path d="M345 340 L345 500" class="thin"/><path d="M320 410 L345 410" class="wire"/><text x="285" y="386" class="label">G</text>
-  <path d="M345 340 L450 340" class="wire"/><path d="M345 500 L450 500" class="wire"/><text x="365" y="325" class="label">D</text><text x="365" y="525" class="label">S</text>
+  <path d="M230 410 L252 410" class="wire"/><path d="M252 410 L265 398 L279 422 L293 398 L307 422 L321 398 L334 422 L347 410" class="wire"/><path d="M347 410 L360 410" class="wire"/><text x="267" y="382" class="label">R<tspan baseline-shift="sub" font-size="17">G3</tspan></text><path d="M360 410 L360 382" class="thin"/><path d="M385 340 L385 500" class="thin"/><path d="M360 410 L385 410" class="wire"/><text x="345" y="386" class="label">G</text>
+  <path d="M385 340 L450 340" class="wire"/><path d="M385 500 L450 500" class="wire"/><text x="405" y="325" class="label">D</text><text x="405" y="525" class="label">S</text>
   <path d="M450 220 L450 255" class="wire"/><path d="M450 255 L438 268 L462 282 L438 296 L462 310 L438 324 L462 338 L450 352" class="wire"/><text x="475" y="310" class="label">R<tspan baseline-shift="sub" font-size="17">D</tspan></text><path d="M450 352 L450 340" class="wire"/>
   <path d="M450 500 L450 530" class="wire"/><path d="M450 530 L438 543 L462 557 L438 571 L462 585 L438 599 L462 613 L450 626" class="wire"/><text x="475" y="583" class="label">R<tspan baseline-shift="sub" font-size="17">S</tspan></text><path d="M450 626 L450 630" class="wire"/>
   <path d="M418 630 L482 630 M427 641 L473 641 M437 652 L463 652" class="wire"/>
@@ -21,7 +21,7 @@
   <path d="M450 340 L540 340 M540 322 L540 358 M558 322 L558 358 M558 340 L615 340" class="muted"/><text x="520" y="304" class="small">C<tspan baseline-shift="sub" font-size="14">o</tspan> 开路</text>
   <path d="M450 518 L535 518 M535 500 L535 536 M553 500 L553 536 M553 518 L605 518 L605 630" class="muted"/><text x="548" y="564" class="small">C<tspan baseline-shift="sub" font-size="14">S</tspan> 开路</text>
   <!-- DC voltages and formulas -->
-  <path d="M278 410 L278 500" class="dc"/><path d="M270 417 L278 410 L286 417 M270 493 L278 500 L286 493" class="dc"/><text x="90" y="465" class="redtext">V<tspan baseline-shift="sub" font-size="15">G</tspan></text>
+  <path d="M365 410 L365 500" class="dc"/><path d="M357 417 L365 410 L373 417 M357 493 L365 500 L373 493" class="dc"/><text x="290" y="465" class="redtext">V<tspan baseline-shift="sub" font-size="15">G</tspan></text>
   <path d="M525 340 L525 500" class="dc"/><path d="M517 347 L525 340 L533 347 M517 493 L525 500 L533 493" class="dc"/><text x="542" y="426" class="redtext">V<tspan baseline-shift="sub" font-size="15">DSQ</tspan></text>
   <text x="100" y="710" class="redtext">V<tspan baseline-shift="sub" font-size="15">G</tspan>=R<tspan baseline-shift="sub" font-size="15">G1</tspan>V<tspan baseline-shift="sub" font-size="15">DD</tspan>/(R<tspan baseline-shift="sub" font-size="15">G1</tspan>+R<tspan baseline-shift="sub" font-size="15">G2</tspan>)</text>
   <text x="100" y="750" class="redtext">V<tspan baseline-shift="sub" font-size="15">GSQ</tspan>=V<tspan baseline-shift="sub" font-size="15">G</tspan>−I<tspan baseline-shift="sub" font-size="15">DQ</tspan>R<tspan baseline-shift="sub" font-size="15">S</tspan>；V<tspan baseline-shift="sub" font-size="15">DSQ</tspan>=V<tspan baseline-shift="sub" font-size="15">DD</tspan>−I<tspan baseline-shift="sub" font-size="15">DQ</tspan>(R<tspan baseline-shift="sub" font-size="15">D</tspan>+R<tspan baseline-shift="sub" font-size="15">S</tspan>)</text>
@@ -29,12 +29,12 @@
 
   <rect x="845" y="92" width="700" height="770" rx="20" class="panel"/>
   <text x="1195" y="142" text-anchor="middle" class="subtitle">中频：电容短路，R<tspan baseline-shift="sub" font-size="17">S</tspan> 被 C<tspan baseline-shift="sub" font-size="17">S</tspan> 旁路</text>
-  <text x="900" y="190" class="small">网表：G—RG3—输入，RG1∥RG2 到地；S—地；D—RD∥RL 到地</text>
+  <text x="900" y="190" class="small">网表：输入—G；G—RG3—(RG1∥RG2)—地；S—地；D—RD∥RL 到地</text>
   <!-- AC input and gate network -->
   <path d="M920 500 L920 440" class="wire"/><circle cx="920" cy="538" r="38" class="wire"/><path d="M920 500 L920 538 M908 526 L932 526 M920 514 L920 538" class="thin"/><path d="M920 576 L920 650" class="wire"/><path d="M888 650 L952 650 M897 661 L943 661 M907 672 L933 672" class="wire"/><text x="864" y="523" class="bluetext">v<tspan baseline-shift="sub" font-size="15">i</tspan></text>
-  <path d="M920 440 L970 440" class="ac"/><path d="M970 440 L983 428 L997 452 L1011 428 L1025 452 L1039 428 L1053 452 L1066 440" class="wire"/><text x="986" y="408" class="label">R<tspan baseline-shift="sub" font-size="17">G3</tspan></text><path d="M1066 440 L1100 440" class="wire"/>
+  <path d="M920 440 L1100 440" class="ac"/>
   <path d="M1100 410 L1100 470" class="thin"/><path d="M1125 365 L1125 570" class="thin"/><path d="M1100 440 L1125 440" class="wire"/><text x="1074" y="395" class="label">G</text>
-  <path d="M1066 440 L1066 475" class="wire"/><path d="M1066 475 L1054 488 L1078 502 L1054 516 L1078 530 L1054 544 L1078 558 L1066 572" class="wire"/><path d="M1066 572 L1066 650" class="wire"/><text x="1007" y="535" class="label">R<tspan baseline-shift="sub" font-size="17">G1</tspan>∥R<tspan baseline-shift="sub" font-size="17">G2</tspan></text>
+  <path d="M1035 440 L1035 472" class="wire"/><path d="M1035 472 L1023 485 L1047 499 L1023 513 L1047 527 L1023 541 L1047 555 L1035 568" class="wire"/><text x="980" y="525" class="label">R<tspan baseline-shift="sub" font-size="17">G3</tspan></text><path d="M1035 568 L1035 590" class="wire"/><path d="M1035 590 L1023 603 L1047 617 L1023 631 L1047 645" class="wire"/><text x="955" y="640" class="label">R<tspan baseline-shift="sub" font-size="17">G1</tspan>∥R<tspan baseline-shift="sub" font-size="17">G2</tspan></text><path d="M1035 645 L1035 650" class="wire"/>
   <path d="M1125 365 L1200 365" class="wire"/><path d="M1125 570 L1200 570" class="wire"/><path d="M1125 570 L1125 650" class="wire"/><path d="M1093 650 L1157 650 M1102 661 L1148 661 M1112 672 L1138 672" class="wire"/><text x="1142" y="351" class="label">D</text><text x="1142" y="595" class="label">S</text>
   <path d="M1200 365 L1200 395" class="wire"/><path d="M1200 395 L1230 443 L1200 491 L1170 443 Z" fill="#eaf3fa" stroke="#2471a3" stroke-width="4"/><path d="M1200 415 L1200 469 M1190 459 L1200 469 L1210 459" class="ac"/><path d="M1200 491 L1200 570" class="wire"/><text x="1240" y="450" class="bluetext">g<tspan baseline-shift="sub" font-size="15">m</tspan>v<tspan baseline-shift="sub" font-size="15">gs</tspan></text>
   <!-- RD and RL -->
