@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+  <style>
+    .wire{stroke:#18212b;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .thin{stroke:#18212b;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .dc{stroke:#c0392b;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .ac{stroke:#2471a3;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .muted{stroke:#8a98a6;stroke-width:3;fill:none;stroke-dasharray:9 8;stroke-linecap:round}
+    .panel{fill:#fbfcfd;stroke:#bac6d2;stroke-width:2}
+    .title{font:700 34px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .subtitle{font:700 26px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .label{font:24px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .small{font:20px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#52606d}
+    .redtext{font:22px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#c0392b}
+    .bluetext{font:22px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#2471a3}
+  </style>
+  <rect width="1600" height="920" fill="#ffffff"/>
+  <text x="800" y="58" text-anchor="middle" class="title">N 沟道 JFET 自偏压共源放大电路：直流与中频交流</text>
+
+  <rect x="55" y="92" width="700" height="770" rx="20" class="panel"/>
+  <text x="405" y="142" text-anchor="middle" class="subtitle">直流通路：电容开路，求静态工作点</text>
+
+  <!-- DC supply, drain resistor, N-channel JFET and source resistor -->
+  <text x="356" y="190" class="label">V<tspan baseline-shift="sub" font-size="17">DD</tspan></text>
+  <circle cx="340" cy="203" r="5" fill="#18212b"/>
+  <path d="M340 203 L340 245" class="wire"/>
+  <path d="M340 245 L328 258 L352 272 L328 286 L352 300 L328 314 L352 328 L340 342" class="wire"/>
+  <text x="365" y="300" class="label">R<tspan baseline-shift="sub" font-size="17">D</tspan></text>
+  <path d="M340 342 L340 372" class="wire"/>
+  <circle cx="340" cy="372" r="5" fill="#18212b"/>
+  <text x="356" y="364" class="label">D</text>
+  <path d="M340 372 L340 460" class="wire"/>
+  <path d="M315 388 L315 445" class="thin"/>
+  <path d="M275 416 L315 416" class="wire"/>
+  <path d="M264 404 L275 416 L264 428" class="thin"/>
+  <text x="244" y="394" class="label">G</text>
+  <text x="356" y="458" class="label">S</text>
+  <circle cx="340" cy="460" r="5" fill="#18212b"/>
+  <path d="M340 460 L340 495" class="wire"/>
+  <path d="M340 495 L328 508 L352 522 L328 536 L352 550 L328 564 L352 578 L340 592" class="wire"/>
+  <text x="365" y="552" class="label">R<tspan baseline-shift="sub" font-size="17">S</tspan></text>
+  <path d="M340 592 L340 640" class="wire"/>
+  <path d="M308 640 L372 640 M317 651 L363 651 M327 662 L353 662" class="wire"/>
+  <text x="382" y="649" class="small">地</text>
+
+  <!-- Gate self-bias resistor -->
+  <path d="M275 416 L178 416 L178 466" class="wire"/>
+  <path d="M178 466 L166 479 L190 493 L166 507 L190 521 L166 535 L190 549 L178 563" class="wire"/>
+  <text x="118" y="530" class="label">R<tspan baseline-shift="sub" font-size="17">G</tspan></text>
+  <path d="M178 563 L178 640 L340 640" class="wire"/>
+
+  <!-- DC annotations and open capacitors -->
+  <path d="M300 375 L300 465" class="dc"/>
+  <path d="M292 382 L300 375 L308 382 M292 458 L300 465 L308 458" class="dc"/>
+  <text x="214" y="448" class="redtext">V<tspan baseline-shift="sub" font-size="15">GSQ</tspan> = −I<tspan baseline-shift="sub" font-size="15">DQ</tspan>R<tspan baseline-shift="sub" font-size="15">S</tspan></text>
+  <path d="M420 372 L420 460" class="dc"/>
+  <path d="M412 379 L420 372 L428 379 M412 453 L420 460 L428 453" class="dc"/>
+  <text x="437" y="423" class="redtext">V<tspan baseline-shift="sub" font-size="15">DSQ</tspan></text>
+  <path d="M140 416 L140 391 M154 416 L154 391" class="muted"/>
+  <path d="M140 391 L90 391 M154 391 L202 391" class="muted"/>
+  <text x="82" y="365" class="small">C<tspan baseline-shift="sub" font-size="14">i</tspan> 开路</text>
+  <path d="M340 480 L415 480 M415 466 L415 494 M432 466 L432 494 M432 480 L477 480" class="muted"/>
+  <path d="M477 480 L477 640" class="muted"/>
+  <text x="438" y="518" class="small">C<tspan baseline-shift="sub" font-size="14">S</tspan> 开路</text>
+  <path d="M340 372 L520 372 M520 355 L520 389 M537 355 L537 389 M537 372 L585 372" class="muted"/>
+  <text x="494" y="335" class="small">C<tspan baseline-shift="sub" font-size="14">o</tspan> 开路，R<tspan baseline-shift="sub" font-size="14">L</tspan> 脱开</text>
+  <text x="108" y="718" class="redtext">V<tspan baseline-shift="sub" font-size="15">DSQ</tspan> = V<tspan baseline-shift="sub" font-size="15">DD</tspan> − I<tspan baseline-shift="sub" font-size="15">DQ</tspan>(R<tspan baseline-shift="sub" font-size="15">D</tspan> + R<tspan baseline-shift="sub" font-size="15">S</tspan>)</text>
+  <text x="108" y="758" class="redtext">I<tspan baseline-shift="sub" font-size="15">DQ</tspan> = I<tspan baseline-shift="sub" font-size="15">DSS</tspan>(1 − V<tspan baseline-shift="sub" font-size="15">GSQ</tspan>/V<tspan baseline-shift="sub" font-size="15">P</tspan>)²</text>
+  <text x="108" y="806" class="small">检查：栅源 PN 结反偏，且 V<tspan baseline-shift="sub" font-size="14">DSQ</tspan> ≥ V<tspan baseline-shift="sub" font-size="14">GSQ</tspan> − V<tspan baseline-shift="sub" font-size="14">P</tspan></text>
+
+  <rect x="845" y="92" width="700" height="770" rx="20" class="panel"/>
+  <text x="1195" y="142" text-anchor="middle" class="subtitle">中频交流：电容短路，源极交流接地</text>
+
+  <!-- AC input and gate network -->
+  <path d="M928 452 L928 395" class="wire"/>
+  <circle cx="928" cy="490" r="38" class="wire"/>
+  <path d="M928 452 L928 490 M916 478 L940 478 M928 466 L928 490" class="thin"/>
+  <path d="M928 528 L928 620" class="wire"/>
+  <path d="M896 620 L960 620 M905 631 L951 631 M915 642 L941 642" class="wire"/>
+  <text x="876" y="472" class="bluetext">v<tspan baseline-shift="sub" font-size="15">i</tspan></text>
+  <path d="M928 395 L1035 395" class="ac"/>
+  <text x="956" y="374" class="bluetext">C<tspan baseline-shift="sub" font-size="15">i</tspan> 短路</text>
+  <path d="M1035 395 L1035 430" class="wire"/>
+  <path d="M1035 430 L1023 443 L1047 457 L1023 471 L1047 485 L1023 499 L1047 513 L1035 527" class="wire"/>
+  <path d="M1035 527 L1035 620" class="wire"/>
+  <text x="983" y="492" class="label">R<tspan baseline-shift="sub" font-size="17">G</tspan></text>
+  <path d="M1035 395 L1100 395" class="wire"/>
+  <path d="M1100 365 L1100 425" class="thin"/>
+  <text x="1076" y="350" class="label">G</text>
+  <path d="M1125 320 L1125 540" class="thin"/>
+  <path d="M1100 395 L1125 395" class="wire"/>
+  <path d="M1125 320 L1200 320" class="wire"/>
+  <path d="M1125 540 L1200 540" class="wire"/>
+  <path d="M1125 540 L1125 620" class="wire"/>
+  <path d="M1093 620 L1157 620 M1102 631 L1148 631 M1112 642 L1138 642" class="wire"/>
+  <text x="1142" y="306" class="label">D</text>
+  <text x="1142" y="565" class="label">S</text>
+
+  <!-- controlled source -->
+  <path d="M1200 320 L1200 350" class="wire"/>
+  <path d="M1200 350 L1230 398 L1200 446 L1170 398 Z" fill="#eaf3fa" stroke="#2471a3" stroke-width="4"/>
+  <path d="M1200 370 L1200 424 M1190 414 L1200 424 L1210 414" class="ac"/>
+  <path d="M1200 446 L1200 540" class="wire"/>
+  <text x="1240" y="405" class="bluetext">g<tspan baseline-shift="sub" font-size="15">m</tspan>v<tspan baseline-shift="sub" font-size="15">gs</tspan></text>
+
+  <!-- RD and RL to AC ground -->
+  <path d="M1200 320 L1200 280" class="wire"/>
+  <path d="M1200 280 L1188 267 L1212 253 L1188 239 L1212 225 L1188 211 L1212 197 L1200 184" class="wire"/>
+  <path d="M1200 184 L1200 175" class="wire"/>
+  <path d="M1168 175 L1232 175 M1177 186 L1223 186 M1187 197 L1213 197" class="wire"/>
+  <text x="1235" y="245" class="label">R<tspan baseline-shift="sub" font-size="17">D</tspan></text>
+  <path d="M1200 320 L1360 320 L1360 280" class="wire"/>
+  <path d="M1360 280 L1348 267 L1372 253 L1348 239 L1372 225 L1348 211 L1372 197 L1360 184" class="wire"/>
+  <path d="M1360 184 L1360 175" class="wire"/>
+  <path d="M1328 175 L1392 175 M1337 186 L1383 186 M1347 197 L1373 197" class="wire"/>
+  <text x="1390" y="245" class="label">R<tspan baseline-shift="sub" font-size="17">L</tspan></text>
+  <circle cx="1200" cy="320" r="5" fill="#18212b"/>
+  <text x="1222" y="306" class="bluetext">u<tspan baseline-shift="sub" font-size="15">o</tspan> +</text>
+  <path d="M1450 320 L1450 540" class="thin"/>
+  <path d="M1439 332 L1450 320 L1461 332 M1439 528 L1450 540 L1461 528" class="thin"/>
+  <text x="1470" y="436" class="bluetext">u<tspan baseline-shift="sub" font-size="15">o</tspan></text>
+  <path d="M1200 540 L1360 540" class="wire"/>
+  <path d="M1328 540 L1392 540 M1337 551 L1383 551 M1347 562 L1373 562" class="wire"/>
+  <text x="1288" y="590" class="small">V<tspan baseline-shift="sub" font-size="14">DD</tspan> 为交流地；C<tspan baseline-shift="sub" font-size="14">S</tspan> 旁路 R<tspan baseline-shift="sub" font-size="14">S</tspan></text>
+
+  <text x="900" y="706" class="bluetext">A<tspan baseline-shift="sub" font-size="15">u</tspan> ≈ −g<tspan baseline-shift="sub" font-size="15">m</tspan>(R<tspan baseline-shift="sub" font-size="15">D</tspan> ∥ R<tspan baseline-shift="sub" font-size="15">L</tspan>)</text>
+  <text x="900" y="748" class="bluetext">R<tspan baseline-shift="sub" font-size="15">i</tspan> ≈ R<tspan baseline-shift="sub" font-size="15">G</tspan>，R<tspan baseline-shift="sub" font-size="15">o</tspan> ≈ R<tspan baseline-shift="sub" font-size="15">D</tspan>（忽略 r<tspan baseline-shift="sub" font-size="15">ds</tspan>）</text>
+  <text x="900" y="800" class="small">注：测 R<tspan baseline-shift="sub" font-size="14">o</tspan> 时撤去 R<tspan baseline-shift="sub" font-size="14">L</tspan>，并令输入信号源为零。</text>
+</svg>
