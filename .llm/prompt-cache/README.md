@@ -89,3 +89,9 @@ python3 .llm/prompt-cache/scripts/analyze-usage-events.py
 - **空 usage 过滤**：提取器与分析器都会丢弃 token 全 0 的事件（某些网关返回空 usage 块），防止污染均值与命中率。
 - **新增高频请求类型**：① 在 `regression-cases.json` 加 case；② 在提取器的 `COMMAND_SLUGS` 加映射；③ 分析器默认按 `request_type` 分组，无需改。
 - **其他 agent**：Codex（`~/.codex/logs_2.sqlite`、`sessions/`）、Codebuddy 日志格式不同，需要时另写适配器，本目录只覆盖 Claude Code。
+
+## 测量限制
+
+- **request_type 为会话级粗分**：由会话首条用户消息关键词决定（`extract-usage-events.py` 的 `COMMAND_SLUGS` / `KEYWORD_FALLBACK`），一次会话内切换科目（如数学会话里顺带背单词）会一直归入首条类型。分组对比时注意混合科目会话的归属。
+- **kaoyan_english / understanding 为数据缺口**：两个 L1 入口技能当前 0 事件，回归基线显示 `[no-data]`，待真实会话补齐后才能评估缓存行为。
+- **模型过滤口径**：分析器默认只分析 DeepSeek 两个模型（`DEFAULT_MODELS`），早期 MiniMax-M3 / mimo-v2.5 历史事件被过滤且不参与分组；表头计数已与分组口径一致（`+N events of other models excluded`）。

@@ -78,7 +78,12 @@ def report(events: list[dict], model_filter: set[str], min_events: int) -> None:
             continue
         groups[(r.get("request_type", "?"), r.get("model", "?"))].append(r)
 
-    print(f"events: {len(events)} total (models: {', '.join(sorted(model_filter)) or 'all'})")
+    kept = sum(len(rs) for rs in groups.values())
+    dropped = len(events) - kept
+    label = f"events: {kept} total (models: {', '.join(sorted(model_filter)) or 'all'})"
+    if dropped:
+        label += f" (+{dropped} events of other models excluded)"
+    print(label)
     print(f"\n{'request_type':<22} {'model':<16} {'n':>6} {'in_avg':>9} {'cr_avg':>10} {'hit%':>7}")
     print("-" * 74)
     for (rt, model), rs in sorted(
