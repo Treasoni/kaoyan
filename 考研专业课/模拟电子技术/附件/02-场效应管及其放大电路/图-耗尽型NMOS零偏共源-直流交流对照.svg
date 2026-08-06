@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .wire{stroke:#18212b;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .thin{stroke:#18212b;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .dc{stroke:#c0392b;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .ac{stroke:#2471a3;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .panel{fill:#fbfcfd;stroke:#bac6d2;stroke-width:2}
+    .title{font:700 34px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .subtitle{font:700 26px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .label{font:24px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#18212b}
+    .small{font:20px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#52606d}
+    .redtext{font:23px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#c0392b}
+    .bluetext{font:23px 'Noto Sans CJK SC','PingFang SC',sans-serif;fill:#2471a3}
+  </style>
+  <rect width="1600" height="900" fill="#fff"/>
+  <text x="800" y="58" text-anchor="middle" class="title">耗尽型 N 沟道 MOSFET 零偏共源放大：直流与中频交流</text>
+
+  <rect x="55" y="92" width="700" height="750" rx="20" class="panel"/>
+  <text x="405" y="142" text-anchor="middle" class="subtitle">直流：栅极接地，先判 Q 点是否在恒流区</text>
+  <text x="132" y="200" class="small">网表：D—R<tspan baseline-shift="sub" font-size="14">D</tspan>—V<tspan baseline-shift="sub" font-size="14">DD</tspan>；S—地；G—R<tspan baseline-shift="sub" font-size="14">G</tspan>—地</text>
+  <!-- DC device -->
+  <text x="355" y="252" class="label">V<tspan baseline-shift="sub" font-size="17">DD</tspan></text>
+  <circle cx="340" cy="263" r="5" fill="#18212b"/>
+  <path d="M340 263 L340 305" class="wire"/>
+  <path d="M340 305 L328 318 L352 332 L328 346 L352 360 L328 374 L352 388 L340 402" class="wire"/>
+  <text x="365" y="360" class="label">R<tspan baseline-shift="sub" font-size="17">D</tspan></text>
+  <path d="M340 402 L340 438" class="wire"/>
+  <circle cx="340" cy="438" r="5" fill="#18212b"/>
+  <text x="356" y="430" class="label">D</text>
+  <path d="M340 438 L340 548" class="wire"/>
+  <path d="M312 450 L312 535" class="thin"/>
+  <path d="M248 493 L300 493" class="wire"/>
+  <path d="M300 465 L300 521" class="thin"/>
+  <text x="220" y="473" class="label">G</text>
+  <text x="356" y="548" class="label">S</text>
+  <circle cx="340" cy="548" r="5" fill="#18212b"/>
+  <path d="M340 548 L340 630" class="wire"/>
+  <path d="M308 630 L372 630 M317 641 L363 641 M327 652 L353 652" class="wire"/>
+  <!-- gate resistor -->
+  <path d="M248 493 L168 493 L168 530" class="wire"/>
+  <path d="M168 530 L156 543 L180 557 L156 571 L180 585 L156 599 L180 613 L168 626" class="wire"/>
+  <path d="M168 626 L168 630 L340 630" class="wire"/>
+  <text x="110" y="585" class="label">R<tspan baseline-shift="sub" font-size="17">G</tspan></text>
+  <path d="M270 493 L270 548" class="dc"/>
+  <path d="M262 500 L270 493 L278 500 M262 541 L270 548 L278 541" class="dc"/>
+  <text x="184" y="535" class="redtext">V<tspan baseline-shift="sub" font-size="15">GSQ</tspan>=0</text>
+  <path d="M435 438 L435 548" class="dc"/>
+  <path d="M427 445 L435 438 L443 445 M427 541 L435 548 L443 541" class="dc"/>
+  <text x="452" y="505" class="redtext">V<tspan baseline-shift="sub" font-size="15">DSQ</tspan></text>
+  <text x="112" y="708" class="redtext">若 Q 点在恒流区：I<tspan baseline-shift="sub" font-size="15">DQ</tspan>=I<tspan baseline-shift="sub" font-size="15">DSS</tspan></text>
+  <text x="112" y="748" class="redtext">V<tspan baseline-shift="sub" font-size="15">DSQ</tspan>=V<tspan baseline-shift="sub" font-size="15">DD</tspan>−I<tspan baseline-shift="sub" font-size="15">DQ</tspan>R<tspan baseline-shift="sub" font-size="15">D</tspan></text>
+  <text x="112" y="794" class="small">检查：V<tspan baseline-shift="sub" font-size="14">DSQ</tspan> ≥ −V<tspan baseline-shift="sub" font-size="14">GS(off)</tspan>；否则改用输出特性与负载线。</text>
+
+  <rect x="845" y="92" width="700" height="750" rx="20" class="panel"/>
+  <text x="1195" y="142" text-anchor="middle" class="subtitle">中频交流：电源接地，受控源决定反相增益</text>
+  <text x="920" y="200" class="small">网表：D—R<tspan baseline-shift="sub" font-size="14">D</tspan>∥R<tspan baseline-shift="sub" font-size="14">L</tspan>—交流地；S—地；G—R<tspan baseline-shift="sub" font-size="14">G</tspan>—地</text>
+  <!-- AC gate and input -->
+  <path d="M920 500 L920 440" class="wire"/>
+  <circle cx="920" cy="538" r="38" class="wire"/>
+  <path d="M920 500 L920 538 M908 526 L932 526 M920 514 L920 538" class="thin"/>
+  <path d="M920 576 L920 650" class="wire"/>
+  <path d="M888 650 L952 650 M897 661 L943 661 M907 672 L933 672" class="wire"/>
+  <text x="865" y="523" class="bluetext">v<tspan baseline-shift="sub" font-size="15">i</tspan></text>
+  <path d="M920 440 L1030 440" class="ac"/>
+  <path d="M1030 440 L1030 476" class="wire"/>
+  <path d="M1030 476 L1018 489 L1042 503 L1018 517 L1042 531 L1018 545 L1042 559 L1030 573" class="wire"/>
+  <path d="M1030 573 L1030 650" class="wire"/>
+  <text x="978" y="540" class="label">R<tspan baseline-shift="sub" font-size="17">G</tspan></text>
+  <path d="M1030 440 L1090 440" class="wire"/>
+  <path d="M1090 410 L1090 470" class="thin"/>
+  <path d="M1115 365 L1115 570" class="thin"/>
+  <path d="M1090 440 L1115 440" class="wire"/>
+  <text x="1065" y="395" class="label">G</text>
+  <path d="M1115 365 L1200 365" class="wire"/>
+  <path d="M1115 570 L1200 570" class="wire"/>
+  <path d="M1115 570 L1115 650" class="wire"/>
+  <path d="M1083 650 L1147 650 M1092 661 L1138 661 M1102 672 L1128 672" class="wire"/>
+  <text x="1132" y="351" class="label">D</text>
+  <text x="1132" y="595" class="label">S</text>
+  <!-- controlled source -->
+  <path d="M1200 365 L1200 395" class="wire"/>
+  <path d="M1200 395 L1230 443 L1200 491 L1170 443 Z" fill="#eaf3fa" stroke="#2471a3" stroke-width="4"/>
+  <path d="M1200 415 L1200 469 M1190 459 L1200 469 L1210 459" class="ac"/>
+  <path d="M1200 491 L1200 570" class="wire"/>
+  <text x="1240" y="450" class="bluetext">g<tspan baseline-shift="sub" font-size="15">m</tspan>v<tspan baseline-shift="sub" font-size="15">gs</tspan></text>
+  <!-- parallel RD RL -->
+  <path d="M1200 365 L1200 320" class="wire"/>
+  <path d="M1200 320 L1188 307 L1212 293 L1188 279 L1212 265 L1188 251 L1212 237 L1200 224" class="wire"/>
+  <path d="M1200 224 L1200 214" class="wire"/>
+  <path d="M1168 214 L1232 214 M1177 225 L1223 225 M1187 236 L1213 236" class="wire"/>
+  <text x="1235" y="280" class="label">R<tspan baseline-shift="sub" font-size="17">D</tspan></text>
+  <path d="M1200 365 L1360 365 L1360 320" class="wire"/>
+  <path d="M1360 320 L1348 307 L1372 293 L1348 279 L1372 265 L1348 251 L1372 237 L1360 224" class="wire"/>
+  <path d="M1360 224 L1360 214" class="wire"/>
+  <path d="M1328 214 L1392 214 M1337 225 L1383 225 M1347 236 L1373 236" class="wire"/>
+  <text x="1390" y="280" class="label">R<tspan baseline-shift="sub" font-size="17">L</tspan></text>
+  <circle cx="1200" cy="365" r="5" fill="#18212b"/>
+  <text x="1220" y="350" class="bluetext">u<tspan baseline-shift="sub" font-size="15">o</tspan> +</text>
+  <path d="M1450 365 L1450 570" class="thin"/>
+  <path d="M1439 377 L1450 365 L1461 377 M1439 558 L1450 570 L1461 558" class="thin"/>
+  <text x="1470" y="470" class="bluetext">u<tspan baseline-shift="sub" font-size="15">o</tspan></text>
+  <path d="M1200 570 L1360 570" class="wire"/>
+  <path d="M1328 570 L1392 570 M1337 581 L1383 581 M1347 592 L1373 592" class="wire"/>
+  <text x="905" y="730" class="bluetext">A<tspan baseline-shift="sub" font-size="15">u</tspan>=u<tspan baseline-shift="sub" font-size="15">o</tspan>/u<tspan baseline-shift="sub" font-size="15">i</tspan>≈−g<tspan baseline-shift="sub" font-size="15">m</tspan>(R<tspan baseline-shift="sub" font-size="15">D</tspan>∥R<tspan baseline-shift="sub" font-size="15">L</tspan>)</text>
+  <text x="905" y="770" class="bluetext">R<tspan baseline-shift="sub" font-size="15">i</tspan>≈R<tspan baseline-shift="sub" font-size="15">G</tspan>，R<tspan baseline-shift="sub" font-size="15">o</tspan>≈R<tspan baseline-shift="sub" font-size="15">D</tspan>（忽略 r<tspan baseline-shift="sub" font-size="15">ds</tspan>）</text>
+  <text x="905" y="814" class="small">测 R<tspan baseline-shift="sub" font-size="14">o</tspan>：输入置零、撤去 R<tspan baseline-shift="sub" font-size="14">L</tspan>，于是 v<tspan baseline-shift="sub" font-size="14">gs</tspan>=0。</text>
+</svg>
