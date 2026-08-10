@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="920" viewBox="0 0 1800 920">
+  <style>
+    .wire{fill:none;stroke:#18212f;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.accent{fill:none;stroke:#b3261e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.dash{fill:none;stroke:#697586;stroke-width:3;stroke-dasharray:10 9}.title{font:700 39px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.sub{font:700 28px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.label{font:25px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.small{font:21px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#334155}.red{font:700 24px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#b3261e}.box{fill:#fbfcff;stroke:#aeb9c8;stroke-width:2.5;rx:20}
+  </style>
+  <rect x="25" y="25" width="1750" height="870" rx="28" fill="#fffef9" stroke="#d5dbe5" stroke-width="3"/>
+  <text x="78" y="95" class="title">BJT 复合管：先认结构，再定等效类型与 β</text>
+  <rect x="70" y="145" width="760" height="665" class="box"/>
+  <text x="110" y="205" class="sub">① 达林顿复合管（同型：NPN+NPN）</text>
+  <text x="115" y="244" class="small">拓扑：Q1 的 E 接 Q2 的 B；两管 C 相连；外端 B、C、E 如单管。</text>
+  <path class="wire" d="M165 425 H245 M300 365 L370 285 H535 M300 485 L390 570 H438 M465 510 L535 285 M465 630 L535 710 M300 365 V485 M465 510 V630 M245 425 H300 M390 570 H465"/>
+  <path class="accent" d="M365 548 l20 18 -28 4 M510 683 l22 19 -30 3"/>
+  <text x="112" y="418" class="label">B（输入）</text><text x="292" y="340" class="label">Q1 NPN</text><text x="455" y="487" class="label">Q2 NPN</text><text x="548" y="294" class="label">C（输出）</text><text x="548" y="720" class="label">E（输出）</text><text x="350" y="605" class="red">Iₑ₁ = Iᵦ₂</text>
+  <path class="dash" d="M105 270 H745 V755 H105 Z"/><text x="115" y="790" class="red">β_D = β₁β₂ + β₁ + β₂ ≈ β₁β₂</text>
+  <rect x="950" y="145" width="780" height="665" class="box"/>
+  <text x="990" y="205" class="sub">② 互补反馈复合管（Sziklai：NPN+PNP）</text>
+  <text x="995" y="244" class="small">外部等效类型看 Q1（输入管）：本图等效为 NPN；镜像后等效 PNP。</text>
+  <path class="wire" d="M985 465 H1060 M1115 405 L1205 345 L1310 450 M1115 525 L1200 625 H1450 M1310 450 H1360 M1360 410 V530 M1360 410 L1450 345 M1360 530 L1450 625 M1115 405 V525 M1310 410 V530"/>
+  <path class="accent" d="M1185 602 l22 17 -29 4 M1420 369 l-20 -15 28 -5"/>
+  <text x="945" y="458" class="label">B（输入）</text><text x="1105" y="380" class="label">Q1 NPN</text><text x="1300" y="390" class="label">Q2 PNP</text><text x="1460" y="350" class="label">C（输出）</text><text x="1460" y="635" class="label">E（输出）</text><text x="1170" y="330" class="red">I꜀₁ → Iᵦ₂</text>
+  <path class="dash" d="M975 270 H1665 V755 H975 Z"/><text x="995" y="790" class="red">β_S = β₁(β₂+1) ≈ β₁β₂</text>
+  <text x="80" y="860" class="small">箭头按传统电流方向：NPN 向外、PNP 向内。图中公式均按电流幅值写；实际静态分析仍需按外电路检查工作区。</text>
+</svg>
