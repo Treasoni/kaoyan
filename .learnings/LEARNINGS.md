@@ -49,3 +49,52 @@ Pattern-Key: notes.conclusion_only_reject
 ### Resolution
 2026-08-05：用户确认同步后，已在 `.learnings/RULES.md` 的 Watch For 区新增 `notes.conclusion_only_reject` 模式键，条目状态改为 resolved。
 
+
+## [LRN-20260810-001] correction
+
+**Logged**: 2026-08-10T16:22:40+08:00
+**Priority**: high
+**Status**: resolved
+**Area**: notes
+
+### Summary
+写作/改写必背笔记前必须先确认用户章节进度：本次 §12「公共解/同解」初稿使用向量空间语言（N(A) 零空间、解空间、张成、行空间、维数、仿射空间），被用户否回「没有学习向量空间，别用向量空间的知识」。
+
+### Details
+用户按教材章节顺序推进，尚未学习 4.7 向量空间。初稿用向量空间术语只是"更简洁的等价表述"，但超出用户当前知识边界，无法被理解。已全部改为已学概念：解集、基础解系、线性表示、向量组等价、秩；并清理了 §11 两处残留（"向量空间（零空间）"、"仿射空间（不过原点）"）。
+
+### Suggested Action
+写作前先读取用户的章节学习进度；任何术语若来自尚未学习的章节（如 4.7 向量空间、特征值、二次型），即使表述更简洁也必须替换为已学概念；写入后用 grep 检查未学章节关键词（向量空间/零空间/张成/仿射空间等）确认清零。
+
+### Related Rules
+Pattern-Key: notes.knowledge_boundary
+
+### Resolution
+2026-08-10：用户确认同步后，已在 `.learnings/RULES.md` 的 Do 区补「写作/改写必背笔记前先确认用户章节学习进度」规则、Watch For 区补 `notes.knowledge_boundary` 模式键，条目状态改为 resolved。
+
+
+## [LRN-20260810-002] best_practice
+
+**Logged**: 2026-08-10T16:22:40+08:00
+**Priority**: medium
+**Status**: resolved
+**Area**: notes/math
+
+### Summary
+写「行向量组线性表示 ⟹ 解集包含」方向结论时方向极易写反：$r\binom{A}{B}=r(A)$（$B$ 的行可由 $A$ 的行表示）⟹ $Ax=0$ 的解都是 $Bx=0$ 的解，不是反过来。
+
+### Details
+§12.3 同解核验初稿写反：「B 的行都在 A 的行空间内 → Bx=0 的解都是 Ax=0 的解」，实际应为反方向。记法：行被表示的一方（B）约束更松、解更多；行能表示别方（A）约束更严、解更少。用「表示方向 → 约束强弱 → 解集大小」链条验算方向。
+
+### Suggested Action
+写行向量组表示/解集包含等价链时，先独立判定「谁的行能表示谁 → 谁的方程更严 → 谁的解更少」，再落笔包含方向；核验块内显式写「B 的行可由 A 的行线性表示 ⟹ Ax=0 的解都是 Bx=0 的解」。
+
+### Related Rules
+Pattern-Key: notes.solution_direction
+
+### Resolution
+2026-08-10：用户确认同步后，已在 `.learnings/RULES.md` 的 Do 区补「行向量组线性表示→解集包含方向」验算细则，条目状态改为 resolved。
+
+---
+
+

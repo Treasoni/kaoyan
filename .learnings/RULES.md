@@ -36,6 +36,8 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 复习型表格超 4 列或单元格混排过宽时改短表/列表/分组表
 - (1x) 专业课标准电路图/微变等效图生成前先查标准画法并写节点网表卡，导出后逐项核对 b/c/e 节点、输出端口、受控源控制量、测试源
 - (1x) 审计多 agent profile hook/启动注入时 grep -rn 枚举全部 profile（.claude/.codex/.codebuddy/.agent），同一内容只保留一个注入入口
+- (1x) 写作/改写必背笔记前先确认用户章节学习进度；未学章节概念（4.7 向量空间、特征值、二次型等）不得使用，改用已学概念（解集/基础解系/线性表示/向量组等价/秩），写入后 grep 未学章节关键词清零
+- (1x) 行向量组线性表示→解集包含方向：谁的行能表示谁（$r\binom{A}{B}=r(A)$）→ 被表示者约束更松、解更多；写等价链前用「表示方向→约束强弱→解集大小」验算方向
 
 ## Don't
 
@@ -52,3 +54,4 @@ Compressed patterns from repeated learnings and errors.
 - (2x) Obsidian 证明/推导折叠块（obsidian.proof_collapsible）— `> [!note]-` 单一折叠块；callout 内允许 `$$`；表格前后留空行
 - (1x) 目录重构后历史 wikilink 悬空（obsidian.stale_wikilink）— 批量修复用 before==after 校验 + 备份 + 复审计
 - (1x) shell 引号与重定向风险（ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 时避免复杂 inline printf，写后回读行数和关键内容
+- (1x) 未学章节概念泄漏（notes.knowledge_boundary）— 写作前确认用户章节进度，未学章节术语（向量空间/张成/仿射空间等）不得用于已学内容
