@@ -1,6 +1,6 @@
 {
-  "version": "5",
-  "description": "考研复习项目高频请求回归样本。2026-08-03 v5：提取器分类修复——① 解析 Obsidian <command-name> 包装与 ❯ 终端前缀；② 补 /kaoyan-info；③ 此前的 kaoyan_english 232 事件实为 /kaoyan-plan 完成报告的误分类，已纠正回 kaoyan_plan。基线统一按 deepseek-v4-flash 事件均值计算（n 为事件数，会话数见各 case 注释）。任何模板/模型/上下文加载策略改动后，用 analyze-usage-events.py 重跑同一批样本并对比：质量不降且输入/缓存 token 变少才算优化。",
+  "version": "6",
+  "description": "考研复习项目高频请求回归样本。2026-08-10 v6：提取器去重修复——event_key 移除 timestamp，同一 assistant 轮的重复 usage 块只保留一条（此前 n 被膨胀约 3 倍，均值不受影响；基线已按修正后口径刷新）。v5 起：提取器分类修复（Obsidian <command-name> 包装、❯ 终端前缀、/kaoyan-info；kaoyan_english 误分类纠正回 kaoyan_plan）。基线统一按 deepseek-v4-flash 事件均值计算（n 为事件数，会话数见各 case 注释）。任何模板/模型/上下文加载策略改动后，用 analyze-usage-events.py 重跑同一批样本并对比：质量不降且输入/缓存 token 变少才算优化。",
   "cases": [
     {
       "id": "kaoyan_plan_daily",
@@ -19,13 +19,13 @@
         "尊重保护区块：不覆盖 ## 个人笔记 / > [!personal]"
       ],
       "baseline": {
-        "input_tokens": 5594,
-        "cache_read_tokens": 84845,
+        "input_tokens": 5067,
+        "cache_read_tokens": 96872,
         "output_tokens": 0,
         "latency_ms": 0,
         "cost_usd": null,
         "quality_score": null,
-        "note": "n=1712 events / 18 sessions avg; deepseek-v4-flash; includes daily completion reports (previously misclassified as kaoyan_english); refreshed 2026-08-03"
+        "note": "n=717 events / 21 sessions avg; deepseek-v4-flash; includes daily completion reports; refreshed 2026-08-10 after extractor dedup fix (n previously ~3x inflated, means unchanged)"
       }
     },
     {
@@ -45,13 +45,13 @@
         "写入前验证数学内容正确性"
       ],
       "baseline": {
-        "input_tokens": 7824,
-        "cache_read_tokens": 63052,
+        "input_tokens": 7849,
+        "cache_read_tokens": 84330,
         "output_tokens": 0,
         "latency_ms": 0,
         "cost_usd": null,
         "quality_score": null,
-        "note": "n=300 events / 13 sessions avg; deepseek-v4-flash; keyword-fallback classification (无 <command-name> 会话)"
+        "note": "n=193 events / 18 sessions avg; deepseek-v4-flash; keyword-fallback classification (无 <command-name> 会话); refreshed 2026-08-10 after extractor dedup fix"
       }
     },
     {
@@ -97,13 +97,13 @@
         "归档按知识模块判断，不按表象；不覆盖保护区块"
       ],
       "baseline": {
-        "input_tokens": 3468,
-        "cache_read_tokens": 81100,
+        "input_tokens": 4603,
+        "cache_read_tokens": 93360,
         "output_tokens": 0,
         "latency_ms": 0,
         "cost_usd": null,
         "quality_score": null,
-        "note": "n=1633 events / 29 sessions avg; deepseek-v4-flash; refreshed 2026-08-03 (此前混入 kaoyan_plan 误分类事件)"
+        "note": "n=921 events / 40 sessions avg; deepseek-v4-flash; refreshed 2026-08-10 after extractor dedup fix"
       }
     },
     {
@@ -129,7 +129,7 @@
         "latency_ms": 0,
         "cost_usd": null,
         "quality_score": null,
-        "note": "n=8 events / 1 session avg; deepseek-v4-flash; SMALL SAMPLE, treat as provisional"
+        "note": "n=4 events / 1 session avg; deepseek-v4-flash; SMALL SAMPLE, treat as provisional; refreshed 2026-08-10 after extractor dedup fix"
       }
     },
     {

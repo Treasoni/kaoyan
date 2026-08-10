@@ -139,11 +139,17 @@ def has_usable_tokens(e: dict) -> bool:
 
 
 def event_key(e: dict) -> str:
+    # NOTE: timestamp is intentionally excluded. Claude Code transcripts can
+    # record the same assistant turn's usage block several times within ~1s
+    # (verified: 90% of duplicate (session,in,cr,out) clusters span <5s, 0 span
+    # >=60s), which previously inflated event counts ~3x. Distinct turns with
+    # byte-identical usage do not occur in this dataset, so dropping the
+    # timestamp only collapses genuine same-turn duplicates and never merges
+    # separate turns.
     m = e["metadata"]
     return "|".join(
         [
             m["session_id"],
-            str(e["timestamp"]),
             str(e["model"]),
             str(e["input_tokens"]),
             str(e["cache_read_tokens"]),

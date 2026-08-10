@@ -62,20 +62,21 @@ python3 .llm/prompt-cache/scripts/analyze-usage-events.py
 - `output_tokens` 在转储中多为 0（请求起始记录），**不可作为输出量依据**。
 - 分组比较必须同 `model + request_type`，不能跨提供方/模型混比。
 
-## 已测量基线（2026-08-03 刷新，deepseek-v4-flash）
+## 已测量基线（2026-08-10 刷新，deepseek-v4-flash）
 
-窗口：2026-06-18 起；已剔除 token 全 0 事件；分类已修复（Obsidian `<command-name>` 包装、`❯` 终端前缀、`/kaoyan-info`）。n 为事件数（会话数见回归样本注释）。
+窗口：2026-06-18 起；已剔除 token 全 0 事件；分类已修复（Obsidian `<command-name>` 包装、`❯` 终端前缀、`/kaoyan-info`）。2026-08-10 起提取器 `event_key` 移除 timestamp，同一 assistant 轮的重复 usage 块只保留一条，**n 较此前约降 3 倍，均值不变**（本次已按修正口径刷新全表）。n 为事件数（会话数见回归样本注释）。
 
 | request_type | 事件数 | avg 输入 | avg 缓存读 | 命中率 |
 |---|---|---|---|---|
-| kaoyan_plan | 1,712 | 5,594 | 84,845 | 93.8% |
-| mistake_book | 1,633 | 3,468 | 81,100 | 95.9% |
-| kaoyan_math | 300 | 7,824 | 63,052 | 89.0% |
-| kaoyan_info | 48 | 2,065 | 41,227 | 95.2% |
-| prompt_cache_optimizer（非回归样本） | 376 | 3,355 | 115,975 | 97.2% |
-| general_chat（兜底桶，非回归样本） | 294 | 5,200 | 74,204 | 93.5% |
-| kaoyan_electronics | 8 | 7,482 | 22,560 | 75.1%（小样本） |
-| kaoyan_english / understanding | 0 | — | —（v4 的 kaoyan_english 基线为误分类的 /kaoyan-plan 完成报告，已纠正，待真实会话补齐） |
+| kaoyan_plan | 717 | 5,067 | 96,872 | 95.0% |
+| mistake_book | 921 | 4,603 | 93,360 | 95.3% |
+| kaoyan_math | 193 | 7,849 | 84,330 | 91.5% |
+| kaoyan_info | 19 | 2,497 | 40,879 | 94.2% |
+| prompt_cache_optimizer（非回归样本） | 221 | 2,526 | 111,404 | 97.8% |
+| general_chat（兜底桶，非回归样本） | 257 | 6,178 | 98,601 | 94.1% |
+| kaoyan_electronics | 4 | 7,482 | 22,560 | 75.1%（小样本） |
+| chapter_summary | 4 | 7,651 | 21,568 | 73.8%（小样本） |
+| kaoyan_english / understanding | 0 | — | —（误分类已纠正，待真实会话补齐） |
 
 ## 隐私与安全
 
