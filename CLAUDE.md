@@ -139,6 +139,7 @@ python3 .agent-sync/sync_agents.py --check --scope skills
 python3 .agent-sync/sync_agents.py --apply --scope skills
 ```
 
+- **领域技能勿直接覆盖**：`sync_agents` 会把全部技能统一到 Codex canonical，`--apply --scope skills` 会覆盖各 profile 领域技能的有意定制（如 kaoyan-math 的「上下文加载纪律」章节）。执行前用 `--check` 审查漂移，确认是无意差异再 `--apply`；有意定制要保留，不要对同一技能重复 `--apply`。
 - 如果报告另一侧缺失，先补齐另一侧再结束任务。
 - Codex UI 元数据（如 `agents/openai.yaml`）只留在 `.agents/`。
 - Claude Code 专属 hook / settings 只留在 `.claude/`。
