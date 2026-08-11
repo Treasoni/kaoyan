@@ -129,13 +129,14 @@
 
 ### 7.2 多 Agent 自学习同步规则
 
-- Codex profile 默认使用 `.codebuddy/skills/`。
+- Codex profile 默认使用 `.agents/skills/`。
 - Claude Code profile 默认使用 `.claude/skills/`。
 - 通用 profile 默认使用 `.agent/skills/`；其他 agent 可使用项目自定义 skills 目录。
-- 新增或更新任何共享 self-learning skill 后，必须确认相关 profile 都保留同等功能：
+- 跨 profile 的 skills、rules、hooks、scripts、workflows、MCP 配置同步由 `multi-agent-sync` 负责；新增或更新任何共享 self-learning skill 后，必须确认相关 profile 都保留同等功能：
 
 ```bash
-python3 .codebuddy/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
+python3 .agent-sync/sync_agents.py --check --scope skills
+python3 .agent-sync/sync_agents.py --apply --scope skills
 ```
 
 - 如果报告另一侧缺失，先补齐另一侧再结束任务。
