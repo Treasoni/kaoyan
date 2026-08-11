@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="930" viewBox="0 0 1800 930">
+  <style>
+    .w{fill:none;stroke:#18212f;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}.t{fill:none;stroke:#18212f;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}.a{fill:none;stroke:#b3261e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g{fill:none;stroke:#8190a5;stroke-width:3;stroke-dasharray:10 8}.box{fill:#fbfcff;stroke:#aeb9c8;stroke-width:2.5;rx:20}.title{font:700 39px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.sub{font:700 28px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.lab{font:24px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#18212f}.small{font:21px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#334155}.red{font:700 23px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#b3261e}
+  </style>
+  <rect x="24" y="24" width="1752" height="882" rx="28" fill="#fffef9" stroke="#d5dbe5" stroke-width="3"/>
+  <text x="70" y="92" class="title">固定偏置达林顿共射放大电路：直流 Q 点 → 交流微变等效</text>
+  <rect x="65" y="140" width="810" height="690" class="box"/><text x="105" y="200" class="sub">① 直流通路：耦合电容开路</text>
+  <path class="w" d="M190 255 H725 M300 255 V310 M300 365 V430 M725 255 V310 M725 365 V430 M725 430 H545 M410 365 L470 430 H515 M545 365 L640 430 M410 485 L470 545 H545 M545 485 L545 650 M190 650 H725"/>
+  <path class="w" d="M410 365 V485 M545 365 V485 M190 515 H410 M545 650 V705"/>
+  <path class="a" d="M446 521 l18 18 -26 4 M520 616 l18 18 -26 4"/>
+  <path class="t" d="M300 310 l-12 12 24 12 -24 12 24 12 -12 12 M725 310 l-12 12 24 12 -24 12 24 12 -12 12"/>
+  <path class="t" d="M515 430 H545 M545 430 H590"/>
+  <path class="g" d="M105 515 H170 M170 485 V545 M150 485 V545 M745 430 H805 M805 400 V460 M825 400 V460 M825 430 H850"/>
+  <text x="733" y="245" class="lab">+Vcc</text><text x="278" y="345" class="lab">Rb</text><text x="705" y="345" class="lab">Rc</text><text x="365" y="355" class="lab">Q1</text><text x="555" y="355" class="lab">Q2</text><text x="95" y="500" class="small">Ci 开路</text><text x="760" y="390" class="small">Co 开路</text><text x="570" y="715" class="lab">地</text>
+  <text x="335" y="600" class="red">VBE1≈0.7 V</text><text x="555" y="590" class="red">VBE2≈0.7 V</text><text x="125" y="745" class="red">IBQ=(Vcc−1.4 V)/Rb</text><text x="125" y="785" class="red">ICQ=(β1β2+β1+β2)IBQ</text>
+  <rect x="925" y="140" width="810" height="690" class="box"/><text x="965" y="200" class="sub">② 中频交流：Vcc 为交流地，Ci、Co 短路</text>
+  <path class="w" d="M975 720 H1680 M1035 440 H1125 M1125 440 H1200 M1200 440 V510 M1200 565 V620 M1200 620 H1320 M1320 620 V510 M1320 565 V720 M1440 360 H1645 M1440 360 V430 M1440 485 V720 M1530 360 V430 M1530 485 V720 M1630 360 V430 M1630 485 V720"/>
+  <path class="t" d="M1125 440 V720 M1200 510 l-12 12 24 12 -24 12 24 12 -12 12 M1320 510 l-12 12 24 12 -24 12 24 12 -12 12 M1440 430 l-35 28 35 28 35 -28 Z M1530 430 l-35 28 35 28 35 -28 Z M1630 430 l-12 12 24 12 -24 12 24 12 -12 12"/>
+  <path class="a" d="M1440 448 v25 M1530 448 v25"/>
+  <text x="967" y="430" class="lab">ui</text><text x="1088" y="490" class="lab">Rb</text><text x="1180" y="500" class="lab">rbe1</text><text x="1298" y="500" class="lab">rbe2</text><text x="1390" y="415" class="small">β1 ib1</text><text x="1480" y="415" class="small">β2 ib2</text><text x="1605" y="500" class="lab">Rc</text><text x="1660" y="500" class="lab">RL</text><text x="1650" y="350" class="lab">uo</text>
+  <text x="1010" y="765" class="red">ib2=(1+β1)ib1</text><text x="1010" y="805" class="red">uo=−(β1ib1+β2ib2)(Rc∥RL)</text>
+  <text x="80" y="875" class="small">网表核对：Q1 的 E 与 Q2 的 B 是同一节点；Q1、Q2 的 C 与 Rc、RL 上端是同一输出节点；Q2 的 E 接地。</text>
+</svg>
