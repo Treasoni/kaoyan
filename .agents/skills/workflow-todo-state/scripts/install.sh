@@ -294,7 +294,7 @@ workflow_agents_block() {
 <!-- workflow-todo-state:start -->
 ## Workflow Todo State
 
-Named workflow state files are the source of truth for every routed workflow.
+Named workflow state files are the source of truth while a routed workflow is active.
 
 - Workflow definitions live under `__WORKFLOWS_DIR__/{workflow-id}/`.
 - Workflow state files live under `workspace/workflow-runs/` and should be named after the task, for example `payment-refactor.workflow.md`.
@@ -303,7 +303,9 @@ Named workflow state files are the source of truth for every routed workflow.
 - If the route is ambiguous, ask the user before acting.
 - Read the active workflow state file before starting any phase; do not skip prerequisite phases.
 - Change phase state only through `__SCRIPTS_DIR__/todo-state.sh`.
-- Use one unique phase status line per phase, for example `> [P0] ⬜ 未开始`.
+- Use one unique phase status line per phase, for example `> [P0] ⬜ 未开始 {not_started}`.
+- The final phase requires `quality_gate: passed`; a temporary waiver also requires an owner and due date.
+- Completed run states follow the repository retention policy and do not replace changelogs or release records.
 - On resume after interruption, inspect the YAML frontmatter and current phase before acting.
 - Each workflow directory must contain a `routing.yaml`. After creating, changing, renaming, or deleting a workflow, run `__SCRIPTS_DIR__/sync-workflow-routing.sh`; the update is incomplete until `__SCRIPTS_DIR__/sync-workflow-routing.sh --check` passes.
 <!-- workflow-todo-state:end -->

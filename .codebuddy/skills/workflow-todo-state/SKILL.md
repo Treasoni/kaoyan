@@ -74,7 +74,7 @@ Use `todo.md` only for a single-purpose project where one workflow will ever exi
 
 Each reusable workflow state file should contain:
 
-- YAML frontmatter with `workflow_id`, `workflow_name`, `workflow_version`, `state_file_type`, `run_id`, `task`, `created_from`, `current_phase`, `current_status`, `mode`, and `blocked_reason`.
+- YAML frontmatter with `workflow_id`, `workflow_name`, `workflow_version`, `state_file_type`, `run_id`, `task`, `created_from`, `current_phase`, `current_status`, `mode`, `blocked_reason`, `quality_gate`, `quality_gate_owner`, and `quality_gate_due`.
 - A visible line beginning with `> 当前阶段：`.
 - One unique phase status line per phase, using `> [PN] ...`.
 - An `## 异常记录` table if `skip` or `block` should append history.
@@ -108,10 +108,12 @@ The first command regenerates only the marked block in `<agent-dir>/rules/workfl
 ## State Rules
 
 - `start PN` requires all previous phases to be `✅ 已完成` or `⏭️ 跳过`.
-- `complete PN` requires the phase to be `🔲 进行中`.
+- `complete PN` requires the phase to be `🔲 进行中 {in_progress}` (legacy emoji-only states remain readable).
+- Completing the final phase requires `quality_gate: passed`. A temporary `waived` gate also requires a non-empty owner and due date.
 - `skip PN` refuses completed phases and records a reason.
 - `block PN` marks an open phase in progress, writes `current_status: blocked`, and records a reason; completed and skipped phases are terminal.
 - After `complete` or `skip`, the script advances `current_phase` to the next `⬜ 未开始` phase, or to `done` when no pending phase remains.
+- Treat run states as active coordination data. After completion, archive or remove them according to the target repository policy; durable history belongs in changelogs, release notes, or ADRs.
 
 ## When Retrofitting A Project
 

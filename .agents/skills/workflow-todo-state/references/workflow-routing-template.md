@@ -7,7 +7,7 @@ Use this rule file to decide which named workflow to use and where to find activ
 ```text
 __WORKFLOWS_DIR__/{workflow-id}/workflow.md        # workflow definition
 __WORKFLOWS_DIR__/{workflow-id}/state-template.md # state file template
-workspace/workflow-runs/*.workflow.md                   # active or historical run state
+workspace/workflow-runs/*.workflow.md                   # active run state
 ```
 
 ## Available Workflows
@@ -23,6 +23,7 @@ workspace/workflow-runs/*.workflow.md                   # active or historical r
 - Match the user's original request against positive triggers and exclusions. A matching `Required: yes` workflow cannot use the ordinary execution path.
 - If multiple workflows match, choose the more specific workflow; if the route remains ambiguous, ask the user before acting.
 - If a matching run already exists under `workspace/workflow-runs/`, resume it instead of creating a duplicate.
+- Completed run states follow the repository retention policy; use changelogs, release notes, or ADRs for durable history.
 - If no run exists, create a named state file from the workflow's `state-template.md`.
 - Name state files after the task or feature, not `todo.md`, unless the project has exactly one workflow.
 - Every phase must read the active state file before acting.

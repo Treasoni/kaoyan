@@ -1,0 +1,19 @@
+apiVersion: agent-platform/v1
+kind: Skill
+metadata:
+  name: workflow-todo-state
+  version: 0.1.0
+  description: "Create or retrofit reusable named workflow state machines for multi-step agent projects. Use when a project needs recoverable workflow state files, multiple workflow definitions, phase gates, restart-safe agent workflows"
+spec:
+  entrypoint: SKILL.md
+  capabilities:
+    - skill.workflow-todo-state
+  permissions:
+    filesystem: write
+    network: none
+    subprocess: allow
+    git: none
+  dependsOn: []
+  lifecycle:
+    discoverable: true
+    deprecated: false

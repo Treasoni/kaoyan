@@ -14,7 +14,7 @@
 | `codebase-design` | Shared vocabulary for designing deep modules. Use when the user wants to desi… | Shared vocabulary for designing deep mod… |
 | `defuddle` | Extract clean markdown content from web pages using Defuddle CLI | Extract clean markdown content from web … |
 | `diagnosing-bugs` | Diagnosis loop for hard bugs and performance regressions. Use when the user s… | diagnose、debug this |
-| `digest` | 自我学习阶段。回顾本次学习会话，记录学习心得和错误到 .learnings/，当文件超阈值时自动压缩去重，更新 RULES.md | 自我学习阶段 |
+| `digest` | 自我学习阶段。回顾本次会话，记录真实发生的学习点和错误到 .learnings/； | 自我学习阶段 |
 | `docx` | "Use this skill whenever the user wants to create, read, edit | Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation. |
 | `domain-modeling` | Build and sharpen a project's domain model. Use when the user wants to pin do… | Build and sharpen a project's domain mod… |
 | `excalidraw-diagram` | Generate Excalidraw diagrams from text content. Supports three output modes -… | Excalidraw、画图、流程图、思维导图、可视化、diagram、标准Excalidraw、standard excalidraw |

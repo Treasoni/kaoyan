@@ -149,14 +149,20 @@ replace_phase_status() {
 
 phase_has_status() {
   local label="$1"
-  grep -qE "^> \\[$PHASE\\] .* \\{$label\\}$" "$TODO_FILE"
+  case "$label" in
+    complete) grep -qE "^> \\[$PHASE\\] (✅ 已完成|.* \\{complete\\})$" "$TODO_FILE" ;;
+    skipped) grep -qE "^> \\[$PHASE\\] (⏭️ 跳过|.* \\{skipped\\})$" "$TODO_FILE" ;;
+    in_progress) grep -qE "^> \\[$PHASE\\] (🔲 进行中|.* \\{in_progress\\})$" "$TODO_FILE" ;;
+    not_started) grep -qE "^> \\[$PHASE\\] (⬜ 未开始|.* \\{not_started\\})$" "$TODO_FILE" ;;
+    *) return 1 ;;
+  esac
 }
 
 previous_open_phase_before() {
   PHASE_NUM="$PHASE_NUM" perl -ne '
-    if (/^> \[P(\d+)\] .* \{([^}]+)\}$/ && $1 < $ENV{PHASE_NUM}) {
+    if (/^> \[P(\d+)\] (.*)$/ && $1 < $ENV{PHASE_NUM}) {
       my $status = $2;
-      if ($status ne "complete" && $status ne "skipped") {
+      if ($status !~ /(?:^✅ 已完成$|^⏭️ 跳过$|\{(?:complete|skipped)\}$)/) {
         print "P$1\n";
         exit;
       }
@@ -175,11 +181,51 @@ ensure_previous_phases_closed() {
 
 next_pending_phase_after() {
   PHASE_NUM="$PHASE_NUM" perl -ne '
-    if (/^> \[P(\d+)\] .* \{not_started\}$/ && $1 > $ENV{PHASE_NUM}) {
+    if (/^> \[P(\d+)\] (?:⬜ 未开始|.* \{not_started\})$/ && $1 > $ENV{PHASE_NUM}) {
       print "P$1\n";
       exit;
     }
   ' "$TODO_FILE"
+}
+
+frontmatter_value() {
+  local key="$1"
+  awk -v key="$key" '
+    NR == 1 && $0 == "---" { in_frontmatter = 1; next }
+    in_frontmatter && $0 == "---" { exit }
+    in_frontmatter && index($0, key ":") == 1 {
+      value = substr($0, length(key) + 2)
+      gsub(/^[[:space:]\"]+|[[:space:]\"]+$/, "", value)
+      print value
+      exit
+    }
+  ' "$TODO_FILE"
+}
+
+ensure_final_quality_gate() {
+  local final_phase
+  local gate
+  local owner
+  local due
+
+  final_phase="$(sed -nE 's/^> \[P([0-9]+)\].*/\1/p' "$TODO_FILE" | sort -n | tail -n 1)"
+  [ "$PHASE_NUM" = "$final_phase" ] || return 0
+
+  gate="$(frontmatter_value quality_gate)"
+  if [ "$gate" = "passed" ]; then
+    return 0
+  fi
+  if [ "$gate" = "waived" ]; then
+    owner="$(frontmatter_value quality_gate_owner)"
+    due="$(frontmatter_value quality_gate_due)"
+    if [ -n "$owner" ] && [ -n "$due" ]; then
+      return 0
+    fi
+    echo "todo-state: waived final quality gate requires quality_gate_owner and quality_gate_due" >&2
+    exit 1
+  fi
+  echo "todo-state: final phase requires quality_gate: passed or a documented waiver" >&2
+  exit 1
 }
 
 append_exception_record() {
@@ -221,6 +267,7 @@ case "$ACTION" in
       echo "todo-state: phase must be in progress before complete: $PHASE" >&2
       exit 1
     fi
+    ensure_final_quality_gate
     replace_phase_status "✅ 已完成 {complete}"
     NEXT_PHASE="$(next_pending_phase_after || true)"
     if [ -n "$NEXT_PHASE" ]; then

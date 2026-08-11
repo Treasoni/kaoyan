@@ -1,6 +1,6 @@
 ---
 name: maintain-learnings
-description: 维护 .learnings/ 经验库，把过多或反复出现的学习记录、错误日志、规则失效问题聚类诊断，追溯并修改对应 skill、模板、hook、校验脚本或项目规则；修复并验证后再归档或移除已解决记录；同时检查多个 agent skill 目录之间的共享功能同步。用户提到 learnings 太多、错误反复犯、清理经验库、维护自我学习、压缩错误日志、从错误中修技能、同步多 agent 技能时触发。
+description: 维护 .learnings/ 经验库，把过多或反复出现的学习记录、错误日志、规则失效问题聚类诊断，追溯并修改对应 skill、模板、hook、校验脚本或项目规则；修复并验证后再归档或移除已解决记录。用户提到 learnings 太多、错误反复犯、清理经验库、维护自我学习、压缩错误日志或从错误中修技能时触发。
 ---
 
 # maintain-learnings（经验库维护）
@@ -75,40 +75,7 @@ python3 -c 'from pathlib import Path; p=Path("<skills-dir>/<skill>/SKILL.md"); t
 
 2. 每条待归档记录都能对应到新的步骤、模板或校验逻辑。
 
-## Step 6: 多 Agent 同步守护
-
-如果项目同时使用多个 agent profile，修改任何共享 skill 后都运行同步检查。默认会比较 `agents` 与 `claude`：
-
-```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --skill <skill>
-```
-
-自定义 profile 示例：
-
-```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --platform generic=.agent/skills --base-platform agents --compare-platform generic --skill <skill>
-```
-
-如果目标侧缺失，先 dry-run：
-
-```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill>
-```
-
-确认后应用：
-
-```bash
-python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root . --from-platform agents --to-platform claude --skill <skill> --apply
-```
-
-保留平台专属内容：
-
-- Codex UI 元数据（如 `agents/openai.yaml`）只留在 `.agents/`。
-- Claude Code 的 hooks / settings 只按 Claude Code 规则处理。
-- 其他 agent 的入口文件、Hook、工具权限和运行限制也应保留在各自 profile 中。
-- 不用一侧版本覆盖另一侧专属命令、Hook、工具说明和平台限制。
-
-## Step 7: 清理活跃 learnings
+## Step 6: 清理活跃 learnings
 
 只处理已经验证修复的记录：
 
@@ -123,3 +90,4 @@ python3 .agents/skills/maintain-learnings/scripts/sync_platform_skills.py --root
 - 不要归档未修复的问题。
 - 不要把多个不同根因的错误合并成一条模糊规则。
 - 不要把只适用于某个 skill 的细节提升到项目总规则。
+- 不要同步其他 Agent 的配置；跨 profile 的 skills、rules、hooks、scripts、workflows 和 MCP 配置由 `multi-agent-sync` 负责。

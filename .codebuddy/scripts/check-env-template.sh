@@ -59,6 +59,7 @@ missing_vars_file="${TMP_DIR}/missing-vars.txt"
 unused_vars_file="${TMP_DIR}/unused-vars.txt"
 secret_findings_file="${TMP_DIR}/secret-findings.txt"
 ignored_vars_file="${TMP_DIR}/ignored-vars.txt"
+assigned_vars_file="${TMP_DIR}/assigned-vars.txt"
 
 cat > "$ignored_vars_file" <<'EOF'
 BASH_SOURCE
@@ -104,6 +105,38 @@ WORKFLOW_ID
 WORKFLOW_STATE_FILE
 EOF
 
+# Shell scripts commonly use uppercase local variables. They are not part of
+# the project's environment contract merely because they appear in shell expansion.
+# Treat names assigned in scanned files as implementation details; values that
+# are only read from the environment remain in the referenced-variable set.
+rg -n --hidden --no-heading \
+  -g '!.git/**' \
+  -g '!.agents/**' \
+  -g '!.claude/**' \
+  -g '!.codebuddy/**' \
+  -g '!.learnings/**' \
+  -g '!.workbuddy/**' \
+  -g '!node_modules/**' \
+  -g '!dist/**' \
+  -g '!build/**' \
+  -g '!.next/**' \
+  -g '!coverage/**' \
+  -g '!workspace/**' \
+  -g '!docs/**' \
+  -g '!tests/**' \
+  -g '!README.md' \
+  -g '!.env' \
+  -g '!.env.*' \
+  -g '!.env.example' \
+  -g '!.codebuddy/rules/common/env.md' \
+  -g '!templates/env/**' \
+  '^[[:space:]]*(local[[:space:]]+)?[A-Z][A-Z0-9_]*[[:space:]]*=' \
+  "$PROJECT_ROOT" \
+  | perl -ne 's/^[^:]*:\d+://; print "$1\n" if /^[[:space:]]*(?:local[[:space:]]+)?([A-Z][A-Z0-9_]*)[[:space:]]*=/;' \
+  | sort -u > "$assigned_vars_file" || true
+cat "$assigned_vars_file" >> "$ignored_vars_file"
+sort -u -o "$ignored_vars_file" "$ignored_vars_file"
+
 awk '
   /^[[:space:]]*#/ || /^[[:space:]]*$/ { next }
   /^[A-Z][A-Z0-9_]*[[:space:]]*=/ {
@@ -128,13 +161,19 @@ extract_vars() {
 
 rg -n --hidden --no-heading \
   -g '!.git/**' \
+  -g '!.agents/**' \
   -g '!.claude/**' \
+  -g '!.codebuddy/**' \
+  -g '!.learnings/**' \
+  -g '!.workbuddy/**' \
   -g '!node_modules/**' \
   -g '!dist/**' \
   -g '!build/**' \
   -g '!.next/**' \
   -g '!coverage/**' \
   -g '!workspace/**' \
+  -g '!docs/**' \
+  -g '!tests/**' \
   -g '!README.md' \
   -g '!.env' \
   -g '!.env.*' \

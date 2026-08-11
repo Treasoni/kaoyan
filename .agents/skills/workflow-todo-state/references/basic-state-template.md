@@ -12,6 +12,9 @@ current_phase: P0
 current_status: not_started
 mode: standard
 blocked_reason: ""
+quality_gate: pending
+quality_gate_owner: ""
+quality_gate_due: ""
 ---
 
 # Example Flow - Workflow Run
