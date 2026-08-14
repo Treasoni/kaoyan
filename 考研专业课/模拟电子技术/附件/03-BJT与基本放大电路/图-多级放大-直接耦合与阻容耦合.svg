@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040">
+  <rect width="1800" height="1040" fill="#ffffff"/>
+  <style>
+    .title { font: 700 34px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .head { font: 700 25px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .label { font: 20px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .small { font: 17px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#26344d; }
+    .note { font: 18px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#a62828; }
+    .wire { stroke:#172033; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .thin { stroke:#52627b; stroke-width:2; fill:none; stroke-dasharray:8 8; }
+    .box { fill:#f8fafc; stroke:#b9c5d8; stroke-width:3; }
+    .res { fill:#ffffff; stroke:#172033; stroke-width:3; }
+    .cap { stroke:#172033; stroke-width:4; }
+    .red { stroke:#c43838; stroke-width:3; fill:none; }
+  </style>
+
+  <rect x="25" y="25" width="1750" height="990" rx="24" class="box"/>
+  <text x="70" y="78" class="title">多级放大电路：直接耦合与阻容耦合</text>
+
+  <!-- Left panel: direct coupling -->
+  <rect x="60" y="115" width="800" height="840" rx="18" class="box"/>
+  <text x="90" y="160" class="head">① 直接耦合：前级 Q 点牵连后级</text>
+  <text x="90" y="193" class="small">T₁ 集电极直接接 T₂ 基极，信号与直流都能传递</text>
+
+  <!-- direct circuit rails -->
+  <line x1="120" y1="245" x2="780" y2="245" class="wire"/>
+  <text x="740" y="225" class="label">+VCC</text>
+  <line x1="120" y1="700" x2="780" y2="700" class="wire"/>
+  <line x1="250" y1="245" x2="250" y2="285" class="wire"/>
+  <rect x="235" y="285" width="30" height="75" class="res"/>
+  <line x1="250" y1="360" x2="250" y2="375" class="wire"/>
+  <text x="215" y="280" class="label">R<tspan baseline-shift="sub" font-size="14">C1</tspan></text>
+  <line x1="575" y1="245" x2="575" y2="285" class="wire"/>
+  <rect x="560" y="285" width="30" height="75" class="res"/>
+  <line x1="575" y1="360" x2="575" y2="375" class="wire"/>
+  <text x="540" y="280" class="label">R<tspan baseline-shift="sub" font-size="14">C2</tspan></text>
+
+  <!-- T1 NPN -->
+  <line x1="250" y1="375" x2="250" y2="430" class="wire"/>
+  <line x1="250" y1="430" x2="305" y2="485" class="wire"/>
+  <line x1="250" y1="430" x2="195" y2="485" class="wire"/>
+  <line x1="195" y1="485" x2="195" y2="505" class="wire"/>
+  <line x1="305" y1="485" x2="305" y2="620" class="wire"/>
+  <polygon points="295,510 305,530 315,510" fill="#172033"/>
+  <line x1="305" y1="620" x2="305" y2="700" class="wire"/>
+  <text x="320" y="470" class="label">T₁</text>
+  <text x="176" y="470" class="small">B₁</text>
+  <text x="325" y="525" class="small">E₁</text>
+  <text x="258" y="415" class="small">C₁</text>
+
+  <!-- base bias and input -->
+  <line x1="120" y1="470" x2="195" y2="470" class="wire"/>
+  <line x1="120" y1="470" x2="120" y2="505" class="wire"/>
+  <circle cx="100" cy="470" r="18" fill="#fff" stroke="#172033" stroke-width="3"/>
+  <text x="75" y="435" class="label">uᵢ</text>
+  <line x1="100" y1="488" x2="100" y2="700" class="wire"/>
+  <line x1="120" y1="245" x2="120" y2="310" class="wire"/>
+  <rect x="105" y="310" width="30" height="95" class="res"/>
+  <line x1="120" y1="405" x2="120" y2="470" class="wire"/>
+  <text x="78" y="305" class="label">R<tspan baseline-shift="sub" font-size="14">B2</tspan></text>
+
+  <!-- direct connection T1 collector to T2 base -->
+  <line x1="250" y1="375" x2="575" y2="375" class="wire"/>
+  <line x1="575" y1="375" x2="575" y2="430" class="wire"/>
+  <line x1="575" y1="430" x2="520" y2="485" class="wire"/>
+  <text x="355" y="355" class="note">V<tspan baseline-shift="sub" font-size="14">C1Q</tspan> = V<tspan baseline-shift="sub" font-size="14">B2Q</tspan></text>
+
+  <!-- T2 NPN with emitter resistor -->
+  <line x1="575" y1="430" x2="575" y2="485" class="wire"/>
+  <line x1="575" y1="485" x2="630" y2="540" class="wire"/>
+  <line x1="575" y1="485" x2="520" y2="540" class="wire"/>
+  <line x1="630" y1="540" x2="630" y2="585" class="wire"/>
+  <polygon points="620,565 630,585 640,565" fill="#172033"/>
+  <rect x="615" y="585" width="30" height="70" class="res"/>
+  <line x1="630" y1="655" x2="630" y2="700" class="wire"/>
+  <text x="648" y="525" class="label">T₂</text>
+  <text x="647" y="585" class="label">R<tspan baseline-shift="sub" font-size="14">E2</tspan></text>
+  <line x1="575" y1="285" x2="575" y2="375" class="wire"/>
+
+  <text x="90" y="770" class="note">直流：耦合处没有电容，前级集电极电压直接决定后级基极电压。</text>
+  <text x="90" y="805" class="note">问题：温度、β、VCC 的变化会沿级间直流通路传递，造成零点漂移。</text>
+  <text x="90" y="853" class="small">解题：先求 T₁ 的 Q 点，再由 V<tspan baseline-shift="sub" font-size="13">C1Q</tspan> 作为 T₂ 的 V<tspan baseline-shift="sub" font-size="13">B2Q</tspan>，最后检查两级放大区。</text>
+
+  <!-- Right panel: RC coupling -->
+  <rect x="890" y="115" width="855" height="840" rx="18" class="box"/>
+  <text x="920" y="160" class="head">② 阻容耦合：直流隔离，交流级联</text>
+  <text x="920" y="193" class="small">前级 FET 共源 → 耦合电容 → 后级 BJT 共射</text>
+
+  <!-- RC circuit rails -->
+  <line x1="955" y1="245" x2="1680" y2="245" class="wire"/>
+  <line x1="955" y1="700" x2="1680" y2="700" class="wire"/>
+  <text x="1590" y="225" class="label">VDD / VCC</text>
+  <!-- input source and Ci -->
+  <circle cx="965" cy="470" r="18" fill="#fff" stroke="#172033" stroke-width="3"/>
+  <text x="930" y="435" class="label">uᵢ</text>
+  <line x1="965" y1="488" x2="965" y2="700" class="wire"/>
+  <line x1="983" y1="470" x2="1020" y2="470" class="wire"/>
+  <line x1="1020" y1="440" x2="1020" y2="500" class="cap"/>
+  <line x1="1033" y1="440" x2="1033" y2="500" class="cap"/>
+  <line x1="1033" y1="470" x2="1080" y2="470" class="wire"/>
+  <text x="1010" y="425" class="small">Cᵢ</text>
+  <!-- FET gate and divider -->
+  <line x1="1080" y1="395" x2="1080" y2="545" class="wire"/>
+  <line x1="1080" y1="470" x2="1120" y2="470" class="wire"/>
+  <rect x="1058" y="285" width="30" height="65" class="res"/>
+  <line x1="1073" y1="245" x2="1073" y2="285" class="wire"/>
+  <line x1="1073" y1="350" x2="1073" y2="395" class="wire"/>
+  <rect x="1058" y="575" width="30" height="65" class="res"/>
+  <line x1="1073" y1="545" x2="1073" y2="575" class="wire"/>
+  <line x1="1073" y1="640" x2="1073" y2="700" class="wire"/>
+  <text x="1035" y="280" class="label">R₁</text>
+  <text x="1035" y="670" class="label">R₂</text>
+  <!-- FET symbol -->
+  <line x1="1170" y1="315" x2="1170" y2="425" class="wire"/>
+  <line x1="1170" y1="515" x2="1170" y2="625" class="wire"/>
+  <line x1="1170" y1="425" x2="1170" y2="515" class="wire"/>
+  <line x1="1120" y1="470" x2="1150" y2="470" class="wire"/>
+  <line x1="1150" y1="410" x2="1150" y2="530" class="wire"/>
+  <line x1="1170" y1="315" x2="1170" y2="285" class="wire"/>
+  <rect x="1155" y="260" width="30" height="25" class="res"/>
+  <line x1="1170" y1="260" x2="1170" y2="245" class="wire"/>
+  <line x1="1170" y1="625" x2="1170" y2="655" class="wire"/>
+  <rect x="1155" y="655" width="30" height="45" class="res"/>
+  <text x="1200" y="280" class="label">R<tspan baseline-shift="sub" font-size="14">D</tspan></text>
+  <text x="1200" y="685" class="label">R<tspan baseline-shift="sub" font-size="14">S</tspan></text>
+  <text x="1195" y="455" class="label">FET</text>
+  <line x1="1170" y1="470" x2="1240" y2="470" class="wire"/>
+  <!-- coupling capacitor -->
+  <line x1="1240" y1="470" x2="1275" y2="470" class="wire"/>
+  <line x1="1275" y1="440" x2="1275" y2="500" class="cap"/>
+  <line x1="1288" y1="440" x2="1288" y2="500" class="cap"/>
+  <line x1="1288" y1="470" x2="1360" y2="470" class="wire"/>
+  <text x="1250" y="425" class="small">C₁₂</text>
+  <!-- BJT stage -->
+  <line x1="1410" y1="245" x2="1410" y2="285" class="wire"/>
+  <rect x="1395" y="285" width="30" height="65" class="res"/>
+  <line x1="1410" y1="350" x2="1410" y2="395" class="wire"/>
+  <text x="1372" y="280" class="label">R<tspan baseline-shift="sub" font-size="14">B</tspan></text>
+  <line x1="1410" y1="395" x2="1410" y2="470" class="wire"/>
+  <line x1="1410" y1="470" x2="1360" y2="470" class="wire"/>
+  <line x1="1410" y1="470" x2="1410" y2="520" class="wire"/>
+  <line x1="1410" y1="520" x2="1465" y2="575" class="wire"/>
+  <line x1="1410" y1="520" x2="1355" y2="575" class="wire"/>
+  <polygon points="1455,595 1465,615 1475,595" fill="#172033"/>
+  <line x1="1465" y1="575" x2="1465" y2="615" class="wire"/>
+  <rect x="1450" y="615" width="30" height="55" class="res"/>
+  <line x1="1465" y1="670" x2="1465" y2="700" class="wire"/>
+  <line x1="1410" y1="245" x2="1410" y2="285" class="wire"/>
+  <line x1="1410" y1="245" x2="1510" y2="245" class="wire"/>
+  <rect x="1495" y="285" width="30" height="65" class="res"/>
+  <line x1="1510" y1="350" x2="1510" y2="470" class="wire"/>
+  <line x1="1510" y1="470" x2="1510" y2="520" class="wire"/>
+  <text x="1530" y="280" class="label">R<tspan baseline-shift="sub" font-size="14">C</tspan></text>
+  <text x="1490" y="615" class="label">R<tspan baseline-shift="sub" font-size="14">E</tspan></text>
+  <text x="1535" y="535" class="label">BJT</text>
+  <!-- output cap and load -->
+  <line x1="1510" y1="470" x2="1560" y2="470" class="wire"/>
+  <line x1="1560" y1="440" x2="1560" y2="500" class="cap"/>
+  <line x1="1573" y1="440" x2="1573" y2="500" class="cap"/>
+  <line x1="1573" y1="470" x2="1625" y2="470" class="wire"/>
+  <rect x="1625" y="505" width="30" height="120" class="res"/>
+  <line x1="1640" y1="470" x2="1640" y2="505" class="wire"/>
+  <line x1="1640" y1="625" x2="1640" y2="700" class="wire"/>
+  <text x="1605" y="440" class="label">uₒ</text>
+  <text x="1665" y="570" class="label">R<tspan baseline-shift="sub" font-size="14">L</tspan></text>
+
+  <text x="920" y="770" class="note">直流：Cᵢ、C₁₂、Cₒ 开路，各级 Q 点分别计算，互不传递直流。</text>
+  <text x="920" y="805" class="note">交流：耦合电容中频近似短路，VDD/VCC 为交流地；总增益要考虑级间负载。</text>
+  <text x="920" y="853" class="small">Aᵥ ≈ Aᵥ₁(带载)·Aᵥ₂(带载)；两级共射/共源反相次数决定总相位。</text>
+  <text x="920" y="890" class="small">优点：静态点隔离、零点漂移小；缺点：不能传递直流，低频受耦合电容限制。</text>
+</svg>
