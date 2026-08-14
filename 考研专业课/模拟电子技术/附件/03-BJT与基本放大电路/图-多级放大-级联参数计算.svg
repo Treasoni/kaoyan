@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+  <rect width="1800" height="1100" fill="#ffffff"/>
+  <style>
+    .title { font: 700 34px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .head { font: 700 25px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .label { font: 20px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .small { font: 17px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#26344d; }
+    .note { font: 18px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#a62828; }
+    .wire { stroke:#172033; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .box { fill:#f8fafc; stroke:#b9c5d8; stroke-width:3; }
+    .block { fill:#ffffff; stroke:#172033; stroke-width:3; }
+    .source { fill:#ffffff; stroke:#172033; stroke-width:3; }
+    .test { stroke:#c43838; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .dash { stroke:#c43838; stroke-width:3; fill:none; stroke-dasharray:10 8; }
+  </style>
+
+  <rect x="25" y="25" width="1750" height="1050" rx="24" class="box"/>
+  <text x="70" y="78" class="title">多级放大电路：级联增益与输入/输出电阻</text>
+
+  <rect x="60" y="115" width="1680" height="405" rx="18" class="box"/>
+  <text x="90" y="160" class="head">① 黑箱级联：总增益必须逐级分解</text>
+
+  <!-- signal chain -->
+  <circle cx="145" cy="320" r="22" class="source"/>
+  <text x="112" y="285" class="label">u<tspan baseline-shift="sub" font-size="14">s</tspan></text>
+  <line x1="145" y1="342" x2="145" y2="420" class="wire"/>
+  <line x1="145" y1="298" x2="145" y2="250" class="wire"/>
+  <rect x="175" y="303" width="40" height="34" class="source"/>
+  <line x1="145" y1="320" x2="175" y2="320" class="wire"/>
+  <line x1="215" y1="320" x2="260" y2="320" class="wire"/>
+  <text x="175" y="285" class="label">R<tspan baseline-shift="sub" font-size="14">s</tspan></text>
+  <text x="232" y="295" class="label">u<tspan baseline-shift="sub" font-size="14">i</tspan></text>
+
+  <rect x="260" y="240" width="280" height="160" rx="8" class="block"/>
+  <rect x="700" y="240" width="280" height="160" rx="8" class="block"/>
+  <rect x="1140" y="240" width="280" height="160" rx="8" class="block"/>
+  <text x="370" y="315" class="head">A₁</text>
+  <text x="810" y="315" class="head">A₂</text>
+  <text x="1250" y="315" class="head">A₃</text>
+  <text x="335" y="355" class="small">第 1 级</text>
+  <text x="775" y="355" class="small">第 2 级</text>
+  <text x="1215" y="355" class="small">最后一级</text>
+  <line x1="540" y1="320" x2="700" y2="320" class="wire"/>
+  <line x1="980" y1="320" x2="1140" y2="320" class="wire"/>
+  <line x1="1420" y1="320" x2="1510" y2="320" class="wire"/>
+  <rect x="1510" y="270" width="42" height="100" class="source"/>
+  <line x1="1531" y1="370" x2="1531" y2="420" class="wire"/>
+  <line x1="1531" y1="270" x2="1531" y2="240" class="wire"/>
+  <text x="1567" y="325" class="label">R<tspan baseline-shift="sub" font-size="14">L</tspan></text>
+  <text x="580" y="295" class="label">u<tspan baseline-shift="sub" font-size="14">o1</tspan></text>
+  <text x="1020" y="295" class="label">u<tspan baseline-shift="sub" font-size="14">o2</tspan></text>
+  <text x="1450" y="295" class="label">u<tspan baseline-shift="sub" font-size="14">o</tspan></text>
+  <text x="265" y="455" class="note">Aᵥ = uₒ/uᵢ = (uₒ₁/uᵢ)(uₒ₂/uₒ₁)(uₒ/uₒ₂)</text>
+  <text x="1040" y="455" class="note">每一级应取“带载增益”，不能机械相乘空载增益</text>
+  <text x="90" y="490" class="small">若要算信号源到负载的电压增益，还要乘输入分压：uᵢ/uₛ = Rᵢ/(Rₛ+Rᵢ)。</text>
+
+  <rect x="60" y="555" width="810" height="465" rx="18" class="box"/>
+  <text x="90" y="600" class="head">② 输入电阻：从整机输入端向右看</text>
+  <text x="90" y="635" class="small">在输入端加测试电压 V，测得流入整机的电流 I</text>
+  <circle cx="155" cy="780" r="22" class="source"/>
+  <line x1="155" y1="758" x2="155" y2="690" class="test"/>
+  <line x1="155" y1="802" x2="155" y2="900" class="test"/>
+  <line x1="155" y1="690" x2="300" y2="690" class="test"/>
+  <line x1="155" y1="900" x2="300" y2="900" class="test"/>
+  <rect x="300" y="690" width="360" height="210" rx="8" class="block"/>
+  <text x="457" y="800" class="head">多级放大器</text>
+  <line x1="270" y1="690" x2="270" y2="900" class="test"/>
+  <line x1="245" y1="710" x2="245" y2="870" class="test"/>
+  <polygon points="245,710 235,730 255,730" fill="#c43838"/>
+  <text x="205" y="705" class="note">I</text>
+  <text x="120" y="740" class="note">V</text>
+  <text x="315" y="950" class="note">Rᵢ = V/I ≈ Rᵢ1（无反向传输时）</text>
+  <text x="90" y="985" class="small">串联级联时，整机输入端主要由第一级输入电阻决定。</text>
+
+  <rect x="900" y="555" width="840" height="465" rx="18" class="box"/>
+  <text x="930" y="600" class="head">③ 输出电阻：置零独立源，再从输出端向左看</text>
+  <text x="930" y="635" class="small">去掉负载 R<tspan baseline-shift="sub" font-size="13">L</tspan>，输入源置零，在输出端加测试电压 V</text>
+  <rect x="1020" y="700" width="360" height="210" rx="8" class="block"/>
+  <text x="1177" y="810" class="head">多级放大器</text>
+  <line x1="1380" y1="805" x2="1500" y2="805" class="test"/>
+  <circle cx="1545" cy="805" r="22" class="source"/>
+  <line x1="1545" y1="783" x2="1545" y2="700" class="test"/>
+  <line x1="1545" y1="827" x2="1545" y2="910" class="test"/>
+  <line x1="1500" y1="805" x2="1523" y2="805" class="test"/>
+  <line x1="1567" y1="805" x2="1630" y2="805" class="test"/>
+  <polygon points="1500,805 1520,795 1520,815" fill="#c43838"/>
+  <text x="1470" y="780" class="note">I</text>
+  <text x="1560" y="740" class="note">V</text>
+  <text x="1060" y="950" class="note">Rₒ = V/I ≈ Rₒ3（无反向传输、忽略级间反馈时）</text>
+  <text x="930" y="985" class="small">若存在反馈或反向传输，必须回到完整小信号模型重新求测试源电流。</text>
+</svg>
