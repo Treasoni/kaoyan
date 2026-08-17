@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+  <rect width="1800" height="1100" fill="#ffffff"/>
+  <style>
+    .title { font: 700 34px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .head { font: 700 25px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .label { font: 20px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#172033; }
+    .small { font: 17px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#26344d; }
+    .note { font: 18px 'PingFang SC','Noto Sans CJK SC',sans-serif; fill:#a62828; }
+    .wire { stroke:#172033; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .box { fill:#f8fafc; stroke:#b9c5d8; stroke-width:3; }
+    .block { fill:#ffffff; stroke:#172033; stroke-width:3; }
+    .cap { stroke:#172033; stroke-width:4; }
+    .red { stroke:#c43838; stroke-width:3; fill:none; }
+  </style>
+
+  <rect x="25" y="25" width="1750" height="1050" rx="24" class="box"/>
+  <text x="70" y="78" class="title">多级放大实例：FET 共源 → BJT 共集（射极跟随器）</text>
+
+  <rect x="60" y="115" width="1680" height="300" rx="18" class="box"/>
+  <text x="90" y="160" class="head">① 级联拓扑：两级组态先看清</text>
+  <circle cx="145" cy="275" r="22" class="block"/>
+  <text x="112" y="240" class="label">uᵢ</text>
+  <line x1="167" y1="275" x2="245" y2="275" class="wire"/>
+  <line x1="245" y1="245" x2="245" y2="305" class="cap"/>
+  <line x1="260" y1="245" x2="260" y2="305" class="cap"/>
+  <line x1="260" y1="275" x2="310" y2="275" class="wire"/>
+  <rect x="310" y="205" width="350" height="140" rx="8" class="block"/>
+  <text x="425" y="260" class="head">T₁：共源 FET</text>
+  <text x="375" y="300" class="small">R₁、R₂、R₃：输入偏置；R₄、R₅：漏/源电阻</text>
+  <line x1="660" y1="275" x2="735" y2="275" class="wire"/>
+  <line x1="735" y1="245" x2="735" y2="305" class="cap"/>
+  <line x1="750" y1="245" x2="750" y2="305" class="cap"/>
+  <line x1="750" y1="275" x2="800" y2="275" class="wire"/>
+  <rect x="800" y="205" width="430" height="140" rx="8" class="block"/>
+  <text x="920" y="260" class="head">T₂：共集 BJT</text>
+  <text x="862" y="300" class="small">R₆：基极偏置；R₇：发射极电阻；集电极接 VCC</text>
+  <line x1="1230" y1="275" x2="1320" y2="275" class="wire"/>
+  <line x1="1320" y1="245" x2="1320" y2="305" class="cap"/>
+  <line x1="1335" y1="245" x2="1335" y2="305" class="cap"/>
+  <line x1="1335" y1="275" x2="1400" y2="275" class="wire"/>
+  <rect x="1400" y="225" width="45" height="100" class="block"/>
+  <line x1="1422" y1="325" x2="1422" y2="355" class="wire"/>
+  <text x="1460" y="285" class="label">R<tspan baseline-shift="sub" font-size="14">L</tspan></text>
+  <text x="1470" y="240" class="label">uₒ</text>
+  <text x="90" y="385" class="note">关键：第一级反相；第二级共集同相且 |Aᵥ₂|＜1；总增益通常为负。</text>
+
+  <rect x="60" y="450" width="810" height="550" rx="18" class="box"/>
+  <text x="90" y="495" class="head">② 直流静态点：耦合电容开路，分级计算</text>
+  <rect x="90" y="535" width="335" height="270" rx="8" class="block"/>
+  <text x="170" y="580" class="head">T₁ 共源 FET</text>
+  <text x="110" y="635" class="small">V<tspan baseline-shift="sub" font-size="13">GQ</tspan> = VCC·R₁/(R₁+R₂)</text>
+  <text x="110" y="675" class="small">V<tspan baseline-shift="sub" font-size="13">SQ</tspan> = I<tspan baseline-shift="sub" font-size="13">DQ</tspan>R₅</text>
+  <text x="110" y="715" class="small">V<tspan baseline-shift="sub" font-size="13">GSQ</tspan> = V<tspan baseline-shift="sub" font-size="13">GQ</tspan> − V<tspan baseline-shift="sub" font-size="13">SQ</tspan></text>
+  <text x="110" y="755" class="small">V<tspan baseline-shift="sub" font-size="13">DSQ</tspan> = VCC − I<tspan baseline-shift="sub" font-size="13">DQ</tspan>(R₄+R₅)</text>
+  <rect x="480" y="535" width="335" height="270" rx="8" class="block"/>
+  <text x="550" y="580" class="head">T₂ 共集 BJT</text>
+  <text x="500" y="635" class="small">I<tspan baseline-shift="sub" font-size="13">BQ</tspan> = (VCC−VBEQ)/[R₆+(1+β)R₇]</text>
+  <text x="500" y="675" class="small">I<tspan baseline-shift="sub" font-size="13">EQ</tspan> = (1+β)I<tspan baseline-shift="sub" font-size="13">BQ</tspan></text>
+  <text x="500" y="715" class="small">V<tspan baseline-shift="sub" font-size="13">CEQ</tspan> = VCC − I<tspan baseline-shift="sub" font-size="13">EQ</tspan>R₇</text>
+  <text x="500" y="755" class="small">硅管常取 V<tspan baseline-shift="sub" font-size="13">BEQ</tspan>≈0.7 V</text>
+  <text x="90" y="875" class="note">FET 的 I<tspan baseline-shift="sub" font-size="13">DQ</tspan> 需代入题目给定的转移特性（如 JFET 的 Shockley 式）。</text>
+  <text x="90" y="915" class="small">先检查两级均处于放大区，再进入中频交流等效。</text>
+
+  <rect x="900" y="450" width="840" height="550" rx="18" class="box"/>
+  <text x="930" y="495" class="head">③ 中频交流：先求后级输入，再求两级增益</text>
+  <text x="930" y="545" class="small">R<tspan baseline-shift="sub" font-size="13">E,L</tspan> = R₇∥R<tspan baseline-shift="sub" font-size="13">L</tspan>；R<tspan baseline-shift="sub" font-size="13">i2</tspan> = R₆∥[r<tspan baseline-shift="sub" font-size="13">be2</tspan>+(1+β₂)R<tspan baseline-shift="sub" font-size="13">E,L</tspan>]</text>
+  <text x="930" y="600" class="note">Aᵥ₁ ≈ −g<tspan baseline-shift="sub" font-size="13">m1</tspan>(R₄∥R<tspan baseline-shift="sub" font-size="13">i2</tspan>)</text>
+  <text x="930" y="655" class="note">Aᵥ₂ = (1+β₂)R<tspan baseline-shift="sub" font-size="13">E,L</tspan>/[r<tspan baseline-shift="sub" font-size="13">be2</tspan>+(1+β₂)R<tspan baseline-shift="sub" font-size="13">E,L</tspan>]</text>
+  <text x="930" y="710" class="note">Aᵥ = Aᵥ₁Aᵥ₂；共源反相、共集同相 ⇒ 总增益为负</text>
+  <text x="930" y="770" class="small">整机输入：Rᵢ = R₃ + (R₁∥R₂)（输入端在 R₃ 左侧时）</text>
+  <text x="930" y="815" class="small">令 R<tspan baseline-shift="sub" font-size="13">B</tspan> = R₆∥R₄，置零输入源：</text>
+  <text x="930" y="855" class="small">R′<tspan baseline-shift="sub" font-size="13">o2</tspan> = [r<tspan baseline-shift="sub" font-size="13">be2</tspan>+R<tspan baseline-shift="sub" font-size="13">B</tspan>]/(1+β₂)，Rₒ = R₇∥R′<tspan baseline-shift="sub" font-size="13">o2</tspan></text>
+  <text x="930" y="925" class="note">共集级的增益小于 1，但输入电阻高、输出电阻低，适合做阻抗匹配。</text>
+</svg>
