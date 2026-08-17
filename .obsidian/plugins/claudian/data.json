@@ -6,23 +6,22 @@
         "conversationId": "conv-1786446602570-1x2tl7m7k"
       },
       {
-        "draftModel": "gpt-5.6-luna",
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": null
+        "conversationId": "conv-1786932995436-kjpao7k9g"
       },
       {
         "tabId": "tab-1782004129110-rax9f12",
-        "conversationId": "conv-1786670578018-67vergrvn"
+        "conversationId": "conv-1786933111450-b9zqa0hgm"
       },
       {
         "tabId": "tab-1785634945500-eape14h",
-        "conversationId": "conv-1786671128442-4f9crqqjg"
+        "conversationId": "conv-1786950731684-esxf57ioe"
       },
       {
         "tabId": "tab-1785634945688-e0bxaj7",
         "conversationId": "conv-1786581850014-h4qs1spco"
       }
     ],
-    "activeTabId": "tab-1780456956859-0i1qnvx"
+    "activeTabId": "tab-1785634945500-eape14h"
   }
 }
