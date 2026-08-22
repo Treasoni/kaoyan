@@ -247,8 +247,8 @@ body {
     --nn-theme-file-preview-color: var(--nn-theme-foreground-muted);
     --nn-theme-file-preview-font-weight: 400;
     /* --nn-theme-file-task-color and --nn-theme-file-task-complete-color are
-       intentionally not declared here: task progress rules use var() fallbacks to detect whether
-       a theme or Style Settings set them, so customized colors can persist on selected rows. */
+       intentionally not declared here: task progress and replacement icon rules use var() fallbacks
+       to detect whether a theme or Style Settings set them, so customized colors can persist on selected rows. */
     --nn-theme-file-task-font-weight: 400;
     --nn-theme-file-task-complete-font-weight: 400;
     --nn-theme-file-date-color: var(--nn-theme-foreground-faded);
@@ -2975,6 +2975,8 @@ button.nn-navigation-calendar-year-month {
     z-index: 1;
     display: block;
     max-width: 100%;
+    /* Keeps Windows interface-font descenders inside the clipped label used for horizontal ellipsis. */
+    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -4023,7 +4025,7 @@ button.nn-navigation-calendar-day {
     color: var(--nn-file-name-custom-color);
 }
 
-.nn-file-word-count-suffix {
+.nn-file-name-suffix {
     color: var(--nn-theme-file-word-count-color);
     font-weight: var(--nn-theme-file-word-count-font-weight);
 }
@@ -4110,6 +4112,16 @@ button.nn-navigation-calendar-day {
 
 .nn-file.nn-selected .nn-file-icon[data-has-color='false'] {
     color: var(--nn-theme-navitem-selected-icon-color);
+}
+
+/* A configured task color remains stable across selection states. Without one, the replacement
+   follows the same normal and selected colors as the file icon it replaces. */
+.nn-file-icon.nn-file-icon-unfinished-task[data-has-color='false'] {
+    color: var(--nn-theme-file-task-color, var(--nn-theme-navitem-icon-color));
+}
+
+.nn-file.nn-selected .nn-file-icon.nn-file-icon-unfinished-task[data-has-color='false'] {
+    color: var(--nn-theme-file-task-color, var(--nn-theme-navitem-selected-icon-color));
 }
 
 /* Quick actions panel - horizontal container for action icons */
@@ -4224,6 +4236,14 @@ button.nn-navigation-calendar-day {
     flex-shrink: 0;
 }
 
+/* Emoji and icon-font providers render the glyph on the container instead of adding an SVG,
+   so they need an explicit font size to match the task indicator box. */
+.nn-file-task-progress-icon.nn-emoji-icon,
+.nn-file-task-progress-icon.nn-iconfont {
+    font-size: calc(var(--icon-size) * 0.8);
+    line-height: calc(var(--icon-size) * 0.8);
+}
+
 /* The icon has no font weight, so its stroke width tracks the state weight variable instead:
    weight 400 maps to the lucide default stroke of 2, weight 600 to 2.5, keeping the icon's
    visual boldness in sync with the count text. */
@@ -4309,6 +4329,18 @@ button.nn-navigation-calendar-day {
     -webkit-box-orient: vertical;
     word-break: break-word;
     max-height: calc(var(--nn-file-multiline-text-line-height) * var(--preview-rows, 1));
+}
+
+/* Pinned task progress and preview share one secondary row. */
+.nn-file-second-line--pinned {
+    overflow: hidden;
+}
+
+.nn-file-second-line--pinned .nn-file-preview {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
 }
 
 /* Parent folder indicator shown under file names */
@@ -4542,7 +4574,7 @@ button.nn-navigation-calendar-day {
     );
 }
 
-.nn-file.nn-selected .nn-file-word-count-suffix {
+.nn-file.nn-selected .nn-file-name-suffix {
     color: var(--nn-selected-file-word-count-color);
 }
 
@@ -5482,6 +5514,11 @@ body.nn-resizing {
 
 .nn-file.nn-compact.nn-context-menu-active:not(.nn-selected) .nn-file-content::after {
     border-radius: min(14px, var(--nn-theme-navitem-border-radius));
+}
+
+/* Appearance menu entries holding a per-selection custom value are marked in bold */
+.nn-menu-title-custom {
+    font-weight: 600;
 }
 /* Source: src/styles/sections/state-hidden-items.css */
 
@@ -7416,6 +7453,99 @@ button.nn-youtube-button svg {
     text-align: right;
     font-variant-numeric: tabular-nums;
 }
+
+/* Cards linking to the author's other plugins on the settings start page */
+.setting-item.nn-plugin-cards {
+    display: block;
+}
+
+/* One column when the settings pane is narrow, because the description needs the width */
+.nn-plugin-card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    gap: var(--size-4-2);
+    margin-top: var(--size-4-2);
+}
+
+/* A button so the whole card can be reached from the keyboard. The declarations before the
+   layout undo the button styling a theme applies. */
+.nn-plugin-card {
+    height: auto;
+    padding: var(--size-4-3);
+    background-color: var(--background-secondary);
+    box-shadow: none;
+    text-align: start;
+    white-space: normal;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--size-4-3);
+    width: 100%;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-m);
+    cursor: pointer;
+}
+
+.nn-plugin-card:hover {
+    border-color: var(--background-modifier-border-hover);
+    background-color: var(--background-modifier-hover);
+}
+
+.nn-plugin-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: var(--size-4-8);
+    height: var(--size-4-8);
+    border-radius: var(--radius-m);
+    background-color: var(--background-primary);
+    color: var(--text-accent);
+}
+
+/* min-width lets a long word wrap instead of stretching the card past its column */
+.nn-plugin-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2-1);
+    min-width: 0;
+}
+
+.nn-plugin-card-name {
+    color: var(--text-normal);
+    font-size: var(--font-ui-small);
+    font-weight: var(--font-semibold);
+    line-height: 1.3;
+}
+
+/* One line whatever the language, cut with an ellipsis, so every card is the same height */
+.nn-plugin-card-description {
+    color: var(--text-muted);
+    font-size: var(--font-ui-smaller);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Sits at the far edge, the way Obsidian marks a row that opens somewhere else. It keeps to
+   the middle of the card while the icon and the name line up at the top. */
+.nn-plugin-card-arrow {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    color: var(--text-faint);
+}
+
+.nn-plugin-card-arrow .svg-icon {
+    width: var(--icon-s);
+    height: var(--icon-s);
+}
+
+.nn-plugin-card:hover .nn-plugin-card-arrow {
+    color: var(--text-muted);
+}
 /* Source: src/styles/sections/settings-sponsor-button.css */
 
 /* ========================================================================
@@ -8894,6 +9024,13 @@ body.is-phone .notebook-navigator-android .nn-split-container {
     font-size: calc(var(--nn-file-icon-size-mobile, var(--nn-file-icon-size)) * var(--nn-android-font-scale-reciprocal, 1));
 }
 
+/* Task indicators are smaller than file icons, so preserve their 80% size while compensating
+   for Android textZoom. Without this override, the general icon rule above enlarges them. */
+.notebook-navigator-android .nn-mobile .nn-file-task-progress-icon.nn-emoji-icon,
+.notebook-navigator-android .nn-mobile .nn-file-task-progress-icon.nn-iconfont {
+    font-size: calc(var(--icon-size) * 0.8 * var(--nn-android-font-scale-reciprocal, 1));
+}
+
 /* Clamp height compensation - Android doesn't scale max-height, so match the compensated line-height after textZoom applies. */
 .notebook-navigator-android .nn-file-name {
     max-height: calc(var(--nn-file-title-line-height) * var(--filename-rows, 1) * var(--nn-android-font-scale, 1));
@@ -9701,7 +9838,7 @@ settings:
     -
         id: nn-theme-file-task-color
         title: File task color
-        description: Icon, bar, and count color for notes with unfinished tasks.
+        description: Color for the task display and replacement file icon in notes with unfinished tasks.
         type: variable-themed-color
         format: hex
         default-light: '#'
