@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <rect width="1600" height="1120" fill="#ffffff"/>
+  <style>
+    .wire { stroke:#111111; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .thin { stroke:#111111; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .node { fill:#111111; }
+    .title { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:34px; font-weight:700; fill:#111111; }
+    .panel { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:27px; font-weight:700; fill:#111111; }
+    .label { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:24px; fill:#111111; }
+    .small { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:21px; fill:#333333; }
+    .red { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#b42318; }
+    .blue { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#1259a8; }
+  </style>
+
+  <text x="70" y="60" class="title">差分放大器：差模与共模半电路对照</text>
+  <text x="70" y="98" class="small">先按输入关系选模式，再用对称性判断公共发射极节点的等效状态。</text>
+
+  <!-- full differential pair -->
+  <rect x="70" y="130" width="1460" height="300" rx="12" fill="#fafafa" stroke="#b7b7b7" stroke-width="2"/>
+  <text x="95" y="165" class="panel">对称 BJT 射极耦合差分对</text>
+  <text x="1330" y="165" class="small">原电路</text>
+  <line x1="280" y1="205" x2="1230" y2="205" class="wire"/>
+  <text x="1235" y="212" class="label">+VCC（交流地）</text>
+
+  <!-- left RC and Q1 -->
+  <line x1="480" y1="205" x2="480" y2="245" class="wire"/>
+  <rect x="462" y="245" width="36" height="70" fill="#ffffff" stroke="#111111" stroke-width="4"/>
+  <text x="438" y="337" class="label">RC</text>
+  <line x1="480" y1="315" x2="480" y2="350" class="wire"/>
+  <line x1="480" y1="350" x2="535" y2="385" class="wire"/>
+  <line x1="535" y1="385" x2="535" y2="405" class="wire"/>
+  <line x1="535" y1="350" x2="535" y2="300" class="wire"/>
+  <line x1="535" y1="300" x2="480" y2="265" class="wire"/>
+  <line x1="420" y1="300" x2="480" y2="300" class="wire"/>
+  <line x1="420" y1="265" x2="420" y2="335" class="wire"/>
+  <line x1="420" y1="300" x2="420" y2="300" class="wire"/>
+  <line x1="515" y1="375" x2="538" y2="390" class="wire"/>
+  <polygon points="538,390 520,385 529,373" fill="#111111"/>
+  <text x="395" y="255" class="label">Q1</text>
+  <text x="455" y="235" class="red">vo1</text>
+  <line x1="420" y1="300" x2="335" y2="300" class="wire"/>
+  <text x="275" y="295" class="label">vi1</text>
+
+  <!-- right RC and Q2 -->
+  <line x1="930" y1="205" x2="930" y2="245" class="wire"/>
+  <rect x="912" y="245" width="36" height="70" fill="#ffffff" stroke="#111111" stroke-width="4"/>
+  <text x="888" y="337" class="label">RC</text>
+  <line x1="930" y1="315" x2="930" y2="350" class="wire"/>
+  <line x1="930" y1="350" x2="875" y2="385" class="wire"/>
+  <line x1="875" y1="385" x2="875" y2="405" class="wire"/>
+  <line x1="875" y1="350" x2="875" y2="300" class="wire"/>
+  <line x1="875" y1="300" x2="930" y2="265" class="wire"/>
+  <line x1="990" y1="300" x2="930" y2="300" class="wire"/>
+  <line x1="990" y1="265" x2="990" y2="335" class="wire"/>
+  <line x1="930" y1="300" x2="990" y2="300" class="wire"/>
+  <line x1="895" y1="375" x2="872" y2="390" class="wire"/>
+  <polygon points="872,390 890,385 881,373" fill="#111111"/>
+  <text x="995" y="255" class="label">Q2</text>
+  <text x="940" y="235" class="red">vo2</text>
+  <line x1="990" y1="300" x2="1075" y2="300" class="wire"/>
+  <text x="1085" y="295" class="label">vi2</text>
+
+  <!-- tail -->
+  <line x1="535" y1="405" x2="875" y2="405" class="wire"/>
+  <line x1="705" y1="405" x2="705" y2="425" class="wire"/>
+  <rect x="687" y="425" width="36" height="55" fill="#ffffff" stroke="#111111" stroke-width="4"/>
+  <text x="730" y="462" class="label">RE / 尾电流源</text>
+  <line x1="705" y1="480" x2="705" y2="500" class="wire"/>
+  <line x1="690" y1="500" x2="720" y2="500" class="wire"/>
+  <line x1="696" y1="508" x2="714" y2="508" class="thin"/>
+  <line x1="702" y1="516" x2="708" y2="516" class="thin"/>
+  <text x="560" y="420" class="small">公共发射极节点</text>
+
+  <!-- differential half circuit -->
+  <rect x="70" y="555" width="710" height="500" rx="12" fill="#f7fbff" stroke="#7aa7d9" stroke-width="3"/>
+  <text x="95" y="595" class="panel">差模半电路</text>
+  <text x="95" y="628" class="small">vi1 = +vid/2，vi2 = −vid/2；公共发射极为交流地</text>
+  <line x1="140" y1="680" x2="220" y2="680" class="wire"/>
+  <circle cx="120" cy="680" r="18" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <line x1="120" y1="698" x2="120" y2="790" class="wire"/>
+  <line x1="120" y1="662" x2="120" y2="650" class="wire"/>
+  <text x="90" y="640" class="label">+vid/2</text>
+  <rect x="220" y="662" width="80" height="36" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="240" y="688" class="label">Rb</text>
+  <line x1="300" y1="680" x2="370" y2="680" class="wire"/>
+  <rect x="370" y="662" width="100" height="36" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="390" y="688" class="label">rbe</text>
+  <line x1="470" y1="680" x2="470" y2="790" class="wire"/>
+  <line x1="120" y1="790" x2="620" y2="790" class="wire"/>
+  <line x1="470" y1="680" x2="550" y2="680" class="wire"/>
+  <line x1="550" y1="680" x2="550" y2="650" class="wire"/>
+  <line x1="550" y1="650" x2="550" y2="720" class="wire"/>
+  <polygon points="550,720 538,696 562,696" fill="#111111"/>
+  <text x="570" y="690" class="label">βib</text>
+  <line x1="550" y1="650" x2="620" y2="650" class="wire"/>
+  <rect x="602" y="650" width="36" height="80" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="650" y="696" class="label">RC</text>
+  <line x1="620" y1="730" x2="620" y2="790" class="wire"/>
+  <line x1="620" y1="650" x2="620" y2="620" class="wire"/>
+  <text x="590" y="610" class="blue">交流地</text>
+  <line x1="550" y1="650" x2="550" y2="610" class="wire"/>
+  <line x1="550" y1="610" x2="620" y2="610" class="wire"/>
+  <text x="645" y="640" class="label">vo1</text>
+  <text x="105" y="825" class="red">关键：尾电阻不进入差模分母</text>
+  <text x="105" y="865" class="small">vo1/vi1 = −βRC/(Rb+rbe)</text>
+  <text x="105" y="900" class="small">Avd1 = vo1/vid = −βRC/[2(Rb+rbe)]</text>
+  <text x="105" y="935" class="small">双端：Avd = −βRC/(Rb+rbe)</text>
+  <text x="105" y="985" class="blue">对称面：虚地</text>
+
+  <!-- common-mode half circuit -->
+  <rect x="820" y="555" width="710" height="500" rx="12" fill="#fffaf6" stroke="#d69a62" stroke-width="3"/>
+  <text x="845" y="595" class="panel">共模半电路</text>
+  <text x="845" y="628" class="small">vi1 = vi2 = vic；两管电流同向，尾阻折算为 2RE</text>
+  <line x1="890" y1="680" x2="970" y2="680" class="wire"/>
+  <circle cx="870" cy="680" r="18" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <line x1="870" y1="698" x2="870" y2="790" class="wire"/>
+  <line x1="870" y1="662" x2="870" y2="650" class="wire"/>
+  <text x="840" y="640" class="label">vic</text>
+  <rect x="970" y="662" width="80" height="36" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="990" y="688" class="label">Rb</text>
+  <line x1="1050" y1="680" x2="1110" y2="680" class="wire"/>
+  <rect x="1110" y="662" width="100" height="36" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="1130" y="688" class="label">rbe</text>
+  <line x1="1210" y1="680" x2="1210" y2="790" class="wire"/>
+  <line x1="870" y1="790" x2="1370" y2="790" class="wire"/>
+  <line x1="1210" y1="680" x2="1290" y2="680" class="wire"/>
+  <line x1="1290" y1="680" x2="1290" y2="650" class="wire"/>
+  <line x1="1290" y1="650" x2="1290" y2="720" class="wire"/>
+  <polygon points="1290,720 1278,696 1302,696" fill="#111111"/>
+  <text x="1310" y="690" class="label">βib</text>
+  <line x1="1290" y1="650" x2="1360" y2="650" class="wire"/>
+  <rect x="1342" y="650" width="36" height="80" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="1390" y="696" class="label">RC</text>
+  <line x1="1360" y1="730" x2="1360" y2="790" class="wire"/>
+  <line x1="1360" y1="650" x2="1360" y2="620" class="wire"/>
+  <line x1="1360" y1="650" x2="1360" y2="610" class="wire"/>
+  <line x1="1360" y1="610" x2="1360" y2="620" class="wire"/>
+  <text x="1330" y="610" class="blue">交流地</text>
+  <text x="1385" y="640" class="label">voc1</text>
+  <line x1="1210" y1="790" x2="1210" y2="835" class="wire"/>
+  <rect x="1192" y="835" width="36" height="70" fill="#ffffff" stroke="#b42318" stroke-width="4"/>
+  <text x="1240" y="878" class="red">2RE</text>
+  <line x1="1210" y1="905" x2="1210" y2="930" class="wire"/>
+  <line x1="1195" y1="930" x2="1225" y2="930" class="wire"/>
+  <line x1="1201" y1="938" x2="1219" y2="938" class="thin"/>
+  <line x1="1207" y1="946" x2="1213" y2="946" class="thin"/>
+  <text x="845" y="985" class="red">Auc1 = −βRC/[Rb+rbe+2(1+β)RE]</text>
+  <text x="845" y="1020" class="small">双端理想对称：Auc = 0；失配时为小量</text>
+  <text x="845" y="1050" class="red">共模：尾电流相加，2RE 进入分母</text>
+</svg>
