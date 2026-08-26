@@ -14,6 +14,7 @@ from pathlib import Path
 
 ACTIVE_FILES = ("LEARNINGS.md", "ERRORS.md", "RULES.md")
 HEADING_RE = re.compile(r"^(#{2,4})\s+(.+?)\s*$", re.MULTILINE)
+ENTRY_HEADING_RE = re.compile(r"^(##)\s+(\[(?:LRN|ERR)-[^\]]+\].*?)\s*$", re.MULTILINE)
 ISSUE_WORDS = (
     "错误",
     "问题",
@@ -87,7 +88,11 @@ def split_records(path: Path, display_path: str, active: bool, skills: list[str]
     if not text:
         return []
     kind = "rules" if display_path.endswith("RULES.md") else "entry"
-    matches = list(HEADING_RE.finditer(text))
+    # Learnings/errors use nested headings for Summary, Details, etc.; only
+    # record-ID headings delimit actual records. Otherwise the audit reports
+    # fields such as "Details" as if they were independent hotspots.
+    heading_re = HEADING_RE if kind == "rules" else ENTRY_HEADING_RE
+    matches = list(heading_re.finditer(text))
     records: list[Record] = []
     if not matches:
         if kind == "rules" or (len(text.strip()) > 120 and any(word in text.lower() for word in ISSUE_WORDS)):

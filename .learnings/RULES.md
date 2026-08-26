@@ -12,6 +12,7 @@ Compressed patterns from repeated learnings and errors.
 - (2x) 证明/推导类内容统一使用 `> [!note]-` 单一折叠块（默认折叠，可含 `$$` 公式/列表/表格；`$$` 不紧跟 `[!type]`），不用嵌套 callout
 - (6x) 手写/截图/教材图笔记：逐页识别卡 → 标准图/重绘图 → 公式链 → 做题结论 → 标题树回看；每页原图对应一个知识层，原图不能只折叠为来源或被单张总结图替代
 - (5x) 写入含 LaTeX/反引号的 Markdown 优先用外部脚本/占位符/`chr(92)`/quoted heredoc，勿依赖 JSON/exec 层 raw string；写后回读反斜杠与控制字符（`\boxed`/`\text`/`\begin`/`\rvert`/反引号、索引表格行重点回读）
+- (1x) Obsidian 行内数学统一使用 `$...$`，块数学使用独立的 `$$...$$`；避免 `\(...\)`，写后检查分隔符成对
 - (3x) 补充/扩写笔记前先定位内容在章节路线中的位置，写入后回读标题树，顺序符合“为什么学 → 学什么 → 怎么判断/计算 → 易错点 → 最低掌握标准”
 - (2x) 学习内容涉及曲线/几何/物理过程/电路拓扑/信号流/波形/边界条件/对比关系时主动配图，写“图的作用+关键标注+结论”，不只写文字公式
 - (1x) 写入或修改笔记前先浏览 `.learnings/RULES.md`，确认格式规范与高频错误
@@ -51,6 +52,10 @@ Compressed patterns from repeated learnings and errors.
 - (6x) 图示覆盖率不足（docs.visual_source_coverage）— 多页手写笔记/教材图/曲线特性图进入笔记前先做覆盖清单；特性曲线、负载线、Q 点漂移类知识主动配图
 - (5x) 表格内 LaTeX 管道符冲突（table.pipe_in_math）— 高频复发
 - (5x) Markdown/LaTeX 写入转义污染（write_verify.latex_escape）— JSON/exec 命令层、heredoc、Python 字符串和索引表格行重点回读
+- (1x) Obsidian 行内数学分隔符（obsidian.inline_math_delimiter）— 行内公式显示异常时检查是否误用 `\(...\)`，并确认 `$...$` 分隔符成对
+- (1x) 多 agent hook 重复注入（ops.hook_duplication）— 审计 `.claude`、`.codex`、`.codebuddy`、`.agent` 等 profile 时比对 SessionStart 注册，避免同一经验注入多次
+- (1x) 必背笔记结论过薄（notes.conclusion_only_reject）— 方法型内容必须包含核心思想与带中间状态的操作模板
+- (1x) 行向量组表示方向（notes.solution_direction）— 写解集包含关系前先按“表示方向 → 约束强弱 → 解集大小”核验
 - (2x) Obsidian 证明/推导折叠块（obsidian.proof_collapsible）— `> [!note]-` 单一折叠块；callout 内允许 `$$`；表格前后留空行
 - (1x) 目录重构后历史 wikilink 悬空（obsidian.stale_wikilink）— 批量修复用 before==after 校验 + 备份 + 复审计
 - (1x) shell 引号与重定向风险（ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 时避免复杂 inline printf，写后回读行数和关键内容

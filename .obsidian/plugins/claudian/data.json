@@ -10,9 +10,8 @@
         "conversationId": "conv-1787711831395-gdqg1ojfr"
       },
       {
-        "draftModel": "gpt-5.6-luna",
         "tabId": "tab-1782004129110-rax9f12",
-        "conversationId": null
+        "conversationId": "conv-1787729538303-6wuy1g0iy"
       },
       {
         "tabId": "tab-1785634945500-eape14h",
@@ -23,6 +22,6 @@
         "conversationId": "conv-1787645342470-tr8patrc3"
       }
     ],
-    "activeTabId": "tab-1785634945500-eape14h"
+    "activeTabId": "tab-1780456956859-0i1qnvx"
   }
 }
