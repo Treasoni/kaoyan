@@ -153,6 +153,7 @@
   "deleteAttachments": "ask",
   "moveFileConflicts": "ask",
   "externalIconProviders": {},
+  "showReleaseNotes": true,
   "checkForUpdatesOnStart": true,
   "pinNavigationBanner": true,
   "showNoteCount": true,
@@ -558,7 +559,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "3.3.4",
+  "lastShownVersion": "3.3.5",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": []
