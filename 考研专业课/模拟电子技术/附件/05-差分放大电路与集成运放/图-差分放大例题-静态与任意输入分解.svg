@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <rect width="1600" height="1120" fill="#ffffff"/>
+  <style>
+    .wire { stroke:#111111; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .thin { stroke:#111111; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .dash { stroke:#777777; stroke-width:3; fill:none; stroke-dasharray:10 8; }
+    .title { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:34px; font-weight:700; fill:#111111; }
+    .panel { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:28px; font-weight:700; fill:#111111; }
+    .label { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:24px; fill:#111111; }
+    .small { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:21px; fill:#333333; }
+    .formula { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:23px; fill:#111111; }
+    .red { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#b42318; }
+    .blue { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#1259a8; }
+    .box { fill:#ffffff; stroke:#111111; stroke-width:3; }
+  </style>
+
+  <text x="70" y="58" class="title">差分放大例题：静态工作点与任意双输入分解</text>
+  <text x="70" y="94" class="small">上：集电极负载不对称的 BJT 射极耦合差分对；下：任意双输入的共模、差模分解与输出叠加。</text>
+
+  <!-- Static operating point panel -->
+  <rect x="60" y="120" width="1480" height="405" rx="12" fill="#fffaf6" stroke="#d69a62" stroke-width="3"/>
+  <text x="85" y="158" class="panel">一、静态工作点（输入源置零）</text>
+  <text x="1230" y="158" class="small">放大区内两管匹配</text>
+
+  <!-- rails -->
+  <line x1="290" y1="195" x2="940" y2="195" class="wire"/>
+  <text x="945" y="202" class="label">+VCC</text>
+  <line x1="290" y1="475" x2="940" y2="475" class="wire"/>
+  <text x="945" y="482" class="label">−VEE</text>
+
+  <!-- left base zero source and Rb -->
+  <line x1="360" y1="280" x2="430" y2="280" class="wire"/>
+  <rect x="385" y="262" width="45" height="36" class="box"/>
+  <text x="392" y="288" class="small">Rb</text>
+  <line x1="360" y1="280" x2="360" y2="390" class="wire"/>
+  <line x1="345" y1="390" x2="375" y2="390" class="wire"/>
+  <line x1="351" y1="398" x2="369" y2="398" class="thin"/>
+  <line x1="357" y1="406" x2="363" y2="406" class="thin"/>
+  <text x="300" y="258" class="blue">u_i1=0</text>
+
+  <!-- right base zero source and Rb -->
+  <line x1="720" y1="280" x2="790" y2="280" class="wire"/>
+  <rect x="745" y="262" width="45" height="36" class="box"/>
+  <text x="752" y="288" class="small">Rb</text>
+  <line x1="790" y1="280" x2="790" y2="390" class="wire"/>
+  <line x1="775" y1="390" x2="805" y2="390" class="wire"/>
+  <line x1="781" y1="398" x2="799" y2="398" class="thin"/>
+  <line x1="787" y1="406" x2="793" y2="406" class="thin"/>
+  <text x="792" y="258" class="blue">u_i2=0</text>
+
+  <!-- RC1 -->
+  <line x1="515" y1="195" x2="515" y2="222" class="wire"/>
+  <rect x="497" y="222" width="36" height="65" class="box"/>
+  <text x="450" y="315" class="label">RC1=2RC</text>
+  <line x1="515" y1="287" x2="515" y2="300" class="wire"/>
+  <circle cx="515" cy="300" r="5" fill="#111111"/>
+  <text x="470" y="335" class="red">VC1Q</text>
+
+  <!-- RC2 -->
+  <line x1="850" y1="195" x2="850" y2="222" class="wire"/>
+  <rect x="832" y="222" width="36" height="65" class="box"/>
+  <text x="816" y="315" class="label">RC2=RC</text>
+  <line x1="850" y1="287" x2="850" y2="300" class="wire"/>
+  <circle cx="850" cy="300" r="5" fill="#111111"/>
+  <text x="865" y="335" class="red">VC2Q</text>
+
+  <!-- Q1 transistor -->
+  <line x1="430" y1="280" x2="465" y2="280" class="wire"/>
+  <line x1="465" y1="250" x2="465" y2="340" class="wire"/>
+  <line x1="465" y1="250" x2="515" y2="300" class="wire"/>
+  <line x1="465" y1="340" x2="565" y2="395" class="wire"/>
+  <polygon points="560,392 535,385 548,373" fill="#111111"/>
+  <text x="455" y="232" class="label">Q1</text>
+
+  <!-- Q2 transistor -->
+  <line x1="720" y1="280" x2="685" y2="280" class="wire"/>
+  <line x1="685" y1="250" x2="685" y2="340" class="wire"/>
+  <line x1="685" y1="250" x2="850" y2="300" class="wire"/>
+  <line x1="685" y1="340" x2="585" y2="395" class="wire"/>
+  <polygon points="590,392 615,385 602,373" fill="#111111"/>
+  <text x="675" y="232" class="label">Q2</text>
+
+  <!-- tail resistor -->
+  <line x1="575" y1="395" x2="575" y2="412" class="wire"/>
+  <rect x="557" y="412" width="36" height="52" class="box"/>
+  <text x="605" y="446" class="label">RE</text>
+  <line x1="575" y1="464" x2="575" y2="475" class="wire"/>
+  <text x="485" y="420" class="blue">公共发射极</text>
+
+  <!-- formulas -->
+  <text x="1000" y="210" class="formula">IB1Q = IB2Q = IBQ</text>
+  <text x="1000" y="245" class="formula">IC1Q = IC2Q = ICQ = βIBQ</text>
+  <text x="1000" y="280" class="formula">IT = 2(1+β)IBQ</text>
+  <text x="1000" y="325" class="formula">IBQ = (VEE − VBEQ) / [Rb + 2(1+β)RE]</text>
+  <text x="1000" y="365" class="formula">VCkQ = VCC − ICQ RCk，k∈{1,2}</text>
+  <text x="1000" y="400" class="formula">VCEkQ = VCC + VEE − ICQ RCk − 2(1+β)IBQRE</text>
+  <text x="1000" y="450" class="red">RC 较大的一侧先降低 VCE，更易进入饱和</text>
+  <text x="1000" y="482" class="small">算完需检查 VCEkQ &gt; VCE,sat（或集电结反偏）。</text>
+
+  <!-- Arbitrary input decomposition panel -->
+  <rect x="60" y="555" width="1480" height="505" rx="12" fill="#f7fbff" stroke="#7aa7d9" stroke-width="3"/>
+  <text x="85" y="594" class="panel">二、任意双输入的共模/差模分解</text>
+  <text x="1160" y="594" class="small">同一输出口定义下叠加</text>
+
+  <!-- input sources -->
+  <circle cx="165" cy="690" r="24" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <line x1="165" y1="666" x2="165" y2="650" class="wire"/>
+  <line x1="165" y1="714" x2="165" y2="765" class="wire"/>
+  <line x1="145" y1="765" x2="185" y2="765" class="wire"/>
+  <line x1="152" y1="773" x2="178" y2="773" class="thin"/>
+  <line x1="158" y1="781" x2="172" y2="781" class="thin"/>
+  <text x="105" y="638" class="label">ui1</text>
+
+  <circle cx="165" cy="835" r="24" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <line x1="165" y1="811" x2="165" y2="795" class="wire"/>
+  <line x1="165" y1="859" x2="165" y2="910" class="wire"/>
+  <line x1="145" y1="910" x2="185" y2="910" class="wire"/>
+  <line x1="152" y1="918" x2="178" y2="918" class="thin"/>
+  <line x1="158" y1="926" x2="172" y2="926" class="thin"/>
+  <text x="105" y="792" class="label">ui2</text>
+  <line x1="190" y1="690" x2="290" y2="690" class="wire"/>
+  <line x1="190" y1="835" x2="290" y2="835" class="wire"/>
+
+  <!-- decomposition box -->
+  <rect x="290" y="655" width="380" height="255" rx="10" class="box"/>
+  <text x="315" y="690" class="panel">先定义两个分量</text>
+  <text x="315" y="740" class="formula">uid = ui1 − ui2</text>
+  <text x="315" y="780" class="formula">uic = (ui1 + ui2) / 2</text>
+  <line x1="315" y1="805" x2="645" y2="805" class="dash"/>
+  <text x="315" y="845" class="formula">ui1 = uic + uid/2</text>
+  <text x="315" y="880" class="formula">ui2 = uic − uid/2</text>
+
+  <!-- branches -->
+  <line x1="670" y1="730" x2="750" y2="730" class="wire"/>
+  <polygon points="750,730 730,720 730,740" fill="#111111"/>
+  <line x1="670" y1="840" x2="750" y2="840" class="wire"/>
+  <polygon points="750,840 730,830 730,850" fill="#111111"/>
+  <rect x="770" y="680" width="260" height="95" rx="10" fill="#fffaf6" stroke="#d69a62" stroke-width="3"/>
+  <text x="795" y="718" class="formula">共模分量</text>
+  <text x="795" y="753" class="formula">uid = 0，ui1 = ui2 = uic</text>
+  <rect x="770" y="795" width="260" height="95" rx="10" fill="#f2f7ff" stroke="#7aa7d9" stroke-width="3"/>
+  <text x="795" y="833" class="formula">差模分量</text>
+  <text x="795" y="868" class="formula">uic = 0，ui1 = −ui2 = uid/2</text>
+
+  <!-- output combination -->
+  <line x1="1030" y1="728" x2="1100" y2="728" class="wire"/>
+  <line x1="1030" y1="843" x2="1100" y2="843" class="wire"/>
+  <rect x="1100" y="665" width="370" height="225" rx="12" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+  <text x="1130" y="710" class="panel">同一输出口</text>
+  <text x="1130" y="760" class="formula">uoc = Auc uic</text>
+  <text x="1130" y="800" class="formula">uod = Aud uid</text>
+  <line x1="1130" y1="820" x2="1440" y2="820" class="dash"/>
+  <text x="1130" y="860" class="red">uo = Auc uic + Aud uid</text>
+  <text x="1130" y="940" class="blue">双端理想对称：Auc ≈ 0</text>
+  <text x="1130" y="970" class="small">单端输出通常保留两项；</text>
+  <text x="1130" y="1000" class="small">双端输出注明 uod=uo1−uo2。</text>
+
+  <text x="90" y="1038" class="red">做题顺序：先算 uid、uic → 分别求 Aud、Auc → 对同一个输出端口相加。</text>
+</svg>
