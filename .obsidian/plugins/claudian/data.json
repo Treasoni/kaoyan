@@ -6,8 +6,9 @@
         "conversationId": "conv-1786446602570-1x2tl7m7k"
       },
       {
+        "draftModel": "MiniMax-M3",
         "tabId": "tab-1780456956859-0i1qnvx",
-        "conversationId": "conv-1788138162152-q8v0dlswm"
+        "conversationId": null
       },
       {
         "tabId": "tab-1782004129110-rax9f12",
