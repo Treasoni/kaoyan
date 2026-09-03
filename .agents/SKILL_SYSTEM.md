@@ -31,7 +31,7 @@ L1 入口路由
   |
   v
 L2 领域模块
-  |-- math: core / notes / structure
+  |-- math: core / notes / structure / conclusions
   |-- english: core / vocab / review / quiz / writing
   |-- electronics: core / sop / circuit / structure
   |
@@ -67,6 +67,7 @@ L3 工具能力
 | 子技能 | 只在何时调用 |
 | --- | --- |
 | `kaoyan-math-notes` | 生成/更新数学笔记、补充推导、整理听课疑问 |
+| `kaoyan-math-conclusions` | 用户明确要求将证明、例题或做题技巧追加到做题结论聚合页 |
 | `kaoyan-math-structure` | 查询章节结构、知识点关系、前后置关系 |
 | `kaoyan-math-core` | 状态、欠账、MemOS、跨学科关联 |
 

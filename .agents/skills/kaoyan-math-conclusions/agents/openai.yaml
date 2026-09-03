@@ -1,0 +1,4 @@
+interface:
+  display_name: "考研数学做题结论"
+  short_description: "整理并追加可复用的考研数学做题结论到 Obsidian 笔记"
+  default_prompt: "使用 $kaoyan-math-conclusions 将这道数学题整理并追加到做题结论笔记。"
