@@ -32,6 +32,9 @@
 
 严格筛选渠道商，提供完全正规的充值渠道与服务。欢迎访问充值卡网（已上线plus一年代充，Pro5x，20x等等）：
 
+![Uploading image.png…]()
+
+
 http://zhqznc.xyz/
 
 
