@@ -26,7 +26,7 @@
 <text x="765.0" y="265" font-size="25" fill="#17212b">RL</text>
 <circle cx="460" cy="290" r="5" fill="#17212b"/>
 <circle cx="1120" cy="290" r="5" fill="#17212b"/>
-<text x="700" y="260" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
+<text x="650" y="345" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
 <line x1="390" y1="354" x2="390" y2="426" stroke="#17212b" stroke-width="3" />
 <line x1="390" y1="368" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
 <line x1="390" y1="412" x2="460" y2="465" stroke="#17212b" stroke-width="3" />
@@ -54,8 +54,8 @@
 <line x1="130" y1="655" x2="170" y2="655" stroke="#17212b" stroke-width="3" />
 <line x1="137" y1="663" x2="163" y2="663" stroke="#17212b" stroke-width="3" />
 <line x1="144" y1="671" x2="156" y2="671" stroke="#17212b" stroke-width="3" />
-<path d="M210,355 L275,355" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
-<text x="211" y="335" font-size="22" fill="#175fa0">ii = ib1</text>
+<path d="M210,330 L275,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="211" y="308" font-size="22" fill="#175fa0">ii = ib1</text>
 <line x1="1410" y1="390" x2="1450" y2="390" stroke="#17212b" stroke-width="3" />
 <line x1="1417" y1="398" x2="1443" y2="398" stroke="#17212b" stroke-width="3" />
 <line x1="1424" y1="406" x2="1436" y2="406" stroke="#17212b" stroke-width="3" />

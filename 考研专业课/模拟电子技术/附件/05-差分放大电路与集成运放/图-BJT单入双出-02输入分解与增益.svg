@@ -39,7 +39,7 @@
 <line x1="390" y1="755" x2="430" y2="755" stroke="#17212b" stroke-width="3" />
 <line x1="397" y1="763" x2="423" y2="763" stroke="#17212b" stroke-width="3" />
 <line x1="404" y1="771" x2="416" y2="771" stroke="#17212b" stroke-width="3" />
-<text x="85" y="425" font-size="25" fill="#175fa0">+uid/2</text>
+<text x="85" y="510" font-size="25" fill="#175fa0">+uid/2</text>
 <text x="500" y="425" font-size="25" fill="#175fa0">+ uo1</text>
 <text x="550" y="795" font-size="23" fill="#17212b">−（对地）</text>
 <line x1="830" y1="460" x2="870.0" y2="460" stroke="#17212b" stroke-width="3" />
@@ -68,7 +68,7 @@
 <line x1="1135" y1="755" x2="1175" y2="755" stroke="#17212b" stroke-width="3" />
 <line x1="1142" y1="763" x2="1168" y2="763" stroke="#17212b" stroke-width="3" />
 <line x1="1149" y1="771" x2="1161" y2="771" stroke="#17212b" stroke-width="3" />
-<text x="830" y="425" font-size="25" fill="#175fa0">−uid/2</text>
+<text x="830" y="510" font-size="25" fill="#175fa0">−uid/2</text>
 <text x="1245" y="425" font-size="25" fill="#175fa0">+ uo2</text>
 <text x="1295" y="795" font-size="23" fill="#17212b">−（对地）</text>
 <text x="80" y="895" font-size="28" fill="#17212b">D = Rb + rbe；R′ = RC ∥ (RL/2)；ib = uid/(2D)</text>

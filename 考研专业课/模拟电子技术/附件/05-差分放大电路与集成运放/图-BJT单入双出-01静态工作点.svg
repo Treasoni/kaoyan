@@ -22,7 +22,7 @@
 <text x="765.0" y="265" font-size="25" fill="#17212b">RL</text>
 <circle cx="460" cy="290" r="5" fill="#17212b"/>
 <circle cx="1120" cy="290" r="5" fill="#17212b"/>
-<text x="700" y="260" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
+<text x="650" y="345" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
 <line x1="390" y1="354" x2="390" y2="426" stroke="#17212b" stroke-width="3" />
 <line x1="390" y1="368" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
 <line x1="390" y1="412" x2="460" y2="465" stroke="#17212b" stroke-width="3" />
