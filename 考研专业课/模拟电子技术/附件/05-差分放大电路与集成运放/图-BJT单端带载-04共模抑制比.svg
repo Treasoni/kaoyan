@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">共模抑制比：比较同一输出口的两种增益</text>
+<text x="65" y="106" font-size="23" fill="#51606d">共模 / 差模按两路信号的关系定义。通常希望放大差模、抑制共模；差模干扰仍可能被放大。</text>
+<rect x="50" y="150" width="1495" height="360" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="85" y="210" font-size="28" fill="#17212b">任意输入分解</text>
+<text x="85" y="285" font-size="27" fill="#17212b">uid = ui1 − ui2</text>
+<text x="85" y="380" font-size="27" fill="#17212b">uic = (ui1 + ui2) / 2</text>
+<path d="M420,278 L570,278" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M420,380 L570,380" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<rect x="580" y="235" width="265" height="82" rx="8" fill="white" stroke="#175fa0" stroke-width="3"/><rect x="580" y="340" width="265" height="82" rx="8" fill="white" stroke="#175fa0" stroke-width="3"/>
+<text x="625" y="288" font-size="30" fill="#17212b">Aud1</text>
+<text x="625" y="391" font-size="30" fill="#17212b">Auc1</text>
+<path d="M845,278 L970,278" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<line x1="970" y1="278" x2="970" y2="326" stroke="#17212b" stroke-width="3" />
+<path d="M845,380 L970,380" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<line x1="970" y1="380" x2="970" y2="334" stroke="#17212b" stroke-width="3" />
+<circle cx="1005" cy="330" r="35" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="993" y="341" font-size="32" fill="#17212b">+</text>
+<path d="M1040,330 L1150,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1165" y="340" font-size="30" fill="#17212b">uo1</text>
+<text x="85" y="470" font-size="30" fill="#175fa0">uo1 = Aud1 · uid + Auc1 · uic</text>
+<text x="80" y="585" font-size="30" fill="#17212b">KCMR = |Aud1 / Auc1| = [D + 2(1+β)RE] / (2D)，D = Rb + rbe</text>
+<text x="80" y="645" font-size="28" fill="#17212b">CMRR(dB) = 20 log10 KCMR</text>
+<rect x="50" y="700" width="1495" height="300" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="745" font-size="27" fill="#17212b">教学验算（自拟参数，不是原题数值）</text>
+<text x="80" y="800" font-size="27" fill="#17212b">β = 100，D = 10 kΩ，RC = RL = 10 kΩ，RE = 50 kΩ</text>
+<text x="80" y="855" font-size="27" fill="#175fa0">Aud1 = −25；Auc1 ≈ −0.04946；KCMR = 505.5 ≈ 54.07 dB</text>
+<text x="80" y="910" font-size="25" fill="#17212b">uid = 1 mV → 差模输出 −25 mV；uic = 10 mV → 共模输出约 −0.495 mV</text>
+<text x="80" y="965" font-size="24" fill="#17212b">负载因子消去依赖两种增益使用同一输出口、同一负载及同一小信号模型。</text>
+<text x="80" y="1060" font-size="25" fill="#17212b">尾阻越大，共模增益越小；实际电阻还需同时满足静态偏置与电压余量。</text>
+</g></svg>

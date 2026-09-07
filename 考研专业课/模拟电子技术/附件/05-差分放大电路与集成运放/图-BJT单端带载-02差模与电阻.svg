@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">单端带载：差模增益与电阻测试</text>
+<text x="65" y="106" font-size="23" fill="#51606d">统一端口：uid = ui1 − ui2；uo1 为左集电极对地电压；Ri,d 在两个外部输入端之间测量。</text>
+<rect x="50" y="140" width="905" height="380" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="980" y="140" width="565" height="380" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="183" font-size="26" fill="#17212b">ui1 = +uid/2，ui2 = −uid/2</text>
+<line x1="100" y1="235" x2="175.0" y2="235" stroke="#17212b" stroke-width="3" />
+<line x1="255.0" y1="235" x2="330" y2="235" stroke="#17212b" stroke-width="3" />
+<rect x="175.0" y="221" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="190.0" y="210" font-size="25" fill="#17212b">Rb</text>
+<line x1="330" y1="235" x2="330" y2="307.5" stroke="#17212b" stroke-width="3" />
+<line x1="330" y1="377.5" x2="330" y2="450" stroke="#17212b" stroke-width="3" />
+<rect x="316" y="307.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="353" y="350.5" font-size="25" fill="#17212b">rbe</text>
+<line x1="330" y1="450" x2="535" y2="450" stroke="#17212b" stroke-width="3" />
+<line x1="535" y1="235" x2="535" y2="302.5" stroke="#17212b" stroke-width="3" />
+<line x1="535" y1="382.5" x2="535" y2="450" stroke="#17212b" stroke-width="3" />
+<path d="M535,302.5 L562,342.5 L535,382.5 L508,342.5 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M535,321.5 L535,363.5" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="572" y="350.5" font-size="25" fill="#17212b">βib</text>
+<line x1="535" y1="235" x2="855" y2="235" stroke="#17212b" stroke-width="3" />
+<line x1="735" y1="235" x2="735" y2="307.5" stroke="#17212b" stroke-width="3" />
+<line x1="735" y1="377.5" x2="735" y2="450" stroke="#17212b" stroke-width="3" />
+<rect x="721" y="307.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="758" y="350.5" font-size="25" fill="#17212b">RC</text>
+<line x1="855" y1="235" x2="855" y2="307.5" stroke="#17212b" stroke-width="3" />
+<line x1="855" y1="377.5" x2="855" y2="450" stroke="#17212b" stroke-width="3" />
+<rect x="841" y="307.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="878" y="350.5" font-size="25" fill="#17212b">RL</text>
+<line x1="100" y1="450" x2="855" y2="450" stroke="#17212b" stroke-width="3" />
+<line x1="80" y1="450" x2="120" y2="450" stroke="#17212b" stroke-width="3" />
+<line x1="87" y1="458" x2="113" y2="458" stroke="#17212b" stroke-width="3" />
+<line x1="94" y1="466" x2="106" y2="466" stroke="#17212b" stroke-width="3" />
+<line x1="515" y1="450" x2="555" y2="450" stroke="#17212b" stroke-width="3" />
+<line x1="522" y1="458" x2="548" y2="458" stroke="#17212b" stroke-width="3" />
+<line x1="529" y1="466" x2="541" y2="466" stroke="#17212b" stroke-width="3" />
+<circle cx="330" cy="450" r="5" fill="#17212b"/>
+<circle cx="535" cy="450" r="5" fill="#17212b"/>
+<circle cx="735" cy="235" r="5" fill="#17212b"/>
+<text x="65" y="215" font-size="28" fill="#17212b">+</text>
+<text x="55" y="435" font-size="28" fill="#17212b">−</text>
+<text x="80" y="335" font-size="26" fill="#175fa0">uid/2</text>
+<text x="290" y="210" font-size="25" fill="#17212b">b</text>
+<text x="490" y="210" font-size="25" fill="#17212b">c</text>
+<text x="290" y="490" font-size="25" fill="#17212b">e</text>
+<text x="895" y="250" font-size="28" fill="#17212b">+</text>
+<text x="895" y="342.5" font-size="25" fill="#175fa0">uo1</text>
+<text x="895" y="450" font-size="28" fill="#17212b">−</text>
+<path d="M300,285 L300,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="255" y="315" font-size="22" fill="#175fa0">ib</text>
+<text x="1010" y="205" font-size="23" fill="#17212b">ie1 + ie2 = 0 → ue = 0</text>
+<text x="1010" y="275" font-size="23" fill="#17212b">ib1 = uid / [2(Rb+rbe)]</text>
+<text x="1010" y="345" font-size="23" fill="#17212b">uo1 = −βib1 (RC ∥ RL)</text>
+<text x="1010" y="415" font-size="23" fill="#17212b">尾电阻增量电流为零；</text>
+<text x="1010" y="460" font-size="23" fill="#17212b">实际 RE 仍保留直流偏置。</text>
+<rect x="50" y="550" width="730" height="490" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="810" y="550" width="735" height="490" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="595" font-size="27" fill="#17212b">输入测试：两输入端之间加 ut</text>
+<line x1="110" y1="695" x2="135.0" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="215.0" y1="695" x2="240" y2="695" stroke="#17212b" stroke-width="3" />
+<rect x="135.0" y="681" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="150.0" y="670" font-size="25" fill="#17212b">Rb</text>
+<line x1="240" y1="695" x2="265.0" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="345.0" y1="695" x2="370" y2="695" stroke="#17212b" stroke-width="3" />
+<rect x="265.0" y="681" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="280.0" y="670" font-size="25" fill="#17212b">rbe</text>
+<line x1="370" y1="695" x2="435" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="435" y1="695" x2="460.0" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="540.0" y1="695" x2="565" y2="695" stroke="#17212b" stroke-width="3" />
+<rect x="460.0" y="681" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="475.0" y="670" font-size="25" fill="#17212b">rbe</text>
+<line x1="565" y1="695" x2="590.0" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="670.0" y1="695" x2="695" y2="695" stroke="#17212b" stroke-width="3" />
+<rect x="590.0" y="681" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="605.0" y="670" font-size="25" fill="#17212b">Rb</text>
+<line x1="383" y1="695" x2="423" y2="695" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="703" x2="416" y2="703" stroke="#17212b" stroke-width="3" />
+<line x1="397" y1="711" x2="409" y2="711" stroke="#17212b" stroke-width="3" />
+<line x1="110" y1="695" x2="110" y2="835" stroke="#17212b" stroke-width="3" />
+<line x1="695" y1="695" x2="695" y2="835" stroke="#17212b" stroke-width="3" />
+<line x1="110" y1="835" x2="365" y2="835" stroke="#17212b" stroke-width="3" />
+<line x1="441" y1="835" x2="695" y2="835" stroke="#17212b" stroke-width="3" />
+<circle cx="403" cy="835" r="38" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="374" y="843" font-size="23" fill="#17212b">+  −</text>
+<text x="390" y="901" font-size="25" fill="#17212b">ut</text>
+<text x="80" y="675" font-size="21" fill="#17212b">i1</text>
+<text x="680" y="675" font-size="21" fill="#17212b">i2</text>
+<path d="M135,650 L205,650" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="155" y="635" font-size="22" fill="#17212b">it</text>
+<text x="90" y="968" font-size="28" fill="#175fa0">Ri,d = ut / it = 2(Rb + rbe)</text>
+<text x="840" y="595" font-size="27" fill="#17212b">输出测试：移除 RL，输入源置零</text>
+<line x1="890" y1="670" x2="1420" y2="670" stroke="#17212b" stroke-width="3" />
+<line x1="890" y1="875" x2="1420" y2="875" stroke="#17212b" stroke-width="3" />
+<line x1="1070" y1="670" x2="1070" y2="737.5" stroke="#17212b" stroke-width="3" />
+<line x1="1070" y1="807.5" x2="1070" y2="875" stroke="#17212b" stroke-width="3" />
+<rect x="1056" y="737.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1093" y="780.5" font-size="25" fill="#17212b">RC</text>
+<line x1="1050" y1="875" x2="1090" y2="875" stroke="#17212b" stroke-width="3" />
+<line x1="1057" y1="883" x2="1083" y2="883" stroke="#17212b" stroke-width="3" />
+<line x1="1064" y1="891" x2="1076" y2="891" stroke="#17212b" stroke-width="3" />
+<circle cx="1070" cy="670" r="5" fill="#17212b"/>
+<line x1="1420" y1="670" x2="1420" y2="732" stroke="#17212b" stroke-width="3" />
+<line x1="1420" y1="808" x2="1420" y2="875" stroke="#17212b" stroke-width="3" />
+<circle cx="1420" cy="770" r="38" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1411" y="755" font-size="25" fill="#17212b">+</text>
+<text x="1411" y="799" font-size="25" fill="#17212b">−</text>
+<text x="1470" y="778" font-size="23" fill="#17212b">ut</text>
+<path d="M1370,635 L1290,635" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1300" y="618" font-size="22" fill="#17212b">it</text>
+<text x="855" y="740" font-size="23" fill="#17212b">ib = 0</text>
+<text x="855" y="785" font-size="23" fill="#17212b">βib = 0</text>
+<text x="855" y="835" font-size="21" fill="#17212b">受控源支路</text>
+<text x="855" y="866" font-size="21" fill="#17212b">等效开路</text>
+<text x="850" y="968" font-size="28" fill="#175fa0">Ro = ut / it = RC（不含 RL）</text>
+</g></svg>
