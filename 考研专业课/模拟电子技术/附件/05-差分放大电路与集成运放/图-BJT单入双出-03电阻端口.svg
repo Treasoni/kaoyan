@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">单端输入、双端输出：输入电阻必须看测试端口</text>
+<text x="65" y="106" font-size="23" fill="#51606d">上图保持右输入端经 Rb 接地，左端施加 ui；D = Rb + rbe，a = (1+β)RE。</text>
+<rect x="50" y="135" width="1495" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<line x1="460" y1="175" x2="1120" y2="175" stroke="#17212b" stroke-width="3" />
+<line x1="1170" y1="175" x2="1210" y2="175" stroke="#17212b" stroke-width="3" />
+<line x1="1177" y1="183" x2="1203" y2="183" stroke="#17212b" stroke-width="3" />
+<line x1="1184" y1="191" x2="1196" y2="191" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="175" x2="1190" y2="175" stroke="#17212b" stroke-width="3" />
+<text x="1230" y="183" font-size="23" fill="#17212b">交流地</text>
+<line x1="460" y1="175" x2="460" y2="197.5" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="267.5" x2="460" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="446" y="197.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="483" y="240.5" font-size="25" fill="#17212b">RC</text>
+<line x1="1120" y1="175" x2="1120" y2="197.5" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="267.5" x2="1120" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="1106" y="197.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1143" y="240.5" font-size="25" fill="#17212b">RC</text>
+<line x1="460" y1="290" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="290" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="290" x2="750.0" y2="290" stroke="#17212b" stroke-width="3" />
+<line x1="830.0" y1="290" x2="1120" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="750.0" y="276" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="765.0" y="265" font-size="25" fill="#17212b">RL</text>
+<circle cx="460" cy="290" r="5" fill="#17212b"/>
+<circle cx="1120" cy="290" r="5" fill="#17212b"/>
+<text x="700" y="260" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
+<line x1="390" y1="354" x2="390" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="368" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="412" x2="460" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M428,440 L454,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="358" y="336" font-size="25" fill="#17212b">Q1</text>
+<line x1="1190" y1="354" x2="1190" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="368" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="412" x2="1120" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M1152,440 L1126,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1222" y="336" font-size="25" fill="#17212b">Q2</text>
+<line x1="150" y1="390" x2="230.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="310.0" y1="390" x2="390" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="230.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="245.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="1190" y1="390" x2="1270.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1350.0" y1="390" x2="1430" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="1270.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1285.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="150" y1="390" x2="150" y2="440" stroke="#17212b" stroke-width="3" />
+<line x1="150" y1="520" x2="150" y2="655" stroke="#17212b" stroke-width="3" />
+<circle cx="150" cy="480" r="40" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="140" y="469" font-size="25" fill="#17212b">+</text>
+<text x="140" y="509" font-size="25" fill="#17212b">−</text>
+<text x="80" y="488" font-size="27" fill="#175fa0">ui</text>
+<line x1="130" y1="655" x2="170" y2="655" stroke="#17212b" stroke-width="3" />
+<line x1="137" y1="663" x2="163" y2="663" stroke="#17212b" stroke-width="3" />
+<line x1="144" y1="671" x2="156" y2="671" stroke="#17212b" stroke-width="3" />
+<path d="M210,355 L275,355" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="211" y="335" font-size="22" fill="#175fa0">ii = ib1</text>
+<line x1="1410" y1="390" x2="1450" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1417" y1="398" x2="1443" y2="398" stroke="#17212b" stroke-width="3" />
+<line x1="1424" y1="406" x2="1436" y2="406" stroke="#17212b" stroke-width="3" />
+<text x="1390" y="355" font-size="22" fill="#17212b">ui2 = 0</text>
+<line x1="460" y1="465" x2="460" y2="495" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="465" x2="1120" y2="495" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="495" x2="1120" y2="495" stroke="#17212b" stroke-width="3" />
+<circle cx="790" cy="495" r="5" fill="#17212b"/>
+<line x1="790" y1="495" x2="790" y2="540.0" stroke="#17212b" stroke-width="3" />
+<line x1="790" y1="610.0" x2="790" y2="655" stroke="#17212b" stroke-width="3" />
+<rect x="776" y="540.0" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="813" y="583.0" font-size="25" fill="#17212b">RE</text>
+<line x1="770" y1="655" x2="810" y2="655" stroke="#17212b" stroke-width="3" />
+<line x1="777" y1="663" x2="803" y2="663" stroke="#17212b" stroke-width="3" />
+<line x1="784" y1="671" x2="796" y2="671" stroke="#17212b" stroke-width="3" />
+<text x="550" y="530" font-size="25" fill="#175fa0">ue ≠ 0（一般情况）</text>
+<text x="1030" y="590" font-size="24" fill="#17212b">输出共模抵消 ≠ 输入无共模</text>
+<text x="80" y="750" font-size="29" fill="#175fa0">实际单端输入：Ri,se = ui / ii = D(D+2a)/(D+a) = D + (D ∥ a)</text>
+<text x="80" y="798" font-size="27" fill="#17212b">差模跨端口测试：Ri,d = 2D；仅在 a ≫ D 时，Ri,se ≈ Ri,d。</text>
+<rect x="50" y="840" width="700" height="225" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="785" y="840" width="760" height="225" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="885" font-size="26" fill="#17212b">有限尾阻的两条输入方程</text>
+<text x="80" y="934" font-size="25" fill="#17212b">ui = D ib1 + ue；0 = D ib2 + ue</text>
+<text x="80" y="983" font-size="25" fill="#17212b">ue = a(ib1+ib2)</text>
+<text x="80" y="1034" font-size="23" fill="#17212b">两式相减可求差模；求 ii 仍要保留 ue。</text>
+<text x="815" y="885" font-size="25" fill="#17212b">双端输出电阻：移除 RL，输入源置零</text>
+<line x1="840" y1="958" x2="930.0" y2="958" stroke="#17212b" stroke-width="3" />
+<line x1="1010.0" y1="958" x2="1100" y2="958" stroke="#17212b" stroke-width="3" />
+<rect x="930.0" y="944" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="945.0" y="933" font-size="25" fill="#17212b">RC</text>
+<line x1="1100" y1="958" x2="1205.0" y2="958" stroke="#17212b" stroke-width="3" />
+<line x1="1285.0" y1="958" x2="1390" y2="958" stroke="#17212b" stroke-width="3" />
+<rect x="1205.0" y="944" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1220.0" y="933" font-size="25" fill="#17212b">RC</text>
+<line x1="1080" y1="958" x2="1120" y2="958" stroke="#17212b" stroke-width="3" />
+<line x1="1087" y1="966" x2="1113" y2="966" stroke="#17212b" stroke-width="3" />
+<line x1="1094" y1="974" x2="1106" y2="974" stroke="#17212b" stroke-width="3" />
+<circle cx="840" cy="958" r="5" fill="#17212b"/>
+<circle cx="1390" cy="958" r="5" fill="#17212b"/>
+<text x="815" y="999" font-size="23" fill="#17212b">c1 (+)</text>
+<text x="1360" y="999" font-size="23" fill="#17212b">c2 (−)</text>
+<text x="815" y="1040" font-size="26" fill="#175fa0">跨 c1、c2 加测试源：Ro,d = 2RC</text>
+</g></svg>

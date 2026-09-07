@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">单端输入、双端输出：输入分解与差模负载</text>
+<text x="65" y="106" font-size="23" fill="#51606d">实际输入 ui1 = ui，ui2 = 0。先分解，再分别计算两种模式的双端输出。</text>
+<rect x="50" y="145" width="720" height="210" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="800" y="145" width="745" height="210" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="198" font-size="29" fill="#17212b">共模分量：(+ui/2，+ui/2)</text>
+<text x="80" y="255" font-size="27" fill="#175fa0">uo1,c = uo2,c → uo,c = 0</text>
+<text x="80" y="310" font-size="25" fill="#17212b">负载两端同电位；Ac = 0（理想对称）</text>
+<text x="830" y="198" font-size="29" fill="#17212b">差模分量：(+ui/2，−ui/2)</text>
+<text x="830" y="255" font-size="25" fill="#17212b">uid = ui；发射极、负载中点为交流地</text>
+<text x="830" y="310" font-size="24" fill="#17212b">只在此模式下，将跨输出 RL 拆成两份 RL/2</text>
+<rect x="50" y="385" width="720" height="440" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="800" y="385" width="745" height="440" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<line x1="85" y1="460" x2="125.0" y2="460" stroke="#17212b" stroke-width="3" />
+<line x1="205.0" y1="460" x2="245" y2="460" stroke="#17212b" stroke-width="3" />
+<rect x="125.0" y="446" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="140.0" y="435" font-size="25" fill="#17212b">Rb</text>
+<line x1="245" y1="460" x2="245" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="245" y1="642.5" x2="245" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="231" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="268" y="615.5" font-size="25" fill="#17212b">rbe</text>
+<line x1="410" y1="460" x2="410" y2="567.5" stroke="#17212b" stroke-width="3" />
+<line x1="410" y1="647.5" x2="410" y2="755" stroke="#17212b" stroke-width="3" />
+<path d="M410,567.5 L437,607.5 L410,647.5 L383,607.5 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M410,586.5 L410,628.5" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="447" y="615.5" font-size="25" fill="#17212b">βib</text>
+<line x1="410" y1="460" x2="690" y2="460" stroke="#17212b" stroke-width="3" />
+<line x1="560" y1="460" x2="560" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="560" y1="642.5" x2="560" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="546" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="583" y="615.5" font-size="25" fill="#17212b">RC</text>
+<line x1="690" y1="460" x2="690" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="690" y1="642.5" x2="690" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="676" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="713" y="615.5" font-size="25" fill="#17212b">RL/2</text>
+<line x1="85" y1="755" x2="690" y2="755" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="755" x2="430" y2="755" stroke="#17212b" stroke-width="3" />
+<line x1="397" y1="763" x2="423" y2="763" stroke="#17212b" stroke-width="3" />
+<line x1="404" y1="771" x2="416" y2="771" stroke="#17212b" stroke-width="3" />
+<text x="85" y="425" font-size="25" fill="#175fa0">+uid/2</text>
+<text x="500" y="425" font-size="25" fill="#175fa0">+ uo1</text>
+<text x="550" y="795" font-size="23" fill="#17212b">−（对地）</text>
+<line x1="830" y1="460" x2="870.0" y2="460" stroke="#17212b" stroke-width="3" />
+<line x1="950.0" y1="460" x2="990" y2="460" stroke="#17212b" stroke-width="3" />
+<rect x="870.0" y="446" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="885.0" y="435" font-size="25" fill="#17212b">Rb</text>
+<line x1="990" y1="460" x2="990" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="990" y1="642.5" x2="990" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="976" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1013" y="615.5" font-size="25" fill="#17212b">rbe</text>
+<line x1="1155" y1="460" x2="1155" y2="567.5" stroke="#17212b" stroke-width="3" />
+<line x1="1155" y1="647.5" x2="1155" y2="755" stroke="#17212b" stroke-width="3" />
+<path d="M1155,567.5 L1182,607.5 L1155,647.5 L1128,607.5 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1155,586.5 L1155,628.5" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1192" y="615.5" font-size="25" fill="#17212b">−βib</text>
+<line x1="1155" y1="460" x2="1435" y2="460" stroke="#17212b" stroke-width="3" />
+<line x1="1305" y1="460" x2="1305" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="1305" y1="642.5" x2="1305" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="1291" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1328" y="615.5" font-size="25" fill="#17212b">RC</text>
+<line x1="1435" y1="460" x2="1435" y2="572.5" stroke="#17212b" stroke-width="3" />
+<line x1="1435" y1="642.5" x2="1435" y2="755" stroke="#17212b" stroke-width="3" />
+<rect x="1421" y="572.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1458" y="615.5" font-size="25" fill="#17212b">RL/2</text>
+<line x1="830" y1="755" x2="1435" y2="755" stroke="#17212b" stroke-width="3" />
+<line x1="1135" y1="755" x2="1175" y2="755" stroke="#17212b" stroke-width="3" />
+<line x1="1142" y1="763" x2="1168" y2="763" stroke="#17212b" stroke-width="3" />
+<line x1="1149" y1="771" x2="1161" y2="771" stroke="#17212b" stroke-width="3" />
+<text x="830" y="425" font-size="25" fill="#175fa0">−uid/2</text>
+<text x="1245" y="425" font-size="25" fill="#175fa0">+ uo2</text>
+<text x="1295" y="795" font-size="23" fill="#17212b">−（对地）</text>
+<text x="80" y="895" font-size="28" fill="#17212b">D = Rb + rbe；R′ = RC ∥ (RL/2)；ib = uid/(2D)</text>
+<text x="80" y="953" font-size="28" fill="#17212b">uo1,d = −βib R′；uo2,d = +βib R′；uo,d = −2βib R′</text>
+<text x="80" y="1014" font-size="31" fill="#175fa0">Au = uo/ui = Ad = −β[RC ∥ (RL/2)] / (Rb+rbe)</text>
+<text x="80" y="1070" font-size="23" fill="#17212b">总输出：uo = Ac · (ui/2) + Ad · ui；共模被抵消，不代表输入电流没有共模成分。</text>
+</g></svg>

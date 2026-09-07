@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">单端输入、双端输出：静态工作点</text>
+<text x="65" y="106" font-size="23" fill="#51606d">RL 跨接两个集电极；输出正端在左、负端在右。静态分析将输入电压源置零。</text>
+<rect x="50" y="135" width="1495" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<line x1="460" y1="175" x2="1120" y2="175" stroke="#17212b" stroke-width="3" />
+<text x="1160" y="182" font-size="27" fill="#17212b">+VCC</text>
+<line x1="460" y1="175" x2="460" y2="197.5" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="267.5" x2="460" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="446" y="197.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="483" y="240.5" font-size="25" fill="#17212b">RC</text>
+<line x1="1120" y1="175" x2="1120" y2="197.5" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="267.5" x2="1120" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="1106" y="197.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1143" y="240.5" font-size="25" fill="#17212b">RC</text>
+<line x1="460" y1="290" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="290" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="290" x2="750.0" y2="290" stroke="#17212b" stroke-width="3" />
+<line x1="830.0" y1="290" x2="1120" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="750.0" y="276" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="765.0" y="265" font-size="25" fill="#17212b">RL</text>
+<circle cx="460" cy="290" r="5" fill="#17212b"/>
+<circle cx="1120" cy="290" r="5" fill="#17212b"/>
+<text x="700" y="260" font-size="27" fill="#175fa0">+     uo = uo1 − uo2     −</text>
+<line x1="390" y1="354" x2="390" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="368" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="412" x2="460" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M428,440 L454,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="358" y="336" font-size="25" fill="#17212b">Q1</text>
+<line x1="1190" y1="354" x2="1190" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="368" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="412" x2="1120" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M1152,440 L1126,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1222" y="336" font-size="25" fill="#17212b">Q2</text>
+<line x1="150" y1="390" x2="230.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="310.0" y1="390" x2="390" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="230.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="245.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="1190" y1="390" x2="1270.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1350.0" y1="390" x2="1430" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="1270.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1285.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="130" y1="390" x2="170" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="137" y1="398" x2="163" y2="398" stroke="#17212b" stroke-width="3" />
+<line x1="144" y1="406" x2="156" y2="406" stroke="#17212b" stroke-width="3" />
+<text x="110" y="355" font-size="22" fill="#17212b">0 V</text>
+<line x1="1410" y1="390" x2="1450" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1417" y1="398" x2="1443" y2="398" stroke="#17212b" stroke-width="3" />
+<line x1="1424" y1="406" x2="1436" y2="406" stroke="#17212b" stroke-width="3" />
+<text x="1390" y="355" font-size="22" fill="#17212b">ui2 = 0</text>
+<line x1="460" y1="465" x2="460" y2="495" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="465" x2="1120" y2="495" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="495" x2="1120" y2="495" stroke="#17212b" stroke-width="3" />
+<circle cx="790" cy="495" r="5" fill="#17212b"/>
+<line x1="790" y1="495" x2="790" y2="540.0" stroke="#17212b" stroke-width="3" />
+<line x1="790" y1="610.0" x2="790" y2="655" stroke="#17212b" stroke-width="3" />
+<rect x="776" y="540.0" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="813" y="583.0" font-size="25" fill="#17212b">RE</text>
+<circle cx="790" cy="655" r="5" fill="#17212b"/>
+<text x="835" y="665" font-size="27" fill="#17212b">−VEE</text>
+<text x="550" y="530" font-size="25" fill="#175fa0">VEQ</text>
+<text x="215" y="585" font-size="24" fill="#17212b">两管匹配且都在放大区</text>
+<text x="1010" y="585" font-size="25" fill="#17212b">VCQ1 = VCQ2</text>
+<text x="1010" y="630" font-size="25" fill="#175fa0">RL 的直流电流为零</text>
+<text x="80" y="770" font-size="30" fill="#17212b">IBQ = (VEE − VBEQ) / [Rb + 2(1+β)RE]；ICQ = βIBQ</text>
+<text x="80" y="835" font-size="29" fill="#17212b">VEQ = −VEE + 2(1+β)IBQ RE；VCQ = VCC − ICQ RC</text>
+<text x="80" y="900" font-size="28" fill="#17212b">VCEQ = VCQ − VEQ = VCC + VEE − ICQ RC − 2(1+β)IBQ RE</text>
+<text x="80" y="975" font-size="27" fill="#175fa0">uo,Q = VCQ1 − VCQ2 = 0；但每个集电极对地电位通常不为零。</text>
+<text x="80" y="1045" font-size="25" fill="#17212b">检查两管集电结反偏：VCQ &gt; VBQ；不能把“负载无电流”推广到失配情况。</text>
+</g></svg>
