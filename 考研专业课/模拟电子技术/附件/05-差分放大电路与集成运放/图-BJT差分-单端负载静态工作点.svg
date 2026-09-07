@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <rect width="1600" height="1120" fill="#ffffff"/>
+  <style>
+    .wire { stroke:#111111; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .thin { stroke:#111111; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .dash { stroke:#777777; stroke-width:3; fill:none; stroke-dasharray:10 8; }
+    .title { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:34px; font-weight:700; fill:#111111; }
+    .panel { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:28px; font-weight:700; fill:#111111; }
+    .label { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:23px; fill:#111111; }
+    .small { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:20px; fill:#333333; }
+    .formula { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#111111; }
+    .red { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:21px; fill:#b42318; }
+    .blue { font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif; font-size:21px; fill:#1259a8; }
+    .box { fill:#ffffff; stroke:#111111; stroke-width:3; }
+  </style>
+
+  <text x="70" y="58" class="title">BJT 差分对：单端输出带负载时的静态工作点</text>
+  <text x="70" y="94" class="small">先由对称性求两管电流，再对带 R_L 的左侧集电极节点列 KCL。</text>
+
+  <rect x="60" y="120" width="760" height="900" rx="12" fill="#fffaf6" stroke="#d69a62" stroke-width="3"/>
+  <text x="85" y="158" class="panel">一、直流等效电路（输入源置零）</text>
+  <text x="535" y="158" class="small">示例：VCC1=3 V，VCC2=5 V</text>
+
+  <!-- supplies and collector resistors -->
+  <line x1="190" y1="210" x2="630" y2="210" class="wire"/>
+  <line x1="300" y1="210" x2="300" y2="242" class="wire"/>
+  <rect x="282" y="242" width="36" height="70" class="box"/>
+  <line x1="300" y1="312" x2="300" y2="355" class="wire"/>
+  <text x="245" y="230" class="label">VCC1</text>
+  <text x="248" y="340" class="label">RC</text>
+
+  <line x1="555" y1="210" x2="555" y2="242" class="wire"/>
+  <rect x="537" y="242" width="36" height="70" class="box"/>
+  <line x1="555" y1="312" x2="555" y2="355" class="wire"/>
+  <text x="500" y="230" class="label">VCC2</text>
+  <text x="503" y="340" class="label">RC</text>
+
+  <!-- left transistor -->
+  <line x1="235" y1="420" x2="275" y2="420" class="wire"/>
+  <rect x="190" y="402" width="45" height="36" class="box"/>
+  <text x="197" y="427" class="small">Rb</text>
+  <line x1="275" y1="390" x2="275" y2="480" class="wire"/>
+  <line x1="275" y1="390" x2="325" y2="355" class="wire"/>
+  <line x1="275" y1="480" x2="365" y2="535" class="wire"/>
+  <polygon points="360,532 336,525 349,513" fill="#111111"/>
+  <line x1="325" y1="355" x2="300" y2="355" class="wire"/>
+  <text x="267" y="375" class="label">Q1</text>
+  <circle cx="300" cy="355" r="5" fill="#111111"/>
+  <text x="325" y="345" class="red">VCQ1</text>
+
+  <!-- right transistor -->
+  <line x1="515" y1="420" x2="475" y2="420" class="wire"/>
+  <rect x="515" y="402" width="45" height="36" class="box"/>
+  <text x="522" y="427" class="small">Rb</text>
+  <line x1="475" y1="390" x2="475" y2="480" class="wire"/>
+  <line x1="475" y1="390" x2="555" y2="355" class="wire"/>
+  <line x1="475" y1="480" x2="385" y2="535" class="wire"/>
+  <polygon points="390,532 414,525 401,513" fill="#111111"/>
+  <line x1="555" y1="355" x2="555" y2="355" class="wire"/>
+  <text x="462" y="375" class="label">Q2</text>
+  <circle cx="555" cy="355" r="5" fill="#111111"/>
+  <text x="568" y="345" class="red">VCQ2</text>
+
+  <!-- zero input grounds -->
+  <line x1="190" y1="420" x2="150" y2="420" class="wire"/>
+  <line x1="150" y1="420" x2="150" y2="465" class="wire"/>
+  <line x1="135" y1="465" x2="165" y2="465" class="wire"/>
+  <line x1="141" y1="473" x2="159" y2="473" class="thin"/>
+  <line x1="147" y1="481" x2="153" y2="481" class="thin"/>
+  <text x="90" y="405" class="blue">ui1=0</text>
+  <line x1="560" y1="420" x2="610" y2="420" class="wire"/>
+  <line x1="610" y1="420" x2="610" y2="465" class="wire"/>
+  <line x1="595" y1="465" x2="625" y2="465" class="wire"/>
+  <line x1="601" y1="473" x2="619" y2="473" class="thin"/>
+  <line x1="607" y1="481" x2="613" y2="481" class="thin"/>
+  <text x="610" y="405" class="blue">ui2=0</text>
+
+  <!-- load at left collector -->
+  <line x1="300" y1="355" x2="300" y2="385" class="wire"/>
+  <rect x="282" y="385" width="36" height="70" class="box"/>
+  <text x="330" y="425" class="label">RL</text>
+  <line x1="300" y1="455" x2="300" y2="505" class="wire"/>
+  <line x1="285" y1="505" x2="315" y2="505" class="wire"/>
+  <line x1="291" y1="513" x2="309" y2="513" class="thin"/>
+  <line x1="297" y1="521" x2="303" y2="521" class="thin"/>
+  <text x="325" y="375" class="blue">单端输出节点</text>
+
+  <!-- common emitter tail -->
+  <line x1="365" y1="535" x2="385" y2="535" class="wire"/>
+  <line x1="375" y1="535" x2="375" y2="585" class="wire"/>
+  <rect x="357" y="585" width="36" height="70" class="box"/>
+  <text x="405" y="625" class="label">RE</text>
+  <line x1="375" y1="655" x2="375" y2="705" class="wire"/>
+  <line x1="360" y1="705" x2="390" y2="705" class="wire"/>
+  <line x1="366" y1="713" x2="384" y2="713" class="thin"/>
+  <line x1="372" y1="721" x2="378" y2="721" class="thin"/>
+  <text x="405" y="685" class="label">−VEE</text>
+
+  <!-- current labels -->
+  <line x1="330" y1="255" x2="330" y2="325" class="wire"/>
+  <polygon points="330,330 321,313 339,313" fill="#b42318"/>
+  <text x="340" y="265" class="red">I1</text>
+  <line x1="330" y1="455" x2="330" y2="500" class="wire"/>
+  <polygon points="330,505 321,488 339,488" fill="#b42318"/>
+  <text x="340" y="492" class="red">I2</text>
+  <text x="92" y="790" class="red">左节点 KCL：ICQ = I1 − I2</text>
+  <text x="92" y="830" class="small">I1 流过 RC，I2 流过 RL；负载不是与晶体管串联。</text>
+  <text x="92" y="875" class="small">右侧无 RL：ICQ 直接由 RC 提供。</text>
+
+  <!-- formula panel -->
+  <rect x="850" y="120" width="690" height="900" rx="12" fill="#f7fbff" stroke="#7aa7d9" stroke-width="3"/>
+  <text x="875" y="158" class="panel">二、静态计算链</text>
+  <text x="875" y="205" class="formula">IB1Q = IB2Q = IBQ</text>
+  <text x="875" y="242" class="formula">IC1Q = IC2Q = ICQ = βIBQ</text>
+  <text x="875" y="279" class="formula">IT = 2(1+β)IBQ</text>
+  <text x="875" y="330" class="formula">IBQ = (VEE − VBEQ) / [Rb + 2(1+β)RE]</text>
+  <text x="875" y="367" class="formula">VEQ = −VEE + 2(1+β)IBQRE</text>
+  <line x1="875" y1="395" x2="1500" y2="395" class="dash"/>
+
+  <text x="875" y="440" class="formula">I1 = (VCC1 − VCQ1) / RC</text>
+  <text x="875" y="477" class="formula">I2 = VCQ1 / RL</text>
+  <text x="875" y="514" class="red">ICQ = I1 − I2</text>
+  <text x="875" y="551" class="formula">VCQ1 = (VCC1/RC − ICQ)(RC ∥ RL)</text>
+  <text x="875" y="588" class="formula">VCEQ1 = VCQ1 − VEQ</text>
+  <line x1="875" y1="616" x2="1500" y2="616" class="dash"/>
+
+  <text x="875" y="661" class="formula">VCQ2 = VCC2 − ICQRC</text>
+  <text x="875" y="698" class="formula">VCEQ2 = VCQ2 − VEQ</text>
+  <text x="875" y="750" class="red">检查：VCEQ1、VCEQ2 &gt; VCE,sat</text>
+  <text x="875" y="790" class="small">若左侧负载使 VCQ1 过低，Q1 先进入饱和；</text>
+  <text x="875" y="823" class="small">此时不能继续套用 ICQ=βIBQ 的放大区公式。</text>
+  <text x="875" y="885" class="blue">记忆：先求管电流，再按节点电流分配求 VCQ1。</text>
+  <text x="875" y="930" class="small">电源不对称时用 VCC1、VCC2；相等电源时令二者均为 VCC。</text>
+  <text x="875" y="975" class="small">单端输出取左侧：静态输出点为 VCQ1，交流输出再在此点线性化。</text>
+</svg>
