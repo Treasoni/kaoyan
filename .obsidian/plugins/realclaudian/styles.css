@@ -242,27 +242,15 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 .claudian-tab-badge-streaming {
-  border-color: var(--claudian-brand, #da7756);
+  border-color: var(--text-normal);
 }
 
-.claudian-tab-badge-streaming[data-provider="claude"] {
-  border-color: var(--claudian-brand-claude, #D97757);
+body.theme-light .claudian-tab-badge-streaming {
+  border-color: #000000;
 }
 
-.claudian-tab-badge-streaming[data-provider="codex"] {
-  border-color: var(--claudian-brand-codex, #d0d0d0);
-}
-
-.claudian-tab-badge-streaming[data-provider="opencode"] {
-  border-color: var(--claudian-brand-opencode, #C8C8C8);
-}
-
-.claudian-tab-badge-streaming[data-provider="pi"] {
-  border-color: var(--claudian-brand-pi, #ffffff);
-}
-
-.claudian-tab-badge-streaming[data-provider="grok"] {
-  border-color: var(--claudian-brand-grok, #ffffff);
+body.theme-dark .claudian-tab-badge-streaming {
+  border-color: #ffffff;
 }
 
 .claudian-tab-badge-review {
@@ -270,11 +258,11 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 .claudian-tab-badge-review-error {
-  border-color: var(--color-orange);
+  border-color: var(--text-error);
 }
 
 .claudian-tab-badge-action-required {
-  border-color: var(--text-error);
+  border-color: var(--color-orange);
 }
 
 .claudian-tab-badge-idle {
@@ -741,6 +729,37 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   height: 14px;
   animation: spin 1s linear infinite;
   stroke-width: 2.5;
+}
+
+.claudian-session-status-indicator {
+  display: flex;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.claudian-session-group-status-indicator {
+  display: none;
+}
+
+.claudian-session-group-status-indicator--visible {
+  display: flex;
+}
+
+.claudian-session-status-indicator svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+
+.claudian-session-status-indicator--action-required {
+  color: var(--color-orange);
+}
+
+.claudian-session-status-indicator--error {
+  color: var(--text-error);
 }
 
 .claudian-session-group-new-action {
@@ -1576,6 +1595,11 @@ body.theme-dark .claudian-session-metadata-popover {
   text-align: start;
 }
 
+body.mod-windows .claudian-message-assistant {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
+}
+
 .claudian-message-content {
   line-height: 1.5;
   user-select: text;
@@ -1596,13 +1620,22 @@ body.theme-dark .claudian-session-metadata-popover {
   margin: 0;
 }
 
-.claudian-text-copy-btn {
+button.claudian-text-copy-btn {
+  appearance: none;
   position: absolute;
   bottom: 0;
   inset-inline-end: 0;
-  border: none;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--text-faint);
   cursor: pointer;
+  font: inherit;
   opacity: 0;
   transition: opacity 0.15s ease, color 0.15s ease;
   z-index: 2;
@@ -1611,20 +1644,41 @@ body.theme-dark .claudian-session-metadata-popover {
   gap: 4px;
 }
 
-.claudian-text-copy-btn svg {
+button.claudian-text-copy-btn svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-text-block:hover .claudian-text-copy-btn {
+.claudian-text-block:hover button.claudian-text-copy-btn {
   opacity: 1;
 }
 
-.claudian-text-copy-btn:hover {
+button.claudian-text-copy-btn:hover,
+button.claudian-text-copy-btn:focus-visible,
+button.claudian-text-copy-btn:active {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--text-normal);
 }
 
-.claudian-text-copy-btn.copied {
+button.claudian-text-copy-btn:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+button.claudian-text-copy-btn:disabled {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: default;
+}
+
+button.claudian-text-copy-btn.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
@@ -1716,29 +1770,60 @@ body.theme-dark .claudian-session-metadata-popover {
   z-index: 1;
 }
 
-.claudian-message-user:hover .claudian-user-msg-actions {
+.claudian-message-user:hover .claudian-user-msg-actions,
+.claudian-user-msg-actions:focus-within {
   opacity: 1;
 }
 
-.claudian-user-msg-actions span {
+.claudian-user-msg-actions button {
+  appearance: none;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-faint);
+  font: inherit;
   transition: color 0.15s;
 }
 
-.claudian-user-msg-actions span svg {
+.claudian-user-msg-actions button svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-user-msg-actions span:hover {
+.claudian-user-msg-actions button:hover,
+.claudian-user-msg-actions button:focus-visible,
+.claudian-user-msg-actions button:active {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   color: var(--text-normal);
 }
 
-.claudian-user-msg-actions span.copied {
+.claudian-user-msg-actions button:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+
+.claudian-user-msg-actions button:disabled {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: default;
+}
+
+.claudian-user-msg-actions button.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
@@ -1967,6 +2052,15 @@ body.theme-light .claudian-message-content pre {
   font-size: 13px;
 }
 
+.claudian-container .claudian-message-content :not(pre) > code {
+  background-color: var(--code-background, var(--background-secondary));
+  color: var(--code-normal, var(--text-normal));
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 /* Clickable language label - positioned outside scroll area */
 .claudian-code-wrapper .claudian-code-lang-label {
   position: absolute;
@@ -2025,6 +2119,7 @@ body.theme-light .claudian-message-content pre {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
+
 
 /* ============================================
    components/thinking.css
@@ -3073,8 +3168,9 @@ button.claudian-input-nav-btn[aria-disabled='true'] {
 
 .claudian-input-wrapper textarea.claudian-input {
   width: 100%;
-  flex: 1 1 0;
-  min-height: var(--claudian-textarea-min-height, 60px);
+  flex: 1 1 auto;
+  field-sizing: content;
+  min-height: 60px;
   max-height: var(--claudian-textarea-max-height, none);
   resize: none;
   padding: 8px 10px 10px 10px;
@@ -3252,6 +3348,10 @@ button.claudian-input-nav-btn[aria-disabled='true'] {
 
 .claudian-context-chip--content {
   border-color: var(--background-modifier-border-hover);
+}
+
+.claudian-context-chip--content:not(.claudian-context-chip--removable) {
+  padding-right: 10px;
 }
 
 .claudian-context-chip--missing {
@@ -7544,8 +7644,47 @@ button.claudian-image-modal-close:hover {
   font-size: 14px;
 }
 
+button.claudian-fork-target-option {
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: start;
+  white-space: normal;
+}
+
+button.claudian-fork-target-option:hover,
+button.claudian-fork-target-option:focus-visible,
+button.claudian-fork-target-option:active {
+  border: 0;
+  box-shadow: none;
+  color: var(--text-normal);
+}
+
 .claudian-fork-target-option:hover {
   background: var(--background-modifier-hover);
+}
+
+button.claudian-fork-target-option:focus-visible {
+  background: transparent;
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: -2px;
+}
+
+button.claudian-fork-target-option:disabled {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: default;
 }
 
 
