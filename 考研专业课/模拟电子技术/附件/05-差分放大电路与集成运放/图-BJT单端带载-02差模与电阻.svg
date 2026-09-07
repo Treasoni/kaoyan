@@ -46,7 +46,7 @@
 <text x="490" y="210" font-size="25" fill="#17212b">c</text>
 <text x="290" y="490" font-size="25" fill="#17212b">e</text>
 <text x="895" y="250" font-size="28" fill="#17212b">+</text>
-<text x="895" y="342.5" font-size="25" fill="#175fa0">uo1</text>
+<text x="885" y="295" font-size="25" fill="#175fa0">uo1</text>
 <text x="895" y="450" font-size="28" fill="#17212b">−</text>
 <path d="M300,285 L300,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
 <text x="255" y="315" font-size="22" fill="#175fa0">ib</text>
@@ -85,8 +85,9 @@
 <circle cx="403" cy="835" r="38" fill="white" stroke="#17212b" stroke-width="3"/>
 <text x="374" y="843" font-size="23" fill="#17212b">+  −</text>
 <text x="390" y="901" font-size="25" fill="#17212b">ut</text>
-<text x="80" y="675" font-size="21" fill="#17212b">i1</text>
-<text x="680" y="675" font-size="21" fill="#17212b">i2</text>
+<text x="80" y="675" font-size="21" fill="#17212b">ui1</text>
+<text x="680" y="675" font-size="21" fill="#17212b">ui2</text>
+<text x="370" y="752" font-size="22" fill="#175fa0">虚地</text>
 <path d="M135,650 L205,650" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
 <text x="155" y="635" font-size="22" fill="#17212b">it</text>
 <text x="90" y="968" font-size="28" fill="#175fa0">Ri,d = ut / it = 2(Rb + rbe)</text>

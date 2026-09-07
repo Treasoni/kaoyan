@@ -50,7 +50,7 @@
 <text x="490" y="210" font-size="25" fill="#17212b">c</text>
 <text x="290" y="490" font-size="25" fill="#17212b">e</text>
 <text x="895" y="250" font-size="28" fill="#17212b">+</text>
-<text x="895" y="442.5" font-size="25" fill="#175fa0">uo1</text>
+<text x="885" y="295" font-size="25" fill="#175fa0">uo1</text>
 <text x="895" y="650" font-size="28" fill="#17212b">−</text>
 <path d="M300,285 L300,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
 <text x="255" y="315" font-size="22" fill="#175fa0">ib</text>
