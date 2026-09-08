@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">单端输入、单端输出：共模分量</text>
+<text x="65" y="106" font-size="23" fill="#51606d">只分析 ui1 = ui2 = uic；在实际单端输入的分解中，uic = ui/2。右集电极接交流地。</text>
+<rect x="50" y="140" width="905" height="590" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="980" y="140" width="565" height="590" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="80" y="182" font-size="27" fill="#17212b">左侧共模半电路</text>
+<line x1="100" y1="235" x2="175.0" y2="235" stroke="#17212b" stroke-width="3" />
+<line x1="255.0" y1="235" x2="330" y2="235" stroke="#17212b" stroke-width="3" />
+<rect x="175.0" y="221" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="190.0" y="210" font-size="25" fill="#17212b">Rb</text>
+<line x1="330" y1="235" x2="330" y2="307.5" stroke="#17212b" stroke-width="3" />
+<line x1="330" y1="377.5" x2="330" y2="450" stroke="#17212b" stroke-width="3" />
+<rect x="316" y="307.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="353" y="350.5" font-size="25" fill="#17212b">rbe</text>
+<line x1="330" y1="450" x2="535" y2="450" stroke="#17212b" stroke-width="3" />
+<line x1="535" y1="235" x2="535" y2="302.5" stroke="#17212b" stroke-width="3" />
+<line x1="535" y1="382.5" x2="535" y2="450" stroke="#17212b" stroke-width="3" />
+<path d="M535,302.5 L562,342.5 L535,382.5 L508,342.5 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M535,321.5 L535,363.5" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="572" y="350.5" font-size="25" fill="#17212b">βib</text>
+<line x1="535" y1="235" x2="855" y2="235" stroke="#17212b" stroke-width="3" />
+<line x1="735" y1="235" x2="735" y2="407.5" stroke="#17212b" stroke-width="3" />
+<line x1="735" y1="477.5" x2="735" y2="650" stroke="#17212b" stroke-width="3" />
+<rect x="721" y="407.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="758" y="450.5" font-size="25" fill="#17212b">RC</text>
+<line x1="855" y1="235" x2="855" y2="407.5" stroke="#17212b" stroke-width="3" />
+<line x1="855" y1="477.5" x2="855" y2="650" stroke="#17212b" stroke-width="3" />
+<rect x="841" y="407.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="878" y="450.5" font-size="25" fill="#17212b">RL</text>
+<line x1="535" y1="450" x2="535" y2="515.0" stroke="#17212b" stroke-width="3" />
+<line x1="535" y1="585.0" x2="535" y2="650" stroke="#17212b" stroke-width="3" />
+<rect x="521" y="515.0" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="558" y="558.0" font-size="25" fill="#17212b">2RE</text>
+<line x1="100" y1="650" x2="855" y2="650" stroke="#17212b" stroke-width="3" />
+<line x1="80" y1="650" x2="120" y2="650" stroke="#17212b" stroke-width="3" />
+<line x1="87" y1="658" x2="113" y2="658" stroke="#17212b" stroke-width="3" />
+<line x1="94" y1="666" x2="106" y2="666" stroke="#17212b" stroke-width="3" />
+<line x1="515" y1="650" x2="555" y2="650" stroke="#17212b" stroke-width="3" />
+<line x1="522" y1="658" x2="548" y2="658" stroke="#17212b" stroke-width="3" />
+<line x1="529" y1="666" x2="541" y2="666" stroke="#17212b" stroke-width="3" />
+<circle cx="330" cy="450" r="5" fill="#17212b"/>
+<circle cx="535" cy="450" r="5" fill="#17212b"/>
+<circle cx="735" cy="235" r="5" fill="#17212b"/>
+<text x="65" y="215" font-size="28" fill="#17212b">+</text>
+<text x="55" y="635" font-size="28" fill="#17212b">−</text>
+<text x="80" y="335" font-size="26" fill="#175fa0">uic</text>
+<text x="290" y="210" font-size="25" fill="#17212b">b</text>
+<text x="490" y="210" font-size="25" fill="#17212b">c</text>
+<text x="290" y="490" font-size="25" fill="#17212b">e</text>
+<text x="895" y="250" font-size="28" fill="#17212b">+</text>
+<text x="885" y="295" font-size="25" fill="#175fa0">uo1</text>
+<text x="895" y="650" font-size="28" fill="#17212b">−</text>
+<path d="M300,285 L300,330" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="255" y="315" font-size="22" fill="#175fa0">ib</text>
+<text x="1010" y="195" font-size="23" fill="#17212b">全尾电流 = 两管发射极电流之和</text>
+<text x="1010" y="260" font-size="23" fill="#17212b">it = 2(1+β)ib</text>
+<text x="1010" y="325" font-size="23" fill="#17212b">ue = it RE = (1+β)ib · 2RE</text>
+<text x="1010" y="400" font-size="23" fill="#17212b">半电路尾阻：2RE</text>
+<text x="1010" y="485" font-size="23" fill="#17212b">输入项：Rb、rbe、2(1+β)RE</text>
+<text x="1010" y="565" font-size="23" fill="#17212b">最后一项应乘 RE，不能写 rbe。</text>
+<text x="1010" y="645" font-size="23" fill="#17212b">c → e 的受控源保持 βib。</text>
+<text x="80" y="800" font-size="30" fill="#17212b">uic = ib [Rb + rbe + 2(1+β)RE]</text>
+<text x="80" y="862" font-size="30" fill="#17212b">uo,c = −βib (RC ∥ RL)</text>
+<text x="80" y="928" font-size="31" fill="#175fa0">Auc1 = −β(RC ∥ RL) / [Rb+rbe+2(1+β)RE]</text>
+<text x="80" y="1000" font-size="26" fill="#17212b">实际单端输入：uo,c = Auc1 · ui/2。单端输出不会把共模分量相减抵消。</text>
+<text x="80" y="1060" font-size="24" fill="#17212b">共模只在单独求该分量时施加在两输入端；原电路右输入仍然接地。</text>
+</g></svg>
