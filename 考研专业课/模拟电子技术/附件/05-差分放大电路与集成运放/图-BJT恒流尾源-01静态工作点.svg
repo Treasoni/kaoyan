@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">恒流源尾部：静态电流由 IT 决定</text>
+<text x="65" y="106" font-size="23" fill="#51606d">沿用单入单出拓扑：左集电极带对地负载；右集电极直接接 +VCC。图中输入源已置零。</text>
+<rect x="50" y="140" width="1495" height="595" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<line x1="460" y1="180" x2="1120" y2="180" stroke="#17212b" stroke-width="3" />
+<text x="1160" y="185" font-size="27" fill="#17212b">+VCC</text>
+<line x1="460" y1="180" x2="460" y2="200.0" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="270.0" x2="460" y2="290" stroke="#17212b" stroke-width="3" />
+<rect x="446" y="200.0" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="483" y="243.0" font-size="25" fill="#17212b">RC</text>
+<line x1="460" y1="290" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="180" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="354" x2="390" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="368" x2="460" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="390" y1="412" x2="460" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M428,440 L454,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="358" y="336" font-size="25" fill="#17212b">Q1</text>
+<line x1="1190" y1="354" x2="1190" y2="426" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="368" x2="1120" y2="315" stroke="#17212b" stroke-width="3" />
+<line x1="1190" y1="412" x2="1120" y2="465" stroke="#17212b" stroke-width="3" />
+<path d="M1152,440 L1126,460" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="1222" y="336" font-size="25" fill="#17212b">Q2</text>
+<line x1="150" y1="390" x2="230.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="310.0" y1="390" x2="390" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="230.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="245.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="1190" y1="390" x2="1270.0" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1350.0" y1="390" x2="1430" y2="390" stroke="#17212b" stroke-width="3" />
+<rect x="1270.0" y="376" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="1285.0" y="365" font-size="25" fill="#17212b">Rb</text>
+<line x1="130" y1="390" x2="170" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="137" y1="398" x2="163" y2="398" stroke="#17212b" stroke-width="3" />
+<line x1="144" y1="406" x2="156" y2="406" stroke="#17212b" stroke-width="3" />
+<line x1="1410" y1="390" x2="1450" y2="390" stroke="#17212b" stroke-width="3" />
+<line x1="1417" y1="398" x2="1443" y2="398" stroke="#17212b" stroke-width="3" />
+<line x1="1424" y1="406" x2="1436" y2="406" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="290" x2="720" y2="290" stroke="#17212b" stroke-width="3" />
+<line x1="720" y1="290" x2="720" y2="327.5" stroke="#17212b" stroke-width="3" />
+<line x1="720" y1="397.5" x2="720" y2="435" stroke="#17212b" stroke-width="3" />
+<rect x="706" y="327.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="743" y="370.5" font-size="25" fill="#17212b">RL</text>
+<line x1="700" y1="435" x2="740" y2="435" stroke="#17212b" stroke-width="3" />
+<line x1="707" y1="443" x2="733" y2="443" stroke="#17212b" stroke-width="3" />
+<line x1="714" y1="451" x2="726" y2="451" stroke="#17212b" stroke-width="3" />
+<circle cx="460" cy="290" r="5" fill="#17212b"/>
+<text x="515" y="268" font-size="25" fill="#17212b">VCQ1 = UoQ</text>
+<text x="1150" y="260" font-size="25" fill="#17212b">VCQ2 = VCC</text>
+<line x1="460" y1="465" x2="460" y2="500" stroke="#17212b" stroke-width="3" />
+<line x1="1120" y1="465" x2="1120" y2="500" stroke="#17212b" stroke-width="3" />
+<line x1="460" y1="500" x2="1120" y2="500" stroke="#17212b" stroke-width="3" />
+<circle cx="790" cy="500" r="5" fill="#17212b"/>
+<line x1="790" y1="500" x2="790" y2="560" stroke="#17212b" stroke-width="3" />
+<circle cx="790" cy="600" r="40" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M790,577 L790,623" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<line x1="790" y1="640" x2="790" y2="690" stroke="#17212b" stroke-width="3" />
+<circle cx="790" cy="690" r="5" fill="#17212b"/>
+<text x="845" y="608" font-size="29" fill="#ad3025">IT</text>
+<text x="835" y="704" font-size="27" fill="#17212b">−VEE</text>
+<text x="650" y="538" font-size="25" fill="#ad3025">VEQ</text>
+<text x="240" y="600" font-size="27" fill="#17212b">IE1Q = IT/2</text>
+<text x="1040" y="600" font-size="27" fill="#17212b">IE2Q = IT/2</text>
+<text x="80" y="785" font-size="30" fill="#17212b">IBQ = IT / [2(1+β)]；ICQ = βIBQ ≈ IT/2</text>
+<text x="80" y="845" font-size="30" fill="#17212b">VEQ = −IBQ Rb − VBEQ</text>
+<text x="80" y="905" font-size="27" fill="#17212b">VCQ1 = (VCC/RC − ICQ)(RC ∥ RL)；VCEQ1 = VCQ1 − VEQ</text>
+<text x="80" y="965" font-size="28" fill="#17212b">VCEQ2 = VCC − VEQ；尾源两端电压 VTQ = VEQ + VEE</text>
+<text x="80" y="1040" font-size="27" fill="#175fa0">先分尾电流，再求节点电位；检查两管放大区和实际尾源的电压余量。</text>
+</g></svg>
