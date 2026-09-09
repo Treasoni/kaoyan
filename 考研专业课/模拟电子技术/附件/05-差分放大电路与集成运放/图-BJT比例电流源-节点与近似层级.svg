@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs>
+<rect width="1600" height="1120" fill="white"/><g font-family="Arial, PingFang SC, sans-serif">
+<text x="65" y="65" font-size="36" fill="#17212b">发射极电阻型比例电流源：先辨节点，再分近似层级</text>
+<text x="65" y="106" font-size="23" fill="#51606d">T0 集基短接；两管共基极，但发射极各接自己的电阻。输出端接外部电路，原图未给负载。</text>
+<rect x="50" y="145" width="880" height="630" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="960" y="145" width="585" height="630" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<line x1="360" y1="185" x2="360" y2="210" stroke="#17212b" stroke-width="3" />
+<text x="400" y="190" font-size="26" fill="#17212b">+VCC</text>
+<line x1="360" y1="210" x2="360" y2="235.0" stroke="#17212b" stroke-width="3" />
+<line x1="360" y1="305.0" x2="360" y2="330" stroke="#17212b" stroke-width="3" />
+<rect x="346" y="235.0" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="383" y="278.0" font-size="25" fill="#17212b">R</text>
+<line x1="360" y1="330" x2="360" y2="345" stroke="#17212b" stroke-width="3" />
+<line x1="430" y1="384" x2="430" y2="456" stroke="#17212b" stroke-width="3" />
+<line x1="430" y1="398" x2="360" y2="345" stroke="#17212b" stroke-width="3" />
+<line x1="430" y1="442" x2="360" y2="495" stroke="#17212b" stroke-width="3" />
+<path d="M392,470 L366,490" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="462" y="366" font-size="25" fill="#17212b">T0</text>
+<line x1="730" y1="384" x2="730" y2="456" stroke="#17212b" stroke-width="3" />
+<line x1="730" y1="398" x2="800" y2="345" stroke="#17212b" stroke-width="3" />
+<line x1="730" y1="442" x2="800" y2="495" stroke="#17212b" stroke-width="3" />
+<path d="M768,470 L794,490" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="698" y="366" font-size="25" fill="#17212b">T1</text>
+<line x1="430" y1="420" x2="730" y2="420" stroke="#17212b" stroke-width="3" />
+<line x1="360" y1="330" x2="580" y2="330" stroke="#17212b" stroke-width="3" />
+<line x1="580" y1="330" x2="580" y2="420" stroke="#17212b" stroke-width="3" />
+<circle cx="360" cy="330" r="5" fill="#17212b"/>
+<circle cx="580" cy="420" r="5" fill="#17212b"/>
+<text x="595" y="392" font-size="27" fill="#ad3025">VB</text>
+<line x1="800" y1="345" x2="800" y2="245" stroke="#17212b" stroke-width="3" />
+<circle cx="800" cy="245" r="5" fill="#17212b"/>
+<text x="748" y="215" font-size="24" fill="#17212b">输出端</text>
+<line x1="360" y1="495" x2="360" y2="552.5" stroke="#17212b" stroke-width="3" />
+<line x1="360" y1="622.5" x2="360" y2="680" stroke="#17212b" stroke-width="3" />
+<rect x="346" y="552.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="383" y="595.5" font-size="25" fill="#17212b">Re0</text>
+<line x1="800" y1="495" x2="800" y2="552.5" stroke="#17212b" stroke-width="3" />
+<line x1="800" y1="622.5" x2="800" y2="680" stroke="#17212b" stroke-width="3" />
+<rect x="786" y="552.5" width="28" height="70" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="823" y="595.5" font-size="25" fill="#17212b">Re1</text>
+<circle cx="360" cy="495" r="5" fill="#17212b"/>
+<circle cx="800" cy="495" r="5" fill="#17212b"/>
+<text x="260" y="495" font-size="24" fill="#17212b">E0</text>
+<text x="840" y="495" font-size="24" fill="#17212b">E1</text>
+<line x1="280" y1="680" x2="850" y2="680" stroke="#17212b" stroke-width="3" />
+<line x1="560" y1="680" x2="600" y2="680" stroke="#17212b" stroke-width="3" />
+<line x1="567" y1="688" x2="593" y2="688" stroke="#17212b" stroke-width="3" />
+<line x1="574" y1="696" x2="586" y2="696" stroke="#17212b" stroke-width="3" />
+<path d="M315,235 L315,285" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="240" y="270" font-size="25" fill="#ad3025">IR</text>
+<path d="M837,280 L837,337" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="850" y="316" font-size="24" fill="#ad3025">IC1</text>
+<path d="M300,530 L300,585" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="208" y="568" font-size="24" fill="#ad3025">IE0</text>
+<path d="M750,530 L750,585" fill="none" stroke="#175fa0" stroke-width="3" marker-end="url(#arr)"/>
+<text x="660" y="568" font-size="24" fill="#ad3025">IE1</text>
+<text x="80" y="735" font-size="25" fill="#17212b">公共节点是 VB；一般 VE0 ≠ VE1、VBE0 ≠ VBE1。</text>
+<text x="990" y="195" font-size="25" fill="#17212b">① 回路关系（保留压差）</text>
+<text x="990" y="255" font-size="25" fill="#17212b">VB = VBE0 + IE0 Re0</text>
+<text x="990" y="308" font-size="25" fill="#17212b">VB = VBE1 + IE1 Re1</text>
+<text x="990" y="388" font-size="25" fill="#17212b">② 忽略两管 VBE 的差值</text>
+<text x="990" y="445" font-size="25" fill="#17212b">IE1 / IE0 ≈ Re0 / Re1 = k</text>
+<text x="990" y="525" font-size="25" fill="#17212b">③ 再忽略基极分流</text>
+<text x="990" y="582" font-size="25" fill="#17212b">IR = IE0 + IB1 ≈ IE0</text>
+<text x="990" y="640" font-size="25" fill="#17212b">IC1 ≈ IE1 ≈ k IR</text>
+<text x="990" y="720" font-size="25" fill="#17212b">大比例 k 时，不能只说 β 很大。</text>
+<text x="80" y="840" font-size="30" fill="#175fa0">等 VBE 近似下保留有限 β：IC1 / IR ≈ kβ / (β+1+k)</text>
+<text x="80" y="905" font-size="29" fill="#17212b">IR ≈ (VCC−VBE) / [R + Re0(β+1)/(β+1+k)]</text>
+<text x="80" y="970" font-size="27" fill="#17212b">若 β ≫ 1+k 且可忽略 VBE 差值：IR ≈ (VCC−VBE)/(R+Re0)</text>
+<text x="80" y="1033" font-size="28" fill="#17212b">工作区：检查 Vout &gt; VB；VCE1 = Vout − IE1 Re1。</text>
+<text x="80" y="1090" font-size="24" fill="#175fa0">电阻反比是近似，β 修正只修正分流，并未修正 VBE 差值。</text>
+</g></svg>
