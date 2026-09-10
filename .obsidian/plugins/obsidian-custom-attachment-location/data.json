@@ -1,6 +1,7 @@
 {
   "attachmentFolderPath": "./assets/${noteFileName}",
   "attachmentRenameMode": "Only pasted images",
+  "attachmentUnitFolderPaths": [],
   "collectAttachmentUsedByMultipleNotesMode": "Skip",
   "collectedAttachmentFileName": "",
   "convertImagesToJpegMode": "None",
@@ -9,29 +10,37 @@
   "defaultImageSizeDimension": "width",
   "downloadNetworkImages": false,
   "duplicateNameSeparator": " ",
-  "emptyFolderBehavior": "DeleteWithEmptyParents",
-  "excludePaths": [],
   "excludePathsFromAttachmentCollecting": [],
   "excludePathsFromMultipleNotesCheck": [],
   "generatedAttachmentFileName": "file-${date:{momentJsFormat:'YYYYMMDDHHmmssSSS'}}",
-  "includePaths": [],
+  "isAdvancedRenameAndDeleteHandlerSuggestionDeclined": false,
   "jpegQuality": 0.8,
   "markdownUrlFormat": "assets/${noteFileName}/${generatedAttachmentFileName}",
   "moveAttachmentToProperFolderUsedByMultipleNotesMode": "CopyAll",
   "networkImageDownloadTimeoutInSeconds": 30,
+  "orphanAttachmentScanMode": "None",
+  "orphanAttachmentScanPaths": [],
+  "otherPluginIdsForAttachmentRename": [],
+  "proposedRenameDeleteSettings": {
+    "emptyFolderBehavior": "DeleteWithEmptyParents",
+    "excludePaths": [],
+    "includePaths": [],
+    "shouldHandleDeletions": false,
+    "shouldHandleRenames": true,
+    "shouldRenameAttachmentFiles": true,
+    "shouldRenameAttachmentFolder": true,
+    "treatAsAttachmentExtensions": [
+      ".excalidraw.md"
+    ]
+  },
+  "renameAttachmentsCreatedByOtherPluginsMode": "None",
   "renamedAttachmentFileName": "",
-  "shouldDeleteOrphanAttachments": false,
-  "shouldHandleRenames": true,
-  "shouldRenameAttachmentFiles": true,
-  "shouldRenameAttachmentFolder": true,
+  "shouldPreserveImageMetadata": false,
   "shouldRenameCollectedAttachments": false,
   "shouldSetLinkDisplayTextToAttachmentFileName": false,
   "shouldSkipCollectingAttachmentsReferencedByRawPath": false,
   "specialCharacters": "#^[]|*\\<>:?/",
   "specialCharactersReplacement": "-",
   "timeoutInSeconds": 5,
-  "treatAsAttachmentExtensions": [
-    ".excalidraw.md"
-  ],
-  "version": "11.6.5"
+  "version": "12.0.1"
 }
