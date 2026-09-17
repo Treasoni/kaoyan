@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">反馈极性：看反馈怎样改变净输入</text>
+<text x="60" y="106" font-size="23" fill="#17212b">修正版手写｜蓝色为反馈通路。后两图补画 R1，明确它们是电流并联混合，而非理想源直接钳位节点。</text>
+<rect x="40" y="150" width="730" height="390" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="65" y="195" font-size="27" fill="#175fa0">反馈回反相端：负反馈</text>
+<path d="M340 240 L340 390 L545 315 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M330 282 L340 282" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 348 L340 348" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M545 315 L615 315" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="354" y="291" font-size="24" fill="#17212b">+</text>
+<text x="354" y="357" font-size="24" fill="#17212b">−</text>
+<text x="430" y="324" font-size="25" fill="#17212b">A</text>
+<text x="630" y="303" font-size="22" fill="#17212b">uo</text>
+<path d="M130 282 L340 282" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="95" y="264" font-size="22" fill="#17212b">ui</text>
+<path d="M650 360 L650 388.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M650 452.0 L650 480" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="636" y="388.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="675" y="429.0" font-size="26" fill="#17212b">R2</text>
+<path d="M650 480 L650 470.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M650 534.5 L650 525" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="636" y="470.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="675" y="511.5" font-size="26" fill="#17212b">R1</text>
+<path d="M615 315 L650 315" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M650 480 L265 480" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M265 480 L265 348" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M265 348 L340 348" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M630 525 L670 525" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M637 533 L663 533" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M644 541 L656 541" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="120" y="500" font-size="23" fill="#17212b">uo↑ → u−↑ → ud=u+−u−↓</text>
+<rect x="815" y="150" width="730" height="390" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="840" y="195" font-size="27" fill="#b33a3a">反馈回同相端：正反馈</text>
+<path d="M1115 240 L1115 390 L1320 315 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1105 282 L1115 282" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1105 348 L1115 348" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1320 315 L1390 315" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1129" y="291" font-size="24" fill="#17212b">+</text>
+<text x="1129" y="357" font-size="24" fill="#17212b">−</text>
+<text x="1205" y="324" font-size="25" fill="#17212b">A</text>
+<text x="1405" y="303" font-size="22" fill="#17212b">uo</text>
+<path d="M905 348 L1115 348" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="870" y="330" font-size="22" fill="#17212b">ui</text>
+<path d="M1425 360 L1425 388.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1425 452.0 L1425 480" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="1411" y="388.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="1450" y="429.0" font-size="26" fill="#17212b">R2</text>
+<path d="M1425 480 L1425 470.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1425 534.5 L1425 525" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="1411" y="470.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="1450" y="511.5" font-size="26" fill="#17212b">R1</text>
+<path d="M1390 315 L1425 315" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1425 480 L1040 480" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1040 480 L1040 282" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1040 282 L1115 282" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1405 525 L1445 525" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1412 533 L1438 533" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1419 541 L1431 541" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="895" y="500" font-size="23" fill="#17212b">uo↑ → u+↑ → ud=u+−u−↑</text>
+<rect x="40" y="590" width="730" height="390" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="65" y="635" font-size="27" fill="#175fa0">反相端并联混合：负反馈</text>
+<path d="M340 680 L340 830 L545 755 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M330 722 L340 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 788 L340 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M545 755 L615 755" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="354" y="731" font-size="24" fill="#17212b">+</text>
+<text x="354" y="797" font-size="24" fill="#17212b">−</text>
+<text x="430" y="764" font-size="25" fill="#17212b">A</text>
+<text x="630" y="743" font-size="22" fill="#17212b">uo</text>
+<path d="M285 722 L285 772" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M265 772 L305 772" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M272 780 L298 780" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M279 788 L291 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M285 722 L340 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M105 788 L130 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="130" y="777" width="185" height="22" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M315 788 L340 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="207.5" y="763" font-size="21" fill="#17212b">R1</text>
+<text x="70" y="770" font-size="22" fill="#17212b">ui</text>
+<circle cx="340" cy="788" r="5" fill="#17212b"/>
+<path d="M615 755 L685 755" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M685 755 L685 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M340 662 L365 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="365" y="651" width="295" height="22" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M660 662 L685 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="497.5" y="637" font-size="21" fill="#17212b">Rf</text>
+<path d="M340 662 L340 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="120" y="940" font-size="23" fill="#17212b">反馈使 u−↑，净输入 ud↓</text>
+<rect x="815" y="590" width="730" height="390" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="840" y="635" font-size="27" fill="#b33a3a">同相端并联混合：正反馈</text>
+<path d="M1115 680 L1115 830 L1320 755 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1105 722 L1115 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1105 788 L1115 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1320 755 L1390 755" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1129" y="731" font-size="24" fill="#17212b">+</text>
+<text x="1129" y="797" font-size="24" fill="#17212b">−</text>
+<text x="1205" y="764" font-size="25" fill="#17212b">A</text>
+<text x="1405" y="743" font-size="22" fill="#17212b">uo</text>
+<path d="M1060 788 L1060 838" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1040 838 L1080 838" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1047 846 L1073 846" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1054 854 L1066 854" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1060 788 L1115 788" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M880 722 L905 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="905" y="711" width="185" height="22" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1090 722 L1115 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="982.5" y="697" font-size="21" fill="#17212b">R1</text>
+<text x="845" y="704" font-size="22" fill="#17212b">ui</text>
+<circle cx="1115" cy="722" r="5" fill="#17212b"/>
+<path d="M1390 755 L1460 755" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1460 755 L1460 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1115 662 L1140 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="1140" y="651" width="295" height="22" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1435 662 L1460 662" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1272.5" y="637" font-size="21" fill="#17212b">Rf</text>
+<path d="M1115 662 L1115 722" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="895" y="940" font-size="23" fill="#17212b">反馈使 u+↑，净输入 ud↑</text>
+<text x="75" y="1040" font-size="30" fill="#17212b">统一判据：反馈使净输入量减小 → 负反馈；使净输入量增大 → 正反馈。</text>
+<text x="75" y="1082" font-size="24" fill="#17212b">若 ui 明确为零内阻理想电压源且直接钳位混合节点，Rf 只改变源电流，不能按 C/D 解释。</text>
+</g></svg>

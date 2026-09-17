@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">虚断与输入电阻：先分清 Rs 和 Rin</text>
+<text x="60" y="106" font-size="23" fill="#17212b">Rs 是外接串联电阻；Rin 是运放自身输入电阻。下图只讨论输入端，不代表完整闭环电路。</text>
+<rect x="45" y="150" width="730" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="85" y="205" font-size="30" fill="#175fa0">理想输入模型</text>
+<path d="M410 260 L410 520 L740 390 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M390 330 L410 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M390 450 L410 450" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M740 390 L830 390" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="430" y="342" font-size="32" fill="#17212b">−</text>
+<text x="430" y="462" font-size="32" fill="#17212b">+</text>
+<text x="540" y="405" font-size="34" fill="#17212b">A</text>
+<text x="845" y="400" font-size="26" fill="#17212b">uo</text>
+<path d="M145 330 L185 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="185" y="316" width="185" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M370 330 L410 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="259.5" y="295" font-size="25" fill="#17212b">Rs</text>
+<path d="M90 330 L145 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="90" cy="330" r="5" fill="#17212b"/>
+<text x="70" y="295" font-size="26" fill="#17212b">ui</text>
+<text x="335" y="370" font-size="24" fill="#17212b">uN</text>
+<path d="M410 450 L330 450" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 450 L330 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M310 650 L350 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M317 658 L343 658" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M324 666 L336 666" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="290" y="425" font-size="23" fill="#17212b">uP=0</text>
+<text x="130" y="535" font-size="30" fill="#175fa0">iN = 0</text>
+<text x="130" y="585" font-size="28" fill="#17212b">ΔuRs = iN Rs = 0</text>
+<text x="130" y="635" font-size="29" fill="#17212b">所以 uN = ui</text>
+<path d="M402 330 L340 330" stroke="#175fa0" stroke-width="3" fill="none"/>
+<text x="455" y="555" font-size="29" fill="#17212b">Rin → ∞</text>
+<text x="455" y="605" font-size="25" fill="#17212b">输入端近似开路</text>
+<rect x="825" y="150" width="730" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="865" y="205" font-size="30" fill="#17212b">实际输入模型</text>
+<path d="M1190 260 L1190 520 L1520 390 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1170 330 L1190 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1170 450 L1190 450" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1520 390 L1610 390" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1210" y="342" font-size="32" fill="#17212b">−</text>
+<text x="1210" y="462" font-size="32" fill="#17212b">+</text>
+<text x="1320" y="405" font-size="34" fill="#17212b">A</text>
+<text x="1625" y="400" font-size="26" fill="#17212b">uo</text>
+<path d="M925 330 L965 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="965" y="316" width="185" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M1150 330 L1190 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1039.5" y="295" font-size="25" fill="#17212b">Rs</text>
+<path d="M870 330 L925 330" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="870" cy="330" r="5" fill="#17212b"/>
+<text x="850" y="295" font-size="26" fill="#17212b">ui</text>
+<text x="1115" y="370" font-size="24" fill="#17212b">uN</text>
+<path d="M1190 450 L1110 450" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1110 450 L1110 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1090 650 L1130 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1097 658 L1123 658" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1104 666 L1116 666" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1070" y="425" font-size="23" fill="#17212b">uP=0</text>
+<path d="M1095 330 L1175 330" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<text x="1098" y="305" font-size="24" fill="#175fa0">iN ≈ IB</text>
+<text x="905" y="535" font-size="28" fill="#17212b">ΔuRs = ui − uN = iN Rs</text>
+<text x="905" y="585" font-size="28" fill="#17212b">Rin 很大但有限</text>
+<text x="905" y="635" font-size="25" fill="#17212b">压降通常很小，不严格为 0</text>
+<text x="80" y="790" font-size="30" fill="#175fa0">正确推理：Rin → ∞  ⇒  iN → 0  ⇒  ΔuRs = iN Rs → 0  ⇒  uN ≈ ui</text>
+<text x="80" y="865" font-size="29" fill="#17212b">不能反推：外接 Rs 上恰好没有压降，并不能证明运放 Rin = ∞。</text>
+<text x="80" y="935" font-size="27" fill="#17212b">Rin 的严格口径取决于测试端口；差模输入电阻应跨 P、N 两端加测试源定义。</text>
+<text x="80" y="1000" font-size="27" fill="#17212b">实际误差：若 iN = 100 nA、Rs = 100 kΩ，则 |ΔuRs| = 10 mV。</text>
+<text x="80" y="1060" font-size="25" fill="#17212b">共模超限、保护钳位导通或题目涉及偏置电流时，不可直接令输入电流为零。</text>
+</g></svg>

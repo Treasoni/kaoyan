@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">有源负载共射：大动态电阻，不等于大直流压降</text>
+<text x="60" y="106" font-size="23" fill="#17212b">左：电阻负载；右：电流源负载。基极偏置电路未给，vi 表示已建立 Q 点后的基极小信号。</text>
+<rect x="50" y="150" width="730" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="85" y="195" font-size="28" fill="#17212b">电阻负载</text>
+<path d="M410 220 L410 245" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="455" y="233" font-size="26" fill="#17212b">+VCC</text>
+<path d="M410 245 L410 273.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M410 337.0 L410 365" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="396" y="273.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="435" y="314.0" font-size="26" fill="#17212b">RC</text>
+<path d="M410 365 L410 405" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="410" cy="380" r="5" fill="#17212b"/>
+<path d="M410 380 L575 380" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="575" cy="380" r="5" fill="#17212b"/>
+<text x="590" y="386" font-size="25" fill="#17212b">+ vo</text>
+<text x="595" y="620" font-size="28" fill="#17212b">−</text>
+<path d="M330 435 L330 505" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 448 L410 405" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 492 L410 535" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M370 514 L402 531" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M180 470 L330 470" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="180" cy="470" r="5" fill="#17212b"/>
+<text x="140" y="445" font-size="26" fill="#17212b">vi</text>
+<text x="320" y="421" font-size="23" fill="#17212b">Q1</text>
+<path d="M410 535 L410 620" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M390 620 L430 620" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M397 628 L423 628" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M404 636 L416 636" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="85" y="677" font-size="25" fill="#17212b">VCEQ = VCQ；输出对地取电压</text>
+<rect x="820" y="150" width="730" height="570" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="855" y="195" font-size="28" fill="#17212b">电流源负载</text>
+<path d="M1180 220 L1180 245" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1225" y="233" font-size="26" fill="#17212b">+VCC</text>
+<path d="M1180 245 L1180 265.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1180 345.0 L1180 365" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="1180" cy="305.0" r="40" stroke="#17212b" stroke-width="3" fill="white"/>
+<path d="M1180 282.0 L1180 328.0" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<text x="1228" y="314.0" font-size="26" fill="#17212b">ILQ</text>
+<path d="M1180 365 L1180 405" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="1180" cy="380" r="5" fill="#17212b"/>
+<path d="M1180 380 L1345 380" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="1345" cy="380" r="5" fill="#17212b"/>
+<text x="1360" y="386" font-size="25" fill="#17212b">+ vo</text>
+<text x="1365" y="620" font-size="28" fill="#17212b">−</text>
+<path d="M1100 435 L1100 505" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1100 448 L1180 405" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1100 492 L1180 535" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1140 514 L1172 531" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M950 470 L1100 470" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="950" cy="470" r="5" fill="#17212b"/>
+<text x="910" y="445" font-size="26" fill="#17212b">vi</text>
+<text x="1090" y="421" font-size="23" fill="#17212b">Q1</text>
+<path d="M1180 535 L1180 620" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1160 620 L1200 620" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1167 628 L1193 628" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1174 636 L1186 636" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="855" y="677" font-size="25" fill="#17212b">VCEQ = VCQ；输出对地取电压</text>
+<text x="80" y="790" font-size="29" fill="#17212b">固定 ICQ：RC ↑ → I C Q RC ↑ → VCEQ = VCC − ICQ RC ↓</text>
+<text x="80" y="855" font-size="27" fill="#17212b">增大的是电阻压降，不是集电极对地电位；增益比较看绝对值。</text>
+<text x="80" y="925" font-size="28" fill="#175fa0">有源负载：动态电阻 roL 可很大，但直流压降不等于 ILQ · roL。</text>
+<text x="80" y="991" font-size="29" fill="#17212b">仍需留电压余量：VCE,min &lt; VC &lt; VCC − VL,min</text>
+<text x="80" y="1055" font-size="25" fill="#17212b">原图省略偏置与负载参数，不能仅凭此图算出唯一 Q 点或输出摆幅。</text>
+</g></svg>

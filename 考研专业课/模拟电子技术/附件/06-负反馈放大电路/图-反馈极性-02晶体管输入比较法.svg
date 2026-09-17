@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">晶体管反馈：先写控制量，再沿全环标极性</text>
+<text x="60" y="106" font-size="23" fill="#17212b">原稿底部只提炼第一级的输入比较关系；完整正负反馈仍取决于取样节点、各级相位和电容在所分析频段的状态。</text>
+<rect x="55" y="150" width="700" height="610" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<rect x="820" y="150" width="720" height="610" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="85" y="205" font-size="29" fill="#17212b">第一级 NPN 的净控制量</text>
+<text x="850" y="205" font-size="29" fill="#17212b">完整判断必须走完整闭环</text>
+<path d="M430 250 L430 300" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="465" y="270" font-size="23" fill="#17212b">+VCC</text>
+<path d="M430 300 L430 323.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M430 387.0 L430 410" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="416" y="323.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="455" y="364.0" font-size="26" fill="#17212b">RC</text>
+<path d="M330 465 L330 535" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 478 L430 410" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M330 522 L430 565" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M370 544 L422 562" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M150 500 L330 500" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="105" y="485" font-size="25" fill="#17212b">vb</text>
+<text x="442" y="415" font-size="24" fill="#17212b">vc</text>
+<text x="442" y="585" font-size="24" fill="#17212b">ve</text>
+<path d="M430 565 L430 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M430 650 L430 653.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M430 717.0 L430 720" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="416" y="653.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="455" y="694.0" font-size="26" fill="#17212b">RE</text>
+<path d="M410 720 L450 720" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M417 728 L443 728" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M424 736 L436 736" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M610 565 L610 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M430 650 L455 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="455" y="639" width="130" height="22" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M585 650 L610 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="505.0" y="625" font-size="21" fill="#17212b">Rf</text>
+<text x="615" y="690" font-size="23" fill="#175fa0">反馈量送入 e</text>
+<text x="95" y="625" font-size="31" fill="#175fa0">vbe = vb − ve</text>
+<text x="95" y="680" font-size="25" fill="#17212b">vb↑：vbe↑；ve↑：vbe↓</text>
+<text x="850" y="280" font-size="26" fill="#17212b">1  先定直流或交流通路；处理电容</text>
+<text x="850" y="350" font-size="26" fill="#17212b">2  找输出取样点与反馈元件</text>
+<text x="850" y="420" font-size="26" fill="#17212b">3  逐级标共射反相、共集同相</text>
+<text x="850" y="490" font-size="26" fill="#17212b">4  回到比较点，观察 vbe 增减</text>
+<text x="850" y="575" font-size="29" fill="#175fa0">vbe 减小 → 负反馈</text>
+<text x="850" y="630" font-size="29" fill="#b33a3a">vbe 增大 → 正反馈</text>
+<text x="850" y="710" font-size="23" fill="#17212b">“b 是 +、e 是 −”只描述差值，不等于运放端子命名。</text>
+<text x="75" y="855" font-size="27" fill="#17212b">原稿底图的 Rb 右端接后级发射极附近，且该节点画有旁路电容。</text>
+<text x="75" y="920" font-size="27" fill="#17212b">因此必须先分别画直流/交流通路：电容开路或近似短路后，反馈通路可能不同。</text>
+<text x="75" y="985" font-size="25" fill="#17212b">晶体管箭头、取样端和频段条件未完全给出时，只能确认输入混合关系，不能补造全环结论。</text>
+<text x="75" y="1055" font-size="29" fill="#175fa0">记忆：端子只是线索；净输入量的变化才是正负反馈的最终判据。</text>
+</g></svg>

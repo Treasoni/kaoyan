@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">有源负载共射：小信号输出节点 KCL</text>
+<text x="60" y="106" font-size="23" fill="#17212b">电源为交流地。恒定独立电流源的增量为零，但实际有源负载的动态电阻 roL 仍保留。</text>
+<rect x="50" y="145" width="1490" height="540" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<path d="M150 255 L380 255" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M380 255 L380 380.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M380 444.5 L380 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="366" y="380.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="405" y="421.5" font-size="26" fill="#17212b">rbe</text>
+<path d="M150 570 L1430 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M730 570 L770 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M737 578 L763 578" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M744 586 L756 586" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="145" y="230" font-size="25" fill="#17212b">+ vi = vbe</text>
+<text x="145" y="610" font-size="27" fill="#17212b">−</text>
+<text x="335" y="217" font-size="26" fill="#17212b">b</text>
+<path d="M660 255 L660 372.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M660 452.5 L660 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M660 372.5 L690 412.5 L660 452.5 L630 412.5 Z" stroke="#17212b" stroke-width="3" fill="white"/>
+<path d="M660 389.5 L660 435.5" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<text x="708" y="421.5" font-size="26" fill="#17212b">gm vi = βib</text>
+<path d="M660 255 L1430 255" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="660" cy="255" r="5" fill="#17212b"/>
+<text x="632" y="217" font-size="26" fill="#17212b">c</text>
+<path d="M940 255 L940 380.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M940 444.5 L940 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="926" y="380.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="965" y="421.5" font-size="26" fill="#17212b">rce</text>
+<path d="M1150 255 L1150 380.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1150 444.5 L1150 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="1136" y="380.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="1175" y="421.5" font-size="26" fill="#17212b">roL</text>
+<path d="M1370 255 L1370 380.5" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1370 444.5 L1370 570" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="1356" y="380.5" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="1395" y="421.5" font-size="26" fill="#17212b">RL</text>
+<text x="1340" y="638" font-size="23" fill="#17212b">外接时才计入</text>
+<text x="1450" y="265" font-size="28" fill="#17212b">+</text>
+<text x="1450" y="420" font-size="26" fill="#17212b">vo</text>
+<text x="1450" y="570" font-size="28" fill="#17212b">−</text>
+<text x="80" y="747" font-size="30" fill="#17212b">gm vi + vo/rce + vo/roL + vo/RL = 0</text>
+<text x="80" y="812" font-size="29" fill="#175fa0">Au = −gm (roL ∥ rce ∥ RL) = −(β/rbe)(roL ∥ rce ∥ RL)</text>
+<text x="80" y="877" font-size="26" fill="#17212b">无外接负载时移除 RL；只有 rce、RL ≫ roL 时，Au ≈ −β roL/rbe。</text>
+<text x="80" y="945" font-size="27" fill="#17212b">求放大器自身输出电阻：移除 RL、令 vi = 0 → Ro = roL ∥ rce。</text>
+<text x="80" y="1010" font-size="25" fill="#17212b">理想电流源交流开路 ≠ 放大器没有负载；不能同时忽略所有输出导纳。</text>
+<text x="80" y="1070" font-size="23" fill="#17212b">范围：低频小信号、发射极交流接地、输入在基极，Q1 与有源负载均正常工作。</text>
+</g></svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">末级缓冲：高输入电阻 + 低输出电阻</text>
+<text x="60" y="106" font-size="23" fill="#17212b">第 1 页｜以下均为小信号模型；电压、供电余量及输出电流必须在允许范围内。</text>
+<rect x="60" y="150" width="1480" height="330" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<path d="M200 240 L200 285" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="200" cy="325" r="40" fill="white" stroke="#17212b" stroke-width="3"/>
+<text x="190" y="318" font-size="25" fill="#17212b">+</text>
+<text x="193" y="348" font-size="25" fill="#17212b">−</text>
+<path d="M200 365 L200 420" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="260" y="335" font-size="26" fill="#17212b">uoc</text>
+<path d="M200 240 L485 240" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="485" y="226" width="80" height="28" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M565 240 L950 240" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="505" y="213" font-size="26" fill="#17212b">Ro</text>
+<path d="M950 240 L950 298.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M950 362.0 L950 420" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="936" y="298.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="975" y="339.0" font-size="26" fill="#17212b">RL</text>
+<path d="M950 420 L200 420" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1080" y="255" font-size="28" fill="#17212b">+</text>
+<text x="1080" y="335" font-size="26" fill="#17212b">uo</text>
+<text x="1080" y="422" font-size="28" fill="#17212b">−</text>
+<text x="600" y="470" font-size="26" fill="#17212b">uo = uoc · RL / (Ro + RL)</text>
+<rect x="80" y="580" width="400" height="120" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="115" y="650" font-size="29" fill="#17212b">差分输入级</text>
+<rect x="570" y="580" width="400" height="120" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="605" y="650" font-size="29" fill="#17212b">共射电压增益级</text>
+<rect x="1060" y="580" width="400" height="120" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="1095" y="650" font-size="29" fill="#17212b">共集输出缓冲</text>
+<path d="M480 640 L565 640" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M970 640 L1055 640" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<text x="85" y="795" font-size="30" fill="#17212b">缓冲输入电阻大 → 少加载前级；输出电阻小 → 减少负载分压。</text>
+<text x="85" y="870" font-size="28" fill="#17212b">共集电压增益为正且接近 1，主要提供电流增益与带载能力。</text>
+<text x="85" y="945" font-size="28" fill="#17212b">示意：10 mV → 共射空载 100 mV / 直接带载 50 mV。</text>
+<text x="85" y="1010" font-size="28" fill="#17212b">加缓冲后可接近 95 mV，但具体幅值需由各级参数计算。</text>
+</g></svg>

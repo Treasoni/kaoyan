@@ -2233,6 +2233,20 @@ button.nn-icon-button.nn-icon-button-active svg:not(.nn-vault-icon-svg) {
 }
 
 /* Folder file count - shows number of files in folder */
+/* Marks folders that have their own folder template. Placed before the note count. */
+.nn-navitem-template-indicator {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-inline-end: 4px;
+    color: var(--nn-theme-navitem-count-color);
+}
+
+.nn-navitem-template-indicator svg {
+    width: 12px;
+    height: 12px;
+}
+
 .nn-navitem-count {
     font-size: var(--nn-navitem-count-font-size);
     font-weight: var(--nn-theme-navitem-count-font-weight);
@@ -3673,7 +3687,16 @@ button.nn-navigation-calendar-day {
 
 .nn-calendar-right-sidebar {
     --nn-calendar-right-sidebar-bg: var(--background-secondary);
-    overflow: auto;
+    /* The sidebar never scrolls. The calendar height follows its width (square day cells and
+       container-unit font sizes), so with overflow: auto the layout-consuming scrollbar on Windows
+       and Linux shrinks the calendar until it fits, disappears, and reappears on the next hover
+       relayout, which makes the calendar shake. clip rather than hidden because hidden still accepts
+       programmatic scrolling, such as focus() on a partly clipped button, which would shift the
+       content permanently with no way to scroll back. min-height: 0 because clip is not a scroll
+       container, so without it the flex item's automatic minimum size grows to the content height
+       and the surrounding view content starts scrolling instead. */
+    overflow: clip;
+    min-height: 0;
     background-color: var(--nn-calendar-right-sidebar-bg);
 }
 
@@ -7314,6 +7337,109 @@ body.nn-resizing {
 
 .nn-setting-info-list li + li {
     margin-top: 4px;
+}
+
+/* Folder template rows in File operations & templates > Templates: path text, then the scope dropdown and remove button on the right */
+.nn-setting-folder-template-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+}
+
+.nn-setting-folder-template-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nn-setting-folder-template-row + .nn-setting-folder-template-row {
+    margin-top: 6px;
+}
+
+.nn-setting-folder-template-text {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.nn-setting-folder-template-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.nn-setting-folder-template-remove {
+    padding: 2px;
+}
+
+/* Template command rows in File operations & templates: name and summary on the left, edit and remove on the right */
+.nn-setting-template-commands {
+    flex-wrap: wrap;
+}
+
+/* Only the list wraps: the description shrinks so the add button stays on the first line */
+.nn-setting-template-commands > .setting-item-info {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.nn-setting-template-commands > .setting-item-control {
+    flex: 0 0 auto;
+}
+
+.nn-setting-template-command-list {
+    flex-basis: 100%;
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+}
+
+.nn-setting-template-command-list:empty {
+    display: none;
+}
+
+.nn-setting-template-command-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nn-setting-template-command-row + .nn-setting-template-command-row {
+    margin-top: 6px;
+}
+
+.nn-setting-template-command-text {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.nn-setting-template-command-name {
+    color: var(--text-normal);
+}
+
+.nn-setting-template-command-summary {
+    font-size: var(--font-ui-smaller);
+}
+
+.nn-setting-template-command-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+/* Icon button next to the placement dropdown in the template command modal, and the icon shown in the command list */
+.nn-template-command-icon-button {
+    margin-inline-end: 8px;
+}
+
+.nn-setting-template-command-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-inline-end: 4px;
+    color: var(--text-muted);
 }
 
 .nn-setting-text-count-warning-header {

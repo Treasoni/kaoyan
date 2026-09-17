@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">集成运放：端口含义与输入分解</text>
+<text x="60" y="106" font-size="23" fill="#17212b">对应手写上半页｜图是输入输出模型；P、N 是信号输入端，不是正负电源端。</text>
+<path d="M240 200 L240 440 L540 320 Z" fill="white" stroke="#17212b" stroke-width="3"/>
+<path d="M130 260 L240 260" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M130 380 L240 380" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M540 320 L650 320" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="255" y="270" font-size="30" fill="#17212b">+</text>
+<text x="255" y="390" font-size="30" fill="#17212b">−</text>
+<text x="325" y="330" font-size="30" fill="#17212b">Aod</text>
+<text x="80" y="245" font-size="27" fill="#17212b">uP</text>
+<text x="80" y="420" font-size="27" fill="#17212b">uN</text>
+<text x="665" y="330" font-size="27" fill="#17212b">uo</text>
+<path d="M345 242 L345 155" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="325" y="140" font-size="25" fill="#17212b">V+</text>
+<path d="M345 398 L345 475" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="325" y="510" font-size="25" fill="#17212b">V−</text>
+<text x="900" y="220" font-size="32" fill="#175fa0">ud = uP − uN</text>
+<text x="900" y="285" font-size="32" fill="#175fa0">uc = (uP + uN) / 2</text>
+<text x="900" y="375" font-size="30" fill="#17212b">uP = uc + ud/2</text>
+<text x="900" y="440" font-size="30" fill="#17212b">uN = uc − ud/2</text>
+<rect x="65" y="570" width="1470" height="215" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="100" y="625" font-size="35" fill="#17212b">(uP, uN) = (uc, uc) + (ud/2, −ud/2)</text>
+<text x="100" y="685" font-size="29" fill="#17212b">共模：同方向、同大小；差模：等大小、反方向。</text>
+<text x="100" y="744" font-size="30" fill="#17212b">线性叠加：uo = Aod · ud + Aoc · uc（忽略失调）</text>
+<text x="90" y="850" font-size="31" fill="#17212b">理想共模抑制：Aoc = 0 → uo = Aod (uP − uN)</text>
+<text x="90" y="920" font-size="29" fill="#17212b">另一端固定：uP ↑ → uo ↑；uN ↑ → uo ↓；uN ↓ → uo ↑</text>
+<text x="90" y="1000" font-size="26" fill="#17212b">上述方向限于低频、正常输入范围及线性工作区；饱和后不会无限变化。</text>
+</g></svg>

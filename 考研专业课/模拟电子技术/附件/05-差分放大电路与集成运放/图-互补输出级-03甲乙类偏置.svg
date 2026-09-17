@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">甲乙类偏置：预先建立上下基极电压差</text>
+<text x="60" y="106" font-size="23" fill="#17212b">第 3 页｜左为手写的二极管中点驱动；右为浮动 VBE 倍增器，完整驱动接法未给出。</text>
+<path d="M420 265 L420 335" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M420 277 L500 230" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M420 323 L500 370" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M460 347 L492 365" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M420 545 L420 615" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M420 603 L500 650" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M420 557 L500 510" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M493 514 L458 535" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M500 170 L500 230" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="535" y="183" font-size="26" fill="#17212b">+VCC</text>
+<path d="M500 650 L500 710" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="535" y="720" font-size="26" fill="#17212b">−VCC</text>
+<path d="M500 370 L500 510" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="500" cy="440" r="5" fill="#17212b"/>
+<path d="M500 440 L650 440" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M650 440 L650 533.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M650 597.0 L650 690" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="636" y="533.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="675" y="574.0" font-size="26" fill="#17212b">RL</text>
+<path d="M630 690 L670 690" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M637 698 L663 698" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M644 706 L656 706" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="675" y="455" font-size="26" fill="#17212b">+ uo</text>
+<text x="690" y="695" font-size="26" fill="#17212b">−</text>
+<text x="520" y="290" font-size="22" fill="#17212b">T1 NPN</text>
+<text x="520" y="605" font-size="22" fill="#17212b">T2 PNP</text>
+<path d="M270 300 L420 300" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 580 L420 580" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 170 L270 203.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 267.0 L270 300" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="256" y="203.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="295" y="244.0" font-size="26" fill="#17212b">R+</text>
+<path d="M270 580 L270 613.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 677.0 L270 710" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="256" y="613.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="295" y="654.0" font-size="26" fill="#17212b">R−</text>
+<text x="180" y="160" font-size="26" fill="#17212b">+VCC</text>
+<text x="180" y="750" font-size="26" fill="#17212b">−VCC</text>
+<path d="M270 300 L270 350" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M250 350 L290 350 L270 385 Z" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M247 385 L293 385" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 385 L270 440" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 440 L270 490" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M250 490 L290 490 L270 525 Z" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M247 525 L293 525" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M270 525 L270 580" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M130 440 L270 440" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="270" cy="440" r="5" fill="#17212b"/>
+<text x="105" y="420" font-size="26" fill="#17212b">ui</text>
+<text x="175" y="325" font-size="22" fill="#17212b">bp</text>
+<text x="175" y="595" font-size="22" fill="#17212b">bn</text>
+<path d="M1130 395 L1130 465" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1130 407 L1210 360" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1130 453 L1210 500" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1170 477 L1202 495" stroke="#175fa0" stroke-width="3" fill="none" marker-end="url(#a)"/>
+<path d="M1210 220 L1210 360" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M1210 500 L1210 690" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M960 220 L1210 220" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M960 220 L960 293.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M960 357.0 L960 430" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="946" y="293.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="985" y="334.0" font-size="26" fill="#17212b">R3</text>
+<path d="M960 430 L960 528.0" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M960 592.0 L960 690" stroke="#17212b" stroke-width="3" fill="none"/>
+<rect x="946" y="528.0" width="28" height="64" stroke="#17212b" stroke-width="3" fill="white"/>
+<text x="985" y="569.0" font-size="26" fill="#17212b">R4</text>
+<path d="M960 690 L1210 690" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M960 430 L1130 430" stroke="#17212b" stroke-width="3" fill="none"/>
+<circle cx="960" cy="430" r="5" fill="#17212b"/>
+<text x="1250" y="230" font-size="25" fill="#17212b">bp（上管基极）</text>
+<text x="1250" y="695" font-size="25" fill="#17212b">bn（下管基极）</text>
+<text x="1140" y="410" font-size="23" fill="#17212b">Tm</text>
+<text x="920" y="780" font-size="28" fill="#17212b">UBB = Vbp − Vbn</text>
+<text x="875" y="845" font-size="28" fill="#17212b">≈ (1 + R3/R4) · UBE,m</text>
+<text x="70" y="855" font-size="27" fill="#17212b">Vbp ≈ ui + UD1</text>
+<text x="70" y="910" font-size="27" fill="#17212b">Vbn ≈ ui − UD2</text>
+<text x="70" y="965" font-size="27" fill="#17212b">压降匹配时：uo ≈ ui</text>
+<text x="875" y="920" font-size="26" fill="#17212b">R3 = R4 → UBB ≈ 2 UBE,m</text>
+<text x="875" y="985" font-size="28" fill="#175fa0">浮动两端口：bn 不等于地！</text>
+<text x="70" y="1070" font-size="28" fill="#17212b">静态微导通以减小交越失真；偏置过大会增加直通电流，需考虑温度跟踪。</text>
+</g></svg>

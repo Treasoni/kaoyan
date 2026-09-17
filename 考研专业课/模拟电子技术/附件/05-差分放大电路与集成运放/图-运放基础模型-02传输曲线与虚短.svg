@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker></defs><rect width="1600" height="1120" fill="white"/><g font-family="Arial,PingFang SC,sans-serif">
+<text x="60" y="62" font-size="35" fill="#17212b">开环静态传输：很陡的线性段 + 有限的输出摆幅</text>
+<text x="60" y="106" font-size="23" fill="#17212b">对应手写下半页｜Aod &gt; 0，忽略失调和共模项；折线是简化模型，横轴线性区已放大。</text>
+<path d="M160 530 L1440 530" stroke="#17212b" stroke-width="3" fill="none"/>
+<path d="M800 860 L800 170" stroke="#17212b" stroke-width="3" fill="none"/>
+<text x="1450" y="535" font-size="27" fill="#17212b">ud</text>
+<text x="820" y="168" font-size="27" fill="#17212b">uo</text>
+<path d="M180 770 L700 770 L900 290 L1430 290" fill="none" stroke="#175fa0" stroke-width="5"/>
+<path d="M700 530 L700 770" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-dasharray="8 8"/>
+<path d="M900 530 L900 290" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-dasharray="8 8"/>
+<text x="310" y="260" font-size="30" fill="#17212b">负饱和区</text>
+<text x="760" y="225" font-size="30" fill="#17212b">线性区</text>
+<text x="1150" y="230" font-size="30" fill="#17212b">正饱和区</text>
+<text x="960" y="340" font-size="27" fill="#17212b">UOH（正输出极限）</text>
+<text x="200" y="825" font-size="27" fill="#17212b">UOL（负输出极限）</text>
+<text x="550" y="495" font-size="24" fill="#17212b">UOL/Aod</text>
+<text x="900" y="570" font-size="24" fill="#17212b">UOH/Aod</text>
+<text x="825" y="555" font-size="23" fill="#17212b">0</text>
+<text x="890" y="705" font-size="29" fill="#17212b">线性段斜率 = Aod</text>
+<text x="890" y="760" font-size="29" fill="#17212b">uo = Aod · ud</text>
+<text x="110" y="920" font-size="31" fill="#17212b">线性范围：UOL/Aod &lt; ud &lt; UOH/Aod</text>
+<text x="110" y="990" font-size="29" fill="#17212b">Aod 很大且输出有限 → ud = uo/Aod 很小 → uP ≈ uN</text>
+<text x="110" y="1060" font-size="27" fill="#17212b">实际用虚短前先检查：有效负反馈、未饱和、输入范围与频率条件。</text>
+</g></svg>
