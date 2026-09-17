@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1120" fill="white"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#17212b">
+    <text x="60" y="62" font-size="36">深度负反馈：闭环增益、误差信号与虚短边界</text>
+    <text x="60" y="108" font-size="23">统一约定：求和点显式取差，A、F 按通带正量处理；T=AF 为环路增益。</text>
+
+    <!-- Feedback block panel -->
+    <rect x="40" y="150" width="930" height="545" rx="18" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="198" font-size="30" fill="#175fa0">① 精确方框图关系</text>
+    <circle cx="225" cy="340" r="34" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="214" y="332" font-size="25">+</text>
+    <text x="215" y="368" font-size="28">−</text>
+    <path d="M85 320 L188 320" stroke="#17212b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="96" y="300" font-size="27">x<tspan baseline-shift="sub" font-size="19">i</tspan></text>
+    <path d="M259 340 L360 340" stroke="#17212b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="280" y="322" font-size="27">x<tspan baseline-shift="sub" font-size="19">id</tspan></text>
+    <rect x="370" y="270" width="245" height="140" rx="12" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="475" y="352" font-size="42">A</text>
+    <text x="425" y="390" font-size="21">基本放大电路</text>
+    <path d="M615 340 L815 340" stroke="#17212b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="740" y="320" font-size="27">x<tspan baseline-shift="sub" font-size="19">o</tspan></text>
+
+    <path d="M785 340 L785 515 L660 515" fill="none" stroke="#175fa0" stroke-width="5" marker-end="url(#arrowBlue)"/>
+    <rect x="425" y="455" width="225" height="120" rx="12" fill="white" stroke="#175fa0" stroke-width="4"/>
+    <text x="525" y="527" font-size="40" fill="#175fa0">F</text>
+    <text x="470" y="562" font-size="20" fill="#175fa0">反馈网络</text>
+    <path d="M425 515 L225 515 L225 374" fill="none" stroke="#175fa0" stroke-width="5" marker-end="url(#arrowBlue)"/>
+    <text x="285" y="500" font-size="27" fill="#175fa0">x<tspan baseline-shift="sub" font-size="19">f</tspan></text>
+
+    <rect x="75" y="610" width="840" height="60" rx="12" fill="#eef7ff" stroke="#8ab7df" stroke-width="2"/>
+    <text x="100" y="649" font-size="25" fill="#175fa0">x<tspan baseline-shift="sub" font-size="17">id</tspan>=x<tspan baseline-shift="sub" font-size="17">i</tspan>−x<tspan baseline-shift="sub" font-size="17">f</tspan>　 x<tspan baseline-shift="sub" font-size="17">o</tspan>=Ax<tspan baseline-shift="sub" font-size="17">id</tspan>　 x<tspan baseline-shift="sub" font-size="17">f</tspan>=Fx<tspan baseline-shift="sub" font-size="17">o</tspan>　 A<tspan baseline-shift="sub" font-size="17">f</tspan>=x<tspan baseline-shift="sub" font-size="17">o</tspan>/x<tspan baseline-shift="sub" font-size="17">i</tspan>=A/(1+AF)</text>
+
+    <!-- Result panel -->
+    <rect x="1010" y="150" width="550" height="545" rx="18" fill="#fffafa" stroke="#e0caca" stroke-width="2"/>
+    <text x="1040" y="198" font-size="30" fill="#b33a3a">② 当 AF≫1</text>
+    <rect x="1050" y="240" width="470" height="105" rx="14" fill="white" stroke="#b33a3a" stroke-width="3"/>
+    <text x="1080" y="286" font-size="27" fill="#b33a3a">A<tspan baseline-shift="sub" font-size="18">f</tspan>=A/(1+AF)≈1/F</text>
+    <text x="1080" y="325" font-size="21">闭环增益主要由反馈网络决定</text>
+    <rect x="1050" y="370" width="470" height="105" rx="14" fill="white" stroke="#175fa0" stroke-width="3"/>
+    <text x="1080" y="416" font-size="27" fill="#175fa0">x<tspan baseline-shift="sub" font-size="18">id</tspan>/x<tspan baseline-shift="sub" font-size="18">i</tspan>=1/(1+AF)≈0</text>
+    <text x="1080" y="455" font-size="21">净输入误差相对很小，但不严格为零</text>
+    <rect x="1050" y="500" width="470" height="105" rx="14" fill="white" stroke="#175fa0" stroke-width="3"/>
+    <text x="1080" y="546" font-size="27" fill="#175fa0">x<tspan baseline-shift="sub" font-size="18">f</tspan>/x<tspan baseline-shift="sub" font-size="18">i</tspan>=AF/(1+AF)≈1</text>
+    <text x="1080" y="585" font-size="21">所以 x<tspan baseline-shift="sub" font-size="15">i</tspan>≈x<tspan baseline-shift="sub" font-size="15">f</tspan></text>
+    <text x="1040" y="654" font-size="21" fill="#b33a3a">前提：负反馈稳定、放大器在线性区、所考频率处环路增益足够大。</text>
+
+    <!-- Op amp panel -->
+    <rect x="40" y="735" width="730" height="325" rx="18" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="782" font-size="29" fill="#175fa0">③ 运放虚短：误差电压很小</text>
+    <path d="M325 825 L325 995 L555 910 Z" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="348" y="875" font-size="31">+</text>
+    <text x="348" y="956" font-size="31">−</text>
+    <text x="430" y="922" font-size="34">A</text>
+    <path d="M160 865 L325 865" stroke="#17212b" stroke-width="4"/>
+    <path d="M160 950 L325 950" stroke="#17212b" stroke-width="4"/>
+    <text x="120" y="852" font-size="26">v<tspan baseline-shift="sub" font-size="18">+</tspan></text>
+    <text x="120" y="940" font-size="26">v<tspan baseline-shift="sub" font-size="18">−</tspan></text>
+    <path d="M120 865 L95 865 L95 950 L120 950" fill="none" stroke="#b33a3a" stroke-width="4"/>
+    <text x="55" y="918" font-size="25" fill="#b33a3a">u<tspan baseline-shift="sub" font-size="17">d</tspan></text>
+    <path d="M555 910 L670 910" stroke="#17212b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="180" y="1028" font-size="26" fill="#175fa0">u<tspan baseline-shift="sub" font-size="18">d</tspan>=v<tspan baseline-shift="sub" font-size="18">+</tspan>−v<tspan baseline-shift="sub" font-size="18">−</tspan>≈0　⇒　v<tspan baseline-shift="sub" font-size="18">+</tspan>≈v<tspan baseline-shift="sub" font-size="18">−</tspan></text>
+    <text x="515" y="850" font-size="20" fill="#b33a3a">近似等电位，绝非导线短接</text>
+
+    <!-- Conditions panel -->
+    <rect x="810" y="735" width="750" height="325" rx="18" fill="#f7fafc" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="840" y="782" font-size="29">④ 虚短与虚断要分清原因</text>
+    <text x="850" y="832" font-size="23" fill="#175fa0">虚短 v<tspan baseline-shift="sub" font-size="16">+</tspan>≈v<tspan baseline-shift="sub" font-size="16">−</tspan>：</text>
+    <text x="1085" y="832" font-size="22">高开环增益 + 稳定负反馈 + 线性未饱和</text>
+    <text x="850" y="880" font-size="23" fill="#b33a3a">虚断 i<tspan baseline-shift="sub" font-size="16">+</tspan>≈i<tspan baseline-shift="sub" font-size="16">−</tspan>≈0：</text>
+    <text x="1085" y="880" font-size="22">来自运放极高输入电阻，不由反馈深度直接推出</text>
+    <text x="850" y="928" font-size="23">虚地：</text>
+    <text x="955" y="928" font-size="22">虚短成立且一个输入端实际接地，另一端才近似为 0 V</text>
+    <rect x="840" y="960" width="680" height="70" rx="12" fill="#fff5e8" stroke="#e6b45f" stroke-width="2"/>
+    <text x="865" y="990" font-size="21">不要把“误差近似为零”写成严格等于零；有限 A 要产生输出，</text>
+    <text x="865" y="1018" font-size="21">就必须保留一个很小但非零的输入误差。</text>
+  </g>
+</svg>
