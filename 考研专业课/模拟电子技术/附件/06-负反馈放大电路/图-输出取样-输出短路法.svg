@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1120" fill="white"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#17212b">
+    <text x="60" y="62" font-size="36">输出短路法：看反馈量是否随输出电压一起归零</text>
+    <text x="60" y="108" font-size="23">判别对象是“输出取样类型”，不是正负反馈；短路仅是小信号拓扑检验。</text>
+
+    <!-- Panel 1: original circuit -->
+    <rect x="40" y="150" width="730" height="650" rx="18" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="198" font-size="29" fill="#175fa0">① 原拓扑：直接电压反馈</text>
+    <text x="70" y="237" font-size="22">输出、反馈、反相输入是同一节点：v<tspan baseline-shift="sub" font-size="16">f</tspan>=v<tspan baseline-shift="sub" font-size="16">o</tspan>，β=1</text>
+
+    <path d="M285 305 L285 520 L565 412 Z" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="308" y="372" font-size="31">+</text>
+    <text x="308" y="479" font-size="31">−</text>
+    <text x="405" y="424" font-size="34">A</text>
+    <path d="M100 360 L285 360" stroke="#17212b" stroke-width="4"/>
+    <text x="70" y="347" font-size="27">v<tspan baseline-shift="sub" font-size="19">i</tspan></text>
+    <path d="M565 412 L685 412" stroke="#17212b" stroke-width="4"/>
+    <circle cx="630" cy="412" r="6" fill="#17212b"/>
+    <text x="696" y="402" font-size="27">v<tspan baseline-shift="sub" font-size="19">o</tspan></text>
+
+    <!-- feedback wire -->
+    <path d="M630 412 L630 570 L205 570 L205 465 L285 465" fill="none" stroke="#175fa0" stroke-width="5" marker-end="url(#arrowBlue)"/>
+    <text x="335" y="604" font-size="25" fill="#175fa0">反馈通路：v<tspan baseline-shift="sub" font-size="17">f</tspan>=v<tspan baseline-shift="sub" font-size="17">o</tspan></text>
+
+    <!-- R1 load branch -->
+    <path d="M500 570 L500 615" stroke="#17212b" stroke-width="4"/>
+    <rect x="482" y="615" width="36" height="95" fill="white" stroke="#17212b" stroke-width="4"/>
+    <path d="M500 710 L500 750" stroke="#17212b" stroke-width="4"/>
+    <path d="M472 750 L528 750 M480 761 L520 761 M489 772 L511 772" stroke="#17212b" stroke-width="4"/>
+    <text x="530" y="675" font-size="27">R<tspan baseline-shift="sub" font-size="19">1</tspan></text>
+
+    <!-- RL load branch -->
+    <path d="M630 412 L630 480" stroke="#17212b" stroke-width="4"/>
+    <rect x="612" y="480" width="36" height="95" fill="white" stroke="#17212b" stroke-width="4"/>
+    <path d="M630 575 L630 750" stroke="#17212b" stroke-width="4"/>
+    <path d="M602 750 L658 750 M610 761 L650 761 M619 772 L641 772" stroke="#17212b" stroke-width="4"/>
+    <text x="662" y="540" font-size="27">R<tspan baseline-shift="sub" font-size="19">L</tspan></text>
+
+    <rect x="85" y="655" width="330" height="92" rx="12" fill="#fff5e8" stroke="#e6b45f" stroke-width="2"/>
+    <text x="105" y="689" font-size="22">R<tspan baseline-shift="sub" font-size="15">1</tspan>、R<tspan baseline-shift="sub" font-size="15">L</tspan> 均接在输出节点与地之间</text>
+    <text x="105" y="724" font-size="22" fill="#b33a3a">它们是并联负载，不是反馈分压器</text>
+
+    <!-- arrow -->
+    <path d="M790 475 L840 475" stroke="#175fa0" stroke-width="5" marker-end="url(#arrowBlue)"/>
+    <text x="778" y="445" font-size="21" fill="#175fa0">置 v<tspan baseline-shift="sub" font-size="15">o</tspan>=0</text>
+
+    <!-- Panel 2: short test -->
+    <rect x="860" y="150" width="700" height="650" rx="18" fill="#fffafa" stroke="#e0caca" stroke-width="2"/>
+    <text x="890" y="198" font-size="29" fill="#b33a3a">② 输出短路检验</text>
+    <text x="890" y="237" font-size="22">检验连接使输出端口电压 v<tspan baseline-shift="sub" font-size="16">o</tspan>=0</text>
+
+    <path d="M1065 305 L1065 520 L1325 412 Z" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="1088" y="372" font-size="31">+</text>
+    <text x="1088" y="479" font-size="31">−</text>
+    <text x="1175" y="424" font-size="34">A</text>
+    <path d="M920 360 L1065 360" stroke="#17212b" stroke-width="4"/>
+    <text x="888" y="347" font-size="27">v<tspan baseline-shift="sub" font-size="19">i</tspan></text>
+    <path d="M1325 412 L1450 412" stroke="#b33a3a" stroke-width="5"/>
+    <circle cx="1400" cy="412" r="7" fill="#b33a3a"/>
+    <text x="1460" y="403" font-size="27" fill="#b33a3a">v<tspan baseline-shift="sub" font-size="19">o</tspan>=0</text>
+
+    <!-- short to ground -->
+    <path d="M1400 412 L1400 690" stroke="#b33a3a" stroke-width="6"/>
+    <path d="M1365 690 L1435 690 M1375 703 L1425 703 M1386 716 L1414 716" stroke="#b33a3a" stroke-width="5"/>
+    <text x="1420" y="620" font-size="22" fill="#b33a3a">检验短路线</text>
+
+    <!-- feedback zero -->
+    <path d="M1400 412 L1400 570 L990 570 L990 465 L1065 465" fill="none" stroke="#9aa4ad" stroke-width="5" stroke-dasharray="12 10" marker-end="url(#arrowBlue)"/>
+    <text x="1080" y="605" font-size="25" fill="#175fa0">v<tspan baseline-shift="sub" font-size="17">f</tspan>=v<tspan baseline-shift="sub" font-size="17">o</tspan>=0</text>
+
+    <!-- bypassed loads -->
+    <path d="M1220 570 L1220 615" stroke="#9aa4ad" stroke-width="4"/>
+    <rect x="1202" y="615" width="36" height="70" fill="#f5f5f5" stroke="#9aa4ad" stroke-width="4"/>
+    <path d="M1220 685 L1220 690" stroke="#9aa4ad" stroke-width="4"/>
+    <text x="1250" y="660" font-size="24" fill="#7b858e">R<tspan baseline-shift="sub" font-size="17">1</tspan></text>
+    <path d="M1325 412 L1325 510" stroke="#9aa4ad" stroke-width="4"/>
+    <rect x="1307" y="510" width="36" height="70" fill="#f5f5f5" stroke="#9aa4ad" stroke-width="4"/>
+    <path d="M1325 580 L1325 690" stroke="#9aa4ad" stroke-width="4"/>
+    <text x="1350" y="552" font-size="24" fill="#7b858e">R<tspan baseline-shift="sub" font-size="17">L</tspan></text>
+    <path d="M1220 690 L1400 690" stroke="#9aa4ad" stroke-width="4"/>
+    <text x="925" y="750" font-size="23" fill="#b33a3a">反馈量归零 ⇒ 电压取样（电压反馈）</text>
+
+    <!-- Decision rule -->
+    <rect x="40" y="840" width="1520" height="220" rx="18" fill="#f7fafc" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="892" font-size="30">③ 考试判据</text>
+    <path d="M105 950 L300 950" stroke="#17212b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="78" y="934" font-size="23">令 v<tspan baseline-shift="sub" font-size="16">o</tspan>=0</text>
+    <rect x="330" y="910" width="330" height="90" rx="14" fill="white" stroke="#175fa0" stroke-width="3"/>
+    <text x="375" y="965" font-size="25">反馈量 x<tspan baseline-shift="sub" font-size="17">f</tspan> 是否为零？</text>
+    <path d="M660 938 L850 938" stroke="#175fa0" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="725" y="925" font-size="22" fill="#175fa0">为零</text>
+    <text x="875" y="947" font-size="26" fill="#175fa0">电压反馈</text>
+    <path d="M660 980 L850 980" stroke="#b33a3a" stroke-width="4" marker-end="url(#arrowRed)"/>
+    <text x="710" y="1022" font-size="22" fill="#b33a3a">仍随 i<tspan baseline-shift="sub" font-size="15">o</tspan> 存在</text>
+    <text x="875" y="989" font-size="26" fill="#b33a3a">电流反馈</text>
+    <text x="1080" y="935" font-size="22">注意：不是看“是否有短路电流”，</text>
+    <text x="1080" y="973" font-size="22">而是看反馈网络取得的 x<tspan baseline-shift="sub" font-size="15">f</tspan> 是否还存在。</text>
+    <text x="1080" y="1015" font-size="22" fill="#b33a3a">不可把正在工作的实际运放长期硬短路。</text>
+  </g>
+</svg>
