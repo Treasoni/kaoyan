@@ -50,7 +50,8 @@
     <rect x="1050" y="500" width="470" height="105" rx="14" fill="white" stroke="#175fa0" stroke-width="3"/>
     <text x="1080" y="546" font-size="27" fill="#175fa0">x<tspan baseline-shift="sub" font-size="18">f</tspan>/x<tspan baseline-shift="sub" font-size="18">i</tspan>=AF/(1+AF)≈1</text>
     <text x="1080" y="585" font-size="21">所以 x<tspan baseline-shift="sub" font-size="15">i</tspan>≈x<tspan baseline-shift="sub" font-size="15">f</tspan></text>
-    <text x="1040" y="654" font-size="21" fill="#b33a3a">前提：负反馈稳定、放大器在线性区、所考频率处环路增益足够大。</text>
+    <text x="1040" y="642" font-size="20" fill="#b33a3a">前提：负反馈稳定、放大器在线性区，</text>
+    <text x="1040" y="672" font-size="20" fill="#b33a3a">且所考频率处环路增益足够大。</text>
 
     <!-- Op amp panel -->
     <rect x="40" y="735" width="730" height="325" rx="18" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
