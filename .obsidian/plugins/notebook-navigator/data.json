@@ -150,6 +150,10 @@
   "dateFormat": "MMM D, YYYY",
   "timeFormat": "h:mm a",
   "calendarTemplateFolder": "",
+  "templateEngine": "automatic",
+  "folderTemplates": {},
+  "showFolderTemplateIcons": true,
+  "templateCommands": [],
   "confirmBeforeDelete": true,
   "deleteAttachments": "ask",
   "moveFileConflicts": "ask",
@@ -222,6 +226,7 @@
   "confirmBeforeManualSort": true,
   "revealFileOnListChanges": true,
   "listPaneTitle": "header",
+  "colorListPaneTitle": false,
   "noteGrouping": "date",
   "showSelectedNavigationPills": false,
   "stickyGroupHeaders": true,
@@ -560,7 +565,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "3.3.7",
+  "lastShownVersion": "3.4.1",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": []
