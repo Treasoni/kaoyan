@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1120" fill="white"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#17212b">
+    <text x="60" y="62" font-size="36">输入混合：串联看电压差，并联看节点电流</text>
+    <text x="60" y="108" font-size="23">“不同端 / 同一端”只是运放快捷法；真正判据是输入量与反馈量怎样在放大器输入端比较。</text>
+
+    <!-- Series panel -->
+    <rect x="40" y="150" width="730" height="650" rx="18" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="198" font-size="30" fill="#175fa0">① 串联输入混合：电压作差</text>
+    <text x="70" y="238" font-size="23">输入电压与反馈电压分别作用于比较端</text>
+
+    <path d="M310 305 L310 520 L575 412 Z" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="332" y="372" font-size="31">+</text>
+    <text x="332" y="480" font-size="31">−</text>
+    <text x="425" y="424" font-size="34">A</text>
+    <path d="M105 360 L310 360" stroke="#17212b" stroke-width="4"/>
+    <text x="68" y="348" font-size="27">v<tspan baseline-shift="sub" font-size="19">i</tspan></text>
+    <path d="M575 412 L700 412" stroke="#17212b" stroke-width="4"/>
+    <circle cx="650" cy="412" r="6" fill="#17212b"/>
+    <text x="710" y="401" font-size="27">v<tspan baseline-shift="sub" font-size="19">o</tspan></text>
+
+    <!-- feedback path -->
+    <path d="M650 412 L650 570 L225 570 L225 465 L310 465" fill="none" stroke="#175fa0" stroke-width="5" marker-end="url(#arrowBlue)"/>
+    <text x="342" y="607" font-size="25" fill="#175fa0">v<tspan baseline-shift="sub" font-size="17">f</tspan>=v<tspan baseline-shift="sub" font-size="17">o</tspan></text>
+
+    <!-- combined output loads -->
+    <path d="M650 412 L650 475" stroke="#9aa4ad" stroke-width="4"/>
+    <rect x="615" y="475" width="70" height="105" rx="6" fill="#f3f5f7" stroke="#9aa4ad" stroke-width="4"/>
+    <path d="M650 580 L650 680" stroke="#9aa4ad" stroke-width="4"/>
+    <path d="M620 680 L680 680 M629 692 L671 692 M639 704 L661 704" stroke="#9aa4ad" stroke-width="4"/>
+    <text x="593" y="525" font-size="22" fill="#66717b">R<tspan baseline-shift="sub" font-size="15">1</tspan> ∥ R<tspan baseline-shift="sub" font-size="15">L</tspan></text>
+    <text x="570" y="625" font-size="21" fill="#66717b">输出负载</text>
+
+    <rect x="85" y="660" width="430" height="96" rx="12" fill="#eef7ff" stroke="#8ab7df" stroke-width="2"/>
+    <text x="110" y="702" font-size="27" fill="#175fa0">v<tspan baseline-shift="sub" font-size="18">id</tspan>=v<tspan baseline-shift="sub" font-size="18">i</tspan>−v<tspan baseline-shift="sub" font-size="18">f</tspan></text>
+    <text x="110" y="738" font-size="21">负反馈时，反馈电压使净输入电压减小</text>
+
+    <!-- Shunt panel -->
+    <rect x="830" y="150" width="730" height="650" rx="18" fill="#fffafa" stroke="#e0caca" stroke-width="2"/>
+    <text x="860" y="198" font-size="30" fill="#b33a3a">② 并联输入混合：节点电流汇合</text>
+    <text x="860" y="238" font-size="23">输入电流与反馈电流经不同支路进入同一求和节点</text>
+
+    <path d="M1105 305 L1105 520 L1365 412 Z" fill="white" stroke="#17212b" stroke-width="4"/>
+    <text x="1128" y="372" font-size="31">+</text>
+    <text x="1128" y="480" font-size="31">−</text>
+    <text x="1218" y="424" font-size="34">A</text>
+
+    <!-- plus grounded -->
+    <path d="M1040 360 L1105 360" stroke="#17212b" stroke-width="4"/>
+    <path d="M1040 360 L1040 405" stroke="#17212b" stroke-width="4"/>
+    <path d="M1012 405 L1068 405 M1020 417 L1060 417 M1029 429 L1051 429" stroke="#17212b" stroke-width="4"/>
+
+    <!-- summing node and input current -->
+    <path d="M880 465 L1105 465" stroke="#17212b" stroke-width="4"/>
+    <circle cx="1040" cy="465" r="7" fill="#17212b"/>
+    <path d="M895 445 L1005 445" stroke="#175fa0" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="910" y="429" font-size="25" fill="#175fa0">i<tspan baseline-shift="sub" font-size="17">i</tspan></text>
+    <text x="1008" y="495" font-size="21">求和节点</text>
+
+    <!-- output and load -->
+    <path d="M1365 412 L1490 412" stroke="#17212b" stroke-width="4"/>
+    <circle cx="1435" cy="412" r="6" fill="#17212b"/>
+    <text x="1498" y="401" font-size="27">v<tspan baseline-shift="sub" font-size="19">o</tspan></text>
+    <path d="M1435 412 L1435 505" stroke="#17212b" stroke-width="4"/>
+    <rect x="1417" y="505" width="36" height="95" fill="white" stroke="#17212b" stroke-width="4"/>
+    <path d="M1435 600 L1435 690" stroke="#17212b" stroke-width="4"/>
+    <path d="M1407 690 L1463 690 M1415 702 L1455 702 M1424 714 L1446 714" stroke="#17212b" stroke-width="4"/>
+    <text x="1465" y="565" font-size="25">R<tspan baseline-shift="sub" font-size="17">L</tspan></text>
+
+    <!-- feedback resistor under op amp -->
+    <path d="M1040 465 L1040 620 L1100 620" fill="none" stroke="#b33a3a" stroke-width="5"/>
+    <rect x="1100" y="603" width="210" height="34" fill="white" stroke="#b33a3a" stroke-width="4"/>
+    <path d="M1310 620 L1385 620 L1385 412" fill="none" stroke="#b33a3a" stroke-width="5"/>
+    <path d="M1150 647 L1295 647" stroke="#b33a3a" stroke-width="4" marker-end="url(#arrowRed)"/>
+    <text x="1202" y="685" font-size="25" fill="#b33a3a">i<tspan baseline-shift="sub" font-size="17">f</tspan></text>
+    <text x="1185" y="590" font-size="25" fill="#b33a3a">R<tspan baseline-shift="sub" font-size="17">f</tspan></text>
+
+    <rect x="865" y="660" width="470" height="96" rx="12" fill="#fff0f0" stroke="#d9a0a0" stroke-width="2"/>
+    <text x="890" y="702" font-size="27" fill="#b33a3a">i<tspan baseline-shift="sub" font-size="18">id</tspan>=i<tspan baseline-shift="sub" font-size="18">i</tspan>−i<tspan baseline-shift="sub" font-size="18">f</tspan></text>
+    <text x="890" y="738" font-size="21">理想运放：i<tspan baseline-shift="sub" font-size="15">−</tspan>≈0，按幅值有 i<tspan baseline-shift="sub" font-size="15">i</tspan>≈i<tspan baseline-shift="sub" font-size="15">f</tspan></text>
+
+    <!-- Bottom rule panel -->
+    <rect x="40" y="840" width="1520" height="220" rx="18" fill="#f7fafc" stroke="#c7d8e5" stroke-width="2"/>
+    <text x="70" y="892" font-size="30">③ 节点判别法</text>
+    <rect x="75" y="920" width="420" height="105" rx="14" fill="white" stroke="#175fa0" stroke-width="3"/>
+    <text x="105" y="960" font-size="24" fill="#175fa0">串联：比较量是电压差</text>
+    <text x="105" y="999" font-size="21">优先写 v<tspan baseline-shift="sub" font-size="15">id</tspan>=v<tspan baseline-shift="sub" font-size="15">i</tspan>∓v<tspan baseline-shift="sub" font-size="15">f</tspan></text>
+    <rect x="535" y="920" width="440" height="105" rx="14" fill="white" stroke="#b33a3a" stroke-width="3"/>
+    <text x="565" y="960" font-size="24" fill="#b33a3a">并联：不同支路汇入同一节点</text>
+    <text x="565" y="999" font-size="21">优先列 KCL：i<tspan baseline-shift="sub" font-size="15">id</tspan>=i<tspan baseline-shift="sub" font-size="15">i</tspan>∓i<tspan baseline-shift="sub" font-size="15">f</tspan></text>
+    <text x="1025" y="944" font-size="22">注意：“同一端”必须是不同支路在同一节点汇流。</text>
+    <text x="1025" y="983" font-size="22">两个理想电压源直接并接，不是有效的并联混合模型。</text>
+    <text x="1025" y="1022" font-size="22">KVL、KCL 对所有电路都成立，只是这里的优先列式不同。</text>
+  </g>
+</svg>
