@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+  <!-- Conceptual feedback-port diagrams. D=1+T, T=AF. Output resistance is measured with the independent input set to zero and a test source applied at the output port. -->
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#1767a6"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b64545"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1120" fill="#ffffff"/>
+  <g font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#182431">
+    <text x="55" y="58" font-size="35">负反馈对输入、输出电阻的影响</text>
+    <text x="55" y="101" font-size="23">总开关：输入看混合方式，输出看取样方式。D=1+T=1+AF。</text>
+
+    <rect x="35" y="135" width="745" height="395" rx="18" fill="#f4f9fd" stroke="#b9d0e3" stroke-width="2"/>
+    <text x="65" y="180" font-size="28" fill="#1767a6">① 串联混合：输入电阻增大</text>
+    <g stroke="#182431" stroke-width="3.5" fill="none">
+      <circle cx="260" cy="310" r="38"/>
+      <rect x="445" y="255" width="160" height="110" rx="8"/>
+      <path d="M80 310 H222 M298 310 H445 M605 310 H705"/>
+      <path d="M635 310 V445 H260 V348"/>
+    </g>
+    <g stroke="#1767a6" stroke-width="3" fill="none" marker-end="url(#arrow-blue)">
+      <path d="M100 282 H190"/>
+    </g>
+    <text x="98" y="268" font-size="22" fill="#1767a6">iᵢ</text>
+    <text x="92" y="338" font-size="24">uᵢ</text>
+    <text x="320" y="292" font-size="23">uᵢd</text>
+    <text x="486" y="320" font-size="31">Rᵢ</text>
+    <text x="316" y="427" font-size="23">u_f=T·uᵢd</text>
+    <text x="246" y="304" font-size="26">+</text>
+    <text x="249" y="332" font-size="26">−</text>
+    <text x="78" y="482" font-size="26">uᵢ=(1+T)uᵢd，iᵢ不变</text>
+    <text x="455" y="482" font-size="28" fill="#1767a6">Rᵢf=D Rᵢ</text>
+
+    <rect x="820" y="135" width="745" height="395" rx="18" fill="#fff8f5" stroke="#e0c2b3" stroke-width="2"/>
+    <text x="850" y="180" font-size="28" fill="#b64545">② 并联混合：输入电阻减小</text>
+    <g stroke="#182431" stroke-width="3.5" fill="none">
+      <circle cx="1045" cy="310" r="38"/>
+      <rect x="1230" y="255" width="160" height="110" rx="8"/>
+      <path d="M865 310 H1007 M1083 310 H1230 M1390 310 H1490"/>
+      <path d="M1420 310 V445 H1045 V348"/>
+    </g>
+    <g stroke="#b64545" stroke-width="3" fill="none" marker-end="url(#arrow-red)">
+      <path d="M885 282 H975"/><path d="M1120 310 H1200"/><path d="M1130 445 H1065"/>
+    </g>
+    <text x="884" y="268" font-size="22" fill="#b64545">iᵢ</text>
+    <text x="1123" y="294" font-size="22" fill="#b64545">iᵢd</text>
+    <text x="1125" y="428" font-size="22" fill="#b64545">i_f=T·iᵢd</text>
+    <text x="877" y="342" font-size="24">uᵢ</text>
+    <text x="1271" y="320" font-size="31">Rᵢ</text>
+    <text x="1031" y="304" font-size="26">+</text>
+    <text x="1034" y="332" font-size="26">−</text>
+    <text x="858" y="482" font-size="26">iᵢ=(1+T)iᵢd，uᵢ不变</text>
+    <text x="1237" y="482" font-size="28" fill="#b64545">Rᵢf=Rᵢ/D</text>
+
+    <rect x="35" y="560" width="745" height="425" rx="18" fill="#f4f9fd" stroke="#b9d0e3" stroke-width="2"/>
+    <text x="65" y="605" font-size="28" fill="#1767a6">③ 电压取样：输出电阻减小</text>
+    <text x="65" y="644" font-size="21">独立输入置零，在输出口加测试电压 uₜ，测流入放大器的 iₜ。</text>
+    <g stroke="#182431" stroke-width="3.5" fill="none">
+      <circle cx="210" cy="780" r="34"/>
+      <rect x="355" y="730" width="80" height="100"/>
+      <path d="M244 780 H355 M435 780 H620"/>
+      <path d="M620 720 V840"/>
+      <path d="M592 720 H648 M602 710 H638"/>
+      <path d="M585 840 H655 M597 850 H643 M610 860 H630"/>
+    </g>
+    <text x="174" y="788" font-size="23">−T uₜ</text>
+    <text x="372" y="790" font-size="25">Rₒ</text>
+    <text x="650" y="744" font-size="23">uₜ</text>
+    <g stroke="#1767a6" stroke-width="3" fill="none" marker-end="url(#arrow-blue)">
+      <path d="M560 755 H465"/>
+    </g>
+    <text x="515" y="739" font-size="22" fill="#1767a6">iₜ</text>
+    <text x="78" y="919" font-size="25">iₜ=(uₜ−(−T uₜ))/Rₒ=D uₜ/Rₒ</text>
+    <text x="474" y="919" font-size="29" fill="#1767a6">Rₒf=uₜ/iₜ=Rₒ/D</text>
+    <text x="78" y="958" font-size="21">反馈迫使输出电压更难被测试源改变，端口更像理想电压源。</text>
+
+    <rect x="820" y="560" width="745" height="425" rx="18" fill="#fff8f5" stroke="#e0c2b3" stroke-width="2"/>
+    <text x="850" y="605" font-size="28" fill="#b64545">④ 电流取样：输出电阻增大</text>
+    <text x="850" y="644" font-size="21">独立输入置零，在输出口加测试电流 iₜ，测产生的测试电压 uₜ。</text>
+    <g stroke="#182431" stroke-width="3.5" fill="none">
+      <rect x="980" y="730" width="100" height="100"/>
+      <path d="M1080 780 H1370 M1370 720 V840"/>
+      <path d="M1342 720 H1398 M1352 710 H1388"/>
+      <path d="M1335 840 H1405 M1347 850 H1393 M1360 860 H1380"/>
+    </g>
+    <text x="996" y="790" font-size="25">Rₒ</text>
+    <text x="1402" y="744" font-size="23">uₜ</text>
+    <g stroke="#b64545" stroke-width="3" fill="none" marker-end="url(#arrow-red)">
+      <path d="M1290 755 H1160"/>
+    </g>
+    <text x="1220" y="738" font-size="22" fill="#b64545">iₜ</text>
+    <path d="M1140 720 C1185 675 1250 675 1295 720" stroke="#b64545" stroke-width="3" fill="none" marker-end="url(#arrow-red)"/>
+    <text x="1124" y="690" font-size="21" fill="#b64545">反馈抵抗输出电流变化</text>
+    <text x="860" y="919" font-size="25">标准电流取样模型：uₜ=D Rₒ iₜ</text>
+    <text x="1218" y="919" font-size="29" fill="#b64545">Rₒf=D Rₒ</text>
+    <text x="860" y="958" font-size="21">同样的测试电流需要更大端口电压，端口更像理想电流源。</text>
+
+    <rect x="270" y="1015" width="1060" height="72" rx="16" fill="#eef5fb" stroke="#8eb8d8" stroke-width="2"/>
+    <text x="315" y="1060" font-size="27">口诀：串联入大，并联入小；电压出小，电流出大。</text>
+  </g>
+</svg>
