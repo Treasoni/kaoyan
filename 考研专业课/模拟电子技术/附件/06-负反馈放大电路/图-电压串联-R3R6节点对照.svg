@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+<!-- Netlist: opamp +=ui, -=n, out=o; R3(n,0), R6(o,n).
+ BJT: T1(b=ui,c=c1,e=e1), T2(b=c1,c=o,e=e2); RB1(VCC,ui),
+ RC1(VCC,c1), RC2(VCC,o), R3(e1,0), RE2(e2,0), R6(o,e1).
+ R6 crossing e2 wire is NOT connected. All u/i labels denote AC increments. -->
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#1767a6"/></marker></defs>
+<rect width="1600" height="1200" fill="white"/>
+<g font-family="Arial, PingFang SC, sans-serif" fill="#172431">
+<text x="55" y="57" font-size="34">电压串联负反馈：同样的电阻比，先检查节点电流</text>
+<text x="55" y="99" font-size="22">交流小信号分析；R₃ 接地，R₆ 从输出返回比较节点。u、i 表示静态工作点附近的增量。</text>
+<rect x="35" y="125" width="1530" height="435" rx="18" fill="#f5f9fd" stroke="#bad1e4"/>
+<text x="65" y="165" font-size="28" fill="#1767a6">① 同相运放：输入电流近似为零</text>
+<g stroke="#172431" stroke-width="3.5" fill="none">
+<path d="M290 210 L290 375 L465 292 Z"/><path d="M110 250 H290 M170 335 H290 M465 292 H750 M675 292 V445 H475 M385 445 H170 V335 M170 445 V465 M170 515 V535"/>
+<rect x="385" y="433" width="90" height="24"/><rect x="158" y="465" width="24" height="50"/>
+<path d="M145 535 H195 M153 544 H187 M162 553 H178"/>
+</g>
+<circle cx="170" cy="445" r="5"/><circle cx="675" cy="292" r="5"/>
+<g font-size="25"><text x="302" y="259">+</text><text x="302" y="342">−</text><text x="355" y="302">A</text><text x="72" y="247">uᵢ</text><text x="756" y="300">uₒ</text><text x="400" y="420">R₆</text><text x="95" y="498">R₃</text><text x="186" y="375" fill="#1767a6">uₙ ≈ uᵢ</text></g>
+<g stroke="#1767a6" stroke-width="2.5" fill="none" marker-end="url(#arrow)"><path d="M580 425 H505"/><path d="M210 465 V515"/></g>
+<g font-size="22" fill="#1767a6"><text x="518" y="411">i₆</text><text x="219" y="503">i₃</text><text x="193" y="318">iₙ ≈ 0</text></g>
+<g font-size="27"><text x="820" y="235">i₆ = (uₒ − uₙ)/R₆，i₃ = uₙ/R₃</text><text x="820" y="288">KCL：i₆ = i₃ + iₙ ≈ i₃</text><text x="820" y="341">虚短：uₙ ≈ uᵢ</text><text x="820" y="404" fill="#1767a6">uₒ/uᵢ ≈ 1 + R₆/R₃</text></g>
+<text x="820" y="468" font-size="22">条件：稳定负反馈、线性工作、环路增益足够大。</text>
+<text x="820" y="507" font-size="22">uᵢ 为正时，参考电流从输出经 R₆、R₃ 流向地。</text>
+<rect x="35" y="580" width="1530" height="580" rx="18" fill="#fffaf5" stroke="#e0c4a7"/>
+<text x="65" y="625" font-size="28" fill="#a84625">② 两级 NPN 共射电路：反馈节点还有 iₑ₁</text>
+<g stroke="#172431" stroke-width="3.5" fill="none">
+<path d="M110 680 H680 M155 680 V710 M155 760 V815 H260 M350 680 V710 M350 760 V780 M565 680 V710 M565 760 V780 H720"/>
+<rect x="143" y="710" width="24" height="50"/><rect x="338" y="710" width="24" height="50"/><rect x="553" y="710" width="24" height="50"/>
+<path d="M90 815 H260 M260 785 V845 M260 797 L350 780 M260 833 L350 885 V1010 M350 1060 V1090 M350 780 H445 V815 H475 M475 785 V845 M475 797 L565 780 M475 833 L620 885 V1010 M620 1060 V1090 M90 1090 H720"/>
+<rect x="338" y="1010" width="24" height="50"/><rect x="608" y="1010" width="24" height="50"/>
+<path d="M685 780 V950 H636 M604 950 H510 M435 950 H350" stroke="#8154a6"/>
+<path d="M604 950 Q620 915 636 950" stroke="#8154a6"/>
+<rect x="435" y="938" width="75" height="24" stroke="#8154a6"/>
+<path d="M400 1090 V1100 M375 1100 H425 M384 1110 H416 M394 1120 H406"/>
+</g>
+<path d="M305 859 L341 879" stroke="#172431" stroke-width="3.5" marker-end="url(#arrow)"/>
+<path d="M565 865 L610 881" stroke="#172431" stroke-width="3.5" marker-end="url(#arrow)"/>
+<g fill="#172431"><circle cx="155" cy="815" r="5"/><circle cx="350" cy="780" r="5"/><circle cx="685" cy="780" r="5"/><circle cx="350" cy="950" r="5"/></g>
+<g font-size="23"><text x="683" y="686">+VCC</text><text x="101" y="744">Rᴮ₁</text><text x="366" y="744">Rᶜ₁</text><text x="583" y="744">Rᶜ₂</text><text x="220" y="878">T₁</text><text x="464" y="851">T₂</text><text x="45" y="819">uᵢ</text><text x="724" y="787">uₒ</text><text x="290" y="1045">R₃</text><text x="648" y="1045">Rᴱ₂</text><text x="449" y="991" fill="#8154a6">R₆</text><text x="275" y="978">uₑ₁</text><text x="534" y="899" font-size="19">跨线不相连</text></g>
+<g stroke="#1767a6" stroke-width="2.5" fill="none" marker-end="url(#arrow)"><path d="M321 892 V935"/><path d="M412 976 H365"/><path d="M382 1005 V1055"/></g>
+<g font-size="21" fill="#1767a6"><text x="265" y="918">iₑ₁</text><text x="390" y="1001">i₆</text><text x="394" y="1044">i₃</text></g>
+<g font-size="26"><text x="820" y="696">KCL：i₆ + iₑ₁ = i₃</text><text x="820" y="751">(uₒ − uₑ₁)/R₆ + iₑ₁ = uₑ₁/R₃</text><text x="820" y="807">uₒ = (1 + R₆/R₃)uₑ₁ − R₆iₑ₁</text><text x="820" y="863">uₑ₁ = uᵢ − uᵦₑ₁</text></g>
+<text x="820" y="928" font-size="24" fill="#a84625">要得到同样的电阻比近似，需核查：</text>
+<text x="820" y="974" font-size="24">① uᵦₑ₁ 对输入的影响可忽略；</text>
+<text x="820" y="1017" font-size="24">② R₆iₑ₁ 对输出的影响可忽略。</text>
+<text x="820" y="1072" font-size="22">这些都是交流增量条件；直流 Iᴱ₁ 不等于零。</text>
+<text x="820" y="1112" font-size="22">原图未给数值，不能据此验证具体的近似误差。</text>
+</g></svg>

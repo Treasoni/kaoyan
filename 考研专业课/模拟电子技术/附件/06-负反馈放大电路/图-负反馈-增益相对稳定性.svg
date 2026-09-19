@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<!-- Signal netlist: xi -> summer(+); xf -> summer(-); xid -> A -> xo -> F -> xf. -->
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8" fill="#1767a6"/></marker></defs>
+<rect width="1600" height="1000" fill="white"/>
+<g font-family="Arial, PingFang SC, sans-serif" fill="#172431">
+<text x="55" y="65" font-size="35">负反馈怎样稳定放大倍数？看“相对变化”</text>
+<text x="55" y="111" font-size="23">条件：F 不变、A 小幅变化；中频实数正量约定，电路在线性区并稳定工作。</text>
+<rect x="35" y="145" width="1530" height="370" rx="16" fill="#f5f9fd" stroke="#bad1e4"/>
+<g stroke="#172431" stroke-width="3" fill="none"><circle cx="225" cy="255" r="32"/><rect x="390" y="215" width="170" height="85"/><rect x="390" y="370" width="170" height="85"/></g>
+<g stroke="#1767a6" stroke-width="3.5" fill="none" marker-end="url(#arr)"><path d="M90 255 H190"/><path d="M260 255 H385"/><path d="M560 255 H755"/><path d="M680 255 V413 H565"/><path d="M390 413 H225 V290"/></g>
+<g font-size="29"><text x="90" y="233">xᵢ</text><text x="300" y="238">xᵢd</text><text x="460" y="268">A</text><text x="460" y="423">F</text><text x="763" y="265">xₒ</text><text x="248" y="389">x_f</text><text x="210" y="252">+</text><text x="220" y="278">−</text></g>
+<text x="840" y="232" font-size="29">A_f = A/(1 + AF)</text>
+<text x="840" y="293" font-size="29">∂A_f/∂A = 1/(1 + AF)²</text>
+<text x="840" y="369" font-size="31" fill="#1767a6">dA_f/A_f = (dA/A)/(1 + AF)</text>
+<text x="840" y="438" font-size="24">绝对变化与相对变化的抑制系数不同。</text>
+<text x="80" y="486" font-size="23">AF 是环路增益；A_f 是闭环增益。</text>
+<rect x="35" y="545" width="1530" height="330" rx="16" fill="#fffaf5" stroke="#dfc8b1"/>
+<text x="65" y="591" font-size="28">例：A = 1000，F = 0.099，反馈深度 1 + AF = 100</text>
+<text x="70" y="658" font-size="26">基本增益相对变化 1%</text><rect x="455" y="628" width="1000" height="38" fill="#b76244"/>
+<text x="70" y="732" font-size="26">闭环增益相对变化 ≈ 0.01%</text><rect x="455" y="702" width="10" height="38" fill="#1767a6"/>
+<text x="492" y="730" font-size="23" fill="#1767a6">同一比例尺：约为原来的 1/100</text>
+<text x="70" y="811" font-size="24">深度负反馈：A_f ≈ 1/F，减小对 A 的依赖；F 自身的漂移仍须控制。</text>
+<text x="60" y="926" font-size="26" fill="#a84625">“增益更稳定”指参数敏感度降低；不能据此断言电路不会振荡。</text>
+</g></svg>
