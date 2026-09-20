@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1500" viewBox="0 0 2600 1500">
+  <defs>
+    <style>
+      .title { font: 700 56px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .panel-title { font: 700 38px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .label { font: 30px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .small { font: 25px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .formula { font: 30px "Times New Roman", "STIX Two Text", serif; fill: #111827; }
+      .wire { fill: none; stroke: #111827; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .feedback { fill: none; stroke: #7e22ce; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+      .current { fill: none; stroke: #b91c1c; stroke-width: 6; stroke-linecap: round; }
+      .panel { fill: #fffdf7; stroke: #d6c9a8; stroke-width: 4; rx: 28; }
+      .card { fill: #fffaf0; stroke: #ead8ae; stroke-width: 3; rx: 24; }
+      .node { fill: #111827; }
+      .purple { fill: #7e22ce; }
+      .red { fill: #b91c1c; }
+      .blue { fill: #1d4ed8; }
+    </style>
+    <marker id="arrowRed" markerWidth="14" markerHeight="14" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L11,5 L0,10 Z" fill="#b91c1c"/>
+    </marker>
+  </defs>
+
+  <rect width="2600" height="1500" fill="#f8efd6"/>
+  <text x="1300" y="78" text-anchor="middle" class="title">求和运算电路：反相加权求和与同相加权求和</text>
+  <text x="1300" y="122" text-anchor="middle" class="small">反相端在虚地节点直接求电流；同相端先形成电导加权平均，再由非反相闭环增益放大</text>
+
+  <rect x="65" y="165" width="1210" height="780" class="panel"/>
+  <text x="670" y="225" text-anchor="middle" class="panel-title">A. 反相加权求和</text>
+
+  <!-- Inverting summer op amp -->
+  <path d="M560 350 L560 690 L925 520 Z" fill="#ffffff" stroke="#111827" stroke-width="9"/>
+  <text x="590" y="468" class="label">−</text>
+  <text x="590" y="625" class="label">+</text>
+  <text x="735" y="535" text-anchor="middle" class="label">A</text>
+  <path d="M210 470 L300 470" class="wire"/>
+  <path d="M300 470 l18 -18 l36 36 l36 -36 l36 36 l36 -36 l18 18" class="wire"/>
+  <path d="M480 470 L560 470" class="wire"/>
+  <path d="M210 540 L300 540" class="wire"/>
+  <path d="M300 540 l18 -18 l36 36 l36 -36 l36 36 l18 -18" class="wire"/>
+  <path d="M480 540 L560 540" class="wire"/>
+  <path d="M210 610 L300 610" class="wire"/>
+  <path d="M300 610 l18 -18 l36 36 l36 -36 l36 36 l18 -18" class="wire"/>
+  <path d="M480 610 L560 610" class="wire"/>
+  <text x="160" y="480" class="formula">uᵢ₁</text>
+  <text x="160" y="550" class="formula">uᵢ₂</text>
+  <text x="160" y="620" class="formula">uᵢ₃</text>
+  <text x="390" y="442" text-anchor="middle" class="formula">R₁</text>
+  <text x="390" y="512" text-anchor="middle" class="formula">R₂</text>
+  <text x="390" y="582" text-anchor="middle" class="formula">R₃</text>
+  <circle cx="560" cy="470" r="10" class="node"/>
+  <text x="525" y="440" class="formula">N</text>
+  <path d="M925 520 L1120 520" class="wire"/>
+  <text x="1135" y="530" class="formula">uₒ</text>
+  <path d="M1000 520 L1000 290 L900 290" class="feedback"/>
+  <path d="M900 290 l-18 -18 l-36 36 l-36 -36 l-36 36 l-36 -36 l-18 18" class="feedback"/>
+  <path d="M720 290 L500 290 L500 470 L560 470" class="feedback"/>
+  <text x="810" y="265" text-anchor="middle" class="formula purple">R_f</text>
+  <path d="M560 690 L560 770 L500 770" class="wire"/>
+  <path d="M500 770 l18 -18 l36 36 l36 -36 l36 36 l18 -18" class="wire"/>
+  <path d="M660 770 L660 820" class="wire"/>
+  <path d="M635 820 L685 820 M643 835 L677 835 M651 850 L669 850" class="wire"/>
+  <text x="700" y="790" class="formula">R₊</text>
+  <text x="410" y="475" class="formula red">I₁</text>
+  <text x="410" y="545" class="formula red">I₂</text>
+  <text x="410" y="615" class="formula red">I₃</text>
+  <path d="M470 470 L525 470" class="current" marker-end="url(#arrowRed)"/>
+  <path d="M470 540 L525 540" class="current" marker-end="url(#arrowRed)"/>
+  <path d="M470 610 L525 610" class="current" marker-end="url(#arrowRed)"/>
+  <text x="670" y="900" text-anchor="middle" class="small">N 为虚地：uN ≈ 0；各输入电流在 N 点相加</text>
+
+  <rect x="1325" y="165" width="1210" height="780" class="panel"/>
+  <text x="1930" y="225" text-anchor="middle" class="panel-title">B. 同相加权求和</text>
+
+  <!-- Non-inverting summer op amp -->
+  <path d="M1810 350 L1810 690 L2175 520 Z" fill="#ffffff" stroke="#111827" stroke-width="9"/>
+  <text x="1840" y="468" class="label">−</text>
+  <text x="1840" y="625" class="label">+</text>
+  <text x="1985" y="535" text-anchor="middle" class="label">A</text>
+  <circle cx="1810" cy="470" r="10" class="node"/>
+  <path d="M1810 470 L1740 470 L1740 300" class="wire"/>
+  <path d="M1740 300 L1640 300" class="feedback"/>
+  <path d="M1640 300 l-18 -18 l-36 36 l-36 -36 l-36 36 l-36 -36 l-18 18" class="feedback"/>
+  <path d="M1460 300 L1460 250 L2290 250 L2290 520 L2175 520" class="feedback"/>
+  <text x="1700" y="275" class="formula purple">R_f</text>
+  <path d="M1740 470 L1740 800" class="wire"/>
+  <path d="M1740 800 L1650 800" class="wire"/>
+  <path d="M1650 800 l18 -18 l36 36 l36 -36 l36 36 l18 -18" class="wire"/>
+  <path d="M1830 800 L1830 850" class="wire"/>
+  <path d="M1805 850 L1855 850 M1813 865 L1847 865 M1821 880 L1839 880" class="wire"/>
+  <text x="1870" y="820" class="formula">R</text>
+  <text x="1755" y="445" class="formula">N</text>
+  <path d="M1810 610 L1720 610" class="wire"/>
+  <path d="M1720 610 L1630 610" class="wire"/>
+  <path d="M1630 610 l18 -18 l36 36 l36 -36 l36 36 l18 -18" class="wire"/>
+  <path d="M1450 610 L1540 610" class="wire"/>
+  <path d="M1450 680 L1540 680" class="wire"/>
+  <path d="M1540 610 L1630 610" class="wire"/>
+  <path d="M1540 680 L1630 680" class="wire"/>
+  <path d="M1450 750 L1540 750" class="wire"/>
+  <path d="M1540 750 L1630 750" class="wire"/>
+  <path d="M1630 680 L1630 610" class="wire"/>
+  <path d="M1630 750 L1630 610" class="wire"/>
+  <circle cx="1810" cy="610" r="10" class="node"/>
+  <text x="1770" y="590" class="formula">P</text>
+  <text x="1385" y="620" class="formula">uᵢ₁</text>
+  <text x="1385" y="690" class="formula">uᵢ₂</text>
+  <text x="1385" y="760" class="formula">uᵢ₃</text>
+  <text x="1580" y="582" class="formula">R₁</text>
+  <text x="1580" y="652" class="formula">R₂</text>
+  <text x="1580" y="722" class="formula">R₃</text>
+  <path d="M1810 610 L1810 800" class="wire"/>
+  <text x="1930" y="900" text-anchor="middle" class="small">P 端先形成电导加权平均，再由 1 + R_f/R 放大</text>
+
+  <!-- Formula cards -->
+  <rect x="90" y="1010" width="760" height="400" class="card"/>
+  <text x="470" y="1070" text-anchor="middle" class="panel-title">反相一般式</text>
+  <text x="470" y="1150" text-anchor="middle" class="formula">uₒ = −R_f (uᵢ₁/R₁ + uᵢ₂/R₂ + uᵢ₃/R₃)</text>
+  <text x="470" y="1220" text-anchor="middle" class="formula">R₊ = R₁ ∥ R₂ ∥ R₃ ∥ R_f</text>
+  <text x="470" y="1290" text-anchor="middle" class="small">各输入源电阻置零后，R₊ 用于偏置补偿</text>
+  <text x="470" y="1350" text-anchor="middle" class="small red">输出摆幅与电流越界时不能继续套公式</text>
+
+  <rect x="920" y="1010" width="760" height="400" class="card"/>
+  <text x="1300" y="1070" text-anchor="middle" class="panel-title">同相一般式</text>
+  <text x="1300" y="1150" text-anchor="middle" class="formula">uP = Σ(uᵢk/Rk) / (Σ1/Rk + 1/R₄)</text>
+  <text x="1300" y="1220" text-anchor="middle" class="formula">uₒ = (1 + R_f/R)uP</text>
+  <text x="1300" y="1290" text-anchor="middle" class="small">匹配：R₁∥R₂∥R₃∥R₄ = R∥R_f</text>
+  <text x="1300" y="1350" text-anchor="middle" class="small red">匹配是简化权系数的特例，不是一般式成立的必要条件</text>
+
+  <rect x="1750" y="1010" width="760" height="400" class="card"/>
+  <text x="2130" y="1070" text-anchor="middle" class="panel-title">算术和特例</text>
+  <text x="2130" y="1150" text-anchor="middle" class="formula">R₁=R₂=R₃=R₄，R_f=3R</text>
+  <text x="2130" y="1220" text-anchor="middle" class="formula">uₒ = uᵢ₁ + uᵢ₂ + uᵢ₃</text>
+  <text x="2130" y="1290" text-anchor="middle" class="small">一般情况得到的是加权和，不要直接叫算术和</text>
+  <text x="2130" y="1350" text-anchor="middle" class="small red">正向求和必须先核对 R₄ 是否能取正值</text>
+</svg>
