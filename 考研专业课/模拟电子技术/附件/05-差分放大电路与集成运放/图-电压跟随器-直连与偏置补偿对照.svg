@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1300" viewBox="0 0 2400 1300">
+  <defs>
+    <style>
+      .title { font: 700 54px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .panel-title { font: 700 38px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .label { font: 32px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .small { font: 27px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .formula { font: 31px "Times New Roman", "STIX Two Text", serif; fill: #111827; }
+      .accent { fill: #b91c1c; }
+      .blue { fill: #1d4ed8; }
+      .purple { fill: #7e22ce; }
+      .wire { fill: none; stroke: #111827; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+      .feedback { fill: none; stroke: #7e22ce; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+      .bias { fill: none; stroke: #1d4ed8; stroke-width: 8; stroke-linecap: round; }
+      .node { fill: #111827; }
+      .panel { fill: #fffdf7; stroke: #d6c9a8; stroke-width: 4; rx: 28; }
+      .card { fill: #fffaf0; stroke: #ead8ae; stroke-width: 3; rx: 24; }
+    </style>
+    <marker id="arrowBlue" markerWidth="16" markerHeight="16" refX="12" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1d4ed8"/>
+    </marker>
+  </defs>
+
+  <rect width="2400" height="1300" fill="#f8efd6"/>
+  <text x="1200" y="82" text-anchor="middle" class="title">电压跟随器：标准直连与偏置电流补偿变体</text>
+  <text x="1200" y="126" text-anchor="middle" class="small">两种画法的理想闭环增益都约为 1；串联电阻只影响实际误差与噪声，不设定理想增益</text>
+
+  <rect x="70" y="165" width="1080" height="690" class="panel"/>
+  <text x="610" y="225" text-anchor="middle" class="panel-title">A. 标准直连式</text>
+
+  <!-- Panel A op-amp -->
+  <path d="M400 315 L400 665 L810 490 Z" fill="#ffffff" stroke="#111827" stroke-width="10"/>
+  <text x="430" y="440" class="label">−</text>
+  <text x="430" y="605" class="label">+</text>
+  <text x="585" y="505" text-anchor="middle" class="label">A</text>
+
+  <!-- Panel A input/output -->
+  <path d="M145 580 L400 580" class="wire"/>
+  <circle cx="400" cy="580" r="10" class="node"/>
+  <text x="105" y="590" class="formula">uᵢ</text>
+  <text x="340" y="625" class="formula">P</text>
+  <path d="M810 490 L1040 490" class="wire"/>
+  <circle cx="905" cy="490" r="10" class="node"/>
+  <text x="1050" y="500" class="formula">uₒ</text>
+
+  <!-- Panel A direct feedback -->
+  <path d="M905 490 L905 275 L320 275 L320 400 L400 400" class="feedback"/>
+  <circle cx="400" cy="400" r="10" class="node"/>
+  <text x="340" y="382" class="formula">N</text>
+  <text x="612" y="260" text-anchor="middle" class="small purple">输出直接反馈到 N 端</text>
+  <text x="610" y="735" text-anchor="middle" class="formula">uP = uᵢ，uN = uₒ，uP ≈ uN ⇒ uₒ ≈ uᵢ</text>
+  <text x="610" y="790" text-anchor="middle" class="small">负反馈线性区成立时，闭环增益接近 1</text>
+
+  <rect x="1250" y="165" width="1080" height="690" class="panel"/>
+  <text x="1790" y="225" text-anchor="middle" class="panel-title">B. 串联电阻补偿变体</text>
+
+  <!-- Panel B op-amp -->
+  <path d="M1580 315 L1580 665 L1990 490 Z" fill="#ffffff" stroke="#111827" stroke-width="10"/>
+  <text x="1610" y="440" class="label">−</text>
+  <text x="1610" y="605" class="label">+</text>
+  <text x="1765" y="505" text-anchor="middle" class="label">A</text>
+
+  <!-- Panel B input resistor Rs -->
+  <text x="1265" y="590" class="formula">uᵢ</text>
+  <path d="M1320 580 L1360 580" class="wire"/>
+  <path d="M1360 580 l18 -18 l36 36 l36 -36 l36 36 l36 -36 l18 18" class="wire"/>
+  <path d="M1500 580 L1580 580" class="wire"/>
+  <circle cx="1580" cy="580" r="10" class="node"/>
+  <text x="1430" y="635" text-anchor="middle" class="formula">Rₛ</text>
+  <text x="1520" y="625" class="formula">P</text>
+
+  <!-- Panel B output -->
+  <path d="M1990 490 L2250 490" class="wire"/>
+  <circle cx="2100" cy="490" r="10" class="node"/>
+  <text x="2260" y="500" class="formula">uₒ</text>
+
+  <!-- Panel B feedback with Rf -->
+  <path d="M2100 490 L2100 275 L2025 275" class="feedback"/>
+  <path d="M2025 275 l-18 -18 l-36 36 l-36 -36 l-36 36 l-36 -36 l-18 18" class="feedback"/>
+  <path d="M1785 275 L1500 275 L1500 400 L1580 400" class="feedback"/>
+  <circle cx="1580" cy="400" r="10" class="node"/>
+  <text x="1905" y="248" text-anchor="middle" class="formula purple">R_f</text>
+  <text x="1520" y="382" class="formula">N</text>
+
+  <!-- Bias current arrows -->
+  <path d="M1490 545 L1560 545" class="bias" marker-end="url(#arrowBlue)"/>
+  <path d="M1490 365 L1560 365" class="bias" marker-end="url(#arrowBlue)"/>
+  <text x="1470" y="525" text-anchor="end" class="formula blue">I_B+</text>
+  <text x="1470" y="345" text-anchor="end" class="formula blue">I_B−</text>
+  <text x="1790" y="725" text-anchor="middle" class="formula">理想模型：iP = iN = 0，故两只电阻压降为 0</text>
+  <text x="1790" y="780" text-anchor="middle" class="small">实际偏置电流会产生压降；匹配 R_f ≈ Rₛ 可减小平均偏置误差</text>
+
+  <!-- Bottom cards -->
+  <rect x="90" y="900" width="680" height="300" class="card"/>
+  <text x="430" y="955" text-anchor="middle" class="panel-title">闭环增益</text>
+  <text x="430" y="1030" text-anchor="middle" class="formula">A_f = A / (1 + A)</text>
+  <text x="430" y="1085" text-anchor="middle" class="formula">A ≫ 1 时，A_f ≈ 1</text>
+  <text x="430" y="1145" text-anchor="middle" class="small accent">实际跟随不是数学上的严格相等</text>
+
+  <rect x="860" y="900" width="680" height="300" class="card"/>
+  <text x="1200" y="955" text-anchor="middle" class="panel-title">偏置电流误差</text>
+  <text x="1200" y="1030" text-anchor="middle" class="formula">uₒ − uᵢ ≈ I_B− R_f − I_B+ Rₛ</text>
+  <text x="1200" y="1085" text-anchor="middle" class="formula">I_B+ ≈ I_B− 时：R_f ≈ Rₛ</text>
+  <text x="1200" y="1145" text-anchor="middle" class="small accent">电阻匹配减误差，但会增加热噪声</text>
+
+  <rect x="1630" y="900" width="680" height="300" class="card"/>
+  <text x="1970" y="955" text-anchor="middle" class="panel-title">实际使用检查</text>
+  <text x="1680" y="1025" class="small">① 运放是否单位增益稳定</text>
+  <text x="1680" y="1075" class="small">② 输入共模范围、输出摆幅与电流</text>
+  <text x="1680" y="1125" class="small">③ 压摆率、带宽与容性负载稳定性</text>
+  <text x="1970" y="1170" text-anchor="middle" class="small accent">越界时不能继续套用虚短</text>
+</svg>
