@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950">
+  <rect width="1600" height="950" fill="#fffdf8"/>
+  <style>
+    text { font-family: "PingFang SC", "Noto Sans CJK SC", sans-serif; fill: #20242a; }
+    .title { font-size: 42px; font-weight: 700; }
+    .label { font-size: 30px; }
+    .small { font-size: 25px; }
+    .wire { stroke: #20242a; stroke-width: 6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .feedback { stroke: #6d48a8; stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .current { stroke: #d94b4b; stroke-width: 7; fill: none; marker-end: url(#arrow); }
+    .node { fill: #20242a; }
+    .box { fill: #ffffff; stroke: #c9ced6; stroke-width: 3; rx: 24; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d94b4b"/>
+    </marker>
+  </defs>
+
+  <text x="70" y="70" class="title">T 形反馈反相运算：两节点、三支路、一条 KCL 主链</text>
+  <rect x="55" y="110" width="1080" height="775" class="box"/>
+  <text x="95" y="165" class="label">标准拓扑</text>
+
+  <!-- op amp -->
+  <polygon points="575,415 575,725 900,570" fill="#f7f9fc" stroke="#20242a" stroke-width="7"/>
+  <text x="600" y="500" class="label">−</text>
+  <text x="600" y="665" class="label">+</text>
+  <text x="750" y="585" class="label">A</text>
+
+  <!-- input R1 -->
+  <line x1="95" y1="475" x2="220" y2="475" class="wire"/>
+  <rect x="220" y="445" width="175" height="60" fill="#fff" stroke="#20242a" stroke-width="6"/>
+  <line x1="395" y1="475" x2="575" y2="475" class="wire"/>
+  <circle cx="505" cy="475" r="9" class="node"/>
+  <text x="95" y="445" class="label">u<tspan baseline-shift="sub" font-size="21">i</tspan></text>
+  <text x="280" y="430" class="label">R<tspan baseline-shift="sub" font-size="21">1</tspan></text>
+  <text x="520" y="452" class="small">N：u<tspan baseline-shift="sub" font-size="18">N</tspan>≈0</text>
+
+  <!-- output -->
+  <line x1="900" y1="570" x2="1050" y2="570" class="wire"/>
+  <circle cx="1050" cy="570" r="9" class="node"/>
+  <text x="985" y="620" class="label">u<tspan baseline-shift="sub" font-size="21">o</tspan></text>
+
+  <!-- T network: N-R2-M-R4-output -->
+  <path d="M505 475 L505 250 L590 250" class="feedback"/>
+  <rect x="590" y="220" width="175" height="60" fill="#fff" stroke="#6d48a8" stroke-width="6"/>
+  <path d="M765 250 L845 250" class="feedback"/>
+  <circle cx="845" cy="250" r="10" class="node"/>
+  <rect x="900" y="220" width="175" height="60" fill="#fff" stroke="#6d48a8" stroke-width="6"/>
+  <path d="M845 250 L900 250 M1075 250 L1075 570 L1050 570" class="feedback"/>
+  <text x="645" y="205" class="label" fill="#6d48a8">R<tspan baseline-shift="sub" font-size="21">2</tspan></text>
+  <text x="955" y="205" class="label" fill="#6d48a8">R<tspan baseline-shift="sub" font-size="21">4</tspan></text>
+  <text x="810" y="205" class="small">M：u<tspan baseline-shift="sub" font-size="18">m</tspan></text>
+
+  <!-- R3 to ground -->
+  <line x1="845" y1="250" x2="845" y2="305" class="feedback"/>
+  <rect x="815" y="305" width="60" height="150" fill="#fff" stroke="#6d48a8" stroke-width="6"/>
+  <line x1="845" y1="455" x2="845" y2="500" class="feedback"/>
+  <line x1="805" y1="500" x2="885" y2="500" class="wire"/>
+  <line x1="817" y1="520" x2="873" y2="520" class="wire"/>
+  <line x1="830" y1="540" x2="860" y2="540" class="wire"/>
+  <text x="885" y="390" class="label" fill="#6d48a8">R<tspan baseline-shift="sub" font-size="21">3</tspan></text>
+
+  <!-- plus input grounded -->
+  <line x1="575" y1="660" x2="480" y2="660" class="wire"/>
+  <line x1="480" y1="660" x2="480" y2="755" class="wire"/>
+  <line x1="440" y1="755" x2="520" y2="755" class="wire"/>
+  <line x1="452" y1="775" x2="508" y2="775" class="wire"/>
+  <line x1="465" y1="795" x2="495" y2="795" class="wire"/>
+
+  <!-- current arrows -->
+  <path d="M115 410 L205 410" class="current"/>
+  <text x="145" y="385" class="small" fill="#d94b4b">I</text>
+  <path d="M625 320 L720 320" class="current"/>
+  <text x="665" y="355" class="small" fill="#d94b4b">I</text>
+  <path d="M780 445 L780 355" class="current"/>
+  <text x="705" y="430" class="small" fill="#d94b4b">I<tspan baseline-shift="sub" font-size="18">3</tspan></text>
+  <path d="M910 320 L1010 320" class="current"/>
+  <text x="945" y="355" class="small" fill="#d94b4b">I+I<tspan baseline-shift="sub" font-size="18">3</tspan></text>
+
+  <!-- formula card -->
+  <rect x="1170" y="110" width="375" height="775" class="box"/>
+  <text x="1210" y="175" class="label">节点链</text>
+  <text x="1210" y="245" class="small">1. u<tspan baseline-shift="sub" font-size="18">N</tspan>≈0</text>
+  <text x="1210" y="310" class="small">2. I=u<tspan baseline-shift="sub" font-size="18">i</tspan>/R<tspan baseline-shift="sub" font-size="18">1</tspan></text>
+  <text x="1210" y="375" class="small">3. u<tspan baseline-shift="sub" font-size="18">m</tspan>=−(R<tspan baseline-shift="sub" font-size="18">2</tspan>/R<tspan baseline-shift="sub" font-size="18">1</tspan>)u<tspan baseline-shift="sub" font-size="18">i</tspan></text>
+  <text x="1210" y="440" class="small">4. M 点列 KCL</text>
+  <line x1="1210" y1="480" x2="1505" y2="480" stroke="#c9ced6" stroke-width="3"/>
+  <text x="1210" y="545" class="small">R<tspan baseline-shift="sub" font-size="18">f,eq</tspan>=R<tspan baseline-shift="sub" font-size="18">2</tspan>+R<tspan baseline-shift="sub" font-size="18">4</tspan></text>
+  <text x="1245" y="590" class="small">+ R<tspan baseline-shift="sub" font-size="18">2</tspan>R<tspan baseline-shift="sub" font-size="18">4</tspan>/R<tspan baseline-shift="sub" font-size="18">3</tspan></text>
+  <text x="1210" y="660" class="small">A<tspan baseline-shift="sub" font-size="18">u</tspan>=−R<tspan baseline-shift="sub" font-size="18">f,eq</tspan>/R<tspan baseline-shift="sub" font-size="18">1</tspan></text>
+  <text x="1210" y="725" class="small">R<tspan baseline-shift="sub" font-size="18">i</tspan>=R<tspan baseline-shift="sub" font-size="18">1</tspan></text>
+  <text x="1210" y="800" class="small" fill="#d94b4b">先标 N、M，再列式</text>
+</svg>

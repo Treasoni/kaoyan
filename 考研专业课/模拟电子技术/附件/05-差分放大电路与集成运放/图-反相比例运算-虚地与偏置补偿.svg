@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#fffdf8"/>
+  <style>
+    text { font-family: "PingFang SC", "Noto Sans CJK SC", sans-serif; fill: #20242a; }
+    .title { font-size: 42px; font-weight: 700; }
+    .label { font-size: 30px; }
+    .small { font-size: 25px; }
+    .wire { stroke: #20242a; stroke-width: 6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .feedback { stroke: #6d48a8; stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .current { stroke: #d94b4b; stroke-width: 7; fill: none; marker-end: url(#arrow); }
+    .node { fill: #20242a; }
+    .box { fill: #ffffff; stroke: #c9ced6; stroke-width: 3; rx: 24; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d94b4b"/>
+    </marker>
+  </defs>
+
+  <text x="70" y="70" class="title">标准反相比例运算：虚地、求和节点与偏置补偿</text>
+
+  <rect x="55" y="110" width="1030" height="710" class="box"/>
+  <text x="95" y="165" class="label">电路拓扑</text>
+
+  <!-- op amp -->
+  <polygon points="610,315 610,655 965,485" fill="#f7f9fc" stroke="#20242a" stroke-width="7"/>
+  <text x="635" y="405" class="label">−</text>
+  <text x="635" y="590" class="label">+</text>
+  <text x="805" y="500" class="label">A</text>
+
+  <!-- input branch -->
+  <line x1="100" y1="390" x2="245" y2="390" class="wire"/>
+  <rect x="245" y="360" width="190" height="60" fill="#fff" stroke="#20242a" stroke-width="6"/>
+  <line x1="435" y1="390" x2="610" y2="390" class="wire"/>
+  <circle cx="520" cy="390" r="9" class="node"/>
+  <text x="100" y="360" class="label">u<tspan baseline-shift="sub" font-size="21">i</tspan></text>
+  <text x="310" y="345" class="label">R<tspan baseline-shift="sub" font-size="21">1</tspan></text>
+  <text x="535" y="370" class="small">N：u<tspan baseline-shift="sub" font-size="18">N</tspan>≈0</text>
+
+  <!-- output -->
+  <line x1="965" y1="485" x2="1035" y2="485" class="wire"/>
+  <circle cx="1035" cy="485" r="9" class="node"/>
+  <text x="985" y="455" class="label">u<tspan baseline-shift="sub" font-size="21">o</tspan></text>
+
+  <!-- feedback loop -->
+  <path d="M1035 485 L1035 225 L855 225" class="feedback"/>
+  <rect x="665" y="195" width="190" height="60" fill="#fff" stroke="#6d48a8" stroke-width="6"/>
+  <path d="M665 225 L520 225 L520 390" class="feedback"/>
+  <text x="725" y="180" class="label" fill="#6d48a8">R<tspan baseline-shift="sub" font-size="21">f</tspan></text>
+  <text x="875" y="205" class="small" fill="#6d48a8">负反馈路径</text>
+
+  <!-- current arrows -->
+  <path d="M135 330 L220 330" class="current"/>
+  <text x="155" y="305" class="small" fill="#d94b4b">i<tspan baseline-shift="sub" font-size="18">i</tspan></text>
+  <path d="M565 225 L640 225" class="current"/>
+  <text x="575" y="195" class="small" fill="#d94b4b">i<tspan baseline-shift="sub" font-size="18">f</tspan></text>
+
+  <!-- plus input and compensation resistor -->
+  <line x1="610" y1="575" x2="510" y2="575" class="wire"/>
+  <rect x="480" y="575" width="60" height="135" fill="#fff" stroke="#20242a" stroke-width="6"/>
+  <line x1="510" y1="710" x2="510" y2="755" class="wire"/>
+  <line x1="470" y1="755" x2="550" y2="755" class="wire"/>
+  <line x1="482" y1="775" x2="538" y2="775" class="wire"/>
+  <line x1="495" y1="795" x2="525" y2="795" class="wire"/>
+  <text x="390" y="655" class="label">R<tspan baseline-shift="sub" font-size="21">+</tspan></text>
+  <text x="585" y="735" class="small">R<tspan baseline-shift="sub" font-size="18">+</tspan>=R<tspan baseline-shift="sub" font-size="18">1</tspan> ∥ R<tspan baseline-shift="sub" font-size="18">f</tspan>（偏置电流补偿）</text>
+
+  <!-- summary card -->
+  <rect x="1130" y="110" width="415" height="710" class="box"/>
+  <text x="1170" y="175" class="label">做题主链</text>
+  <text x="1170" y="245" class="small">① 有效负反馈 + 线性区</text>
+  <text x="1170" y="310" class="small">② 虚断：i<tspan baseline-shift="sub" font-size="18">N</tspan>≈0</text>
+  <text x="1170" y="375" class="small">③ 虚短：u<tspan baseline-shift="sub" font-size="18">N</tspan>≈u<tspan baseline-shift="sub" font-size="18">P</tspan>=0</text>
+  <text x="1170" y="440" class="small">④ N 点列 KCL</text>
+  <line x1="1170" y1="480" x2="1500" y2="480" stroke="#c9ced6" stroke-width="3"/>
+  <text x="1170" y="545" class="label">u<tspan baseline-shift="sub" font-size="21">o</tspan>/u<tspan baseline-shift="sub" font-size="21">i</tspan> = −R<tspan baseline-shift="sub" font-size="21">f</tspan>/R<tspan baseline-shift="sub" font-size="21">1</tspan></text>
+  <text x="1170" y="615" class="label">R<tspan baseline-shift="sub" font-size="21">i</tspan> = R<tspan baseline-shift="sub" font-size="21">1</tspan></text>
+  <text x="1170" y="690" class="small" fill="#d94b4b">虚地 ≠ 真接地</text>
+  <text x="1170" y="745" class="small" fill="#d94b4b">虚断 ≠ 支路无电流</text>
+</svg>
