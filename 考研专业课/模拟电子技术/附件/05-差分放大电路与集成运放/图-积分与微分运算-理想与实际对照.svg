@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="1750" viewBox="0 0 2600 1750">
+  <defs>
+    <style>
+      .title { font: 700 56px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .panel-title { font: 700 34px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .label { font: 28px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1f2937; }
+      .small { font: 23px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .formula { font: 27px "Times New Roman", "STIX Two Text", serif; fill: #111827; }
+      .wire { fill: none; stroke: #111827; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .feedback { fill: none; stroke: #7e22ce; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .panel { fill: #fffdf7; stroke: #d6c9a8; stroke-width: 4; rx: 26; }
+      .node { fill: #111827; }
+      .red { fill: #b91c1c; }
+      .purple { fill: #7e22ce; }
+    </style>
+  </defs>
+
+  <rect width="2600" height="1750" fill="#f8efd6"/>
+  <text x="1300" y="78" text-anchor="middle" class="title">积分与微分运算：理想结构、实际限带与波形关系</text>
+  <text x="1300" y="120" text-anchor="middle" class="small">电容在反馈支路实现积分，电容在输入支路实现微分；实际电路用电阻/电容限制低频或高频增益</text>
+
+  <!-- Ideal integrator -->
+  <rect x="55" y="165" width="1220" height="640" class="panel"/>
+  <text x="665" y="220" text-anchor="middle" class="panel-title">A. 理想积分器</text>
+  <path d="M455 330 L455 610 L760 470 Z" fill="#ffffff" stroke="#111827" stroke-width="8"/>
+  <text x="480" y="395" class="label">−</text><text x="480" y="560" class="label">+</text><text x="605" y="480" text-anchor="middle" class="label">A</text>
+  <path d="M130 420 L210 420" class="wire"/>
+  <path d="M210 420 l16 -16 l32 32 l32 -32 l32 32 l16 -16" class="wire"/>
+  <path d="M370 420 L455 420" class="wire"/>
+  <text x="75" y="430" class="formula">uᵢ</text><text x="280" y="385" class="formula">R</text>
+  <circle cx="455" cy="420" r="9" class="node"/><text x="418" y="390" class="formula">N</text>
+  <path d="M760 470 L1030 470" class="wire"/><text x="1050" y="480" class="formula">uₒ</text>
+  <path d="M930 470 L930 270 L830 270" class="feedback"/>
+  <path d="M830 270 l-16 -16 l-32 32 l-32 -32 l-32 32 l-16 -16" class="feedback"/>
+  <path d="M670 270 L360 270 L360 420 L455 420" class="feedback"/>
+  <text x="760" y="245" class="formula purple">C</text>
+  <path d="M455 610 L455 690" class="wire"/>
+  <path d="M455 690 l16 -16 l32 32 l32 -32 l16 16" class="wire"/>
+  <path d="M555 690 L555 735" class="wire"/>
+  <path d="M532 735 L578 735 M539 749 L571 749 M546 763 L564 763" class="wire"/>
+  <text x="595" y="715" class="formula">R</text>
+  <text x="835" y="365" class="formula">i = uᵢ/R</text>
+  <text x="835" y="420" class="formula">i = C·d(−uₒ)/dt</text>
+  <text x="835" y="490" class="formula red">uₒ = −(1/RC)∫uᵢdt + uₒ(t₀)</text>
+  <text x="835" y="555" class="small">需给初始输出；直流/失调会使输出漂移并饱和</text>
+
+  <!-- Practical integrator -->
+  <rect x="1325" y="165" width="1220" height="640" class="panel"/>
+  <text x="1935" y="220" text-anchor="middle" class="panel-title">B. 实际积分器（低频增益受限）</text>
+  <path d="M1715 330 L1715 610 L2020 470 Z" fill="#ffffff" stroke="#111827" stroke-width="8"/>
+  <text x="1740" y="395" class="label">−</text><text x="1740" y="560" class="label">+</text><text x="1865" y="480" text-anchor="middle" class="label">A</text>
+  <path d="M1390 420 L1470 420" class="wire"/>
+  <path d="M1470 420 l16 -16 l32 32 l32 -32 l32 32 l16 -16" class="wire"/>
+  <path d="M1630 420 L1715 420" class="wire"/>
+  <text x="1335" y="430" class="formula">uᵢ</text><text x="1540" y="385" class="formula">R</text>
+  <circle cx="1715" cy="420" r="9" class="node"/><text x="1678" y="390" class="formula">N</text>
+  <path d="M2020 470 L2290 470" class="wire"/><text x="2310" y="480" class="formula">uₒ</text>
+  <!-- feedback parallel Rf/C -->
+  <path d="M2180 470 L2180 270 L2070 270" class="feedback"/>
+  <path d="M2070 270 l-16 -16 l-32 32 l-32 -32 l-32 32 l-16 -16" class="feedback"/>
+  <path d="M1910 270 L1620 270 L1620 420 L1715 420" class="feedback"/>
+  <text x="2010" y="245" class="formula purple">C</text>
+  <path d="M2180 470 L2180 350 L2070 350" class="wire"/>
+  <path d="M2070 350 l-16 -16 l-32 32 l-32 -32 l-32 32 l-16 -16" class="wire"/>
+  <path d="M1910 350 L1660 350 L1660 420" class="wire"/>
+  <text x="2010" y="330" class="formula">R_f</text>
+  <path d="M1715 610 L1715 690" class="wire"/>
+  <path d="M1715 690 l16 -16 l32 32 l32 -32 l16 16" class="wire"/>
+  <path d="M1815 690 L1815 735" class="wire"/>
+  <path d="M1792 735 L1838 735 M1799 749 L1831 749 M1806 763 L1824 763" class="wire"/>
+  <text x="1855" y="715" class="formula">R</text>
+  <text x="2050" y="430" class="formula red">低频：增益约 −R_f/R</text>
+  <text x="2050" y="505" class="formula">中频：近似积分</text>
+  <text x="2050" y="570" class="small">并联 R_f 防止直流无限积分而饱和</text>
+
+  <!-- Ideal differentiator -->
+  <rect x="55" y="865" width="1220" height="640" class="panel"/>
+  <text x="665" y="920" text-anchor="middle" class="panel-title">C. 理想微分器</text>
+  <path d="M455 1030 L455 1310 L760 1170 Z" fill="#ffffff" stroke="#111827" stroke-width="8"/>
+  <text x="480" y="1095" class="label">−</text><text x="480" y="1260" class="label">+</text><text x="605" y="1180" text-anchor="middle" class="label">A</text>
+  <path d="M130 1120 L210 1120" class="wire"/>
+  <path d="M210 1120 L210 1100 M210 1140 L210 1120" class="wire"/>
+  <path d="M224 1100 L224 1140 M240 1100 L240 1140" class="wire"/>
+  <path d="M240 1120 L455 1120" class="wire"/>
+  <text x="75" y="1130" class="formula">uᵢ</text><text x="270" y="1085" class="formula">C</text>
+  <circle cx="455" cy="1120" r="9" class="node"/><text x="418" y="1090" class="formula">N</text>
+  <path d="M760 1170 L1030 1170" class="wire"/><text x="1050" y="1180" class="formula">uₒ</text>
+  <path d="M930 1170 L930 970 L830 970" class="feedback"/>
+  <path d="M830 970 l-16 -16 l-32 32 l-32 -32 l-32 32 l-16 -16" class="feedback"/>
+  <path d="M670 970 L360 970 L360 1120 L455 1120" class="feedback"/>
+  <text x="760" y="945" class="formula purple">R</text>
+  <path d="M455 1310 L455 1390" class="wire"/>
+  <path d="M455 1390 l16 -16 l32 32 l32 -32 l16 16" class="wire"/>
+  <path d="M555 1390 L555 1435" class="wire"/>
+  <path d="M532 1435 L578 1435 M539 1449 L571 1449 M546 1463 L564 1463" class="wire"/>
+  <text x="595" y="1415" class="formula">R</text>
+  <text x="835" y="1065" class="formula">i = C·duᵢ/dt</text>
+  <text x="835" y="1125" class="formula">uₒ = −iR</text>
+  <text x="835" y="1195" class="formula red">uₒ = −RC·duᵢ/dt</text>
+  <text x="835" y="1260" class="small">高频增益随频率上升，噪声与尖峰会被放大</text>
+
+  <!-- Practical differentiator -->
+  <rect x="1325" y="865" width="1220" height="640" class="panel"/>
+  <text x="1935" y="920" text-anchor="middle" class="panel-title">D. 实际微分器（高频增益受限）</text>
+  <path d="M1715 1030 L1715 1310 L2020 1170 Z" fill="#ffffff" stroke="#111827" stroke-width="8"/>
+  <text x="1740" y="1095" class="label">−</text><text x="1740" y="1260" class="label">+</text><text x="1865" y="1180" text-anchor="middle" class="label">A</text>
+  <!-- input C then Ri -->
+  <path d="M1390 1120 L1450 1120" class="wire"/>
+  <path d="M1450 1100 L1450 1140 M1464 1100 L1464 1140" class="wire"/>
+  <path d="M1464 1120 L1490 1120" class="wire"/>
+  <path d="M1490 1120 l16 -16 l32 32 l32 -32 l32 32 l16 -16" class="wire"/>
+  <path d="M1650 1120 L1715 1120" class="wire"/>
+  <text x="1335" y="1130" class="formula">uᵢ</text><text x="1415" y="1085" class="formula">C</text><text x="1560" y="1085" class="formula">Rᵢ</text>
+  <circle cx="1715" cy="1120" r="9" class="node"/><text x="1678" y="1090" class="formula">N</text>
+  <path d="M2020 1170 L2290 1170" class="wire"/><text x="2310" y="1180" class="formula">uₒ</text>
+  <!-- feedback Rf parallel Cf -->
+  <path d="M2180 1170 L2180 970 L2070 970" class="feedback"/>
+  <path d="M2070 970 l-16 -16 l-32 32 l-32 -32 l-32 32 l-16 -16" class="feedback"/>
+  <path d="M1910 970 L1620 970 L1620 1120 L1715 1120" class="feedback"/>
+  <text x="2010" y="945" class="formula purple">R_f</text>
+  <path d="M2180 1170 L2180 1050 L2070 1050" class="wire"/>
+  <path d="M2070 1050 L2040 1020 M2070 1080 L2040 1050" class="wire"/>
+  <path d="M2018 1020 L2018 1080 M2002 1020 L2002 1080" class="wire"/>
+  <path d="M1980 1050 L1660 1050 L1660 1120" class="wire"/>
+  <text x="2010" y="1110" class="formula">C_f</text>
+  <path d="M1715 1310 L1715 1390" class="wire"/>
+  <path d="M1715 1390 l16 -16 l32 32 l32 -32 l16 16" class="wire"/>
+  <path d="M1815 1390 L1815 1435" class="wire"/>
+  <path d="M1792 1435 L1838 1435 M1799 1449 L1831 1449 M1806 1463 L1824 1463" class="wire"/>
+  <text x="1855" y="1415" class="formula">R</text>
+  <text x="2050" y="1095" class="formula red">中频：近似微分</text>
+  <text x="2050" y="1160" class="formula">高频：增益由 C_f 限制</text>
+  <text x="2050" y="1225" class="small">Rᵢ、C_f 用于限带和抑制噪声/尖峰</text>
+
+  <text x="1300" y="1600" text-anchor="middle" class="formula">波形速记：方波积分→三角波；三角波微分→方波；阶跃微分→跳变处尖脉冲；正弦积分相位滞后 90°，微分相位超前 90°</text>
+  <text x="1300" y="1660" text-anchor="middle" class="small">做题先判频段与线性区，再使用理想公式；实际电路还要检查漂移、噪声、输出摆幅和压摆率</text>
+</svg>
