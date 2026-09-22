@@ -21,18 +21,7 @@
   "orphanAttachmentScanMode": "None",
   "orphanAttachmentScanPaths": [],
   "otherPluginIdsForAttachmentRename": [],
-  "proposedRenameDeleteSettings": {
-    "emptyFolderBehavior": "DeleteWithEmptyParents",
-    "excludePaths": [],
-    "includePaths": [],
-    "shouldHandleDeletions": false,
-    "shouldHandleRenames": true,
-    "shouldRenameAttachmentFiles": true,
-    "shouldRenameAttachmentFolder": true,
-    "treatAsAttachmentExtensions": [
-      ".excalidraw.md"
-    ]
-  },
+  "proposedRenameDeleteSettings": null,
   "renameAttachmentsCreatedByOtherPluginsMode": "None",
   "renamedAttachmentFileName": "",
   "shouldPreserveImageMetadata": false,
