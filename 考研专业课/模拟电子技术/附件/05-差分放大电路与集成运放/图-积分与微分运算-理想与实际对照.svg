@@ -132,6 +132,6 @@
   <text x="2050" y="1160" class="formula">高频：增益由 C_f 限制</text>
   <text x="2050" y="1225" class="small">Rᵢ、C_f 用于限带和抑制噪声/尖峰</text>
 
-  <text x="1300" y="1600" text-anchor="middle" class="formula">波形速记：方波积分→三角波；三角波微分→方波；阶跃微分→跳变处尖脉冲；正弦积分相位滞后 90°，微分相位超前 90°</text>
+  <text x="1300" y="1600" text-anchor="middle" class="formula">波形速记：方波积分→三角波；三角波微分→方波；阶跃微分→跳变处尖脉冲；正弦积分超前 90°，微分滞后 90°</text>
   <text x="1300" y="1660" text-anchor="middle" class="small">做题先判频段与线性区，再使用理想公式；实际电路还要检查漂移、噪声、输出摆幅和压摆率</text>
 </svg>
