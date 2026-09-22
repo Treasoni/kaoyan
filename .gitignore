@@ -45,6 +45,9 @@ $RECYCLE.BIN/
 # 可能包含本地路径的配置
 .obsidian/app.json
 
+# obsidian-git 插件运行时状态 - 插件会持续回写(自动提交/推送间隔等)，纳入版本控制会产生噪声提交
+.obsidian/plugins/obsidian-git/data.json
+
 # -----------------------------------
 # 3. 临时文件与备份 (Temporary Files)
 # -----------------------------------
