@@ -65,7 +65,7 @@
   <polygon points="394,532 413,520 406,511" fill="#111111"/>
   <circle cx="565" cy="355" r="5" fill="#111111"/>
   <text x="492" y="375" class="label">Q2</text>
-  <text x="580" y="345" class="red">VCQ2</text>
+  <text x="585" y="325" class="red">VCQ2</text>
 
   <!-- DC-zero input branches -->
   <line x1="225" y1="435" x2="180" y2="435" class="wire"/>
@@ -116,13 +116,13 @@
   <text x="295" y="490" class="red">I2</text>
   <line x1="205" y1="350" x2="205" y2="385" class="wire" marker-end="url(#redArrow)"/>
   <text x="140" y="350" class="red">ICQ</text>
-  <line x1="595" y1="350" x2="595" y2="385" class="wire" marker-end="url(#redArrow)"/>
-  <text x="605" y="350" class="red">ICQ</text>
+  <line x1="625" y1="350" x2="625" y2="385" class="wire" marker-end="url(#redArrow)"/>
+  <text x="635" y="350" class="red">ICQ</text>
 
-  <text x="92" y="790" class="red">左节点 KCL：I1 = ICQ + I2</text>
-  <text x="92" y="830" class="small">I1 流过左侧 RC，I2 流过 RL；负载与 Q1 的集电极节点相连。</text>
-  <text x="92" y="875" class="small">右侧没有 RL，ICQ 直接由右侧 RC 支路提供。</text>
-  <text x="92" y="920" class="blue">关键：两条 VCC 支路不能用导线短接。</text>
+  <text x="92" y="790" class="red">左侧节点：I1 = ICQ + I2</text>
+  <text x="92" y="830" class="small">I1 经过左 RC；I2 经 RL 流向地。</text>
+  <text x="92" y="870" class="small">右侧无 RL：ICQ 仅由右 RC 支路提供。</text>
+  <text x="92" y="915" class="blue">两条 VCC 支路独立，不相连。</text>
 
   <!-- calculation panel -->
   <rect x="850" y="120" width="690" height="900" rx="12" fill="#f7fbff" stroke="#7aa7d9" stroke-width="3"/>
