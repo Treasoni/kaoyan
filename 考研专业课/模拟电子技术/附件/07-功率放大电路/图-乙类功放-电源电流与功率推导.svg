@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040">
+  <rect width="1600" height="1040" fill="#fffdf7"/>
+  <style>
+    .title{font:700 34px sans-serif;fill:#111}
+    .head{font:700 25px sans-serif;fill:#111}
+    .txt{font:22px sans-serif;fill:#222}
+    .small{font:19px sans-serif;fill:#333}
+    .axis{stroke:#222;stroke-width:2}
+    .grid{stroke:#d7d7d7;stroke-width:1}
+    .blue{stroke:#2367a8;stroke-width:4;fill:none}
+    .red{stroke:#c83232;stroke-width:4;fill:none}
+    .green{stroke:#267a4b;stroke-width:4;fill:none}
+    .dash{stroke:#777;stroke-width:2;stroke-dasharray:8 7}
+  </style>
+  <text x="60" y="60" class="title">乙类互补对称功放：半周供电与功率关系</text>
+  <text x="60" y="105" class="small">双电源、理想乙类近似；输出端负载为 R<tspan baseline-shift="sub">L</tspan>，θ=ωt</text>
+
+  <rect x="50" y="135" width="1500" height="250" rx="12" fill="#f7fbff" stroke="#abc5df" stroke-width="2"/>
+  <text x="75" y="175" class="head">① 输出电压与负载电流（正弦稳态）</text>
+  <line x1="100" y1="275" x2="1050" y2="275" class="axis"/>
+  <line x1="145" y1="205" x2="145" y2="345" class="axis"/>
+  <path d="M145 275 C205 155 265 155 325 275 S445 395 505 275 S625 155 685 275 S805 395 865 275 S985 155 1045 275" class="blue"/>
+  <line x1="145" y1="205" x2="1045" y2="205" class="dash"/>
+  <line x1="145" y1="345" x2="1045" y2="345" class="dash"/>
+  <text x="1070" y="215" class="txt">+V<tspan baseline-shift="sub">om</tspan></text>
+  <text x="1070" y="285" class="txt">0</text>
+  <text x="1070" y="355" class="txt">−V<tspan baseline-shift="sub">om</tspan></text>
+  <text x="935" y="305" class="txt">u<tspan baseline-shift="sub">o</tspan>=V<tspan baseline-shift="sub">om</tspan>sinθ</text>
+  <text x="110" y="370" class="small">i<tspan baseline-shift="sub">L</tspan>=u<tspan baseline-shift="sub">o</tspan>/R<tspan baseline-shift="sub">L</tspan></text>
+
+  <rect x="50" y="410" width="1500" height="250" rx="12" fill="#fff9f9" stroke="#dfb1b1" stroke-width="2"/>
+  <text x="75" y="450" class="head">② 两条电源支路只在各自半周导通</text>
+  <line x1="100" y1="570" x2="1050" y2="570" class="axis"/>
+  <line x1="145" y1="500" x2="145" y2="625" class="axis"/>
+  <path d="M145 570 C185 475 255 475 295 570 M445 570 C485 475 555 475 595 570 M745 570 C785 475 855 475 895 570" class="red"/>
+  <path d="M295 570 C335 475 405 475 445 570 M595 570 C635 475 705 475 745 570 M895 570 C935 475 1005 475 1045 570" class="green"/>
+  <line x1="145" y1="500" x2="1045" y2="500" class="dash"/>
+  <text x="1070" y="510" class="txt">i<tspan baseline-shift="sub">+</tspan>=max(I<tspan baseline-shift="sub">om</tspan>sinθ,0)</text>
+  <text x="1070" y="605" class="txt">i<tspan baseline-shift="sub">−</tspan>=max(−I<tspan baseline-shift="sub">om</tspan>sinθ,0)</text>
+  <text x="115" y="645" class="small">上管 T₁：0~π；下管 T₂：π~2π</text>
+
+  <rect x="50" y="685" width="1500" height="300" rx="12" fill="#f9fff9" stroke="#afd4ba" stroke-width="2"/>
+  <text x="75" y="725" class="head">③ 平均供电功率与效率（关键结论）</text>
+  <line x1="100" y1="850" x2="1050" y2="850" class="axis"/>
+  <line x1="145" y1="775" x2="145" y2="925" class="axis"/>
+  <path d="M145 850 C185 755 255 755 295 850 M295 850 C335 755 405 755 445 850 M445 850 C485 755 555 755 595 850 M595 850 C635 755 705 755 745 850 M745 850 C785 755 855 755 895 850 M895 850 C935 755 1005 755 1045 850" class="green"/>
+  <line x1="145" y1="805" x2="1045" y2="805" class="dash"/>
+  <text x="1070" y="815" class="txt">p<tspan baseline-shift="sub">V</tspan>(θ)=V<tspan baseline-shift="sub">CC</tspan>I<tspan baseline-shift="sub">om</tspan>|sinθ|</text>
+  <text x="1070" y="865" class="txt">P<tspan baseline-shift="sub">o</tspan>=V<tspan baseline-shift="sub">om</tspan>²/(2R<tspan baseline-shift="sub">L</tspan>)</text>
+  <text x="1070" y="910" class="txt">P<tspan baseline-shift="sub">V</tspan>=2V<tspan baseline-shift="sub">CC</tspan>I<tspan baseline-shift="sub">om</tspan>/π</text>
+  <text x="1070" y="955" class="txt">η=(π/4)(V<tspan baseline-shift="sub">om</tspan>/V<tspan baseline-shift="sub">CC</tspan>)≤π/4</text>
+  <text x="115" y="950" class="small">理想最大效率：η<tspan baseline-shift="sub">max</tspan>=π/4≈78.5%</text>
+</svg>
