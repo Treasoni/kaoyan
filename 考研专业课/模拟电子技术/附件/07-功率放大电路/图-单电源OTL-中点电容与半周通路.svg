@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="930" viewBox="0 0 1600 930">
+  <defs>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#c83b38"/>
+    </marker>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#286aaf"/>
+    </marker>
+    <style>
+      .title {font:700 34px sans-serif;fill:#17212c}
+      .subtitle {font:20px sans-serif;fill:#45515d}
+      .head {font:700 25px sans-serif;fill:#17212c}
+      .txt {font:22px sans-serif;fill:#26323e}
+      .small {font:19px sans-serif;fill:#45515d}
+      .wire {stroke:#17212c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+      .thin {stroke:#63717c;stroke-width:1.5;fill:none}
+      .dash {stroke:#8d99a3;stroke-width:1.5;stroke-dasharray:8 7}
+      .red {stroke:#c83b38;stroke-width:4;fill:none;stroke-linecap:round}
+      .blue {stroke:#286aaf;stroke-width:4;fill:none;stroke-linecap:round}
+    </style>
+  </defs>
+  <rect width="1600" height="930" fill="#fffdf8"/>
+  <text x="48" y="52" class="title">单电源 OTL 互补输出级：中点、输出电容与半周通路</text>
+  <text x="48" y="88" class="subtitle">教学分析图：驱动与偏置合并为方框；功率推导取乙类近似、静态电流约为 0</text>
+
+  <rect x="45" y="112" width="755" height="760" rx="14" fill="#f8fbff" stroke="#b8c9d9" stroke-width="2"/>
+  <text x="72" y="153" class="head">① 电路节点与直流静态</text>
+  <rect x="105" y="315" width="235" height="140" rx="10" fill="#eef3fa" stroke="#506b87" stroke-width="2"/>
+  <text x="137" y="366" class="txt">驱动 / 偏置</text>
+  <text x="128" y="400" class="small">保持 K 点在中点</text>
+  <line x1="55" y1="385" x2="105" y2="385" class="wire"/>
+  <text x="48" y="375" class="txt">uᵢ</text>
+  <path d="M340 350 H370 V235 H430 M340 420 H370 V545 H430" class="wire"/>
+  <text x="385" y="220" class="small">B₁</text>
+  <text x="385" y="568" class="small">B₂</text>
+
+  <line x1="455" y1="180" x2="455" y2="270" class="wire"/>
+  <line x1="455" y1="195" x2="535" y2="155" class="wire"/>
+  <line x1="455" y1="255" x2="535" y2="300" class="wire"/>
+  <line x1="430" y1="235" x2="455" y2="235" class="wire"/>
+  <path d="M497 279 L526 296" class="red" marker-end="url(#redArrow)"/>
+  <line x1="535" y1="155" x2="535" y2="125" class="wire"/>
+  <line x1="480" y1="125" x2="625" y2="125" class="wire"/>
+  <text x="630" y="133" class="txt">+V_CC</text>
+  <line x1="535" y1="300" x2="535" y2="390" class="wire"/>
+  <text x="545" y="231" class="txt">T₁ (NPN)</text>
+
+  <line x1="455" y1="505" x2="455" y2="585" class="wire"/>
+  <line x1="455" y1="520" x2="535" y2="470" class="wire"/>
+  <line x1="455" y1="570" x2="535" y2="620" class="wire"/>
+  <line x1="430" y1="545" x2="455" y2="545" class="wire"/>
+  <path d="M501 491 L470 512" class="blue" marker-end="url(#blueArrow)"/>
+  <line x1="535" y1="470" x2="535" y2="390" class="wire"/>
+  <line x1="535" y1="620" x2="535" y2="735" class="wire"/>
+  <text x="545" y="555" class="txt">T₂ (PNP)</text>
+
+  <circle cx="535" cy="390" r="6" fill="#17212c"/>
+  <text x="494" y="369" class="txt">K</text>
+  <text x="470" y="427" class="small">U_KQ≈V_CC/2</text>
+  <line x1="535" y1="390" x2="627" y2="390" class="wire"/>
+  <line x1="627" y1="360" x2="627" y2="420" class="wire"/>
+  <line x1="651" y1="360" x2="651" y2="420" class="wire"/>
+  <line x1="651" y1="390" x2="725" y2="390" class="wire"/>
+  <text x="622" y="346" class="txt">C</text>
+  <text x="600" y="445" class="small">+　−</text>
+  <text x="566" y="478" class="small">U_CQ≈V_CC/2</text>
+  <circle cx="725" cy="390" r="6" fill="#17212c"/>
+  <text x="730" y="380" class="txt">uₒ</text>
+  <line x1="725" y1="390" x2="725" y2="505" class="wire"/>
+  <rect x="711" y="505" width="28" height="95" fill="#fffdf8" stroke="#17212c" stroke-width="3"/>
+  <line x1="725" y1="600" x2="725" y2="735" class="wire"/>
+  <text x="742" y="565" class="txt">R_L</text>
+  <line x1="535" y1="735" x2="725" y2="735" class="wire"/>
+  <line x1="630" y1="735" x2="630" y2="758" class="wire"/>
+  <line x1="607" y1="758" x2="653" y2="758" class="wire"/>
+  <line x1="614" y1="767" x2="646" y2="767" class="wire"/>
+  <line x1="622" y1="776" x2="638" y2="776" class="wire"/>
+  <text x="492" y="814" class="small">静态：电容隔直，负载侧 uₒQ=0</text>
+
+  <rect x="825" y="112" width="730" height="330" rx="14" fill="#fff9f7" stroke="#e1bbb7" stroke-width="2"/>
+  <text x="850" y="153" class="head">② 两半周的电流方向</text>
+  <path d="M858 208 H1518" class="red" marker-end="url(#redArrow)"/>
+  <text x="859" y="192" class="txt" fill="#c83b38">正半周：+V_CC → T₁ → K → C → R_L → 地</text>
+  <text x="860" y="245" class="small">上管导通，单电源直接供电；电容同时积累电荷。</text>
+  <path d="M858 323 H1518" class="blue" marker-end="url(#blueArrow)"/>
+  <text x="859" y="302" class="txt" fill="#286aaf">负半周：地 → R_L → C → K → T₂ → 地</text>
+  <text x="860" y="360" class="small">下管导通；此前储于电容中的能量送给负载。</text>
+  <text x="860" y="407" class="small">两条通路按箭头顺序读；供电功率按整周期平均。</text>
+
+  <rect x="825" y="460" width="730" height="412" rx="14" fill="#f7fcf9" stroke="#b7d3c1" stroke-width="2"/>
+  <text x="850" y="501" class="head">③ 两个输出电压，不是同一个零点</text>
+  <line x1="888" y1="611" x2="1460" y2="611" class="dash"/>
+  <path d="M890 611 C970 515 1080 515 1170 611 S1370 707 1460 611" class="red"/>
+  <text x="905" y="565" class="txt">u_K(t) ≈ V_CC/2 + uᵢ(t)</text>
+  <text x="1467" y="617" class="small">V_CC/2</text>
+  <line x1="888" y1="779" x2="1460" y2="779" class="dash"/>
+  <path d="M890 779 C970 710 1080 710 1170 779 S1370 848 1460 779" class="blue"/>
+  <text x="905" y="735" class="txt">uₒ(t) ≈ u_K(t) − V_CC/2</text>
+  <text x="1467" y="785" class="small">0 V</text>
+  <text x="854" y="854" class="small">此近似要求 C 足够大、工作在跟随区；未偏置乙类仍有交越死区。</text>
+</svg>
