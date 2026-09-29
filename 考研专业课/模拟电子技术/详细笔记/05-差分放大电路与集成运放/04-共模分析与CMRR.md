@@ -124,21 +124,6 @@ K_{\mathrm{CMR}}
 =\left\lvert\frac{A_{vd}}{A_{vc}}\right\rvert
 $$
 
-常用 dB 表示：
-
-$$
-K_{\mathrm{CMR}}(\mathrm{dB})
-=20\lg\left\lvert\frac{A_{vd}}{A_{vc}}\right\rvert
-$$
-
-对 MOS 差分对单端输出：
-
-$$
-K_{\mathrm{CMR1}}
-=\left\lvert\frac{A_{vd1}}{A_{vc1}}\right\rvert
-\approx g_mr_o
-$$
-
 ### 5.5 为什么 CMRR 能抑制零漂
 
 温度变化、电源波动、器件参数缓慢变化，往往会让差分对两边同时发生相近变化。这类变化等效为共模输入。
