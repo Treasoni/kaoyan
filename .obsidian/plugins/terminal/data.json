@@ -139,6 +139,8 @@
   "openChangelogOnUpdate": true,
   "pinNewInstance": true,
   "preferredRenderer": "webgl",
+  "prewarmConPty": true,
+  "pythonExecutable": "",
   "profiles": {
     "darwinExternalDefault": {
       "args": [
@@ -186,7 +188,7 @@
         "documentOverride": null
       },
       "type": "integrated",
-      "useWin32Conhost": true
+      "win32Backend": "conpty"
     },
     "developerConsole": {
       "followTheme": true,
@@ -245,7 +247,7 @@
         "documentOverride": null
       },
       "type": "integrated",
-      "useWin32Conhost": true
+      "win32Backend": "conpty"
     },
     "win32ExternalDefault": {
       "args": [],
@@ -277,7 +279,7 @@
       "platforms": {
         "win32": true
       },
-      "pythonExecutable": "python3",
+      "pythonExecutable": "",
       "restoreHistory": false,
       "rightClickAction": "copyPaste",
       "successExitCodes": [
@@ -289,7 +291,7 @@
         "documentOverride": null
       },
       "type": "integrated",
-      "useWin32Conhost": true
+      "win32Backend": "conpty"
     }
   },
   "defaultProfile": null,

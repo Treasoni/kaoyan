@@ -5301,6 +5301,30 @@ button.nn-list-group-header-collapse-button .nn-list-group-header-icon {
     border-right: none;
     border-bottom: 1px solid var(--nn-theme-divider-border-color);
 }
+
+/* Language loading precedes the view providers, so this shell also works before the storage skeleton mounts. */
+.nn-language-loading {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.nn-language-loading-skeleton {
+    height: 100%;
+}
+
+.nn-language-loading-status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-4-3);
+    padding: var(--size-4-4);
+    color: var(--text-muted);
+    text-align: center;
+}
 /* Source: src/styles/sections/inline-rename.css */
 
 /* ========================================================================
@@ -7297,6 +7321,27 @@ body.nn-resizing {
 .nn-setting-warning {
     color: var(--text-error);
     font-weight: 600;
+}
+
+.nn-setting-template-tokens,
+.nn-setting-template-status:not(:first-child) {
+    margin-top: 1em;
+}
+
+.nn-setting-template-status-header {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2-2);
+}
+
+.nn-setting-template-status-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+}
+
+.nn-setting-template-status-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
 .nn-setting-calendar-pattern-example-text {
