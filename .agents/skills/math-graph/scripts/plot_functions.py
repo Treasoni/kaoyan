@@ -25,11 +25,13 @@ from typing import List, Tuple, Optional
 # 设置中文字体支持
 import matplotlib.font_manager as fm
 
-# 尝试找到可用的中文字体
+
+# 尝试找到可用的中文字体（按 macOS / Windows / Linux 常见字体排序）
 def get_chinese_font():
     """查找可用的中文字体"""
-    chinese_fonts = ['PingFang SC', 'Heiti TC', 'STHeiti', 'Songti SC', 'Kailasa',
-                     'Hiragino Sans GB', 'Microsoft YaHei', 'SimHei', 'WenQuanYi Micro Hei']
+    chinese_fonts = ['Heiti TC', 'Songti SC', 'Hiragino Sans GB', 'PingFang HK',
+                     'PingFang SC', 'STHeiti', 'Kaiti SC', 'Arial Unicode MS',
+                     'Microsoft YaHei', 'SimHei', 'WenQuanYi Micro Hei']
 
     available_fonts = [f.name for f in fm.fontManager.ttflist]
 
@@ -40,7 +42,19 @@ def get_chinese_font():
     # 如果没有找到中文字体，返回默认字体
     return None
 
+
+# 先应用 seaborn 风格，再设置中文字体。
+# 原因：sns.set_style/set_context 会重置 rcParams 中的 font.sans-serif，
+# 若把字体设置放在 seaborn 之前，中文标题与标注会退化成方框。
+try:
+    import seaborn as sns
+    sns.set_style("whitegrid")
+    sns.set_context("notebook", font_scale=1.2)
+except ImportError:
+    plt.style.use('seaborn-v0_8-whitegrid')
+
 chinese_font = get_chinese_font()
+matplotlib.rcParams['font.family'] = 'sans-serif'
 if chinese_font:
     matplotlib.rcParams['font.sans-serif'] = [chinese_font, 'DejaVu Sans', 'Arial']
     print(f"使用中文字体: {chinese_font}")
@@ -50,14 +64,6 @@ else:
 
 matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 matplotlib.rcParams['mathtext.fontset'] = 'cm'  # 使用 Computer Modern 数学字体
-
-# 设置 seaborn 风格
-try:
-    import seaborn as sns
-    sns.set_style("whitegrid")
-    sns.set_context("notebook", font_scale=1.2)
-except ImportError:
-    plt.style.use('seaborn-v0_8-whitegrid')
 
 
 def setup_axis(ax, x_range: Tuple[float, float], y_range: Optional[Tuple[float, float]] = None):
