@@ -14,6 +14,7 @@ from pathlib import Path
 
 ACTIVE_FILES = ("LEARNINGS.md", "ERRORS.md", "RULES.md")
 HEADING_RE = re.compile(r"^(#{2,4})\s+(.+?)\s*$", re.MULTILINE)
+ENTRY_HEADING_RE = re.compile(r"^(##)\s+(\[(?:LRN|ERR)-[^\]]+\].*?)\s*$", re.MULTILINE)
 ISSUE_WORDS = (
     "错误",
     "问题",
@@ -87,7 +88,11 @@ def split_records(path: Path, display_path: str, active: bool, skills: list[str]
     if not text:
         return []
     kind = "rules" if display_path.endswith("RULES.md") else "entry"
-    matches = list(HEADING_RE.finditer(text))
+    # Learnings/errors use nested headings for Summary, Details, etc.; only
+    # record-ID headings delimit actual records. Otherwise the audit reports
+    # fields such as "Details" as if they were independent hotspots.
+    heading_re = HEADING_RE if kind == "rules" else ENTRY_HEADING_RE
+    matches = list(heading_re.finditer(text))
     records: list[Record] = []
     if not matches:
         if kind == "rules" or (len(text.strip()) > 120 and any(word in text.lower() for word in ISSUE_WORDS)):
@@ -226,9 +231,9 @@ def render_markdown(summary: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
-    parser.add_argument("--skills-dir", default=".agents/skills")
-    parser.add_argument("--rules-file", default="AGENTS.md")
-    parser.add_argument("--hooks-path", default=".codex/hooks")
+    parser.add_argument("--skills-dir", default=".claude/skills")
+    parser.add_argument("--rules-file", default="CLAUDE.md")
+    parser.add_argument("--hooks-path", default=".claude/hooks")
     parser.add_argument("--line-threshold", type=int, default=100)
     parser.add_argument("--active-only", action="store_true")
     parser.add_argument("--json", action="store_true")
