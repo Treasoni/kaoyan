@@ -34,5 +34,5 @@
   "specialCharacters": "#^[]|*\\<>:?/",
   "specialCharactersReplacement": "-",
   "timeoutInSeconds": 5,
-  "version": "14.0.2"
+  "version": "14.1.0"
 }
