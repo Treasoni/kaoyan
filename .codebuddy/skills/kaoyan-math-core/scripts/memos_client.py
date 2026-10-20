@@ -87,7 +87,7 @@ def create_default_user_context() -> Dict[str, Any]:
         "user_profile": {
             "math_level": "intermediate",
             "exam_type": "数学二",
-            "exam_date": "2026-12-25",
+            "exam_date": "2026-12-19",
             "weak_modules": []
         },
         "mistake_records": [],

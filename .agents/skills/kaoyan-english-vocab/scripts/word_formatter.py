@@ -439,7 +439,7 @@ def generate_formatted_output(classified_words: Dict, date_str: str) -> str:
     # 计算Day编号（使用统一的 day_calculator 模块，基准：2026-02-28 = Day-001）
     day_number = get_validated_day_number(date_str)
 
-    # 计算距离考试天数（考试日期：2026-12-20）
+    # 计算距离考试天数（考试日期：2026-12-19）
     exam_date = datetime(2026, 12, 20)
     days_to_exam = (exam_date - current_date).days
 

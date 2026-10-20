@@ -103,7 +103,7 @@ if result["type"] == "vocabulary_emergency":
 ```python
 from scripts import get_phase_vocabulary_target
 
-# 获取当前阶段目标（距离考试60天）
+# 获取当前阶段目标（距离考试55天）
 target = get_phase_vocabulary_target(60)
 print(f"每日新词: {target['daily_new_words']}")
 print(f"复习比例: {target['review_ratio']}")

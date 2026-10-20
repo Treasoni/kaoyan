@@ -316,7 +316,7 @@ def apply_defaults(user_input: Dict[str, Any],
     """
     defaults = {
         "chronotype": "morning_person",
-        "exam_date": "2026-12-25",
+        "exam_date": "2026-12-19",
         "subjects": {
             "math": {"priority": 1.5, "progress": 0},
             "english": {"priority": 1.2, "progress": 0},
@@ -354,7 +354,7 @@ def enrich_with_exam_info(user_input: Dict[str, Any],
 
     # 标准模式可能包含的额外信息
     if "exam_date" not in result:
-        result["exam_date"] = "2026-12-25"
+        result["exam_date"] = "2026-12-19"
 
     return result
 
