@@ -43,6 +43,7 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 数电图（逻辑符号/状态图/时序波形）统一用 `kaoyan-electronics-diagram/scripts/digital_figures.py` 生成 PNG；正文不再用 ASCII art 或低清 jpg，原图折叠到 `> [!note]- 原始课件截图（溯源）`
 - (1x) 画触发器波形先定触发沿，顺序为「结构（主从=CP↓）→ CP 端小圆圈 → 题面文字」；定沿前不要动手画 Q
 - (1x) 时序波形出图后按触发沿逐拍回算「沿前瞬间输入 → 次态」，核对动作标注与 Q 电平同拍，再回读笔记文字是否与图一致
+- (1x) 修改含图片嵌入的笔记后，脚本批量解析 `![](...)` 路径并校验文件存在（含 URL 解码），悬空引用立即补图或删除
 
 ## Don't
 
