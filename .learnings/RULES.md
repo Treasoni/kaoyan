@@ -40,6 +40,9 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 写作/改写必背笔记前先确认用户章节学习进度；未学章节概念（4.7 向量空间、特征值、二次型等）不得使用，改用已学概念（解集/基础解系/线性表示/向量组等价/秩），写入后 grep 未学章节关键词清零
 - (1x) 行向量组线性表示→解集包含方向：谁的行能表示谁（$r\binom{A}{B}=r(A)$）→ 被表示者约束更松、解更多；写等价链前用「表示方向→约束强弱→解集大小」验算方向
 - (1x) 用户 2026-10-16 明确：「真题数据补登」不由 agent 追踪 — 不列入每日计划的任务/时间表/汇报格式/检查点，也不再追问（用户自管）
+- (1x) 数电图（逻辑符号/状态图/时序波形）统一用 `kaoyan-electronics-diagram/scripts/digital_figures.py` 生成 PNG；正文不再用 ASCII art 或低清 jpg，原图折叠到 `> [!note]- 原始课件截图（溯源）`
+- (1x) 画触发器波形先定触发沿，顺序为「结构（主从=CP↓）→ CP 端小圆圈 → 题面文字」；定沿前不要动手画 Q
+- (1x) 时序波形出图后按触发沿逐拍回算「沿前瞬间输入 → 次态」，核对动作标注与 Q 电平同拍，再回读笔记文字是否与图一致
 
 ## Don't
 
@@ -61,3 +64,5 @@ Compressed patterns from repeated learnings and errors.
 - (1x) 目录重构后历史 wikilink 悬空（obsidian.stale_wikilink）— 批量修复用 before==after 校验 + 备份 + 复审计
 - (1x) shell 引号与重定向风险（ops.shell_quote_redirect）— 初始化/修复 `.learnings/` 时避免复杂 inline printf，写后回读行数和关键内容
 - (1x) 未学章节概念泄漏（notes.knowledge_boundary）— 写作前确认用户章节进度，未学章节术语（向量空间/张成/仿射空间等）不得用于已学内容
+- (1x) 波形标注与数据不同拍（diagram.waveform_label_mismatch）— 标注必须由同一份输入电平推出，不能手写列表；出图后逐沿回算
+- (1x) 触发器触发沿默认错误（diagram.trigger_edge_default）— 主从结构按 CP↓、边沿触发器看小圆圈，套模板易错开半周期
