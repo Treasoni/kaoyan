@@ -105,7 +105,8 @@ def flipflop_block(ax, x0=0.0, y0=0.0, w=2.6, h=3.6,
             ax.plot([x0 - 1.0, x0 - 0.18], [y, y], color=INK, lw=1.8)
         ax.text(x0 - 1.08, y, label, ha="right", va="center", fontsize=14)
         if inner:
-            ax.text(x0 + 0.14, y, inner, ha="left", va="center", fontsize=11.5)
+            ax.text(x0 + (0.56 if edge else 0.14), y, inner,
+                    ha="left", va="center", fontsize=11.5)
         if edge:
             ax.plot([x0, x0 + 0.46, x0], [y - 0.26, y, y + 0.26],
                     color=INK, lw=1.6, solid_joinstyle="miter", solid_capstyle="butt")
@@ -179,14 +180,14 @@ def two_state(ax, c0=(-1.35, 0.0), c1=(1.35, 0.0), r=0.55,
                                      connectionstyle="arc3,rad=-0.18", arrowstyle="-|>",
                                      mutation_scale=17, lw=1.8, color=INK,
                                      shrinkA=2, shrinkB=2))
-        ax.text(0.0, 0.40, fwd[0], ha="center", va="bottom",
+        ax.text(0.0, 0.50, fwd[0], ha="center", va="bottom",
                 fontsize=12.5, color=fwd[1])
     if back:
         ax.add_patch(FancyArrowPatch((c1[0] - r + 0.02, -0.12), (c0[0] + r - 0.02, -0.12),
                                      connectionstyle="arc3,rad=-0.18", arrowstyle="-|>",
                                      mutation_scale=17, lw=1.8, color=INK,
                                      shrinkA=2, shrinkB=2))
-        ax.text(0.0, -0.42, back[0], ha="center", va="top",
+        ax.text(0.0, -0.52, back[0], ha="center", va="top",
                 fontsize=12.5, color=back[1])
 
     if note:
