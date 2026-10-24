@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="640" viewBox="0 0 1240 640">
+  <rect width="1240" height="640" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f5fa8"/>
+    </marker>
+  </defs>
+
+  <style>
+    .wire { stroke:#1a1a1a; stroke-width:2.4; fill:none; }
+    .dash { stroke:#1f5fa8; stroke-width:1.8; stroke-dasharray:7 5; fill:none; }
+    .lbl { font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif; font-size:22px; fill:#1a1a1a; }
+    .sub { font-size:15px; }
+    .small { font-family:"PingFang SC","Noto Sans CJK SC",sans-serif; font-size:19px; fill:#555; }
+    .blue { fill:#1f5fa8; }
+    .red { fill:#c0392b; }
+    .title { font-family:"PingFang SC","Noto Sans CJK SC",sans-serif; font-size:25px; font-weight:600; fill:#1a1a1a; }
+  </style>
+
+  <text x="320" y="48" text-anchor="middle" class="title">NMOS：统一参考方向</text>
+  <text x="870" y="48" text-anchor="middle" class="title">PMOS：源极在上，取绝对值</text>
+
+  <!-- ================= Panel A: NMOS ================= -->
+  <!-- D terminal -->
+  <line x1="320" y1="80" x2="320" y2="195" class="wire"/>
+  <text x="336" y="100" class="lbl">D</text>
+  <line x1="320" y1="86" x2="320" y2="140" class="wire" marker-end="url(#arrow)"/>
+  <text x="306" y="122" text-anchor="end" class="lbl red">i<tspan class="sub" dy="6">d</tspan></text>
+
+  <!-- dependent current source (diamond) -->
+  <polygon points="320,195 358,235 320,275 282,235" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="320" y1="208" x2="320" y2="258" class="wire" marker-end="url(#arrow)"/>
+  <text x="370" y="243" class="lbl">g<tspan class="sub" dy="6">m</tspan><tspan dy="-6">v</tspan><tspan class="sub" dy="6">gs</tspan></text>
+
+  <!-- S terminal -->
+  <line x1="320" y1="275" x2="320" y2="430" class="wire"/>
+  <text x="336" y="448" class="lbl">S</text>
+
+  <!-- rds branch -->
+  <line x1="320" y1="165" x2="470" y2="165" class="wire"/>
+  <rect x="455" y="190" width="30" height="90" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="470" y1="165" x2="470" y2="190" class="wire"/>
+  <line x1="470" y1="280" x2="470" y2="430" class="wire"/>
+  <line x1="470" y1="430" x2="320" y2="430" class="wire"/>
+  <text x="500" y="243" class="lbl">r<tspan class="sub" dy="6">ds</tspan></text>
+
+  <!-- gate -->
+  <line x1="200" y1="300" x2="255" y2="300" class="wire"/>
+  <text x="184" y="308" text-anchor="end" class="lbl">G</text>
+  <text x="204" y="352" class="small">i<tspan class="sub" dy="5">g</tspan><tspan dy="-5"> ≈ 0</tspan></text>
+
+  <!-- vgs -->
+  <line x1="245" y1="300" x2="245" y2="455" class="dash" marker-start="url(#arrowBlue)"/>
+  <line x1="245" y1="300" x2="255" y2="300" class="dash"/>
+  <line x1="245" y1="455" x2="320" y2="455" class="dash"/>
+  <line x1="320" y1="430" x2="320" y2="455" class="wire"/>
+  <text x="236" y="290" text-anchor="end" class="blue" style="font-size:24px">+</text>
+  <text x="232" y="470" text-anchor="end" class="blue" style="font-size:24px">−</text>
+  <text x="228" y="400" text-anchor="end" class="lbl blue">v<tspan class="sub" dy="6">gs</tspan></text>
+
+  <!-- ================= Panel B: PMOS ================= -->
+  <!-- S terminal -->
+  <line x1="870" y1="80" x2="870" y2="195" class="wire"/>
+  <text x="886" y="100" class="lbl">S</text>
+
+  <!-- dependent current source (diamond) -->
+  <polygon points="870,195 908,235 870,275 832,235" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="870" y1="208" x2="870" y2="258" class="wire" marker-end="url(#arrow)"/>
+  <text x="920" y="243" class="lbl">g<tspan class="sub" dy="6">m</tspan><tspan dy="-6">|v</tspan><tspan class="sub" dy="6">gs</tspan><tspan dy="-6">|</tspan></text>
+
+  <!-- D terminal -->
+  <line x1="870" y1="275" x2="870" y2="430" class="wire"/>
+  <text x="886" y="448" class="lbl">D</text>
+  <line x1="870" y1="436" x2="870" y2="500" class="wire" marker-end="url(#arrow)"/>
+  <text x="886" y="490" class="lbl red">i<tspan class="sub" dy="6">d</tspan><tspan dy="-6">（流出）</tspan></text>
+
+  <!-- rds branch -->
+  <line x1="870" y1="165" x2="1020" y2="165" class="wire"/>
+  <rect x="1005" y="190" width="30" height="90" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.4"/>
+  <line x1="1020" y1="165" x2="1020" y2="190" class="wire"/>
+  <line x1="1020" y1="280" x2="1020" y2="430" class="wire"/>
+  <line x1="1020" y1="430" x2="870" y2="430" class="wire"/>
+  <text x="1050" y="243" class="lbl">r<tspan class="sub" dy="6">ds</tspan></text>
+
+  <!-- gate -->
+  <line x1="750" y1="300" x2="805" y2="300" class="wire"/>
+  <text x="734" y="308" text-anchor="end" class="lbl">G</text>
+  <text x="754" y="352" class="small">i<tspan class="sub" dy="5">g</tspan><tspan dy="-5"> ≈ 0</tspan></text>
+
+  <!-- vsg -->
+  <line x1="800" y1="165" x2="800" y2="300" class="dash" marker-start="url(#arrowBlue)"/>
+  <line x1="800" y1="165" x2="870" y2="165" class="dash"/>
+  <line x1="800" y1="300" x2="805" y2="300" class="dash"/>
+  <text x="808" y="182" class="blue" style="font-size:24px">+</text>
+  <text x="808" y="296" class="blue" style="font-size:24px">−</text>
+  <text x="790" y="240" text-anchor="end" class="lbl blue">v<tspan class="sub" dy="6">sg</tspan></text>
+
+  <!-- divider -->
+  <line x1="620" y1="70" x2="620" y2="520" stroke="#d9d9d9" stroke-width="1.6" stroke-dasharray="4 6"/>
+
+  <!-- bottom band -->
+  <text x="120" y="580" class="small">同一拓扑：栅极开路  +  受控电流源  +  r<tspan class="sub" dy="5">ds</tspan></text>
+  <text x="120" y="615" class="small">增强型 / 耗尽型 / JFET 都套这一张；差别只在 V<tspan class="sub" dy="5">T</tspan><tspan dy="-5"> 的符号与 Q 点数值</tspan></text>
+</svg>
