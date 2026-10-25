@@ -25,8 +25,18 @@
   "proposedRenameDeleteSettings": null,
   "renameAttachmentsCreatedByOtherPluginsMode": "None",
   "renamedAttachmentFileName": "",
+  "screenshotFilePaths": [
+    "/[\\\\/](?:PixPin|Snipaste)_[^\\\\/]*$/",
+    "/[\\\\/]Screenshot[^\\\\/]*$/",
+    "/[\\\\/]TempState[\\\\/]ScreenClip[\\\\/]/",
+    "/[\\\\/]AppData[\\\\/]Local[\\\\/]Temp[\\\\/]/",
+    "/^\\/tmp\\//",
+    "/^\\/var\\/folders\\//"
+  ],
   "shouldCollectAttachmentsAutomatically": false,
+  "shouldDeduplicateIdenticalAttachments": false,
   "shouldFollowObsidianAttachmentLocation": true,
+  "shouldKeepNamesOfPastedNonScreenshotFiles": false,
   "shouldPreserveImageMetadata": false,
   "shouldRenameCollectedAttachments": false,
   "shouldSetLinkDisplayTextToAttachmentFileName": false,
@@ -34,5 +44,5 @@
   "specialCharacters": "#^[]|*\\<>:?/",
   "specialCharactersReplacement": "-",
   "timeoutInSeconds": 5,
-  "version": "14.1.0"
+  "version": "16.0.0"
 }
