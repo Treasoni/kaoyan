@@ -3,10 +3,12 @@
   "addToContextMenu": true,
   "createInstanceNearExistingOnes": true,
   "errorNoticeTimeout": 0,
+  "experiments": {},
   "exposeInternalModules": true,
   "focusOnNewInstance": true,
   "hideStatusBar": "focused",
   "showTerminalTabPrefix": false,
+  "tabStatus": "animated",
   "interceptKeysWhenFocused": true,
   "interceptLogging": true,
   "keymappings": [
@@ -140,6 +142,7 @@
   "pinNewInstance": true,
   "preferredRenderer": "webgl",
   "prewarmConPty": true,
+  "windowsTerminalConsoleHost": true,
   "pythonExecutable": "",
   "profiles": {
     "darwinExternalDefault": {
