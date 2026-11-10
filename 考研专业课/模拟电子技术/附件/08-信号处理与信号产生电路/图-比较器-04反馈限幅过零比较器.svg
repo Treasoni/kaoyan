@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1150" viewBox="0 0 1600 1150">
+<defs><marker id="arr17212b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#17212b"/></marker><marker id="arr175fa0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker><marker id="arrb33a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/></marker><marker id="arr2f7d4f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f7d4f"/></marker><marker id="arrb36b00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b36b00"/></marker></defs>
+<rect width="1600" height="1150" fill="white"/>
+<g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif">
+<text x="60" y="62" font-size="34" fill="#17212b" text-anchor="start" font-weight="600" font-style="normal">反馈限幅：稳压管接在输出与反相端之间</text>
+<text x="60" y="104" font-size="21" fill="#5a6b7b" text-anchor="start" font-weight="normal" font-style="normal">一个电路同时完成输出限幅和输入保护；关键是先判断稳压管是否导通。</text>
+<rect x="40" y="130" width="760" height="630" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="175" font-size="25" fill="#175fa0" text-anchor="start" font-weight="600" font-style="normal">电路：ui 经 R 进反相端，同相端接地</text>
+<text x="80" y="342" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<path d="M105 355 L165 355" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M135.0 355 L165.0 355" fill="none" stroke="#17212b" stroke-width="3"/><rect x="165.0" y="341.0" width="70" height="28" fill="white" stroke="#17212b" stroke-width="3"/><path d="M235.0 355 L265.0 355" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="183" y="325" font-size="23" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">R</text>
+<path d="M235 355 L380 355" fill="none" stroke="#17212b" stroke-width="3"/>
+<circle cx="300" cy="355" r="5" fill="#17212b"/>
+<text x="286" y="340" font-size="22" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">N</text>
+<path d="M380 325.0 L380 475.0 L550 400 Z" fill="white" stroke="#17212b" stroke-width="3.2"/><path d="M335 355 L380 355" fill="none" stroke="#17212b" stroke-width="3"/><path d="M335 445 L380 445" fill="none" stroke="#17212b" stroke-width="3"/><path d="M550 400 L605 400" fill="none" stroke="#17212b" stroke-width="3"/><text x="400" y="368" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">−</text><text x="400" y="458" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">+</text>
+<path d="M335 445 L380 445" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M335 445 L335 540" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M335 540 L335 558" fill="none" stroke="#17212b" stroke-width="3"/><path d="M309 558 L361 558" fill="none" stroke="#17212b" stroke-width="3"/><path d="M318 567 L352 567" fill="none" stroke="#17212b" stroke-width="3"/><path d="M327 576 L343 576" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M550 400 L610 400" fill="none" stroke="#17212b" stroke-width="3"/>
+<circle cx="610" cy="400" r="5" fill="#17212b"/>
+<path d="M610 400 L610 220 L300 220 L300 355" fill="none" stroke="#175fa0" stroke-width="3"/>
+<path d="M384 204 L384 236 L406 220 Z" fill="white" stroke="#175fa0" stroke-width="3"/><path d="M476 204 L476 236 L454 220 Z" fill="white" stroke="#175fa0" stroke-width="3"/><path d="M406 204 L406 236" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M406 204 L399 196" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M406 236 L413 244" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M454 204 L454 236" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M454 204 L461 196" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M454 236 L447 244" fill="none" stroke="#175fa0" stroke-width="3"/><path d="M406 220 L454 220" fill="none" stroke="#175fa0" stroke-width="3"/>
+<text x="430" y="262" font-size="20" fill="#175fa0" text-anchor="start" font-weight="normal" font-style="normal">双向稳压管 5.7 V</text>
+<text x="630" y="390" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<text x="70" y="520" font-size="19" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">导通后 uN = 0（虚短）</text>
+<text x="70" y="600" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">反馈支路把输出接回反相端：导通时构成负反馈。</text>
+<text x="70" y="638" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">所以 uN = uP = 0（虚短），uo 被锁定在 ±5.7 V。</text>
+<text x="70" y="700" font-size="21" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">注意：这不是“先饱和到 ±14 V 再削顶”，</text>
+<text x="70" y="738" font-size="21" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">而是稳压管一导通，电路就变成闭环，输出停在 ±5.7 V。</text>
+<rect x="40" y="800" width="760" height="300" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="845" font-size="24" fill="#2f7d4f" text-anchor="start" font-weight="600" font-style="normal">和 7.4 输出限幅的区别</text>
+<text x="70" y="890" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">7.4：稳压管并在输出节点，电路仍开环；</text>
+<text x="90" y="920" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">输出先到 ±UOM，再被削到 ±5.7 V。</text>
+<text x="70" y="965" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">7.5：稳压管跨接输出与反相端，导通后构成负反馈；</text>
+<text x="90" y="995" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">输出被锁定在 ±5.7 V，输入端同时被钳在 0 V。</text>
+<text x="70" y="1040" font-size="19" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">共同点：翻转点不变，只改高、低电平。</text>
+<rect x="820" y="130" width="740" height="600" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="175" font-size="24" fill="#2f7d4f" text-anchor="start" font-weight="600" font-style="normal">分析顺序：假设截止 → 开环 → 判断导通</text>
+<rect x="860" y="215" width="660" height="70" rx="12" fill="white" stroke="#c7d8e5" stroke-width="2"/>
+<text x="878" y="259" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">① 假设稳压管截止 → 支路断开 → 开环比较器</text>
+<path d="M1190 285 L1190 311" stroke="#2f7d4f" stroke-width="2.5" fill="none" marker-end="url(#arr2f7d4f)"/>
+<rect x="860" y="311" width="660" height="70" rx="12" fill="white" stroke="#c7d8e5" stroke-width="2"/>
+<text x="878" y="355" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">② ui &gt; 0 ⇒ uN &gt; uP = 0 ⇒ uo 向 −UOM 下降</text>
+<path d="M1190 381 L1190 407" stroke="#2f7d4f" stroke-width="2.5" fill="none" marker-end="url(#arr2f7d4f)"/>
+<rect x="860" y="407" width="660" height="70" rx="12" fill="white" stroke="#c7d8e5" stroke-width="2"/>
+<text x="878" y="451" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">③ 降到 −5.7 V 时，稳压管反向导通</text>
+<path d="M1190 477 L1190 503" stroke="#2f7d4f" stroke-width="2.5" fill="none" marker-end="url(#arr2f7d4f)"/>
+<rect x="860" y="503" width="660" height="70" rx="12" fill="white" stroke="#c7d8e5" stroke-width="2"/>
+<text x="878" y="547" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">④ 支路构成负反馈 ⇒ 虚短 uN = uP = 0</text>
+<path d="M1190 573 L1190 599" stroke="#2f7d4f" stroke-width="2.5" fill="none" marker-end="url(#arr2f7d4f)"/>
+<rect x="860" y="599" width="660" height="70" rx="12" fill="white" stroke="#c7d8e5" stroke-width="2"/>
+<text x="878" y="643" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">⑤ 稳压管两端 5.7 V ⇒ uo = −UZ = −5.7 V</text>
+<text x="860" y="705" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &lt; 0 时完全对称：输出 +UZ = +5.7 V。</text>
+<rect x="820" y="760" width="740" height="370" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="805" font-size="24" fill="#b33a3a" text-anchor="start" font-weight="600" font-style="normal">传输特性：反相过零，电平 ±UZ</text>
+<path d="M940 950 L1450 950" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M1190 1090 L1190 825" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="1408" y="984" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<text x="1122" y="880" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<path d="M940 850 L1190 850 L1190 1050 L1440 1050" fill="none" stroke="#b33a3a" stroke-width="3.4"/>
+<path d="M1190 825 L1190 1090" fill="none" stroke="#8a9aa8" stroke-width="1.4" stroke-dasharray="5 6"/>
+<text x="1205" y="842" font-size="22" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">+5.7 V</text>
+<text x="1205" y="1072" font-size="22" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">−5.7 V</text>
+<text x="1205" y="910" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &lt; 0</text>
+<text x="1205" y="995" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &gt; 0</text>
+<text x="850" y="1100" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">输入为正，输出为负：反相过零。</text>
+</g></svg>

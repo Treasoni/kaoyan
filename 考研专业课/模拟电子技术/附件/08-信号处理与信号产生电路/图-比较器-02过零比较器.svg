@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180">
+<defs><marker id="arr17212b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#17212b"/></marker><marker id="arr175fa0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker><marker id="arrb33a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/></marker><marker id="arr2f7d4f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f7d4f"/></marker><marker id="arrb36b00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b36b00"/></marker></defs>
+<rect width="1600" height="1180" fill="white"/>
+<g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif">
+<text x="60" y="62" font-size="34" fill="#17212b" text-anchor="start" font-weight="600" font-style="normal">过零比较器：输入接同相端，翻转点 ui = 0</text>
+<text x="60" y="104" font-size="21" fill="#5a6b7b" text-anchor="start" font-weight="normal" font-style="normal">输入保护只把 uP 的幅度限制在 ±0.7 V，不改变过零方向。</text>
+<rect x="40" y="130" width="740" height="430" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="175" font-size="25" fill="#175fa0" text-anchor="start" font-weight="600" font-style="normal">电路：ui 经 R 接同相端，反相端接地</text>
+<text x="95" y="315" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<path d="M120 330 L180 330" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M150.0 330 L180.0 330" fill="none" stroke="#17212b" stroke-width="3"/><rect x="180.0" y="316.0" width="70" height="28" fill="white" stroke="#17212b" stroke-width="3"/><path d="M250.0 330 L280.0 330" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="198" y="300" font-size="23" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">R</text>
+<path d="M250 330 L470 330" fill="none" stroke="#17212b" stroke-width="3"/>
+<circle cx="330" cy="330" r="5" fill="#17212b"/>
+<text x="338" y="318" font-size="22" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">P</text>
+<path d="M330 330 L330 355" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M330 355 L400 355" fill="none" stroke="#17212b" stroke-width="3"/>
+<circle cx="350" cy="355" r="4" fill="#17212b"/>
+<circle cx="400" cy="355" r="4" fill="#17212b"/>
+<path d="M350 355 L350 366" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M334 369 L366 369 L350 395 Z" fill="white" stroke="#17212b" stroke-width="3"/><path d="M334 395 L366 395" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M350 395 L350 430" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M400 355 L400 366" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M384 393 L416 393 L400 367 Z" fill="white" stroke="#17212b" stroke-width="3"/><path d="M384 367 L416 367" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M400 395 L400 430" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M350 430 L425 430" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M390 430 L390 448" fill="none" stroke="#17212b" stroke-width="3"/><path d="M364 448 L416 448" fill="none" stroke="#17212b" stroke-width="3"/><path d="M373 457 L407 457" fill="none" stroke="#17212b" stroke-width="3"/><path d="M382 466 L398 466" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="315" y="374" font-size="19" fill="#8a9aa8" text-anchor="end" font-weight="normal" font-style="normal">D1</text>
+<text x="430" y="374" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">D2</text>
+<text x="130" y="520" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">D1、D2 反并联到地：uP 只能在 ±0.7 V 内摆动</text>
+<path d="M470 300.0 L470 450.0 L640 375 Z" fill="white" stroke="#17212b" stroke-width="3.2"/><path d="M425 330 L470 330" fill="none" stroke="#17212b" stroke-width="3"/><path d="M425 420 L470 420" fill="none" stroke="#17212b" stroke-width="3"/><path d="M640 375 L695 375" fill="none" stroke="#17212b" stroke-width="3"/><text x="490" y="343" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">+</text><text x="490" y="433" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">−</text>
+<path d="M425 420 L470 420" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M425 420 L425 430" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="720" y="365" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<rect x="820" y="130" width="740" height="430" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="175" font-size="25" fill="#b33a3a" text-anchor="start" font-weight="600" font-style="normal">传输特性：在 ui=0 处阶跃</text>
+<path d="M950 345 L1450 345" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M1190 520 L1190 190" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="1405" y="379" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<text x="1112" y="205" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<path d="M950 471 L1190 471 L1190 219 L1440 219" fill="none" stroke="#b33a3a" stroke-width="3.4"/>
+<path d="M1190 190 L1190 520" fill="none" stroke="#8a9aa8" stroke-width="1.6" stroke-dasharray="5 6"/>
+<text x="1200" y="208" font-size="23" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">+UOM</text>
+<text x="1200" y="492" font-size="23" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">−UOM</text>
+<text x="1206" y="300" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &gt; 0</text>
+<text x="1206" y="332" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">⇒ +UOM</text>
+<text x="1174" y="300" font-size="22" fill="#17212b" text-anchor="end" font-weight="normal" font-style="normal">ui &lt; 0</text>
+<text x="1174" y="332" font-size="22" fill="#17212b" text-anchor="end" font-weight="normal" font-style="normal">⇒ −UOM</text>
+<text x="920" y="375" font-size="20" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">翻转点</text>
+<text x="920" y="402" font-size="20" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">ui = 0</text>
+<rect x="40" y="590" width="740" height="540" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="635" font-size="25" fill="#2f7d4f" text-anchor="start" font-weight="600" font-style="normal">保护后的 uP − ui：中间跟随，两头钳位</text>
+<path d="M135 860 L690 860" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M410 1085 L410 700" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="645" y="894" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui (V)</text>
+<text x="324" y="715" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uP (V)</text>
+<path d="M135 944 L372 944 L449 776 L685 776" fill="none" stroke="#2f7d4f" stroke-width="3.4"/>
+<path d="M372 944 L372 860" fill="none" stroke="#8a9aa8" stroke-width="1.5" stroke-dasharray="5 5"/>
+<path d="M449 776 L449 860" fill="none" stroke="#8a9aa8" stroke-width="1.5" stroke-dasharray="5 5"/>
+<path d="M135 776 L685 776" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<text x="365" y="975" font-size="20" fill="#17212b" text-anchor="middle" font-weight="normal" font-style="normal">−0.7</text>
+<text x="460" y="975" font-size="20" fill="#17212b" text-anchor="middle" font-weight="normal" font-style="normal">0.7</text>
+<text x="458" y="760" font-size="20" fill="#2f7d4f" text-anchor="start" font-weight="normal" font-style="normal">uP = 0.7 V</text>
+<text x="310" y="1000" font-size="20" fill="#2f7d4f" text-anchor="end" font-weight="normal" font-style="normal">uP = −0.7 V</text>
+<text x="238" y="835" font-size="21" fill="#2f7d4f" text-anchor="start" font-weight="normal" font-style="normal">uP = ui</text>
+<text x="70" y="1035" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">|ui| &lt; 0.7 V：两管截止，R 无电流 ⇒ uP = ui</text>
+<text x="70" y="1070" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &gt; 0.7 V：D1 导通，uP 钳在 +0.7 V</text>
+<text x="70" y="1105" font-size="19" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui &lt; −0.7 V：D2 导通，uP 钳在 −0.7 V</text>
+<rect x="820" y="590" width="740" height="540" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="635" font-size="25" fill="#b36b00" text-anchor="start" font-weight="600" font-style="normal">波形：ui 每次过零，uo 就翻转</text>
+<path d="M860 880 L1520 880" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M880 1070 L880 660" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="1470" y="914" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">t</text>
+<path d="M880 880 L935 820 L990 880 L1045 940 L1100 880 L1155 820 L1210 880 L1265 940 L1320 880 L1375 820 L1430 880" fill="none" stroke="#175fa0" stroke-width="3"/>
+<path d="M880 754 L990 754 L990 1006 L1100 1006 L1100 754 L1210 754 L1210 1006 L1320 1006 L1320 754 L1430 754 L1430 1006 L1490 1006" fill="none" stroke="#b33a3a" stroke-width="3"/>
+<path d="M990 700 L990 1050" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<path d="M1100 700 L1100 1050" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<path d="M1210 700 L1210 1050" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<path d="M1320 700 L1320 1050" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<path d="M1430 700 L1430 1050" fill="none" stroke="#8a9aa8" stroke-width="1.2" stroke-dasharray="4 6"/>
+<text x="1130" y="733" font-size="22" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<text x="1130" y="815" font-size="22" fill="#175fa0" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<text x="895" y="745" font-size="18" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">+UOM</text>
+<text x="895" y="1035" font-size="18" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">−UOM</text>
+<text x="1140" y="700" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">虚线：ui 过零时刻</text>
+<text x="850" y="1100" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">输出只在过零处跳变，平时保持高/低电平。</text>
+</g></svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><marker id="arr17212b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#17212b"/></marker><marker id="arr175fa0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker><marker id="arrb33a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/></marker><marker id="arr2f7d4f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f7d4f"/></marker><marker id="arrb36b00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b36b00"/></marker></defs>
+<rect width="1600" height="900" fill="white"/>
+<g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif">
+<text x="60" y="62" font-size="34" fill="#17212b" text-anchor="start" font-weight="600" font-style="normal">运放的电压传输特性：线性区其实只有 μV 级</text>
+<text x="60" y="104" font-size="21" fill="#5a6b7b" text-anchor="start" font-weight="normal" font-style="normal">左：实际运放（Aod=10^6，UOM=14 V）；右：比较器把它理想化为两态开关。</text>
+<rect x="40" y="140" width="740" height="700" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="185" font-size="26" fill="#175fa0" text-anchor="start" font-weight="600" font-style="normal">实际运放：放大区窄得几乎看不见</text>
+<path d="M120 470 L700 470" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M410 790 L410 220" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="690" y="506" font-size="21" fill="#17212b" text-anchor="end" font-weight="normal" font-style="normal">uP − uN (μV)</text>
+<text x="318" y="235" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo (V)</text>
+<path d="M140 694 L284 694 L536 246 L680 246" fill="none" stroke="#175fa0" stroke-width="3.4"/>
+<path d="M284 694 L284 470" fill="none" stroke="#175fa0" stroke-width="1.6" stroke-dasharray="5 5"/>
+<path d="M536 246 L536 470" fill="none" stroke="#175fa0" stroke-width="1.6" stroke-dasharray="5 5"/>
+<text x="545" y="233" font-size="24" fill="#175fa0" text-anchor="start" font-weight="normal" font-style="normal">+UOM</text>
+<text x="268" y="716" font-size="24" fill="#175fa0" text-anchor="end" font-weight="normal" font-style="normal">−UOM</text>
+<text x="298" y="500" font-size="21" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">线性区</text>
+<text x="298" y="532" font-size="21" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">±14 μV</text>
+<path d="M284 550 L536 550" fill="none" stroke="#b36b00" stroke-width="1.8"/>
+<path d="M284 543 L284 557" fill="none" stroke="#b36b00" stroke-width="1.8"/>
+<path d="M536 543 L536 557" fill="none" stroke="#b36b00" stroke-width="1.8"/>
+<text x="70" y="760" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo = Aod(uP − uN)，超出 ±UOM 就饱和；</text>
+<text x="70" y="798" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">要把差值压在 ±14 μV 内，只能靠负反馈。</text>
+<rect x="820" y="140" width="740" height="700" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="185" font-size="26" fill="#b33a3a" text-anchor="start" font-weight="600" font-style="normal">比较器的理想化：只看符号</text>
+<path d="M940 470 L1450 470" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M1190 790 L1190 220" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="1405" y="504" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uP − uN</text>
+<text x="1102" y="235" font-size="21" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<path d="M940 694 L1190 694 L1190 246 L1440 246" fill="none" stroke="#b33a3a" stroke-width="3.4"/>
+<path d="M1190 220 L1190 790" fill="none" stroke="#8a9aa8" stroke-width="1.6" stroke-dasharray="5 6"/>
+<text x="1200" y="233" font-size="24" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">+UOM</text>
+<text x="1200" y="716" font-size="24" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">−UOM</text>
+<text x="1206" y="360" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uP &gt; uN</text>
+<text x="1206" y="392" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">⇒ +UOM</text>
+<text x="1172" y="360" font-size="22" fill="#17212b" text-anchor="end" font-weight="normal" font-style="normal">uP &lt; uN</text>
+<text x="1172" y="392" font-size="22" fill="#17212b" text-anchor="end" font-weight="normal" font-style="normal">⇒ −UOM</text>
+<text x="1200" y="520" font-size="21" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">翻转点 uP = uN</text>
+<text x="850" y="760" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">开环或正反馈 ⇒ 输出只有两态：</text>
+<text x="850" y="798" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">+UOM 或 −UOM，不会停在线性区。</text>
+</g></svg>

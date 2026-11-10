@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950">
+<defs><marker id="arr17212b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#17212b"/></marker><marker id="arr175fa0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#175fa0"/></marker><marker id="arrb33a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b33a3a"/></marker><marker id="arr2f7d4f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2f7d4f"/></marker><marker id="arrb36b00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#b36b00"/></marker></defs>
+<rect width="1600" height="950" fill="white"/>
+<g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif">
+<text x="60" y="62" font-size="34" fill="#17212b" text-anchor="start" font-weight="600" font-style="normal">输出限幅：双向稳压管把 ±UOM 压到 ±(UZ + 0.7)</text>
+<text x="60" y="104" font-size="21" fill="#5a6b7b" text-anchor="start" font-weight="normal" font-style="normal">稳压管并在输出节点上；翻转点不变，只改高、低电平。</text>
+<rect x="40" y="130" width="760" height="780" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="70" y="175" font-size="25" fill="#175fa0" text-anchor="start" font-weight="600" font-style="normal">电路：输出串 R，再接双向稳压管到地</text>
+<text x="95" y="315" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<path d="M120 330 L320 330" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M320 300.0 L320 450.0 L480 375 Z" fill="white" stroke="#17212b" stroke-width="3.2"/><path d="M275 330 L320 330" fill="none" stroke="#17212b" stroke-width="3"/><path d="M275 420 L320 420" fill="none" stroke="#17212b" stroke-width="3"/><path d="M480 375 L535 375" fill="none" stroke="#17212b" stroke-width="3"/><text x="340" y="343" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">+</text><text x="340" y="433" font-size="30" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">−</text>
+<path d="M275 420 L320 420" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M275 420 L275 520" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M275 520 L275 538" fill="none" stroke="#17212b" stroke-width="3"/><path d="M249 538 L301 538" fill="none" stroke="#17212b" stroke-width="3"/><path d="M258 547 L292 547" fill="none" stroke="#17212b" stroke-width="3"/><path d="M267 556 L283 556" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M535 375 L545 375" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M515.0 375 L545.0 375" fill="none" stroke="#17212b" stroke-width="3"/><rect x="545.0" y="361.0" width="70" height="28" fill="white" stroke="#17212b" stroke-width="3"/><path d="M615.0 375 L645.0 375" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="563" y="345" font-size="23" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">R</text>
+<path d="M615 375 L660 375" fill="none" stroke="#17212b" stroke-width="3"/>
+<circle cx="660" cy="375" r="5" fill="#17212b"/>
+<path d="M660 375 L660 405" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M644 418 L676 418 L660 444 Z" fill="white" stroke="#17212b" stroke-width="3"/><path d="M644 444 L676 444" fill="none" stroke="#17212b" stroke-width="3"/><path d="M644 444 L638 435" fill="none" stroke="#17212b" stroke-width="3"/><path d="M676 444 L682 453" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M660 444 L660 496" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M644 522 L676 522 L660 496 Z" fill="white" stroke="#17212b" stroke-width="3"/><path d="M644 496 L676 496" fill="none" stroke="#17212b" stroke-width="3"/><path d="M644 496 L638 487" fill="none" stroke="#17212b" stroke-width="3"/><path d="M676 496 L682 505" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M660 524 L660 550" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M660 550 L660 568" fill="none" stroke="#17212b" stroke-width="3"/><path d="M634 568 L686 568" fill="none" stroke="#17212b" stroke-width="3"/><path d="M643 577 L677 577" fill="none" stroke="#17212b" stroke-width="3"/><path d="M652 586 L668 586" fill="none" stroke="#17212b" stroke-width="3"/>
+<path d="M660 375 L740 375" fill="none" stroke="#17212b" stroke-width="3"/>
+<text x="752" y="365" font-size="24" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<text x="694" y="455" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">双向稳压管</text>
+<text x="694" y="482" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">UZ = 5 V</text>
+<text x="70" y="660" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">运放输出 +14 V：一只击穿 5 V，另一只正向 0.7 V</text>
+<text x="70" y="695" font-size="21" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">⇒ uo = +5.7 V</text>
+<text x="70" y="740" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">运放输出 −14 V：方向相反，仍是一只击穿 + 一只导通</text>
+<text x="70" y="775" font-size="21" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">⇒ uo = −5.7 V</text>
+<text x="70" y="830" font-size="21" fill="#b36b00" text-anchor="start" font-weight="normal" font-style="normal">定义 UZ = 5 + 0.7 = 5.7 V，则 uo = ±UZ。</text>
+<rect x="820" y="130" width="740" height="780" rx="16" fill="#f8fbfe" stroke="#c7d8e5" stroke-width="2"/>
+<text x="850" y="175" font-size="25" fill="#b33a3a" text-anchor="start" font-weight="600" font-style="normal">限幅后的传输特性</text>
+<path d="M940 470 L1450 470" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<path d="M1190 760 L1190 210" stroke="#17212b" stroke-width="2.5" fill="none" marker-end="url(#arr17212b)"/>
+<text x="1408" y="504" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">ui</text>
+<text x="1110" y="225" font-size="22" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">uo</text>
+<path d="M940 302 L1440 302" fill="none" stroke="#8a9aa8" stroke-width="1.6" stroke-dasharray="6 6"/>
+<path d="M940 638 L1440 638" fill="none" stroke="#8a9aa8" stroke-width="1.6" stroke-dasharray="6 6"/>
+<text x="950" y="292" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">+14 V（内部饱和）</text>
+<text x="950" y="662" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">−14 V（内部饱和）</text>
+<path d="M940 538.4 L1190 538.4 L1190 401.6 L1440 401.6" fill="none" stroke="#b33a3a" stroke-width="3.4"/>
+<path d="M1190 210 L1190 760" fill="none" stroke="#8a9aa8" stroke-width="1.4" stroke-dasharray="5 6"/>
+<text x="1205" y="390" font-size="23" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">+5.7 V</text>
+<text x="1205" y="558" font-size="23" fill="#b33a3a" text-anchor="start" font-weight="normal" font-style="normal">−5.7 V</text>
+<text x="1210" y="330" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">+UOM=14</text>
+<text x="1210" y="615" font-size="19" fill="#8a9aa8" text-anchor="start" font-weight="normal" font-style="normal">−UOM=−14</text>
+<text x="850" y="800" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">翻转点仍是 ui=0；输出幅度被钳在 ±5.7 V。</text>
+<text x="850" y="835" font-size="20" fill="#17212b" text-anchor="start" font-weight="normal" font-style="normal">稳压管要始终有击穿电流：R 不能过大，负载不能过重。</text>
+</g></svg>
