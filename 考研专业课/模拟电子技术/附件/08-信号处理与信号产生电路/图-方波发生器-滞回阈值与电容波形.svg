@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1280" viewBox="0 0 1800 1280">
+<rect width="1800" height="1280" fill="#ffffff"/>
+<g font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif" fill="#17212b">
+  <text x="55" y="62" font-size="34" font-weight="700">带输出限幅的运放方波发生器：滞回比较 + RC 充放电</text>
+  <text x="55" y="105" font-size="21" fill="#526272">左：关键节点与反馈；右上：反相迟滞传输特性；右下：电容电压与输出的翻转对应</text>
+  <!-- circuit panel -->
+  <rect x="35" y="135" width="1000" height="1090" rx="18" fill="#fbfcfd" stroke="#cbd5df" stroke-width="2"/>
+  <text x="70" y="185" font-size="27" font-weight="700">电路拓扑（按手写图重构）</text>
+  <!-- op amp -->
+  <path d="M400 330 L400 590 L650 460 Z" fill="#fff" stroke="#17212b" stroke-width="4"/>
+  <text x="423" y="405" font-size="34" font-weight="700">−</text>
+  <text x="423" y="540" font-size="34" font-weight="700">+</text>
+  <text x="492" y="475" font-size="30">A</text>
+  <!-- inverting input node and RC -->
+  <path d="M400 390 L285 390" fill="none" stroke="#17212b" stroke-width="4"/>
+  <circle cx="285" cy="390" r="7" fill="#17212b"/>
+  <text x="195" y="375" font-size="25" fill="#175fa0">u_C = u_−</text>
+  <!-- Rf loop from output -->
+  <path d="M705 460 L760 460 L760 250 L285 250 L285 390" fill="none" stroke="#175fa0" stroke-width="4"/>
+  <rect x="470" y="232" width="105" height="36" rx="3" fill="#fff" stroke="#175fa0" stroke-width="4"/>
+  <text x="505" y="220" font-size="24" fill="#175fa0">R_f</text>
+  <!-- capacitor to ground -->
+  <path d="M285 390 L285 505 M250 505 L320 505 M250 524 L320 524 M285 524 L285 585" fill="none" stroke="#17212b" stroke-width="4"/>
+  <text x="330" y="525" font-size="25">C</text>
+  <path d="M250 585 L320 585 M260 597 L310 597 M271 609 L299 609" fill="none" stroke="#17212b" stroke-width="4"/>
+  <text x="260" y="644" font-size="21">地</text>
+  <!-- non-inverting divider node -->
+  <path d="M400 520 L345 520 L345 700 L810 700" fill="none" stroke="#17212b" stroke-width="4"/>
+  <circle cx="810" cy="700" r="7" fill="#17212b"/>
+  <text x="365" y="685" font-size="23" fill="#2f7d4f">u_+ = βu_o</text>
+  <!-- R1 from node to ground -->
+  <path d="M810 700 L810 750" fill="none" stroke="#17212b" stroke-width="4"/>
+  <rect x="792" y="750" width="36" height="95" fill="#fff" stroke="#17212b" stroke-width="4"/>
+  <path d="M810 845 L810 890 M775 890 L845 890 M785 902 L835 902 M796 914 L824 914" fill="none" stroke="#17212b" stroke-width="4"/>
+  <text x="855" y="810" font-size="24">R₁</text>
+  <!-- R2 from output node to divider node -->
+  <path d="M810 460 L810 560" fill="none" stroke="#17212b" stroke-width="4"/>
+  <rect x="792" y="560" width="36" height="95" fill="#fff" stroke="#17212b" stroke-width="4"/>
+  <path d="M810 655 L810 700" fill="none" stroke="#17212b" stroke-width="4"/>
+  <text x="855" y="625" font-size="24">R₂</text>
+  <!-- output node -->
+  <path d="M650 460 L900 460" fill="none" stroke="#17212b" stroke-width="4"/>
+  <circle cx="810" cy="460" r="7" fill="#17212b"/>
+  <circle cx="900" cy="460" r="7" fill="#17212b"/>
+  <text x="915" y="450" font-size="25" fill="#b33a3a">u_o</text>
+  <!-- limiter branch, abstract because handwritten diode detail is unclear -->
+  <path d="M900 460 L900 520" fill="none" stroke="#b33a3a" stroke-width="4"/>
+  <rect x="846" y="520" width="108" height="115" rx="8" fill="#fff7f4" stroke="#b33a3a" stroke-width="3"/>
+  <text x="900" y="565" font-size="22" text-anchor="middle" fill="#b33a3a">稳压</text>
+  <text x="900" y="595" font-size="22" text-anchor="middle" fill="#b33a3a">限幅</text>
+  <path d="M900 635 L900 690 M865 690 L935 690 M875 702 L925 702 M886 714 L914 714" fill="none" stroke="#17212b" stroke-width="4"/>
+  <text x="920" y="755" font-size="22" fill="#b33a3a">约 ±U_Z</text>
+  <!-- circuit explanation -->
+  <line x1="70" y1="955" x2="1000" y2="955" stroke="#d7dee5" stroke-width="2"/>
+  <text x="75" y="1005" font-size="24" font-weight="700" fill="#175fa0">反馈路径</text>
+  <text x="75" y="1045" font-size="22">R_f：u_o → u_C (反相端)，形成电容充 / 放电通路。</text>
+  <text x="75" y="1085" font-size="22">R₂、R₁：u_o → u_+ → 地，给同相端提供正反馈阈值。</text>
+  <text x="75" y="1125" font-size="22">稳压限幅支路：将输出幅值近似限制为 ±U_Z。</text>
+  <text x="75" y="1175" font-size="20" fill="#9b5b00">注：原手绘的稳压管具体接法 / 参数无法从图中可靠辨认；图中按 ±U_Z 等效建模。</text>
+  <!-- hysteresis panel -->
+  <rect x="1065" y="135" width="700" height="500" rx="18" fill="#fbfcfd" stroke="#cbd5df" stroke-width="2"/>
+  <text x="1100" y="185" font-size="27" font-weight="700">反相迟滞传输特性</text>
+  <path d="M1175 520 L1690 520 M1435 570 L1435 240" fill="none" stroke="#17212b" stroke-width="3"/>
+  <path d="M1690 520 l-14 -8 v16 z M1435 240 l-8 14 h16 z" fill="#17212b"/>
+  <text x="1660" y="555" font-size="22">u_C</text><text x="1450" y="255" font-size="22">u_o</text>
+  <!-- output rails -->
+  <path d="M1205 300 L1495 300 L1495 450 L1640 450" fill="none" stroke="#b33a3a" stroke-width="5"/>
+  <path d="M1205 450 L1375 450 L1375 300 L1640 300" fill="none" stroke="#b33a3a" stroke-width="5"/>
+  <path d="M1285 300 l30 0 -12 -9 m12 9 -12 9 M1585 300 l30 0 -12 -9 m12 9 -12 9" fill="none" stroke="#175fa0" stroke-width="3"/>
+  <path d="M1585 450 l-30 0 12 -9 m-12 9 12 9 M1285 450 l-30 0 12 -9 m-12 9 12 9" fill="none" stroke="#175fa0" stroke-width="3"/>
+  <line x1="1375" y1="300" x2="1375" y2="520" stroke="#8a9aa8" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="1495" y1="300" x2="1495" y2="520" stroke="#8a9aa8" stroke-width="2" stroke-dasharray="7 7"/>
+  <text x="1110" y="307" font-size="21" fill="#b33a3a">+U_Z</text><text x="1110" y="457" font-size="21" fill="#b33a3a">−U_Z</text>
+  <text x="1300" y="550" font-size="20">−βU_Z</text><text x="1453" y="550" font-size="20">+βU_Z</text>
+  <text x="1100" y="600" font-size="20" fill="#526272">u_C 上升：到 +βU_Z 输出翻低；u_C 下降：到 −βU_Z 输出翻高。</text>
+  <!-- waveform panel -->
+  <rect x="1065" y="665" width="700" height="560" rx="18" fill="#fbfcfd" stroke="#cbd5df" stroke-width="2"/>
+  <text x="1100" y="715" font-size="27" font-weight="700">一个周期内的翻转顺序</text>
+  <path d="M1175 1110 L1695 1110 M1175 775 L1175 1110" fill="none" stroke="#17212b" stroke-width="3"/>
+  <path d="M1695 1110 l-14 -8 v16 z M1175 775 l-8 14 h16 z" fill="#17212b"/>
+  <text x="1670" y="1145" font-size="22">t</text><text x="1138" y="795" font-size="21">电压</text>
+  <!-- output waveform lane and capacitor thresholds -->
+  <line x1="1175" y1="950" x2="1660" y2="950" stroke="#2f7d4f" stroke-width="2" stroke-dasharray="8 7"/>
+  <line x1="1175" y1="1060" x2="1660" y2="1060" stroke="#2f7d4f" stroke-width="2" stroke-dasharray="8 7"/>
+  <text x="1185" y="940" font-size="19" fill="#2f7d4f">+βU_Z</text><text x="1185" y="1053" font-size="19" fill="#2f7d4f">−βU_Z</text>
+  <!-- capacitor charge and discharge between thresholds -->
+  <path d="M1235 1060 C1300 1040 1370 990 1435 950 C1480 980 1530 1035 1580 1060 C1610 1035 1640 985 1660 950" fill="none" stroke="#175fa0" stroke-width="5"/>
+  <!-- output square wave lane -->
+  <path d="M1235 790 L1435 790 L1435 845 L1580 845 L1580 790 L1660 790" fill="none" stroke="#b33a3a" stroke-width="5"/>
+  <text x="1525" y="780" font-size="20" fill="#b33a3a">u_o: +U_Z / −U_Z</text><text x="1515" y="920" font-size="20" fill="#175fa0">u_C</text>
+  <line x1="1435" y1="780" x2="1435" y2="1110" stroke="#8a9aa8" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="1580" y1="780" x2="1580" y2="1110" stroke="#8a9aa8" stroke-width="2" stroke-dasharray="7 7"/>
+  <text x="1380" y="1150" font-size="19">u_C↑ 越过 +βU_Z，输出翻低</text><text x="1485" y="1180" font-size="19">u_C↓ 越过 −βU_Z，输出翻高</text>
+  <text x="1100" y="1220" font-size="20" fill="#526272">手绘标注下 β=R₁/(R₁+R₂)；u_o=+U_Z 时充电，u_o=−U_Z 时放电。</text>
+</g>
+</svg>
