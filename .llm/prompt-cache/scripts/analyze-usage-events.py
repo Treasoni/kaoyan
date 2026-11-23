@@ -1,162 +1,186 @@
 #!/usr/bin/env python3
-"""Summarize sanitized LLM usage events and compare them to regression baselines.
-
-Reads .llm/prompt-cache/events/*.jsonl, groups events by request_type + model,
-and reports cache-read ratios under the DeepSeek-compat endpoint semantics
-(input_tokens ~= uncached portion, cache_read_tokens ~= cached portion;
-hit rate = cache_read / (input + cache_read)).
-
-Also loads regression-cases.json and prints a before/after delta for each
-enabled case whose request_type has real events.
-
-Privacy: reads metadata only. It never prints raw prompts or model output.
-"""
+"""Report sanitized usage data. Historical snapshots are not replayed regressions."""
 
 from __future__ import annotations
 
 import argparse
-import collections
-import glob
+from collections import defaultdict
 import json
-import sys
 from pathlib import Path
 
-DEFAULT_ROOT = Path(__file__).resolve().parents[3]   # <project>/
-DEFAULT_EVENTS_DIR = DEFAULT_ROOT / ".llm" / "prompt-cache" / "events"
-DEFAULT_REGRESSION = DEFAULT_ROOT / ".llm" / "prompt-cache" / "regression-cases.json"
-DEFAULT_MODELS = {"deepseek-v4-flash", "deepseek-v4-pro"}
+CACHE_ROOT = Path(__file__).resolve().parents[1]
+LEGACY_DEEPSEEK_MODELS = {"deepseek-v4-flash", "deepseek-v4-pro"}
+TOKEN_FIELDS = ("input_tokens", "cache_read_tokens", "cache_write_tokens", "output_tokens")
+GroupKey = tuple[str, str, str, str, str, str]
+Groups = dict[GroupKey, list[dict]]
 
 
-def load_events(events_dir: Path, since: str | None) -> list[dict]:
-    out: list[dict] = []
-    for f in sorted(glob.glob(str(events_dir / "*.jsonl"))):
-        if since and Path(f).stem < since:
-            continue
-        for line in open(f, encoding="utf-8"):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                obj = json.loads(line)
-            except Exception:
-                continue
-            if not (
-                (obj.get("input_tokens") or 0)
-                or (obj.get("cache_read_tokens") or 0)
-                or (obj.get("cache_write_tokens") or 0)
-                or (obj.get("output_tokens") or 0)
-            ):
-                continue
-            out.append(obj)
-    return out
+def token(event: dict, field: str) -> int | None:
+    value = event.get(field)
+    return value if type(value) is int and value >= 0 else None
 
 
-def hit_rate(rs: list[dict]) -> float:
-    tin = sum(r.get("input_tokens", 0) or 0 for r in rs)
-    tcr = sum(r.get("cache_read_tokens", 0) or 0 for r in rs)
-    return tcr / (tin + tcr) if (tin + tcr) else 0.0
+def load_events(paths: list[Path], since: str | None) -> list[dict]:
+    events = []
+    for path in paths:
+        with path.open(encoding="utf-8") as stream:
+            for line in stream:
+                try:
+                    event = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if not isinstance(event, dict) or not any(token(event, field) for field in TOKEN_FIELDS):
+                    continue
+                timestamp = event.get("timestamp")
+                if since and (not isinstance(timestamp, str) or timestamp[:10] < since):
+                    continue
+                events.append(event)
+    return events
 
 
-def report(events: list[dict], model_filter: set[str], min_events: int) -> None:
-    # Zero-token residue check (should normally be empty after F1 fix).
-    zero = sum(
-        1
-        for r in events
-        if not (
-            (r.get("input_tokens") or 0)
-            or (r.get("cache_read_tokens") or 0)
-            or (r.get("cache_write_tokens") or 0)
-            or (r.get("output_tokens") or 0)
-        )
-    )
-    if zero:
-        print(f"[warn] {zero} all-zero-token events present (run extract-usage-events.py to purge)")
-
-    groups: dict[tuple[str, str], list[dict]] = collections.defaultdict(list)
-    for r in events:
-        if model_filter and r.get("model") not in model_filter:
-            continue
-        groups[(r.get("request_type", "?"), r.get("model", "?"))].append(r)
-
-    kept = sum(len(rs) for rs in groups.values())
-    dropped = len(events) - kept
-    label = f"events: {kept} total (models: {', '.join(sorted(model_filter)) or 'all'})"
-    if dropped:
-        label += f" (+{dropped} events of other models excluded)"
-    print(label)
-    print(f"\n{'request_type':<22} {'model':<16} {'n':>6} {'in_avg':>9} {'cr_avg':>10} {'hit%':>7}")
-    print("-" * 74)
-    for (rt, model), rs in sorted(
-        groups.items(), key=lambda kv: -sum(x.get("input_tokens", 0) or 0 for x in kv[1])
+def group_key(event: dict) -> GroupKey:
+    metadata = event.get("metadata")
+    if not isinstance(metadata, dict):
+        metadata = {}
+    collector = str(metadata.get("collector_version", "legacy"))
+    model = str(event.get("model") or "unknown")
+    template = str(event.get("template_id") or "unknown")
+    version = str(event.get("template_version") or "unknown")
+    declared = metadata.get("cache_semantics")
+    if declared == "anthropic":
+        semantics = "anthropic"
+    elif (
+        declared is None
+        and collector == "legacy"
+        and template == "claude_code_session"
+        and version == "transcript-v1"
+        and model in LEGACY_DEEPSEEK_MODELS
     ):
-        n = len(rs)
-        in_avg = sum(r.get("input_tokens", 0) or 0 for r in rs) / n
-        cr_avg = sum(r.get("cache_read_tokens", 0) or 0 for r in rs) / n
-        hit = hit_rate(rs) * 100
-        flag = "  <-- small sample" if n < min_events else ""
-        print(f"{rt:<22} {model:<16} {n:>6} {in_avg:>9,.0f} {cr_avg:>10,.0f} {hit:>6.1f}%{flag}")
-
-    # Sessions per type (avoid the "n=events called sessions" confusion).
-    sess = collections.defaultdict(set)
-    for r in events:
-        if model_filter and r.get("model") not in model_filter:
-            continue
-        sess[r.get("request_type", "?")].add(r.get("input_reference"))
-    print("\nsessions per request_type:")
-    for rt, s in sorted(sess.items()):
-        print(f"  {rt:<22} {len(s):>4}")
+        # Two-part input is documented only for these historical transcript events.
+        semantics = "deepseek-legacy"
+    else:
+        semantics = "unknown"
+    return str(event.get("request_type") or "unknown"), template, version, model, collector, semantics
 
 
-def compare_baselines(events: list[dict], regression_path: Path, model_filter: set[str]) -> None:
-    if not regression_path.exists():
-        print("\n[skip] regression-cases.json not found:", regression_path)
+def average(events: list[dict], field: str) -> float | None:
+    values = [value for event in events if (value := token(event, field)) is not None]
+    return sum(values) / len(values) if values else None
+
+
+def input_metrics(events: list[dict], semantics: str) -> tuple[float | None, float | None]:
+    if semantics == "unknown":
+        return None, None
+    fields = TOKEN_FIELDS[:3] if semantics == "anthropic" else TOKEN_FIELDS[:2]
+    totals = [0] * len(fields)
+    for event in events:
+        for index, field in enumerate(fields):
+            value = token(event, field)
+            if value is None:
+                return None, None
+            totals[index] += value
+    total_input = sum(totals)
+    return total_input / len(events), (100 * totals[1] / total_input if total_input else None)
+
+
+def fmt(value: float | None, width: int = 10, decimals: int = 0) -> str:
+    return f"{value:>{width},.{decimals}f}" if value is not None else f"{'N/A':>{width}}"
+
+
+def report(groups: Groups, min_events: int) -> None:
+    print(f"\n{'request_type':<22} {'template/version':<33} {'model':<22} {'collector/semantics':<22} "
+          f"{'n':>6} {'input_avg':>10} {'read_avg':>10} {'total_avg':>10} {'read%':>7}")
+    for key, events in sorted(groups.items(), key=lambda item: (-len(item[1]), item[0])):
+        rt, template, version, model, collector, semantics = key
+        n = len(events)
+        total, share = input_metrics(events, semantics)
+        small = "  <-- small sample" if n < min_events else ""
+        print(f"{rt:<22} {template + '/' + version:<33} {model:<22} {collector + '/' + semantics:<22} "
+              f"{n:>6} {fmt(average(events, 'input_tokens'))} "
+              f"{fmt(average(events, 'cache_read_tokens'))} {fmt(total)} {fmt(share, 7, 1)}{small}")
+    print("\ninput_avg/read_avg: raw field means where present; total_avg/read%: known, complete input accounting only.")
+
+    sessions = defaultdict(set)
+    for key, events in groups.items():
+        for event in events:
+            metadata = event.get("metadata")
+            session_id = metadata.get("session_id") if isinstance(metadata, dict) else None
+            if isinstance(session_id, str) and session_id:
+                sessions[key[0]].add(session_id)
+    if sessions:
+        print("\nDistinct known sessions per request_type (only events with session IDs):")
+        for request_type, ids in sorted(sessions.items()):
+            print(f"  {request_type:<22} {len(ids):>4}")
+
+
+def compare_baselines(groups: Groups, regression_path: Path) -> None:
+    if not regression_path.is_file():
+        print("\n[skip] regression snapshot not found:", regression_path)
         return
     spec = json.loads(regression_path.read_text(encoding="utf-8"))
-    print("\n=== regression baseline delta ===")
-    any_delta = False
+    scope = spec.get("baseline_scope", {})
+    print("\n=== historical snapshot (descriptive only; not a quality or savings test) ===")
     for case in spec.get("cases", []):
-        rt = case.get("request_type")
         if not case.get("enabled"):
             continue
-        rs = [r for r in events if r.get("request_type") == rt and (not model_filter or r.get("model") in model_filter)]
-        if not rs:
-            print(f"[no-data] {case.get('id'):<28} request_type={rt:<22} baseline present: {bool(case.get('baseline', {}).get('input_tokens') is not None)}")
+        case_id = case["id"]
+        baseline = case.get("baseline") or {}
+        b_in, b_read = baseline.get("input_tokens"), baseline.get("cache_read_tokens")
+        if b_in is None or b_read is None:
+            print(f"[no-baseline] {case_id}")
             continue
-        any_delta = True
-        n = len(rs)
-        in_avg = sum(r.get("input_tokens", 0) or 0 for r in rs) / n
-        cr_avg = sum(r.get("cache_read_tokens", 0) or 0 for r in rs) / n
-        hit = hit_rate(rs) * 100
-        base = case.get("baseline", {}) or {}
-        b_in = base.get("input_tokens")
-        b_cr = base.get("cache_read_tokens")
-        print(f"{case.get('id'):<28} n={n:>5}  in={in_avg:>8,.0f}  cr={cr_avg:>10,.0f}  hit={hit:>5.1f}%")
-        if b_in is not None and b_cr is not None:
-            b_hit = b_cr / (b_in + b_cr) * 100 if (b_in + b_cr) else 0
-            print(f"{'':<28}    baseline       in={b_in:>8,.0f}  cr={b_cr:>10,.0f}  hit={b_hit:>5.1f}%")
-            print(f"{'':<28}    delta          in={(in_avg-b_in):>+8,.0f}  cr={(cr_avg-b_cr):>+10,.0f}  hit={(hit-b_hit):>+5.1f}pp")
-    if not any_delta:
-        print("(no baseline comparison available for enabled cases)")
+        key = (case.get("request_type"), case.get("template_id"), scope.get("template_version"),
+               scope.get("model"), scope.get("collector_version"), scope.get("cache_semantics"))
+        events = groups.get(key)
+        if not events or key[-1] != "deepseek-legacy":
+            print(f"[no-matching-data] {case_id} (requires matching historical model/template/collector)")
+            continue
+        cutoff = scope.get("snapshot_date")
+        if cutoff:
+            # The snapshot day may be partial; exclude it as well as older days.
+            events = [event for event in events if str(event.get("timestamp") or "")[:10] > cutoff]
+        if not events:
+            print(f"[no-post-snapshot-data] {case_id}")
+            continue
+        total, share = input_metrics(events, key[-1])
+        b_total = b_in + b_read
+        if total is None or share is None or not b_total:
+            print(f"[no-comparable-input] {case_id}")
+            continue
+        print(f"{case_id:<28} n={len(events):>5}  total avg={total:>9,.0f}  read={share:5.1f}%  "
+              f"vs snapshot: {total - b_total:+,.0f} tokens, {share - 100 * b_read / b_total:+.1f} pp")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--events-dir", default=None, help="Events dir (default: <project>/.llm/prompt-cache/events)")
-    parser.add_argument("--since", default=None, help="Only days >= YYYY-MM-DD")
-    parser.add_argument("--regression", default=None, help="Path to regression-cases.json")
-    parser.add_argument("--model", action="append", help="Restrict to a model (repeatable). Default: deepseek-v4-flash + deepseek-v4-pro")
-    parser.add_argument("--no-baseline", action="store_true", help="Skip regression baseline comparison")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--events-dir", type=Path, help="Daily JSONL files (default: project .llm/prompt-cache/events)")
+    source.add_argument("--events-file", type=Path, help="Read one JSONL file instead of the daily files; never merge sources")
+    parser.add_argument("--since", help="Only events dated on or after YYYY-MM-DD, per event timestamp")
+    parser.add_argument("--regression", type=Path, default=CACHE_ROOT / "regression-cases.json", help="Historical snapshot JSON")
+    parser.add_argument("--model", action="append", help="Restrict to a model (repeatable); default: all models")
+    parser.add_argument("--no-baseline", action="store_true", help="Skip the historical snapshot")
     parser.add_argument("--min-events", type=int, default=10, help="Warn when a group has fewer events than this")
     args = parser.parse_args()
 
-    events_dir = Path(args.events_dir).resolve() if args.events_dir else DEFAULT_EVENTS_DIR
-    regression = Path(args.regression).resolve() if args.regression else DEFAULT_REGRESSION
-    model_filter = set(args.model) if args.model else DEFAULT_MODELS
-
-    events = load_events(events_dir, args.since)
-    report(events, model_filter, args.min_events)
+    if args.events_file is not None:
+        if not args.events_file.is_file():
+            parser.error(f"event file not found: {args.events_file}")
+        paths = [args.events_file]
+    else:
+        paths = sorted((args.events_dir or CACHE_ROOT / "events").glob("*.jsonl"))
+    events = load_events(paths, args.since)
+    groups = defaultdict(list)
+    models = set(args.model or [])
+    for event in events:
+        key = group_key(event)
+        if not models or key[3] in models:
+            groups[key].append(event)
+    selected = sum(map(len, groups.values()))
+    print(f"events: {selected} of {len(events)} (models: {', '.join(sorted(models)) or 'all'})")
+    report(groups, args.min_events)
     if not args.no_baseline:
-        compare_baselines(events, regression, model_filter)
+        compare_baselines(groups, args.regression)
     return 0
 
 

@@ -1,6 +1,13 @@
 {
-  "version": "6",
-  "description": "考研复习项目高频请求回归样本。2026-08-10 v6：提取器去重修复——event_key 移除 timestamp，同一 assistant 轮的重复 usage 块只保留一条（此前 n 被膨胀约 3 倍，均值不受影响；基线已按修正后口径刷新）。v5 起：提取器分类修复（Obsidian <command-name> 包装、❯ 终端前缀、/kaoyan-info；kaoyan_english 误分类纠正回 kaoyan_plan）。基线统一按 deepseek-v4-flash 事件均值计算（n 为事件数，会话数见各 case 注释）。任何模板/模型/上下文加载策略改动后，用 analyze-usage-events.py 重跑同一批样本并对比：质量不降且输入/缓存 token 变少才算优化。",
+  "version": "7",
+  "description": "考研高频请求的质量检查清单与 2026-08-10 历史用量快照。快照是按会话粗分类的事件均值，不是固定输入回放结果。原样保留计数与均值；分析器只在同请求类型、模板标签、模型和采集口径下显示描述性差异，不执行质量评估。",
+  "baseline_scope": {
+    "model": "deepseek-v4-flash",
+    "template_version": "transcript-v1",
+    "collector_version": "legacy",
+    "cache_semantics": "deepseek-legacy",
+    "snapshot_date": "2026-08-10"
+  },
   "cases": [
     {
       "id": "kaoyan_plan_daily",
@@ -77,7 +84,7 @@
         "latency_ms": null,
         "cost_usd": null,
         "quality_score": null,
-        "note": "no genuine events yet; v4 的 232 事件基线为误分类的 /kaoyan-plan 完成报告，已纠正；待真实英语会话自动补齐"
+        "note": "no historical baseline; v4 的 232 条事件是误分类的 /kaoyan-plan 完成报告，已纠正"
       }
     },
     {
@@ -155,7 +162,7 @@
         "latency_ms": null,
         "cost_usd": null,
         "quality_score": null,
-        "note": "no events classified yet; first real session auto-fills"
+        "note": "no historical baseline; matching observations in the report do not update this snapshot"
       }
     }
   ]
