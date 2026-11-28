@@ -1,5 +1,6 @@
 {
   "newLinkFormat": "relative",
-  "useMarkdownLinks": true,
-  "focusNewTab": true
+  "useMarkdownLinks": false,
+  "focusNewTab": true,
+  "alwaysUpdateLinks": true
 }
